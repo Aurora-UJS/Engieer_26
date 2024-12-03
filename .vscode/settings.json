@@ -1,0 +1,21 @@
+{
+    "files.associations": {
+        "main.h": "c",
+        "filter.h": "c",
+        "arm_math.h": "c",
+        "fast_math_functions.h": "c",
+        "support_functions.h": "c",
+        "cantool.h": "c",
+        "tool.h": "c",
+        "imu_task.h": "c",
+        "stdint.h": "c",
+        "string.h": "c",
+        "motortool.h": "c",
+        "fdcan.h": "c",
+        "list.h": "c"
+    },
+    "aide.convertLanguagePairs": {
+        "c": "rust"
+    },
+    "Codegeex.RepoIndex": true
+}
