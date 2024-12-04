@@ -18,7 +18,7 @@ void can_sys_init(void)
     can_bsp_init();
 }
 
-List_t *can_msg_find_list(uint8_t port)
+List_t *can_msg_find_list(can_port_t port)
 {
     switch (port)
     {
@@ -48,7 +48,7 @@ can_msg_t *can_msg_find_item(List_t *can_msg_list, uint32_t id)
     return NULL;
 }
 
-uint8_t can_msg_add_item(can_msg_t *msg)
+can_status_t can_msg_add_item(can_msg_t *msg)
 {
     if (msg == NULL)
         return CAN_MSG_ERROR;
@@ -83,7 +83,7 @@ uint8_t can_msg_add_item(can_msg_t *msg)
     return CAN_OK;
 }
 
-uint8_t can_msg_del_item(uint8_t port, uint32_t id)
+can_status_t can_msg_del_item(can_port_t port, uint32_t id)
 {
     ListItem_t *item = listGET_HEAD_ENTRY(can_msg_find_list(port));
     const ListItem_t *end = listGET_END_MARKER(can_msg_find_list(port));
@@ -101,7 +101,7 @@ uint8_t can_msg_del_item(uint8_t port, uint32_t id)
     return CAN_MSG_NOT_FOUND;
 }
 
-uint8_t can_msg_send_classical(can_msg_t *msg)
+can_status_t can_msg_send_classical(can_msg_t *msg)
 {
     if (msg == NULL)
         return CAN_MSG_ERROR;
@@ -123,7 +123,7 @@ uint8_t can_msg_send_classical(can_msg_t *msg)
     return CAN_OK;
 }
 
-uint8_t can_msg_send_extended(can_msg_t *msg)
+can_status_t can_msg_send_extended(can_msg_t *msg)
 {
     if (msg == NULL)
         return CAN_MSG_ERROR;
@@ -144,7 +144,7 @@ uint8_t can_msg_send_extended(can_msg_t *msg)
     return CAN_OK;
 }
 
-uint8_t can_msg_send_fd(can_msg_t *msg)
+can_status_t can_msg_send_fd(can_msg_t *msg)
 {
     if (msg == NULL)
         return CAN_MSG_ERROR;
