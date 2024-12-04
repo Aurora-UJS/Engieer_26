@@ -30,7 +30,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "uartall.h"
 #include "DBusSys.h"
 #include "IMUtool.h"
 #include "BMI088driver.h"
@@ -116,7 +115,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART10_UART_Init();
   /* USER CODE BEGIN 2 */
-  can_bsp_init();
+  // can_bsp_init();
   HAL_UARTEx_ReceiveToIdle_IT(&huart5, rx_buff, BUFF_SIZE * 2);
   HAL_UARTEx_ReceiveToIdle_IT(&huart7, rader_rx_buffer, RADAR_BUFFER_SIZE * 2);
   // HAL_UARTEx_ReceiveToIdle_DMA(&huart5, rx_buff, BUFF_SIZE*2);
@@ -126,11 +125,7 @@ int main(void)
   // {
   //   IMUsys();
   // }
-  while (can5FIFO_flag == 1)
-  {
-    HAL_Delay(1);
-    fdcanx_send_data(&hfdcan1, 0x206, Data_Enable, FDCAN_DLC_BYTES_8);
-  }
+
   /* USER CODE END 2 */
 
   /* Init scheduler */

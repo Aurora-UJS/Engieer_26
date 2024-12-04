@@ -24,10 +24,8 @@ float err_ll = 0;
 float gyro[3], accel[3], angles[3], temp;
 uint8_t forceStop = 0;
 extern osSemaphoreId imuBinarySem01Handle;
-extern osSemaphoreId controlBinaryIMUHandle;
 bmi088_data_t bmi088_data;
 uint32_t temp_Ticks = 0;
-float yaw_angle_now = 0;
 uint8_t attitude_flag = 0;
 uint32_t correct_times = 0;
 float gyro_correct[3] = {0};
@@ -95,13 +93,13 @@ void IMUsys(void)
         Mahony_computeAngles(); // 角度计算
         //=============================================================================
         // 获取姿态角度函数
-        bmi088_data.angles.pitch = getPitch(); // 获得pitch
-        bmi088_data.angles.roll = getRoll();   // 获得roll
-        bmi088_data.angles.yaw = getYaw();     // 获得yaw
+        getPitch(); // 获得pitch
+        getRoll();   // 获得roll
+        getYaw();     // 获得yaw
         //==============================================================================
-        yaw_angle_now = (-bmi088_data.angles.yaw + 180) * (float)Pi / 180.0f;
 
-        osSemaphoreRelease(controlBinaryIMUHandle);
+
+
     }
     else if (attitude_flag == 1) // 状态1 开始1000次的陀螺仪0飘初始化
     {

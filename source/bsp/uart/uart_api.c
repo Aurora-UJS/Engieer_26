@@ -1,5 +1,4 @@
 #include "uart_api.h"
-#include "list.h"
 #include "usart.h"
 #include "string.h"
 

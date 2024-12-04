@@ -1,7 +1,7 @@
+#include "can_struct.h"
 #include "can_api.h"
 #include "can_bsp.h"
 #include "fdcan.h"
-#include "list.h"
 #include "string.h"
 #include "stdio.h"
 #include "FreeRTOS.h"
@@ -18,7 +18,7 @@ void can_sys_init(void)
     can_bsp_init();
 }
 
-List_t *can_msg_find_list(can_port_t port)
+List_t *can_msg_find_list(uint8_t port)
 {
     switch (port)
     {
@@ -27,7 +27,7 @@ List_t *can_msg_find_list(can_port_t port)
     case CAN2_PORT:
         return &can2_rx_msg_list;
     case CAN3_PORT:
-        return can3_rx_msg_list;
+        return &can3_rx_msg_list;
     default:
         return &can1_rx_msg_list;
     }
@@ -48,7 +48,7 @@ can_msg_t *can_msg_find_item(List_t *can_msg_list, uint32_t id)
     return NULL;
 }
 
-can_status_t can_msg_add_item(can_msg_t *msg)
+uint8_t can_msg_add_item(can_msg_t *msg)
 {
     if (msg == NULL)
         return CAN_MSG_ERROR;
@@ -83,10 +83,10 @@ can_status_t can_msg_add_item(can_msg_t *msg)
     return CAN_OK;
 }
 
-can_status_t can_msg_del_item(can_port_t port, uint32_t id)
+uint8_t can_msg_del_item(uint8_t port, uint32_t id)
 {
     ListItem_t *item = listGET_HEAD_ENTRY(can_msg_find_list(port));
-    MiniListItem_t *end = listGET_END_MARKER(can_msg_find_list(port));
+    const ListItem_t *end = listGET_END_MARKER(can_msg_find_list(port));
     while (item != end)
     {
         can_msg_t *msg = listGET_LIST_ITEM_OWNER(item);
@@ -101,7 +101,7 @@ can_status_t can_msg_del_item(can_port_t port, uint32_t id)
     return CAN_MSG_NOT_FOUND;
 }
 
-can_status_t can_msg_send_classical(can_msg_t *msg)
+uint8_t can_msg_send_classical(can_msg_t *msg)
 {
     if (msg == NULL)
         return CAN_MSG_ERROR;
@@ -120,9 +120,10 @@ can_status_t can_msg_send_classical(can_msg_t *msg)
     default:
         return CAN_PORT_ERROR;
     }    
+    return CAN_OK;
 }
 
-can_status_t can_msg_send_extended(can_msg_t *msg)
+uint8_t can_msg_send_extended(can_msg_t *msg)
 {
     if (msg == NULL)
         return CAN_MSG_ERROR;
@@ -140,9 +141,10 @@ can_status_t can_msg_send_extended(can_msg_t *msg)
     default:
         return CAN_PORT_ERROR;
     }    
+    return CAN_OK;
 }
 
-can_status_t can_msg_send_fd(can_msg_t *msg)
+uint8_t can_msg_send_fd(can_msg_t *msg)
 {
     if (msg == NULL)
         return CAN_MSG_ERROR;
@@ -160,4 +162,5 @@ can_status_t can_msg_send_fd(can_msg_t *msg)
     default:
         return CAN_PORT_ERROR;
     }    
+    return CAN_OK;
 }

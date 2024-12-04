@@ -2,7 +2,6 @@
 #include "stdint.h"
 #include "string.h"
 #include "tool.h"
-#include "MotorTool.h"
 // 定义PID控制器结构体
 // pid_type_def pid;
 /**

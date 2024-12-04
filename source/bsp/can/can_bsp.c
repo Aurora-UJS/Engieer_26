@@ -1,7 +1,8 @@
+#include "can_struct.h"
 #include "can_bsp.h"
 // #include "MotorTool.h"
 #include "list.h"
-#include "can_api.h"
+
 #include "string.h"
 /**
 ************************************************************************

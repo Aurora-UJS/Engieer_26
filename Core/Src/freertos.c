@@ -25,8 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "CANtool.h"
-#include "uartall.h"
+
 #include "DBusSys.h"
 #include "dma.h"
 #include "usart.h"
