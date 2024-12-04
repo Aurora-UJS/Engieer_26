@@ -36,28 +36,29 @@ uart_status_t uart_rx_init(uart_rx_t* uart_rx_msg)
     
     if (uart_rx_msg->rx_msg->huart->Instance == USART1)
     {
-        uart1_msg = uart_rx_msg->rx_msg;
+        uart1_msg = uart_rx_msg;
         
     }
     else if (uart_rx_msg->rx_msg->huart->Instance == USART2)
     {
-        uart2_msg = uart_rx_msg->rx_msg;
+        uart2_msg = uart_rx_msg;
     }
     else if (uart_rx_msg->rx_msg->huart->Instance == USART3)
     {
-        uart3_msg = uart_rx_msg->rx_msg;
+        uart3_msg = uart_rx_msg;
     }
     else if (uart_rx_msg->rx_msg->huart->Instance == UART5)
     {
-        uart5_msg = uart_rx_msg->rx_msg;
+        uart5_msg = uart_rx_msg;
     }
     else if (uart_rx_msg->rx_msg->huart->Instance == UART7)
     {
-        uart7_msg = uart_rx_msg->rx_msg;
+        uart7_msg = uart_rx_msg;
     }
     else
     {
         return UART_ERROR;
     }
     HAL_UARTEx_ReceiveToIdle_IT(uart_rx_msg->rx_msg->huart, uart_rx_msg->rx_msg->pBuffer, uart_rx_msg->rx_msg->Len * 2);
+    return UART_OK;
 }

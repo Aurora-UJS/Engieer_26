@@ -29,7 +29,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "bsp.h"
 #include "DBusSys.h"
 #include "IMUtool.h"
 #include "BMI088driver.h"

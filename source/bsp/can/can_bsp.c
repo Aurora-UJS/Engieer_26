@@ -1,4 +1,5 @@
 #include "can_struct.h"
+#include "can_api.h"
 #include "can_bsp.h"
 // #include "MotorTool.h"
 #include "list.h"
@@ -52,7 +53,7 @@ void can_filter_init(void)
 	fdcan2_filter.FilterConfig = FDCAN_FILTER_TO_RXFIFO0; // 过滤器0关联到FIFO0
 	fdcan2_filter.FilterID1 = 0x000;
 	fdcan2_filter.FilterID2 = 0xFFF;
-	HAL_FDCAN_ConfigFilter(&hfdcan2, &fdcan1_filter);
+	HAL_FDCAN_ConfigFilter(&hfdcan2, &fdcan2_filter);
 	HAL_FDCAN_ConfigGlobalFilter(&hfdcan2, FDCAN_REJECT, FDCAN_REJECT, FDCAN_FILTER_REMOTE, FDCAN_FILTER_REMOTE);
 	HAL_FDCAN_ConfigFifoWatermark(&hfdcan2, FDCAN_CFG_RX_FIFO0, 1);
 
