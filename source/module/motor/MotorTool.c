@@ -33,31 +33,7 @@ void can_output(FDCAN_HandleTypeDef *hcan, uint16_t ID, int16_t v1, int16_t v2, 
     fdcanx_send_data(hcan, ID, TxDate, FDCAN_DLC_BYTES_8);
 }
 
-/**
- * @brief  达妙电机位置速度模式控下控制帧
- * @param  hcan   CAN的句柄
- * @param  ID     数据帧的ID
- * @param  _pos   位置给定
- * @param  _vel   速度给定
- */
-void PosSpeed_CtrlMotor(FDCAN_HandleTypeDef *hcan, uint16_t ID, float _pos, float _vel)
-{
-    uint8_t TxDate[8] = {0}; // 放数值的数组
-    uint8_t *pbuf, *vbuf;
-    pbuf = (uint8_t *)&_pos;
-    vbuf = (uint8_t *)&_vel;
 
-    TxDate[0] = *pbuf;
-    TxDate[1] = *(pbuf + 1);
-    TxDate[2] = *(pbuf + 2);
-    TxDate[3] = *(pbuf + 3);
-    TxDate[4] = *vbuf;
-    TxDate[5] = *(vbuf + 1);
-    TxDate[6] = *(vbuf + 2);
-    TxDate[7] = *(vbuf + 3);
-
-    fdcanx_send_data(hcan, ID, TxDate, FDCAN_DLC_BYTES_8);
-}
 
 /**
  * @brief  速度模式控下控制帧

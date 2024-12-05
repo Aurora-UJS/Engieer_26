@@ -17,9 +17,6 @@ typedef struct
 
 extern moto_info_t moto_data[16];
 extern uint8_t can5FIFO_flag;
-extern uint8_t Data_Enable[8];		//达妙电机使能命令
-extern uint8_t Data_Failure[8];		//电机失能命令
-extern uint8_t Data_Save_zero[8];	    //电机保存零点命令
 
 void can_output(FDCAN_HandleTypeDef *hcan, uint16_t ID, int16_t v1, int16_t v2, int16_t v3, int16_t v4);
 void PosSpeed_CtrlMotor(FDCAN_HandleTypeDef *hcan, uint16_t ID, float _pos, float _vel);
