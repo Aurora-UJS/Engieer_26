@@ -1,20 +1,20 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * File Name          : freertos.c
-  * Description        : Code for freertos applications
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * File Name          : freertos.c
+ * Description        : Code for freertos applications
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
@@ -26,11 +26,11 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
-#include "DBusSys.h"
-#include "dma.h"
-#include "usart.h"
-#include "PIDtool.h"
-#include "MotorTool.h"
+// #include "DBusSys.h"
+// #include "dma.h"
+// #include "usart.h"
+// #include "PIDtool.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,25 +56,25 @@ typedef StaticSemaphore_t osStaticSemaphoreDef_t;
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
-  .name = "defaultTask",
-  .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityNormal,
+    .name = "defaultTask",
+    .stack_size = 128 * 4,
+    .priority = (osPriority_t)osPriorityNormal,
 };
 /* Definitions for imuBinarySem01 */
 osSemaphoreId_t imuBinarySem01Handle;
 osStaticSemaphoreDef_t imuBinarySemControlBlock;
 const osSemaphoreAttr_t imuBinarySem01_attributes = {
-  .name = "imuBinarySem01",
-  .cb_mem = &imuBinarySemControlBlock,
-  .cb_size = sizeof(imuBinarySemControlBlock),
+    .name = "imuBinarySem01",
+    .cb_mem = &imuBinarySemControlBlock,
+    .cb_size = sizeof(imuBinarySemControlBlock),
 };
 /* Definitions for controlBinaryIMU */
 osSemaphoreId_t controlBinaryIMUHandle;
 osStaticSemaphoreDef_t controlBinaryIMUControlBlock;
 const osSemaphoreAttr_t controlBinaryIMU_attributes = {
-  .name = "controlBinaryIMU",
-  .cb_mem = &controlBinaryIMUControlBlock,
-  .cb_size = sizeof(controlBinaryIMUControlBlock),
+    .name = "controlBinaryIMU",
+    .cb_mem = &controlBinaryIMUControlBlock,
+    .cb_size = sizeof(controlBinaryIMUControlBlock),
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -87,11 +87,12 @@ void StartDefaultTask(void *argument);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /**
-  * @brief  FreeRTOS initialization
-  * @param  None
-  * @retval None
-  */
-void MX_FREERTOS_Init(void) {
+ * @brief  FreeRTOS initialization
+ * @param  None
+ * @retval None
+ */
+void MX_FREERTOS_Init(void)
+{
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
@@ -130,22 +131,21 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_EVENTS */
   /* add events, ... */
   /* USER CODE END RTOS_EVENTS */
-
 }
 
 /* USER CODE BEGIN Header_StartDefaultTask */
 /**
-  * @brief  Function implementing the defaultTask thread.
-  * @param  argument: Not used
-  * @retval None
-  */
+ * @brief  Function implementing the defaultTask thread.
+ * @param  argument: Not used
+ * @retval None
+ */
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
-
+  UNUSED(argument);
   /* Infinite loop */
-  for(;;)
+  for (;;)
   {
     osDelay(1);
   }
@@ -156,4 +156,3 @@ void StartDefaultTask(void *argument)
 /* USER CODE BEGIN Application */
 
 /* USER CODE END Application */
-

@@ -1,7 +1,6 @@
 #include "radarTool.h"
 #include "main.h"
 #include "IMUtool.h"
-#include "MotorTool.h"
 #include "string.h"
 #include "usart.h"
 #include "crc.h"
@@ -111,7 +110,7 @@ void sendRadarData(void)
     radarData.reserved = 0;
     radarData.roll = 0;
     radarData.yaw = yaw_angle_now;
-    radarData.pitch = (6150 - moto_data[5].rotor_angle) * 2.0f * Pi / 8191.0f;
+    // radarData.pitch = (6150 - moto_data[5].rotor_angle) * 2.0f * Pi / 8191.0f;
     
     Append_CRC16_Check_Sum((uint8_t*)&radarData, sizeof(radarData));
     HAL_UART_Transmit_IT(&huart7, (uint8_t*)&radarData, sizeof(radarData));
