@@ -7,7 +7,6 @@ static Data_Save_zero[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE}; // 
 void Motor_DM_Init(DM_motor_t *motor)
 {
     // 初始化电机参数
-    motor->motor_msg.can_msg->id = motor->can_cfg.id;
     motor->motor_msg.can_msg->port = motor->can_cfg.port;
     can_msg_add_item(motor->motor_msg.can_msg);
 }
