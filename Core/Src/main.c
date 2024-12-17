@@ -110,6 +110,7 @@ int main(void)
   MX_USART3_UART_Init();
   MX_USART1_UART_Init();
   MX_USART10_UART_Init();
+  MX_TIM12_Init();
   /* USER CODE BEGIN 2 */
   // can_bsp_init();
   // HAL_UARTEx_ReceiveToIdle_IT(&huart5, rx_buff, BUFF_SIZE * 2);
