@@ -7,17 +7,17 @@ static Data_Save_zero[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE}; // 
 void Motor_DM_Init(DM_motor_t *motor)
 {
     // 初始化电机参数
-    motor->motor_msg.can_msg->port = motor->can_cfg.port;
-    can_msg_add_item(motor->motor_msg.can_msg);
+    motor->motor_msg.can_msg.port = motor->can_cfg.port;
+    can_msg_add_item(&motor->motor_msg.can_msg);
 }
 
 void Motor_DM_Refresh(DM_motor_t *motor)
 {
     // 刷新电机状态
-    motor->motor_msg.motor_angle = (motor->motor_msg.can_msg->data[1] << 8) | motor->motor_msg.can_msg->data[2];
-    motor->motor_msg.motor_speed = (motor->motor_msg.can_msg->data[3] << 4) | (motor->motor_msg.can_msg->data[4] >> 4);
-    motor->motor_msg.torque_current = (motor->motor_msg.can_msg->data[4] << 4) | motor->motor_msg.can_msg->data[5];
-    motor->motor_msg.temp = motor->motor_msg.can_msg->data[6] > motor->motor_msg.can_msg->data[7] ? motor->motor_msg.can_msg->data[6] : motor->motor_msg.can_msg->data[7];
+    motor->motor_msg.motor_angle = (motor->motor_msg.can_msg.data[1] << 8) | motor->motor_msg.can_msg.data[2];
+    motor->motor_msg.motor_speed = (motor->motor_msg.can_msg.data[3] << 4) | (motor->motor_msg.can_msg.data[4] >> 4);
+    motor->motor_msg.torque_current = (motor->motor_msg.can_msg.data[4] << 4) | motor->motor_msg.can_msg.data[5];
+    motor->motor_msg.temp = motor->motor_msg.can_msg.data[6] > motor->motor_msg.can_msg.data[7] ? motor->motor_msg.can_msg.data[6] : motor->motor_msg.can_msg.data[7];
 }
 
 void Motor_DM_Enable(DM_motor_t *motor)
@@ -55,12 +55,12 @@ void Motor_DM_Save_Zero(DM_motor_t *motor)
  * @param  _pos   位置给定
  * @param  _vel   速度给定
  */
-void PosSpeed_CtrlMotor(DM_motor_t *motor, float _pos, float _vel)
+void PosSpeed_CtrlMotorDM(DM_motor_t *motor, float _pos, float _vel)
 {
 
     uint8_t *pbuf, *vbuf;
     pbuf = (uint8_t *)&_pos;
-    vbuf = (uint8_t *)&_vel;
+    vbuf = (uint8_t *)&_vel;                 
 
     memcpy(motor->can_cfg.data, pbuf, 8);
     memcpy(motor->can_cfg.data + 4, vbuf, 4);

@@ -13,5 +13,11 @@ typedef struct
 
 }DM_motor_t;
 
+void Motor_DM_Init(DM_motor_t *motor);
+void Motor_DM_Refresh(DM_motor_t *motor);
+void Motor_DM_Enable(DM_motor_t *motor);
+void Motor_DM_Disable(DM_motor_t *motor);
+void Motor_DM_Save_Zero(DM_motor_t *motor);
+void PosSpeed_CtrlMotorDM(DM_motor_t *motor, float _pos, float _vel);
 
 #endif /* __MOTOR_DM_H__ */
