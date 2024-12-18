@@ -21,7 +21,7 @@ typedef struct
     uint32_t id;
     uint8_t data[8];
     uint8_t len;
-    uint8_t rtr;
+    uint8_t cnt;
 }can_msg_t;
 
 // 定义CAN状态的枚举类型
