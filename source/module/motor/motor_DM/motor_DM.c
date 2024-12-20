@@ -62,7 +62,7 @@ void PosSpeed_CtrlMotorDM(DM_motor_t *motor, float _pos, float _vel)
     pbuf = (uint8_t *)&_pos;
     vbuf = (uint8_t *)&_vel;                 
 
-    memcpy(motor->can_cfg.data, pbuf, 8);
+    memcpy(motor->can_cfg.data, pbuf, 4);
     memcpy(motor->can_cfg.data + 4, vbuf, 4);
 
     motor->can_cfg.len = FDCAN_DLC_BYTES_8;

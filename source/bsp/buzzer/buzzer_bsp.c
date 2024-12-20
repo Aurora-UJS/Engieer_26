@@ -1,7 +1,10 @@
 #include "buzzer_bsp.h"
 #include "tim.h"
 
-
+void buzzer_init(void)
+{
+    HAL_TIM_PWM_Start(&htim12, TIM_CHANNEL_2);
+}
 
 void buzzer_on(uint32_t frequency, float duty_cycle)
 {
