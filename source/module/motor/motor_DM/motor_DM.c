@@ -1,8 +1,8 @@
 #include "motor_DM.h"
 #include "string.h"
-static Data_Enable[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC};    // 达妙电机使能命令
-static Data_Failure[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD};   // 电机失能命令
-static Data_Save_zero[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE}; // 电机保存零点命令
+static int Data_Enable[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC};    // 达妙电机使能命令
+static int Data_Failure[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD};   // 电机失能命令
+static int Data_Save_zero[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE}; // 电机保存零点命令
 
 /**
 ************************************************************************
@@ -75,7 +75,7 @@ void Motor_DM_Save_Zero(DM_motor_t *motor)
 * @details:    	通过CAN总线向电机发送速度控制命令
 ************************************************************************
 **/
-void spd_ctrl(DM_motor_t *motor, float vel)
+void Speed_CtrlMotorDM(DM_motor_t *motor, float vel)
 {
 
 	uint8_t *vbuf;
@@ -126,7 +126,7 @@ void PosSpeed_CtrlMotorDM(DM_motor_t *motor, float _pos, float _vel)
 * @details:    	通过CAN总线向电机发送MIT模式下的控制帧。
 ************************************************************************
 **/
-void mit_ctrl( DM_motor_t *motor,  float pos, float vel,float kp, float kd, float tor)
+void MIT_CtrlMotorDM( DM_motor_t *motor,  float pos, float vel,float kp, float kd, float tor)
 {
 	uint16_t pos_tmp,vel_tmp,kp_tmp,kd_tmp,tor_tmp;
 
@@ -144,7 +144,9 @@ void mit_ctrl( DM_motor_t *motor,  float pos, float vel,float kp, float kd, floa
 	motor->can_cfg.data[5] = (kd_tmp >> 4);
 	motor->can_cfg.data[6] = ((kd_tmp&0xF)<<4)|(tor_tmp>>8);
 	motor->can_cfg.data[7] = tor_tmp;
-	
+
+	motor->can_cfg.len = FDCAN_DLC_BYTES_8;
+
 	can_msg_send_classical(&motor->can_cfg);
 }
 
