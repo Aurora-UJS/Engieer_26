@@ -22,8 +22,6 @@ void IMU_TempCtrlTask(void const * argument)
 
     while(1)
     {
-
-	
 		IMUsys();	
 
 		osDelay(1);	
