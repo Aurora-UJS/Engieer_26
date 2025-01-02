@@ -54,7 +54,7 @@ void can_filter_init(void)
 	fdcan2_filter.FilterID1 = 0x000;
 	fdcan2_filter.FilterID2 = 0xFFF;
 	HAL_FDCAN_ConfigFilter(&hfdcan2, &fdcan2_filter);
-	HAL_FDCAN_ConfigGlobalFilter(&hfdcan2, FDCAN_REJECT, FDCAN_REJECT, FDCAN_FILTER_REMOTE, FDCAN_FILTER_REMOTE);
+	// HAL_FDCAN_ConfigGlobalFilter(&hfdcan2, FDCAN_REJECT, FDCAN_REJECT, FDCAN_FILTER_REMOTE, FDCAN_FILTER_REMOTE);
 	HAL_FDCAN_ConfigFifoWatermark(&hfdcan2, FDCAN_CFG_RX_FIFO0, 1);
 
 	FDCAN_FilterTypeDef fdcan3_filter;
@@ -65,7 +65,7 @@ void can_filter_init(void)
 	fdcan3_filter.FilterID1 = 0x000;
 	fdcan3_filter.FilterID2 = 0xFFF;
 	HAL_FDCAN_ConfigFilter(&hfdcan3, &fdcan3_filter);
-	HAL_FDCAN_ConfigGlobalFilter(&hfdcan3, FDCAN_REJECT, FDCAN_REJECT, FDCAN_FILTER_REMOTE, FDCAN_FILTER_REMOTE);
+	// HAL_FDCAN_ConfigGlobalFilter(&hfdcan3, FDCAN_REJECT, FDCAN_REJECT, FDCAN_FILTER_REMOTE, FDCAN_FILTER_REMOTE);
 	HAL_FDCAN_ConfigFifoWatermark(&hfdcan3, FDCAN_CFG_RX_FIFO0, 1);
 }
 /**

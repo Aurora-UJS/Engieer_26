@@ -12,7 +12,18 @@
         "string.h": "c",
         "motortool.h": "c",
         "fdcan.h": "c",
-        "list.h": "c"
+        "list.h": "c",
+        "can_bsp.h": "c",
+        "usart.h": "c",
+        "cmsis_os.h": "c",
+        "can_api.h": "c",
+        "compare": "cpp",
+        "limits": "cpp",
+        "new": "cpp",
+        "imutool.h": "c",
+        "tim.h": "c",
+        "typeinfo": "c",
+        "task.h": "c"
     },
     "aide.convertLanguagePairs": {
         "c": "rust"

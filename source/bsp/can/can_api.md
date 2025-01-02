@@ -83,5 +83,3 @@ can_status_t can_msg_send_fd(can_msg_t *msg);
 // 向消息列表中添加消息项
 can_status_t can_msg_add_item(can_msg_t *msg);
 ```
-
-
