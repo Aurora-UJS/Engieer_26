@@ -8,7 +8,7 @@ uart_rx_t *uart1_msg;
 uart_rx_t *uart2_msg;
 uart_rx_t *uart3_msg;
 
-uart_status_t uart_reg_cheak(uart_rx_t *uart_rx_msg)
+uart_status_t uart_rx_cheak(uart_rx_t *uart_rx_msg)
 {
     // 安全效验
     if (uart_rx_msg == NULL)
@@ -51,21 +51,21 @@ uart_status_t uart_rx_init(uart_rx_t *uart_rx_msg)
     }
 
     // 初始化串口接收
-    switch ((int)uart_rx_msg->rx_msg->huart->Instance)
+    switch ((unsigned long)uart_rx_msg->rx_msg->huart->Instance)
     {
-    case (int)USART1:
+    case (unsigned long)USART1_BASE:
         uart1_msg = uart_rx_msg;
         break;
-    case (int)USART2:
+    case (unsigned long)USART2_BASE:
         uart2_msg = uart_rx_msg;
         break;
-    case (int)USART3:
+    case (unsigned long)USART3_BASE:
         uart3_msg = uart_rx_msg;
         break;
-    case (int)UART5:
+    case (unsigned long)UART5_BASE:
         uart5_msg = uart_rx_msg;
         break;
-    case (int)UART7:
+    case (unsigned long)UART7_BASE:
         uart7_msg = uart_rx_msg;
         break;
     default:
