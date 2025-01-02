@@ -42,9 +42,57 @@ uart_status_t uart_msg_cheak(uart_msg_t *rx_msg)
     return UART_OK;
 }
 
+
+uart_status_t uart_reg_cheak(uart_rx_t *uart_rx_msg)
+{
+
+    // 安全效验
+    if (uart_rx_msg->rx_msg->huart->Instance == USART1)
+    {
+        if (uart1_msg != NULL)
+        {
+            return UART_ERROR;
+        }
+    }
+    else if (uart_rx_msg->rx_msg->huart->Instance == USART2)
+    {
+        if (uart2_msg != NULL)
+        {
+            return UART_ERROR;
+        }
+    }
+    else if (uart_rx_msg->rx_msg->huart->Instance == USART3)
+    {
+        if (uart3_msg != NULL)
+        {
+            return UART_ERROR;
+        }
+    }
+    else if (uart_rx_msg->rx_msg->huart->Instance == UART5)
+    {
+        if (uart5_msg != NULL)
+        {
+            return UART_ERROR;
+        }
+    }
+    else if (uart_rx_msg->rx_msg->huart->Instance == UART7)
+    {
+        if (uart7_msg != NULL)
+        {
+            return UART_ERROR;
+        }
+    }
+    return UART_OK;
+}
+
 uart_status_t uart_rx_init(uart_rx_t *uart_rx_msg)
 {
     // 安全效验
+    if (uart_rx_cheak(uart_rx_msg) == UART_ERROR)
+    {
+        return UART_ERROR;
+    }
+    
     if (uart_reg_cheak(uart_rx_msg) == UART_ERROR)
     {
         return UART_ERROR;

@@ -25,7 +25,10 @@
         "typeinfo": "c",
         "task.h": "c",
         "freertos.h": "c",
-        "can_struct.h": "c"
+        "can_struct.h": "c",
+        "uart_api.h": "c",
+        "dma.h": "c",
+        "uart_bsp.h": "c"
     },
     "aide.convertLanguagePairs": {
         "c": "rust"
