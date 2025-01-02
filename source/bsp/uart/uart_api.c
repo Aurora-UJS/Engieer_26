@@ -127,7 +127,6 @@ uart_status_t uart_rx_init(uart_rx_t *uart_rx_msg)
 uart_status_t uart_tx_send_IT(uart_msg_t *uart_msg)
 {
     // 安全效验
-    if (uart_msg == NULL)
     if (uart_msg_cheak(uart_msg) == UART_ERROR)
     {
         return UART_ERROR;
