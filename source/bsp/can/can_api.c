@@ -53,7 +53,7 @@ can_status_t can_msg_add_item(can_msg_t *msg)
     if (msg == NULL)
         return CAN_MSG_ERROR;
 
-    if (can_msg_find_item(can_msg_find_list(msg->port), msg->id) == NULL)
+    if (can_msg_find_item(can_msg_find_list(msg->port), msg->id) != NULL)
         return CAM_MSG_REPEAT;
 
     ListItem_t *can_item = pvPortMalloc(sizeof(ListItem_t));

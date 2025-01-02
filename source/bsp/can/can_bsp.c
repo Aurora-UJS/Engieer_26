@@ -48,7 +48,7 @@ void can_filter_init(void)
 	FDCAN_FilterTypeDef fdcan2_filter;
 
 	fdcan2_filter.IdType = FDCAN_STANDARD_ID;			  // 标准ID
-	fdcan2_filter.FilterIndex = 0;						  // 滤波器索引
+	fdcan2_filter.FilterIndex = 14;						  // 滤波器索引
 	fdcan2_filter.FilterType = FDCAN_FILTER_RANGE;		  // 允许接收两个ID之间
 	fdcan2_filter.FilterConfig = FDCAN_FILTER_TO_RXFIFO0; // 过滤器0关联到FIFO0
 	fdcan2_filter.FilterID1 = 0x000;
@@ -59,7 +59,7 @@ void can_filter_init(void)
 
 	FDCAN_FilterTypeDef fdcan3_filter;
 	fdcan3_filter.IdType = FDCAN_STANDARD_ID;			  // 标准ID
-	fdcan3_filter.FilterIndex = 0;						  // 滤波器索引
+	fdcan3_filter.FilterIndex = 18;						  // 滤波器索引
 	fdcan3_filter.FilterType = FDCAN_FILTER_RANGE;		  // 允许接收两个ID之间
 	fdcan3_filter.FilterConfig = FDCAN_FILTER_TO_RXFIFO0; // 过滤器0关联到FIFO0
 	fdcan3_filter.FilterID1 = 0x000;
@@ -155,13 +155,13 @@ uint8_t fdcanx_send_data_fd(FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *d
 * @details:    	接收数据
 ************************************************************************
 **/
-FDCAN_RxHeaderTypeDef *fdcan_RxHeader;
+FDCAN_RxHeaderTypeDef fdcan_RxHeader;
 FDCAN_RxHeaderTypeDef *fdcanx_receive(FDCAN_HandleTypeDef *hfdcan, uint8_t *buf)
 {
 
-	if (HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, fdcan_RxHeader, buf) != HAL_OK)
+	if (HAL_FDCAN_GetRxMessage(hfdcan, FDCAN_RX_FIFO0, &fdcan_RxHeader, buf) != HAL_OK)
 		return NULL; // 接收失败数据
-	return fdcan_RxHeader;
+	return &fdcan_RxHeader;
 }
 /**
 ************************************************************************
@@ -201,40 +201,40 @@ void HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)
 uint8_t rx_data1[8] = {0};
 void fdcan1_rx_callback(void)
 {
-	if (fdcanx_receive(&hfdcan1, rx_data1) != NULL)
+	if (fdcanx_receive(&hfdcan1, rx_data1) == NULL)
 		return;
 
-	can_msg_t *msg = can_msg_find_item(&can1_rx_msg_list, fdcan_RxHeader->Identifier);
+	can_msg_t *msg = can_msg_find_item(&can1_rx_msg_list, fdcan_RxHeader.Identifier);
 	if (msg == NULL)
 		return;
 
-	memcpy(msg->data, rx_data1, fdcan_RxHeader->DataLength);
-	msg->len = fdcan_RxHeader->DataLength;
+	memcpy(msg->data, rx_data1, fdcan_RxHeader.DataLength);
+	msg->len = fdcan_RxHeader.DataLength;
 	msg->cnt++;
 }
 uint8_t rx_data2[8] = {0};
 void fdcan2_rx_callback(void)
 {
-	if (fdcanx_receive(&hfdcan2, rx_data2) != NULL)
+	if (fdcanx_receive(&hfdcan2, rx_data2) == NULL)
 		return;
 
-	can_msg_t *msg = can_msg_find_item(&can2_rx_msg_list, fdcan_RxHeader->Identifier);
+	can_msg_t *msg = can_msg_find_item(&can2_rx_msg_list, fdcan_RxHeader.Identifier);
 	if (msg == NULL)
 		return;
-	memcpy(msg->data, rx_data2, fdcan_RxHeader->DataLength);
-	msg->len = fdcan_RxHeader->DataLength;
+	memcpy(msg->data, rx_data2, fdcan_RxHeader.DataLength);
+	msg->len = fdcan_RxHeader.DataLength;
 	msg->cnt++;
 }
 uint8_t rx_data3[8] = {0};
 void fdcan3_rx_callback(void)
 {
-	if (fdcanx_receive(&hfdcan3, rx_data3) != NULL)
+	if (fdcanx_receive(&hfdcan3, rx_data3) == NULL)
 		return;
 
-	can_msg_t *msg = can_msg_find_item(&can3_rx_msg_list, fdcan_RxHeader->Identifier);
+	can_msg_t *msg = can_msg_find_item(&can3_rx_msg_list, fdcan_RxHeader.Identifier);
 	if (msg == NULL)
 		return;
-	memcpy(msg->data, rx_data3, fdcan_RxHeader->DataLength);
-	msg->len = fdcan_RxHeader->DataLength;
+	memcpy(msg->data, rx_data3, fdcan_RxHeader.DataLength);
+	msg->len = fdcan_RxHeader.DataLength;
 	msg->cnt++;
 }
