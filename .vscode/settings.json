@@ -28,7 +28,12 @@
         "can_struct.h": "c",
         "uart_api.h": "c",
         "dma.h": "c",
-        "uart_bsp.h": "c"
+        "uart_bsp.h": "c",
+        "gpio.h": "c",
+        "gpioextiall.h": "c",
+        "bmi088middleware.h": "c",
+        "bmi088driver.h": "c",
+        "mahonyahrs.h": "c"
     },
     "aide.convertLanguagePairs": {
         "c": "rust"
