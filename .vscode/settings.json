@@ -23,7 +23,9 @@
         "imutool.h": "c",
         "tim.h": "c",
         "typeinfo": "c",
-        "task.h": "c"
+        "task.h": "c",
+        "freertos.h": "c",
+        "can_struct.h": "c"
     },
     "aide.convertLanguagePairs": {
         "c": "rust"

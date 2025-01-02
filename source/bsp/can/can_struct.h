@@ -31,7 +31,7 @@ typedef enum
     CAN_Reg_ERROR = 1,
     CAN_PORT_ERROR = 2,
     CAN_MSG_ERROR = 3,
-    CAM_MSG_REPEAT = 4,
+    CAN_MSG_REPEAT = 4,
     CAN_MSG_NOT_FOUND = 5,
 
 } can_status_t;
