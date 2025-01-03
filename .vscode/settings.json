@@ -28,7 +28,10 @@
         "can_struct.h": "c",
         "uart_api.h": "c",
         "dma.h": "c",
-        "uart_bsp.h": "c"
+        "uart_bsp.h": "c",
+        "cmsis_os2.h": "c",
+        "bmi088driver.h": "c",
+        "dbussys.h": "c"
     },
     "aide.convertLanguagePairs": {
         "c": "rust"

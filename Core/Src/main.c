@@ -30,6 +30,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "bsp.h"
+#include "DbusSys.h"
+
+#include "usart.h"
 
 /* USER CODE END Includes */
 
@@ -113,6 +116,8 @@ int main(void)
   MX_TIM12_Init();
   /* USER CODE BEGIN 2 */
   can_sys_init();
+
+ 
   // HAL_UARTEx_ReceiveToIdle_IT(&huart5, rx_buff, BUFF_SIZE * 2);
   // HAL_UARTEx_ReceiveToIdle_IT(&huart7, rader_rx_buffer, RADAR_BUFFER_SIZE * 2);
   // HAL_UARTEx_ReceiveToIdle_DMA(&huart5, rx_buff, BUFF_SIZE*2);

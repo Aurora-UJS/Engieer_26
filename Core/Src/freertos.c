@@ -34,7 +34,7 @@
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
-typedef StaticSemaphore_t osStaticSemaphoreDef_t;
+typedef StaticTask_t osStaticThreadDef_t;
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
@@ -60,21 +60,27 @@ const osThreadAttr_t defaultTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
+/* Definitions for imuTempCtrl */
+osThreadId_t imuTempCtrlHandle;
+uint32_t imuTempCtrlBuffer[ 512 ];
+osStaticThreadDef_t imuTempCtrlControlBlock;
+const osThreadAttr_t imuTempCtrl_attributes = {
+  .name = "imuTempCtrl",
+  .cb_mem = &imuTempCtrlControlBlock,
+  .cb_size = sizeof(imuTempCtrlControlBlock),
+  .stack_mem = &imuTempCtrlBuffer[0],
+  .stack_size = sizeof(imuTempCtrlBuffer),
+  .priority = (osPriority_t) osPriorityLow,
+};
 /* Definitions for imuBinarySem01 */
 osSemaphoreId_t imuBinarySem01Handle;
-osStaticSemaphoreDef_t imuBinarySemControlBlock;
 const osSemaphoreAttr_t imuBinarySem01_attributes = {
-  .name = "imuBinarySem01",
-  .cb_mem = &imuBinarySemControlBlock,
-  .cb_size = sizeof(imuBinarySemControlBlock),
+  .name = "imuBinarySem01"
 };
 /* Definitions for controlBinaryIMU */
 osSemaphoreId_t controlBinaryIMUHandle;
-osStaticSemaphoreDef_t controlBinaryIMUControlBlock;
 const osSemaphoreAttr_t controlBinaryIMU_attributes = {
-  .name = "controlBinaryIMU",
-  .cb_mem = &controlBinaryIMUControlBlock,
-  .cb_size = sizeof(controlBinaryIMUControlBlock),
+  .name = "controlBinaryIMU"
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -83,6 +89,7 @@ const osSemaphoreAttr_t controlBinaryIMU_attributes = {
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
+void IMU_TempCtrlTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -123,6 +130,9 @@ void MX_FREERTOS_Init(void) {
   /* creation of defaultTask */
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
+  /* creation of imuTempCtrl */
+  imuTempCtrlHandle = osThreadNew(IMU_TempCtrlTask, NULL, &imuTempCtrl_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -150,6 +160,24 @@ void StartDefaultTask(void *argument)
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
+}
+
+/* USER CODE BEGIN Header_IMU_TempCtrlTask */
+/**
+* @brief Function implementing the imuTempCtrl thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_IMU_TempCtrlTask */
+__weak void IMU_TempCtrlTask(void *argument)
+{
+  /* USER CODE BEGIN IMU_TempCtrlTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END IMU_TempCtrlTask */
 }
 
 /* Private application code --------------------------------------------------*/
