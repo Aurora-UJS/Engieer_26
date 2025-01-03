@@ -31,7 +31,9 @@
         "uart_bsp.h": "c",
         "cmsis_os2.h": "c",
         "bmi088driver.h": "c",
-        "dbussys.h": "c"
+        "dbussys.h": "c",
+        "chassismovement.h": "c",
+        "pidtool.h": "c"
     },
     "aide.convertLanguagePairs": {
         "c": "rust"
