@@ -55,7 +55,7 @@
         "crc.h": "c",
         "crc_api.h": "c",
         "stdio.h": "c",
-        "motor_dm.h": "c"
+        "motor_dm.h": "c",
     },
     "aide.convertLanguagePairs": {
         "c": "rust"
