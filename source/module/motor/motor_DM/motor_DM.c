@@ -42,15 +42,18 @@ void Motor_DM_Init(DM_motor_t *motor)
 
 void Motor_DM_Refresh(DM_motor_t *motor)
 {
-    
+    //开始解算
+    int16_t motor_angle, motor_speed, torque_current;
+
+    motor_angle = (motor->motor_msg.can_msg.data[1] << 8) | motor->motor_msg.can_msg.data[2];
+    motor_speed = (motor->motor_msg.can_msg.data[3] << 4) | (motor->motor_msg.can_msg.data[4] >> 4);
+    torque_current = (motor->motor_msg.can_msg.data[4] << 4) | motor->motor_msg.can_msg.data[5];
+
     // 刷新电机状态
-    motor->motor_msg.motor_angle = (motor->motor_msg.can_msg.data[1] << 8) | motor->motor_msg.can_msg.data[2];
-    motor->motor_msg.motor_speed = (motor->motor_msg.can_msg.data[3] << 4) | (motor->motor_msg.can_msg.data[4] >> 4);
-    motor->motor_msg.torque_current = (motor->motor_msg.can_msg.data[4] << 4) | motor->motor_msg.can_msg.data[5];
     motor->motor_msg.temp = motor->motor_msg.can_msg.data[6] > motor->motor_msg.can_msg.data[7] ? motor->motor_msg.can_msg.data[6] : motor->motor_msg.can_msg.data[7];
-    motor->motor_msg.motor_angle = uint_to_float(motor->motor_msg.motor_angle, -motor->tmp.PMAX, motor->tmp.PMAX, 16);    // (-12.5,12.5)
-    motor->motor_msg.motor_speed = uint_to_float(motor->motor_msg.motor_speed , -motor->tmp.VMAX, motor->tmp.VMAX, 12);    // (-45.0,45.0)
-    motor->motor_msg.torque_current = uint_to_float(motor->motor_msg.torque_current, -motor->tmp.TMAX, motor->tmp.TMAX, 12); // (-18.0,18.0)
+    motor->motor_msg.motor_angle = uint_to_float(motor_angle, -motor->tmp.PMAX, motor->tmp.PMAX, 16);    // (-12.5,12.5)
+    motor->motor_msg.motor_speed = uint_to_float(motor_speed , -motor->tmp.VMAX, motor->tmp.VMAX, 12);    // (-45.0,45.0)
+    motor->motor_msg.torque_current = uint_to_float(torque_current, -motor->tmp.TMAX, motor->tmp.TMAX, 12); // (-18.0,18.0)
 }
 
 void Motor_DM_Enable(DM_motor_t *motor)

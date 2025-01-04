@@ -7,9 +7,9 @@
 
 typedef struct
 {
-    int16_t motor_speed;
-    uint16_t motor_angle;
-    int16_t torque_current;
+    float motor_speed;
+    float motor_angle;
+    float torque_current;
     int8_t  temp;
     can_msg_t can_msg; //can消息指针
 
