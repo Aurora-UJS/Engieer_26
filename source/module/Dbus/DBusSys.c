@@ -8,6 +8,7 @@
 rc_info_t remoter;
 uint8_t rx_buff[BUFF_SIZE];
 uart_rx_t *DBus_msg;
+uint32_t Lsat_Conut;
 
 // 函数功能：初始化DBus相关数据结构和资源
 // 参数：无
@@ -23,25 +24,29 @@ void DBus_Init(void)
     // 设置DBus_msg中的rx_msg的huart为huart5，即使用USART5
     DBus_msg->rx_msg->huart = &huart5;
     // 设置DBus_msg中的rx_msg的Len为18，表示接收数据的长度为18字节
-    DBus_msg->rx_msg->Len = 18;
+    DBus_msg->rx_msg->Len = BUFF_SIZE ;
     // 调用uart_rx_init函数初始化DBus_msg
     uart_rx_init(DBus_msg);
 }
 
-// 函数功能：刷新DBus数据
+// 函数功能：处理DBus相关数据
 // 参数：无
 // 返回值：无
 void DBus_Refresh(void)
 {
-    // 判断uart5_msg的count是否为奇数
-    if (uart5_msg->count % 2 == 1)
+    // 如果uart5_msg的count与上一次的Lsat_Conut不相等，说明有新数据接收
+    if (uart5_msg->count != Lsat_Conut )
     {
-        // 将uart5_msg的接收缓冲区数据复制到DBus_msg的接收缓冲区
+        // 将uart5_msg的接收缓冲区数据复制到DBus_msg的接收缓冲区，数据长度为18字节
         memcpy(DBus_msg->rx_msg->pBuffer, uart5_msg->rx_msg->pBuffer, 18);
-        // 解析DBus_msg的接收缓冲区数据，更新遥控器数据
+        // 调用get_dr16_data函数解析DBus_msg的接收缓冲区数据，更新遥控器数据
         get_dr16_data(&remoter, DBus_msg->rx_msg->pBuffer);
+        // 可以在这里添加其他处理新数据的代码，例如更新相关状态或执行特定操作
     }
+    // 更新Lsat_Conut为当前的uart5_msg->count，用于下一次比较
+    Lsat_Conut=uart5_msg->count;
 }
+
 
 
 // 定义DBusSys的接口

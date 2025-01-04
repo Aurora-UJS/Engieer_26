@@ -33,7 +33,8 @@
         "bmi088driver.h": "c",
         "dbussys.h": "c",
         "chassismovement.h": "c",
-        "pidtool.h": "c"
+        "pidtool.h": "c",
+        "cmath": "c"
     },
     "aide.convertLanguagePairs": {
         "c": "rust"
