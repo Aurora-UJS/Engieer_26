@@ -53,7 +53,8 @@
         "motion_state.h": "c",
         "radartool.h": "c",
         "crc.h": "c",
-        "crc_api.h": "c"
+        "crc_api.h": "c",
+        "motor_dm.h": "c"
     },
     "aide.convertLanguagePairs": {
         "c": "rust"

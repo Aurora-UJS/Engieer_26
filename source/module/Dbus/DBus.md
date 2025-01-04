@@ -6,7 +6,7 @@
 {
     void DBus_Init(void)
 
-    // 开始无限循环，持续控制电机
+    // 开始无限循环，持续接收数据
     while (1)
     {
          DBus_Refresh();
