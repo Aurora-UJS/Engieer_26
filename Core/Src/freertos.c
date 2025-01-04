@@ -34,7 +34,7 @@
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
-typedef StaticSemaphore_t osStaticSemaphoreDef_t;
+typedef StaticTask_t osStaticThreadDef_t;
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
@@ -69,19 +69,13 @@ const osThreadAttr_t IMU_TempCtrl_attributes = {
 };
 /* Definitions for imuBinarySem01 */
 osSemaphoreId_t imuBinarySem01Handle;
-osStaticSemaphoreDef_t imuBinarySemControlBlock;
 const osSemaphoreAttr_t imuBinarySem01_attributes = {
-  .name = "imuBinarySem01",
-  .cb_mem = &imuBinarySemControlBlock,
-  .cb_size = sizeof(imuBinarySemControlBlock),
+  .name = "imuBinarySem01"
 };
 /* Definitions for controlBinaryIMU */
 osSemaphoreId_t controlBinaryIMUHandle;
-osStaticSemaphoreDef_t controlBinaryIMUControlBlock;
 const osSemaphoreAttr_t controlBinaryIMU_attributes = {
-  .name = "controlBinaryIMU",
-  .cb_mem = &controlBinaryIMUControlBlock,
-  .cb_size = sizeof(controlBinaryIMUControlBlock),
+  .name = "controlBinaryIMU"
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -90,6 +84,7 @@ const osSemaphoreAttr_t controlBinaryIMU_attributes = {
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
+
 void IMU_TempCtrlTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */

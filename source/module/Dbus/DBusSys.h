@@ -55,6 +55,8 @@ typedef struct
 }rc_info_t;
 
 void get_dr16_data(rc_info_t *rc, uint8_t buff[]);
+void DBus_Init(void);
+void DBus_Refresh(void );
 
 extern rc_info_t remoter;
 extern uint8_t rx_buff[BUFF_SIZE];
