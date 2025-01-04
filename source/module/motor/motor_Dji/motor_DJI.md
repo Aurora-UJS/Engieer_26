@@ -17,10 +17,10 @@
     DJMotor->can_cfg.id = 0x200;
     
     // 配置电机消息的 CAN ID，依次设置为 0x201, 0x202, 0x203, 0x204
-    DJMotor->motor_msg.can_msg[0].id = 0x201;
-    DJMotor->motor_msg.can_msg[1].id = 0x202;
-    DJMotor->motor_msg.can_msg[2].id = 0x203;
-    DJMotor->motor_msg.can_msg[3].id = 0x204;
+    DJMotor->motor_msg[0].can_msg.id = 0x201;
+    DJMotor->motor_msg[1].can_msg.id = 0x202;
+    DJMotor->motor_msg[2].can_msg.id = 0x203;
+    DJMotor->motor_msg[3].can_msg.id = 0x204;
 
     // 调用初始化函数，对 DJI_motor 进行初始化设置
     Motor_DJI_Init(DJMotor);

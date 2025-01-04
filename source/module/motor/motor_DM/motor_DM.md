@@ -6,7 +6,7 @@
 void task()
 {
     // 定义一个 DM_motor_t 类型的 motor 结构体
-    DM_motor_t *DM_motor = pvPortMalloc(sizeof(DJI_motor_t));
+    DM_motor_t *DM_motor = pvPortMalloc(sizeof(DM_motor_t));
 
     // 设置 CAN 配置的 ID
     DM_motor->can_cfg.id = 0x211;

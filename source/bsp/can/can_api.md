@@ -59,7 +59,7 @@ msg.data[4] = 0x05;
 msg.data[5] = 0x06;
 msg.data[6] = 0x07;
 msg.data[7] = 0x08;
-msg.len = 8;
+msg.len = FDCAN_DLC_BYTES_8;
 
 ```
 

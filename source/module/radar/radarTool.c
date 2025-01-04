@@ -3,7 +3,7 @@
 #include "IMUtool.h"
 #include "string.h"
 #include "usart.h"
-#include "crc.h"
+#include "crc_api.h"
 #define Pi 3.14159265358979323846f
 ReceivePacketVision radarData; // Structure to hold the received data from the vision system
 SendPacketTwist radarTwist; // Structure to hold the data to be sent to the motor system

@@ -14,3 +14,14 @@
 }
 
 ```
+
+## 2.调用
+
+```C
+##include "Dbus.h"
+
+    remoter.ch1;
+    remoter.mouse.x;
+    remoter.kb.bit.w;
+
+```

@@ -35,6 +35,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 typedef StaticTask_t osStaticThreadDef_t;
+typedef StaticSemaphore_t osStaticSemaphoreDef_t;
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
@@ -62,20 +63,43 @@ const osThreadAttr_t defaultTask_attributes = {
 };
 /* Definitions for IMU_TempCtrl */
 osThreadId_t IMU_TempCtrlHandle;
+uint32_t IMU_TempCtrlBuffer[ 128 ];
+osStaticThreadDef_t IMU_TempCtrlControlBlock;
 const osThreadAttr_t IMU_TempCtrl_attributes = {
   .name = "IMU_TempCtrl",
-  .stack_size = 128 * 4,
+  .cb_mem = &IMU_TempCtrlControlBlock,
+  .cb_size = sizeof(IMU_TempCtrlControlBlock),
+  .stack_mem = &IMU_TempCtrlBuffer[0],
+  .stack_size = sizeof(IMU_TempCtrlBuffer),
   .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for Remoter */
+osThreadId_t RemoterHandle;
+uint32_t RemoterBuffer[ 256 ];
+osStaticThreadDef_t RemoterControlBlock;
+const osThreadAttr_t Remoter_attributes = {
+  .name = "Remoter",
+  .cb_mem = &RemoterControlBlock,
+  .cb_size = sizeof(RemoterControlBlock),
+  .stack_mem = &RemoterBuffer[0],
+  .stack_size = sizeof(RemoterBuffer),
+  .priority = (osPriority_t) osPriorityLow,
 };
 /* Definitions for imuBinarySem01 */
 osSemaphoreId_t imuBinarySem01Handle;
+osStaticSemaphoreDef_t imuBinarySemControlBlock;
 const osSemaphoreAttr_t imuBinarySem01_attributes = {
-  .name = "imuBinarySem01"
+  .name = "imuBinarySem01",
+  .cb_mem = &imuBinarySemControlBlock,
+  .cb_size = sizeof(imuBinarySemControlBlock),
 };
 /* Definitions for controlBinaryIMU */
 osSemaphoreId_t controlBinaryIMUHandle;
+osStaticSemaphoreDef_t controlBinaryIMUControlBlock;
 const osSemaphoreAttr_t controlBinaryIMU_attributes = {
-  .name = "controlBinaryIMU"
+  .name = "controlBinaryIMU",
+  .cb_mem = &controlBinaryIMUControlBlock,
+  .cb_size = sizeof(controlBinaryIMUControlBlock),
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -84,8 +108,8 @@ const osSemaphoreAttr_t controlBinaryIMU_attributes = {
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
-
 void IMU_TempCtrlTask(void *argument);
+void Remoter_Task(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -128,6 +152,9 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of IMU_TempCtrl */
   IMU_TempCtrlHandle = osThreadNew(IMU_TempCtrlTask, NULL, &IMU_TempCtrl_attributes);
+
+  /* creation of Remoter */
+  RemoterHandle = osThreadNew(Remoter_Task, NULL, &Remoter_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -174,6 +201,24 @@ __weak void IMU_TempCtrlTask(void *argument)
     osDelay(1);
   }
   /* USER CODE END IMU_TempCtrlTask */
+}
+
+/* USER CODE BEGIN Header_Remoter_Task */
+/**
+* @brief Function implementing the Remoter thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_Remoter_Task */
+__weak void Remoter_Task(void *argument)
+{
+  /* USER CODE BEGIN Remoter_Task */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END Remoter_Task */
 }
 
 /* Private application code --------------------------------------------------*/
