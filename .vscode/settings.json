@@ -33,7 +33,8 @@
         "gpioextiall.h": "c",
         "bmi088middleware.h": "c",
         "bmi088driver.h": "c",
-        "mahonyahrs.h": "c"
+        "mahonyahrs.h": "c",
+        "cmsis_os2.h": "c"
     },
     "aide.convertLanguagePairs": {
         "c": "rust"
