@@ -17,6 +17,12 @@ void task()
     // 设置 CAN 端口
     DM_motor->can_cfg.port = CAN1_PORT;
 
+    // 设置电机参数
+    DMDM_motor->tmp.PMAX = 12.5;
+    DMDM_motor->tmp.VMAX = 3;
+    DMDM_motor->tmp.IMAX = 1;
+
+
     // 初始化电机
     Motor_DM_Init(&DM_motor);
 
