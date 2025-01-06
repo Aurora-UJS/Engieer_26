@@ -34,9 +34,6 @@ void Motor_DM_Init(DM_motor_t *motor)
 {
     // 初始化电机参数
     motor->motor_msg.can_msg.port = motor->can_cfg.port;
-    motor->tmp.PMAX		= 12.5f;
-	motor->tmp.VMAX		= 30.0f;
-	motor->tmp.TMAX		= 10.0f;
     can_msg_add_item(&motor->motor_msg.can_msg);
 }
 
