@@ -21,7 +21,7 @@
  */
 void omni_mecanum_kinematics(basic_vector_t *motion_vector,float *motor_speed_out)
 {
-    // 计算四个麦克纳姆轮的速度输出
+
     // 计算1号麦克纳姆轮（左前）的速度输出
     motor_speed_out[MOTORLF] = motion_vector->x + motion_vector->y + (CHASSIS_WZ_SET_SCALE - 1.0f) * MOTOR_DISTANCE_TO_CENTER * motion_vector->wz;//1号左前
     // 计算2号麦克纳姆轮（左后）的速度输出
