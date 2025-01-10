@@ -195,6 +195,7 @@ void StartDefaultTask(void *argument)
 __weak void IMU_TempCtrlTask(void *argument)
 {
   /* USER CODE BEGIN IMU_TempCtrlTask */
+  UNUSED(argument);
   /* Infinite loop */
   for(;;)
   {
@@ -213,6 +214,7 @@ __weak void IMU_TempCtrlTask(void *argument)
 __weak void Remoter_Task(void *argument)
 {
   /* USER CODE BEGIN Remoter_Task */
+  UNUSED(argument);
   /* Infinite loop */
   for(;;)
   {

@@ -6,10 +6,6 @@
 #include <stdint.h>
 #include "motion_state.h"
 
-#define ONE_PI   (3.14159265)
-
-
-
 /**
  * @brief 计算全向轮（麦克纳姆轮）的运动学
  * 

@@ -4,7 +4,6 @@
 #include "can_bsp.h"
 #include "motor_DJI.h"
 #include "omni_mecanum_kinematics.h"
-#include "DBusSys.h"
 
 void power_init(power * power_control)
 {
@@ -17,7 +16,7 @@ void power_init(power * power_control)
 //extern cap_measure_t cap_measure; // 电容测量数据
 
 
-void chassis_power_control(rc_info_t *remoter,pid_type_def *pid_3508_speed_chassis[4],can_motor_t *chassis_Rx1[4],power *power_control)
+void chassis_power_control(pid_type_def *pid_3508_speed_chassis[4],can_motor_t *chassis_Rx1[4],power *power_control)
 {
    float a = 1.23e-07;						 // k1，此值根据拟合值更改
    float k2 = 1.453e-07;					 // k2，同理
@@ -25,35 +24,6 @@ void chassis_power_control(rc_info_t *remoter,pid_type_def *pid_3508_speed_chass
    float initial_chassis_total_power = 0;//底盘总功率控制
    float scaled_chassis_give_power[4];//缩放后的功率
    
-   // float input_power = 0;		 // 输入功率
-   //input_power = max_power_limit-other_max_power;//- chassis_power_control->buffer_pid.out; //此处被减者为车辆的缓冲功率（超级电容消耗功率）
-   //
-	//加速模式的书写，可以书写到别处
-	// if (remoter.key.v & KEY_PRESSED_OFFSET_E)//键盘键位用来写加速功能
-	// {
-	// 	cap_state = 0;
-	// }
-	// if (remoter.key.v & KEY_PRESSED_OFFSET_Q)//键盘键位用来写加速功能
-	// {
-	// 	cap_state = 1;
-	// }
-	//
-   // if (cap_measure.voltage < 0.5f)//此处是对超级电容电量的判断
-   // 	{
-   //       if (cap_state == 0)
-   // 	{
-   // 		chassis_max_power=input_power+100;
-	//
-   // 	}
-   // 	else 
-   // 	{
-   // 		chassis_max_power=input_power+5;
-   // 	}
-   //    }
-   //    else
-   //    {
-   // 		chassis_max_power=input_power;
-   //    }
 
    //以下是只针对于底盘的功率控制
 	for (uint8_t i = 0; i < 4; i++) //计算初始底盘电机功率和总电机功率,此处最重要的是机械功率——即为第一项
@@ -62,7 +32,7 @@ void chassis_power_control(rc_info_t *remoter,pid_type_def *pid_3508_speed_chass
 								k2 * chassis_Rx1[i]->motor_speed * chassis_Rx1[i]->motor_speed +
 								a * pid_3508_speed_chassis[i]->Pout * pid_3508_speed_chassis[i]->Pout + power_control->nomal_power;
 
-		if (initial_chassis_give_power < 0) //负功率不包含（过渡）
+		if (initial_chassis_give_power[i] < 0) //负功率不包含（过渡）
 			continue;
 		initial_chassis_total_power += initial_chassis_give_power[i];//此处为总功率
 	}
