@@ -114,19 +114,10 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART10_UART_Init();
   MX_TIM12_Init();
+  MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   can_sys_init();
 
- 
-  // HAL_UARTEx_ReceiveToIdle_IT(&huart5, rx_buff, BUFF_SIZE * 2);
-  // HAL_UARTEx_ReceiveToIdle_IT(&huart7, rader_rx_buffer, RADAR_BUFFER_SIZE * 2);
-  // HAL_UARTEx_ReceiveToIdle_DMA(&huart5, rx_buff, BUFF_SIZE*2);
-
-  // HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
-  // while (attitude_flag != 2)
-  // {
-  //   IMUsys();
-  // }
 
   /* USER CODE END 2 */
 

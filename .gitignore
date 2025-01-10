@@ -51,4 +51,12 @@ build
 ./idea
 .vscode/.cortex-debug.peripherals.state.json
 .vscode/.cortex-debug.registers.state.json
+.vscode/setting.json
+.mxproject
 *.jdebug*
+RMtextH7.ioc
+
+# code coverage
+Core\Src\freertos.c
+Core\Src\main.c
+
