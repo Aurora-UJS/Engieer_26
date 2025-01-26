@@ -25,4 +25,10 @@ typedef struct
     float wz;
 } basic_vector_t;
 
+typedef struct 
+{
+    float angle;
+    float v;
+} basic_angleV_t;
+
 #endif // !MOTION_STATE_H_

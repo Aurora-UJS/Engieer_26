@@ -59,4 +59,4 @@ RMtextH7.ioc
 # code coverage
 Core\Src\freertos.c
 Core\Src\main.c
-
+source\task
