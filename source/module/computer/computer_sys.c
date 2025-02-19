@@ -1,14 +1,15 @@
 #include "main.h"
 #include "config.h"
-#include "computer_receive.h"
+#include "computer_sys.h"
 #include "uart_api.h"
 #include "vision_receive.h"
+#include "send_robot_state.h"
 #include "radarTool.h"
 
 static uart_msg_t computer_msg;
 static uart_rx_t computer_rx_msg;
 static uint8_t computer_rx_buf[COMPUTER_BUFFER_SIZE]; // 接收缓冲区
-void computer_receive_init(UART_HandleTypeDef *huart)
+void computer_uart_init(UART_HandleTypeDef *huart)
 {
     computer_rx_msg.rx_msg = &computer_msg;
     computer_msg.huart = huart;
@@ -16,6 +17,7 @@ void computer_receive_init(UART_HandleTypeDef *huart)
     computer_msg.Len = COMPUTER_BUFFER_SIZE;
 
     uart_rx_init(&computer_rx_msg);
+    robot_state_msg_init(huart);
 }
 
 void computer_receive_solve()

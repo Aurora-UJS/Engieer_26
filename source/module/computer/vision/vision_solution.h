@@ -23,18 +23,12 @@ enum ARMOR_NUM
   ARMOR_NUM_NORMAL = 4
 };
 
-enum BULLET_TYPE
-{
-  BULLET_17 = 0,
-  BULLET_42 = 1
-};
-
 typedef struct 
 {
   float k;             //弹道系数
 
   //自身参数
-  enum BULLET_TYPE bullet_type;  //自身机器人类型 0-步兵 1-英雄
+  uint8_t bullet_type;  //自身机器人类型 0-步兵 1-英雄
   float current_v;      //当前弹速
 
   //目标参数

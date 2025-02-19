@@ -15,9 +15,6 @@ ext_student_interactive_header_data_t graph_three;//最终结构体
 ext_client_custom_graphic_t custom_graphic;//暂时未用到
 ext_client_custom_graphic_t struct_t;
 
-
-/*********************************************************CRC校验示例程序**************************************************************/
-
 /**
   * @brief     pack data to bottom device
   * @param[in] sof : start of framehearder
@@ -25,9 +22,7 @@ ext_client_custom_graphic_t struct_t;
   * @param[in] *p_data: pointer to the data to be sent
   * @param[in] len:     the data length
   */
-
 uint8_t seq = 0;/*sequence初始化*/
-
 void referee_data_pack_handle(uint8_t sof, uint16_t cmd_id, uint8_t *p_data, uint16_t len)
 {
 	unsigned char i = 0;
