@@ -36,8 +36,6 @@ typedef struct
   //自身参数
   enum BULLET_TYPE bullet_type;  //自身机器人类型 0-步兵 1-英雄
   float current_v;      //当前弹速
-  float current_pitch;  //当前pitch
-  float current_yaw;    //yaw
 
   //目标参数
   float xw;             //ROS坐标系下的x
@@ -59,16 +57,16 @@ typedef struct
   enum ARMOR_NUM armor_num;   //装甲板数字  2-balance 3-outpost 4-normal
 }SolveTrajectoryParams_t;
 
-struct tar_pos
+typedef struct 
 {
   float x;           //装甲板在世界坐标系下的x
   float y;           //装甲板在世界坐标系下的y
   float z;           //装甲板在世界坐标系下的z
   float yaw;         //装甲板在世界坐标系下的yaw角度
-};
+}tar_pos;
 
 extern float aim_x_n, aim_y_n, aim_z_n;//机器人目标点
 
-void vision_solution(float pitch, float yaw,float *target_yaw, float *target_pitch);
+void vision_solution(float *target_yaw, float *target_pitch);
 
 #endif // !
