@@ -6,7 +6,6 @@
 #include "stdlib.h"
 
 rc_info_t remoter;
-uint8_t rx_buff[BUFF_SIZE];
 uart_rx_t *DBus_msg;
 uint32_t Lsat_Conut;
 

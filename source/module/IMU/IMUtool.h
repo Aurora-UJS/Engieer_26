@@ -31,8 +31,6 @@ extern bmi088_data_t bmi088_data;
 
 extern uint8_t attitude_flag; /*姿态数据标志位*/
 
-extern float yaw_angle_now;
-
 void temple(void);
 void IMUsys(void);
 
