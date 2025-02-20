@@ -10,14 +10,19 @@
 
 ```c
 初始化流程
-
 computer_uart_init(&huart3);    // 初始化串口
-主循环处理
+set_robot_angle(&yaw, &pitch); // 绑定角度
+set_robot_id(id);   // 设置机器人ID 依据裁判系统主要区分蓝黄
 
+主循环处理
 while(1) {
   computer_receive_solve();       // 接收数据处理
   vision_solution(&yaw, &pitch);  // 弹道解算
   send_robot_state();             // 状态反馈
+
+  if(ReceivedPacketVision.id != what_I_want) {// 判断是否捕获指定机器人的坐标
+    change_robot_target();//尝试换一个目标（不一定成功，因为可能只看到一个机器人）
+  }
   vTaskDelay(10);
 }
 ```
