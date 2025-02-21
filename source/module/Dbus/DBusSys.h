@@ -5,7 +5,7 @@
 #include "main.h"
 #include "uart_api.h"
 
-#define BUFF_SIZE	18
+#define DBUS_BUFF_SIZE	18
 
 
 typedef struct 

@@ -51,7 +51,7 @@ typedef struct
   float angular_y;
   float angular_z;
   uint16_t checksum;
-}SendPacketTwist;
+}ReceivedPacketTwist_t;
 
 typedef struct 
 {
@@ -59,7 +59,7 @@ typedef struct
   bool stop_gimbal_scan;
   float chassis_spin_vel;
   uint16_t checksum;
-}SendPacketRobotControl;
+}ReceivedPacketRobotControl_t;
 
 typedef struct 
 {
@@ -81,7 +81,7 @@ typedef struct
   uint16_t blue_outpost_hp;
   uint16_t blue_base_hp;
   uint16_t checksum;
-}ReceivePacketAllRobotHP;
+}SendPacketAllRobotHP_t;
 
 typedef struct 
 {
@@ -89,7 +89,7 @@ typedef struct
   uint8_t game_progress;
   uint16_t stage_remain_time;
   uint16_t checksum;
-}ReceivePacketGameStatus;
+}SendPacketGameStatus_t;
 
 typedef struct 
 {
@@ -100,7 +100,7 @@ typedef struct
   bool team_color;
   bool is_attacked;
   uint16_t checksum;
-}ReceivePacketRobotStatus;
+}SendPacketRobotStatus_t;
 #pragma pack()
 
 #endif // !

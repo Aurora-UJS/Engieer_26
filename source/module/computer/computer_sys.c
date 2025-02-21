@@ -18,6 +18,8 @@ void computer_uart_init(UART_HandleTypeDef *huart)
 
     uart_rx_init(&computer_rx_msg);
     robot_state_msg_init(huart);
+    radar_msg_init(huart);
+
 }
 
 void computer_receive_solve()

@@ -5,6 +5,7 @@
 #include "usart.h"
 #include "uart_api.h"
 #include "vision_solution.h"
+#include "crc_api.h"
 
 /* 全局变量声明 */
 SendPacketVision_t robot_State_Data; // 视觉数据包结构体实例
