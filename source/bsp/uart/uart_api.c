@@ -7,6 +7,7 @@ uart_rx_t *uart7_msg;
 uart_rx_t *uart1_msg;
 uart_rx_t *uart2_msg;
 uart_rx_t *uart3_msg;
+uart_rx_t *uart10_msg;
 
 uart_status_t uart_rx_cheak(uart_rx_t *uart_rx_msg)
 {

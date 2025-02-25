@@ -45,6 +45,13 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 		uart3_msg->count++;
 		uart3_msg->time = 0;
 		break;
+	case (unsigned long)USART10_BASE:
+		uart_rx_cheak(uart10_msg);
+		uart10_msg->rx_msg->Len = Size;
+		HAL_UARTEx_ReceiveToIdle_IT(uart10_msg->rx_msg->huart, uart10_msg->rx_msg->pBuffer, uart10_msg->rx_msg->Len * 2);
+		uart10_msg->count++;
+		uart10_msg->time = 0;
+		break;
 	default:
 		break;
 	}
@@ -74,6 +81,10 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 	case (unsigned long)USART3_BASE:
 		uart_rx_cheak(uart3_msg);
 		HAL_UARTEx_ReceiveToIdle_IT(uart3_msg->rx_msg->huart, uart3_msg->rx_msg->pBuffer, uart3_msg->rx_msg->Len * 2);
+		break;
+	case (unsigned long)USART10_BASE:
+		uart_rx_cheak(uart10_msg);
+		HAL_UARTEx_ReceiveToIdle_IT(uart10_msg->rx_msg->huart, uart10_msg->rx_msg->pBuffer, uart10_msg->rx_msg->Len * 2);
 		break;
 	default:
 		break;

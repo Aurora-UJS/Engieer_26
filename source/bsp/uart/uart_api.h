@@ -29,6 +29,7 @@ extern uart_rx_t* uart7_msg;
 extern uart_rx_t* uart1_msg;
 extern uart_rx_t* uart2_msg;
 extern uart_rx_t* uart3_msg;
+extern uart_rx_t* uart10_msg;
 
 uart_status_t uart_rx_cheak(uart_rx_t *uart_rx_msg);
 uart_status_t uart_msg_cheak(uart_msg_t *rx_msg);
