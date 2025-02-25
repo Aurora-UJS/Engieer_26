@@ -21,6 +21,7 @@ SolveTrajectoryParams_t SolveTrajectoryParams = {
 
 /* 装甲板位置结构体 */
 static tar_pos tar_position[4]; // 四个装甲板位置缓存
+float last_flight_time = 0.3f;
 
 #if BALLISTIC_SOLVER == 1
 
@@ -80,15 +81,14 @@ float simulate_trajectory(float v0, float theta, float k, float z_target, float 
  */
 float optimize_pitch(float target_x, float z_target, SolveTrajectoryParams_t params)
 {
-    float theta_low = 0.0f;    // 搜索下界
-    float theta_high = PI / 2; // 搜索上界
-    float best_theta = 0.0f;   // 最优解
-    float theta = (theta_low + theta_high) / 2;
-    float flight_time;
+    float theta_low = PI / 3;      // 搜索下界
+    float theta_high = PI * 2 / 3; // 搜索上界
+    float best_theta = (theta_low + theta_high) / 2;       // 最优解
 
     for (int i = 0; i < MAX_ITER; i++)
     {
-        float x = simulate_trajectory(params.current_v, theta, params.k, z_target, &flight_time);
+        float theta = (theta_low + theta_high) / 2;
+        float x = simulate_trajectory(params.current_v, theta, params.k, z_target, &last_flight_time);
         float error = fabsf(x - target_x);
 
         if (error < TOLERANCE)
@@ -123,6 +123,42 @@ void solve_trajectory(float aim_x, float aim_y, float aim_z,
     *yaw = atan2f(aim_y, aim_x);           // 计算偏航角
 }
 
+int select_optimal_armor(tar_pos *plates, float current_yaw) 
+{
+    const float ANGLE_WEIGHT = 0.4f;
+    const float DIST_WEIGHT = 0.3f;
+    const float MOTION_WEIGHT = 0.3f;
+    
+    float max_score = -FLT_MAX;
+    int best_idx = 0;
+    
+    for(int i=0; i<4; i++) {
+        // 角度差计算（考虑2π周期）
+        float angle_diff = fabsf(fmodf(current_yaw - plates[i].yaw + PI, 2*PI) - PI);
+        float angle_score = 1.0f - fminf(angle_diff/(PI/6), 1.0f);
+        
+        // 距离衰减
+        float distance = sqrtf(plates[i].x*plates[i].x + plates[i].y*plates[i].y);
+        float dist_score = expf(-distance/3.0f);
+        
+        // 运动趋势评估
+        float velocity_dir = atan2f(SolveTrajectoryParams.vyw, SolveTrajectoryParams.vxw);
+        float motion_align = cosf(velocity_dir - plates[i].yaw);
+        float motion_score = 0.5f*(motion_align + 1.0f);
+        
+        // 综合评分
+        float total_score = ANGLE_WEIGHT*angle_score + 
+                          DIST_WEIGHT*dist_score + 
+                          MOTION_WEIGHT*motion_score;
+        
+        if(total_score > max_score) {
+            max_score = total_score;
+            best_idx = i;
+        }
+    }
+    return best_idx;
+}
+
 /**
  * @brief 自动目标预测与解算
  * @param pitch 当前云台俯仰角 rad
@@ -135,7 +171,7 @@ void solve_trajectory(float aim_x, float aim_y, float aim_z,
 void autoSolveTrajectory(float *pitch, float *yaw, float *aim_x, float *aim_y, float *aim_z)
 {
     /* 时间延迟补偿 = 系统延迟 + 预估飞行时间 */
-    float timeDelay = SolveTrajectoryParams.bias_time / 1000.0f + ESTIMATED_FLIGHT_TIME;
+    float timeDelay = SolveTrajectoryParams.bias_time / 1000.0f + last_flight_time;
 
     /* 更新目标运动状态 */
     SolveTrajectoryParams.tar_yaw += SolveTrajectoryParams.v_yaw * timeDelay;
@@ -153,17 +189,7 @@ void autoSolveTrajectory(float *pitch, float *yaw, float *aim_x, float *aim_y, f
     }
 
     /* 选择最接近当前瞄准角度的装甲板 */
-    int idx = 0;
-    float min_diff = fabsf(*yaw - tar_position[0].yaw);
-    for (int i = 1; i < 4; i++)
-    {
-        float diff = fabsf(*yaw - tar_position[i].yaw);
-        if (diff < min_diff)
-        {
-            min_diff = diff;
-            idx = i;
-        }
-    }
+    int idx = select_optimal_armor(tar_position, *yaw);;
 
     /* 预测目标位置 */
     *aim_z = tar_position[idx].z + SolveTrajectoryParams.vzw * timeDelay;
