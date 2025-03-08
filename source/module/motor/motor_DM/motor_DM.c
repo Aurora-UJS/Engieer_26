@@ -3,6 +3,7 @@
 static uint8_t Data_Enable[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFC};    // 达妙电机使能命令
 static uint8_t Data_Failure[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFD};   // 电机失能命令
 static uint8_t Data_Save_zero[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFE}; // 电机保存零点命令
+static uint8_t Data_Clear_Error[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFB}; // 电机清除错误命令
 
 /**
 ************************************************************************
@@ -47,6 +48,7 @@ void Motor_DM_Refresh(DM_motor_t *motor)
     torque_current = (motor->motor_msg.can_msg.data[4] << 4) | motor->motor_msg.can_msg.data[5];
 
     // 刷新电机状态
+    motor->error_code = (motor->motor_msg.can_msg.data[0]>>4 & 0x0F);
     motor->motor_msg.temp = motor->motor_msg.can_msg.data[6] > motor->motor_msg.can_msg.data[7] ? motor->motor_msg.can_msg.data[6] : motor->motor_msg.can_msg.data[7];
     motor->motor_msg.motor_angle = uint_to_float(motor_angle, -motor->tmp.PMAX, motor->tmp.PMAX, 16);    // (-12.5,12.5)
     motor->motor_msg.motor_speed = uint_to_float(motor_speed , -motor->tmp.VMAX, motor->tmp.VMAX, 12);    // (-45.0,45.0)
@@ -76,6 +78,15 @@ void Motor_DM_Save_Zero(DM_motor_t *motor)
 {
     // 保存零点
     memcpy(motor->can_cfg.data, Data_Save_zero, 8);
+    motor->can_cfg.len = FDCAN_DLC_BYTES_8;
+
+    can_msg_send_classical(&motor->can_cfg);
+}
+
+void Motor_DM_Clear_Error(DM_motor_t *motor)
+{
+    // 清除错误
+    memcpy(motor->can_cfg.data, Data_Clear_Error, 8);
     motor->can_cfg.len = FDCAN_DLC_BYTES_8;
 
     can_msg_send_classical(&motor->can_cfg);

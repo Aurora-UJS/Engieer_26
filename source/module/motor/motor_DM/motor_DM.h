@@ -39,6 +39,7 @@ void Motor_DM_Refresh(DM_motor_t *motor);
 void Motor_DM_Enable(DM_motor_t *motor);
 void Motor_DM_Disable(DM_motor_t *motor);
 void Motor_DM_Save_Zero(DM_motor_t *motor);
+void Motor_DM_Clear_Error(DM_motor_t *motor);
 void Speed_CtrlMotorDM(DM_motor_t *motor, float vel);
 void PosSpeed_CtrlMotorDM(DM_motor_t *motor, float _pos, float _vel);
 void MIT_CtrlMotorDM( DM_motor_t *motor,  float pos, float vel,float kp, float kd, float tor);

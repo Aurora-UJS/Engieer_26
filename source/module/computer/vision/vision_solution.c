@@ -81,9 +81,9 @@ float simulate_trajectory(float v0, float theta, float k, float z_target, float 
  */
 float optimize_pitch(float target_x, float z_target, SolveTrajectoryParams_t params)
 {
-    float theta_low = PI / 3;      // 搜索下界
-    float theta_high = PI * 2 / 3; // 搜索上界
-    float best_theta = (theta_low + theta_high) / 2;       // 最优解
+    float theta_low = PI / 3;                        // 搜索下界
+    float theta_high = PI * 2 / 3;                   // 搜索上界
+    float best_theta = (theta_low + theta_high) / 2; // 最优解
 
     for (int i = 0; i < MAX_ITER; i++)
     {
@@ -123,35 +123,41 @@ void solve_trajectory(float aim_x, float aim_y, float aim_z,
     *yaw = atan2f(aim_y, aim_x);           // 计算偏航角
 }
 
-int select_optimal_armor(tar_pos *plates, float current_yaw) 
+int select_optimal_armor(tar_pos *plates, float current_yaw)
 {
+    // 定义角度、距离、运动趋势的权重
     const float ANGLE_WEIGHT = 0.4f;
     const float DIST_WEIGHT = 0.3f;
     const float MOTION_WEIGHT = 0.3f;
-    
+
+    // 初始化最大评分和最佳索引
     float max_score = -FLT_MAX;
     int best_idx = 0;
-    
-    for(int i=0; i<4; i++) {
+
+    // 遍历所有装甲板
+    for (int i = 0; i < 4; i++)
+    {
         // 角度差计算（考虑2π周期）
-        float angle_diff = fabsf(fmodf(current_yaw - plates[i].yaw + PI, 2*PI) - PI);
-        float angle_score = 1.0f - fminf(angle_diff/(PI/6), 1.0f);
-        
+        float angle_diff = fabsf(fmodf(current_yaw - plates[i].yaw + PI, 2 * PI) - PI);
+        float angle_score = 1.0f - fminf(angle_diff / (PI / 6), 1.0f);
+
         // 距离衰减
-        float distance = sqrtf(plates[i].x*plates[i].x + plates[i].y*plates[i].y);
-        float dist_score = expf(-distance/3.0f);
-        
+        float distance = sqrtf(plates[i].x * plates[i].x + plates[i].y * plates[i].y);
+        float dist_score = expf(-distance / 3.0f);
+
         // 运动趋势评估
         float velocity_dir = atan2f(SolveTrajectoryParams.vyw, SolveTrajectoryParams.vxw);
         float motion_align = cosf(velocity_dir - plates[i].yaw);
-        float motion_score = 0.5f*(motion_align + 1.0f);
-        
+        float motion_score = 0.5f * (motion_align + 1.0f);
+
         // 综合评分
-        float total_score = ANGLE_WEIGHT*angle_score + 
-                          DIST_WEIGHT*dist_score + 
-                          MOTION_WEIGHT*motion_score;
-        
-        if(total_score > max_score) {
+        float total_score = ANGLE_WEIGHT * angle_score +
+                            DIST_WEIGHT * dist_score +
+                            MOTION_WEIGHT * motion_score;
+
+        // 更新最大评分和最佳索引
+        if (total_score > max_score)
+        {
             max_score = total_score;
             best_idx = i;
         }
@@ -189,7 +195,8 @@ void autoSolveTrajectory(float *pitch, float *yaw, float *aim_x, float *aim_y, f
     }
 
     /* 选择最接近当前瞄准角度的装甲板 */
-    int idx = select_optimal_armor(tar_position, *yaw);;
+    int idx = select_optimal_armor(tar_position, *yaw);
+    ;
 
     /* 预测目标位置 */
     *aim_z = tar_position[idx].z + SolveTrajectoryParams.vzw * timeDelay;
@@ -232,99 +239,32 @@ void vision_solution(float *target_yaw, float *target_pitch)
 }
 
 #elif BALLISTIC_SOLVER == 2
-/**
- * @brief 自动解算弹道轨迹，预测目标位置并计算瞄准点坐标
- *
- * @param pitch       [in/out] 当前云台俯仰角（单位：弧度），可能被更新
- * @param yaw         [in/out] 当前云台偏航角（单位：弧度），可能被更新
- * @param aim_x       [out] 计算得到的瞄准点X坐标
- * @param aim_y       [out] 计算得到的瞄准点Y坐标
- * @param aim_z       [out] 计算得到的瞄准点Z坐标
- */
-void autoSolveTrajectory(float *pitch, float *yaw, float *aim_x, float *aim_y, float *aim_z)
+void fire_solve(SendPacketVision_t *send_meg, ReceivedPacketVision_t *Received, float shoot_v, float *target_yaw1, float *target_pitch2)
 {
-    // 线性预测：计算弹道延迟时间并预测目标偏航角
-    float timeDelay = SolveTrajectoryParams.bias_time / 1000.0 + 0.5;
-    SolveTrajectoryParams.tar_yaw += SolveTrajectoryParams.v_yaw * timeDelay;
-
-    // 生成四个装甲板位置信息（按逆时针顺序计算四个可能装甲板的位置）
-    int use_1 = 1;
-    int idx = 0;
-    for (int i = 0; i < 4; i++)
+    if (Received->x == 0 && Received->y == 0 && Received->z == 0)
     {
-        // 计算当前装甲板的极坐标参数
-        float tmp_yaw = SolveTrajectoryParams.tar_yaw + i * PI / 2.0f;
-        float r = use_1 ? SolveTrajectoryParams.r1 : SolveTrajectoryParams.r2;
-
-        // 转换为笛卡尔坐标系并存储位置信息
-        tar_position[i].x = SolveTrajectoryParams.xw - r * cos(tmp_yaw);
-        tar_position[i].y = SolveTrajectoryParams.yw - r * sin(tmp_yaw);
-        tar_position[i].z = use_1 ? SolveTrajectoryParams.zw : SolveTrajectoryParams.zw + SolveTrajectoryParams.dz;
-        tar_position[i].yaw = tmp_yaw;
-        use_1 = !use_1; // 切换半径类型
-    }
-
-    // 选择与当前枪管指向偏差最小的装甲板
-    float yaw_diff_min = fabsf(*yaw - tar_position[0].yaw);
-    for (int i = 1; i < 4; i++)
-    {
-        float temp_yaw_diff = fabsf(*yaw - tar_position[i].yaw);
-        if (temp_yaw_diff < yaw_diff_min)
-        {
-            yaw_diff_min = temp_yaw_diff;
-            idx = i;
-        }
-    }
-
-    // 计算最终目标点坐标（包含速度补偿）
-    *aim_z = tar_position[idx].z + SolveTrajectoryParams.vzw * timeDelay;
-    *aim_x = tar_position[idx].x + SolveTrajectoryParams.vxw * timeDelay;
-    *aim_y = tar_position[idx].y + SolveTrajectoryParams.vyw * timeDelay;
-}
-
-/**
- * @brief 视觉解算主函数，处理视觉数据并计算最终射击角度
- *
- * @param target_yaw    [out] 计算得到的目标偏航角（单位：弧度）
- * @param target_pitch  [out] 计算得到的目标俯仰角（单位：弧度）
- */
-void vision_solution(float *target_yaw, float *target_pitch)
-{
-    // 目标跟踪状态检查
-    if (ReceivedPacketVision.tracking != 1)
         return;
+    }
+    else
+    {
+        float l = sqrt(Received->x * Received->x + Received->z * Received->z);
+        float fi = atan2(Received->z, Received->x);
+        float g = 9.8;
+        float a = asin((Received->z + g * Received->x * Received->x / (shoot_v * shoot_v)) / l);
+        float target_pitch21 = (a + fi) / 2 * 180 +  send_meg->pitch;
+        float target_pitch12 = (180 - a * 180 + fi * 180) / 2;
+        if (fabs(target_pitch21) > fabs(target_pitch12))
+        {
+            *target_pitch2 = target_pitch12;
+        }
+        if (fabs(target_pitch21) < fabs(target_pitch12))
+        {
 
-    // 注入视觉数据到弹道解算参数结构体
-    SolveTrajectoryParams.armor_id = ReceivedPacketVision.id;
-    SolveTrajectoryParams.armor_num = ReceivedPacketVision.armors_num;
-    SolveTrajectoryParams.xw = ReceivedPacketVision.x;
-    SolveTrajectoryParams.yw = ReceivedPacketVision.y;
-    SolveTrajectoryParams.zw = ReceivedPacketVision.z;
-    SolveTrajectoryParams.tar_yaw = ReceivedPacketVision.yaw;
-    SolveTrajectoryParams.vxw = ReceivedPacketVision.vx;
-    SolveTrajectoryParams.vyw = ReceivedPacketVision.vy;
-    SolveTrajectoryParams.vzw = ReceivedPacketVision.vz;
-    SolveTrajectoryParams.v_yaw = ReceivedPacketVision.v_yaw;
-    SolveTrajectoryParams.r1 = ReceivedPacketVision.r1;
-    SolveTrajectoryParams.r2 = ReceivedPacketVision.r2;
-    SolveTrajectoryParams.dz = ReceivedPacketVision.dz;
-
-    // 执行自动弹道解算
-    autoSolveTrajectory(&target_pitch, &target_yaw, &aim_x_n, &aim_y_n, &aim_z_n);
-
-    // 弹道学公式计算俯仰角（考虑重力补偿）
-    float h = -0.3f;
-    float cacre = sqrt(ReceivedPacketVision.y * ReceivedPacketVision.y + ReceivedPacketVision.x * ReceivedPacketVision.x);
-    float angle2 = acos(cacre / (sqrt(cacre * cacre + h * h)));
-    float a2 = (h * SolveTrajectoryParams.current_v * SolveTrajectoryParams.current_v + G_NUM * cacre * cacre) / (SolveTrajectoryParams.current_v * SolveTrajectoryParams.current_v);
-
-    // 处理反三角函数定义域
-    float fan = a2 / (sqrt(cacre * cacre + h * h));
-    fan = fmaxf(fminf(fan, 0.9999), -0.9999);
-
-    // 计算最终射击角度
-    *target_pitch = (asin(fan) - angle2) * 0.5;
-    *target_yaw = atan2f(aim_y_n, aim_x_n);
+            *target_pitch2 = target_pitch21;
+        }
+        float aaa;
+        aaa = Received->y / Received->x;
+        *target_yaw1 = aaa; // Received->yaw;
+    }
 }
-
 #endif
