@@ -1,6 +1,7 @@
 #include "vision_receive.h"
 #include "uart_api.h"
 #include "crc_api.h"
+#include "string.h"
 
 
 ReceivedPacketVision_t ReceivedPacketVision = {0};

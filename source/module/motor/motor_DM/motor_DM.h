@@ -25,11 +25,24 @@ typedef struct
     float    TMAX;		
 } esc_inf_t;
 
+typedef enum
+{
+    Motor_DM_DISABLE = 0,
+    MOTOR_DM_ENABLE = 1,
+    MOTOR_DM_ERROR_OVER_VOLTAGE = 8,
+    MOTOR_DM_ERROR_LESS_VOLTAGE = 9,
+    MOTOR_DM_ERROR_OVER_CURRENT = 0xA,
+    MOTOR_DM_ERROR_OVER_TEMPERATURE_MOS = 0xB,
+    MOTOR_DM_ERROR_OVER_TEMPERATURE_MOTOR = 0xC,
+    MOTOR_DM_ERROR_LOSS_COMMUNICATION = 0xD,
+    MOTOR_DM_ERROR_OVER_LOAD = 0xE,
+}DM_motor_error_t;
+
 typedef struct
 {
     can_motor_t motor_msg;//电机数据包
     can_msg_t can_cfg; //CAN发送数据配置
-    uint8_t error_code; //电机错误码
+    DM_motor_error_t error_code; //电机错误码
     uint8_t mode; //电机模式
     esc_inf_t tmp;
 }DM_motor_t;
