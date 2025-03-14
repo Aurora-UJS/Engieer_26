@@ -1,5 +1,5 @@
 #include "PowerControl.h"
-
+#include "arm_math.h"
 #include <stdbool.h>
 
 
@@ -36,7 +36,7 @@ void Register_PowerAssignHook(void (*hook)(float))
  **************************************/
 void PowerControl_Init(float *buffer_ptr, 
                       float *cap_ptr, 
-                      float max_power,
+                      float *max_power,
                       pid_type_def *pid_params,void (*hook)(float)) 
 {
     /* 参数有效性检查 */
@@ -70,7 +70,7 @@ void PowerControl_Update(void)
     PID_Calc_Pos(&total_power.chassis_power_pid, 
                 *total_power.chassis_power_buffer, 
                 30.0f); // 30为缓冲目标值
-    judgeSys_true_out_power = total_power.chassis_power_MAX - 
+    judgeSys_true_out_power = *total_power.chassis_power_MAX - 
                             total_power.chassis_power_pid.out;
 
     /* 阶段2：确定可分配功率 */
@@ -106,4 +106,31 @@ void Set_PowerControlMode(power_control_state_t mode)
     if(mode >= POWER_LOSS && mode <= POWER_BURST) {
         power_control_mode = mode;
     }
+}
+
+/**
+ * @brief 计算单个电机的理论功率消耗
+ * @param pid_output     电机速度环PID输出值
+ * @param speed_rpm      电机当前转速 (RPM)
+ * @param params         功率计算参数结构体指针
+ * @return float         计算得到的功率值 (W)
+ */
+float MotorPower_CalculateSingle(
+    float pid_output, 
+    float speed_rpm, 
+    const MotorPowerParams_t *params)
+{
+    // 参数安全检查
+    if(!params || params->torque_coeff <= 0) {
+        return 0.0f;
+    }
+
+    // 计算各分量
+    const float torque = pid_output * params->torque_coeff;
+    const float active_power = torque * speed_rpm;                  // 有效功率
+    const float resistive_loss = params->k_resistance * powf(speed_rpm, 2);  // 机械损耗
+    const float copper_loss = params->k_copper_loss * powf(torque, 2);       // 铜损
+
+    // 总功率 = 有效功率 + 损耗
+    return active_power + resistive_loss + copper_loss + params->constant_loss;
 }
