@@ -2,8 +2,6 @@
 #include "arm_math.h"
 #include <stdbool.h>
 
-
-
 /* 静态变量 */
 static bool PowerControl_Init_flag = false;
 static float judgeSys_true_out_power = 0;
@@ -20,7 +18,7 @@ static void (*user_power_assign_hook)(float total_power) = NULL;
  *   - hook: 用户自定义的功率分配函数
  *           原型：void func(float total_power, float motor_powers[4])
  **************************************/
-void Register_PowerAssignHook(void (*hook)(float)) 
+void Register_PowerAssignHook(void (*hook)(float))
 {
     user_power_assign_hook = hook;
 }
@@ -34,13 +32,14 @@ void Register_PowerAssignHook(void (*hook)(float))
  *   - pid_params: 功率缓冲PID参数
  *    - hook: 用户自定义的功率分配函数
  **************************************/
-void PowerControl_Init(float *buffer_ptr, 
-                      float *cap_ptr, 
-                      float *max_power,
-                      pid_type_def *pid_params,void (*hook)(float)) 
+void PowerControl_Init(float *buffer_ptr,
+                       float *cap_ptr,
+                       float *max_power,
+                       pid_type_def *pid_params, void (*hook)(float))
 {
     /* 参数有效性检查 */
-    if(!buffer_ptr || !cap_ptr || !pid_params || !hook) {
+    if (!buffer_ptr || !cap_ptr || !pid_params || !hook)
+    {
         // 可添加错误处理（如断言或日志）
         return;
     }
@@ -61,49 +60,55 @@ void PowerControl_Init(float *buffer_ptr,
 /**************************************
  * 主控制函数（需周期性调用）
  **************************************/
-void PowerControl_Update(void) 
+void PowerControl_Update(void)
 {
     /* 安全检查 */
-    if(!PowerControl_Init_flag || !user_power_assign_hook) return;
+    if (!PowerControl_Init_flag || !user_power_assign_hook)
+        return;
 
     /* 阶段1：计算真实输出功率 */
-    PID_Calc_Pos(&total_power.chassis_power_pid, 
-                *total_power.chassis_power_buffer, 
-                30.0f); // 30为缓冲目标值
-    judgeSys_true_out_power = *total_power.chassis_power_MAX - 
-                            total_power.chassis_power_pid.out;
+    PID_Calc_Pos(&total_power.chassis_power_pid,
+                 *total_power.chassis_power_buffer,
+                 30.0f); // 30为缓冲目标值
+    judgeSys_true_out_power = *total_power.chassis_power_MAX -
+                              total_power.chassis_power_pid.out;
 
     /* 阶段2：确定可分配功率 */
     float alloc_power = 0;
-    if(*cap_power < 5.0f) {
+    if (*cap_power < 5.0f)
+    {
         alloc_power = judgeSys_true_out_power;
         power_control_mode = POWER_LOSS;
-    } else {
-        switch(power_control_mode) {
-            case POWER_NORMAL:
-                alloc_power = judgeSys_true_out_power + 5.0f;
-                break;
-            case POWER_BURST:
-                alloc_power = judgeSys_true_out_power + 200.0f;
-                break;
-            default:
-                alloc_power = judgeSys_true_out_power;
+    }
+    else
+    {
+        switch (power_control_mode)
+        {
+        case POWER_NORMAL:
+            alloc_power = judgeSys_true_out_power + 5.0f;
+            break;
+        case POWER_BURST:
+            alloc_power = judgeSys_true_out_power + 200.0f;
+            break;
+        default:
+            alloc_power = judgeSys_true_out_power;
         }
     }
 
     /* 阶段3：调用用户功率分配策略 */
-    if(user_power_assign_hook) {
+    if (user_power_assign_hook)
+    {
         user_power_assign_hook(alloc_power);
     }
-
 }
 
 /**************************************
  * 设置功率控制模式
  **************************************/
-void Set_PowerControlMode(power_control_state_t mode) 
+void Set_PowerControlMode(power_control_state_t mode)
 {
-    if(mode >= POWER_LOSS && mode <= POWER_BURST) {
+    if (mode >= POWER_LOSS && mode <= POWER_BURST)
+    {
         power_control_mode = mode;
     }
 }
@@ -111,26 +116,46 @@ void Set_PowerControlMode(power_control_state_t mode)
 /**
  * @brief 计算单个电机的理论功率消耗
  * @param pid_output     电机速度环PID输出值
- * @param speed_rpm      电机当前转速 (RPM)
+ * @param speed_rad      电机当前转速 (rad/s)
  * @param params         功率计算参数结构体指针
  * @return float         计算得到的功率值 (W)
  */
 float MotorPower_CalculateSingle(
-    float pid_output, 
-    float speed_rpm, 
+    float pid_output,
+    float speed_rad,
     const MotorPowerParams_t *params)
 {
     // 参数安全检查
-    if(!params || params->torque_coeff <= 0) {
+    if (!params || params->torque_coeff <= 0)
+    {
         return 0.0f;
     }
 
     // 计算各分量
     const float torque = pid_output * params->torque_coeff;
-    const float active_power = torque * speed_rpm;                  // 有效功率
-    const float resistive_loss = params->k1 * powf(speed_rpm, 2);  // 机械损耗
+    const float active_power = torque * speed_rad;                // 有效功率
+    const float resistive_loss = params->k1 * powf(speed_rad, 2); // 机械损耗
     const float copper_loss = params->k2 * powf(torque, 2);       // 铜损
 
     // 总功率 = 有效功率 + 损耗
     return active_power + resistive_loss + copper_loss + params->k3;
+}
+
+/**
+ * @brief 计算二次方程判别式，用于判断电机功率控制方程的根情况
+ * @details 根据输入的电机速度、功率参数及缩放功率值，计算二次方程判别式
+ *          判别式结果用于判断方程是否有实数解，进而决定后续控制逻辑
+ * @param motor_speed 电机当前转速（单位：rad/s）
+ * @param params 包含功率计算系数的结构体（k1:机械损耗系数，k2:铜损系数，k3:固定偏移量）
+ * @param scaled_power 经过缩放处理的目标功率值
+ * @return float 判别式计算结果（b² - 4*k1*c），正数表示存在实数解，负数表示无解
+ */
+float calculate_discriminant(float motor_speed, MotorPowerParams_t params, float scaled_power)
+{
+    // 定义变量b，值为电机速度
+    float b = motor_speed;
+    // 定义变量c，值为参数k2乘以电机速度的平方减去缩放功率加上参数k3
+    float c = params.k2 * motor_speed * motor_speed - scaled_power + params.k3;
+    // 返回b的平方减去4乘以参数k1乘以c
+    return (b * b) - (4 * params.k1 * c);
 }
