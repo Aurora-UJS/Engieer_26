@@ -128,9 +128,9 @@ float MotorPower_CalculateSingle(
     // 计算各分量
     const float torque = pid_output * params->torque_coeff;
     const float active_power = torque * speed_rpm;                  // 有效功率
-    const float resistive_loss = params->k_resistance * powf(speed_rpm, 2);  // 机械损耗
-    const float copper_loss = params->k_copper_loss * powf(torque, 2);       // 铜损
+    const float resistive_loss = params->k1 * powf(speed_rpm, 2);  // 机械损耗
+    const float copper_loss = params->k2 * powf(torque, 2);       // 铜损
 
     // 总功率 = 有效功率 + 损耗
-    return active_power + resistive_loss + copper_loss + params->constant_loss;
+    return active_power + resistive_loss + copper_loss + params->k3;
 }

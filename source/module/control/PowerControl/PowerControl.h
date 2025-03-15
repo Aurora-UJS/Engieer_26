@@ -23,9 +23,9 @@ typedef struct
 typedef struct
 {
     float torque_coeff;  // 扭矩系数 (默认: 1.99688994e-6f)
-    float k_resistance;  // 机械损耗系数 (默认: 1.23e-07)
-    float k_copper_loss; // 铜损系数 (默认: 1.453e-07)
-    float constant_loss; // 恒定损耗 (默认: 4.081f)
+    float k1;  // 机械损耗系数 (默认: 1.23e-07)
+    float k2; // 铜损系数 (默认: 1.453e-07)
+    float k3; // 恒定损耗 (默认: 4.081f)
 } MotorPowerParams_t;
 
 void PowerControl_Init(float *buffer_ptr,

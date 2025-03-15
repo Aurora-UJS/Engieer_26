@@ -50,6 +50,8 @@ typedef struct
 
 void JudgeReadData(uint8_t *buff);
 void CtrllerReadData(uint8_t *buff);
+referee_info_t get_referee_msg(void);
+custom_controller_info_t get_custom_controller_msg(void);
 void referee_data_pack_handle(uint8_t sof, uint16_t cmd_id, uint8_t *p_data, uint16_t len);
 
 #endif
