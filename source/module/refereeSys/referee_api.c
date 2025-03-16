@@ -170,30 +170,30 @@ void CtrllerReadData(uint8_t *buff)
  * @brief 获取解析后的裁判信息数据
  * @return 当前裁判数据结构体
  */
-referee_info_t get_referee_msg(void)
+referee_info_t *get_referee_msg(void)
 {
 	if (server_rx_cont == server_recieve_data.count)
 	{
-		return referee_info;
+		return &referee_info;
 	}
 	server_rx_cont = server_recieve_data.count;
 	JudgeReadData(server_rx_data);
-	return referee_info;
+	return &referee_info;
 }
 
 /** 
  * @brief 获取解析后的自定义控制器信息数据
  * @return 当前自定义控制器数据结构体
  */
-custom_controller_info_t get_custom_controller_msg(void)
+custom_controller_info_t *get_custom_controller_msg(void)
 {
 	if (ctrller_rx_cont == ctrller_recieve_data.count)
 	{
-		return custom_controller_info;
+		return &custom_controller_info;
 	}
 	ctrller_rx_cont = ctrller_recieve_data.count;
 	CtrllerReadData(ctrller_rx_data);
-	return custom_controller_info;
+	return &custom_controller_info;
 }
 
 /** 
