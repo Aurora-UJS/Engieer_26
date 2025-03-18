@@ -150,7 +150,7 @@ float MotorPower_CalculateSingle(
  * @param scaled_power 经过缩放处理的目标功率值
  * @return float 判别式计算结果（b² - 4*k1*c），正数表示存在实数解，负数表示无解
  */
-float calculate_discriminant(float motor_speed, MotorPowerParams_t params, float scaled_power)
+float calculate_Torque_dis(float motor_speed, MotorPowerParams_t params, float scaled_power)
 {
     // 定义变量b，值为电机速度
     float b = motor_speed;
@@ -158,4 +158,15 @@ float calculate_discriminant(float motor_speed, MotorPowerParams_t params, float
     float c = params.k2 * motor_speed * motor_speed - scaled_power + params.k3;
     // 返回b的平方减去4乘以参数k1乘以c
     return (b * b) - (4 * params.k1 * c);
+}
+
+float calculate_speed(MotorPowerParams_t params, float max_power, float torque) {
+
+    // 计算二次方程的系数
+    float b_coeff = torque;  // 系数 b 对应 τ / 9.55
+    float c_coeff = params.k1 * torque * torque + params.k3 - max_power;  // 系数 c 对应 k1τ² + k3 - P_max
+
+    // 计算判别式
+    return b_coeff * b_coeff - 4 * params.k2 * c_coeff;
+
 }

@@ -34,7 +34,7 @@ void PowerControl_Init(float *buffer_ptr,
                        pid_type_def *pid_params, void (*hook)(float));
 void PowerControl_Update(void);                        // 更新功率控制状态
 void Set_PowerControlMode(power_control_state_t mode); // 设置功率控制模式
-float calculate_discriminant(float motor_speed, MotorPowerParams_t params, float scaled_power);
+float calculate_Torque_dis(float motor_speed, MotorPowerParams_t params, float scaled_power);
 float MotorPower_CalculateSingle(
     float pid_output,
     float speed_rpm,
