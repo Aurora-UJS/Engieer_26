@@ -15,7 +15,7 @@ typedef enum
 typedef struct
 {
     pid_type_def chassis_power_pid; // 底盘功率缓冲PID
-    float *chassis_power_buffer;    // 指向功率缓冲值的指针
+    uint16_t *chassis_power_buffer;    // 指向功率缓冲值的指针
     float *chassis_power_MAX;       // 裁判系统最大允许功率
 } total_power_control_t;
 
@@ -28,13 +28,14 @@ typedef struct
     float k3; // 恒定损耗 (默认: 4.081f)
 } MotorPowerParams_t;
 
-void PowerControl_Init(float *buffer_ptr,
+void PowerControl_Init(uint16_t *buffer_ptr,
                        float *cap_ptr,
                        float *max_power,
-                       pid_type_def *pid_params, void (*hook)(float));
+                       pid_type_def *pid_params, void (*hook)(float,float));
 void PowerControl_Update(void);                        // 更新功率控制状态
 void Set_PowerControlMode(power_control_state_t mode); // 设置功率控制模式
 float calculate_Torque_dis(float motor_speed, MotorPowerParams_t params, float scaled_power);
+float calculate_speed_dis(float torque, MotorPowerParams_t params, float max_power);
 float MotorPower_CalculateSingle(
     float pid_output,
     float speed_rpm,

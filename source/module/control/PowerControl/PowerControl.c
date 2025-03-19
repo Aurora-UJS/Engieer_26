@@ -10,7 +10,7 @@ static total_power_control_t total_power;
 static float *cap_power = NULL;
 
 /* 用户可注册的钩子函数 */
-static void (*user_power_assign_hook)(float total_power) = NULL;
+static void (*user_power_assign_hook)(float total_power, float pid_output) = NULL;
 
 /**************************************
  * 注册用户功率分配钩子函数
@@ -18,7 +18,7 @@ static void (*user_power_assign_hook)(float total_power) = NULL;
  *   - hook: 用户自定义的功率分配函数
  *           原型：void func(float total_power, float motor_powers[4])
  **************************************/
-void Register_PowerAssignHook(void (*hook)(float))
+void Register_PowerAssignHook(void (*hook)(float, float))
 {
     user_power_assign_hook = hook;
 }
@@ -32,10 +32,10 @@ void Register_PowerAssignHook(void (*hook)(float))
  *   - pid_params: 功率缓冲PID参数
  *    - hook: 用户自定义的功率分配函数
  **************************************/
-void PowerControl_Init(float *buffer_ptr,
+void PowerControl_Init(uint16_t *buffer_ptr,
                        float *cap_ptr,
                        float *max_power,
-                       pid_type_def *pid_params, void (*hook)(float))
+                       pid_type_def *pid_params, void (*hook)(float, float))
 {
     /* 参数有效性检查 */
     if (!buffer_ptr || !cap_ptr || !pid_params || !hook)
@@ -50,7 +50,7 @@ void PowerControl_Init(float *buffer_ptr,
     total_power.chassis_power_MAX = max_power;
 
     /* 配置PID控制器 */
-    total_power.chassis_power_pid = *pid_params; // 直接赋值，注意PID结构体中包含的参数
+    memcpy(&total_power.chassis_power_pid, pid_params, sizeof(pid_type_def)); // 确保目标结构体有独立内存
 
     Register_PowerAssignHook(hook);
 
@@ -98,7 +98,7 @@ void PowerControl_Update(void)
     /* 阶段3：调用用户功率分配策略 */
     if (user_power_assign_hook)
     {
-        user_power_assign_hook(alloc_power);
+        user_power_assign_hook(alloc_power, total_power.chassis_power_pid.out);
     }
 }
 
@@ -160,13 +160,13 @@ float calculate_Torque_dis(float motor_speed, MotorPowerParams_t params, float s
     return (b * b) - (4 * params.k1 * c);
 }
 
-float calculate_speed(MotorPowerParams_t params, float max_power, float torque) {
+float calculate_speed_dis(float torque, MotorPowerParams_t params, float max_power)
+{
 
     // 计算二次方程的系数
-    float b_coeff = torque;  // 系数 b 对应 τ / 9.55
-    float c_coeff = params.k1 * torque * torque + params.k3 - max_power;  // 系数 c 对应 k1τ² + k3 - P_max
+    float b_coeff = torque;                                              // 系数 b 对应 τ / 9.55
+    float c_coeff = params.k1 * torque * torque + params.k3 - max_power; // 系数 c 对应 k1τ² + k3 - P_max
 
     // 计算判别式
     return b_coeff * b_coeff - 4 * params.k2 * c_coeff;
-
 }

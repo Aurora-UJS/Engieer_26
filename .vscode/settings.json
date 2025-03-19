@@ -59,9 +59,5 @@
         "computer_pack.h": "c",
         "vision_receive.h": "c",
         "vision_solution.h": "c"
-    },
-    "aide.convertLanguagePairs": {
-        "c": "rust"
-    },
-    "Codegeex.RepoIndex": true
+    }
 }
