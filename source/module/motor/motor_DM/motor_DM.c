@@ -18,13 +18,23 @@ static uint8_t Data_Clear_Error[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 
 **/
 int float_to_uint(float x_float, float x_min, float x_max, int bits)
 {
-    /* Converts a float to an unsigned int, given range and number of bits */
-    float span = x_max - x_min;
-    float offset = x_min;
-    return (int)((x_float - offset) * ((float)((1 << bits) - 1)) / span);
+	/* Converts a float to an unsigned int, given range and number of bits */
+	float span = x_max - x_min;
+	float offset = x_min;
+	return (int) ((x_float-offset)*((float)((1<<bits)-1))/span);
 }
-
-float uint_to_float(int x_int, float x_min, float x_max, int bits)
+/**
+************************************************************************
+* @brief:      	uint_to_float: 无符号整数转换为浮点数函数
+* @param[in]:   x_int: 待转换的无符号整数
+* @param[in]:   x_min: 范围最小值
+* @param[in]:   x_max: 范围最大值
+* @param[in]:   bits:  无符号整数的位数
+* @retval:     	浮点数结果
+* @details:    	将给定的无符号整数 x_int 在指定范围 [x_min, x_max] 内进行线性映射，映射结果为一个浮点数
+************************************************************************
+**/
+float uint_to_float(unsigned int x_int, float x_min, float x_max, int bits)
 {
 	/* converts unsigned int to float, given range and number of bits */
 	float span = x_max - x_min;
@@ -41,11 +51,11 @@ void Motor_DM_Init(DM_motor_t *motor)
 void Motor_DM_Refresh(DM_motor_t *motor)
 {
     //开始解算
-    int16_t motor_angle, motor_speed, torque_current;
+    uint16_t motor_angle, motor_speed, torque_current;
 
     motor_angle = (motor->motor_msg.can_msg.data[1] << 8) | motor->motor_msg.can_msg.data[2];
     motor_speed = (motor->motor_msg.can_msg.data[3] << 4) | (motor->motor_msg.can_msg.data[4] >> 4);
-    torque_current = (motor->motor_msg.can_msg.data[4] << 4) | motor->motor_msg.can_msg.data[5];
+    torque_current = (motor->motor_msg.can_msg.data[4]&0xF << 8) | motor->motor_msg.can_msg.data[5];
 
     // 刷新电机状态
     motor->error_code = (motor->motor_msg.can_msg.data[0]>>4 & 0x0F);
