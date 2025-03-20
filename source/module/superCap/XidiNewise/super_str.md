@@ -73,7 +73,7 @@ float get_Target_power(Super_TR_t *super);
 
 ## 使用示例
 ```c
-#include "super_tr_driver.h"
+#include "super_str.h"
 
 int main() {
     Super_TR_t super_cap;
