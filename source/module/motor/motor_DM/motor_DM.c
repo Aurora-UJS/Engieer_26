@@ -55,7 +55,7 @@ void Motor_DM_Refresh(DM_motor_t *motor)
 
     motor_angle = (motor->motor_msg.can_msg.data[1] << 8) | motor->motor_msg.can_msg.data[2];
     motor_speed = (motor->motor_msg.can_msg.data[3] << 4) | (motor->motor_msg.can_msg.data[4] >> 4);
-    torque_current = (motor->motor_msg.can_msg.data[4]&0xF << 8) | motor->motor_msg.can_msg.data[5];
+    torque_current = ((motor->motor_msg.can_msg.data[4]&0xF) << 8) | motor->motor_msg.can_msg.data[5];
 
     // 刷新电机状态
     motor->error_code = (motor->motor_msg.can_msg.data[0]>>4 & 0x0F);
