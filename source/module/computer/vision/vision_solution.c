@@ -239,32 +239,111 @@ void vision_solution(float *target_yaw, float *target_pitch)
 }
 
 #elif BALLISTIC_SOLVER == 2
-void fire_solve(SendPacketVision_t *send_meg, ReceivedPacketVision_t *Received, float shoot_v, float *target_yaw1, float *target_pitch2)
+// void fire_solve(SendPacketVision_t *send_meg, ReceivedPacketVision_t *Received, float shoot_v, float *target_yaw1, float *target_pitch2)
+// {
+//     if (Received->x == 0 && Received->y == 0 && Received->z == 0)
+//     {
+//         return;
+//     }
+//     else
+//     {
+//         float l = sqrt(Received->x * Received->x + Received->z * Received->z);
+//         float fi = atan2(Received->z, Received->x);
+//         float g = 9.8;
+//         float a = asin((Received->z + g * Received->x * Received->x / (shoot_v * shoot_v)) / l);
+//         float target_pitch21 = (a + fi) / 2 * 180 +  send_meg->pitch;
+//         float target_pitch12 = (180 - a * 180 + fi * 180) / 2;
+//         if (fabs(target_pitch21) > fabs(target_pitch12))
+//         {
+//             *target_pitch2 = target_pitch12;
+//         }
+//         if (fabs(target_pitch21) < fabs(target_pitch12))
+//         {
+//
+//             *target_pitch2 = target_pitch21;
+//         }
+//         float aaa;
+//         aaa = Received->y / Received->x;
+//         *target_yaw1 = aaa; // Received->yaw;
+//     }
+// }
+float h = -0.3f;
+float Calculate_Yaw(SolveTrajectoryParams_t packet, float dt)
 {
-    if (Received->x == 0 && Received->y == 0 && Received->z == 0)
+    // 计算 yaw
+    float yaw = atan2(packet.yw + dt * packet.vyw, packet.xw + dt * packet.vxw); // 使用反正切函数计算 yaw，单位为弧度
+    return yaw;
+}
+void autoSolveTrajectory(float *pitch, float *yaw, float *aim_x, float *aim_y, float *aim_z)
+{
+    *aim_x = SolveTrajectoryParams.xw;
+    *aim_y = SolveTrajectoryParams.yw;
+    *aim_z = SolveTrajectoryParams.zw;
+
+        float angle2, a2, cacre;
+    float fan, b_set_angle, t;
+    // 弹道解算
+    cacre = sqrtf(powf(SolveTrajectoryParams.yw, 2) + powf(SolveTrajectoryParams.xw, 2));
+    angle2 = acos(cacre / (sqrt(cacre * cacre + h * h)));
+    a2 = (h * SolveTrajectoryParams.current_v * SolveTrajectoryParams.current_v + G_NUM * cacre * cacre) / (SolveTrajectoryParams.current_v * SolveTrajectoryParams.current_v);
+    fan = a2 / (sqrt(cacre * cacre + h * h));
+    if (fan >= 1)
+        fan = 0.9999;
+    else if (fan <= -1)
+        fan = -0.9999;
+    else
+        fan = fan;
+    b_set_angle = (asin(fan) - angle2) * 0.5;
+
+    // 弹道解算后的参数
+    float theta = b_set_angle; // 发射角（弧度）
+    float cacre = sqrtf(powf(SolveTrajectoryParams.yw, 2) + powf(SolveTrajectoryParams.xw, 2));
+    float v = SolveTrajectoryParams.current_v;
+
+    // 计算飞行时间（方法1）
+    if (cosf(theta) == 0)
     {
-        return;
+        // 垂直发射（特殊情况，水平距离为0）
+        t = (v * sinf(theta) + sqrtf(powf(v * sinf(theta), 2) - 2 * G_NUM * h)) / G_NUM;
     }
     else
     {
-        float l = sqrt(Received->x * Received->x + Received->z * Received->z);
-        float fi = atan2(Received->z, Received->x);
-        float g = 9.8;
-        float a = asin((Received->z + g * Received->x * Received->x / (shoot_v * shoot_v)) / l);
-        float target_pitch21 = (a + fi) / 2 * 180 +  send_meg->pitch;
-        float target_pitch12 = (180 - a * 180 + fi * 180) / 2;
-        if (fabs(target_pitch21) > fabs(target_pitch12))
-        {
-            *target_pitch2 = target_pitch12;
-        }
-        if (fabs(target_pitch21) < fabs(target_pitch12))
-        {
-
-            *target_pitch2 = target_pitch21;
-        }
-        float aaa;
-        aaa = Received->y / Received->x;
-        *target_yaw1 = aaa; // Received->yaw;
+        float t = cacre / (v * cosf(theta));
     }
+
+    *yaw = Calculate_Yaw(SolveTrajectoryParams, t);
+    *pitch = 0 - b_set_angle;
 }
+
+/**
+ * @brief 视觉解算主入口
+ * @param pitch 当前俯仰角（输入）
+ * @param yaw 当前偏航角（输入）
+ * @param target_yaw 输出目标偏航角
+ * @param target_pitch 输出目标俯仰角
+ */
+void vision_solution(float *target_yaw, float *target_pitch)
+{
+    if (ReceivedPacketVision.tracking != 1)
+        return; // 目标丢失保护
+
+    /* 注入视觉数据 */
+    SolveTrajectoryParams.armor_id = ReceivedPacketVision.id;
+    SolveTrajectoryParams.armor_num = ReceivedPacketVision.armors_num;
+    SolveTrajectoryParams.xw = ReceivedPacketVision.x;
+    SolveTrajectoryParams.yw = ReceivedPacketVision.y;
+    SolveTrajectoryParams.zw = ReceivedPacketVision.z;
+    SolveTrajectoryParams.tar_yaw = ReceivedPacketVision.yaw;
+    SolveTrajectoryParams.vxw = ReceivedPacketVision.vx;
+    SolveTrajectoryParams.vyw = ReceivedPacketVision.vy;
+    SolveTrajectoryParams.vzw = ReceivedPacketVision.vz;
+    SolveTrajectoryParams.v_yaw = ReceivedPacketVision.v_yaw;
+    SolveTrajectoryParams.r1 = ReceivedPacketVision.r1;
+    SolveTrajectoryParams.r2 = ReceivedPacketVision.r2;
+    SolveTrajectoryParams.dz = ReceivedPacketVision.dz;
+
+    /* 执行自动解算 */
+    autoSolveTrajectory(target_pitch, target_yaw, &aim_x_n, &aim_y_n, &aim_z_n);
+}
+
 #endif

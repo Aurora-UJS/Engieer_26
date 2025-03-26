@@ -12,7 +12,7 @@
 #define radar_MOD 1 // 雷达模式 0:无雷达 1:雷达
 
 // 车辆弹道解算参数默认配置
-#define BALLISTIC_SOLVER 1 // 弹道解算器  1->弹道解算器v1.0  2->弹道解算器v2.0
+#define BALLISTIC_SOLVER 2 // 弹道解算器  1->弹道解算器v1.0  2->弹道解算器v2.0
 #define BULLET_TYPE 0   // 子弹类型 0->17mm 1->42mm
 #define BULLET_SPEED 17 // 子弹速度
 #define BULLET_K 0.092  // 弹道系数
