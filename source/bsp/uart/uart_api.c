@@ -2,12 +2,22 @@
 #include "usart.h"
 #include "string.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+
 uart_rx_t *uart5_msg;
 uart_rx_t *uart7_msg;
 uart_rx_t *uart1_msg;
 uart_rx_t *uart2_msg;
 uart_rx_t *uart3_msg;
 uart_rx_t *uart10_msg;
+
+void (*uart5_rx_hook)(uint8_t *pData, uint32_t size) = NULL;
+void (*uart7_rx_hook)(uint8_t *pData, uint32_t size) = NULL;
+void (*uart1_rx_hook)(uint8_t *pData, uint32_t size) = NULL;
+void (*uart2_rx_hook)(uint8_t *pData, uint32_t size) = NULL;
+void (*uart3_rx_hook)(uint8_t *pData, uint32_t size) = NULL;
+void (*uart10_rx_hook)(uint8_t *pData, uint32_t size) = NULL;
 
 uart_status_t uart_rx_cheak(uart_rx_t *uart_rx_msg)
 {
@@ -42,7 +52,6 @@ uart_status_t uart_msg_cheak(uart_msg_t *rx_msg)
     }
     return UART_OK;
 }
-
 
 uart_status_t uart_reg_cheak(uart_rx_t *uart_rx_msg)
 {
@@ -93,7 +102,7 @@ uart_status_t uart_rx_init(uart_rx_t *uart_rx_msg)
     {
         return UART_ERROR;
     }
-    
+
     if (uart_reg_cheak(uart_rx_msg) == UART_ERROR)
     {
         return UART_ERROR;
@@ -134,6 +143,41 @@ uart_status_t uart_tx_send_IT(uart_msg_t *uart_msg)
     }
     // 发送数据
     HAL_UART_Transmit_IT(uart_msg->huart, uart_msg->pBuffer, uart_msg->Len);
+
+    return UART_OK;
+}
+
+uart_status_t uart_rx_hook_reg(uart_rx_t *uart_rx_msg, void (*hook)(uint8_t *pData, uint32_t size))
+{
+    // 安全效验
+    if (uart_rx_cheak(uart_rx_msg) == UART_ERROR)
+    {
+        return UART_ERROR;
+    }
+    // 注册串口接收钩子函数
+    switch ((unsigned long)uart_rx_msg->rx_msg->huart->Instance)
+    {
+    case (unsigned long)USART1_BASE:
+        uart1_rx_hook = hook;
+        break;
+    case (unsigned long)USART2_BASE:
+        uart2_rx_hook = hook;
+        break;
+    case (unsigned long)USART3_BASE:
+        uart3_rx_hook = hook;
+        break;
+    case (unsigned long)UART5_BASE:
+        uart5_rx_hook = hook;
+        break;
+    case (unsigned long)UART7_BASE:
+        uart7_rx_hook = hook;
+        break;
+    case (unsigned long)USART10_BASE:
+        uart10_rx_hook = hook;
+        break;
+    default:
+        return UART_ERROR;
+    }
 
     return UART_OK;
 }

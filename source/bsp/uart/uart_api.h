@@ -31,6 +31,13 @@ extern uart_rx_t* uart2_msg;
 extern uart_rx_t* uart3_msg;
 extern uart_rx_t* uart10_msg;
 
+extern void (*uart5_rx_hook)(uint8_t *pData, uint32_t size);
+extern void (*uart7_rx_hook)(uint8_t *pData, uint32_t size);
+extern void (*uart1_rx_hook)(uint8_t *pData, uint32_t size);
+extern void (*uart2_rx_hook)(uint8_t *pData, uint32_t size);
+extern void (*uart3_rx_hook)(uint8_t *pData, uint32_t size);
+extern void (*uart10_rx_hook)(uint8_t *pData, uint32_t size);
+
 uart_status_t uart_rx_cheak(uart_rx_t *uart_rx_msg);
 uart_status_t uart_msg_cheak(uart_msg_t *rx_msg);
 uart_status_t uart_rx_init(uart_rx_t* uart_rx_msg);

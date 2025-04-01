@@ -297,7 +297,6 @@ void autoSolveTrajectory(float *pitch, float *yaw, float *aim_x, float *aim_y, f
 
     // 弹道解算后的参数
     float theta = b_set_angle; // 发射角（弧度）
-    float cacre = sqrtf(powf(SolveTrajectoryParams.yw, 2) + powf(SolveTrajectoryParams.xw, 2));
     float v = SolveTrajectoryParams.current_v;
 
     // 计算飞行时间（方法1）
@@ -308,7 +307,7 @@ void autoSolveTrajectory(float *pitch, float *yaw, float *aim_x, float *aim_y, f
     }
     else
     {
-        float t = cacre / (v * cosf(theta));
+        t = cacre / (v * cosf(theta));
     }
 
     *yaw = Calculate_Yaw(SolveTrajectoryParams, t);
