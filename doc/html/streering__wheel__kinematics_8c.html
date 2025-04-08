@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/control/KinematicSolution/SteeringWheel/streering_wheel_kinematics.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_25ff6885a748b7ac678af6e47152e090.html">control</a></li><li class="navelem"><a class="el" href="dir_844de94363a6b0e654a7d58d3aed6a48.html">KinematicSolution</a></li><li class="navelem"><a class="el" href="dir_90684b6a31d1d8fb367253f123972224.html">SteeringWheel</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">streering_wheel_kinematics.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="streering__wheel__kinematics_8h_source.html">streering_wheel_kinematics.h</a>&quot;</code><br />
+<code>#include &quot;arm_math.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+streering_wheel_kinematics.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="streering__wheel__kinematics_8c__incl.png" border="0" usemap="#asource_2module_2control_2_kinematic_solution_2_steering_wheel_2streering__wheel__kinematics_8c" alt=""/></div>
+<map name="asource_2module_2control_2_kinematic_solution_2_steering_wheel_2streering__wheel__kinematics_8c" id="asource_2module_2control_2_kinematic_solution_2_steering_wheel_2streering__wheel__kinematics_8c">
+<area shape="rect" title=" " alt="" coords="52,5,286,64"/>
+<area shape="rect" href="streering__wheel__kinematics_8h.html" title=" " alt="" coords="5,112,199,139"/>
+<area shape="poly" title=" " alt="" coords="149,66,123,101,119,98,145,63"/>
+<area shape="rect" title=" " alt="" coords="170,261,260,288"/>
+<area shape="poly" title=" " alt="" coords="191,63,204,86,214,111,221,147,223,184,221,246,216,246,218,184,216,148,209,113,199,88,187,66"/>
+<area shape="rect" title=" " alt="" coords="65,261,126,288"/>
+<area shape="poly" title=" " alt="" coords="99,140,83,187,83,217,89,246,83,247,78,218,78,186,94,138"/>
+<area shape="rect" href="motion__state_8h.html" title=" " alt="" coords="92,187,200,213"/>
+<area shape="poly" title=" " alt="" coords="112,138,133,172,128,175,107,141"/>
+<area shape="poly" title=" " alt="" coords="139,215,115,250,110,247,135,212"/>
+<area shape="poly" title=" " alt="" coords="160,212,195,248,191,252,156,216"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:add2b10143784dd718c9f254c09ed2e33" id="r_add2b10143784dd718c9f254c09ed2e33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbasic__angle_v__t.html">basic_angleV_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add2b10143784dd718c9f254c09ed2e33">steering_wheel_kinematics</a> (<a class="el" href="structbasic__vector__t.html">basic_vector_t</a> *motion_vector, <a class="el" href="structbasic__angle_v__t.html">basic_angleV_t</a> *motor_angleV_out)</td></tr>
+<tr class="separator:add2b10143784dd718c9f254c09ed2e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="add2b10143784dd718c9f254c09ed2e33" name="add2b10143784dd718c9f254c09ed2e33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add2b10143784dd718c9f254c09ed2e33">&#9670;&#160;</a></span>steering_wheel_kinematics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structbasic__angle_v__t.html">basic_angleV_t</a> steering_wheel_kinematics </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbasic__vector__t.html">basic_vector_t</a> *</td>          <td class="paramname"><span class="paramname"><em>motion_vector</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structbasic__angle_v__t.html">basic_angleV_t</a> *</td>          <td class="paramname"><span class="paramname"><em>motor_angleV_out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>计算转向轮的运动学特性</p>
+<p>根据机器人的运动向量和电机的角度向量，计算四个轮子（左前、右前、左后、右后）的线速度和角速度 这是通过将机器人的全局运动分解到每个轮子的局部坐标系中来实现的 <a href="https://blog.csdn.net/weixin_73037889/article/details/131052481">https://blog.csdn.net/weixin_73037889/article/details/131052481</a></p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">motion_vector</td><td>指向机器人运动向量的指针，包含机器人的线速度（x, y）和角速度（wz） </td></tr>
+    <tr><td class="paramname">motor_angleV_out</td><td>指向电机角度向量的指针，用于输出每个轮子的角速度和线速度 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>返回计算后的电机角度向量 </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/motor/motor_basic.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_55275f164995bff569199267ebec3968.html">motor</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">motor_basic.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="motor__basic_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef __MOTOR_BASIC_H__</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define __MOTOR_BASIC_H__</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;main.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="bsp_8h.html">bsp.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="structcan__motor__t.html">    8</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="structcan__motor__t.html#ac6278e0a008e8ca49300a5c2874ee776">   10</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structcan__motor__t.html#ac6278e0a008e8ca49300a5c2874ee776">motor_speed</a>;    <span class="comment">// 电机速度</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="structcan__motor__t.html#aeb6eff1024266c60ca158ff810e83511">   11</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structcan__motor__t.html#aeb6eff1024266c60ca158ff810e83511">motor_angle</a>;    <span class="comment">// 电机角度</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="structcan__motor__t.html#a2e73ee688b7d280dae2704aa5b930605">   12</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structcan__motor__t.html#a2e73ee688b7d280dae2704aa5b930605">torque_current</a>; <span class="comment">// 电机扭矩或电流</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="structcan__motor__t.html#a029a87658f39852c58465c723e31eb29">   13</a></span>    int8_t <a class="code hl_variable" href="structcan__motor__t.html#a029a87658f39852c58465c723e31eb29">temp</a>;          <span class="comment">// 电机温度</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structcan__motor__t.html#af7783107481632d59624f7bb8e6274ed">   14</a></span>    <a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a> <a class="code hl_variable" href="structcan__motor__t.html#af7783107481632d59624f7bb8e6274ed">can_msg</a>;    <span class="comment">// can消息指针</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>} <a class="code hl_struct" href="structcan__motor__t.html">can_motor_t</a>;</div>
+</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#endif </span><span class="comment">/* __MOTOR_COM_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="absp_8h_html"><div class="ttname"><a href="bsp_8h.html">bsp.h</a></div></div>
+<div class="ttc" id="astructcan__motor__t_html"><div class="ttname"><a href="structcan__motor__t.html">can_motor_t</a></div><div class="ttdef"><b>定义</b> motor_basic.h:9</div></div>
+<div class="ttc" id="astructcan__motor__t_html_a029a87658f39852c58465c723e31eb29"><div class="ttname"><a href="structcan__motor__t.html#a029a87658f39852c58465c723e31eb29">can_motor_t::temp</a></div><div class="ttdeci">int8_t temp</div><div class="ttdef"><b>定义</b> motor_basic.h:13</div></div>
+<div class="ttc" id="astructcan__motor__t_html_a2e73ee688b7d280dae2704aa5b930605"><div class="ttname"><a href="structcan__motor__t.html#a2e73ee688b7d280dae2704aa5b930605">can_motor_t::torque_current</a></div><div class="ttdeci">float torque_current</div><div class="ttdef"><b>定义</b> motor_basic.h:12</div></div>
+<div class="ttc" id="astructcan__motor__t_html_ac6278e0a008e8ca49300a5c2874ee776"><div class="ttname"><a href="structcan__motor__t.html#ac6278e0a008e8ca49300a5c2874ee776">can_motor_t::motor_speed</a></div><div class="ttdeci">float motor_speed</div><div class="ttdef"><b>定义</b> motor_basic.h:10</div></div>
+<div class="ttc" id="astructcan__motor__t_html_aeb6eff1024266c60ca158ff810e83511"><div class="ttname"><a href="structcan__motor__t.html#aeb6eff1024266c60ca158ff810e83511">can_motor_t::motor_angle</a></div><div class="ttdeci">float motor_angle</div><div class="ttdef"><b>定义</b> motor_basic.h:11</div></div>
+<div class="ttc" id="astructcan__motor__t_html_af7783107481632d59624f7bb8e6274ed"><div class="ttname"><a href="structcan__motor__t.html#af7783107481632d59624f7bb8e6274ed">can_motor_t::can_msg</a></div><div class="ttdeci">can_msg_t can_msg</div><div class="ttdef"><b>定义</b> motor_basic.h:14</div></div>
+<div class="ttc" id="astructcan__msg__t_html"><div class="ttname"><a href="structcan__msg__t.html">can_msg_t</a></div><div class="ttdef"><b>定义</b> can_struct.h:19</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

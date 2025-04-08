@@ -1,0 +1,60 @@
+\doxysection{source/bsp/buzzer/buzzer\+\_\+bsp.c 文件参考}
+\hypertarget{buzzer__bsp_8c}{}\label{buzzer__bsp_8c}\index{source/bsp/buzzer/buzzer\_bsp.c@{source/bsp/buzzer/buzzer\_bsp.c}}
+{\ttfamily \#include "{}buzzer\+\_\+bsp.\+h"{}}\newline
+{\ttfamily \#include "{}tim.\+h"{}}\newline
+buzzer\+\_\+bsp.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{buzzer__bsp_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{buzzer__bsp_8c_a0cead532fdd0c0de5fa1c1de0f6556bd}{buzzer\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em 蜂鸣器初始化 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{buzzer__bsp_8c_aa29f83d7661765eaae19f2b93b32cfa1}{buzzer\+\_\+on}} (uint32\+\_\+t frequency, float duty\+\_\+cycle)
+\begin{DoxyCompactList}\small\item\em 蜂鸣器开关 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{buzzer__bsp_8c_a93d07c81691fec7a85ea85117d6eca4f}{buzzer\+\_\+off}} (void)
+\begin{DoxyCompactList}\small\item\em 蜂鸣器关闭 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{buzzer__bsp_8c_a0cead532fdd0c0de5fa1c1de0f6556bd}\index{buzzer\_bsp.c@{buzzer\_bsp.c}!buzzer\_init@{buzzer\_init}}
+\index{buzzer\_init@{buzzer\_init}!buzzer\_bsp.c@{buzzer\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{buzzer\_init()}{buzzer\_init()}}
+{\footnotesize\ttfamily \label{buzzer__bsp_8c_a0cead532fdd0c0de5fa1c1de0f6556bd} 
+void buzzer\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+蜂鸣器初始化 
+
+\Hypertarget{buzzer__bsp_8c_a93d07c81691fec7a85ea85117d6eca4f}\index{buzzer\_bsp.c@{buzzer\_bsp.c}!buzzer\_off@{buzzer\_off}}
+\index{buzzer\_off@{buzzer\_off}!buzzer\_bsp.c@{buzzer\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{buzzer\_off()}{buzzer\_off()}}
+{\footnotesize\ttfamily \label{buzzer__bsp_8c_a93d07c81691fec7a85ea85117d6eca4f} 
+void buzzer\+\_\+off (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+蜂鸣器关闭 
+
+\Hypertarget{buzzer__bsp_8c_aa29f83d7661765eaae19f2b93b32cfa1}\index{buzzer\_bsp.c@{buzzer\_bsp.c}!buzzer\_on@{buzzer\_on}}
+\index{buzzer\_on@{buzzer\_on}!buzzer\_bsp.c@{buzzer\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{buzzer\_on()}{buzzer\_on()}}
+{\footnotesize\ttfamily \label{buzzer__bsp_8c_aa29f83d7661765eaae19f2b93b32cfa1} 
+void buzzer\+\_\+on (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{frequency}{, }\item[{float}]{duty\+\_\+cycle}{}\end{DoxyParamCaption})}
+
+
+
+蜂鸣器开关 
+
+
+\begin{DoxyParams}{参数}
+{\em frequency} & 频率 \\
+\hline
+{\em duty\+\_\+cycle} & 占空比 \\
+\hline
+\end{DoxyParams}

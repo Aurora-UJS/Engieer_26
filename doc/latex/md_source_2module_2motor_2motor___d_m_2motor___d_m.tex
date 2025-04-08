@@ -1,0 +1,49 @@
+\chapter{达妙电机说明文档}
+\hypertarget{md_source_2module_2motor_2motor___d_m_2motor___d_m}{}\label{md_source_2module_2motor_2motor___d_m_2motor___d_m}\index{达妙电机说明文档@{达妙电机说明文档}}
+\label{md_source_2module_2motor_2motor___d_m_2motor___d_m_autotoc_md51}%
+\Hypertarget{md_source_2module_2motor_2motor___d_m_2motor___d_m_autotoc_md51}%
+\hypertarget{md_source_2module_2motor_2motor___d_m_2motor___d_m_autotoc_md52}{}\doxysection{\texorpdfstring{1. 代码示例}{1. 代码示例}}\label{md_source_2module_2motor_2motor___d_m_2motor___d_m_autotoc_md52}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ task()}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 定义一个\ DM\_motor\_t\ 类型的\ motor\ 结构体}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_d_m__motor__t}{DM\_motor\_t}}\ *DM\_motor\ =\ pvPortMalloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_d_m__motor__t}{DM\_motor\_t}}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 设置\ CAN\ 配置的\ ID}}
+\DoxyCodeLine{\ \ \ \ DM\_motor-\/>\mbox{\hyperlink{struct_d_m__motor__t_a14f42c85faa99e48d6974c25f369f8eb}{can\_cfg}}.\mbox{\hyperlink{structcan__msg__t_abaabdc509cdaba7df9f56c6c76f3ae19}{id}}\ =\ 0x211;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 设置电机消息的\ CAN\ ID}}
+\DoxyCodeLine{\ \ \ \ DM\_motor-\/>\mbox{\hyperlink{struct_d_m__motor__t_ad023c6d987a2ea4cd1a7a60c0bf4b004}{motor\_msg}}.\mbox{\hyperlink{structcan__motor__t_af7783107481632d59624f7bb8e6274ed}{can\_msg}}.\mbox{\hyperlink{structcan__msg__t_abaabdc509cdaba7df9f56c6c76f3ae19}{id}}\ =\ 0x21;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 设置\ CAN\ 端口}}
+\DoxyCodeLine{\ \ \ \ DM\_motor-\/>\mbox{\hyperlink{struct_d_m__motor__t_a14f42c85faa99e48d6974c25f369f8eb}{can\_cfg}}.\mbox{\hyperlink{structcan__msg__t_a2fa54f9024782843172506fadbee2ac8}{port}}\ =\ \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238}{CAN1\_PORT}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 设置电机参数}}
+\DoxyCodeLine{\ \ \ \ DMDM\_motor-\/>tmp.PMAX\ =\ 12.5;}
+\DoxyCodeLine{\ \ \ \ DMDM\_motor-\/>tmp.VMAX\ =\ 3;}
+\DoxyCodeLine{\ \ \ \ DMDM\_motor-\/>tmp.IMAX\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 初始化电机}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{motor___d_m_8c_a65a366100839b300d25774b34fc1fa80}{Motor\_DM\_Init}}(\&DM\_motor);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 启用电机}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{motor___d_m_8c_ab3e894b32448d525e7c454682d24e0a1}{Motor\_DM\_Enable}}(\&DM\_motor);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 无限循环}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 刷新电机状态}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{motor___d_m_8c_a64b546c7ad05009cfede6bc962cff1b6}{Motor\_DM\_Refresh}}(\&DM\_motor);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 获取电机角度}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{imu_temp_ctrl_8c_a97993132b43bcbd8d52fb0f7325664f4}{angle}}\ =\ DM\_motor.\mbox{\hyperlink{struct_d_m__motor__t_ad023c6d987a2ea4cd1a7a60c0bf4b004}{motor\_msg}}.\mbox{\hyperlink{structcan__motor__t_aeb6eff1024266c60ca158ff810e83511}{motor\_angle}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 控制电机的位置和速度}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ PosSpeed\_CtrlMotor(\&DM\_motor,\ 233,\ 114);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

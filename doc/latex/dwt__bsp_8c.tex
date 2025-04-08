@@ -1,0 +1,215 @@
+\doxysection{source/bsp/dwt/dwt\+\_\+bsp.c 文件参考}
+\hypertarget{dwt__bsp_8c}{}\label{dwt__bsp_8c}\index{source/bsp/dwt/dwt\_bsp.c@{source/bsp/dwt/dwt\_bsp.c}}
+{\ttfamily \#include "{}dwt\+\_\+bsp.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+dwt\+\_\+bsp.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{dwt__bsp_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{dwt__bsp_8c_a80bda377ca5cef73b03e7211b1fa18b9}{DWT\+\_\+\+Init}} (uint32\+\_\+t CPU\+\_\+\+Freq\+\_\+m\+Hz)
+\begin{DoxyCompactList}\small\item\em DWT初始化 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{dwt__bsp_8c_af3972f1a5023286afdabf8e79abc5ed7}{DWT\+\_\+\+Get\+DeltaT}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}cnt\+\_\+last)
+\begin{DoxyCompactList}\small\item\em 获取时间差 \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{dwt__bsp_8c_ae3519a5f8a00524b8ced263a18fbc37e}{DWT\+\_\+\+Get\+Delta\+T64}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}cnt\+\_\+last)
+\begin{DoxyCompactList}\small\item\em 获取时间差 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dwt__bsp_8c_a0f591d032752c63e190dc3d55ea959c7}{DWT\+\_\+\+Sys\+Time\+Update}} (void)
+\begin{DoxyCompactList}\small\item\em 刷新定时器参数 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{dwt__bsp_8c_ab100be84fd91e5f606bd34b2cd62ecef}{DWT\+\_\+\+Get\+Timeline\+\_\+s}} (void)
+\begin{DoxyCompactList}\small\item\em 获取系统时间（秒） \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{dwt__bsp_8c_aff20f0eb6b9b6e4df5c8e509b0ca06dd}{DWT\+\_\+\+Get\+Timeline\+\_\+ms}} (void)
+\begin{DoxyCompactList}\small\item\em 获取系统时间（毫秒） \end{DoxyCompactList}\item 
+uint64\+\_\+t \mbox{\hyperlink{dwt__bsp_8c_abf89a827c23ac1dcbb5639369d658081}{DWT\+\_\+\+Get\+Timeline\+\_\+us}} (void)
+\begin{DoxyCompactList}\small\item\em 获取系统时间（微秒） \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{dwt__bsp_8c_a88912548ae8934bfc08e9c340974cab9}{DWT\+\_\+\+Delay}} (float Delay)
+\begin{DoxyCompactList}\small\item\em dwt延时函数（秒） \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_d_w_t___time__t}{DWT\+\_\+\+Time\+\_\+t}} \mbox{\hyperlink{dwt__bsp_8c_a27df2b0b1db5d3b21e183aa82229ccfe}{Sys\+Time}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{dwt__bsp_8c_a648da4b3863a8b7c4f170d9311c5d940}{CYCCNT64}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{dwt__bsp_8c_a88912548ae8934bfc08e9c340974cab9}\index{dwt\_bsp.c@{dwt\_bsp.c}!DWT\_Delay@{DWT\_Delay}}
+\index{DWT\_Delay@{DWT\_Delay}!dwt\_bsp.c@{dwt\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{DWT\_Delay()}{DWT\_Delay()}}
+{\footnotesize\ttfamily \label{dwt__bsp_8c_a88912548ae8934bfc08e9c340974cab9} 
+void DWT\+\_\+\+Delay (\begin{DoxyParamCaption}\item[{float}]{Delay}{}\end{DoxyParamCaption})}
+
+
+
+dwt延时函数（秒） 
+
+
+\begin{DoxyParams}{参数}
+{\em Delay} & 延时 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 无} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{dwt__bsp_8c_af3972f1a5023286afdabf8e79abc5ed7}\index{dwt\_bsp.c@{dwt\_bsp.c}!DWT\_GetDeltaT@{DWT\_GetDeltaT}}
+\index{DWT\_GetDeltaT@{DWT\_GetDeltaT}!dwt\_bsp.c@{dwt\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{DWT\_GetDeltaT()}{DWT\_GetDeltaT()}}
+{\footnotesize\ttfamily \label{dwt__bsp_8c_af3972f1a5023286afdabf8e79abc5ed7} 
+float DWT\+\_\+\+Get\+DeltaT (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{cnt\+\_\+last}{}\end{DoxyParamCaption})}
+
+
+
+获取时间差 
+
+
+\begin{DoxyParams}{参数}
+{\em cnt\+\_\+last} & 上次时间 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 时间差} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{dwt__bsp_8c_ae3519a5f8a00524b8ced263a18fbc37e}\index{dwt\_bsp.c@{dwt\_bsp.c}!DWT\_GetDeltaT64@{DWT\_GetDeltaT64}}
+\index{DWT\_GetDeltaT64@{DWT\_GetDeltaT64}!dwt\_bsp.c@{dwt\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{DWT\_GetDeltaT64()}{DWT\_GetDeltaT64()}}
+{\footnotesize\ttfamily \label{dwt__bsp_8c_ae3519a5f8a00524b8ced263a18fbc37e} 
+double DWT\+\_\+\+Get\+Delta\+T64 (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{cnt\+\_\+last}{}\end{DoxyParamCaption})}
+
+
+
+获取时间差 
+
+
+\begin{DoxyParams}{参数}
+{\em cnt\+\_\+last} & 上次时间 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 时间差} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{dwt__bsp_8c_aff20f0eb6b9b6e4df5c8e509b0ca06dd}\index{dwt\_bsp.c@{dwt\_bsp.c}!DWT\_GetTimeline\_ms@{DWT\_GetTimeline\_ms}}
+\index{DWT\_GetTimeline\_ms@{DWT\_GetTimeline\_ms}!dwt\_bsp.c@{dwt\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{DWT\_GetTimeline\_ms()}{DWT\_GetTimeline\_ms()}}
+{\footnotesize\ttfamily \label{dwt__bsp_8c_aff20f0eb6b9b6e4df5c8e509b0ca06dd} 
+float DWT\+\_\+\+Get\+Timeline\+\_\+ms (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+获取系统时间（毫秒） 
+
+
+\begin{DoxyParams}{参数}
+{\em 无} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 无} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{dwt__bsp_8c_ab100be84fd91e5f606bd34b2cd62ecef}\index{dwt\_bsp.c@{dwt\_bsp.c}!DWT\_GetTimeline\_s@{DWT\_GetTimeline\_s}}
+\index{DWT\_GetTimeline\_s@{DWT\_GetTimeline\_s}!dwt\_bsp.c@{dwt\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{DWT\_GetTimeline\_s()}{DWT\_GetTimeline\_s()}}
+{\footnotesize\ttfamily \label{dwt__bsp_8c_ab100be84fd91e5f606bd34b2cd62ecef} 
+float DWT\+\_\+\+Get\+Timeline\+\_\+s (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+获取系统时间（秒） 
+
+
+\begin{DoxyParams}{参数}
+{\em 无} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 无} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{dwt__bsp_8c_abf89a827c23ac1dcbb5639369d658081}\index{dwt\_bsp.c@{dwt\_bsp.c}!DWT\_GetTimeline\_us@{DWT\_GetTimeline\_us}}
+\index{DWT\_GetTimeline\_us@{DWT\_GetTimeline\_us}!dwt\_bsp.c@{dwt\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{DWT\_GetTimeline\_us()}{DWT\_GetTimeline\_us()}}
+{\footnotesize\ttfamily \label{dwt__bsp_8c_abf89a827c23ac1dcbb5639369d658081} 
+uint64\+\_\+t DWT\+\_\+\+Get\+Timeline\+\_\+us (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+获取系统时间（微秒） 
+
+
+\begin{DoxyParams}{参数}
+{\em 无} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 无} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{dwt__bsp_8c_a80bda377ca5cef73b03e7211b1fa18b9}\index{dwt\_bsp.c@{dwt\_bsp.c}!DWT\_Init@{DWT\_Init}}
+\index{DWT\_Init@{DWT\_Init}!dwt\_bsp.c@{dwt\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{DWT\_Init()}{DWT\_Init()}}
+{\footnotesize\ttfamily \label{dwt__bsp_8c_a80bda377ca5cef73b03e7211b1fa18b9} 
+void DWT\+\_\+\+Init (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{CPU\+\_\+\+Freq\+\_\+m\+Hz}{}\end{DoxyParamCaption})}
+
+
+
+DWT初始化 
+
+
+\begin{DoxyParams}{参数}
+{\em CPU\+\_\+\+Freq\+\_\+m\+Hz} & CPU频率 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 无} & \\
+\hline
+\end{DoxyRetVals}
+\Hypertarget{dwt__bsp_8c_a0f591d032752c63e190dc3d55ea959c7}\index{dwt\_bsp.c@{dwt\_bsp.c}!DWT\_SysTimeUpdate@{DWT\_SysTimeUpdate}}
+\index{DWT\_SysTimeUpdate@{DWT\_SysTimeUpdate}!dwt\_bsp.c@{dwt\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{DWT\_SysTimeUpdate()}{DWT\_SysTimeUpdate()}}
+{\footnotesize\ttfamily \label{dwt__bsp_8c_a0f591d032752c63e190dc3d55ea959c7} 
+void DWT\+\_\+\+Sys\+Time\+Update (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+刷新定时器参数 
+
+
+\begin{DoxyParams}{参数}
+{\em 无} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 无} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\doxysubsection{变量说明}
+\Hypertarget{dwt__bsp_8c_a648da4b3863a8b7c4f170d9311c5d940}\index{dwt\_bsp.c@{dwt\_bsp.c}!CYCCNT64@{CYCCNT64}}
+\index{CYCCNT64@{CYCCNT64}!dwt\_bsp.c@{dwt\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{CYCCNT64}{CYCCNT64}}
+{\footnotesize\ttfamily \label{dwt__bsp_8c_a648da4b3863a8b7c4f170d9311c5d940} 
+uint64\+\_\+t CYCCNT64}
+
+\Hypertarget{dwt__bsp_8c_a27df2b0b1db5d3b21e183aa82229ccfe}\index{dwt\_bsp.c@{dwt\_bsp.c}!SysTime@{SysTime}}
+\index{SysTime@{SysTime}!dwt\_bsp.c@{dwt\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{SysTime}{SysTime}}
+{\footnotesize\ttfamily \label{dwt__bsp_8c_a27df2b0b1db5d3b21e183aa82229ccfe} 
+\mbox{\hyperlink{struct_d_w_t___time__t}{DWT\+\_\+\+Time\+\_\+t}} Sys\+Time}
+

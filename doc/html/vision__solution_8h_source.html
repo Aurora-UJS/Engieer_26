@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/computer/vision/vision_solution.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_975f036152d1b8ba6403704f48098465.html">computer</a></li><li class="navelem"><a class="el" href="dir_9539319793484e263c9ac670f3dffa0a.html">vision</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">vision_solution.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="vision__solution_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef VISION_SOLUTION_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define VISION_SOLUTION_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;main.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="computer__pack_8h.html">computer_pack.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="foldopen" id="foldopen00007" data-start="{" data-end="};">
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075">    7</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075">ARMOR_ID</a></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a33189c94b3cfa7ffcdd6bf4a7cb040e2">    9</a></span>  <a class="code hl_enumvalue" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a33189c94b3cfa7ffcdd6bf4a7cb040e2">ARMOR_OUTPOST</a> = 0,</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a49d5e7e1f60410a91d18cd9399334db8">   10</a></span>  <a class="code hl_enumvalue" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a49d5e7e1f60410a91d18cd9399334db8">ARMOR_HERO</a> = 1,</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075acc2f6be8c4d5eb9b66dd99a87ee7bb2f">   11</a></span>  <a class="code hl_enumvalue" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075acc2f6be8c4d5eb9b66dd99a87ee7bb2f">ARMOR_ENGINEER</a> = 2,</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a90942078e0cad835d429bc742fe9d3e5">   12</a></span>  <a class="code hl_enumvalue" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a90942078e0cad835d429bc742fe9d3e5">ARMOR_INFANTRY3</a> = 3,</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a5a0517db0f060bad2003fb01a7d22cfe">   13</a></span>  <a class="code hl_enumvalue" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a5a0517db0f060bad2003fb01a7d22cfe">ARMOR_INFANTRY4</a> = 4,</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a8f405f62b8da04a1a71f4ba1d2bc578e">   14</a></span>  <a class="code hl_enumvalue" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a8f405f62b8da04a1a71f4ba1d2bc578e">ARMOR_INFANTRY5</a> = 5,</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a5a589a73749b598abfcc4ced92a619c4">   15</a></span>  <a class="code hl_enumvalue" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a5a589a73749b598abfcc4ced92a619c4">ARMOR_GUARD</a> = 6,</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075ad79f53083994e277dfb575531bcab911">   16</a></span>  <a class="code hl_enumvalue" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075ad79f53083994e277dfb575531bcab911">ARMOR_BASE</a> = 7</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>};</div>
+</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#a5abe1059b0977ca6e98e13f8852b2807">   19</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="vision__solution_8h.html#a5abe1059b0977ca6e98e13f8852b2807">ARMOR_NUM</a></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#a5abe1059b0977ca6e98e13f8852b2807aad4f31931f376bedb7748f0dbc1b7c6e">   21</a></span>  <a class="code hl_enumvalue" href="vision__solution_8h.html#a5abe1059b0977ca6e98e13f8852b2807aad4f31931f376bedb7748f0dbc1b7c6e">ARMOR_NUM_BALANCE</a> = 2,</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#a5abe1059b0977ca6e98e13f8852b2807af5cf39d6f09dae819873753761cdeb58">   22</a></span>  <a class="code hl_enumvalue" href="vision__solution_8h.html#a5abe1059b0977ca6e98e13f8852b2807af5cf39d6f09dae819873753761cdeb58">ARMOR_NUM_OUTPOST</a> = 3,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#a5abe1059b0977ca6e98e13f8852b2807a98e046a8baeb1dc6e74298e576409a02">   23</a></span>  <a class="code hl_enumvalue" href="vision__solution_8h.html#a5abe1059b0977ca6e98e13f8852b2807a98e046a8baeb1dc6e74298e576409a02">ARMOR_NUM_NORMAL</a> = 4</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>};</div>
+</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="foldopen" id="foldopen00026" data-start="{" data-end="};">
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html">   26</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#a9fc4cca635a26c692681a7071e379aa7">   28</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#a9fc4cca635a26c692681a7071e379aa7">k</a>;             <span class="comment">//弹道系数</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="comment">//自身参数</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#a5be8e3ed1c84de808bfe1778af6ab0ba">   31</a></span>  uint8_t <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#a5be8e3ed1c84de808bfe1778af6ab0ba">bullet_type</a>;  <span class="comment">//自身机器人类型 0-步兵 1-英雄</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#a571d68f0f30fdae825b5ed6d1645d102">   32</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#a571d68f0f30fdae825b5ed6d1645d102">current_v</a>;      <span class="comment">//当前弹速</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="comment">//目标参数</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#aaf937f5e480727602b3852a005b7cadb">   35</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#aaf937f5e480727602b3852a005b7cadb">xw</a>;             <span class="comment">//ROS坐标系下的x</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#a9feb06d401bab4a244dbfc571a778c9d">   36</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#a9feb06d401bab4a244dbfc571a778c9d">yw</a>;             <span class="comment">//ROS坐标系下的y</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#ae74129c585e74c29c8b3478f74654ffc">   37</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#ae74129c585e74c29c8b3478f74654ffc">zw</a>;             <span class="comment">//ROS坐标系下的z</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#aa2c8bc3525e099f594cf986b04ee72e9">   38</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#aa2c8bc3525e099f594cf986b04ee72e9">vxw</a>;            <span class="comment">//ROS坐标系下的vx</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#a8c162b20aa7e324e282cb2d969f4dd9c">   39</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#a8c162b20aa7e324e282cb2d969f4dd9c">vyw</a>;            <span class="comment">//ROS坐标系下的vy</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#ae92caa8b9b807ae1daf9f69a44384a03">   40</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#ae92caa8b9b807ae1daf9f69a44384a03">vzw</a>;            <span class="comment">//ROS坐标系下的vz</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#a5897b8e5dd8618af813ccacde3026f0e">   41</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#a5897b8e5dd8618af813ccacde3026f0e">tar_yaw</a>;        <span class="comment">//目标yaw</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#a2fcafb9fc16c900e5ed21b0591961a87">   42</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#a2fcafb9fc16c900e5ed21b0591961a87">v_yaw</a>;          <span class="comment">//目标yaw速度</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#a1f47f51cace576c94f6c1c9483d28a8f">   43</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#a1f47f51cace576c94f6c1c9483d28a8f">r1</a>;             <span class="comment">//目标中心到前后装甲板的距离</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#ab7a69dabaa7151dae4d7a3998167e2f3">   44</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#ab7a69dabaa7151dae4d7a3998167e2f3">r2</a>;             <span class="comment">//目标中心到左右装甲板的距离</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#a31755dd9c32708851ef90978cd814b35">   45</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#a31755dd9c32708851ef90978cd814b35">dz</a>;             <span class="comment">//装甲板的高度差</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#a36a08b1081be4ca1ceeaae29bfc295b3">   46</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#a36a08b1081be4ca1ceeaae29bfc295b3">bias_time</a>;        <span class="comment">//偏置时间</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#a1905843488c81e3aef0155f2a73e8126">   47</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#a1905843488c81e3aef0155f2a73e8126">s_bias</a>;         <span class="comment">//枪口前推的时间</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#a6e265324293107afbfa9e587941a4036">   48</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#a6e265324293107afbfa9e587941a4036">z_bias</a>;         <span class="comment">//yaw电机到枪口水平面的垂直距离</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#a111a4caa85e39e92052c4952345c12e8">   49</a></span>  <span class="keyword">enum</span> <a class="code hl_enumeration" href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075">ARMOR_ID</a> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#a111a4caa85e39e92052c4952345c12e8">armor_id</a>;     <span class="comment">//装甲板类型  0-outpost 6-guard 7-base</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="comment">//1-英雄 2-工程 3-4-5-步兵 </span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="struct_solve_trajectory_params__t.html#a4f1570dd75a165d29cdbefa50e1af84f">   51</a></span>  <span class="keyword">enum</span> <a class="code hl_enumeration" href="vision__solution_8h.html#a5abe1059b0977ca6e98e13f8852b2807">ARMOR_NUM</a> <a class="code hl_variable" href="struct_solve_trajectory_params__t.html#a4f1570dd75a165d29cdbefa50e1af84f">armor_num</a>;   <span class="comment">//装甲板数字  2-balance 3-outpost 4-normal</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}<a class="code hl_struct" href="struct_solve_trajectory_params__t.html">SolveTrajectoryParams_t</a>;</div>
+</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="};">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structtar__pos.html">   54</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>{</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structtar__pos.html#ad0da36b2558901e21e7a30f6c227a45e">   56</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="structtar__pos.html#ad0da36b2558901e21e7a30f6c227a45e">x</a>;           <span class="comment">//装甲板在世界坐标系下的x</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structtar__pos.html#aa4f0d3eebc3c443f9be81bf48561a217">   57</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="structtar__pos.html#aa4f0d3eebc3c443f9be81bf48561a217">y</a>;           <span class="comment">//装甲板在世界坐标系下的y</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="structtar__pos.html#af73583b1e980b0aa03f9884812e9fd4d">   58</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="structtar__pos.html#af73583b1e980b0aa03f9884812e9fd4d">z</a>;           <span class="comment">//装甲板在世界坐标系下的z</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="structtar__pos.html#a7efc219781df4a1e281cb5d348b7fbf9">   59</a></span>  <span class="keywordtype">float</span> <a class="code hl_variable" href="structtar__pos.html#a7efc219781df4a1e281cb5d348b7fbf9">yaw</a>;         <span class="comment">//装甲板在世界坐标系下的yaw角度</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}<a class="code hl_struct" href="structtar__pos.html">tar_pos</a>;</div>
+</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#af69c8b370a6e8bdb6209d0f50664e3c3">   62</a></span><span class="keyword">extern</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="vision__solution_8c.html#a728368a3f501c6e5e3b6631d894a670a">aim_x_n</a>, <a class="code hl_variable" href="vision__solution_8c.html#af69c8b370a6e8bdb6209d0f50664e3c3">aim_y_n</a>, <a class="code hl_variable" href="vision__solution_8c.html#afe721c914141cd48b15fb0b453f4c4ff">aim_z_n</a>;<span class="comment">//机器人目标点</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="vision__solution_8h.html#a2123644d01e0d4dbd1a1ce113508d0a4">   64</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="vision__solution_8h.html#a2123644d01e0d4dbd1a1ce113508d0a4">vision_solution</a>(<span class="keywordtype">float</span> *target_yaw, <span class="keywordtype">float</span> *target_pitch);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#endif </span><span class="comment">// !</span></div>
+<div class="ttc" id="acomputer__pack_8h_html"><div class="ttname"><a href="computer__pack_8h.html">computer_pack.h</a></div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html"><div class="ttname"><a href="struct_solve_trajectory_params__t.html">SolveTrajectoryParams_t</a></div><div class="ttdef"><b>定义</b> vision_solution.h:27</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_a111a4caa85e39e92052c4952345c12e8"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#a111a4caa85e39e92052c4952345c12e8">SolveTrajectoryParams_t::armor_id</a></div><div class="ttdeci">enum ARMOR_ID armor_id</div><div class="ttdef"><b>定义</b> vision_solution.h:49</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_a1905843488c81e3aef0155f2a73e8126"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#a1905843488c81e3aef0155f2a73e8126">SolveTrajectoryParams_t::s_bias</a></div><div class="ttdeci">float s_bias</div><div class="ttdef"><b>定义</b> vision_solution.h:47</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_a1f47f51cace576c94f6c1c9483d28a8f"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#a1f47f51cace576c94f6c1c9483d28a8f">SolveTrajectoryParams_t::r1</a></div><div class="ttdeci">float r1</div><div class="ttdef"><b>定义</b> vision_solution.h:43</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_a2fcafb9fc16c900e5ed21b0591961a87"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#a2fcafb9fc16c900e5ed21b0591961a87">SolveTrajectoryParams_t::v_yaw</a></div><div class="ttdeci">float v_yaw</div><div class="ttdef"><b>定义</b> vision_solution.h:42</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_a31755dd9c32708851ef90978cd814b35"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#a31755dd9c32708851ef90978cd814b35">SolveTrajectoryParams_t::dz</a></div><div class="ttdeci">float dz</div><div class="ttdef"><b>定义</b> vision_solution.h:45</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_a36a08b1081be4ca1ceeaae29bfc295b3"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#a36a08b1081be4ca1ceeaae29bfc295b3">SolveTrajectoryParams_t::bias_time</a></div><div class="ttdeci">int bias_time</div><div class="ttdef"><b>定义</b> vision_solution.h:46</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_a4f1570dd75a165d29cdbefa50e1af84f"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#a4f1570dd75a165d29cdbefa50e1af84f">SolveTrajectoryParams_t::armor_num</a></div><div class="ttdeci">enum ARMOR_NUM armor_num</div><div class="ttdef"><b>定义</b> vision_solution.h:51</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_a571d68f0f30fdae825b5ed6d1645d102"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#a571d68f0f30fdae825b5ed6d1645d102">SolveTrajectoryParams_t::current_v</a></div><div class="ttdeci">float current_v</div><div class="ttdef"><b>定义</b> vision_solution.h:32</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_a5897b8e5dd8618af813ccacde3026f0e"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#a5897b8e5dd8618af813ccacde3026f0e">SolveTrajectoryParams_t::tar_yaw</a></div><div class="ttdeci">float tar_yaw</div><div class="ttdef"><b>定义</b> vision_solution.h:41</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_a5be8e3ed1c84de808bfe1778af6ab0ba"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#a5be8e3ed1c84de808bfe1778af6ab0ba">SolveTrajectoryParams_t::bullet_type</a></div><div class="ttdeci">uint8_t bullet_type</div><div class="ttdef"><b>定义</b> vision_solution.h:31</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_a6e265324293107afbfa9e587941a4036"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#a6e265324293107afbfa9e587941a4036">SolveTrajectoryParams_t::z_bias</a></div><div class="ttdeci">float z_bias</div><div class="ttdef"><b>定义</b> vision_solution.h:48</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_a8c162b20aa7e324e282cb2d969f4dd9c"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#a8c162b20aa7e324e282cb2d969f4dd9c">SolveTrajectoryParams_t::vyw</a></div><div class="ttdeci">float vyw</div><div class="ttdef"><b>定义</b> vision_solution.h:39</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_a9fc4cca635a26c692681a7071e379aa7"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#a9fc4cca635a26c692681a7071e379aa7">SolveTrajectoryParams_t::k</a></div><div class="ttdeci">float k</div><div class="ttdef"><b>定义</b> vision_solution.h:28</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_a9feb06d401bab4a244dbfc571a778c9d"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#a9feb06d401bab4a244dbfc571a778c9d">SolveTrajectoryParams_t::yw</a></div><div class="ttdeci">float yw</div><div class="ttdef"><b>定义</b> vision_solution.h:36</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_aa2c8bc3525e099f594cf986b04ee72e9"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#aa2c8bc3525e099f594cf986b04ee72e9">SolveTrajectoryParams_t::vxw</a></div><div class="ttdeci">float vxw</div><div class="ttdef"><b>定义</b> vision_solution.h:38</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_aaf937f5e480727602b3852a005b7cadb"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#aaf937f5e480727602b3852a005b7cadb">SolveTrajectoryParams_t::xw</a></div><div class="ttdeci">float xw</div><div class="ttdef"><b>定义</b> vision_solution.h:35</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_ab7a69dabaa7151dae4d7a3998167e2f3"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#ab7a69dabaa7151dae4d7a3998167e2f3">SolveTrajectoryParams_t::r2</a></div><div class="ttdeci">float r2</div><div class="ttdef"><b>定义</b> vision_solution.h:44</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_ae74129c585e74c29c8b3478f74654ffc"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#ae74129c585e74c29c8b3478f74654ffc">SolveTrajectoryParams_t::zw</a></div><div class="ttdeci">float zw</div><div class="ttdef"><b>定义</b> vision_solution.h:37</div></div>
+<div class="ttc" id="astruct_solve_trajectory_params__t_html_ae92caa8b9b807ae1daf9f69a44384a03"><div class="ttname"><a href="struct_solve_trajectory_params__t.html#ae92caa8b9b807ae1daf9f69a44384a03">SolveTrajectoryParams_t::vzw</a></div><div class="ttdeci">float vzw</div><div class="ttdef"><b>定义</b> vision_solution.h:40</div></div>
+<div class="ttc" id="astructtar__pos_html"><div class="ttname"><a href="structtar__pos.html">tar_pos</a></div><div class="ttdef"><b>定义</b> vision_solution.h:55</div></div>
+<div class="ttc" id="astructtar__pos_html_a7efc219781df4a1e281cb5d348b7fbf9"><div class="ttname"><a href="structtar__pos.html#a7efc219781df4a1e281cb5d348b7fbf9">tar_pos::yaw</a></div><div class="ttdeci">float yaw</div><div class="ttdef"><b>定义</b> vision_solution.h:59</div></div>
+<div class="ttc" id="astructtar__pos_html_aa4f0d3eebc3c443f9be81bf48561a217"><div class="ttname"><a href="structtar__pos.html#aa4f0d3eebc3c443f9be81bf48561a217">tar_pos::y</a></div><div class="ttdeci">float y</div><div class="ttdef"><b>定义</b> vision_solution.h:57</div></div>
+<div class="ttc" id="astructtar__pos_html_ad0da36b2558901e21e7a30f6c227a45e"><div class="ttname"><a href="structtar__pos.html#ad0da36b2558901e21e7a30f6c227a45e">tar_pos::x</a></div><div class="ttdeci">float x</div><div class="ttdef"><b>定义</b> vision_solution.h:56</div></div>
+<div class="ttc" id="astructtar__pos_html_af73583b1e980b0aa03f9884812e9fd4d"><div class="ttname"><a href="structtar__pos.html#af73583b1e980b0aa03f9884812e9fd4d">tar_pos::z</a></div><div class="ttdeci">float z</div><div class="ttdef"><b>定义</b> vision_solution.h:58</div></div>
+<div class="ttc" id="avision__solution_8c_html_a728368a3f501c6e5e3b6631d894a670a"><div class="ttname"><a href="vision__solution_8c.html#a728368a3f501c6e5e3b6631d894a670a">aim_x_n</a></div><div class="ttdeci">float aim_x_n</div><div class="ttdef"><b>定义</b> vision_solution.c:10</div></div>
+<div class="ttc" id="avision__solution_8c_html_af69c8b370a6e8bdb6209d0f50664e3c3"><div class="ttname"><a href="vision__solution_8c.html#af69c8b370a6e8bdb6209d0f50664e3c3">aim_y_n</a></div><div class="ttdeci">float aim_y_n</div><div class="ttdef"><b>定义</b> vision_solution.c:10</div></div>
+<div class="ttc" id="avision__solution_8c_html_afe721c914141cd48b15fb0b453f4c4ff"><div class="ttname"><a href="vision__solution_8c.html#afe721c914141cd48b15fb0b453f4c4ff">aim_z_n</a></div><div class="ttdeci">float aim_z_n</div><div class="ttdef"><b>定义</b> vision_solution.c:10</div></div>
+<div class="ttc" id="avision__solution_8h_html_a2123644d01e0d4dbd1a1ce113508d0a4"><div class="ttname"><a href="vision__solution_8h.html#a2123644d01e0d4dbd1a1ce113508d0a4">vision_solution</a></div><div class="ttdeci">void vision_solution(float *target_yaw, float *target_pitch)</div></div>
+<div class="ttc" id="avision__solution_8h_html_a5abe1059b0977ca6e98e13f8852b2807"><div class="ttname"><a href="vision__solution_8h.html#a5abe1059b0977ca6e98e13f8852b2807">ARMOR_NUM</a></div><div class="ttdeci">ARMOR_NUM</div><div class="ttdef"><b>定义</b> vision_solution.h:20</div></div>
+<div class="ttc" id="avision__solution_8h_html_a5abe1059b0977ca6e98e13f8852b2807a98e046a8baeb1dc6e74298e576409a02"><div class="ttname"><a href="vision__solution_8h.html#a5abe1059b0977ca6e98e13f8852b2807a98e046a8baeb1dc6e74298e576409a02">ARMOR_NUM_NORMAL</a></div><div class="ttdeci">@ ARMOR_NUM_NORMAL</div><div class="ttdef"><b>定义</b> vision_solution.h:23</div></div>
+<div class="ttc" id="avision__solution_8h_html_a5abe1059b0977ca6e98e13f8852b2807aad4f31931f376bedb7748f0dbc1b7c6e"><div class="ttname"><a href="vision__solution_8h.html#a5abe1059b0977ca6e98e13f8852b2807aad4f31931f376bedb7748f0dbc1b7c6e">ARMOR_NUM_BALANCE</a></div><div class="ttdeci">@ ARMOR_NUM_BALANCE</div><div class="ttdef"><b>定义</b> vision_solution.h:21</div></div>
+<div class="ttc" id="avision__solution_8h_html_a5abe1059b0977ca6e98e13f8852b2807af5cf39d6f09dae819873753761cdeb58"><div class="ttname"><a href="vision__solution_8h.html#a5abe1059b0977ca6e98e13f8852b2807af5cf39d6f09dae819873753761cdeb58">ARMOR_NUM_OUTPOST</a></div><div class="ttdeci">@ ARMOR_NUM_OUTPOST</div><div class="ttdef"><b>定义</b> vision_solution.h:22</div></div>
+<div class="ttc" id="avision__solution_8h_html_a9ed06453f8f564098389ebcae3bf7075"><div class="ttname"><a href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075">ARMOR_ID</a></div><div class="ttdeci">ARMOR_ID</div><div class="ttdef"><b>定义</b> vision_solution.h:8</div></div>
+<div class="ttc" id="avision__solution_8h_html_a9ed06453f8f564098389ebcae3bf7075a33189c94b3cfa7ffcdd6bf4a7cb040e2"><div class="ttname"><a href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a33189c94b3cfa7ffcdd6bf4a7cb040e2">ARMOR_OUTPOST</a></div><div class="ttdeci">@ ARMOR_OUTPOST</div><div class="ttdef"><b>定义</b> vision_solution.h:9</div></div>
+<div class="ttc" id="avision__solution_8h_html_a9ed06453f8f564098389ebcae3bf7075a49d5e7e1f60410a91d18cd9399334db8"><div class="ttname"><a href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a49d5e7e1f60410a91d18cd9399334db8">ARMOR_HERO</a></div><div class="ttdeci">@ ARMOR_HERO</div><div class="ttdef"><b>定义</b> vision_solution.h:10</div></div>
+<div class="ttc" id="avision__solution_8h_html_a9ed06453f8f564098389ebcae3bf7075a5a0517db0f060bad2003fb01a7d22cfe"><div class="ttname"><a href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a5a0517db0f060bad2003fb01a7d22cfe">ARMOR_INFANTRY4</a></div><div class="ttdeci">@ ARMOR_INFANTRY4</div><div class="ttdef"><b>定义</b> vision_solution.h:13</div></div>
+<div class="ttc" id="avision__solution_8h_html_a9ed06453f8f564098389ebcae3bf7075a5a589a73749b598abfcc4ced92a619c4"><div class="ttname"><a href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a5a589a73749b598abfcc4ced92a619c4">ARMOR_GUARD</a></div><div class="ttdeci">@ ARMOR_GUARD</div><div class="ttdef"><b>定义</b> vision_solution.h:15</div></div>
+<div class="ttc" id="avision__solution_8h_html_a9ed06453f8f564098389ebcae3bf7075a8f405f62b8da04a1a71f4ba1d2bc578e"><div class="ttname"><a href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a8f405f62b8da04a1a71f4ba1d2bc578e">ARMOR_INFANTRY5</a></div><div class="ttdeci">@ ARMOR_INFANTRY5</div><div class="ttdef"><b>定义</b> vision_solution.h:14</div></div>
+<div class="ttc" id="avision__solution_8h_html_a9ed06453f8f564098389ebcae3bf7075a90942078e0cad835d429bc742fe9d3e5"><div class="ttname"><a href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075a90942078e0cad835d429bc742fe9d3e5">ARMOR_INFANTRY3</a></div><div class="ttdeci">@ ARMOR_INFANTRY3</div><div class="ttdef"><b>定义</b> vision_solution.h:12</div></div>
+<div class="ttc" id="avision__solution_8h_html_a9ed06453f8f564098389ebcae3bf7075acc2f6be8c4d5eb9b66dd99a87ee7bb2f"><div class="ttname"><a href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075acc2f6be8c4d5eb9b66dd99a87ee7bb2f">ARMOR_ENGINEER</a></div><div class="ttdeci">@ ARMOR_ENGINEER</div><div class="ttdef"><b>定义</b> vision_solution.h:11</div></div>
+<div class="ttc" id="avision__solution_8h_html_a9ed06453f8f564098389ebcae3bf7075ad79f53083994e277dfb575531bcab911"><div class="ttname"><a href="vision__solution_8h.html#a9ed06453f8f564098389ebcae3bf7075ad79f53083994e277dfb575531bcab911">ARMOR_BASE</a></div><div class="ttdeci">@ ARMOR_BASE</div><div class="ttdef"><b>定义</b> vision_solution.h:16</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

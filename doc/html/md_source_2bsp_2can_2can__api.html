@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: CAN API说明</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">CAN API说明</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md0"></a></p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+1. 简介</h1>
+<p>CAN API提供了一系列的函数，用于操作CAN总线。</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+2. 基础配置</h1>
+<h2><a class="anchor" id="autotoc_md3"></a>
+2.1 can数据包介绍</h2>
+<p>CAN数据包是CAN总线上发送和接收的数据单元。在发送和接收中都会用到这个数据包。</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+2.2 can数据包结构体介绍</h2>
+<div class="fragment"><div class="line"><span class="comment">// 定义CAN消息的结构体</span></div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line">{</div>
+<div class="line">    uint8_t port; <span class="comment">// CAN1_ID, CAN2_ID, CAN3_ID</span></div>
+<div class="line">    uint32_t id;</div>
+<div class="line">    uint8_t data[8];</div>
+<div class="line">    uint8_t len;</div>
+<div class="line">    uint8_t cnt;</div>
+<div class="line">}<a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a>;</div>
+<div class="ttc" id="astructcan__msg__t_html"><div class="ttname"><a href="structcan__msg__t.html">can_msg_t</a></div><div class="ttdef"><b>定义</b> can_struct.h:19</div></div>
+</div><!-- fragment --><ul>
+<li>port: CAN端口号，CAN1_ID, CAN2_ID, CAN3_ID</li>
+<li>id: CAN消息ID</li>
+<li>data: CAN消息数据，最大8字节</li>
+<li>len: CAN消息数据长度，最大8字节</li>
+<li>cnt: 发送计数器，每发送一次计数器加1，最大255。</li>
+</ul>
+<p>在发送和接收中，都会用到这个数据包结构体。</p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+3.1 can初始化</h2>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="can__api_8c.html#ad85c1f6d431113ab42f44d8a4c8be620">can_sys_init</a>();</div>
+<div class="ttc" id="acan__api_8c_html_ad85c1f6d431113ab42f44d8a4c8be620"><div class="ttname"><a href="can__api_8c.html#ad85c1f6d431113ab42f44d8a4c8be620">can_sys_init</a></div><div class="ttdeci">void can_sys_init(void)</div><div class="ttdoc">CAN通讯初始化。</div><div class="ttdef"><b>定义</b> can_api.c:19</div></div>
+</div><!-- fragment --><p>该函数用于初始化CAN总线。 已经加入头文件“bsp.h”中，无需再调用。</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+3.2 can数据发送</h2>
+<p>在发送数据时，需要先定义一个“can_msg_t”结构体即CAN数据包，然后调用相应的发送函数。 这个can数据包需要预先配置好CAN端口号、ID、数据、数据长度等信息。 以下是一个配置的例子：</p>
+<div class="fragment"><div class="line"><a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a> msg;</div>
+<div class="line">msg.<a class="code hl_variable" href="structcan__msg__t.html#a2fa54f9024782843172506fadbee2ac8">port</a> = CAN1_ID;</div>
+<div class="line">msg.<a class="code hl_variable" href="structcan__msg__t.html#abaabdc509cdaba7df9f56c6c76f3ae19">id</a> = 0x123;</div>
+<div class="line">msg.<a class="code hl_variable" href="structcan__msg__t.html#afb87d045bbf32b236fc425efe02bdc7b">data</a>[0] = 0x01;</div>
+<div class="line">msg.<a class="code hl_variable" href="structcan__msg__t.html#afb87d045bbf32b236fc425efe02bdc7b">data</a>[1] = 0x02;</div>
+<div class="line">msg.<a class="code hl_variable" href="structcan__msg__t.html#afb87d045bbf32b236fc425efe02bdc7b">data</a>[2] = 0x03;</div>
+<div class="line">msg.<a class="code hl_variable" href="structcan__msg__t.html#afb87d045bbf32b236fc425efe02bdc7b">data</a>[3] = 0x04;</div>
+<div class="line">msg.<a class="code hl_variable" href="structcan__msg__t.html#afb87d045bbf32b236fc425efe02bdc7b">data</a>[4] = 0x05;</div>
+<div class="line">msg.<a class="code hl_variable" href="structcan__msg__t.html#afb87d045bbf32b236fc425efe02bdc7b">data</a>[5] = 0x06;</div>
+<div class="line">msg.<a class="code hl_variable" href="structcan__msg__t.html#afb87d045bbf32b236fc425efe02bdc7b">data</a>[6] = 0x07;</div>
+<div class="line">msg.<a class="code hl_variable" href="structcan__msg__t.html#afb87d045bbf32b236fc425efe02bdc7b">data</a>[7] = 0x08;</div>
+<div class="line">msg.<a class="code hl_variable" href="structcan__msg__t.html#a5723e60ffd628510c699eddbce90be23">len</a> = FDCAN_DLC_BYTES_8;</div>
+<div class="ttc" id="astructcan__msg__t_html_a2fa54f9024782843172506fadbee2ac8"><div class="ttname"><a href="structcan__msg__t.html#a2fa54f9024782843172506fadbee2ac8">can_msg_t::port</a></div><div class="ttdeci">uint8_t port</div><div class="ttdef"><b>定义</b> can_struct.h:20</div></div>
+<div class="ttc" id="astructcan__msg__t_html_a5723e60ffd628510c699eddbce90be23"><div class="ttname"><a href="structcan__msg__t.html#a5723e60ffd628510c699eddbce90be23">can_msg_t::len</a></div><div class="ttdeci">uint8_t len</div><div class="ttdef"><b>定义</b> can_struct.h:23</div></div>
+<div class="ttc" id="astructcan__msg__t_html_abaabdc509cdaba7df9f56c6c76f3ae19"><div class="ttname"><a href="structcan__msg__t.html#abaabdc509cdaba7df9f56c6c76f3ae19">can_msg_t::id</a></div><div class="ttdeci">uint32_t id</div><div class="ttdef"><b>定义</b> can_struct.h:21</div></div>
+<div class="ttc" id="astructcan__msg__t_html_afb87d045bbf32b236fc425efe02bdc7b"><div class="ttname"><a href="structcan__msg__t.html#afb87d045bbf32b236fc425efe02bdc7b">can_msg_t::data</a></div><div class="ttdeci">uint8_t data[8]</div><div class="ttdef"><b>定义</b> can_struct.h:22</div></div>
+</div><!-- fragment --><div class="fragment"><div class="line"><span class="comment">// 发送经典CAN消息</span></div>
+<div class="line"><a class="code hl_enumeration" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> <a class="code hl_function" href="can__api_8c.html#a4a59a0ba7c9a33b2784b7b0f09199511">can_msg_send_classical</a>(<a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a> *msg);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// 发送扩展CAN消息</span></div>
+<div class="line"><a class="code hl_enumeration" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> <a class="code hl_function" href="can__api_8c.html#ab5365a19d706f489876a2e537995dc0f">can_msg_send_extended</a>(<a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a> *msg);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// 发送fdCAN消息</span></div>
+<div class="line"><a class="code hl_enumeration" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> <a class="code hl_function" href="can__api_8c.html#a1747af7a6d5b3b39b302cb507c00c4e7">can_msg_send_fd</a>(<a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a> *msg);</div>
+<div class="ttc" id="acan__api_8c_html_a1747af7a6d5b3b39b302cb507c00c4e7"><div class="ttname"><a href="can__api_8c.html#a1747af7a6d5b3b39b302cb507c00c4e7">can_msg_send_fd</a></div><div class="ttdeci">can_status_t can_msg_send_fd(can_msg_t *msg)</div><div class="ttdoc">发送CAN FD格式的消息。</div><div class="ttdef"><b>定义</b> can_api.c:217</div></div>
+<div class="ttc" id="acan__api_8c_html_a4a59a0ba7c9a33b2784b7b0f09199511"><div class="ttname"><a href="can__api_8c.html#a4a59a0ba7c9a33b2784b7b0f09199511">can_msg_send_classical</a></div><div class="ttdeci">can_status_t can_msg_send_classical(can_msg_t *msg)</div><div class="ttdoc">发送经典CAN格式的消息。</div><div class="ttdef"><b>定义</b> can_api.c:157</div></div>
+<div class="ttc" id="acan__api_8c_html_ab5365a19d706f489876a2e537995dc0f"><div class="ttname"><a href="can__api_8c.html#ab5365a19d706f489876a2e537995dc0f">can_msg_send_extended</a></div><div class="ttdeci">can_status_t can_msg_send_extended(can_msg_t *msg)</div><div class="ttdoc">发送扩展CAN格式的消息。</div><div class="ttdef"><b>定义</b> can_api.c:187</div></div>
+<div class="ttc" id="acan__struct_8h_html_a507b4ed3fc531e0c40aa8812174e3e1d"><div class="ttname"><a href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a></div><div class="ttdeci">can_status_t</div><div class="ttdef"><b>定义</b> can_struct.h:29</div></div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
+3.3 can数据接收</h2>
+<p>要配置can接收消息，需要先配置一个“can_msg_t”结构体，然后调用can_msg_add_item函数，将需要收的ID添加到消息列表中。</p>
+<div class="fragment"><div class="line"><span class="comment">// 向消息列表中添加消息项</span></div>
+<div class="line"><a class="code hl_enumeration" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> <a class="code hl_function" href="can__api_8c.html#a71472eadef63e28b066402c06d687016">can_msg_add_item</a>(<a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a> *msg);</div>
+<div class="ttc" id="acan__api_8c_html_a71472eadef63e28b066402c06d687016"><div class="ttname"><a href="can__api_8c.html#a71472eadef63e28b066402c06d687016">can_msg_add_item</a></div><div class="ttdeci">can_status_t can_msg_add_item(can_msg_t *msg)</div><div class="ttdoc">向CAN消息列表中添加一个新的消息项。</div><div class="ttdef"><b>定义</b> can_api.c:84</div></div>
+</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

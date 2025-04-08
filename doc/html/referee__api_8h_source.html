@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/refereeSys/referee_api.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_0637427c7cee0e571dfdc3ad762e2d12.html">refereeSys</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">referee_api.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="referee__api_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _REFEREE_API_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define _REFEREE_API_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;main.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="referee__protocol_8h.html">referee_protocol.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="crc__api_8h.html">crc_api.h</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;string.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="uart__api_8h.html">uart_api.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;usart.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="referee__api_8h.html#abf0ebe6053e367e42c9ec1ac6df12d08">   11</a></span><span class="preprocessor">#define RE_RX_BUFFER_SIZE 255u </span><span class="comment">// 裁判系统接收缓冲区大小</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="referee__api_8h.html#a2cd109632a6dcccaa80b43561b1ab700">   13</a></span><span class="preprocessor">#define SCREEN_WIDTH 1080</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="referee__api_8h.html#a18140f6fa4b31c458a8b0cc246da3c7c">   14</a></span><span class="preprocessor">#define SCREEN_LENGTH 1920</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="referee__api_8h.html#a0592dba56693fad79136250c11e5a7fe">   16</a></span><span class="preprocessor">#define MAX_SIZE 128</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="referee__api_8h.html#a9b9a77d8cfc6e26a76ecd75819af497c">   17</a></span><span class="preprocessor">#define frameheader_len 5 </span><span class="comment">// 帧头长度</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="referee__api_8h.html#a815f4342a363ce10cc001bd1929c30ee">   18</a></span><span class="preprocessor">#define cmd_len 2         </span><span class="comment">// 命令码长度</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="referee__api_8h.html#ad76fad7fa554070a84190f3d996d639f">   19</a></span><span class="preprocessor">#define crc_len 2         </span><span class="comment">// CRC16校验码长度</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structreferee__info__t.html">   21</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="comment">// referee_id_t referee_id;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#a1b9527bf9c7d5162c76433c4f145b7fc">   24</a></span>    <a class="code hl_struct" href="structx_frame_header.html">xFrameHeader</a> <a class="code hl_variable" href="structreferee__info__t.html#a1b9527bf9c7d5162c76433c4f145b7fc">FrameHeader</a>; <span class="comment">// 接收到的帧头信息</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#a7c025c4c155e17501fedcd0240272b5f">   25</a></span>    uint16_t <a class="code hl_variable" href="structreferee__info__t.html#a7c025c4c155e17501fedcd0240272b5f">CmdID</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#a353beb605f76e91bc34566bc3a797184">   26</a></span>    <a class="code hl_struct" href="structext__game__state__t.html">ext_game_state_t</a> <a class="code hl_variable" href="structreferee__info__t.html#a353beb605f76e91bc34566bc3a797184">GameState</a>;                               <span class="comment">// 0x0001</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#ab4b776f6b4d2093d27fcc3094bf05940">   27</a></span>    <a class="code hl_struct" href="structext__game__result__t.html">ext_game_result_t</a> <a class="code hl_variable" href="structreferee__info__t.html#ab4b776f6b4d2093d27fcc3094bf05940">GameResult</a>;                           <span class="comment">// 0x0002</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#a626b0d3309d705db64263f3de24b0ff8">   28</a></span>    <a class="code hl_struct" href="structext__game__robot___h_p__t.html">ext_game_robot_HP_t</a> <a class="code hl_variable" href="structreferee__info__t.html#a626b0d3309d705db64263f3de24b0ff8">GameRobotHP</a>;                     <span class="comment">// 0x0003</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#a9db280301670f0d74ee04c876ec307c5">   29</a></span>    <a class="code hl_struct" href="structext__event__data__t.html">ext_event_data_t</a> <a class="code hl_variable" href="structreferee__info__t.html#a9db280301670f0d74ee04c876ec307c5">EventData</a>;                               <span class="comment">// 0x0101</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#ae40ede9f30168a02b1c2f09112917c15">   30</a></span>    <a class="code hl_struct" href="structext__supply__projectile__action__t.html">ext_supply_projectile_action_t</a> <a class="code hl_variable" href="structreferee__info__t.html#ae40ede9f30168a02b1c2f09112917c15">SupplyProjectileAction</a>; <span class="comment">// 0x0102</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#a0b0cf651e4c83d4d6734d86cba7d770d">   31</a></span>    <a class="code hl_struct" href="structext__game__robot__state__t.html">ext_game_robot_state_t</a> <a class="code hl_variable" href="structreferee__info__t.html#a0b0cf651e4c83d4d6734d86cba7d770d">GameRobotState</a>;                 <span class="comment">// 0x0201</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#a7f4fcef791527cf685c73a55b8dc2bbb">   32</a></span>    <a class="code hl_struct" href="structext__power__heat__data__t.html">ext_power_heat_data_t</a> <a class="code hl_variable" href="structreferee__info__t.html#a7f4fcef791527cf685c73a55b8dc2bbb">PowerHeatData</a>;                 <span class="comment">// 0x0202</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#a1dd734280e4df266e5a5a5a6a066704f">   33</a></span>    <a class="code hl_struct" href="structext__game__robot__pos__t.html">ext_game_robot_pos_t</a> <a class="code hl_variable" href="structreferee__info__t.html#a1dd734280e4df266e5a5a5a6a066704f">GameRobotPos</a>;                     <span class="comment">// 0x0203</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#a432eef89a886e82b3257465314c75e1e">   34</a></span>    <a class="code hl_struct" href="structext__buff__musk__t.html">ext_buff_musk_t</a> <a class="code hl_variable" href="structreferee__info__t.html#a432eef89a886e82b3257465314c75e1e">BuffMusk</a>;                               <span class="comment">// 0x0204</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#a51ba28e2e7bd12d4e6b80b43cdaa1c67">   35</a></span>    <a class="code hl_struct" href="structaerial__robot__energy__t.html">aerial_robot_energy_t</a> <a class="code hl_variable" href="structreferee__info__t.html#a51ba28e2e7bd12d4e6b80b43cdaa1c67">AerialRobotEnergy</a>;             <span class="comment">// 0x0205</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#a39c41bb776b00171bd5ec8ad5bc60bfc">   36</a></span>    <a class="code hl_struct" href="structext__robot__hurt__t.html">ext_robot_hurt_t</a> <a class="code hl_variable" href="structreferee__info__t.html#a39c41bb776b00171bd5ec8ad5bc60bfc">RobotHurt</a>;                               <span class="comment">// 0x0206</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#af5cc2f2987b6d252ac65b7cf98129c3a">   37</a></span>    <a class="code hl_struct" href="structext__shoot__data__t.html">ext_shoot_data_t</a> <a class="code hl_variable" href="structreferee__info__t.html#af5cc2f2987b6d252ac65b7cf98129c3a">ShootData</a>;                               <span class="comment">// 0x0207</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// 自定义交互数据的接收</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#af42e354716a63c8ad2dd4a92a1d0e979">   39</a></span>    <a class="code hl_struct" href="struct_communicate___receive_data__t.html">Communicate_ReceiveData_t</a> <a class="code hl_variable" href="structreferee__info__t.html#af42e354716a63c8ad2dd4a92a1d0e979">ReceiveData</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structreferee__info__t.html#a210e06aa846736988dbee1b9f1bb4464">   40</a></span>    uint8_t <a class="code hl_variable" href="structreferee__info__t.html#a210e06aa846736988dbee1b9f1bb4464">init_flag</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>} <a class="code hl_struct" href="structreferee__info__t.html">referee_info_t</a>;</div>
+</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structcustom__controller__info__t.html">   43</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structcustom__controller__info__t.html#a1b9527bf9c7d5162c76433c4f145b7fc">   45</a></span>    <a class="code hl_struct" href="structx_frame_header.html">xFrameHeader</a> <a class="code hl_variable" href="structcustom__controller__info__t.html#a1b9527bf9c7d5162c76433c4f145b7fc">FrameHeader</a>; <span class="comment">// 接收到的帧头信息</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structcustom__controller__info__t.html#a7c025c4c155e17501fedcd0240272b5f">   46</a></span>    uint16_t <a class="code hl_variable" href="structcustom__controller__info__t.html#a7c025c4c155e17501fedcd0240272b5f">CmdID</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// 自定义控制器数据  0x0302</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structcustom__controller__info__t.html#a77deb19e5130d9b4ec770abe406d96b5">   48</a></span>    <a class="code hl_struct" href="structcustom__controller__data__t.html">custom_controller_data_t</a> <a class="code hl_variable" href="structcustom__controller__info__t.html#a77deb19e5130d9b4ec770abe406d96b5">CustomController</a>; <span class="comment">// 0x0302</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="comment">// 键鼠数据  0x0304</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="structcustom__controller__info__t.html#a07d722ae4dea0e0617a5ad99231abfdd">   50</a></span>    <a class="code hl_struct" href="structkeyboard__t.html">keyboard_t</a> <a class="code hl_variable" href="structcustom__controller__info__t.html#a07d722ae4dea0e0617a5ad99231abfdd">keyboard</a>;                     <span class="comment">// 0x0304</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>} <a class="code hl_struct" href="structcustom__controller__info__t.html">custom_controller_info_t</a>;</div>
+</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keywordtype">void</span> <a class="code hl_function" href="referee__api_8h.html#a9d96079c6c4156132361228e84d214ea">JudgeReadData</a>(uint8_t *buff);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keywordtype">void</span> <a class="code hl_function" href="referee__api_8h.html#abe2a73fa3598a227339c0f0341f43650">CtrllerReadData</a>(uint8_t *buff);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><a class="code hl_struct" href="structreferee__info__t.html">referee_info_t</a> *<a class="code hl_function" href="referee__api_8h.html#a2d2038fef235be5aefdb58e8184a322c">get_referee_msg</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><a class="code hl_struct" href="structcustom__controller__info__t.html">custom_controller_info_t</a> *<a class="code hl_function" href="referee__api_8h.html#a44afc451c49110e093c708e1c5f67887">get_custom_controller_msg</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keywordtype">void</span> <a class="code hl_function" href="referee__api_8h.html#a1d736a70557ee9ae3d5170790fff1a92">referee_data_pack_handle</a>(uint8_t sof, uint16_t cmd_id, uint8_t *p_data, uint16_t len);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="acrc__api_8h_html"><div class="ttname"><a href="crc__api_8h.html">crc_api.h</a></div></div>
+<div class="ttc" id="areferee__api_8h_html_a1d736a70557ee9ae3d5170790fff1a92"><div class="ttname"><a href="referee__api_8h.html#a1d736a70557ee9ae3d5170790fff1a92">referee_data_pack_handle</a></div><div class="ttdeci">void referee_data_pack_handle(uint8_t sof, uint16_t cmd_id, uint8_t *p_data, uint16_t len)</div><div class="ttdef"><b>定义</b> referee_api.c:211</div></div>
+<div class="ttc" id="areferee__api_8h_html_a2d2038fef235be5aefdb58e8184a322c"><div class="ttname"><a href="referee__api_8h.html#a2d2038fef235be5aefdb58e8184a322c">get_referee_msg</a></div><div class="ttdeci">referee_info_t * get_referee_msg(void)</div><div class="ttdoc">获取解析后的裁判信息数据</div><div class="ttdef"><b>定义</b> referee_api.c:176</div></div>
+<div class="ttc" id="areferee__api_8h_html_a44afc451c49110e093c708e1c5f67887"><div class="ttname"><a href="referee__api_8h.html#a44afc451c49110e093c708e1c5f67887">get_custom_controller_msg</a></div><div class="ttdeci">custom_controller_info_t * get_custom_controller_msg(void)</div><div class="ttdoc">获取解析后的自定义控制器信息数据</div><div class="ttdef"><b>定义</b> referee_api.c:191</div></div>
+<div class="ttc" id="areferee__api_8h_html_a9d96079c6c4156132361228e84d214ea"><div class="ttname"><a href="referee__api_8h.html#a9d96079c6c4156132361228e84d214ea">JudgeReadData</a></div><div class="ttdeci">void JudgeReadData(uint8_t *buff)</div><div class="ttdoc">解析裁判数据包，处理帧头校验和数据分发</div><div class="ttdef"><b>定义</b> referee_api.c:47</div></div>
+<div class="ttc" id="areferee__api_8h_html_abe2a73fa3598a227339c0f0341f43650"><div class="ttname"><a href="referee__api_8h.html#abe2a73fa3598a227339c0f0341f43650">CtrllerReadData</a></div><div class="ttdeci">void CtrllerReadData(uint8_t *buff)</div><div class="ttdoc">解析控制器数据包，处理帧头校验和数据分发</div><div class="ttdef"><b>定义</b> referee_api.c:129</div></div>
+<div class="ttc" id="areferee__protocol_8h_html"><div class="ttname"><a href="referee__protocol_8h.html">referee_protocol.h</a></div></div>
+<div class="ttc" id="astruct_communicate___receive_data__t_html"><div class="ttname"><a href="struct_communicate___receive_data__t.html">Communicate_ReceiveData_t</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:336</div></div>
+<div class="ttc" id="astructaerial__robot__energy__t_html"><div class="ttname"><a href="structaerial__robot__energy__t.html">aerial_robot_energy_t</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:212</div></div>
+<div class="ttc" id="astructcustom__controller__data__t_html"><div class="ttname"><a href="structcustom__controller__data__t.html">custom_controller_data_t</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:397</div></div>
+<div class="ttc" id="astructcustom__controller__info__t_html"><div class="ttname"><a href="structcustom__controller__info__t.html">custom_controller_info_t</a></div><div class="ttdef"><b>定义</b> referee_api.h:44</div></div>
+<div class="ttc" id="astructcustom__controller__info__t_html_a07d722ae4dea0e0617a5ad99231abfdd"><div class="ttname"><a href="structcustom__controller__info__t.html#a07d722ae4dea0e0617a5ad99231abfdd">custom_controller_info_t::keyboard</a></div><div class="ttdeci">keyboard_t keyboard</div><div class="ttdef"><b>定义</b> referee_api.h:50</div></div>
+<div class="ttc" id="astructcustom__controller__info__t_html_a1b9527bf9c7d5162c76433c4f145b7fc"><div class="ttname"><a href="structcustom__controller__info__t.html#a1b9527bf9c7d5162c76433c4f145b7fc">custom_controller_info_t::FrameHeader</a></div><div class="ttdeci">xFrameHeader FrameHeader</div><div class="ttdef"><b>定义</b> referee_api.h:45</div></div>
+<div class="ttc" id="astructcustom__controller__info__t_html_a77deb19e5130d9b4ec770abe406d96b5"><div class="ttname"><a href="structcustom__controller__info__t.html#a77deb19e5130d9b4ec770abe406d96b5">custom_controller_info_t::CustomController</a></div><div class="ttdeci">custom_controller_data_t CustomController</div><div class="ttdef"><b>定义</b> referee_api.h:48</div></div>
+<div class="ttc" id="astructcustom__controller__info__t_html_a7c025c4c155e17501fedcd0240272b5f"><div class="ttname"><a href="structcustom__controller__info__t.html#a7c025c4c155e17501fedcd0240272b5f">custom_controller_info_t::CmdID</a></div><div class="ttdeci">uint16_t CmdID</div><div class="ttdef"><b>定义</b> referee_api.h:46</div></div>
+<div class="ttc" id="astructext__buff__musk__t_html"><div class="ttname"><a href="structext__buff__musk__t.html">ext_buff_musk_t</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:202</div></div>
+<div class="ttc" id="astructext__event__data__t_html"><div class="ttname"><a href="structext__event__data__t.html">ext_event_data_t</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:151</div></div>
+<div class="ttc" id="astructext__game__result__t_html"><div class="ttname"><a href="structext__game__result__t.html">ext_game_result_t</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:124</div></div>
+<div class="ttc" id="astructext__game__robot___h_p__t_html"><div class="ttname"><a href="structext__game__robot___h_p__t.html">ext_game_robot_HP_t</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:130</div></div>
+<div class="ttc" id="astructext__game__robot__pos__t_html"><div class="ttname"><a href="structext__game__robot__pos__t.html">ext_game_robot_pos_t</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:193</div></div>
+<div class="ttc" id="astructext__game__robot__state__t_html"><div class="ttname"><a href="structext__game__robot__state__t.html">ext_game_robot_state_t</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:166</div></div>
+<div class="ttc" id="astructext__game__state__t_html"><div class="ttname"><a href="structext__game__state__t.html">ext_game_state_t</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:115</div></div>
+<div class="ttc" id="astructext__power__heat__data__t_html"><div class="ttname"><a href="structext__power__heat__data__t.html">ext_power_heat_data_t</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:181</div></div>
+<div class="ttc" id="astructext__robot__hurt__t_html"><div class="ttname"><a href="structext__robot__hurt__t.html">ext_robot_hurt_t</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:219</div></div>
+<div class="ttc" id="astructext__shoot__data__t_html"><div class="ttname"><a href="structext__shoot__data__t.html">ext_shoot_data_t</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:226</div></div>
+<div class="ttc" id="astructext__supply__projectile__action__t_html"><div class="ttname"><a href="structext__supply__projectile__action__t.html">ext_supply_projectile_action_t</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:157</div></div>
+<div class="ttc" id="astructkeyboard__t_html"><div class="ttname"><a href="structkeyboard__t.html">keyboard_t</a></div><div class="ttdef"><b>定义</b> keyBoard.h:7</div></div>
+<div class="ttc" id="astructreferee__info__t_html"><div class="ttname"><a href="structreferee__info__t.html">referee_info_t</a></div><div class="ttdef"><b>定义</b> referee_api.h:22</div></div>
+<div class="ttc" id="astructreferee__info__t_html_a0b0cf651e4c83d4d6734d86cba7d770d"><div class="ttname"><a href="structreferee__info__t.html#a0b0cf651e4c83d4d6734d86cba7d770d">referee_info_t::GameRobotState</a></div><div class="ttdeci">ext_game_robot_state_t GameRobotState</div><div class="ttdef"><b>定义</b> referee_api.h:31</div></div>
+<div class="ttc" id="astructreferee__info__t_html_a1b9527bf9c7d5162c76433c4f145b7fc"><div class="ttname"><a href="structreferee__info__t.html#a1b9527bf9c7d5162c76433c4f145b7fc">referee_info_t::FrameHeader</a></div><div class="ttdeci">xFrameHeader FrameHeader</div><div class="ttdef"><b>定义</b> referee_api.h:24</div></div>
+<div class="ttc" id="astructreferee__info__t_html_a1dd734280e4df266e5a5a5a6a066704f"><div class="ttname"><a href="structreferee__info__t.html#a1dd734280e4df266e5a5a5a6a066704f">referee_info_t::GameRobotPos</a></div><div class="ttdeci">ext_game_robot_pos_t GameRobotPos</div><div class="ttdef"><b>定义</b> referee_api.h:33</div></div>
+<div class="ttc" id="astructreferee__info__t_html_a210e06aa846736988dbee1b9f1bb4464"><div class="ttname"><a href="structreferee__info__t.html#a210e06aa846736988dbee1b9f1bb4464">referee_info_t::init_flag</a></div><div class="ttdeci">uint8_t init_flag</div><div class="ttdef"><b>定义</b> referee_api.h:40</div></div>
+<div class="ttc" id="astructreferee__info__t_html_a353beb605f76e91bc34566bc3a797184"><div class="ttname"><a href="structreferee__info__t.html#a353beb605f76e91bc34566bc3a797184">referee_info_t::GameState</a></div><div class="ttdeci">ext_game_state_t GameState</div><div class="ttdef"><b>定义</b> referee_api.h:26</div></div>
+<div class="ttc" id="astructreferee__info__t_html_a39c41bb776b00171bd5ec8ad5bc60bfc"><div class="ttname"><a href="structreferee__info__t.html#a39c41bb776b00171bd5ec8ad5bc60bfc">referee_info_t::RobotHurt</a></div><div class="ttdeci">ext_robot_hurt_t RobotHurt</div><div class="ttdef"><b>定义</b> referee_api.h:36</div></div>
+<div class="ttc" id="astructreferee__info__t_html_a432eef89a886e82b3257465314c75e1e"><div class="ttname"><a href="structreferee__info__t.html#a432eef89a886e82b3257465314c75e1e">referee_info_t::BuffMusk</a></div><div class="ttdeci">ext_buff_musk_t BuffMusk</div><div class="ttdef"><b>定义</b> referee_api.h:34</div></div>
+<div class="ttc" id="astructreferee__info__t_html_a51ba28e2e7bd12d4e6b80b43cdaa1c67"><div class="ttname"><a href="structreferee__info__t.html#a51ba28e2e7bd12d4e6b80b43cdaa1c67">referee_info_t::AerialRobotEnergy</a></div><div class="ttdeci">aerial_robot_energy_t AerialRobotEnergy</div><div class="ttdef"><b>定义</b> referee_api.h:35</div></div>
+<div class="ttc" id="astructreferee__info__t_html_a626b0d3309d705db64263f3de24b0ff8"><div class="ttname"><a href="structreferee__info__t.html#a626b0d3309d705db64263f3de24b0ff8">referee_info_t::GameRobotHP</a></div><div class="ttdeci">ext_game_robot_HP_t GameRobotHP</div><div class="ttdef"><b>定义</b> referee_api.h:28</div></div>
+<div class="ttc" id="astructreferee__info__t_html_a7c025c4c155e17501fedcd0240272b5f"><div class="ttname"><a href="structreferee__info__t.html#a7c025c4c155e17501fedcd0240272b5f">referee_info_t::CmdID</a></div><div class="ttdeci">uint16_t CmdID</div><div class="ttdef"><b>定义</b> referee_api.h:25</div></div>
+<div class="ttc" id="astructreferee__info__t_html_a7f4fcef791527cf685c73a55b8dc2bbb"><div class="ttname"><a href="structreferee__info__t.html#a7f4fcef791527cf685c73a55b8dc2bbb">referee_info_t::PowerHeatData</a></div><div class="ttdeci">ext_power_heat_data_t PowerHeatData</div><div class="ttdef"><b>定义</b> referee_api.h:32</div></div>
+<div class="ttc" id="astructreferee__info__t_html_a9db280301670f0d74ee04c876ec307c5"><div class="ttname"><a href="structreferee__info__t.html#a9db280301670f0d74ee04c876ec307c5">referee_info_t::EventData</a></div><div class="ttdeci">ext_event_data_t EventData</div><div class="ttdef"><b>定义</b> referee_api.h:29</div></div>
+<div class="ttc" id="astructreferee__info__t_html_ab4b776f6b4d2093d27fcc3094bf05940"><div class="ttname"><a href="structreferee__info__t.html#ab4b776f6b4d2093d27fcc3094bf05940">referee_info_t::GameResult</a></div><div class="ttdeci">ext_game_result_t GameResult</div><div class="ttdef"><b>定义</b> referee_api.h:27</div></div>
+<div class="ttc" id="astructreferee__info__t_html_ae40ede9f30168a02b1c2f09112917c15"><div class="ttname"><a href="structreferee__info__t.html#ae40ede9f30168a02b1c2f09112917c15">referee_info_t::SupplyProjectileAction</a></div><div class="ttdeci">ext_supply_projectile_action_t SupplyProjectileAction</div><div class="ttdef"><b>定义</b> referee_api.h:30</div></div>
+<div class="ttc" id="astructreferee__info__t_html_af42e354716a63c8ad2dd4a92a1d0e979"><div class="ttname"><a href="structreferee__info__t.html#af42e354716a63c8ad2dd4a92a1d0e979">referee_info_t::ReceiveData</a></div><div class="ttdeci">Communicate_ReceiveData_t ReceiveData</div><div class="ttdef"><b>定义</b> referee_api.h:39</div></div>
+<div class="ttc" id="astructreferee__info__t_html_af5cc2f2987b6d252ac65b7cf98129c3a"><div class="ttname"><a href="structreferee__info__t.html#af5cc2f2987b6d252ac65b7cf98129c3a">referee_info_t::ShootData</a></div><div class="ttdeci">ext_shoot_data_t ShootData</div><div class="ttdef"><b>定义</b> referee_api.h:37</div></div>
+<div class="ttc" id="astructx_frame_header_html"><div class="ttname"><a href="structx_frame_header.html">xFrameHeader</a></div><div class="ttdef"><b>定义</b> referee_protocol.h:60</div></div>
+<div class="ttc" id="auart__api_8h_html"><div class="ttname"><a href="uart__api_8h.html">uart_api.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

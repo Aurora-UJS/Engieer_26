@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/IMU/Mahony/MahonyAHRS.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_8b711e810999a9fe1de9e9ddd8899d9f.html">IMU</a></li><li class="navelem"><a class="el" href="dir_d16067a40a3401c3e27f61547d65d8e9.html">Mahony</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">MahonyAHRS.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><div class="dynheader">
+此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="_mahony_a_h_r_s_8h__dep__incl.png" border="0" usemap="#asource_2module_2_i_m_u_2_mahony_2_mahony_a_h_r_s_8hdep" alt=""/></div>
+<map name="asource_2module_2_i_m_u_2_mahony_2_mahony_a_h_r_s_8hdep" id="asource_2module_2_i_m_u_2_mahony_2_mahony_a_h_r_s_8hdep">
+<area shape="rect" title=" " alt="" coords="322,5,507,48"/>
+<area shape="rect" href="_i_m_utool_8h.html" title=" " alt="" coords="209,104,406,131"/>
+<area shape="poly" title=" " alt="" coords="379,60,324,106,321,102,376,56"/>
+<area shape="rect" href="_mahony_a_h_r_s_8c.html" title=" " alt="" coords="430,96,615,139"/>
+<area shape="poly" title=" " alt="" coords="453,56,499,93,495,97,449,60"/>
+<area shape="rect" href="_i_m_utool_8c.html" title=" " alt="" coords="5,195,202,221"/>
+<area shape="poly" title=" " alt="" coords="266,140,134,197,132,192,264,135"/>
+<area shape="rect" href="radar_tool_8c.html" title=" " alt="" coords="225,187,390,229"/>
+<area shape="poly" title=" " alt="" coords="310,147,310,186,305,186,305,147"/>
+<area shape="rect" href="imu_temp_ctrl_8c.html" title=" " alt="" coords="414,195,593,221"/>
+<area shape="poly" title=" " alt="" coords="350,135,477,192,474,197,348,140"/>
+</map>
+</div>
+</div>
+<p><a href="_mahony_a_h_r_s_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:aead7f9df2a4b30d84d265f635396c72a" id="r_aead7f9df2a4b30d84d265f635396c72a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aead7f9df2a4b30d84d265f635396c72a">Mahony_update</a> (float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz)</td></tr>
+<tr class="separator:aead7f9df2a4b30d84d265f635396c72a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9092ebf599265321a7181226153614b" id="r_ad9092ebf599265321a7181226153614b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9092ebf599265321a7181226153614b">Mahony_Init</a> (float sampleFrequency)</td></tr>
+<tr class="separator:ad9092ebf599265321a7181226153614b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdf6a9a2d75608aea12fbc247368b471" id="r_afdf6a9a2d75608aea12fbc247368b471"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdf6a9a2d75608aea12fbc247368b471">MahonyAHRSupdateIMU</a> (float gx, float gy, float gz, float ax, float ay, float az)</td></tr>
+<tr class="separator:afdf6a9a2d75608aea12fbc247368b471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a4f0d1726aebef6727aa87d15d27a1b" id="r_a7a4f0d1726aebef6727aa87d15d27a1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a4f0d1726aebef6727aa87d15d27a1b">Mahony_computeAngles</a> (void)</td></tr>
+<tr class="separator:a7a4f0d1726aebef6727aa87d15d27a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2baab5c4d30b4ecda7b7acf2c238337" id="r_aa2baab5c4d30b4ecda7b7acf2c238337"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2baab5c4d30b4ecda7b7acf2c238337">MahonyAHRSinit</a> (float ax, float ay, float az, float mx, float my, float mz)</td></tr>
+<tr class="separator:aa2baab5c4d30b4ecda7b7acf2c238337"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0938ab0e194cfe5b545faad5cd87fde6" id="r_a0938ab0e194cfe5b545faad5cd87fde6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0938ab0e194cfe5b545faad5cd87fde6">getRoll</a> (void)</td></tr>
+<tr class="separator:a0938ab0e194cfe5b545faad5cd87fde6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49b5381b2cdad4ec80141c0e17b98bc2" id="r_a49b5381b2cdad4ec80141c0e17b98bc2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49b5381b2cdad4ec80141c0e17b98bc2">getPitch</a> (void)</td></tr>
+<tr class="separator:a49b5381b2cdad4ec80141c0e17b98bc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71fe28c45866e4f04c57bf829f3f6f6b" id="r_a71fe28c45866e4f04c57bf829f3f6f6b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71fe28c45866e4f04c57bf829f3f6f6b">getYaw</a> (void)</td></tr>
+<tr class="separator:a71fe28c45866e4f04c57bf829f3f6f6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a091516897d23b902e95d37823b67870d" id="r_a091516897d23b902e95d37823b67870d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a091516897d23b902e95d37823b67870d">getRollRadians</a> (void)</td></tr>
+<tr class="separator:a091516897d23b902e95d37823b67870d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a206dbc44f4666404565384ae96722573" id="r_a206dbc44f4666404565384ae96722573"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a206dbc44f4666404565384ae96722573">getPitchRadians</a> (void)</td></tr>
+<tr class="separator:a206dbc44f4666404565384ae96722573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1421dfe94e8dda902ccdaec1399c323" id="r_ad1421dfe94e8dda902ccdaec1399c323"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad1421dfe94e8dda902ccdaec1399c323">getYawRadians</a> (void)</td></tr>
+<tr class="separator:ad1421dfe94e8dda902ccdaec1399c323"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a49b5381b2cdad4ec80141c0e17b98bc2" name="a49b5381b2cdad4ec80141c0e17b98bc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49b5381b2cdad4ec80141c0e17b98bc2">&#9670;&#160;</a></span>getPitch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getPitch </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a206dbc44f4666404565384ae96722573" name="a206dbc44f4666404565384ae96722573"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a206dbc44f4666404565384ae96722573">&#9670;&#160;</a></span>getPitchRadians()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getPitchRadians </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0938ab0e194cfe5b545faad5cd87fde6" name="a0938ab0e194cfe5b545faad5cd87fde6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0938ab0e194cfe5b545faad5cd87fde6">&#9670;&#160;</a></span>getRoll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getRoll </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a091516897d23b902e95d37823b67870d" name="a091516897d23b902e95d37823b67870d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a091516897d23b902e95d37823b67870d">&#9670;&#160;</a></span>getRollRadians()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getRollRadians </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a71fe28c45866e4f04c57bf829f3f6f6b" name="a71fe28c45866e4f04c57bf829f3f6f6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71fe28c45866e4f04c57bf829f3f6f6b">&#9670;&#160;</a></span>getYaw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getYaw </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad1421dfe94e8dda902ccdaec1399c323" name="ad1421dfe94e8dda902ccdaec1399c323"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1421dfe94e8dda902ccdaec1399c323">&#9670;&#160;</a></span>getYawRadians()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getYawRadians </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7a4f0d1726aebef6727aa87d15d27a1b" name="a7a4f0d1726aebef6727aa87d15d27a1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a4f0d1726aebef6727aa87d15d27a1b">&#9670;&#160;</a></span>Mahony_computeAngles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mahony_computeAngles </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9092ebf599265321a7181226153614b" name="ad9092ebf599265321a7181226153614b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9092ebf599265321a7181226153614b">&#9670;&#160;</a></span>Mahony_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mahony_Init </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>sampleFrequency</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aead7f9df2a4b30d84d265f635396c72a" name="aead7f9df2a4b30d84d265f635396c72a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aead7f9df2a4b30d84d265f635396c72a">&#9670;&#160;</a></span>Mahony_update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mahony_update </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gy</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gz</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ax</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ay</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>az</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>mx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>my</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>mz</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa2baab5c4d30b4ecda7b7acf2c238337" name="aa2baab5c4d30b4ecda7b7acf2c238337"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2baab5c4d30b4ecda7b7acf2c238337">&#9670;&#160;</a></span>MahonyAHRSinit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MahonyAHRSinit </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ax</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ay</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>az</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>mx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>my</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>mz</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afdf6a9a2d75608aea12fbc247368b471" name="afdf6a9a2d75608aea12fbc247368b471"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdf6a9a2d75608aea12fbc247368b471">&#9670;&#160;</a></span>MahonyAHRSupdateIMU()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MahonyAHRSupdateIMU </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gy</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gz</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ax</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ay</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>az</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

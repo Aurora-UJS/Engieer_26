@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: 小电脑交互系统使用文档</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">小电脑交互系统使用文档</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md22"></a></p>
+<h1><a class="anchor" id="autotoc_md23"></a>
+概述</h1>
+<p>本系统实现开发板与小电脑间的数据交互，主要包含视觉数据处理、弹道解算、雷达数据接收和机器人状态反馈等功能。代码基于HAL库开发，支持多模式配置。</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md25"></a>
+使用示例</h1>
+<div class="fragment"><div class="line">初始化流程</div>
+<div class="line"><a class="code hl_struct" href="struct_send_packet_all_robot_h_p__t.html">SendPacketAllRobotHP_t</a> hp;</div>
+<div class="line"><a class="code hl_struct" href="struct_send_packet_game_status__t.html">SendPacketGameStatus_t</a> sendGameStatus;   <span class="comment">// 比赛状态数据包</span></div>
+<div class="line"><a class="code hl_struct" href="struct_send_packet_robot_status__t.html">SendPacketRobotStatus_t</a> sendRobotStatus; <span class="comment">// 机器人状态数据包</span></div>
+<div class="line"><a class="code hl_function" href="computer__sys_8c.html#a9117542636e67ff3a7e031e10d1687c9">computer_uart_init</a>(&amp;huart3);    <span class="comment">// 初始化串口</span></div>
+<div class="line"><a class="code hl_function" href="send__robot__state_8c.html#a88e496cac10a79c7a79df6ff4c6dd4a4">set_robot_angle</a>(&amp;naw_yaw, &amp;naw_pitch); <span class="comment">// 绑定角度</span></div>
+<div class="line"><a class="code hl_function" href="send__robot__state_8c.html#a82cbabb02ad140dbdb43581dcf538c7b">set_robot_id</a>(<span class="keywordtype">id</span>);   <span class="comment">// 设置机器人ID 依据裁判系统主要区分蓝黄</span></div>
+<div class="line"> </div>
+<div class="line">主循环处理</div>
+<div class="line"><span class="keywordflow">while</span>(1) {</div>
+<div class="line">  <a class="code hl_function" href="computer__sys_8c.html#a4bb630ab241372955b981526965c6f78">computer_receive_solve</a>();       <span class="comment">// 接收数据处理</span></div>
+<div class="line">  <a class="code hl_function" href="vision__solution_8h.html#a2123644d01e0d4dbd1a1ce113508d0a4">vision_solution</a>(&amp;target_yaw, &amp;target_pitch);  <span class="comment">// 弹道解算</span></div>
+<div class="line">  <a class="code hl_function" href="send__robot__state_8c.html#af523661dfa1f732b5efb3aa36d5fb05a">send_robot_state</a>();             <span class="comment">// 状态反馈</span></div>
+<div class="line"> </div>
+<div class="line">  hp.red_1_robot_hp = get_red_1_hp(); <span class="comment">// 获取机器人血量(这个你们具体看裁判系统那边怎么写诸如子类的填满)</span></div>
+<div class="line">  ...<span class="comment">// 其他机器人血量</span></div>
+<div class="line">  <a class="code hl_function" href="radar_tool_8c.html#a5de457b45d63ace4654ebb51135c180f">sendAllRobotHPData</a>(&amp;hp);           <span class="comment">// 发送血量数据包</span></div>
+<div class="line"> </div>
+<div class="line">  sendGameStatus.<a class="code hl_variable" href="struct_send_packet_game_status__t.html#ac7c29bb602a6df3c4219919cc4cff551">game_progress</a> = get_game_progress(); <span class="comment">// 获取比赛状态(这个也是)</span></div>
+<div class="line">  ...<span class="comment">// 其他比赛状态</span></div>
+<div class="line">  <a class="code hl_function" href="radar_tool_8c.html#ad970dbdaac0eb52709ffebc0661aedb3">sendGameStatusData</a>(sendGameStatus); <span class="comment">// 发送比赛状态数据包</span></div>
+<div class="line"> </div>
+<div class="line">  sendRobotStatus.<a class="code hl_variable" href="struct_send_packet_robot_status__t.html#a524267edfe3d399c8a91ca69fdcd7c42">robot_id</a> = get_robot_id(); <span class="comment">// 获取机器人ID</span></div>
+<div class="line">  ...<span class="comment">// 其他机器人状态</span></div>
+<div class="line">  <a class="code hl_function" href="radar_tool_8c.html#a6c0552a9ff98e1f3f066d6ab7463b81a">sendRobotStatusData</a>(sendRobotStatus); <span class="comment">// 发送机器人状态数据包</span></div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">if</span>(<a class="code hl_variable" href="vision__receive_8c.html#a67301d1ae0220d759837c8109c97fcb1">ReceivedPacketVision</a>.id != what_I_want) {<span class="comment">// 判断是否捕获指定机器人的坐标</span></div>
+<div class="line">    <a class="code hl_function" href="send__robot__state_8c.html#a9efdc6b03b03346b91735caa62ff151c">change_robot_target</a>();<span class="comment">//尝试换一个目标（不一定成功，因为可能只看到一个机器人）</span></div>
+<div class="line">  }</div>
+<div class="line">  vTaskDelay(10);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">相关参数在其他区域的调用方法：</div>
+<div class="line"><span class="comment">/* 视觉数据获取宏组 --------------------------------------------------------------*/</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#define get_vision_id() (ReceivedPacketVision.id)</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#define is_tracking() (ReceivedPacketVision.tracking)</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/* 雷达/云台目标运动状态获取宏组 ----------------------------------------------------*/</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#define get_target_x() (radarTwist.linear_x)</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#define get_target_x() (radarTwist.linear_x)</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#define get_target_z() (radarTwist.angular_z)</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/* 雷达/云台自身角速度获取宏组 ------------------------------------------------------*/</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#define get_angular_x() (radarTwist.angular_x)</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#define get_angular_y() (radarTwist.angular_y)</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#define get_angular_z() (radarTwist.angular_z)</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">/* 机器人控制状态获取宏组 ----------------------------------------------------------*/</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#define get_gimbal_stop() (robotControl.stop_gimbal_scan)</span></div>
+<div class="line"></div>
+<div class="line"><span class="preprocessor">#define get_chassis_spin() (robotControl.chassis_spin_vel)</span></div>
+<div class="ttc" id="acomputer__sys_8c_html_a4bb630ab241372955b981526965c6f78"><div class="ttname"><a href="computer__sys_8c.html#a4bb630ab241372955b981526965c6f78">computer_receive_solve</a></div><div class="ttdeci">void computer_receive_solve()</div><div class="ttdef"><b>定义</b> computer_sys.c:25</div></div>
+<div class="ttc" id="acomputer__sys_8c_html_a9117542636e67ff3a7e031e10d1687c9"><div class="ttname"><a href="computer__sys_8c.html#a9117542636e67ff3a7e031e10d1687c9">computer_uart_init</a></div><div class="ttdeci">void computer_uart_init(UART_HandleTypeDef *huart)</div><div class="ttdef"><b>定义</b> computer_sys.c:12</div></div>
+<div class="ttc" id="aradar_tool_8c_html_a5de457b45d63ace4654ebb51135c180f"><div class="ttname"><a href="radar_tool_8c.html#a5de457b45d63ace4654ebb51135c180f">sendAllRobotHPData</a></div><div class="ttdeci">void sendAllRobotHPData(SendPacketAllRobotHP_t *sendAllRobotHP)</div><div class="ttdef"><b>定义</b> radarTool.c:35</div></div>
+<div class="ttc" id="aradar_tool_8c_html_a6c0552a9ff98e1f3f066d6ab7463b81a"><div class="ttname"><a href="radar_tool_8c.html#a6c0552a9ff98e1f3f066d6ab7463b81a">sendRobotStatusData</a></div><div class="ttdeci">void sendRobotStatusData(SendPacketRobotStatus_t *sendRobotStatus)</div><div class="ttdef"><b>定义</b> radarTool.c:61</div></div>
+<div class="ttc" id="aradar_tool_8c_html_ad970dbdaac0eb52709ffebc0661aedb3"><div class="ttname"><a href="radar_tool_8c.html#ad970dbdaac0eb52709ffebc0661aedb3">sendGameStatusData</a></div><div class="ttdeci">void sendGameStatusData(SendPacketGameStatus_t *sendGameStatus)</div><div class="ttdef"><b>定义</b> radarTool.c:48</div></div>
+<div class="ttc" id="asend__robot__state_8c_html_a82cbabb02ad140dbdb43581dcf538c7b"><div class="ttname"><a href="send__robot__state_8c.html#a82cbabb02ad140dbdb43581dcf538c7b">set_robot_id</a></div><div class="ttdeci">void set_robot_id(uint16_t id)</div><div class="ttdef"><b>定义</b> send_robot_state.c:75</div></div>
+<div class="ttc" id="asend__robot__state_8c_html_a88e496cac10a79c7a79df6ff4c6dd4a4"><div class="ttname"><a href="send__robot__state_8c.html#a88e496cac10a79c7a79df6ff4c6dd4a4">set_robot_angle</a></div><div class="ttdeci">void set_robot_angle(float *yaw, float *pitch)</div><div class="ttdef"><b>定义</b> send_robot_state.c:67</div></div>
+<div class="ttc" id="asend__robot__state_8c_html_a9efdc6b03b03346b91735caa62ff151c"><div class="ttname"><a href="send__robot__state_8c.html#a9efdc6b03b03346b91735caa62ff151c">change_robot_target</a></div><div class="ttdeci">void change_robot_target()</div><div class="ttdef"><b>定义</b> send_robot_state.c:82</div></div>
+<div class="ttc" id="asend__robot__state_8c_html_af523661dfa1f732b5efb3aa36d5fb05a"><div class="ttname"><a href="send__robot__state_8c.html#af523661dfa1f732b5efb3aa36d5fb05a">send_robot_state</a></div><div class="ttdeci">void send_robot_state()</div><div class="ttdoc">发送机器人状态数据包</div><div class="ttdef"><b>定义</b> send_robot_state.c:41</div></div>
+<div class="ttc" id="astruct_send_packet_all_robot_h_p__t_html"><div class="ttname"><a href="struct_send_packet_all_robot_h_p__t.html">SendPacketAllRobotHP_t</a></div><div class="ttdef"><b>定义</b> computer_pack.h:65</div></div>
+<div class="ttc" id="astruct_send_packet_game_status__t_html"><div class="ttname"><a href="struct_send_packet_game_status__t.html">SendPacketGameStatus_t</a></div><div class="ttdef"><b>定义</b> computer_pack.h:87</div></div>
+<div class="ttc" id="astruct_send_packet_game_status__t_html_ac7c29bb602a6df3c4219919cc4cff551"><div class="ttname"><a href="struct_send_packet_game_status__t.html#ac7c29bb602a6df3c4219919cc4cff551">SendPacketGameStatus_t::game_progress</a></div><div class="ttdeci">uint8_t game_progress</div><div class="ttdef"><b>定义</b> computer_pack.h:89</div></div>
+<div class="ttc" id="astruct_send_packet_robot_status__t_html"><div class="ttname"><a href="struct_send_packet_robot_status__t.html">SendPacketRobotStatus_t</a></div><div class="ttdef"><b>定义</b> computer_pack.h:95</div></div>
+<div class="ttc" id="astruct_send_packet_robot_status__t_html_a524267edfe3d399c8a91ca69fdcd7c42"><div class="ttname"><a href="struct_send_packet_robot_status__t.html#a524267edfe3d399c8a91ca69fdcd7c42">SendPacketRobotStatus_t::robot_id</a></div><div class="ttdeci">uint8_t robot_id</div><div class="ttdef"><b>定义</b> computer_pack.h:97</div></div>
+<div class="ttc" id="avision__receive_8c_html_a67301d1ae0220d759837c8109c97fcb1"><div class="ttname"><a href="vision__receive_8c.html#a67301d1ae0220d759837c8109c97fcb1">ReceivedPacketVision</a></div><div class="ttdeci">ReceivedPacketVision_t ReceivedPacketVision</div><div class="ttdef"><b>定义</b> vision_receive.c:7</div></div>
+<div class="ttc" id="avision__solution_8h_html_a2123644d01e0d4dbd1a1ce113508d0a4"><div class="ttname"><a href="vision__solution_8h.html#a2123644d01e0d4dbd1a1ce113508d0a4">vision_solution</a></div><div class="ttdeci">void vision_solution(float *target_yaw, float *target_pitch)</div></div>
+</div><!-- fragment --><hr  />
+<h1><a class="anchor" id="autotoc_md27"></a>
+模块说明</h1>
+<h2><a class="anchor" id="autotoc_md28"></a>
+1. 数据接收模块</h2>
+<p>文件：<code>computer_receive.c</code></p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> computer_receive_init(UART_HandleTypeDef *huart);</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="computer__sys_8c.html#a4bb630ab241372955b981526965c6f78">computer_receive_solve</a>();</div>
+</div><!-- fragment --><p>功能： 初始化串口接收缓冲区（COMPUTER_BUFFER_SIZE=100） 接收数据处理流程： 检查新数据到达 调用视觉解算vision_receive_solve() 雷达数据接收receiveRadarData()（需开启radar_MOD）</p>
+<h2><a class="anchor" id="autotoc_md29"></a>
+2. 弹道解算模块</h2>
+<p>文件：<code><a class="el" href="vision__solution_8c.html">vision_solution.c</a></code></p>
+<div class="fragment"><div class="line"><span class="comment">// 弹道解算模式选择</span></div>
+<div class="line"><span class="preprocessor">#if BALLISTIC_SOLVER == 1  </span><span class="comment">// 二维弹道模型</span></div>
+<div class="line"><span class="preprocessor">#elif BALLISTIC_SOLVER == 2 </span><span class="comment">// 三维弹道模型</span></div>
+<div class="line"><span class="preprocessor">#endif</span></div>
+</div><!-- fragment --><p>核心功能： 装甲板运动预测 空气阻力补偿 迭代角度优化 弹道延迟补偿</p>
+<h2><a class="anchor" id="autotoc_md30"></a>
+3. 状态发送模块</h2>
+<p>文件：<code><a class="el" href="send__robot__state_8c.html">send_robot_state.c</a></code></p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="send__robot__state_8c.html#af6aeb20f4987ae6418e20186c0569f18">robot_state_msg_init</a>(UART_HandleTypeDef *huart);</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="send__robot__state_8c.html#af523661dfa1f732b5efb3aa36d5fb05a">send_robot_state</a>();</div>
+<div class="ttc" id="asend__robot__state_8c_html_af6aeb20f4987ae6418e20186c0569f18"><div class="ttname"><a href="send__robot__state_8c.html#af6aeb20f4987ae6418e20186c0569f18">robot_state_msg_init</a></div><div class="ttdeci">void robot_state_msg_init(UART_HandleTypeDef *huart)</div><div class="ttdoc">初始化机器人状态UART消息结构体</div><div class="ttdef"><b>定义</b> send_robot_state.c:23</div></div>
+</div><!-- fragment --><p>功能： 初始化状态发送串口 发送机器人状态数据包</p>
+<h2><a class="anchor" id="autotoc_md31"></a>
+4. 雷达数据接收模块</h2>
+<p>文件：<code>receiveRadarData.c</code></p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="radar_tool_8c.html#afb32475002e03848c95added742c8d9e">receiveRadarData</a>();</div>
+<div class="ttc" id="aradar_tool_8c_html_afb32475002e03848c95added742c8d9e"><div class="ttname"><a href="radar_tool_8c.html#afb32475002e03848c95added742c8d9e">receiveRadarData</a></div><div class="ttdeci">void receiveRadarData(uint8_t *rx_buffer)</div><div class="ttdef"><b>定义</b> radarTool.c:21</div></div>
+</div><!-- fragment --><p>功能： 数据包格式：</p>
+<div class="fragment"><div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  uint8_t header;        <span class="comment">// 0x5A</span></div>
+<div class="line">  uint8_t detect_color;  <span class="comment">// 颜色识别</span></div>
+<div class="line">  <span class="keywordtype">float</span> yaw;             <span class="comment">// 当前偏航角</span></div>
+<div class="line">  <span class="keywordtype">float</span> aim_x;           <span class="comment">// 目标X坐标</span></div>
+<div class="line">  <span class="comment">// ... 其他字段</span></div>
+<div class="line">} <a class="code hl_struct" href="struct_send_packet_vision__t.html">SendPacketVision_t</a>;</div>
+<div class="ttc" id="astruct_send_packet_vision__t_html"><div class="ttname"><a href="struct_send_packet_vision__t.html">SendPacketVision_t</a></div><div class="ttdef"><b>定义</b> computer_pack.h:9</div></div>
+</div><!-- fragment --><hr  />
+<h1><a class="anchor" id="autotoc_md33"></a>
+配置指南</h1>
+<p><a class="el" href="config_8h.html">config.h</a> 关键配置项</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#define radar_MOD 1       </span><span class="comment">// 雷达模块开关</span></div>
+<div class="line"><span class="preprocessor">#define BALLISTIC_SOLVER 1</span><span class="comment">// 弹道解算器版本</span></div>
+<div class="line"><span class="preprocessor">#define BULLET_TYPE 0     </span><span class="comment">// 子弹类型(0-17mm/1-42mm)</span></div>
+<div class="line"><span class="preprocessor">#define BULLET_SPEED 17   </span><span class="comment">// 初速度(m/s)</span></div>
+<div class="line"><span class="preprocessor">#define TOLERANCE 0.005f  </span><span class="comment">// 解算精度阈值(5mm)</span></div>
+<div class="line">等...</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md34"></a>
+数据结构说明</h1>
+<div class="fragment"><div class="line">视觉数据包结构</div>
+<div class="line">c</div>
+<div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line">  uint8_t header;     <span class="comment">// 0xA5</span></div>
+<div class="line">  <span class="keywordtype">bool</span> tracking;      <span class="comment">// 目标锁定状态</span></div>
+<div class="line">  <span class="keywordtype">float</span> x, y, z;      <span class="comment">// 目标坐标</span></div>
+<div class="line">  <span class="keywordtype">float</span> vx, vy, vz;   <span class="comment">// 目标速度</span></div>
+<div class="line">  <span class="comment">// ... 其他字段</span></div>
+<div class="line">} <a class="code hl_struct" href="struct_received_packet_vision__t.html">ReceivedPacketVision_t</a>;</div>
+<div class="ttc" id="astruct_received_packet_vision__t_html"><div class="ttname"><a href="struct_received_packet_vision__t.html">ReceivedPacketVision_t</a></div><div class="ttdef"><b>定义</b> computer_pack.h:24</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md35"></a>
+注意事项</h1>
+<p>CRC校验：所有数据包自动添加CRC16校验 实时性要求：主循环周期需≤10ms 坐标系约定： X轴：前进方向? Y轴：左侧方向? Z轴：垂直向上 调试支持：可通过aim_x_n等归一化坐标监控解算结果 版本兼容性</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter">组件   </th><th class="markdownTableHeadCenter">版本   </th><th class="markdownTableHeadCenter">特性    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">弹道解算   </td><td class="markdownTableBodyCenter">v1.0   </td><td class="markdownTableBodyCenter">二维模型/欧拉法    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">弹道解算   </td><td class="markdownTableBodyCenter">v2.0   </td><td class="markdownTableBodyCenter">三维模型/改进迭代算法    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">雷达模块   </td><td class="markdownTableBodyCenter">v1.0   </td><td class="markdownTableBodyCenter">支持毫米波雷达数据接入   </td></tr>
+</table>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

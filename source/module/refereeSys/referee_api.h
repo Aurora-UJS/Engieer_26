@@ -13,10 +13,10 @@
 #define SCREEN_WIDTH 1080
 #define SCREEN_LENGTH 1920
 
-#define MAX_SIZE          128    
-#define frameheader_len  5       //帧头长度
-#define cmd_len          2       //命令码长度
-#define crc_len          2       //CRC16校验码长度
+#define MAX_SIZE 128
+#define frameheader_len 5 // 帧头长度
+#define cmd_len 2		  // 命令码长度
+#define crc_len 2		  // CRC16校验码长度
 
 typedef struct
 {
@@ -44,8 +44,10 @@ typedef struct
 {
 	xFrameHeader FrameHeader; // 接收到的帧头信息
 	uint16_t CmdID;
-    //自定义控制器数据  0x0302
-	custom_controller_data_t CustomController;             // 0x0302
+	// 自定义控制器数据  0x0302
+	custom_controller_data_t CustomController; // 0x0302
+	// 键鼠数据  0x0304
+	keyboard_t keyboard;					   // 0x0304
 } custom_controller_info_t;
 
 void JudgeReadData(uint8_t *buff);

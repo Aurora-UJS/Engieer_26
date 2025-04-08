@@ -1,0 +1,327 @@
+\doxysection{source/bsp/imu/\+BMI088/\+BMI088driver.c 文件参考}
+\hypertarget{_b_m_i088driver_8c}{}\label{_b_m_i088driver_8c}\index{source/bsp/imu/BMI088/BMI088driver.c@{source/bsp/imu/BMI088/BMI088driver.c}}
+{\ttfamily \#include "{}BMI088driver.\+h"{}}\newline
+{\ttfamily \#include "{}BMI088reg.\+h"{}}\newline
+{\ttfamily \#include "{}BMI088\+Middleware.\+h"{}}\newline
+BMI088driver.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_b_m_i088driver_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_b_m_i088driver_8c_a1e23b9c5943aaa752ca263384f8cdd00}{BMI088\+\_\+accel\+\_\+write\+\_\+single\+\_\+reg}}(reg,  data)
+\begin{DoxyCompactList}\small\item\em \+: \doxylink{_b_m_i088driver_8c_a1e23b9c5943aaa752ca263384f8cdd00}{BMI088\+\_\+accel\+\_\+write\+\_\+single\+\_\+reg(reg, data)} \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_b_m_i088driver_8c_ad532f2325b2448bd54ea585d381865f6}{BMI088\+\_\+accel\+\_\+read\+\_\+single\+\_\+reg}}(reg,  data)
+\begin{DoxyCompactList}\small\item\em \+: \doxylink{_b_m_i088driver_8c_ad532f2325b2448bd54ea585d381865f6}{BMI088\+\_\+accel\+\_\+read\+\_\+single\+\_\+reg(reg, data)} \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_b_m_i088driver_8c_aff6b68a00f81d14eed6498a8db93a518}{BMI088\+\_\+accel\+\_\+read\+\_\+muli\+\_\+reg}}(reg,  data,  len)
+\begin{DoxyCompactList}\small\item\em \+: \doxylink{_b_m_i088driver_8c_aff6b68a00f81d14eed6498a8db93a518}{BMI088\+\_\+accel\+\_\+read\+\_\+muli\+\_\+reg(reg, data, len)} \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_b_m_i088driver_8c_a32d65a21ae4a45231b7974afbb2ae98e}{BMI088\+\_\+gyro\+\_\+write\+\_\+single\+\_\+reg}}(reg,  data)
+\begin{DoxyCompactList}\small\item\em \+: \doxylink{_b_m_i088driver_8c_a32d65a21ae4a45231b7974afbb2ae98e}{BMI088\+\_\+gyro\+\_\+write\+\_\+single\+\_\+reg(reg, data)} \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_b_m_i088driver_8c_ae9b55660d5b75c4d89459afe43d3115d}{BMI088\+\_\+gyro\+\_\+read\+\_\+single\+\_\+reg}}(reg,  data)
+\begin{DoxyCompactList}\small\item\em \+: \doxylink{_b_m_i088driver_8c_ae9b55660d5b75c4d89459afe43d3115d}{BMI088\+\_\+gyro\+\_\+read\+\_\+single\+\_\+reg(reg, data)} \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_b_m_i088driver_8c_aac4f26da8e6ab14039c5351eada6c9bc}{BMI088\+\_\+gyro\+\_\+read\+\_\+muli\+\_\+reg}}(reg,  data,  len)
+\begin{DoxyCompactList}\small\item\em \+: \doxylink{_b_m_i088driver_8c_aac4f26da8e6ab14039c5351eada6c9bc}{BMI088\+\_\+gyro\+\_\+read\+\_\+muli\+\_\+reg(reg, data, len)} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_b_m_i088driver_8c_ac422944f6aca6ca811deba6ffe560685}{BMI088\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em \+: \doxylink{_b_m_i088driver_8c_ac422944f6aca6ca811deba6ffe560685}{BMI088\+\_\+init(void)} \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{_b_m_i088driver_8c_a49267abbc985b9491be2af15723cd11b}{bmi088\+\_\+accel\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em \+: \doxylink{_b_m_i088driver_8c_a49267abbc985b9491be2af15723cd11b}{bmi088\+\_\+accel\+\_\+init(void)} \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{_b_m_i088driver_8c_af4484a2505b5abf4bb508077e7215d6d}{bmi088\+\_\+gyro\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em \+: \doxylink{_b_m_i088driver_8c_af4484a2505b5abf4bb508077e7215d6d}{bmi088\+\_\+gyro\+\_\+init(void)} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_b_m_i088driver_8c_a01af5200f19b1639fe9c1a898b356bae}{BMI088\+\_\+read}} (float \mbox{\hyperlink{_i_m_utool_8c_addac5578d412440de5e9c3760475dec7}{gyro}}\mbox{[}3\mbox{]}, float \mbox{\hyperlink{_i_m_utool_8c_a579c1a74d7de6ed4e97b8a29d6d826cd}{accel}}\mbox{[}3\mbox{]}, float \texorpdfstring{$\ast$}{*}temperate)
+\begin{DoxyCompactList}\small\item\em \+: \doxylink{_b_m_i088driver_8c_a01af5200f19b1639fe9c1a898b356bae}{BMI088\+\_\+read(float gyro\mbox{[}3\mbox{]}, float accel\mbox{[}3\mbox{]}, float \texorpdfstring{$\ast$}{*}temperate)} \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{_b_m_i088driver_8c_a4e75ae926f7cc8662a2bf4bb55fd1ac3}{BMI088\+\_\+\+ACCEL\+\_\+\+SEN}} = \mbox{\hyperlink{_b_m_i088driver_8h_ac2299b60d458dbfdc78b2feb682c0d24}{BMI088\+\_\+\+ACCEL\+\_\+3\+G\+\_\+\+SEN}}
+\item 
+float \mbox{\hyperlink{_b_m_i088driver_8c_acc10a5caf70a469b7cd43f67757c0c66}{BMI088\+\_\+\+GYRO\+\_\+\+SEN}} = \mbox{\hyperlink{_b_m_i088driver_8h_a905328f0c551f2edf7b480005d876958}{BMI088\+\_\+\+GYRO\+\_\+2000\+\_\+\+SEN}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{宏定义说明}
+\Hypertarget{_b_m_i088driver_8c_aff6b68a00f81d14eed6498a8db93a518}\index{BMI088driver.c@{BMI088driver.c}!BMI088\_accel\_read\_muli\_reg@{BMI088\_accel\_read\_muli\_reg}}
+\index{BMI088\_accel\_read\_muli\_reg@{BMI088\_accel\_read\_muli\_reg}!BMI088driver.c@{BMI088driver.c}}
+\doxysubsubsection{\texorpdfstring{BMI088\_accel\_read\_muli\_reg}{BMI088\_accel\_read\_muli\_reg}}
+{\footnotesize\ttfamily \label{_b_m_i088driver_8c_aff6b68a00f81d14eed6498a8db93a518} 
+\#define BMI088\+\_\+accel\+\_\+read\+\_\+muli\+\_\+reg(\begin{DoxyParamCaption}\item[{}]{reg}{, }\item[{}]{data}{, }\item[{}]{len}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_ACCEL\_NS\_L();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_read\_write\_byte((reg)\ |\ 0x80);\ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_read\_muli\_reg(reg,\ data,\ len);\ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_ACCEL\_NS\_H();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\+: \doxylink{_b_m_i088driver_8c_aff6b68a00f81d14eed6498a8db93a518}{BMI088\+\_\+accel\+\_\+read\+\_\+muli\+\_\+reg(reg, data, len)} 
+
+
+\begin{DoxyParams}{参数}
+{\em } & reg -\/ 起始寄存器地址 data -\/ 存储读取数据的缓冲区 len -\/ 要读取的字节数 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+BMI088加速度计的\+SPI总线连续读取多个寄存器的宏定义 \Hypertarget{_b_m_i088driver_8c_ad532f2325b2448bd54ea585d381865f6}\index{BMI088driver.c@{BMI088driver.c}!BMI088\_accel\_read\_single\_reg@{BMI088\_accel\_read\_single\_reg}}
+\index{BMI088\_accel\_read\_single\_reg@{BMI088\_accel\_read\_single\_reg}!BMI088driver.c@{BMI088driver.c}}
+\doxysubsubsection{\texorpdfstring{BMI088\_accel\_read\_single\_reg}{BMI088\_accel\_read\_single\_reg}}
+{\footnotesize\ttfamily \label{_b_m_i088driver_8c_ad532f2325b2448bd54ea585d381865f6} 
+\#define BMI088\+\_\+accel\+\_\+read\+\_\+single\+\_\+reg(\begin{DoxyParamCaption}\item[{}]{reg}{, }\item[{}]{data}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_ACCEL\_NS\_L();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_read\_write\_byte((reg)\ |\ 0x80);\ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_read\_write\_byte(0x55);\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ (data)\ =\ \mbox{\hyperlink{_b_m_i088_middleware_8c_af8b9879ca15710391c12caacbfa6e808}{BMI088\_read\_write\_byte}}(0x55);\ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_ACCEL\_NS\_H();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\+: \doxylink{_b_m_i088driver_8c_ad532f2325b2448bd54ea585d381865f6}{BMI088\+\_\+accel\+\_\+read\+\_\+single\+\_\+reg(reg, data)} 
+
+
+\begin{DoxyParams}{参数}
+{\em } & reg -\/ 寄存器地址 data -\/ 读取的寄存器数据 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+BMI088加速度计的\+SPI总线读取单个寄存器的宏定义 \Hypertarget{_b_m_i088driver_8c_a1e23b9c5943aaa752ca263384f8cdd00}\index{BMI088driver.c@{BMI088driver.c}!BMI088\_accel\_write\_single\_reg@{BMI088\_accel\_write\_single\_reg}}
+\index{BMI088\_accel\_write\_single\_reg@{BMI088\_accel\_write\_single\_reg}!BMI088driver.c@{BMI088driver.c}}
+\doxysubsubsection{\texorpdfstring{BMI088\_accel\_write\_single\_reg}{BMI088\_accel\_write\_single\_reg}}
+{\footnotesize\ttfamily \label{_b_m_i088driver_8c_a1e23b9c5943aaa752ca263384f8cdd00} 
+\#define BMI088\+\_\+accel\+\_\+write\+\_\+single\+\_\+reg(\begin{DoxyParamCaption}\item[{}]{reg}{, }\item[{}]{data}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_ACCEL\_NS\_L();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_write\_single\_reg((reg),\ (data));\ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_ACCEL\_NS\_H();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\+: \doxylink{_b_m_i088driver_8c_a1e23b9c5943aaa752ca263384f8cdd00}{BMI088\+\_\+accel\+\_\+write\+\_\+single\+\_\+reg(reg, data)} 
+
+
+\begin{DoxyParams}{参数}
+{\em } & reg -\/ 寄存器地址 data -\/ 写入的数据 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+BMI088加速度计的\+SPI总线写入单个寄存器的宏定义 \Hypertarget{_b_m_i088driver_8c_aac4f26da8e6ab14039c5351eada6c9bc}\index{BMI088driver.c@{BMI088driver.c}!BMI088\_gyro\_read\_muli\_reg@{BMI088\_gyro\_read\_muli\_reg}}
+\index{BMI088\_gyro\_read\_muli\_reg@{BMI088\_gyro\_read\_muli\_reg}!BMI088driver.c@{BMI088driver.c}}
+\doxysubsubsection{\texorpdfstring{BMI088\_gyro\_read\_muli\_reg}{BMI088\_gyro\_read\_muli\_reg}}
+{\footnotesize\ttfamily \label{_b_m_i088driver_8c_aac4f26da8e6ab14039c5351eada6c9bc} 
+\#define BMI088\+\_\+gyro\+\_\+read\+\_\+muli\+\_\+reg(\begin{DoxyParamCaption}\item[{}]{reg}{, }\item[{}]{data}{, }\item[{}]{len}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_GYRO\_NS\_L();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_read\_muli\_reg((reg),\ (data),\ (len));\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_GYRO\_NS\_H();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\+: \doxylink{_b_m_i088driver_8c_aac4f26da8e6ab14039c5351eada6c9bc}{BMI088\+\_\+gyro\+\_\+read\+\_\+muli\+\_\+reg(reg, data, len)} 
+
+
+\begin{DoxyParams}{参数}
+{\em } & reg -\/ 起始寄存器地址 data -\/ 存储读取数据的缓冲区 len -\/ 要读取的字节数 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+BMI088陀螺仪的\+SPI总线连续读取多个寄存器的宏定义 \Hypertarget{_b_m_i088driver_8c_ae9b55660d5b75c4d89459afe43d3115d}\index{BMI088driver.c@{BMI088driver.c}!BMI088\_gyro\_read\_single\_reg@{BMI088\_gyro\_read\_single\_reg}}
+\index{BMI088\_gyro\_read\_single\_reg@{BMI088\_gyro\_read\_single\_reg}!BMI088driver.c@{BMI088driver.c}}
+\doxysubsubsection{\texorpdfstring{BMI088\_gyro\_read\_single\_reg}{BMI088\_gyro\_read\_single\_reg}}
+{\footnotesize\ttfamily \label{_b_m_i088driver_8c_ae9b55660d5b75c4d89459afe43d3115d} 
+\#define BMI088\+\_\+gyro\+\_\+read\+\_\+single\+\_\+reg(\begin{DoxyParamCaption}\item[{}]{reg}{, }\item[{}]{data}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_GYRO\_NS\_L();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_read\_single\_reg((reg),\ \&(data));\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_GYRO\_NS\_H();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\+: \doxylink{_b_m_i088driver_8c_ae9b55660d5b75c4d89459afe43d3115d}{BMI088\+\_\+gyro\+\_\+read\+\_\+single\+\_\+reg(reg, data)} 
+
+
+\begin{DoxyParams}{参数}
+{\em } & reg -\/ 寄存器地址 data -\/ 读取的寄存器数据 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+BMI088陀螺仪的\+SPI总线读取单个寄存器的宏定义 \Hypertarget{_b_m_i088driver_8c_a32d65a21ae4a45231b7974afbb2ae98e}\index{BMI088driver.c@{BMI088driver.c}!BMI088\_gyro\_write\_single\_reg@{BMI088\_gyro\_write\_single\_reg}}
+\index{BMI088\_gyro\_write\_single\_reg@{BMI088\_gyro\_write\_single\_reg}!BMI088driver.c@{BMI088driver.c}}
+\doxysubsubsection{\texorpdfstring{BMI088\_gyro\_write\_single\_reg}{BMI088\_gyro\_write\_single\_reg}}
+{\footnotesize\ttfamily \label{_b_m_i088driver_8c_a32d65a21ae4a45231b7974afbb2ae98e} 
+\#define BMI088\+\_\+gyro\+\_\+write\+\_\+single\+\_\+reg(\begin{DoxyParamCaption}\item[{}]{reg}{, }\item[{}]{data}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_GYRO\_NS\_L();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_write\_single\_reg((reg),\ (data));\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ BMI088\_GYRO\_NS\_H();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+\+: \doxylink{_b_m_i088driver_8c_a32d65a21ae4a45231b7974afbb2ae98e}{BMI088\+\_\+gyro\+\_\+write\+\_\+single\+\_\+reg(reg, data)} 
+
+
+\begin{DoxyParams}{参数}
+{\em } & reg -\/ 寄存器地址 data -\/ 写入的数据 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+BMI088陀螺仪的\+SPI总线写入单个寄存器的宏定义 
+
+\doxysubsection{函数说明}
+\Hypertarget{_b_m_i088driver_8c_a49267abbc985b9491be2af15723cd11b}\index{BMI088driver.c@{BMI088driver.c}!bmi088\_accel\_init@{bmi088\_accel\_init}}
+\index{bmi088\_accel\_init@{bmi088\_accel\_init}!BMI088driver.c@{BMI088driver.c}}
+\doxysubsubsection{\texorpdfstring{bmi088\_accel\_init()}{bmi088\_accel\_init()}}
+{\footnotesize\ttfamily \label{_b_m_i088driver_8c_a49267abbc985b9491be2af15723cd11b} 
+uint8\+\_\+t bmi088\+\_\+accel\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+\+: \doxylink{_b_m_i088driver_8c_a49267abbc985b9491be2af15723cd11b}{bmi088\+\_\+accel\+\_\+init(void)} 
+
+
+\begin{DoxyParams}{参数}
+{\em } & void \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em } & uint8\+\_\+t -\/ 错误代码\\
+\hline
+\end{DoxyRetVals}
+\+: BMI088加速度传感器初始化函数，包括通信检查、软件复位、配置寄存器写入及检查 \Hypertarget{_b_m_i088driver_8c_af4484a2505b5abf4bb508077e7215d6d}\index{BMI088driver.c@{BMI088driver.c}!bmi088\_gyro\_init@{bmi088\_gyro\_init}}
+\index{bmi088\_gyro\_init@{bmi088\_gyro\_init}!BMI088driver.c@{BMI088driver.c}}
+\doxysubsubsection{\texorpdfstring{bmi088\_gyro\_init()}{bmi088\_gyro\_init()}}
+{\footnotesize\ttfamily \label{_b_m_i088driver_8c_af4484a2505b5abf4bb508077e7215d6d} 
+uint8\+\_\+t bmi088\+\_\+gyro\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+\+: \doxylink{_b_m_i088driver_8c_af4484a2505b5abf4bb508077e7215d6d}{bmi088\+\_\+gyro\+\_\+init(void)} 
+
+
+\begin{DoxyParams}{参数}
+{\em } & void \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em } & uint8\+\_\+t -\/ 错误代码\\
+\hline
+\end{DoxyRetVals}
+\+: BMI088陀螺仪传感器初始化函数，包括通信检查、软件复位、配置寄存器写入及检查 \Hypertarget{_b_m_i088driver_8c_ac422944f6aca6ca811deba6ffe560685}\index{BMI088driver.c@{BMI088driver.c}!BMI088\_init@{BMI088\_init}}
+\index{BMI088\_init@{BMI088\_init}!BMI088driver.c@{BMI088driver.c}}
+\doxysubsubsection{\texorpdfstring{BMI088\_init()}{BMI088\_init()}}
+{\footnotesize\ttfamily \label{_b_m_i088driver_8c_ac422944f6aca6ca811deba6ffe560685} 
+uint8\+\_\+t BMI088\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+\+: \doxylink{_b_m_i088driver_8c_ac422944f6aca6ca811deba6ffe560685}{BMI088\+\_\+init(void)} 
+
+
+\begin{DoxyParams}{参数}
+{\em } & void \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em } & uint8\+\_\+t -\/ 错误代码\\
+\hline
+\end{DoxyRetVals}
+\+: BMI088传感器初始化函数，包括\+GPIO和\+SPI初始化，以及加速度和陀螺仪的初始化 \Hypertarget{_b_m_i088driver_8c_a01af5200f19b1639fe9c1a898b356bae}\index{BMI088driver.c@{BMI088driver.c}!BMI088\_read@{BMI088\_read}}
+\index{BMI088\_read@{BMI088\_read}!BMI088driver.c@{BMI088driver.c}}
+\doxysubsubsection{\texorpdfstring{BMI088\_read()}{BMI088\_read()}}
+{\footnotesize\ttfamily \label{_b_m_i088driver_8c_a01af5200f19b1639fe9c1a898b356bae} 
+void BMI088\+\_\+read (\begin{DoxyParamCaption}\item[{float}]{gyro}{\mbox{[}3\mbox{]}, }\item[{float}]{accel}{\mbox{[}3\mbox{]}, }\item[{float \texorpdfstring{$\ast$}{*}}]{temperate}{}\end{DoxyParamCaption})}
+
+
+
+\+: \doxylink{_b_m_i088driver_8c_a01af5200f19b1639fe9c1a898b356bae}{BMI088\+\_\+read(float gyro\mbox{[}3\mbox{]}, float accel\mbox{[}3\mbox{]}, float \texorpdfstring{$\ast$}{*}temperate)} 
+
+
+\begin{DoxyParams}{参数}
+{\em } & gyro -\/ 陀螺仪数据数组 (x, y, z) \\
+\hline
+{\em } & accel -\/ 加速度计数据数组 (x, y, z) \\
+\hline
+{\em } & temperate -\/ 温度数据指针 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 读取\+BMI088传感器数据，包括加速度、陀螺仪和温度 
+
+\doxysubsection{变量说明}
+\Hypertarget{_b_m_i088driver_8c_a4e75ae926f7cc8662a2bf4bb55fd1ac3}\index{BMI088driver.c@{BMI088driver.c}!BMI088\_ACCEL\_SEN@{BMI088\_ACCEL\_SEN}}
+\index{BMI088\_ACCEL\_SEN@{BMI088\_ACCEL\_SEN}!BMI088driver.c@{BMI088driver.c}}
+\doxysubsubsection{\texorpdfstring{BMI088\_ACCEL\_SEN}{BMI088\_ACCEL\_SEN}}
+{\footnotesize\ttfamily \label{_b_m_i088driver_8c_a4e75ae926f7cc8662a2bf4bb55fd1ac3} 
+float BMI088\+\_\+\+ACCEL\+\_\+\+SEN = \mbox{\hyperlink{_b_m_i088driver_8h_ac2299b60d458dbfdc78b2feb682c0d24}{BMI088\+\_\+\+ACCEL\+\_\+3\+G\+\_\+\+SEN}}}
+
+\Hypertarget{_b_m_i088driver_8c_acc10a5caf70a469b7cd43f67757c0c66}\index{BMI088driver.c@{BMI088driver.c}!BMI088\_GYRO\_SEN@{BMI088\_GYRO\_SEN}}
+\index{BMI088\_GYRO\_SEN@{BMI088\_GYRO\_SEN}!BMI088driver.c@{BMI088driver.c}}
+\doxysubsubsection{\texorpdfstring{BMI088\_GYRO\_SEN}{BMI088\_GYRO\_SEN}}
+{\footnotesize\ttfamily \label{_b_m_i088driver_8c_acc10a5caf70a469b7cd43f67757c0c66} 
+float BMI088\+\_\+\+GYRO\+\_\+\+SEN = \mbox{\hyperlink{_b_m_i088driver_8h_a905328f0c551f2edf7b480005d876958}{BMI088\+\_\+\+GYRO\+\_\+2000\+\_\+\+SEN}}}
+

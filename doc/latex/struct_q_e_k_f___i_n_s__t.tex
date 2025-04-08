@@ -1,0 +1,258 @@
+\doxysection{QEKF\+\_\+\+INS\+\_\+t结构体 参考}
+\hypertarget{struct_q_e_k_f___i_n_s__t}{}\label{struct_q_e_k_f___i_n_s__t}\index{QEKF\_INS\_t@{QEKF\_INS\_t}}
+
+
+{\ttfamily \#include $<$Quaternion\+EKF.\+h$>$}
+
+
+
+QEKF\+\_\+\+INS\+\_\+t 的协作图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{struct_q_e_k_f___i_n_s__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{成员变量}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a885a68e632ab9a6189c31f5f8a648f35}{Initialized}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_aa31a9eb1b01a731007ea8eb4384b6206}{IMU\+\_\+\+Quaternion\+EKF}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a4a0b6e7c35e051f9c1bc256c63239148}{Converge\+Flag}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a751fa039ff4c73431bddbace2ce0412e}{Stable\+Flag}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a783384fb59519cef9c964a8e3991383b}{Error\+Count}}
+\item 
+uint64\+\_\+t \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_ad3aef96e4194e2a0d7c43aa520e152ee}{Update\+Count}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_acbffa34110f15b21994d3d087a0f4e7f}{q}} \mbox{[}4\mbox{]}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a284052175f76a36705a2d606ec608eaa}{Gyro\+Bias}} \mbox{[}3\mbox{]}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_ad211be2646a6b9b8882f17c37537d5f0}{Gyro}} \mbox{[}3\mbox{]}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_abc3945dea44b028a22a7cc6ae17bc016}{Accel}} \mbox{[}3\mbox{]}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a104bd47b4718c296a8727bd064535ead}{Orientation\+Cosine}} \mbox{[}3\mbox{]}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a7ae8475a96adecbe94b886aa6afed70d}{acc\+LPFcoef}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_ab850d578c34c42ab0280b5d716cfdd22}{gyro\+\_\+norm}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_abc0c91915001cea9d27455a3cac3c068}{accl\+\_\+norm}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a0214ed6132d979c452d6c2b1219df109}{Adaptive\+Gain\+Scale}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_ade9e1f9555516012861be1695fe4a9a0}{Roll}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_aa412fb786d18d393b80ce4d2a00ba51c}{Pitch}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a86cd3708ed18a9bdfec5c43fc837f206}{Yaw}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a80a2a092ac905ae4883248304f7aadab}{Yaw\+Total\+Angle}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a6ea410e354f385041c3a7c62a7a3de2d}{Q1}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_af3cfae9022c0052ea7d66466f20e9b46}{Q2}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a4c4b08e61e92b3da1ed512f4e006f34a}{R}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a778e38aa889751afffa2dea6b803e67a}{dt}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a32733f1840591bffbfce55eadd946c52}{Chi\+Square}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a45c2c0b05b6dfdea57156433e191b33e}{Chi\+Square\+\_\+\+Data}} \mbox{[}1\mbox{]}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a2ecd12f4d1bb02708ce10df387787007}{Chi\+Square\+Test\+Threshold}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_acac4a565486bad0b88b62387d8a5d891}{lambda}}
+\item 
+int16\+\_\+t \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a7f5b31937cd8c34486c2d09bd618f560}{Yaw\+Round\+Count}}
+\item 
+float \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a331e1b45c28a0d0a7eb582b1711efea2}{Yaw\+Angle\+Last}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{结构体成员变量说明}
+\Hypertarget{struct_q_e_k_f___i_n_s__t_abc3945dea44b028a22a7cc6ae17bc016}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!Accel@{Accel}}
+\index{Accel@{Accel}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{Accel}{Accel}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_abc3945dea44b028a22a7cc6ae17bc016} 
+float Accel\mbox{[}3\mbox{]}}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_abc0c91915001cea9d27455a3cac3c068}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!accl\_norm@{accl\_norm}}
+\index{accl\_norm@{accl\_norm}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{accl\_norm}{accl\_norm}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_abc0c91915001cea9d27455a3cac3c068} 
+float accl\+\_\+norm}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a7ae8475a96adecbe94b886aa6afed70d}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!accLPFcoef@{accLPFcoef}}
+\index{accLPFcoef@{accLPFcoef}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{accLPFcoef}{accLPFcoef}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a7ae8475a96adecbe94b886aa6afed70d} 
+float acc\+LPFcoef}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a0214ed6132d979c452d6c2b1219df109}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!AdaptiveGainScale@{AdaptiveGainScale}}
+\index{AdaptiveGainScale@{AdaptiveGainScale}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{AdaptiveGainScale}{AdaptiveGainScale}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a0214ed6132d979c452d6c2b1219df109} 
+float Adaptive\+Gain\+Scale}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a32733f1840591bffbfce55eadd946c52}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!ChiSquare@{ChiSquare}}
+\index{ChiSquare@{ChiSquare}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{ChiSquare}{ChiSquare}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a32733f1840591bffbfce55eadd946c52} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} Chi\+Square}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a45c2c0b05b6dfdea57156433e191b33e}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!ChiSquare\_Data@{ChiSquare\_Data}}
+\index{ChiSquare\_Data@{ChiSquare\_Data}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{ChiSquare\_Data}{ChiSquare\_Data}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a45c2c0b05b6dfdea57156433e191b33e} 
+float Chi\+Square\+\_\+\+Data\mbox{[}1\mbox{]}}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a2ecd12f4d1bb02708ce10df387787007}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!ChiSquareTestThreshold@{ChiSquareTestThreshold}}
+\index{ChiSquareTestThreshold@{ChiSquareTestThreshold}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{ChiSquareTestThreshold}{ChiSquareTestThreshold}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a2ecd12f4d1bb02708ce10df387787007} 
+float Chi\+Square\+Test\+Threshold}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a4a0b6e7c35e051f9c1bc256c63239148}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!ConvergeFlag@{ConvergeFlag}}
+\index{ConvergeFlag@{ConvergeFlag}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{ConvergeFlag}{ConvergeFlag}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a4a0b6e7c35e051f9c1bc256c63239148} 
+uint8\+\_\+t Converge\+Flag}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a778e38aa889751afffa2dea6b803e67a}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!dt@{dt}}
+\index{dt@{dt}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{dt}{dt}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a778e38aa889751afffa2dea6b803e67a} 
+float dt}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a783384fb59519cef9c964a8e3991383b}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!ErrorCount@{ErrorCount}}
+\index{ErrorCount@{ErrorCount}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{ErrorCount}{ErrorCount}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a783384fb59519cef9c964a8e3991383b} 
+uint64\+\_\+t Error\+Count}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_ad211be2646a6b9b8882f17c37537d5f0}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!Gyro@{Gyro}}
+\index{Gyro@{Gyro}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{Gyro}{Gyro}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_ad211be2646a6b9b8882f17c37537d5f0} 
+float Gyro\mbox{[}3\mbox{]}}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_ab850d578c34c42ab0280b5d716cfdd22}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!gyro\_norm@{gyro\_norm}}
+\index{gyro\_norm@{gyro\_norm}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{gyro\_norm}{gyro\_norm}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_ab850d578c34c42ab0280b5d716cfdd22} 
+float gyro\+\_\+norm}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a284052175f76a36705a2d606ec608eaa}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!GyroBias@{GyroBias}}
+\index{GyroBias@{GyroBias}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{GyroBias}{GyroBias}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a284052175f76a36705a2d606ec608eaa} 
+float Gyro\+Bias\mbox{[}3\mbox{]}}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_aa31a9eb1b01a731007ea8eb4384b6206}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!IMU\_QuaternionEKF@{IMU\_QuaternionEKF}}
+\index{IMU\_QuaternionEKF@{IMU\_QuaternionEKF}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{IMU\_QuaternionEKF}{IMU\_QuaternionEKF}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_aa31a9eb1b01a731007ea8eb4384b6206} 
+\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} IMU\+\_\+\+Quaternion\+EKF}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a885a68e632ab9a6189c31f5f8a648f35}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!Initialized@{Initialized}}
+\index{Initialized@{Initialized}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{Initialized}{Initialized}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a885a68e632ab9a6189c31f5f8a648f35} 
+uint8\+\_\+t Initialized}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_acac4a565486bad0b88b62387d8a5d891}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!lambda@{lambda}}
+\index{lambda@{lambda}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{lambda}{lambda}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_acac4a565486bad0b88b62387d8a5d891} 
+float lambda}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a104bd47b4718c296a8727bd064535ead}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!OrientationCosine@{OrientationCosine}}
+\index{OrientationCosine@{OrientationCosine}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{OrientationCosine}{OrientationCosine}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a104bd47b4718c296a8727bd064535ead} 
+float Orientation\+Cosine\mbox{[}3\mbox{]}}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_aa412fb786d18d393b80ce4d2a00ba51c}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!Pitch@{Pitch}}
+\index{Pitch@{Pitch}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{Pitch}{Pitch}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_aa412fb786d18d393b80ce4d2a00ba51c} 
+float Pitch}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_acbffa34110f15b21994d3d087a0f4e7f}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!q@{q}}
+\index{q@{q}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{q}{q}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_acbffa34110f15b21994d3d087a0f4e7f} 
+float q\mbox{[}4\mbox{]}}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a6ea410e354f385041c3a7c62a7a3de2d}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!Q1@{Q1}}
+\index{Q1@{Q1}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{Q1}{Q1}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a6ea410e354f385041c3a7c62a7a3de2d} 
+float Q1}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_af3cfae9022c0052ea7d66466f20e9b46}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!Q2@{Q2}}
+\index{Q2@{Q2}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{Q2}{Q2}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_af3cfae9022c0052ea7d66466f20e9b46} 
+float Q2}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a4c4b08e61e92b3da1ed512f4e006f34a}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!R@{R}}
+\index{R@{R}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{R}{R}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a4c4b08e61e92b3da1ed512f4e006f34a} 
+float R}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_ade9e1f9555516012861be1695fe4a9a0}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!Roll@{Roll}}
+\index{Roll@{Roll}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{Roll}{Roll}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_ade9e1f9555516012861be1695fe4a9a0} 
+float Roll}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a751fa039ff4c73431bddbace2ce0412e}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!StableFlag@{StableFlag}}
+\index{StableFlag@{StableFlag}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{StableFlag}{StableFlag}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a751fa039ff4c73431bddbace2ce0412e} 
+uint8\+\_\+t Stable\+Flag}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_ad3aef96e4194e2a0d7c43aa520e152ee}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!UpdateCount@{UpdateCount}}
+\index{UpdateCount@{UpdateCount}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{UpdateCount}{UpdateCount}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_ad3aef96e4194e2a0d7c43aa520e152ee} 
+uint64\+\_\+t Update\+Count}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a86cd3708ed18a9bdfec5c43fc837f206}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!Yaw@{Yaw}}
+\index{Yaw@{Yaw}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{Yaw}{Yaw}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a86cd3708ed18a9bdfec5c43fc837f206} 
+float Yaw}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a331e1b45c28a0d0a7eb582b1711efea2}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!YawAngleLast@{YawAngleLast}}
+\index{YawAngleLast@{YawAngleLast}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{YawAngleLast}{YawAngleLast}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a331e1b45c28a0d0a7eb582b1711efea2} 
+float Yaw\+Angle\+Last}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a7f5b31937cd8c34486c2d09bd618f560}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!YawRoundCount@{YawRoundCount}}
+\index{YawRoundCount@{YawRoundCount}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{YawRoundCount}{YawRoundCount}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a7f5b31937cd8c34486c2d09bd618f560} 
+int16\+\_\+t Yaw\+Round\+Count}
+
+\Hypertarget{struct_q_e_k_f___i_n_s__t_a80a2a092ac905ae4883248304f7aadab}\index{QEKF\_INS\_t@{QEKF\_INS\_t}!YawTotalAngle@{YawTotalAngle}}
+\index{YawTotalAngle@{YawTotalAngle}!QEKF\_INS\_t@{QEKF\_INS\_t}}
+\doxysubsubsection{\texorpdfstring{YawTotalAngle}{YawTotalAngle}}
+{\footnotesize\ttfamily \label{struct_q_e_k_f___i_n_s__t_a80a2a092ac905ae4883248304f7aadab} 
+float Yaw\+Total\+Angle}
+
+
+
+该结构体的文档由以下文件生成\+:\begin{DoxyCompactItemize}
+\item 
+source/module/\+IMU/ekf/\mbox{\hyperlink{_quaternion_e_k_f_8h}{Quaternion\+EKF.\+h}}\end{DoxyCompactItemize}

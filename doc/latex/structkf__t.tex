@@ -1,0 +1,721 @@
+\doxysection{kf\+\_\+t结构体 参考}
+\hypertarget{structkf__t}{}\label{structkf__t}\index{kf\_t@{kf\_t}}
+
+
+{\ttfamily \#include $<$kalman\+\_\+filter.\+h$>$}
+
+\doxysubsubsection*{成员变量}
+\begin{DoxyCompactItemize}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a3948ec43c6a2d50c0b10c311a8eaec64}{Filtered\+Value}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_ae926683324c8cc749f3063a5f0541540}{Measured\+Vector}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a0caba10ed8328180a21b25ac1b9aa781}{Control\+Vector}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhat\+Size}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structkf__t_a4eea576fc145dfc1bfbd353a2261b882}{u\+Size}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{z\+Size}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structkf__t_aacae7fb78e2d0a65c7a35a5f5c5bc347}{Use\+Auto\+Adjustment}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{Measurement\+Valid\+Num}}
+\item 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_af940b115d8ac7b7a0d5f7bc3921b0bd6}{Measurement\+Map}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a2726464065cd9a1c8b8922b40ea0082a}{Measurement\+Degree}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a715fe71f2f0e3fa895ff673812874ec1}{Mat\+R\+\_\+\+Diagonal\+Elements}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a24d081f2d09f585a02df31eccd31d007}{State\+Min\+Variance}}
+\item 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_ac96c84c5cc037c8f88826bb70cbb2e9a}{temp}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structkf__t_a8801f3c64ef77ce3edf0c39f9c9c96ff}{Skip\+Eq1}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structkf__t_a086713b96a564f9efff36c0471ea51b1}{Skip\+Eq2}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structkf__t_ac267f143c409ce2cf47c988318d51d87}{Skip\+Eq3}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structkf__t_a7032e682dc35d0b29c91e4cf20a47a99}{Skip\+Eq4}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structkf__t_a04d0a55db3c5a6235796f2a78136bac1}{Skip\+Eq5}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_aa2ea7f9462b9bf18c77df16cac99a963}{xhat}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_a7b9a97f2268c0a144d338ae7464c0cbe}{xhatminus}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_a53328044559538e63098d8a520b867d2}{u}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_af647100e10ba6b34799788969278185f}{z}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_a74f039cccf9631a5a800b8f9b2cb546c}{P}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}{Pminus}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_a78b76cf2c1f11cdd33f5c898830bdf19}{F}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_a30e94b3adedeb098cb75521b098f447e}{FT}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_a07e09a5590d01942d9b4fb77a7d17203}{B}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_af2cc26ee60d8d5a12bbe8621cdd06938}{H}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_ae9a9e6636a02dfd087a9a4e885960288}{HT}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_a0f89d5950ba972e53e8e2f3347e2f09a}{Q}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_a017fe162c9ab70cf786ce699165a57ee}{R}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_a0ff1854028d19427556c5a3b59c31aaf}{K}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_a7b4eb503b3b4a66148c45a4e262e3bd2}{S}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\+\_\+matrix}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_aef6a05cedd50597617652c8a5a5efe12}{temp\+\_\+matrix1}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\+\_\+vector}}
+\item 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} \mbox{\hyperlink{structkf__t_abed56537f3563836ffc5386507477553}{temp\+\_\+vector1}}
+\item 
+int8\+\_\+t \mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{Mat\+Status}}
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a16137a074af0e04ba4173b5dbf96632c}{User\+\_\+\+Func0\+\_\+f}} )(struct \mbox{\hyperlink{structkf__t}{kf\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a979e3a04bc4f5880cb01ec2040164165}{User\+\_\+\+Func1\+\_\+f}} )(struct \mbox{\hyperlink{structkf__t}{kf\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_abfff389f90ceb75b1817c22bb09e5b63}{User\+\_\+\+Func2\+\_\+f}} )(struct \mbox{\hyperlink{structkf__t}{kf\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a39f829c803f81367d2a14f5058187060}{User\+\_\+\+Func3\+\_\+f}} )(struct \mbox{\hyperlink{structkf__t}{kf\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_afca9666e3890621c10e1522d2f9542cc}{User\+\_\+\+Func4\+\_\+f}} )(struct \mbox{\hyperlink{structkf__t}{kf\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a9d035506cd3876706946c46311888c3e}{User\+\_\+\+Func5\+\_\+f}} )(struct \mbox{\hyperlink{structkf__t}{kf\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a7e8c79839600aa92c54d851ab61566f3}{User\+\_\+\+Func6\+\_\+f}} )(struct \mbox{\hyperlink{structkf__t}{kf\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_aa1927108c8d1b9382ee4c19cbb32ebde}{xhat\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a5806d9109aa4a640002f99a9c84f079d}{xhatminus\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a659d3d824f9be8b87f7dbcf0d2293cfb}{u\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a2b97541cb865d4d3aa4f55dc5804ea0a}{z\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a1d9fe52e628416690d5277170f631aa1}{P\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_aecec674d774ea09e4debaa3ca68a10e2}{Pminus\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_ace9b92329f3952dee83c749800b0ee58}{F\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a10831f99ef4b98f2645bb981189ec948}{FT\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_ab1137cae538dc1edb47061d4ce46ebae}{B\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_aa91dda3d8c36d494b971571a29c9e322}{H\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_af6a73a3099b313b119b2cb4d02c6914f}{HT\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a642d2d6dbb9ee0d62c3c0140ce4d083d}{Q\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a648c9b7f0a344e7b6ddadedf992780f6}{R\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a98bda99cade2685e09f2e18cfc4372b5}{K\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a26cc7fa9d573b5230982cef470796fe2}{S\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a26c0d7c51a9eb12c543fe5bb6a956e2b}{temp\+\_\+matrix\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a287297bc1a2ef239f2e6f49513e5f3ca}{temp\+\_\+matrix\+\_\+data1}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_abed1de6b5b2e796b336e20fb71c62a65}{temp\+\_\+vector\+\_\+data}}
+\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structkf__t_a45c8d93789ff6bba5910897c3386c221}{temp\+\_\+vector\+\_\+data1}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{结构体成员变量说明}
+\Hypertarget{structkf__t_a07e09a5590d01942d9b4fb77a7d17203}\index{kf\_t@{kf\_t}!B@{B}}
+\index{B@{B}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{B}{B}}
+{\footnotesize\ttfamily \label{structkf__t_a07e09a5590d01942d9b4fb77a7d17203} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} B}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_ab1137cae538dc1edb47061d4ce46ebae}\index{kf\_t@{kf\_t}!B\_data@{B\_data}}
+\index{B\_data@{B\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{B\_data}{B\_data}}
+{\footnotesize\ttfamily \label{structkf__t_ab1137cae538dc1edb47061d4ce46ebae} 
+float\texorpdfstring{$\ast$}{*} B\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a0caba10ed8328180a21b25ac1b9aa781}\index{kf\_t@{kf\_t}!ControlVector@{ControlVector}}
+\index{ControlVector@{ControlVector}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{ControlVector}{ControlVector}}
+{\footnotesize\ttfamily \label{structkf__t_a0caba10ed8328180a21b25ac1b9aa781} 
+float\texorpdfstring{$\ast$}{*} Control\+Vector}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a78b76cf2c1f11cdd33f5c898830bdf19}\index{kf\_t@{kf\_t}!F@{F}}
+\index{F@{F}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{F}{F}}
+{\footnotesize\ttfamily \label{structkf__t_a78b76cf2c1f11cdd33f5c898830bdf19} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} F}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_ace9b92329f3952dee83c749800b0ee58}\index{kf\_t@{kf\_t}!F\_data@{F\_data}}
+\index{F\_data@{F\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{F\_data}{F\_data}}
+{\footnotesize\ttfamily \label{structkf__t_ace9b92329f3952dee83c749800b0ee58} 
+float\texorpdfstring{$\ast$}{*} F\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a3948ec43c6a2d50c0b10c311a8eaec64}\index{kf\_t@{kf\_t}!FilteredValue@{FilteredValue}}
+\index{FilteredValue@{FilteredValue}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{FilteredValue}{FilteredValue}}
+{\footnotesize\ttfamily \label{structkf__t_a3948ec43c6a2d50c0b10c311a8eaec64} 
+float\texorpdfstring{$\ast$}{*} Filtered\+Value}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a30e94b3adedeb098cb75521b098f447e}\index{kf\_t@{kf\_t}!FT@{FT}}
+\index{FT@{FT}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{FT}{FT}}
+{\footnotesize\ttfamily \label{structkf__t_a30e94b3adedeb098cb75521b098f447e} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} FT}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a10831f99ef4b98f2645bb981189ec948}\index{kf\_t@{kf\_t}!FT\_data@{FT\_data}}
+\index{FT\_data@{FT\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{FT\_data}{FT\_data}}
+{\footnotesize\ttfamily \label{structkf__t_a10831f99ef4b98f2645bb981189ec948} 
+float \texorpdfstring{$\ast$}{*} FT\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_af2cc26ee60d8d5a12bbe8621cdd06938}\index{kf\_t@{kf\_t}!H@{H}}
+\index{H@{H}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{H}{H}}
+{\footnotesize\ttfamily \label{structkf__t_af2cc26ee60d8d5a12bbe8621cdd06938} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} H}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_aa91dda3d8c36d494b971571a29c9e322}\index{kf\_t@{kf\_t}!H\_data@{H\_data}}
+\index{H\_data@{H\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{H\_data}{H\_data}}
+{\footnotesize\ttfamily \label{structkf__t_aa91dda3d8c36d494b971571a29c9e322} 
+float\texorpdfstring{$\ast$}{*} H\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_ae9a9e6636a02dfd087a9a4e885960288}\index{kf\_t@{kf\_t}!HT@{HT}}
+\index{HT@{HT}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{HT}{HT}}
+{\footnotesize\ttfamily \label{structkf__t_ae9a9e6636a02dfd087a9a4e885960288} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} HT}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_af6a73a3099b313b119b2cb4d02c6914f}\index{kf\_t@{kf\_t}!HT\_data@{HT\_data}}
+\index{HT\_data@{HT\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{HT\_data}{HT\_data}}
+{\footnotesize\ttfamily \label{structkf__t_af6a73a3099b313b119b2cb4d02c6914f} 
+float \texorpdfstring{$\ast$}{*} HT\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a0ff1854028d19427556c5a3b59c31aaf}\index{kf\_t@{kf\_t}!K@{K}}
+\index{K@{K}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{K}{K}}
+{\footnotesize\ttfamily \label{structkf__t_a0ff1854028d19427556c5a3b59c31aaf} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} K}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a98bda99cade2685e09f2e18cfc4372b5}\index{kf\_t@{kf\_t}!K\_data@{K\_data}}
+\index{K\_data@{K\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{K\_data}{K\_data}}
+{\footnotesize\ttfamily \label{structkf__t_a98bda99cade2685e09f2e18cfc4372b5} 
+float\texorpdfstring{$\ast$}{*} K\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a715fe71f2f0e3fa895ff673812874ec1}\index{kf\_t@{kf\_t}!MatR\_DiagonalElements@{MatR\_DiagonalElements}}
+\index{MatR\_DiagonalElements@{MatR\_DiagonalElements}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{MatR\_DiagonalElements}{MatR\_DiagonalElements}}
+{\footnotesize\ttfamily \label{structkf__t_a715fe71f2f0e3fa895ff673812874ec1} 
+float\texorpdfstring{$\ast$}{*} Mat\+R\+\_\+\+Diagonal\+Elements}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_adfe1b12d79b7a713794bba689d7c926a}\index{kf\_t@{kf\_t}!MatStatus@{MatStatus}}
+\index{MatStatus@{MatStatus}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{MatStatus}{MatStatus}}
+{\footnotesize\ttfamily \label{structkf__t_adfe1b12d79b7a713794bba689d7c926a} 
+int8\+\_\+t Mat\+Status}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_ae926683324c8cc749f3063a5f0541540}\index{kf\_t@{kf\_t}!MeasuredVector@{MeasuredVector}}
+\index{MeasuredVector@{MeasuredVector}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{MeasuredVector}{MeasuredVector}}
+{\footnotesize\ttfamily \label{structkf__t_ae926683324c8cc749f3063a5f0541540} 
+float\texorpdfstring{$\ast$}{*} Measured\+Vector}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a2726464065cd9a1c8b8922b40ea0082a}\index{kf\_t@{kf\_t}!MeasurementDegree@{MeasurementDegree}}
+\index{MeasurementDegree@{MeasurementDegree}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{MeasurementDegree}{MeasurementDegree}}
+{\footnotesize\ttfamily \label{structkf__t_a2726464065cd9a1c8b8922b40ea0082a} 
+float\texorpdfstring{$\ast$}{*} Measurement\+Degree}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_af940b115d8ac7b7a0d5f7bc3921b0bd6}\index{kf\_t@{kf\_t}!MeasurementMap@{MeasurementMap}}
+\index{MeasurementMap@{MeasurementMap}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{MeasurementMap}{MeasurementMap}}
+{\footnotesize\ttfamily \label{structkf__t_af940b115d8ac7b7a0d5f7bc3921b0bd6} 
+uint8\+\_\+t\texorpdfstring{$\ast$}{*} Measurement\+Map}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}\index{kf\_t@{kf\_t}!MeasurementValidNum@{MeasurementValidNum}}
+\index{MeasurementValidNum@{MeasurementValidNum}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{MeasurementValidNum}{MeasurementValidNum}}
+{\footnotesize\ttfamily \label{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57} 
+uint8\+\_\+t Measurement\+Valid\+Num}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a74f039cccf9631a5a800b8f9b2cb546c}\index{kf\_t@{kf\_t}!P@{P}}
+\index{P@{P}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{P}{P}}
+{\footnotesize\ttfamily \label{structkf__t_a74f039cccf9631a5a800b8f9b2cb546c} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} P}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a1d9fe52e628416690d5277170f631aa1}\index{kf\_t@{kf\_t}!P\_data@{P\_data}}
+\index{P\_data@{P\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{P\_data}{P\_data}}
+{\footnotesize\ttfamily \label{structkf__t_a1d9fe52e628416690d5277170f631aa1} 
+float\texorpdfstring{$\ast$}{*} P\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}\index{kf\_t@{kf\_t}!Pminus@{Pminus}}
+\index{Pminus@{Pminus}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{Pminus}{Pminus}}
+{\footnotesize\ttfamily \label{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} Pminus}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_aecec674d774ea09e4debaa3ca68a10e2}\index{kf\_t@{kf\_t}!Pminus\_data@{Pminus\_data}}
+\index{Pminus\_data@{Pminus\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{Pminus\_data}{Pminus\_data}}
+{\footnotesize\ttfamily \label{structkf__t_aecec674d774ea09e4debaa3ca68a10e2} 
+float \texorpdfstring{$\ast$}{*} Pminus\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a0f89d5950ba972e53e8e2f3347e2f09a}\index{kf\_t@{kf\_t}!Q@{Q}}
+\index{Q@{Q}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{Q}{Q}}
+{\footnotesize\ttfamily \label{structkf__t_a0f89d5950ba972e53e8e2f3347e2f09a} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} Q}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a642d2d6dbb9ee0d62c3c0140ce4d083d}\index{kf\_t@{kf\_t}!Q\_data@{Q\_data}}
+\index{Q\_data@{Q\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{Q\_data}{Q\_data}}
+{\footnotesize\ttfamily \label{structkf__t_a642d2d6dbb9ee0d62c3c0140ce4d083d} 
+float\texorpdfstring{$\ast$}{*} Q\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a017fe162c9ab70cf786ce699165a57ee}\index{kf\_t@{kf\_t}!R@{R}}
+\index{R@{R}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{R}{R}}
+{\footnotesize\ttfamily \label{structkf__t_a017fe162c9ab70cf786ce699165a57ee} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} R}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a648c9b7f0a344e7b6ddadedf992780f6}\index{kf\_t@{kf\_t}!R\_data@{R\_data}}
+\index{R\_data@{R\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{R\_data}{R\_data}}
+{\footnotesize\ttfamily \label{structkf__t_a648c9b7f0a344e7b6ddadedf992780f6} 
+float\texorpdfstring{$\ast$}{*} R\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a7b4eb503b3b4a66148c45a4e262e3bd2}\index{kf\_t@{kf\_t}!S@{S}}
+\index{S@{S}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{S}{S}}
+{\footnotesize\ttfamily \label{structkf__t_a7b4eb503b3b4a66148c45a4e262e3bd2} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} S}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a26cc7fa9d573b5230982cef470796fe2}\index{kf\_t@{kf\_t}!S\_data@{S\_data}}
+\index{S\_data@{S\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{S\_data}{S\_data}}
+{\footnotesize\ttfamily \label{structkf__t_a26cc7fa9d573b5230982cef470796fe2} 
+float\texorpdfstring{$\ast$}{*} S\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a8801f3c64ef77ce3edf0c39f9c9c96ff}\index{kf\_t@{kf\_t}!SkipEq1@{SkipEq1}}
+\index{SkipEq1@{SkipEq1}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{SkipEq1}{SkipEq1}}
+{\footnotesize\ttfamily \label{structkf__t_a8801f3c64ef77ce3edf0c39f9c9c96ff} 
+uint8\+\_\+t Skip\+Eq1}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a086713b96a564f9efff36c0471ea51b1}\index{kf\_t@{kf\_t}!SkipEq2@{SkipEq2}}
+\index{SkipEq2@{SkipEq2}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{SkipEq2}{SkipEq2}}
+{\footnotesize\ttfamily \label{structkf__t_a086713b96a564f9efff36c0471ea51b1} 
+uint8\+\_\+t Skip\+Eq2}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_ac267f143c409ce2cf47c988318d51d87}\index{kf\_t@{kf\_t}!SkipEq3@{SkipEq3}}
+\index{SkipEq3@{SkipEq3}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{SkipEq3}{SkipEq3}}
+{\footnotesize\ttfamily \label{structkf__t_ac267f143c409ce2cf47c988318d51d87} 
+uint8\+\_\+t Skip\+Eq3}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a7032e682dc35d0b29c91e4cf20a47a99}\index{kf\_t@{kf\_t}!SkipEq4@{SkipEq4}}
+\index{SkipEq4@{SkipEq4}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{SkipEq4}{SkipEq4}}
+{\footnotesize\ttfamily \label{structkf__t_a7032e682dc35d0b29c91e4cf20a47a99} 
+uint8\+\_\+t Skip\+Eq4}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a04d0a55db3c5a6235796f2a78136bac1}\index{kf\_t@{kf\_t}!SkipEq5@{SkipEq5}}
+\index{SkipEq5@{SkipEq5}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{SkipEq5}{SkipEq5}}
+{\footnotesize\ttfamily \label{structkf__t_a04d0a55db3c5a6235796f2a78136bac1} 
+uint8\+\_\+t Skip\+Eq5}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a24d081f2d09f585a02df31eccd31d007}\index{kf\_t@{kf\_t}!StateMinVariance@{StateMinVariance}}
+\index{StateMinVariance@{StateMinVariance}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{StateMinVariance}{StateMinVariance}}
+{\footnotesize\ttfamily \label{structkf__t_a24d081f2d09f585a02df31eccd31d007} 
+float\texorpdfstring{$\ast$}{*} State\+Min\+Variance}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_ac96c84c5cc037c8f88826bb70cbb2e9a}\index{kf\_t@{kf\_t}!temp@{temp}}
+\index{temp@{temp}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{temp}{temp}}
+{\footnotesize\ttfamily \label{structkf__t_ac96c84c5cc037c8f88826bb70cbb2e9a} 
+uint8\+\_\+t\texorpdfstring{$\ast$}{*} temp}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}\index{kf\_t@{kf\_t}!temp\_matrix@{temp\_matrix}}
+\index{temp\_matrix@{temp\_matrix}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{temp\_matrix}{temp\_matrix}}
+{\footnotesize\ttfamily \label{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} temp\+\_\+matrix}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_aef6a05cedd50597617652c8a5a5efe12}\index{kf\_t@{kf\_t}!temp\_matrix1@{temp\_matrix1}}
+\index{temp\_matrix1@{temp\_matrix1}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{temp\_matrix1}{temp\_matrix1}}
+{\footnotesize\ttfamily \label{structkf__t_aef6a05cedd50597617652c8a5a5efe12} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} temp\+\_\+matrix1}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a26c0d7c51a9eb12c543fe5bb6a956e2b}\index{kf\_t@{kf\_t}!temp\_matrix\_data@{temp\_matrix\_data}}
+\index{temp\_matrix\_data@{temp\_matrix\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{temp\_matrix\_data}{temp\_matrix\_data}}
+{\footnotesize\ttfamily \label{structkf__t_a26c0d7c51a9eb12c543fe5bb6a956e2b} 
+float \texorpdfstring{$\ast$}{*} temp\+\_\+matrix\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a287297bc1a2ef239f2e6f49513e5f3ca}\index{kf\_t@{kf\_t}!temp\_matrix\_data1@{temp\_matrix\_data1}}
+\index{temp\_matrix\_data1@{temp\_matrix\_data1}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{temp\_matrix\_data1}{temp\_matrix\_data1}}
+{\footnotesize\ttfamily \label{structkf__t_a287297bc1a2ef239f2e6f49513e5f3ca} 
+float \texorpdfstring{$\ast$}{*} temp\+\_\+matrix\+\_\+data1}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}\index{kf\_t@{kf\_t}!temp\_vector@{temp\_vector}}
+\index{temp\_vector@{temp\_vector}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{temp\_vector}{temp\_vector}}
+{\footnotesize\ttfamily \label{structkf__t_ad98000ce5de18243f796c14cf9e24ba8} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} temp\+\_\+vector}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_abed56537f3563836ffc5386507477553}\index{kf\_t@{kf\_t}!temp\_vector1@{temp\_vector1}}
+\index{temp\_vector1@{temp\_vector1}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{temp\_vector1}{temp\_vector1}}
+{\footnotesize\ttfamily \label{structkf__t_abed56537f3563836ffc5386507477553} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} temp\+\_\+vector1}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_abed1de6b5b2e796b336e20fb71c62a65}\index{kf\_t@{kf\_t}!temp\_vector\_data@{temp\_vector\_data}}
+\index{temp\_vector\_data@{temp\_vector\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{temp\_vector\_data}{temp\_vector\_data}}
+{\footnotesize\ttfamily \label{structkf__t_abed1de6b5b2e796b336e20fb71c62a65} 
+float \texorpdfstring{$\ast$}{*} temp\+\_\+vector\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a45c8d93789ff6bba5910897c3386c221}\index{kf\_t@{kf\_t}!temp\_vector\_data1@{temp\_vector\_data1}}
+\index{temp\_vector\_data1@{temp\_vector\_data1}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{temp\_vector\_data1}{temp\_vector\_data1}}
+{\footnotesize\ttfamily \label{structkf__t_a45c8d93789ff6bba5910897c3386c221} 
+float \texorpdfstring{$\ast$}{*} temp\+\_\+vector\+\_\+data1}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a53328044559538e63098d8a520b867d2}\index{kf\_t@{kf\_t}!u@{u}}
+\index{u@{u}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{u}{u}}
+{\footnotesize\ttfamily \label{structkf__t_a53328044559538e63098d8a520b867d2} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} u}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a659d3d824f9be8b87f7dbcf0d2293cfb}\index{kf\_t@{kf\_t}!u\_data@{u\_data}}
+\index{u\_data@{u\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{u\_data}{u\_data}}
+{\footnotesize\ttfamily \label{structkf__t_a659d3d824f9be8b87f7dbcf0d2293cfb} 
+float\texorpdfstring{$\ast$}{*} u\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_aacae7fb78e2d0a65c7a35a5f5c5bc347}\index{kf\_t@{kf\_t}!UseAutoAdjustment@{UseAutoAdjustment}}
+\index{UseAutoAdjustment@{UseAutoAdjustment}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{UseAutoAdjustment}{UseAutoAdjustment}}
+{\footnotesize\ttfamily \label{structkf__t_aacae7fb78e2d0a65c7a35a5f5c5bc347} 
+uint8\+\_\+t Use\+Auto\+Adjustment}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a16137a074af0e04ba4173b5dbf96632c}\index{kf\_t@{kf\_t}!User\_Func0\_f@{User\_Func0\_f}}
+\index{User\_Func0\_f@{User\_Func0\_f}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{User\_Func0\_f}{User\_Func0\_f}}
+{\footnotesize\ttfamily \label{structkf__t_a16137a074af0e04ba4173b5dbf96632c} 
+void(\texorpdfstring{$\ast$}{*} User\+\_\+\+Func0\+\_\+f) (struct \mbox{\hyperlink{structkf__t}{kf\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a979e3a04bc4f5880cb01ec2040164165}\index{kf\_t@{kf\_t}!User\_Func1\_f@{User\_Func1\_f}}
+\index{User\_Func1\_f@{User\_Func1\_f}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{User\_Func1\_f}{User\_Func1\_f}}
+{\footnotesize\ttfamily \label{structkf__t_a979e3a04bc4f5880cb01ec2040164165} 
+void(\texorpdfstring{$\ast$}{*} User\+\_\+\+Func1\+\_\+f) (struct \mbox{\hyperlink{structkf__t}{kf\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_abfff389f90ceb75b1817c22bb09e5b63}\index{kf\_t@{kf\_t}!User\_Func2\_f@{User\_Func2\_f}}
+\index{User\_Func2\_f@{User\_Func2\_f}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{User\_Func2\_f}{User\_Func2\_f}}
+{\footnotesize\ttfamily \label{structkf__t_abfff389f90ceb75b1817c22bb09e5b63} 
+void(\texorpdfstring{$\ast$}{*} User\+\_\+\+Func2\+\_\+f) (struct \mbox{\hyperlink{structkf__t}{kf\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a39f829c803f81367d2a14f5058187060}\index{kf\_t@{kf\_t}!User\_Func3\_f@{User\_Func3\_f}}
+\index{User\_Func3\_f@{User\_Func3\_f}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{User\_Func3\_f}{User\_Func3\_f}}
+{\footnotesize\ttfamily \label{structkf__t_a39f829c803f81367d2a14f5058187060} 
+void(\texorpdfstring{$\ast$}{*} User\+\_\+\+Func3\+\_\+f) (struct \mbox{\hyperlink{structkf__t}{kf\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_afca9666e3890621c10e1522d2f9542cc}\index{kf\_t@{kf\_t}!User\_Func4\_f@{User\_Func4\_f}}
+\index{User\_Func4\_f@{User\_Func4\_f}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{User\_Func4\_f}{User\_Func4\_f}}
+{\footnotesize\ttfamily \label{structkf__t_afca9666e3890621c10e1522d2f9542cc} 
+void(\texorpdfstring{$\ast$}{*} User\+\_\+\+Func4\+\_\+f) (struct \mbox{\hyperlink{structkf__t}{kf\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a9d035506cd3876706946c46311888c3e}\index{kf\_t@{kf\_t}!User\_Func5\_f@{User\_Func5\_f}}
+\index{User\_Func5\_f@{User\_Func5\_f}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{User\_Func5\_f}{User\_Func5\_f}}
+{\footnotesize\ttfamily \label{structkf__t_a9d035506cd3876706946c46311888c3e} 
+void(\texorpdfstring{$\ast$}{*} User\+\_\+\+Func5\+\_\+f) (struct \mbox{\hyperlink{structkf__t}{kf\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a7e8c79839600aa92c54d851ab61566f3}\index{kf\_t@{kf\_t}!User\_Func6\_f@{User\_Func6\_f}}
+\index{User\_Func6\_f@{User\_Func6\_f}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{User\_Func6\_f}{User\_Func6\_f}}
+{\footnotesize\ttfamily \label{structkf__t_a7e8c79839600aa92c54d851ab61566f3} 
+void(\texorpdfstring{$\ast$}{*} User\+\_\+\+Func6\+\_\+f) (struct \mbox{\hyperlink{structkf__t}{kf\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a4eea576fc145dfc1bfbd353a2261b882}\index{kf\_t@{kf\_t}!uSize@{uSize}}
+\index{uSize@{uSize}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{uSize}{uSize}}
+{\footnotesize\ttfamily \label{structkf__t_a4eea576fc145dfc1bfbd353a2261b882} 
+uint8\+\_\+t u\+Size}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_aa2ea7f9462b9bf18c77df16cac99a963}\index{kf\_t@{kf\_t}!xhat@{xhat}}
+\index{xhat@{xhat}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{xhat}{xhat}}
+{\footnotesize\ttfamily \label{structkf__t_aa2ea7f9462b9bf18c77df16cac99a963} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} xhat}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_aa1927108c8d1b9382ee4c19cbb32ebde}\index{kf\_t@{kf\_t}!xhat\_data@{xhat\_data}}
+\index{xhat\_data@{xhat\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{xhat\_data}{xhat\_data}}
+{\footnotesize\ttfamily \label{structkf__t_aa1927108c8d1b9382ee4c19cbb32ebde} 
+float\texorpdfstring{$\ast$}{*} xhat\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a7b9a97f2268c0a144d338ae7464c0cbe}\index{kf\_t@{kf\_t}!xhatminus@{xhatminus}}
+\index{xhatminus@{xhatminus}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{xhatminus}{xhatminus}}
+{\footnotesize\ttfamily \label{structkf__t_a7b9a97f2268c0a144d338ae7464c0cbe} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} xhatminus}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a5806d9109aa4a640002f99a9c84f079d}\index{kf\_t@{kf\_t}!xhatminus\_data@{xhatminus\_data}}
+\index{xhatminus\_data@{xhatminus\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{xhatminus\_data}{xhatminus\_data}}
+{\footnotesize\ttfamily \label{structkf__t_a5806d9109aa4a640002f99a9c84f079d} 
+float \texorpdfstring{$\ast$}{*} xhatminus\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a250cdf961d95ebc129455c915d63bc56}\index{kf\_t@{kf\_t}!xhatSize@{xhatSize}}
+\index{xhatSize@{xhatSize}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{xhatSize}{xhatSize}}
+{\footnotesize\ttfamily \label{structkf__t_a250cdf961d95ebc129455c915d63bc56} 
+uint8\+\_\+t xhat\+Size}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_af647100e10ba6b34799788969278185f}\index{kf\_t@{kf\_t}!z@{z}}
+\index{z@{z}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{z}{z}}
+{\footnotesize\ttfamily \label{structkf__t_af647100e10ba6b34799788969278185f} 
+\mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}} z}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a2b97541cb865d4d3aa4f55dc5804ea0a}\index{kf\_t@{kf\_t}!z\_data@{z\_data}}
+\index{z\_data@{z\_data}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{z\_data}{z\_data}}
+{\footnotesize\ttfamily \label{structkf__t_a2b97541cb865d4d3aa4f55dc5804ea0a} 
+float\texorpdfstring{$\ast$}{*} z\+\_\+data}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}\index{kf\_t@{kf\_t}!zSize@{zSize}}
+\index{zSize@{zSize}!kf\_t@{kf\_t}}
+\doxysubsubsection{\texorpdfstring{zSize}{zSize}}
+{\footnotesize\ttfamily \label{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5} 
+uint8\+\_\+t z\+Size}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+
+
+该结构体的文档由以下文件生成\+:\begin{DoxyCompactItemize}
+\item 
+source/module/\+IMU/ekf/\mbox{\hyperlink{kalman__filter_8h}{kalman\+\_\+filter.\+h}}\end{DoxyCompactItemize}

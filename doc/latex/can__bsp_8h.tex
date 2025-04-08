@@ -1,0 +1,162 @@
+\doxysection{source/bsp/can/can\+\_\+bsp.h 文件参考}
+\hypertarget{can__bsp_8h}{}\label{can__bsp_8h}\index{source/bsp/can/can\_bsp.h@{source/bsp/can/can\_bsp.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}fdcan.\+h"{}}\newline
+can\+\_\+bsp.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{can__bsp_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can__bsp_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{can__bsp_8h_a2ebfa607b1b3eef0346b7d156fb12d68}{can\+\_\+bsp\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em \+: \doxylink{can__bsp_8c_a2ebfa607b1b3eef0346b7d156fb12d68}{can\+\_\+bsp\+\_\+init(void)} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{can__bsp_8h_a91b470cec2134692a415997c95dba833}{can\+\_\+filter\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em \+: \doxylink{can__bsp_8c_a91b470cec2134692a415997c95dba833}{can\+\_\+filter\+\_\+init(void)} \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{can__bsp_8h_a0aaa310fbfd6b42a7b8080e978c5ac02}{fdcanx\+\_\+send\+\_\+data}} (FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hfdcan, uint16\+\_\+t id, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em \+: \doxylink{can__bsp_8c_a0aaa310fbfd6b42a7b8080e978c5ac02}{fdcanx\+\_\+send\+\_\+data(\+FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hfdcan, uint16\+\_\+t id, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t len)} \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{can__bsp_8h_a33d13750f662e37eecb89d55afcd851f}{fdcanx\+\_\+send\+\_\+data\+\_\+ext}} (FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hfdcan, uint16\+\_\+t id, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t len)
+\begin{DoxyCompactList}\small\item\em \+: \doxylink{can__bsp_8c_a33d13750f662e37eecb89d55afcd851f}{fdcanx\+\_\+send\+\_\+data\+\_\+ext(\+FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hfdcan, uint16\+\_\+t id, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t len)} \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{can__bsp_8h_a5bb22a6f7231728f60e6f149d1f10ae0}{fdcanx\+\_\+send\+\_\+data\+\_\+fd}} (FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hfdcan, uint16\+\_\+t id, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t len)
+\item 
+FDCAN\+\_\+\+Rx\+Header\+Type\+Def \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{can__bsp_8h_a1de47675f355f641d54778d1a29a593f}{fdcanx\+\_\+receive}} (FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hfdcan, uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf)
+\item 
+void \mbox{\hyperlink{can__bsp_8h_ac51de6cf6c580ddaad2b5061062f83da}{fdcan1\+\_\+rx\+\_\+callback}} (void)
+\item 
+void \mbox{\hyperlink{can__bsp_8h_aaf28ae68f18643ff76e4ad5331e328c8}{fdcan2\+\_\+rx\+\_\+callback}} (void)
+\item 
+void \mbox{\hyperlink{can__bsp_8h_a8da3a7c741435db59143efb68873cc5e}{fdcan3\+\_\+rx\+\_\+callback}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{can__bsp_8h_a2ebfa607b1b3eef0346b7d156fb12d68}\index{can\_bsp.h@{can\_bsp.h}!can\_bsp\_init@{can\_bsp\_init}}
+\index{can\_bsp\_init@{can\_bsp\_init}!can\_bsp.h@{can\_bsp.h}}
+\doxysubsubsection{\texorpdfstring{can\_bsp\_init()}{can\_bsp\_init()}}
+{\footnotesize\ttfamily \label{can__bsp_8h_a2ebfa607b1b3eef0346b7d156fb12d68} 
+void can\+\_\+bsp\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+\+: \doxylink{can__bsp_8c_a2ebfa607b1b3eef0346b7d156fb12d68}{can\+\_\+bsp\+\_\+init(void)} 
+
+
+\begin{DoxyParams}{参数}
+{\em } & void \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: CAN 使能 \Hypertarget{can__bsp_8h_a91b470cec2134692a415997c95dba833}\index{can\_bsp.h@{can\_bsp.h}!can\_filter\_init@{can\_filter\_init}}
+\index{can\_filter\_init@{can\_filter\_init}!can\_bsp.h@{can\_bsp.h}}
+\doxysubsubsection{\texorpdfstring{can\_filter\_init()}{can\_filter\_init()}}
+{\footnotesize\ttfamily \label{can__bsp_8h_a91b470cec2134692a415997c95dba833} 
+void can\+\_\+filter\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+\+: \doxylink{can__bsp_8c_a91b470cec2134692a415997c95dba833}{can\+\_\+filter\+\_\+init(void)} 
+
+
+\begin{DoxyParams}{参数}
+{\em } & void \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: CAN滤波器初始化 \Hypertarget{can__bsp_8h_ac51de6cf6c580ddaad2b5061062f83da}\index{can\_bsp.h@{can\_bsp.h}!fdcan1\_rx\_callback@{fdcan1\_rx\_callback}}
+\index{fdcan1\_rx\_callback@{fdcan1\_rx\_callback}!can\_bsp.h@{can\_bsp.h}}
+\doxysubsubsection{\texorpdfstring{fdcan1\_rx\_callback()}{fdcan1\_rx\_callback()}}
+{\footnotesize\ttfamily \label{can__bsp_8h_ac51de6cf6c580ddaad2b5061062f83da} 
+void fdcan1\+\_\+rx\+\_\+callback (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{can__bsp_8h_aaf28ae68f18643ff76e4ad5331e328c8}\index{can\_bsp.h@{can\_bsp.h}!fdcan2\_rx\_callback@{fdcan2\_rx\_callback}}
+\index{fdcan2\_rx\_callback@{fdcan2\_rx\_callback}!can\_bsp.h@{can\_bsp.h}}
+\doxysubsubsection{\texorpdfstring{fdcan2\_rx\_callback()}{fdcan2\_rx\_callback()}}
+{\footnotesize\ttfamily \label{can__bsp_8h_aaf28ae68f18643ff76e4ad5331e328c8} 
+void fdcan2\+\_\+rx\+\_\+callback (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{can__bsp_8h_a8da3a7c741435db59143efb68873cc5e}\index{can\_bsp.h@{can\_bsp.h}!fdcan3\_rx\_callback@{fdcan3\_rx\_callback}}
+\index{fdcan3\_rx\_callback@{fdcan3\_rx\_callback}!can\_bsp.h@{can\_bsp.h}}
+\doxysubsubsection{\texorpdfstring{fdcan3\_rx\_callback()}{fdcan3\_rx\_callback()}}
+{\footnotesize\ttfamily \label{can__bsp_8h_a8da3a7c741435db59143efb68873cc5e} 
+void fdcan3\+\_\+rx\+\_\+callback (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{can__bsp_8h_a1de47675f355f641d54778d1a29a593f}\index{can\_bsp.h@{can\_bsp.h}!fdcanx\_receive@{fdcanx\_receive}}
+\index{fdcanx\_receive@{fdcanx\_receive}!can\_bsp.h@{can\_bsp.h}}
+\doxysubsubsection{\texorpdfstring{fdcanx\_receive()}{fdcanx\_receive()}}
+{\footnotesize\ttfamily \label{can__bsp_8h_a1de47675f355f641d54778d1a29a593f} 
+FDCAN\+\_\+\+Rx\+Header\+Type\+Def \texorpdfstring{$\ast$}{*} fdcanx\+\_\+receive (\begin{DoxyParamCaption}\item[{FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{hfdcan}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buf}{}\end{DoxyParamCaption})}
+
+\Hypertarget{can__bsp_8h_a0aaa310fbfd6b42a7b8080e978c5ac02}\index{can\_bsp.h@{can\_bsp.h}!fdcanx\_send\_data@{fdcanx\_send\_data}}
+\index{fdcanx\_send\_data@{fdcanx\_send\_data}!can\_bsp.h@{can\_bsp.h}}
+\doxysubsubsection{\texorpdfstring{fdcanx\_send\_data()}{fdcanx\_send\_data()}}
+{\footnotesize\ttfamily \label{can__bsp_8h_a0aaa310fbfd6b42a7b8080e978c5ac02} 
+uint8\+\_\+t fdcanx\+\_\+send\+\_\+data (\begin{DoxyParamCaption}\item[{FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{hfdcan}{, }\item[{uint16\+\_\+t}]{id}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{uint32\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+\+: \doxylink{can__bsp_8c_a0aaa310fbfd6b42a7b8080e978c5ac02}{fdcanx\+\_\+send\+\_\+data(\+FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hfdcan, uint16\+\_\+t id, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t len)} 
+
+
+\begin{DoxyParams}{参数}
+{\em } & hfdcan：\+FDCAN句柄 \\
+\hline
+{\em } & id：\+CAN设备\+ID \\
+\hline
+{\em } & data：发送的数据 \\
+\hline
+{\em } & len：发送的数据长度 用\+Drivers\textbackslash{}\+STM32\+H7xx\+\_\+\+HAL\+\_\+\+Driver\textbackslash{}\+Inc\textbackslash{}stm32h7xx\+\_\+hal\+\_\+fdcan.h第967行的宏定义！！！ \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 发送数据 \Hypertarget{can__bsp_8h_a33d13750f662e37eecb89d55afcd851f}\index{can\_bsp.h@{can\_bsp.h}!fdcanx\_send\_data\_ext@{fdcanx\_send\_data\_ext}}
+\index{fdcanx\_send\_data\_ext@{fdcanx\_send\_data\_ext}!can\_bsp.h@{can\_bsp.h}}
+\doxysubsubsection{\texorpdfstring{fdcanx\_send\_data\_ext()}{fdcanx\_send\_data\_ext()}}
+{\footnotesize\ttfamily \label{can__bsp_8h_a33d13750f662e37eecb89d55afcd851f} 
+uint8\+\_\+t fdcanx\+\_\+send\+\_\+data\+\_\+ext (\begin{DoxyParamCaption}\item[{FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{hfdcan}{, }\item[{uint16\+\_\+t}]{id}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{uint32\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+
+
+\+: \doxylink{can__bsp_8c_a33d13750f662e37eecb89d55afcd851f}{fdcanx\+\_\+send\+\_\+data\+\_\+ext(\+FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}hfdcan, uint16\+\_\+t id, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t len)} 
+
+
+\begin{DoxyParams}{参数}
+{\em hfdcan} & hfdcan：\+FDCAN句柄 \\
+\hline
+{\em id} & id：\+CAN设备\+ID \\
+\hline
+{\em data} & data：发送的数据 \\
+\hline
+{\em len} & len：发送的数据长度 用\+Drivers\textbackslash{}\+STM32\+H7xx\+\_\+\+HAL\+\_\+\+Driver\textbackslash{}\+Inc\textbackslash{}stm32h7xx\+\_\+hal\+\_\+fdcan.h第967行的宏定义！！ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+uint8\+\_\+t
+\end{DoxyReturn}
+\+: 发送数据 \Hypertarget{can__bsp_8h_a5bb22a6f7231728f60e6f149d1f10ae0}\index{can\_bsp.h@{can\_bsp.h}!fdcanx\_send\_data\_fd@{fdcanx\_send\_data\_fd}}
+\index{fdcanx\_send\_data\_fd@{fdcanx\_send\_data\_fd}!can\_bsp.h@{can\_bsp.h}}
+\doxysubsubsection{\texorpdfstring{fdcanx\_send\_data\_fd()}{fdcanx\_send\_data\_fd()}}
+{\footnotesize\ttfamily \label{can__bsp_8h_a5bb22a6f7231728f60e6f149d1f10ae0} 
+uint8\+\_\+t fdcanx\+\_\+send\+\_\+data\+\_\+fd (\begin{DoxyParamCaption}\item[{FDCAN\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{hfdcan}{, }\item[{uint16\+\_\+t}]{id}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{data}{, }\item[{uint32\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+

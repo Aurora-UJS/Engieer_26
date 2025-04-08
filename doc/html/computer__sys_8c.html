@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/computer/computer_sys.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_975f036152d1b8ba6403704f48098465.html">computer</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">computer_sys.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;main.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="config_8h_source.html">config.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="computer__sys_8h_source.html">computer_sys.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="uart__api_8h_source.html">uart_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="vision__receive_8h_source.html">vision_receive.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="send__robot__state_8h_source.html">send_robot_state.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="radar_tool_8h_source.html">radarTool.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+computer_sys.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="computer__sys_8c__incl.png" border="0" usemap="#asource_2module_2computer_2computer__sys_8c" alt=""/></div>
+<map name="asource_2module_2computer_2computer__sys_8c" id="asource_2module_2computer_2computer__sys_8c">
+<area shape="rect" title=" " alt="" coords="233,5,397,48"/>
+<area shape="rect" title=" " alt="" coords="389,320,449,347"/>
+<area shape="poly" title=" " alt="" coords="267,51,216,78,169,112,152,132,142,153,140,174,148,196,169,224,195,247,224,267,256,284,319,308,374,322,373,327,317,313,253,289,222,272,192,251,165,227,143,199,135,175,137,151,148,129,166,109,214,73,264,46"/>
+<area shape="rect" href="config_8h.html" title=" " alt="" coords="158,171,225,197"/>
+<area shape="poly" title=" " alt="" coords="301,50,213,160,208,157,297,47"/>
+<area shape="rect" href="computer__sys_8h.html" title=" " alt="" coords="362,96,476,123"/>
+<area shape="poly" title=" " alt="" coords="344,46,393,84,389,88,340,51"/>
+<area shape="rect" href="send__robot__state_8h.html" title=" " alt="" coords="249,171,381,197"/>
+<area shape="poly" title=" " alt="" coords="318,48,318,155,312,155,312,48"/>
+<area shape="rect" href="radar_tool_8h.html" title=" " alt="" coords="738,171,823,197"/>
+<area shape="poly" title=" " alt="" coords="384,46,533,93,733,163,731,168,532,99,382,51"/>
+<area shape="rect" href="vision__receive_8h.html" title=" " alt="" coords="599,171,714,197"/>
+<area shape="poly" title=" " alt="" coords="373,46,490,94,622,161,620,165,487,98,371,51"/>
+<area shape="rect" href="uart__api_8h.html" title=" " alt="" coords="5,96,84,123"/>
+<area shape="poly" title=" " alt="" coords="246,51,99,95,98,90,245,46"/>
+<area shape="poly" title=" " alt="" coords="422,123,422,305,416,305,416,123"/>
+<area shape="poly" title=" " alt="" coords="380,126,240,170,239,165,379,121"/>
+<area shape="poly" title=" " alt="" coords="403,125,347,164,344,159,400,121"/>
+<area shape="poly" title=" " alt="" coords="477,119,723,167,722,173,476,124"/>
+<area shape="rect" href="vision__solution_8h.html" title=" " alt="" coords="456,171,574,197"/>
+<area shape="poly" title=" " alt="" coords="437,121,488,159,485,163,434,125"/>
+<area shape="poly" title=" " alt="" coords="461,121,601,163,600,168,460,126"/>
+<area shape="poly" title=" " alt="" coords="326,196,404,306,399,309,322,199"/>
+<area shape="poly" title=" " alt="" coords="771,199,731,237,704,257,675,274,621,296,564,312,465,330,464,325,563,307,619,291,673,270,701,253,728,233,767,195"/>
+<area shape="poly" title=" " alt="" coords="824,167,842,172,850,184,847,192,840,197,837,193,843,189,845,184,839,176,823,173"/>
+<area shape="rect" title=" " alt="" coords="736,245,801,272"/>
+<area shape="poly" title=" " alt="" coords="781,198,776,231,770,230,776,197"/>
+<area shape="rect" title=" " alt="" coords="682,320,756,347"/>
+<area shape="poly" title=" " alt="" coords="794,196,815,231,820,252,815,273,795,297,769,315,766,311,791,294,810,271,814,252,810,233,789,199"/>
+<area shape="rect" href="computer__pack_8h.html" title=" " alt="" coords="540,245,661,272"/>
+<area shape="poly" title=" " alt="" coords="750,200,647,242,645,237,748,195"/>
+<area shape="poly" title=" " alt="" coords="570,275,465,317,463,312,568,270"/>
+<area shape="poly" title=" " alt="" coords="623,270,687,309,684,314,620,275"/>
+<area shape="poly" title=" " alt="" coords="509,199,438,309,433,306,505,196"/>
+<area shape="poly" title=" " alt="" coords="532,196,576,233,573,237,528,200"/>
+<area shape="poly" title=" " alt="" coords="649,200,621,235,617,231,645,196"/>
+<area shape="poly" title=" " alt="" coords="48,123,51,153,59,193,76,235,88,254,104,270,123,282,151,292,224,308,304,320,374,326,373,332,304,325,223,314,150,297,121,286,100,274,84,257,71,238,54,195,45,154,42,123"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a9117542636e67ff3a7e031e10d1687c9" id="r_a9117542636e67ff3a7e031e10d1687c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9117542636e67ff3a7e031e10d1687c9">computer_uart_init</a> (UART_HandleTypeDef *huart)</td></tr>
+<tr class="separator:a9117542636e67ff3a7e031e10d1687c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bb630ab241372955b981526965c6f78" id="r_a4bb630ab241372955b981526965c6f78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4bb630ab241372955b981526965c6f78">computer_receive_solve</a> ()</td></tr>
+<tr class="separator:a4bb630ab241372955b981526965c6f78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a4bb630ab241372955b981526965c6f78" name="a4bb630ab241372955b981526965c6f78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bb630ab241372955b981526965c6f78">&#9670;&#160;</a></span>computer_receive_solve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void computer_receive_solve </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9117542636e67ff3a7e031e10d1687c9" name="a9117542636e67ff3a7e031e10d1687c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9117542636e67ff3a7e031e10d1687c9">&#9670;&#160;</a></span>computer_uart_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void computer_uart_init </td>
+          <td>(</td>
+          <td class="paramtype">UART_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>huart</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

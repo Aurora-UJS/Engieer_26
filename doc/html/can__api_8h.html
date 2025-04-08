@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/can/can_api.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_0fa7b5f3a2c703f9b05d3502dd47a261.html">can</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">can_api.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;main.h&quot;</code><br />
+<code>#include &quot;FreeRTOS.h&quot;</code><br />
+<code>#include &quot;list.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="can__struct_8h_source.html">can_struct.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+can_api.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="can__api_8h__incl.png" border="0" usemap="#asource_2bsp_2can_2can__api_8h" alt=""/></div>
+<map name="asource_2bsp_2can_2can__api_8h" id="asource_2bsp_2can_2can__api_8h">
+<area shape="rect" title=" " alt="" coords="82,5,218,48"/>
+<area shape="rect" title=" " alt="" coords="5,171,66,197"/>
+<area shape="poly" title=" " alt="" coords="106,51,77,71,52,97,41,126,37,155,32,155,36,125,48,95,73,67,103,46"/>
+<area shape="rect" title=" " alt="" coords="95,171,189,197"/>
+<area shape="poly" title=" " alt="" coords="161,48,170,83,170,123,158,158,153,156,165,122,165,83,156,49"/>
+<area shape="rect" title=" " alt="" coords="216,171,266,197"/>
+<area shape="poly" title=" " alt="" coords="164,47,228,156,223,158,160,50"/>
+<area shape="rect" href="can__struct_8h.html" title=" " alt="" coords="62,96,156,123"/>
+<area shape="poly" title=" " alt="" coords="142,50,125,83,120,81,137,47"/>
+<area shape="poly" title=" " alt="" coords="98,125,61,161,57,158,94,121"/>
+<area shape="poly" title=" " alt="" coords="117,122,133,155,128,158,112,124"/>
+<area shape="poly" title=" " alt="" coords="133,121,206,161,204,165,131,126"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="can__api_8h__dep__incl.png" border="0" usemap="#asource_2bsp_2can_2can__api_8hdep" alt=""/></div>
+<map name="asource_2bsp_2can_2can__api_8hdep" id="asource_2bsp_2can_2can__api_8hdep">
+<area shape="rect" title=" " alt="" coords="486,5,621,48"/>
+<area shape="rect" href="bsp_8h.html" title=" " alt="" coords="280,104,402,131"/>
+<area shape="poly" title=" " alt="" coords="491,57,373,106,371,101,489,52"/>
+<area shape="rect" href="motor_8_d_j_i_8c.html" title=" " alt="" coords="371,368,525,411"/>
+<area shape="poly" title=" " alt="" coords="508,59,490,77,476,97,461,133,450,171,441,248,442,317,447,367,442,368,437,317,436,247,445,170,456,131,471,95,486,73,505,55"/>
+<area shape="rect" href="can__api_8c.html" title=" " alt="" coords="486,96,621,139"/>
+<area shape="poly" title=" " alt="" coords="556,64,556,96,550,96,550,64"/>
+<area shape="rect" href="can__bsp_8c.html" title=" " alt="" coords="646,96,781,139"/>
+<area shape="poly" title=" " alt="" coords="605,54,677,93,675,98,603,58"/>
+<area shape="rect" href="super__str_8c.html" title="超级电容模块相关功能实现。" alt="" coords="805,96,971,139"/>
+<area shape="poly" title=" " alt="" coords="637,47,811,93,809,98,635,52"/>
+<area shape="rect" href="motor__basic_8h.html" title=" " alt="" coords="260,187,404,229"/>
+<area shape="poly" title=" " alt="" coords="341,147,337,187,331,186,336,146"/>
+<area shape="rect" href="motor___d_m_8h.html" title=" " alt="" coords="67,277,229,320"/>
+<area shape="poly" title=" " alt="" coords="276,239,192,279,190,274,274,234"/>
+<area shape="rect" href="motor___d_j_i_8h.html" title=" " alt="" coords="253,277,410,320"/>
+<area shape="poly" title=" " alt="" coords="334,245,334,277,329,277,329,245"/>
+<area shape="rect" href="motor___d_m_8c.html" title=" " alt="" coords="5,368,168,411"/>
+<area shape="poly" title=" " alt="" coords="127,334,103,369,98,366,123,331"/>
+<area shape="rect" href="_remoter_8c.html" title=" " alt="" coords="192,376,346,403"/>
+<area shape="poly" title=" " alt="" coords="190,327,254,373,250,378,187,331"/>
+<area shape="poly" title=" " alt="" coords="311,334,280,377,276,374,306,331"/>
+<area shape="poly" title=" " alt="" coords="372,327,422,365,419,370,369,332"/>
+</map>
+</div>
+</div>
+<p><a href="can__api_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a965da6337fbdc9a47ebb46340474bc27" id="r_a965da6337fbdc9a47ebb46340474bc27"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a965da6337fbdc9a47ebb46340474bc27">CAN_MSG_Get_PORT</a>(msg)</td></tr>
+<tr class="separator:a965da6337fbdc9a47ebb46340474bc27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad550039ea41a894604130553450d92e" id="r_aad550039ea41a894604130553450d92e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad550039ea41a894604130553450d92e">CAN_MSG_Get_ID</a>(msg)</td></tr>
+<tr class="separator:aad550039ea41a894604130553450d92e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab612a56a915d6059027860940b2ee745" id="r_ab612a56a915d6059027860940b2ee745"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab612a56a915d6059027860940b2ee745">CAN_MSG_Get_DATA</a>(msg)</td></tr>
+<tr class="separator:ab612a56a915d6059027860940b2ee745"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19c488e9a006ad9a690890213c88d7f8" id="r_a19c488e9a006ad9a690890213c88d7f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a19c488e9a006ad9a690890213c88d7f8">CAN_MSG_Get_LEN</a>(msg)</td></tr>
+<tr class="separator:a19c488e9a006ad9a690890213c88d7f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d953f588a903c8f5e8832847ff7b41b" id="r_a9d953f588a903c8f5e8832847ff7b41b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d953f588a903c8f5e8832847ff7b41b">CAN_MSG_Get_RTR</a>(msg)</td></tr>
+<tr class="separator:a9d953f588a903c8f5e8832847ff7b41b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ad85c1f6d431113ab42f44d8a4c8be620" id="r_ad85c1f6d431113ab42f44d8a4c8be620"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad85c1f6d431113ab42f44d8a4c8be620">can_sys_init</a> (void)</td></tr>
+<tr class="memdesc:ad85c1f6d431113ab42f44d8a4c8be620"><td class="mdescLeft">&#160;</td><td class="mdescRight">CAN通讯初始化。  <br /></td></tr>
+<tr class="separator:ad85c1f6d431113ab42f44d8a4c8be620"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaba60a80fb460a91d76b3a01fc64d94c" id="r_aaba60a80fb460a91d76b3a01fc64d94c"><td class="memItemLeft" align="right" valign="top">List_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaba60a80fb460a91d76b3a01fc64d94c">can_msg_find_list</a> (<a class="el" href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a> port)</td></tr>
+<tr class="memdesc:aaba60a80fb460a91d76b3a01fc64d94c"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据CAN端口返回对应的接收消息列表指针。  <br /></td></tr>
+<tr class="separator:aaba60a80fb460a91d76b3a01fc64d94c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0b2c94cd218077eb973a1686ce71df5" id="r_ad0b2c94cd218077eb973a1686ce71df5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcan__msg__t.html">can_msg_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0b2c94cd218077eb973a1686ce71df5">can_msg_find_item</a> (List_t *can_msg_list, uint32_t id)</td></tr>
+<tr class="memdesc:ad0b2c94cd218077eb973a1686ce71df5"><td class="mdescLeft">&#160;</td><td class="mdescRight">在指定的CAN消息列表中查找具有特定ID的消息项。  <br /></td></tr>
+<tr class="separator:ad0b2c94cd218077eb973a1686ce71df5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71472eadef63e28b066402c06d687016" id="r_a71472eadef63e28b066402c06d687016"><td class="memItemLeft" align="right" valign="top"><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71472eadef63e28b066402c06d687016">can_msg_add_item</a> (<a class="el" href="structcan__msg__t.html">can_msg_t</a> *msg)</td></tr>
+<tr class="memdesc:a71472eadef63e28b066402c06d687016"><td class="mdescLeft">&#160;</td><td class="mdescRight">向CAN消息列表中添加一个新的消息项。  <br /></td></tr>
+<tr class="separator:a71472eadef63e28b066402c06d687016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4214c6ce3fe8b2ac16048962377e13b" id="r_aa4214c6ce3fe8b2ac16048962377e13b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4214c6ce3fe8b2ac16048962377e13b">can_msg_del_item</a> (<a class="el" href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a> port, uint32_t id)</td></tr>
+<tr class="memdesc:aa4214c6ce3fe8b2ac16048962377e13b"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据CAN端口和消息ID从接收消息列表中删除消息项。  <br /></td></tr>
+<tr class="separator:aa4214c6ce3fe8b2ac16048962377e13b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a59a0ba7c9a33b2784b7b0f09199511" id="r_a4a59a0ba7c9a33b2784b7b0f09199511"><td class="memItemLeft" align="right" valign="top"><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a59a0ba7c9a33b2784b7b0f09199511">can_msg_send_classical</a> (<a class="el" href="structcan__msg__t.html">can_msg_t</a> *msg)</td></tr>
+<tr class="memdesc:a4a59a0ba7c9a33b2784b7b0f09199511"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送经典CAN格式的消息。  <br /></td></tr>
+<tr class="separator:a4a59a0ba7c9a33b2784b7b0f09199511"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5365a19d706f489876a2e537995dc0f" id="r_ab5365a19d706f489876a2e537995dc0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5365a19d706f489876a2e537995dc0f">can_msg_send_extended</a> (<a class="el" href="structcan__msg__t.html">can_msg_t</a> *msg)</td></tr>
+<tr class="memdesc:ab5365a19d706f489876a2e537995dc0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送扩展CAN格式的消息。  <br /></td></tr>
+<tr class="separator:ab5365a19d706f489876a2e537995dc0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1747af7a6d5b3b39b302cb507c00c4e7" id="r_a1747af7a6d5b3b39b302cb507c00c4e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1747af7a6d5b3b39b302cb507c00c4e7">can_msg_send_fd</a> (<a class="el" href="structcan__msg__t.html">can_msg_t</a> *msg)</td></tr>
+<tr class="memdesc:a1747af7a6d5b3b39b302cb507c00c4e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送CAN FD格式的消息。  <br /></td></tr>
+<tr class="separator:a1747af7a6d5b3b39b302cb507c00c4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="ab612a56a915d6059027860940b2ee745" name="ab612a56a915d6059027860940b2ee745"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab612a56a915d6059027860940b2ee745">&#9670;&#160;</a></span>CAN_MSG_Get_DATA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CAN_MSG_Get_DATA</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>msg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">((msg)-&gt;*data)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aad550039ea41a894604130553450d92e" name="aad550039ea41a894604130553450d92e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad550039ea41a894604130553450d92e">&#9670;&#160;</a></span>CAN_MSG_Get_ID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CAN_MSG_Get_ID</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>msg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">((msg)-&gt;id)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a19c488e9a006ad9a690890213c88d7f8" name="a19c488e9a006ad9a690890213c88d7f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19c488e9a006ad9a690890213c88d7f8">&#9670;&#160;</a></span>CAN_MSG_Get_LEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CAN_MSG_Get_LEN</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>msg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">((msg)-&gt;len)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a965da6337fbdc9a47ebb46340474bc27" name="a965da6337fbdc9a47ebb46340474bc27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a965da6337fbdc9a47ebb46340474bc27">&#9670;&#160;</a></span>CAN_MSG_Get_PORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CAN_MSG_Get_PORT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>msg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">((msg)-&gt;port)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a9d953f588a903c8f5e8832847ff7b41b" name="a9d953f588a903c8f5e8832847ff7b41b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d953f588a903c8f5e8832847ff7b41b">&#9670;&#160;</a></span>CAN_MSG_Get_RTR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CAN_MSG_Get_RTR</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>msg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">((msg)-&gt;rtr)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a71472eadef63e28b066402c06d687016" name="a71472eadef63e28b066402c06d687016"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71472eadef63e28b066402c06d687016">&#9670;&#160;</a></span>can_msg_add_item()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> can_msg_add_item </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcan__msg__t.html">can_msg_t</a> *</td>          <td class="paramname"><span class="paramname"><em>msg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>向CAN消息列表中添加一个新的消息项。 </p>
+<p>检查消息是否已存在于对应的CAN消息列表中。如果不存在，则分配内存为新的消息项，并将其插入到对应的CAN消息列表中。 如果消息已存在或内存分配失败，则返回相应的错误状态。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>要添加的消息项。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> 返回操作状态，成功返回CAN_OK，失败返回相应的错误码。 </dd></dl>
+
+</div>
+</div>
+<a id="aa4214c6ce3fe8b2ac16048962377e13b" name="aa4214c6ce3fe8b2ac16048962377e13b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4214c6ce3fe8b2ac16048962377e13b">&#9670;&#160;</a></span>can_msg_del_item()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> can_msg_del_item </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a></td>          <td class="paramname"><span class="paramname"><em>port</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>根据CAN端口和消息ID从接收消息列表中删除消息项。 </p>
+<p>遍历指定CAN端口的接收消息列表，查找具有指定ID的消息项。如果找到匹配的消息项，则从列表中移除并释放其占用的内存。 如果未找到匹配的消息项，则返回消息未找到状态。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>指定的CAN端口。 </td></tr>
+    <tr><td class="paramname">id</td><td>要删除的消息ID。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> 返回操作状态，成功返回CAN_OK，失败返回相应的错误码。 </dd></dl>
+
+</div>
+</div>
+<a id="ad0b2c94cd218077eb973a1686ce71df5" name="ad0b2c94cd218077eb973a1686ce71df5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0b2c94cd218077eb973a1686ce71df5">&#9670;&#160;</a></span>can_msg_find_item()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcan__msg__t.html">can_msg_t</a> * can_msg_find_item </td>
+          <td>(</td>
+          <td class="paramtype">List_t *</td>          <td class="paramname"><span class="paramname"><em>can_msg_list</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在指定的CAN消息列表中查找具有特定ID的消息项。 </p>
+<p>遍历指定的CAN消息列表，查找具有指定ID的消息项。如果找到匹配的消息项，则返回该消息项的指针；否则返回NULL。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">can_msg_list</td><td>指定的CAN消息列表。 </td></tr>
+    <tr><td class="paramname">id</td><td>要查找的消息ID。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>can_msg_t* 返回匹配的消息项指针，未找到则返回NULL。 </dd></dl>
+
+</div>
+</div>
+<a id="aaba60a80fb460a91d76b3a01fc64d94c" name="aaba60a80fb460a91d76b3a01fc64d94c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaba60a80fb460a91d76b3a01fc64d94c">&#9670;&#160;</a></span>can_msg_find_list()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List_t * can_msg_find_list </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a></td>          <td class="paramname"><span class="paramname"><em>port</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>根据CAN端口返回对应的接收消息列表指针。 </p>
+<p>根据指定的CAN端口（CAN1_PORT、CAN2_PORT、CAN3_PORT），返回对应的接收消息列表指针。 如果端口无效，默认返回CAN1的接收消息列表指针。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td>指定的CAN端口。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>List_t* 返回对应端口的接收消息列表指针。 </dd></dl>
+
+</div>
+</div>
+<a id="a4a59a0ba7c9a33b2784b7b0f09199511" name="a4a59a0ba7c9a33b2784b7b0f09199511"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a59a0ba7c9a33b2784b7b0f09199511">&#9670;&#160;</a></span>can_msg_send_classical()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> can_msg_send_classical </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcan__msg__t.html">can_msg_t</a> *</td>          <td class="paramname"><span class="paramname"><em>msg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送经典CAN格式的消息。 </p>
+<p>根据指定的CAN端口，发送经典CAN格式的消息。如果端口无效或消息指针为空，则返回相应的错误状态。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>要发送的经典CAN格式消息。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> 返回操作状态，成功返回CAN_OK，失败返回相应的错误码。 </dd></dl>
+
+</div>
+</div>
+<a id="ab5365a19d706f489876a2e537995dc0f" name="ab5365a19d706f489876a2e537995dc0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5365a19d706f489876a2e537995dc0f">&#9670;&#160;</a></span>can_msg_send_extended()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> can_msg_send_extended </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcan__msg__t.html">can_msg_t</a> *</td>          <td class="paramname"><span class="paramname"><em>msg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送扩展CAN格式的消息。 </p>
+<p>根据指定的CAN端口，发送扩展CAN格式的消息。如果端口无效或消息指针为空，则返回相应的错误状态。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>要发送的扩展CAN格式消息。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> 返回操作状态，成功返回CAN_OK，失败返回相应的错误码。 </dd></dl>
+
+</div>
+</div>
+<a id="a1747af7a6d5b3b39b302cb507c00c4e7" name="a1747af7a6d5b3b39b302cb507c00c4e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1747af7a6d5b3b39b302cb507c00c4e7">&#9670;&#160;</a></span>can_msg_send_fd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> can_msg_send_fd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structcan__msg__t.html">can_msg_t</a> *</td>          <td class="paramname"><span class="paramname"><em>msg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送CAN FD格式的消息。 </p>
+<p>根据指定的CAN端口，发送CAN FD格式的消息。如果端口无效或消息指针为空，则返回相应的错误状态。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>要发送的CAN FD格式消息。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd><a class="el" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> 返回操作状态，成功返回CAN_OK，失败返回相应的错误码。 </dd></dl>
+
+</div>
+</div>
+<a id="ad85c1f6d431113ab42f44d8a4c8be620" name="ad85c1f6d431113ab42f44d8a4c8be620"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad85c1f6d431113ab42f44d8a4c8be620">&#9670;&#160;</a></span>can_sys_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void can_sys_init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>CAN通讯初始化。 </p>
+<p>初始化三个CAN端口（CAN1、CAN2、CAN3）的接收消息列表，并调用底层硬件初始化函数完成CAN模块的初始化。 </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,70 @@
+\doxysection{source/module/filter/lpf/\+LPF.c 文件参考}
+\hypertarget{_l_p_f_8c}{}\label{_l_p_f_8c}\index{source/module/filter/lpf/LPF.c@{source/module/filter/lpf/LPF.c}}
+{\ttfamily \#include "{}LPF.\+h"{}}\newline
+LPF.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=182pt]{_l_p_f_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_l_p_f_8c_ae9841ee4e97254376aeec88eda4b76da}{lize\+Filter\+\_\+init}} (\mbox{\hyperlink{struct_low_pass_filter}{Low\+Pass\+Filter}} \texorpdfstring{$\ast$}{*}filter, float alpha)
+\begin{DoxyCompactList}\small\item\em 一阶低通滤波器初始化函数。 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{_l_p_f_8c_a9337694ccc7057ce3b40c121a654a80c}{filter\+Value\+\_\+\+Calc}} (\mbox{\hyperlink{struct_low_pass_filter}{Low\+Pass\+Filter}} \texorpdfstring{$\ast$}{*}filter, float input)
+\begin{DoxyCompactList}\small\item\em 一阶低通滤波器计算函数。 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{_l_p_f_8c_a9337694ccc7057ce3b40c121a654a80c}\index{LPF.c@{LPF.c}!filterValue\_Calc@{filterValue\_Calc}}
+\index{filterValue\_Calc@{filterValue\_Calc}!LPF.c@{LPF.c}}
+\doxysubsubsection{\texorpdfstring{filterValue\_Calc()}{filterValue\_Calc()}}
+{\footnotesize\ttfamily \label{_l_p_f_8c_a9337694ccc7057ce3b40c121a654a80c} 
+float filter\+Value\+\_\+\+Calc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_low_pass_filter}{Low\+Pass\+Filter}} \texorpdfstring{$\ast$}{*}}]{filter}{, }\item[{float}]{input}{}\end{DoxyParamCaption})}
+
+
+
+一阶低通滤波器计算函数。 
+
+此函数根据当前输入值和滤波器的平滑因子 alpha 计算滤波后的输出值。 滤波公式为： output = (1.\+0 -\/ alpha) \texorpdfstring{$\ast$}{*} previous\+\_\+output + alpha \texorpdfstring{$\ast$}{*} input 其中：
+\begin{DoxyItemize}
+\item previous\+\_\+output 表示上一次滤波的输出值。
+\item alpha 是平滑因子，控制滤波器的响应速度和平滑程度。
+\item input 是当前输入值。
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{参数}
+{\em filter} & 指向 \doxylink{struct_low_pass_filter}{Low\+Pass\+Filter} 结构体的指针，表示滤波器实例。 \\
+\hline
+{\em input} & 当前输入值。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+float 返回滤波后的输出值。 
+\end{DoxyReturn}
+\Hypertarget{_l_p_f_8c_ae9841ee4e97254376aeec88eda4b76da}\index{LPF.c@{LPF.c}!lizeFilter\_init@{lizeFilter\_init}}
+\index{lizeFilter\_init@{lizeFilter\_init}!LPF.c@{LPF.c}}
+\doxysubsubsection{\texorpdfstring{lizeFilter\_init()}{lizeFilter\_init()}}
+{\footnotesize\ttfamily \label{_l_p_f_8c_ae9841ee4e97254376aeec88eda4b76da} 
+void lize\+Filter\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_low_pass_filter}{Low\+Pass\+Filter}} \texorpdfstring{$\ast$}{*}}]{filter}{, }\item[{float}]{alpha}{}\end{DoxyParamCaption})}
+
+
+
+一阶低通滤波器初始化函数。 
+
+此函数用于初始化一阶低通滤波器的参数，设置滤波器的平滑因子（alpha）以及初始输出值。 平滑因子 alpha 的取值范围通常在 (0, 1\mbox{]} 之间：
+\begin{DoxyItemize}
+\item 当 alpha 接近 1 时，滤波器对输入信号的变化更敏感，响应更快，但滤波效果较弱。
+\item 当 alpha 接近 0 时，滤波器对输入信号的变化反应较慢，但滤波效果更强。
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{参数}
+{\em filter} & 指向 \doxylink{struct_low_pass_filter}{Low\+Pass\+Filter} 结构体的指针，表示滤波器实例。 \\
+\hline
+{\em alpha} & 平滑因子，控制滤波器的响应速度和平滑程度。 \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,18 @@
+\doxysection{send\+\_\+robot\+\_\+state.\+h}
+\hypertarget{send__robot__state_8h_source}{}\label{send__robot__state_8h_source}\index{source/module/computer/vision/send\_robot\_state.h@{source/module/computer/vision/send\_robot\_state.h}}
+\mbox{\hyperlink{send__robot__state_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SEND\_ROBOT\_STATE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SEND\_ROBOT\_STATE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{send__robot__state_8h_af523661dfa1f732b5efb3aa36d5fb05a}{send\_robot\_state}}();\ \textcolor{comment}{//\ 发送机器人状态}}
+\DoxyCodeLine{00007\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{send__robot__state_8h_af6aeb20f4987ae6418e20186c0569f18}{robot\_state\_msg\_init}}(UART\_HandleTypeDef\ *huart);}
+\DoxyCodeLine{00008\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{send__robot__state_8h_a88e496cac10a79c7a79df6ff4c6dd4a4}{set\_robot\_angle}}(\textcolor{keywordtype}{float}\ *yaw,\ \textcolor{keywordtype}{float}\ *pitch);\ \textcolor{comment}{//\ 绑定机器人角度}}
+\DoxyCodeLine{00009\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{send__robot__state_8h_a82cbabb02ad140dbdb43581dcf538c7b}{set\_robot\_id}}(uint16\_t\ \textcolor{keywordtype}{id});\ \textcolor{comment}{//\ 设置机器人id}}
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{send__robot__state_8h_a9efdc6b03b03346b91735caa62ff151c}{change\_robot\_target}}();\ \textcolor{comment}{//\ 改变机器人目标}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !SEND\_ROBOT\_STATE\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,110 @@
+\doxysection{source/module/control/\+Power\+Control/\+Power\+Control.h 文件参考}
+\hypertarget{_power_control_8h}{}\label{_power_control_8h}\index{source/module/control/PowerControl/PowerControl.h@{source/module/control/PowerControl/PowerControl.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}PIDtool.\+h"{}}\newline
+Power\+Control.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{_power_control_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{_power_control_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtotal__power__control__t}{total\+\_\+power\+\_\+control\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{struct_motor_power_params__t}{Motor\+Power\+Params\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{枚举}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_power_control_8h_a798f43871260b6e9840a4308352a67e5}{power\+\_\+control\+\_\+state\+\_\+t}} \{ \mbox{\hyperlink{_power_control_8h_a798f43871260b6e9840a4308352a67e5ad2e86a9101306569e395daab35abe1ea}{POWER\+\_\+\+LOSS}} = 0
+, \mbox{\hyperlink{_power_control_8h_a798f43871260b6e9840a4308352a67e5a5a368a37e843764aee66acb119837b93}{POWER\+\_\+\+NORMAL}}
+, \mbox{\hyperlink{_power_control_8h_a798f43871260b6e9840a4308352a67e5a4c65ce336a7a7e1068fc68039d367ae1}{POWER\+\_\+\+BURST}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_power_control_8h_afb47d084f93e87da21a629fb9f8fdfc8}{Power\+Control\+\_\+\+Init}} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}buffer\+\_\+ptr, float \texorpdfstring{$\ast$}{*}cap\+\_\+ptr, float \texorpdfstring{$\ast$}{*}max\+\_\+power, \mbox{\hyperlink{structpid__type__def}{pid\+\_\+type\+\_\+def}} \texorpdfstring{$\ast$}{*}pid\+\_\+params, void(\texorpdfstring{$\ast$}{*}hook)(float))
+\item 
+void \mbox{\hyperlink{_power_control_8h_a09970f532849b821a660c63928955607}{Power\+Control\+\_\+\+Update}} (void)
+\item 
+void \mbox{\hyperlink{_power_control_8h_a4b599ccc7a391b40850611949c0c5597}{Set\+\_\+\+Power\+Control\+Mode}} (\mbox{\hyperlink{_power_control_8h_a798f43871260b6e9840a4308352a67e5}{power\+\_\+control\+\_\+state\+\_\+t}} mode)
+\item 
+float \mbox{\hyperlink{_power_control_8h_a5e0641d792056524faa5debfd0d5b7bb}{Motor\+Power\+\_\+\+Calculate\+Single}} (float torque\+\_\+nm, float speed\+\_\+rpm, const \mbox{\hyperlink{struct_motor_power_params__t}{Motor\+Power\+Params\+\_\+t}} \texorpdfstring{$\ast$}{*}params)
+\begin{DoxyCompactList}\small\item\em 计算单个电机的理论功率消耗 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{枚举类型说明}
+\Hypertarget{_power_control_8h_a798f43871260b6e9840a4308352a67e5}\index{PowerControl.h@{PowerControl.h}!power\_control\_state\_t@{power\_control\_state\_t}}
+\index{power\_control\_state\_t@{power\_control\_state\_t}!PowerControl.h@{PowerControl.h}}
+\doxysubsubsection{\texorpdfstring{power\_control\_state\_t}{power\_control\_state\_t}}
+{\footnotesize\ttfamily \label{_power_control_8h_a798f43871260b6e9840a4308352a67e5} 
+enum \mbox{\hyperlink{_power_control_8h_a798f43871260b6e9840a4308352a67e5}{power\+\_\+control\+\_\+state\+\_\+t}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{POWER\_LOSS@{POWER\_LOSS}!PowerControl.h@{PowerControl.h}}\index{PowerControl.h@{PowerControl.h}!POWER\_LOSS@{POWER\_LOSS}}}\Hypertarget{_power_control_8h_a798f43871260b6e9840a4308352a67e5ad2e86a9101306569e395daab35abe1ea}\label{_power_control_8h_a798f43871260b6e9840a4308352a67e5ad2e86a9101306569e395daab35abe1ea} 
+POWER\+\_\+\+LOSS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{POWER\_NORMAL@{POWER\_NORMAL}!PowerControl.h@{PowerControl.h}}\index{PowerControl.h@{PowerControl.h}!POWER\_NORMAL@{POWER\_NORMAL}}}\Hypertarget{_power_control_8h_a798f43871260b6e9840a4308352a67e5a5a368a37e843764aee66acb119837b93}\label{_power_control_8h_a798f43871260b6e9840a4308352a67e5a5a368a37e843764aee66acb119837b93} 
+POWER\+\_\+\+NORMAL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{POWER\_BURST@{POWER\_BURST}!PowerControl.h@{PowerControl.h}}\index{PowerControl.h@{PowerControl.h}!POWER\_BURST@{POWER\_BURST}}}\Hypertarget{_power_control_8h_a798f43871260b6e9840a4308352a67e5a4c65ce336a7a7e1068fc68039d367ae1}\label{_power_control_8h_a798f43871260b6e9840a4308352a67e5a4c65ce336a7a7e1068fc68039d367ae1} 
+POWER\+\_\+\+BURST&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{_power_control_8h_a5e0641d792056524faa5debfd0d5b7bb}\index{PowerControl.h@{PowerControl.h}!MotorPower\_CalculateSingle@{MotorPower\_CalculateSingle}}
+\index{MotorPower\_CalculateSingle@{MotorPower\_CalculateSingle}!PowerControl.h@{PowerControl.h}}
+\doxysubsubsection{\texorpdfstring{MotorPower\_CalculateSingle()}{MotorPower\_CalculateSingle()}}
+{\footnotesize\ttfamily \label{_power_control_8h_a5e0641d792056524faa5debfd0d5b7bb} 
+float Motor\+Power\+\_\+\+Calculate\+Single (\begin{DoxyParamCaption}\item[{float}]{torque\+\_\+nm}{, }\item[{float}]{speed\+\_\+rad}{, }\item[{const \mbox{\hyperlink{struct_motor_power_params__t}{Motor\+Power\+Params\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{params}{}\end{DoxyParamCaption})}
+
+
+
+计算单个电机的理论功率消耗 
+
+
+\begin{DoxyParams}{参数}
+{\em torque\+\_\+nm} & 电机速度环\+PID输出值 \\
+\hline
+{\em speed\+\_\+rad} & 电机当前转速 (rad/s) \\
+\hline
+{\em params} & 功率计算参数结构体指针 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+float 计算得到的功率值 (W) 
+\end{DoxyReturn}
+\Hypertarget{_power_control_8h_afb47d084f93e87da21a629fb9f8fdfc8}\index{PowerControl.h@{PowerControl.h}!PowerControl\_Init@{PowerControl\_Init}}
+\index{PowerControl\_Init@{PowerControl\_Init}!PowerControl.h@{PowerControl.h}}
+\doxysubsubsection{\texorpdfstring{PowerControl\_Init()}{PowerControl\_Init()}}
+{\footnotesize\ttfamily \label{_power_control_8h_afb47d084f93e87da21a629fb9f8fdfc8} 
+void Power\+Control\+\_\+\+Init (\begin{DoxyParamCaption}\item[{uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{buffer\+\_\+ptr}{, }\item[{float \texorpdfstring{$\ast$}{*}}]{cap\+\_\+ptr}{, }\item[{float \texorpdfstring{$\ast$}{*}}]{max\+\_\+power}{, }\item[{\mbox{\hyperlink{structpid__type__def}{pid\+\_\+type\+\_\+def}} \texorpdfstring{$\ast$}{*}}]{pid\+\_\+params}{, }\item[{void(\texorpdfstring{$\ast$}{*}}]{hook~}{)(float)}\end{DoxyParamCaption})}
+
+\Hypertarget{_power_control_8h_a09970f532849b821a660c63928955607}\index{PowerControl.h@{PowerControl.h}!PowerControl\_Update@{PowerControl\_Update}}
+\index{PowerControl\_Update@{PowerControl\_Update}!PowerControl.h@{PowerControl.h}}
+\doxysubsubsection{\texorpdfstring{PowerControl\_Update()}{PowerControl\_Update()}}
+{\footnotesize\ttfamily \label{_power_control_8h_a09970f532849b821a660c63928955607} 
+void Power\+Control\+\_\+\+Update (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_power_control_8h_a4b599ccc7a391b40850611949c0c5597}\index{PowerControl.h@{PowerControl.h}!Set\_PowerControlMode@{Set\_PowerControlMode}}
+\index{Set\_PowerControlMode@{Set\_PowerControlMode}!PowerControl.h@{PowerControl.h}}
+\doxysubsubsection{\texorpdfstring{Set\_PowerControlMode()}{Set\_PowerControlMode()}}
+{\footnotesize\ttfamily \label{_power_control_8h_a4b599ccc7a391b40850611949c0c5597} 
+void Set\+\_\+\+Power\+Control\+Mode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_power_control_8h_a798f43871260b6e9840a4308352a67e5}{power\+\_\+control\+\_\+state\+\_\+t}}}]{mode}{}\end{DoxyParamCaption})}
+

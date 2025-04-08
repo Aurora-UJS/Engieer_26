@@ -1,0 +1,440 @@
+\doxysection{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}
+\hypertarget{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{}\label{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}x = \texorpdfstring{$\vert$}{|} height \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} velocity \texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}acceleration\texorpdfstring{$\vert$}{|}
+
+\doxylink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t} Height\+\_\+\+KF;
+
+void INS\+\_\+\+Task\+\_\+\+Init(void) \{ static float P\+\_\+\+Init\mbox{[}9\mbox{]} = \{ 10, 0, 0, 0, 30, 0, 0, 0, 10, \}; static float F\+\_\+\+Init\mbox{[}9\mbox{]} = \{ 1, dt, 0.\+5\texorpdfstring{$\ast$}{*}dt\texorpdfstring{$\ast$}{*}dt, 0, 1, dt, 0, 0, 1, \}; static float Q\+\_\+\+Init\mbox{[}9\mbox{]} = \{ 0.\+25\texorpdfstring{$\ast$}{*}dt\texorpdfstring{$\ast$}{*}dt\texorpdfstring{$\ast$}{*}dt\texorpdfstring{$\ast$}{*}dt, 0.\+5\texorpdfstring{$\ast$}{*}dt\texorpdfstring{$\ast$}{*}dt\texorpdfstring{$\ast$}{*}dt, 0.\+5\texorpdfstring{$\ast$}{*}dt\texorpdfstring{$\ast$}{*}dt, 0.\+5\texorpdfstring{$\ast$}{*}dt\texorpdfstring{$\ast$}{*}dt\texorpdfstring{$\ast$}{*}dt, dt\texorpdfstring{$\ast$}{*}dt, dt, 0.\+5\texorpdfstring{$\ast$}{*}dt\texorpdfstring{$\ast$}{*}dt, dt, 1, \};
+
+// 设置最小方差 static float state\+\_\+min\+\_\+variance\mbox{[}3\mbox{]} = \{0.\+03, 0.\+005, 0.\+1\};
+
+// 开启自动调整 Height\+\_\+\+KF.\+Use\+Auto\+Adjustment = 1;
+
+// 气压测得高度 GPS测得高度 加速度计测得z轴运动加速度 static uint8\+\_\+t measurement\+\_\+reference\mbox{[}3\mbox{]} = \{1, 1, 3\}
+
+static float measurement\+\_\+degree\mbox{[}3\mbox{]} = \{1, 1, 1\} // 根据measurement\+\_\+reference与measurement\+\_\+degree生成\+H矩阵如下（在当前周期全部测量数据有效情况下） \texorpdfstring{$\vert$}{|}1 0 0\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}1 0 0\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|}0 0 1\texorpdfstring{$\vert$}{|}
+
+static float mat\+\_\+\+R\+\_\+diagonal\+\_\+elements = \{30, 25, 35\} //根据mat\+\_\+\+R\+\_\+diagonal\+\_\+elements生成\+R矩阵如下（在当前周期全部测量数据有效情况下） \texorpdfstring{$\vert$}{|}30 0 0\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} 0 25 0\texorpdfstring{$\vert$}{|} \texorpdfstring{$\vert$}{|} 0 0 35\texorpdfstring{$\vert$}{|}
+
+Kalman\+\_\+\+Filter\+\_\+\+Init(\&\+Height\+\_\+\+KF, 3, 0, 3);
+
+// 设置矩阵值 memcpy(Height\+\_\+\+KF.\+P\+\_\+data, P\+\_\+\+Init, sizeof(\+P\+\_\+\+Init)); memcpy(Height\+\_\+\+KF.\+F\+\_\+data, F\+\_\+\+Init, sizeof(\+F\+\_\+\+Init)); memcpy(Height\+\_\+\+KF.\+Q\+\_\+data, Q\+\_\+\+Init, sizeof(\+Q\+\_\+\+Init)); memcpy(Height\+\_\+\+KF.\+Measurement\+Map, measurement\+\_\+reference, sizeof(measurement\+\_\+reference)); memcpy(Height\+\_\+\+KF.\+Measurement\+Degree, measurement\+\_\+degree, sizeof(measurement\+\_\+degree)); memcpy(Height\+\_\+\+KF.\+Mat\+R\+\_\+\+Diagonal\+Elements, mat\+\_\+\+R\+\_\+diagonal\+\_\+elements, sizeof(mat\+\_\+\+R\+\_\+diagonal\+\_\+elements)); memcpy(Height\+\_\+\+KF.\+State\+Min\+Variance, state\+\_\+min\+\_\+variance, sizeof(state\+\_\+min\+\_\+variance)); \}
+
+void INS\+\_\+\+Task(void const \texorpdfstring{$\ast$}{*}pv\+Parameters) \{ // 循环更新 Kalman\+\_\+\+Filter\+\_\+\+Update(\&\+Height\+\_\+\+KF); v\+Task\+Delay(ts); \}
+
+// 测量数据更新应按照以下形式 即向\+Measured\+Vector赋值 void Barometer\+\_\+\+Read\+\_\+\+Over(void) \{ ...... INS\+\_\+\+KF.\+Measured\+Vector\mbox{[}0\mbox{]} = baro\+\_\+height; \} void GPS\+\_\+\+Read\+\_\+\+Over(void) \{ ...... INS\+\_\+\+KF.\+Measured\+Vector\mbox{[}1\mbox{]} = GPS\+\_\+height; \} void Acc\+\_\+\+Data\+\_\+\+Process(void) \{ ...... INS\+\_\+\+KF.\+Measured\+Vector\mbox{[}2\mbox{]} = acc.\+z; \}
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{kalman__filter_8h}{kalman\_filter.h}}"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}FreeRTOS.h"{}}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}task.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{uint16\_t\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}},\ \mbox{\hyperlink{kalman__filter_8c_a0ce754bf27dc96cbb3216b52e5cd56dd}{sizeof\_double}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ H\_K\_R\_Adjustment(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}*\ \mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\textcolor{keywordtype}{size\_t}\ size)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}*\ tmp\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ tmp\ =\ pvPortMalloc(size);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ tmp;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{comment}{//\#define\ user\_malloc(n)\ pvPortMalloc}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8c_a3e87008e6a41b2857bdfc64bd510b66a}{Kalman\_Filter\_Init}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf,\ uint8\_t\ xhatSize,\ uint8\_t\ uSize,\ uint8\_t\ zSize)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ =\ \textcolor{keyword}{sizeof}(float);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8c_a0ce754bf27dc96cbb3216b52e5cd56dd}{sizeof\_double}}\ =\ \textcolor{keyword}{sizeof}(double);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}}\ =\ xhatSize;}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a4eea576fc145dfc1bfbd353a2261b882}{uSize}}\ =\ uSize;}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}}\ =\ zSize;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}}\ =\ 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ measurement\ flags}}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_af940b115d8ac7b7a0d5f7bc3921b0bd6}{MeasurementMap}}\ =\ (uint8\_t\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\textcolor{keyword}{sizeof}(uint8\_t)\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_af940b115d8ac7b7a0d5f7bc3921b0bd6}{MeasurementMap}},\ 0,\ \textcolor{keyword}{sizeof}(uint8\_t)\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a2726464065cd9a1c8b8922b40ea0082a}{MeasurementDegree}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a2726464065cd9a1c8b8922b40ea0082a}{MeasurementDegree}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a715fe71f2f0e3fa895ff673812874ec1}{MatR\_DiagonalElements}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a715fe71f2f0e3fa895ff673812874ec1}{MatR\_DiagonalElements}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a24d081f2d09f585a02df31eccd31d007}{StateMinVariance}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a24d081f2d09f585a02df31eccd31d007}{StateMinVariance}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ac96c84c5cc037c8f88826bb70cbb2e9a}{temp}}\ =\ (uint8\_t\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\textcolor{keyword}{sizeof}(uint8\_t)\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_ac96c84c5cc037c8f88826bb70cbb2e9a}{temp}},\ 0,\ \textcolor{keyword}{sizeof}(uint8\_t)\ *\ zSize);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ filter\ data}}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a3948ec43c6a2d50c0b10c311a8eaec64}{FilteredValue}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a3948ec43c6a2d50c0b10c311a8eaec64}{FilteredValue}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ae926683324c8cc749f3063a5f0541540}{MeasuredVector}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_ae926683324c8cc749f3063a5f0541540}{MeasuredVector}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a0caba10ed8328180a21b25ac1b9aa781}{ControlVector}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ uSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a0caba10ed8328180a21b25ac1b9aa781}{ControlVector}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ uSize);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ xhat\ x(k|k)}}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_aa1927108c8d1b9382ee4c19cbb32ebde}{xhat\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_aa1927108c8d1b9382ee4c19cbb32ebde}{xhat\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_aa2ea7f9462b9bf18c77df16cac99a963}{xhat}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ 1,\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_aa1927108c8d1b9382ee4c19cbb32ebde}{xhat\_data}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ xhatminus\ x(k|k-\/1)}}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a5806d9109aa4a640002f99a9c84f079d}{xhatminus\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a5806d9109aa4a640002f99a9c84f079d}{xhatminus\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a7b9a97f2268c0a144d338ae7464c0cbe}{xhatminus}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ 1,\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_a5806d9109aa4a640002f99a9c84f079d}{xhatminus\_data}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (uSize\ !=\ 0)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ control\ vector\ u}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a659d3d824f9be8b87f7dbcf0d2293cfb}{u\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ uSize);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a659d3d824f9be8b87f7dbcf0d2293cfb}{u\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ uSize);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a53328044559538e63098d8a520b867d2}{u}},\ kf-\/>\mbox{\hyperlink{structkf__t_a4eea576fc145dfc1bfbd353a2261b882}{uSize}},\ 1,\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_a659d3d824f9be8b87f7dbcf0d2293cfb}{u\_data}});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ measurement\ vector\ z}}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a2b97541cb865d4d3aa4f55dc5804ea0a}{z\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a2b97541cb865d4d3aa4f55dc5804ea0a}{z\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_af647100e10ba6b34799788969278185f}{z}},\ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}},\ 1,\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_a2b97541cb865d4d3aa4f55dc5804ea0a}{z\_data}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ covariance\ matrix\ P(k|k)}}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a1d9fe52e628416690d5277170f631aa1}{P\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a1d9fe52e628416690d5277170f631aa1}{P\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a74f039cccf9631a5a800b8f9b2cb546c}{P}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_a1d9fe52e628416690d5277170f631aa1}{P\_data}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ create\ covariance\ matrix\ P(k|k-\/1)}}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_aecec674d774ea09e4debaa3ca68a10e2}{Pminus\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_aecec674d774ea09e4debaa3ca68a10e2}{Pminus\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}{Pminus}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_aecec674d774ea09e4debaa3ca68a10e2}{Pminus\_data}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ state\ transition\ matrix\ F\ FT}}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ace9b92329f3952dee83c749800b0ee58}{F\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a10831f99ef4b98f2645bb981189ec948}{FT\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_ace9b92329f3952dee83c749800b0ee58}{F\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a10831f99ef4b98f2645bb981189ec948}{FT\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a78b76cf2c1f11cdd33f5c898830bdf19}{F}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_ace9b92329f3952dee83c749800b0ee58}{F\_data}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a30e94b3adedeb098cb75521b098f447e}{FT}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_a10831f99ef4b98f2645bb981189ec948}{FT\_data}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (uSize\ !=\ 0)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ control\ matrix\ B}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ab1137cae538dc1edb47061d4ce46ebae}{B\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ uSize);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_ab1137cae538dc1edb47061d4ce46ebae}{B\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ uSize);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a07e09a5590d01942d9b4fb77a7d17203}{B}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ kf-\/>\mbox{\hyperlink{structkf__t_a4eea576fc145dfc1bfbd353a2261b882}{uSize}},\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_ab1137cae538dc1edb47061d4ce46ebae}{B\_data}});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ measurement\ matrix\ H}}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_aa91dda3d8c36d494b971571a29c9e322}{H\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_af6a73a3099b313b119b2cb4d02c6914f}{HT\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_aa91dda3d8c36d494b971571a29c9e322}{H\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_af6a73a3099b313b119b2cb4d02c6914f}{HT\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_af2cc26ee60d8d5a12bbe8621cdd06938}{H}},\ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_aa91dda3d8c36d494b971571a29c9e322}{H\_data}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_ae9a9e6636a02dfd087a9a4e885960288}{HT}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}},\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_af6a73a3099b313b119b2cb4d02c6914f}{HT\_data}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ process\ noise\ covariance\ matrix\ Q}}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a642d2d6dbb9ee0d62c3c0140ce4d083d}{Q\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a642d2d6dbb9ee0d62c3c0140ce4d083d}{Q\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a0f89d5950ba972e53e8e2f3347e2f09a}{Q}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_a642d2d6dbb9ee0d62c3c0140ce4d083d}{Q\_data}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ measurement\ noise\ covariance\ matrix\ R}}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a648c9b7f0a344e7b6ddadedf992780f6}{R\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a648c9b7f0a344e7b6ddadedf992780f6}{R\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a017fe162c9ab70cf786ce699165a57ee}{R}},\ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}},\ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}},\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_a648c9b7f0a344e7b6ddadedf992780f6}{R\_data}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ kalman\ gain\ K}}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a98bda99cade2685e09f2e18cfc4372b5}{K\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a98bda99cade2685e09f2e18cfc4372b5}{K\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a0ff1854028d19427556c5a3b59c31aaf}{K}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}},\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_a98bda99cade2685e09f2e18cfc4372b5}{K\_data}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a26cc7fa9d573b5230982cef470796fe2}{S\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}});}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a26cc7fa9d573b5230982cef470796fe2}{S\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}});}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a26c0d7c51a9eb12c543fe5bb6a956e2b}{temp\_matrix\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}});}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a26c0d7c51a9eb12c543fe5bb6a956e2b}{temp\_matrix\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}});}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a287297bc1a2ef239f2e6f49513e5f3ca}{temp\_matrix\_data1}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}});}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a287297bc1a2ef239f2e6f49513e5f3ca}{temp\_matrix\_data1}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}});}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_abed1de6b5b2e796b336e20fb71c62a65}{temp\_vector\_data}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}});}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_abed1de6b5b2e796b336e20fb71c62a65}{temp\_vector\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}});}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a45c8d93789ff6bba5910897c3386c221}{temp\_vector\_data1}}\ =\ (\textcolor{keywordtype}{float}\ *)\mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\_malloc}}(\mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}});}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_abed1de6b5b2e796b336e20fb71c62a65}{temp\_vector\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}});}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a7b4eb503b3b4a66148c45a4e262e3bd2}{S}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_a26cc7fa9d573b5230982cef470796fe2}{S\_data}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_a26c0d7c51a9eb12c543fe5bb6a956e2b}{temp\_matrix\_data}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_aef6a05cedd50597617652c8a5a5efe12}{temp\_matrix1}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_a287297bc1a2ef239f2e6f49513e5f3ca}{temp\_matrix\_data1}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\_vector}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ 1,\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_abed1de6b5b2e796b336e20fb71c62a65}{temp\_vector\_data}});}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a32417b1795d2896932c31ed94e49875d}{Matrix\_Init}}(\&kf-\/>\mbox{\hyperlink{structkf__t_abed56537f3563836ffc5386507477553}{temp\_vector1}},\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ 1,\ (\textcolor{keywordtype}{float}\ *)kf-\/>\mbox{\hyperlink{structkf__t_a45c8d93789ff6bba5910897c3386c221}{temp\_vector\_data1}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a8801f3c64ef77ce3edf0c39f9c9c96ff}{SkipEq1}}\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a086713b96a564f9efff36c0471ea51b1}{SkipEq2}}\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ac267f143c409ce2cf47c988318d51d87}{SkipEq3}}\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a7032e682dc35d0b29c91e4cf20a47a99}{SkipEq4}}\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a04d0a55db3c5a6235796f2a78136bac1}{SkipEq5}}\ =\ 0;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8c_acb3774ba4b09bc24b3c053536e3d5d2c}{Kalman\_Filter\_Reset}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf,\ uint8\_t\ xhatSize,\ uint8\_t\ uSize,\ uint8\_t\ zSize)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_af940b115d8ac7b7a0d5f7bc3921b0bd6}{MeasurementMap}},\ 0,\ \textcolor{keyword}{sizeof}(uint8\_t)\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a2726464065cd9a1c8b8922b40ea0082a}{MeasurementDegree}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize);\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a715fe71f2f0e3fa895ff673812874ec1}{MatR\_DiagonalElements}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a24d081f2d09f585a02df31eccd31d007}{StateMinVariance}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_ac96c84c5cc037c8f88826bb70cbb2e9a}{temp}},\ 0,\ \textcolor{keyword}{sizeof}(uint8\_t)\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a3948ec43c6a2d50c0b10c311a8eaec64}{FilteredValue}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_ae926683324c8cc749f3063a5f0541540}{MeasuredVector}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a0caba10ed8328180a21b25ac1b9aa781}{ControlVector}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ uSize);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_aa1927108c8d1b9382ee4c19cbb32ebde}{xhat\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a5806d9109aa4a640002f99a9c84f079d}{xhatminus\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}(uSize\ !=\ 0)}
+\DoxyCodeLine{\ \ \ \ \{memset(kf-\/>\mbox{\hyperlink{structkf__t_a659d3d824f9be8b87f7dbcf0d2293cfb}{u\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ uSize);\}\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a2b97541cb865d4d3aa4f55dc5804ea0a}{z\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a1d9fe52e628416690d5277170f631aa1}{P\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_aecec674d774ea09e4debaa3ca68a10e2}{Pminus\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_ace9b92329f3952dee83c749800b0ee58}{F\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a10831f99ef4b98f2645bb981189ec948}{FT\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);\ \ }
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}(uSize\ !=\ 0)}
+\DoxyCodeLine{\ \ \ \ \{memset(kf-\/>\mbox{\hyperlink{structkf__t_ab1137cae538dc1edb47061d4ce46ebae}{B\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ uSize);\}}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_aa91dda3d8c36d494b971571a29c9e322}{H\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize\ *\ xhatSize);}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_af6a73a3099b313b119b2cb4d02c6914f}{HT\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ zSize);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a642d2d6dbb9ee0d62c3c0140ce4d083d}{Q\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ xhatSize);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a648c9b7f0a344e7b6ddadedf992780f6}{R\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ zSize\ *\ zSize);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a98bda99cade2685e09f2e18cfc4372b5}{K\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ xhatSize\ *\ zSize);\ \ \ }
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a8801f3c64ef77ce3edf0c39f9c9c96ff}{SkipEq1}}\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a086713b96a564f9efff36c0471ea51b1}{SkipEq2}}\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ac267f143c409ce2cf47c988318d51d87}{SkipEq3}}\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a7032e682dc35d0b29c91e4cf20a47a99}{SkipEq4}}\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a04d0a55db3c5a6235796f2a78136bac1}{SkipEq5}}\ =\ 0;}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8c_a379830b0bea773473090e13eb4523d38}{Kalman\_Filter\_Measure}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 矩阵H\ K\ R根据量测情况自动调整}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (kf-\/>\mbox{\hyperlink{structkf__t_aacae7fb78e2d0a65c7a35a5f5c5bc347}{UseAutoAdjustment}}\ !=\ 0)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ H\_K\_R\_Adjustment(kf);\ \textcolor{comment}{//\ 调整矩阵H、K、R}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ memcpy(kf-\/>\mbox{\hyperlink{structkf__t_a2b97541cb865d4d3aa4f55dc5804ea0a}{z\_data}},\ kf-\/>\mbox{\hyperlink{structkf__t_ae926683324c8cc749f3063a5f0541540}{MeasuredVector}},\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}});\ \textcolor{comment}{//\ 直接将MeasuredVector赋值给z\_data}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_ae926683324c8cc749f3063a5f0541540}{MeasuredVector}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}});\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 清零MeasuredVector}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ memcpy(kf-\/>\mbox{\hyperlink{structkf__t_a659d3d824f9be8b87f7dbcf0d2293cfb}{u\_data}},\ kf-\/>\mbox{\hyperlink{structkf__t_a0caba10ed8328180a21b25ac1b9aa781}{ControlVector}},\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a4eea576fc145dfc1bfbd353a2261b882}{uSize}});\ \textcolor{comment}{//\ 将ControlVector赋值给u\_data}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8c_a573703c080ee84ef82f3f64e72240031}{Kalman\_Filter\_xhatMinusUpdate}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (!kf-\/>\mbox{\hyperlink{structkf__t_a8801f3c64ef77ce3edf0c39f9c9c96ff}{SkipEq1}})\ \textcolor{comment}{//\ 如果未跳过此步骤}}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (kf-\/>\mbox{\hyperlink{structkf__t_a4eea576fc145dfc1bfbd353a2261b882}{uSize}}\ >\ 0)\ \textcolor{comment}{//\ 如果存在控制输入}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\_vector}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}};\ \textcolor{comment}{//\ 设置临时矩阵的行数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\_vector}}.numCols\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 设置临时矩阵的列数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a707a57d1a8da30e985c2d0c226cf11da}{Matrix\_Multiply}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a78b76cf2c1f11cdd33f5c898830bdf19}{F}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_aa2ea7f9462b9bf18c77df16cac99a963}{xhat}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\_vector}});\ \textcolor{comment}{//\ 计算F·xhat(k-\/1)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_abed56537f3563836ffc5386507477553}{temp\_vector1}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}};\ \textcolor{comment}{//\ 设置另一个临时矩阵的行数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_abed56537f3563836ffc5386507477553}{temp\_vector1}}.numCols\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 设置另一个临时矩阵的列数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a707a57d1a8da30e985c2d0c226cf11da}{Matrix\_Multiply}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a07e09a5590d01942d9b4fb77a7d17203}{B}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a53328044559538e63098d8a520b867d2}{u}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_abed56537f3563836ffc5386507477553}{temp\_vector1}});\ \textcolor{comment}{//\ 计算B·u}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a03b5dfe2e54f8cd6440d80a9048cc817}{Matrix\_Add}}(\&kf-\/>\mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\_vector}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_abed56537f3563836ffc5386507477553}{temp\_vector1}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a7b9a97f2268c0a144d338ae7464c0cbe}{xhatminus}});\ \textcolor{comment}{//\ 计算F·xhat(k-\/1)\ +\ B·u}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a707a57d1a8da30e985c2d0c226cf11da}{Matrix\_Multiply}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a78b76cf2c1f11cdd33f5c898830bdf19}{F}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_aa2ea7f9462b9bf18c77df16cac99a963}{xhat}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a7b9a97f2268c0a144d338ae7464c0cbe}{xhatminus}});\ \textcolor{comment}{//\ 仅计算F·xhat(k-\/1)}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8c_adefde0d796e0eb0bf528683675ee958b}{Kalman\_Filter\_PminusUpdate}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (!kf-\/>\mbox{\hyperlink{structkf__t_a086713b96a564f9efff36c0471ea51b1}{SkipEq2}})\ \textcolor{comment}{//\ 如果未跳过此步骤}}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_ac07fbffffb51dff59dbc792de907585c}{Matrix\_Transpose}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a78b76cf2c1f11cdd33f5c898830bdf19}{F}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a30e94b3adedeb098cb75521b098f447e}{FT}});\ \textcolor{comment}{//\ 计算F的转置矩阵FT}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a707a57d1a8da30e985c2d0c226cf11da}{Matrix\_Multiply}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a78b76cf2c1f11cdd33f5c898830bdf19}{F}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a74f039cccf9631a5a800b8f9b2cb546c}{P}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}{Pminus}});\ \textcolor{comment}{//\ 计算F·P(k-\/1)}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}{Pminus}}.numRows;\ \textcolor{comment}{//\ 设置临时矩阵的行数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}}.numCols\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a30e94b3adedeb098cb75521b098f447e}{FT}}.numCols;\ \ \ \ \ \textcolor{comment}{//\ 设置临时矩阵的列数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a707a57d1a8da30e985c2d0c226cf11da}{Matrix\_Multiply}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}{Pminus}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a30e94b3adedeb098cb75521b098f447e}{FT}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}});\ \textcolor{comment}{//\ 计算F·P(k-\/1)·FT}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a03b5dfe2e54f8cd6440d80a9048cc817}{Matrix\_Add}}(\&kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a0f89d5950ba972e53e8e2f3347e2f09a}{Q}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}{Pminus}});\ \ \ \ \ \ \ \textcolor{comment}{//\ 计算F·P(k-\/1)·FT\ +\ Q}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8c_a42fe5e97c8911e25bea663cce9c28147}{Kalman\_Filter\_SetK}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (!kf-\/>\mbox{\hyperlink{structkf__t_ac267f143c409ce2cf47c988318d51d87}{SkipEq3}})\ \textcolor{comment}{//\ 如果未跳过此步骤}}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_ac07fbffffb51dff59dbc792de907585c}{Matrix\_Transpose}}(\&kf-\/>\mbox{\hyperlink{structkf__t_af2cc26ee60d8d5a12bbe8621cdd06938}{H}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_ae9a9e6636a02dfd087a9a4e885960288}{HT}});\ \textcolor{comment}{//\ 计算H的转置矩阵HT}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_af2cc26ee60d8d5a12bbe8621cdd06938}{H}}.numRows;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 设置临时矩阵的行数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}}.numCols\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}{Pminus}}.numCols;\ \ \ \ \ \ \textcolor{comment}{//\ 设置临时矩阵的列数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a707a57d1a8da30e985c2d0c226cf11da}{Matrix\_Multiply}}(\&kf-\/>\mbox{\hyperlink{structkf__t_af2cc26ee60d8d5a12bbe8621cdd06938}{H}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}{Pminus}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}});\ \textcolor{comment}{//\ 计算H·P'(k)}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_aef6a05cedd50597617652c8a5a5efe12}{temp\_matrix1}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}}.numRows;\ \textcolor{comment}{//\ 设置另一个临时矩阵的行数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_aef6a05cedd50597617652c8a5a5efe12}{temp\_matrix1}}.numCols\ =\ kf-\/>\mbox{\hyperlink{structkf__t_ae9a9e6636a02dfd087a9a4e885960288}{HT}}.numCols;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 设置另一个临时矩阵的列数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a707a57d1a8da30e985c2d0c226cf11da}{Matrix\_Multiply}}(\&kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_ae9a9e6636a02dfd087a9a4e885960288}{HT}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_aef6a05cedd50597617652c8a5a5efe12}{temp\_matrix1}});\ \textcolor{comment}{//\ 计算H·P'(k)·HT}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a7b4eb503b3b4a66148c45a4e262e3bd2}{S}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a017fe162c9ab70cf786ce699165a57ee}{R}}.numRows;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 设置S矩阵的行数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a7b4eb503b3b4a66148c45a4e262e3bd2}{S}}.numCols\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a017fe162c9ab70cf786ce699165a57ee}{R}}.numCols;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 设置S矩阵的列数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a03b5dfe2e54f8cd6440d80a9048cc817}{Matrix\_Add}}(\&kf-\/>\mbox{\hyperlink{structkf__t_aef6a05cedd50597617652c8a5a5efe12}{temp\_matrix1}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a017fe162c9ab70cf786ce699165a57ee}{R}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a7b4eb503b3b4a66148c45a4e262e3bd2}{S}});\ \textcolor{comment}{//\ 计算H·P'(k)·HT\ +\ R}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a2645a6a682e5ec8f4c4b481275b32add}{Matrix\_Inverse}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a7b4eb503b3b4a66148c45a4e262e3bd2}{S}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_aef6a05cedd50597617652c8a5a5efe12}{temp\_matrix1}});\ \ \ \ \ \textcolor{comment}{//\ 计算inv(H·P'(k)·HT\ +\ R)}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}{Pminus}}.numRows;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 设置临时矩阵的行数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}}.numCols\ =\ kf-\/>\mbox{\hyperlink{structkf__t_ae9a9e6636a02dfd087a9a4e885960288}{HT}}.numCols;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 设置临时矩阵的列数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a707a57d1a8da30e985c2d0c226cf11da}{Matrix\_Multiply}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}{Pminus}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_ae9a9e6636a02dfd087a9a4e885960288}{HT}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}});\ \textcolor{comment}{//\ 计算P'(k)·HT}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a707a57d1a8da30e985c2d0c226cf11da}{Matrix\_Multiply}}(\&kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_aef6a05cedd50597617652c8a5a5efe12}{temp\_matrix1}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a0ff1854028d19427556c5a3b59c31aaf}{K}});\ \textcolor{comment}{//\ 计算K(k)}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8c_ae260165c66e4e9d275a6b4c149fb5084}{Kalman\_Filter\_xhatUpdate}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (!kf-\/>\mbox{\hyperlink{structkf__t_a7032e682dc35d0b29c91e4cf20a47a99}{SkipEq4}})\ \textcolor{comment}{//\ 如果未跳过此步骤}}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\_vector}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_af2cc26ee60d8d5a12bbe8621cdd06938}{H}}.numRows;\ \textcolor{comment}{//\ 设置临时矩阵的行数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\_vector}}.numCols\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 设置临时矩阵的列数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a707a57d1a8da30e985c2d0c226cf11da}{Matrix\_Multiply}}(\&kf-\/>\mbox{\hyperlink{structkf__t_af2cc26ee60d8d5a12bbe8621cdd06938}{H}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a7b9a97f2268c0a144d338ae7464c0cbe}{xhatminus}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\_vector}});\ \textcolor{comment}{//\ 计算H·xhat'(k)}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_abed56537f3563836ffc5386507477553}{temp\_vector1}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_af647100e10ba6b34799788969278185f}{z}}.numRows;\ \textcolor{comment}{//\ 设置另一个临时矩阵的行数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_abed56537f3563836ffc5386507477553}{temp\_vector1}}.numCols\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 设置另一个临时矩阵的列数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_af84e9d4095af7fc1f5970ae82946cbb8}{Matrix\_Subtract}}(\&kf-\/>\mbox{\hyperlink{structkf__t_af647100e10ba6b34799788969278185f}{z}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\_vector}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_abed56537f3563836ffc5386507477553}{temp\_vector1}});\ \textcolor{comment}{//\ 计算z(k)\ -\/\ H·xhat'(k)}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\_vector}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a0ff1854028d19427556c5a3b59c31aaf}{K}}.numRows;\ \textcolor{comment}{//\ 设置临时矩阵的行数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\_vector}}.numCols\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 设置临时矩阵的列数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a707a57d1a8da30e985c2d0c226cf11da}{Matrix\_Multiply}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a0ff1854028d19427556c5a3b59c31aaf}{K}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_abed56537f3563836ffc5386507477553}{temp\_vector1}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\_vector}});\ \textcolor{comment}{//\ 计算K(k)·(z(k)\ -\/\ H·xhat'(k))}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a03b5dfe2e54f8cd6440d80a9048cc817}{Matrix\_Add}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a7b9a97f2268c0a144d338ae7464c0cbe}{xhatminus}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\_vector}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_aa2ea7f9462b9bf18c77df16cac99a963}{xhat}});\ \ \ \ \ \ \textcolor{comment}{//\ 计算xhat(k)}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8c_a2ca34138fbb07fe0befdfacf5d36336b}{Kalman\_Filter\_P\_Update}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (!kf-\/>\mbox{\hyperlink{structkf__t_a04d0a55db3c5a6235796f2a78136bac1}{SkipEq5}})\ \textcolor{comment}{//\ 如果未跳过此步骤}}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a0ff1854028d19427556c5a3b59c31aaf}{K}}.numRows;\ \textcolor{comment}{//\ 设置临时矩阵的行数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}}.numCols\ =\ kf-\/>\mbox{\hyperlink{structkf__t_af2cc26ee60d8d5a12bbe8621cdd06938}{H}}.numCols;\ \textcolor{comment}{//\ 设置临时矩阵的列数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a707a57d1a8da30e985c2d0c226cf11da}{Matrix\_Multiply}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a0ff1854028d19427556c5a3b59c31aaf}{K}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_af2cc26ee60d8d5a12bbe8621cdd06938}{H}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}});\ \textcolor{comment}{//\ 计算K(k)·H}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_aef6a05cedd50597617652c8a5a5efe12}{temp\_matrix1}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}}.numRows;\ \textcolor{comment}{//\ 设置另一个临时矩阵的行数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_aef6a05cedd50597617652c8a5a5efe12}{temp\_matrix1}}.numCols\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}{Pminus}}.numCols;\ \ \ \ \ \ \textcolor{comment}{//\ 设置另一个临时矩阵的列数}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_a707a57d1a8da30e985c2d0c226cf11da}{Matrix\_Multiply}}(\&kf-\/>\mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}{Pminus}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_aef6a05cedd50597617652c8a5a5efe12}{temp\_matrix1}});\ \textcolor{comment}{//\ 计算K(k)·H·P'(k)}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}}\ =\ \mbox{\hyperlink{kalman__filter_8h_af84e9d4095af7fc1f5970ae82946cbb8}{Matrix\_Subtract}}(\&kf-\/>\mbox{\hyperlink{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}{Pminus}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_aef6a05cedd50597617652c8a5a5efe12}{temp\_matrix1}},\ \&kf-\/>\mbox{\hyperlink{structkf__t_a74f039cccf9631a5a800b8f9b2cb546c}{P}});\ \textcolor{comment}{//\ 计算P(k)}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordtype}{float}\ *\mbox{\hyperlink{kalman__filter_8c_ae52e87083cda5ca6e918768312c424f7}{Kalman\_Filter\_Update}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 0.\ 获取量测信息}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8c_a379830b0bea773473090e13eb4523d38}{Kalman\_Filter\_Measure}}(kf);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (kf-\/>\mbox{\hyperlink{structkf__t_a16137a074af0e04ba4173b5dbf96632c}{User\_Func0\_f}}\ !=\ NULL)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a16137a074af0e04ba4173b5dbf96632c}{User\_Func0\_f}}(kf);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 先验估计}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 1.\ xhat'(k)=\ A·xhat(k-\/1)\ +\ B·u}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8c_a573703c080ee84ef82f3f64e72240031}{Kalman\_Filter\_xhatMinusUpdate}}(kf);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (kf-\/>\mbox{\hyperlink{structkf__t_a979e3a04bc4f5880cb01ec2040164165}{User\_Func1\_f}}\ !=\ NULL)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a979e3a04bc4f5880cb01ec2040164165}{User\_Func1\_f}}(kf);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 预测更新}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 2.\ P'(k)\ =\ A·P(k-\/1)·AT\ +\ Q}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{kalman__filter_8c_adefde0d796e0eb0bf528683675ee958b}{Kalman\_Filter\_PminusUpdate}}(kf);}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (kf-\/>\mbox{\hyperlink{structkf__t_abfff389f90ceb75b1817c22bb09e5b63}{User\_Func2\_f}}\ !=\ NULL)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_abfff389f90ceb75b1817c22bb09e5b63}{User\_Func2\_f}}(kf);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}}\ !=\ 0\ ||\ kf-\/>\mbox{\hyperlink{structkf__t_aacae7fb78e2d0a65c7a35a5f5c5bc347}{UseAutoAdjustment}}\ ==\ 0)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 量测更新}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ K(k)\ =\ P'(k)·HT\ /\ (H·P'(k)·HT\ +\ R)}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{kalman__filter_8c_a42fe5e97c8911e25bea663cce9c28147}{Kalman\_Filter\_SetK}}(kf);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (kf-\/>\mbox{\hyperlink{structkf__t_a39f829c803f81367d2a14f5058187060}{User\_Func3\_f}}\ !=\ NULL)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a39f829c803f81367d2a14f5058187060}{User\_Func3\_f}}(kf);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 融合}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4.\ xhat(k)\ =\ xhat'(k)\ +\ K(k)·(z(k)\ -\/\ H·xhat'(k))}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{kalman__filter_8c_ae260165c66e4e9d275a6b4c149fb5084}{Kalman\_Filter\_xhatUpdate}}(kf);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (kf-\/>\mbox{\hyperlink{structkf__t_afca9666e3890621c10e1522d2f9542cc}{User\_Func4\_f}}\ !=\ NULL)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_afca9666e3890621c10e1522d2f9542cc}{User\_Func4\_f}}(kf);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 修正方差}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 5.\ P(k)\ =\ (1-\/K(k)·H)·P'(k)\ ==>\ P(k)\ =\ P'(k)-\/K(k)·H·P'(k)}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{kalman__filter_8c_a2ca34138fbb07fe0befdfacf5d36336b}{Kalman\_Filter\_P\_Update}}(kf);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 无有效量测,仅预测}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ xhat(k)\ =\ xhat'(k)}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ P(k)\ =\ P'(k)}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ memcpy(kf-\/>\mbox{\hyperlink{structkf__t_aa1927108c8d1b9382ee4c19cbb32ebde}{xhat\_data}},\ kf-\/>\mbox{\hyperlink{structkf__t_a5806d9109aa4a640002f99a9c84f079d}{xhatminus\_data}},\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ memcpy(kf-\/>\mbox{\hyperlink{structkf__t_a1d9fe52e628416690d5277170f631aa1}{P\_data}},\ kf-\/>\mbox{\hyperlink{structkf__t_aecec674d774ea09e4debaa3ca68a10e2}{Pminus\_data}},\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}});}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 自定义函数,可以提供后处理等}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (kf-\/>\mbox{\hyperlink{structkf__t_a9d035506cd3876706946c46311888c3e}{User\_Func5\_f}}\ !=\ NULL)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a9d035506cd3876706946c46311888c3e}{User\_Func5\_f}}(kf);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 避免滤波器过度收敛}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ suppress\ filter\ excessive\ convergence}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}};\ i++)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (kf-\/>\mbox{\hyperlink{structkf__t_a1d9fe52e628416690d5277170f631aa1}{P\_data}}[i\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}}\ +\ i]\ <\ kf-\/>\mbox{\hyperlink{structkf__t_a24d081f2d09f585a02df31eccd31d007}{StateMinVariance}}[i])}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a1d9fe52e628416690d5277170f631aa1}{P\_data}}[i\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}}\ +\ i]\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a24d081f2d09f585a02df31eccd31d007}{StateMinVariance}}[i];}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ memcpy(kf-\/>\mbox{\hyperlink{structkf__t_a3948ec43c6a2d50c0b10c311a8eaec64}{FilteredValue}},\ kf-\/>\mbox{\hyperlink{structkf__t_aa1927108c8d1b9382ee4c19cbb32ebde}{xhat\_data}},\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (kf-\/>\mbox{\hyperlink{structkf__t_a7e8c79839600aa92c54d851ab61566f3}{User\_Func6\_f}}\ !=\ NULL)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a7e8c79839600aa92c54d851ab61566f3}{User\_Func6\_f}}(kf);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ kf-\/>\mbox{\hyperlink{structkf__t_a3948ec43c6a2d50c0b10c311a8eaec64}{FilteredValue}};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ H\_K\_R\_Adjustment(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}}\ =\ 0;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ memcpy(kf-\/>\mbox{\hyperlink{structkf__t_a2b97541cb865d4d3aa4f55dc5804ea0a}{z\_data}},\ kf-\/>\mbox{\hyperlink{structkf__t_ae926683324c8cc749f3063a5f0541540}{MeasuredVector}},\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}});}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_ae926683324c8cc749f3063a5f0541540}{MeasuredVector}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}});}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 识别量测数据有效性并调整矩阵H\ R\ K}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ recognize\ measurement\ validity\ and\ adjust\ matrices\ H\ R\ K}}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_a648c9b7f0a344e7b6ddadedf992780f6}{R\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}});}
+\DoxyCodeLine{\ \ \ \ memset(kf-\/>\mbox{\hyperlink{structkf__t_aa91dda3d8c36d494b971571a29c9e322}{H\_data}},\ 0,\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}});}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ kf-\/>\mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}};\ i++)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (kf-\/>\mbox{\hyperlink{structkf__t_a2b97541cb865d4d3aa4f55dc5804ea0a}{z\_data}}[i]\ !=\ 0)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 重构向量z}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ rebuild\ vector\ z}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a2b97541cb865d4d3aa4f55dc5804ea0a}{z\_data}}[kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}}]\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a2b97541cb865d4d3aa4f55dc5804ea0a}{z\_data}}[i];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ac96c84c5cc037c8f88826bb70cbb2e9a}{temp}}[kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}}]\ =\ i;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 重构矩阵H}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ rebuild\ matrix\ H}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_aa91dda3d8c36d494b971571a29c9e322}{H\_data}}[kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}}\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}}\ +\ kf-\/>\mbox{\hyperlink{structkf__t_af940b115d8ac7b7a0d5f7bc3921b0bd6}{MeasurementMap}}[i]\ -\/\ 1]\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a2726464065cd9a1c8b8922b40ea0082a}{MeasurementDegree}}[i];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}}++;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}};\ i++)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 重构矩阵R}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ rebuild\ matrix\ R}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a648c9b7f0a344e7b6ddadedf992780f6}{R\_data}}[i\ *\ kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}}\ +\ i]\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a715fe71f2f0e3fa895ff673812874ec1}{MatR\_DiagonalElements}}[kf-\/>\mbox{\hyperlink{structkf__t_ac96c84c5cc037c8f88826bb70cbb2e9a}{temp}}[i]];}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 调整矩阵维数}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ adjust\ the\ dimensions\ of\ system\ matrices}}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_af2cc26ee60d8d5a12bbe8621cdd06938}{H}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}};}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_af2cc26ee60d8d5a12bbe8621cdd06938}{H}}.numCols\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}};}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ae9a9e6636a02dfd087a9a4e885960288}{HT}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}};}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_ae9a9e6636a02dfd087a9a4e885960288}{HT}}.numCols\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}};}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a017fe162c9ab70cf786ce699165a57ee}{R}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}};}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a017fe162c9ab70cf786ce699165a57ee}{R}}.numCols\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}};}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a0ff1854028d19427556c5a3b59c31aaf}{K}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}};}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_a0ff1854028d19427556c5a3b59c31aaf}{K}}.numCols\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}};}
+\DoxyCodeLine{\ \ \ \ kf-\/>\mbox{\hyperlink{structkf__t_af647100e10ba6b34799788969278185f}{z}}.numRows\ =\ kf-\/>\mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+
+\end{DoxyCodeInclude}
+ 

@@ -14,7 +14,7 @@ typedef struct
 
 }DJI_motor_t;
 
-void set_motor_voltage(DJI_motor_t *msg,int16_t v1,int16_t v2,int16_t v3,int16_t v4);
+void set_motor_parameter(DJI_motor_t *msg,int16_t v1,int16_t v2,int16_t v3,int16_t v4);
 void Motor_DJI_Init(DJI_motor_t *motor);
 void Motor_DJI_Refresh(DJI_motor_t *motor);
 #endif // MOTOR_DJI_H

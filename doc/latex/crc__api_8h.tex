@@ -1,0 +1,93 @@
+\doxysection{source/bsp/crc/crc\+\_\+api.h 文件参考}
+\hypertarget{crc__api_8h}{}\label{crc__api_8h}\index{source/bsp/crc/crc\_api.h@{source/bsp/crc/crc\_api.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+crc\+\_\+api.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=177pt]{crc__api_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{crc__api_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{crc__api_8h_a420d92853d7d7f9712915310047a0476}{CRC\+\_\+\+Check\+\_\+\+False}}~0
+\item 
+\#define \mbox{\hyperlink{crc__api_8h_acf7ae23437ab6dd9c41f43ccbbfc19c6}{CRC\+\_\+\+Check\+\_\+\+True}}~1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+unsigned char \mbox{\hyperlink{crc__api_8h_ad08438585d98c13e70fc0fa50d811607}{Get\+\_\+\+CRC8\+\_\+\+Check\+\_\+\+Sum}} (unsigned char \texorpdfstring{$\ast$}{*}pch\+Message, unsigned int dw\+Length, unsigned char uc\+CRC8)
+\item 
+unsigned int \mbox{\hyperlink{crc__api_8h_a59cbf0c4fa053609ab2a37129f644751}{Verify\+\_\+\+CRC8\+\_\+\+Check\+\_\+\+Sum}} (unsigned char \texorpdfstring{$\ast$}{*}pch\+Message, unsigned int dw\+Length)
+\item 
+void \mbox{\hyperlink{crc__api_8h_a6597501f13b4c73b399ef72ad9db8b24}{Append\+\_\+\+CRC8\+\_\+\+Check\+\_\+\+Sum}} (unsigned char \texorpdfstring{$\ast$}{*}pch\+Message, unsigned int dw\+Length)
+\item 
+uint16\+\_\+t \mbox{\hyperlink{crc__api_8h_a928a76d69162e1145e02cd538250fe91}{Get\+\_\+\+CRC16\+\_\+\+Check\+\_\+\+Sum}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}pch\+Message, uint32\+\_\+t dw\+Length, uint16\+\_\+t w\+CRC)
+\item 
+uint32\+\_\+t \mbox{\hyperlink{crc__api_8h_ad713b5a9da8d5c59d5e067ae6ecd25ac}{Verify\+\_\+\+CRC16\+\_\+\+Check\+\_\+\+Sum}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}pch\+Message, uint32\+\_\+t dw\+Length)
+\item 
+void \mbox{\hyperlink{crc__api_8h_ab64afc0e5dec0d04dee81fb98c274894}{Append\+\_\+\+CRC16\+\_\+\+Check\+\_\+\+Sum}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}pch\+Message, uint32\+\_\+t dw\+Length)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{宏定义说明}
+\Hypertarget{crc__api_8h_a420d92853d7d7f9712915310047a0476}\index{crc\_api.h@{crc\_api.h}!CRC\_Check\_False@{CRC\_Check\_False}}
+\index{CRC\_Check\_False@{CRC\_Check\_False}!crc\_api.h@{crc\_api.h}}
+\doxysubsubsection{\texorpdfstring{CRC\_Check\_False}{CRC\_Check\_False}}
+{\footnotesize\ttfamily \label{crc__api_8h_a420d92853d7d7f9712915310047a0476} 
+\#define CRC\+\_\+\+Check\+\_\+\+False~0}
+
+\Hypertarget{crc__api_8h_acf7ae23437ab6dd9c41f43ccbbfc19c6}\index{crc\_api.h@{crc\_api.h}!CRC\_Check\_True@{CRC\_Check\_True}}
+\index{CRC\_Check\_True@{CRC\_Check\_True}!crc\_api.h@{crc\_api.h}}
+\doxysubsubsection{\texorpdfstring{CRC\_Check\_True}{CRC\_Check\_True}}
+{\footnotesize\ttfamily \label{crc__api_8h_acf7ae23437ab6dd9c41f43ccbbfc19c6} 
+\#define CRC\+\_\+\+Check\+\_\+\+True~1}
+
+
+
+\doxysubsection{函数说明}
+\Hypertarget{crc__api_8h_ab64afc0e5dec0d04dee81fb98c274894}\index{crc\_api.h@{crc\_api.h}!Append\_CRC16\_Check\_Sum@{Append\_CRC16\_Check\_Sum}}
+\index{Append\_CRC16\_Check\_Sum@{Append\_CRC16\_Check\_Sum}!crc\_api.h@{crc\_api.h}}
+\doxysubsubsection{\texorpdfstring{Append\_CRC16\_Check\_Sum()}{Append\_CRC16\_Check\_Sum()}}
+{\footnotesize\ttfamily \label{crc__api_8h_ab64afc0e5dec0d04dee81fb98c274894} 
+void Append\+\_\+\+CRC16\+\_\+\+Check\+\_\+\+Sum (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{pch\+Message}{, }\item[{uint32\+\_\+t}]{dw\+Length}{}\end{DoxyParamCaption})}
+
+\Hypertarget{crc__api_8h_a6597501f13b4c73b399ef72ad9db8b24}\index{crc\_api.h@{crc\_api.h}!Append\_CRC8\_Check\_Sum@{Append\_CRC8\_Check\_Sum}}
+\index{Append\_CRC8\_Check\_Sum@{Append\_CRC8\_Check\_Sum}!crc\_api.h@{crc\_api.h}}
+\doxysubsubsection{\texorpdfstring{Append\_CRC8\_Check\_Sum()}{Append\_CRC8\_Check\_Sum()}}
+{\footnotesize\ttfamily \label{crc__api_8h_a6597501f13b4c73b399ef72ad9db8b24} 
+void Append\+\_\+\+CRC8\+\_\+\+Check\+\_\+\+Sum (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{pch\+Message}{, }\item[{unsigned int}]{dw\+Length}{}\end{DoxyParamCaption})}
+
+\Hypertarget{crc__api_8h_a928a76d69162e1145e02cd538250fe91}\index{crc\_api.h@{crc\_api.h}!Get\_CRC16\_Check\_Sum@{Get\_CRC16\_Check\_Sum}}
+\index{Get\_CRC16\_Check\_Sum@{Get\_CRC16\_Check\_Sum}!crc\_api.h@{crc\_api.h}}
+\doxysubsubsection{\texorpdfstring{Get\_CRC16\_Check\_Sum()}{Get\_CRC16\_Check\_Sum()}}
+{\footnotesize\ttfamily \label{crc__api_8h_a928a76d69162e1145e02cd538250fe91} 
+uint16\+\_\+t Get\+\_\+\+CRC16\+\_\+\+Check\+\_\+\+Sum (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{pch\+Message}{, }\item[{uint32\+\_\+t}]{dw\+Length}{, }\item[{uint16\+\_\+t}]{w\+CRC}{}\end{DoxyParamCaption})}
+
+\Hypertarget{crc__api_8h_ad08438585d98c13e70fc0fa50d811607}\index{crc\_api.h@{crc\_api.h}!Get\_CRC8\_Check\_Sum@{Get\_CRC8\_Check\_Sum}}
+\index{Get\_CRC8\_Check\_Sum@{Get\_CRC8\_Check\_Sum}!crc\_api.h@{crc\_api.h}}
+\doxysubsubsection{\texorpdfstring{Get\_CRC8\_Check\_Sum()}{Get\_CRC8\_Check\_Sum()}}
+{\footnotesize\ttfamily \label{crc__api_8h_ad08438585d98c13e70fc0fa50d811607} 
+unsigned char Get\+\_\+\+CRC8\+\_\+\+Check\+\_\+\+Sum (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{pch\+Message}{, }\item[{unsigned int}]{dw\+Length}{, }\item[{unsigned char}]{uc\+CRC8}{}\end{DoxyParamCaption})}
+
+\Hypertarget{crc__api_8h_ad713b5a9da8d5c59d5e067ae6ecd25ac}\index{crc\_api.h@{crc\_api.h}!Verify\_CRC16\_Check\_Sum@{Verify\_CRC16\_Check\_Sum}}
+\index{Verify\_CRC16\_Check\_Sum@{Verify\_CRC16\_Check\_Sum}!crc\_api.h@{crc\_api.h}}
+\doxysubsubsection{\texorpdfstring{Verify\_CRC16\_Check\_Sum()}{Verify\_CRC16\_Check\_Sum()}}
+{\footnotesize\ttfamily \label{crc__api_8h_ad713b5a9da8d5c59d5e067ae6ecd25ac} 
+uint32\+\_\+t Verify\+\_\+\+CRC16\+\_\+\+Check\+\_\+\+Sum (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{pch\+Message}{, }\item[{uint32\+\_\+t}]{dw\+Length}{}\end{DoxyParamCaption})}
+
+\Hypertarget{crc__api_8h_a59cbf0c4fa053609ab2a37129f644751}\index{crc\_api.h@{crc\_api.h}!Verify\_CRC8\_Check\_Sum@{Verify\_CRC8\_Check\_Sum}}
+\index{Verify\_CRC8\_Check\_Sum@{Verify\_CRC8\_Check\_Sum}!crc\_api.h@{crc\_api.h}}
+\doxysubsubsection{\texorpdfstring{Verify\_CRC8\_Check\_Sum()}{Verify\_CRC8\_Check\_Sum()}}
+{\footnotesize\ttfamily \label{crc__api_8h_a59cbf0c4fa053609ab2a37129f644751} 
+unsigned int Verify\+\_\+\+CRC8\+\_\+\+Check\+\_\+\+Sum (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{pch\+Message}{, }\item[{unsigned int}]{dw\+Length}{}\end{DoxyParamCaption})}
+

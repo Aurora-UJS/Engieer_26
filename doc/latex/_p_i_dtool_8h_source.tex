@@ -1,0 +1,38 @@
+\doxysection{PIDtool.\+h}
+\hypertarget{_p_i_dtool_8h_source}{}\label{_p_i_dtool_8h_source}\index{source/module/control/PID/PIDtool.h@{source/module/control/PID/PIDtool.h}}
+\mbox{\hyperlink{_p_i_dtool_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PIDTOOL}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PIDTOOL}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00005\ \{}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{comment}{//PID\ 三参数}}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structpid__type__def_a09cfc766a233ad617270562cc4146d07}{Kp}};}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structpid__type__def_a59fac16f568541187ff485c4c47b0ec5}{Ki}};}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structpid__type__def_a98268d71502ba080d88a9b1f50fdbe80}{Kd}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structpid__type__def_a85c8c8a48a30fb250786e7a8323150e2}{max\_out}};\ \ \textcolor{comment}{//最大输出}}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structpid__type__def_afc60f715700ddb5c178549baf8323d66}{max\_iout}};\ \textcolor{comment}{//最大积分输出}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structpid__type__def_a3947d9ef6572043cc82fff9588e2d797}{set}};}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structpid__type__def_aab9962b5dde059a7b3a5f5ff275f9c1f}{fdb}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structpid__type__def_af5a45dbcaa926b186e6f71d08212acc3}{out}};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structpid__type__def_ab32c457118f9127d0eb153d62dcb1c82}{Pout}};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structpid__type__def_a8ae85fa4e49960954a2c1c49b6823ae8}{Iout}};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structpid__type__def_a88579585adcc4d8815c02b4218f7d273}{Dout}};}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structpid__type__def_a7c6e4989493fcc3dc69e28ec5cf65792}{Dbuf}}[3];\ \ \textcolor{comment}{//微分项\ 0最新\ 1上一次\ 2上上次}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structpid__type__def_ac5f331fab6fd7dbfa39d4602baa1eed0}{error}}[3];\ \textcolor{comment}{//误差项\ 0最新\ 1上一次\ 2上上次}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \}\ \mbox{\hyperlink{structpid__type__def}{pid\_type\_def}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_p_i_dtool_8h_aa377f5768c06393ee8584b95f4838619}{PID\_Init}}(\mbox{\hyperlink{structpid__type__def}{pid\_type\_def}}\ *pid,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ kp,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ ki,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ kd,\ \textcolor{keywordtype}{float}\ max\_out,\ \textcolor{keywordtype}{float}\ max\_iout);}
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_p_i_dtool_8h_aa0095f495acfcd52136c806babcf8865}{PID\_Calc\_Add}}(\mbox{\hyperlink{structpid__type__def}{pid\_type\_def}}\ *pid,\ \textcolor{keywordtype}{float}\ now,\ \textcolor{keywordtype}{float}\ target);}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_p_i_dtool_8h_a9e5b99371019f97d2bd86e3bbcdd9aab}{PID\_Calc\_Pos}}(\mbox{\hyperlink{structpid__type__def}{pid\_type\_def}}\ *pid,\ \textcolor{keywordtype}{float}\ now,\ \textcolor{keywordtype}{float}\ target);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !PIDTOOL}}
+
+\end{DoxyCode}

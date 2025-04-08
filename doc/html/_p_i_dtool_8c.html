@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/control/PID/PIDtool.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_25ff6885a748b7ac678af6e47152e090.html">control</a></li><li class="navelem"><a class="el" href="dir_29266fb8dd14c24b87a94900a1b82f33.html">PID</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">PIDtool.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="_p_i_dtool_8h_source.html">PIDtool.h</a>&quot;</code><br />
+<code>#include &quot;stdint.h&quot;</code><br />
+<code>#include &quot;string.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="tool_8h_source.html">tool.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+PIDtool.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="_p_i_dtool_8c__incl.png" border="0" usemap="#asource_2module_2control_2_p_i_d_2_p_i_dtool_8c" alt=""/></div>
+<map name="asource_2module_2control_2_p_i_d_2_p_i_dtool_8c" id="asource_2module_2control_2_p_i_d_2_p_i_dtool_8c">
+<area shape="rect" title=" " alt="" coords="108,5,257,48"/>
+<area shape="rect" href="_p_i_dtool_8h.html" title=" " alt="" coords="5,96,82,123"/>
+<area shape="poly" title=" " alt="" coords="148,51,79,90,77,86,145,46"/>
+<area shape="rect" title=" " alt="" coords="106,96,170,123"/>
+<area shape="poly" title=" " alt="" coords="173,50,155,83,150,81,168,47"/>
+<area shape="rect" title=" " alt="" coords="194,96,258,123"/>
+<area shape="poly" title=" " alt="" coords="196,47,214,81,210,83,191,50"/>
+<area shape="rect" href="tool_8h.html" title=" " alt="" coords="282,96,336,123"/>
+<area shape="poly" title=" " alt="" coords="216,46,278,85,275,90,213,51"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:aa377f5768c06393ee8584b95f4838619" id="r_aa377f5768c06393ee8584b95f4838619"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa377f5768c06393ee8584b95f4838619">PID_Init</a> (<a class="el" href="structpid__type__def.html">pid_type_def</a> *pid, const float kp, const float ki, const float kd, float max_out, float max_iout)</td></tr>
+<tr class="memdesc:aa377f5768c06393ee8584b95f4838619"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化PID控制器  <br /></td></tr>
+<tr class="separator:aa377f5768c06393ee8584b95f4838619"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0095f495acfcd52136c806babcf8865" id="r_aa0095f495acfcd52136c806babcf8865"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0095f495acfcd52136c806babcf8865">PID_Calc_Add</a> (<a class="el" href="structpid__type__def.html">pid_type_def</a> *pid, float now, float target)</td></tr>
+<tr class="memdesc:aa0095f495acfcd52136c806babcf8865"><td class="mdescLeft">&#160;</td><td class="mdescRight">计算增量式PID控制器输出  <br /></td></tr>
+<tr class="separator:aa0095f495acfcd52136c806babcf8865"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e5b99371019f97d2bd86e3bbcdd9aab" id="r_a9e5b99371019f97d2bd86e3bbcdd9aab"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e5b99371019f97d2bd86e3bbcdd9aab">PID_Calc_Pos</a> (<a class="el" href="structpid__type__def.html">pid_type_def</a> *pid, float now, float target)</td></tr>
+<tr class="memdesc:a9e5b99371019f97d2bd86e3bbcdd9aab"><td class="mdescLeft">&#160;</td><td class="mdescRight">计算位置式PID控制器输出  <br /></td></tr>
+<tr class="separator:a9e5b99371019f97d2bd86e3bbcdd9aab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="aa0095f495acfcd52136c806babcf8865" name="aa0095f495acfcd52136c806babcf8865"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0095f495acfcd52136c806babcf8865">&#9670;&#160;</a></span>PID_Calc_Add()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PID_Calc_Add </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structpid__type__def.html">pid_type_def</a> *</td>          <td class="paramname"><span class="paramname"><em>pid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>now</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>target</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>计算增量式PID控制器输出 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pid</td><td>pid控制器结构体 </td></tr>
+    <tr><td class="paramname">now</td><td>当前值 </td></tr>
+    <tr><td class="paramname">target</td><td>目标值 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>float 输出值 </dd></dl>
+
+</div>
+</div>
+<a id="a9e5b99371019f97d2bd86e3bbcdd9aab" name="a9e5b99371019f97d2bd86e3bbcdd9aab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e5b99371019f97d2bd86e3bbcdd9aab">&#9670;&#160;</a></span>PID_Calc_Pos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float PID_Calc_Pos </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structpid__type__def.html">pid_type_def</a> *</td>          <td class="paramname"><span class="paramname"><em>pid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>now</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>target</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>计算位置式PID控制器输出 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pid</td><td>pid控制器结构体 </td></tr>
+    <tr><td class="paramname">now</td><td>当前值 </td></tr>
+    <tr><td class="paramname">target</td><td>目标值 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>float 输出值 </dd></dl>
+
+</div>
+</div>
+<a id="aa377f5768c06393ee8584b95f4838619" name="aa377f5768c06393ee8584b95f4838619"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa377f5768c06393ee8584b95f4838619">&#9670;&#160;</a></span>PID_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PID_Init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structpid__type__def.html">pid_type_def</a> *</td>          <td class="paramname"><span class="paramname"><em>pid</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>kp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>ki</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float</td>          <td class="paramname"><span class="paramname"><em>kd</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>max_out</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>max_iout</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初始化PID控制器 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pid</td><td>pid控制器结构体 </td></tr>
+    <tr><td class="paramname">kp</td><td>比例系数 </td></tr>
+    <tr><td class="paramname">ki</td><td>积分系数 </td></tr>
+    <tr><td class="paramname">kd</td><td>微分系数 </td></tr>
+    <tr><td class="paramname">max_out</td><td>输出最大值 </td></tr>
+    <tr><td class="paramname">max_iout</td><td>积分输出最大值 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,67 @@
+\doxysection{source/module/control/\+Kinematic\+Solution/\+Omni\+AMecanum/omni\+\_\+mecanum\+\_\+kinematics.h 文件参考}
+\hypertarget{omni__mecanum__kinematics_8h}{}\label{omni__mecanum__kinematics_8h}\index{source/module/control/KinematicSolution/OmniAMecanum/omni\_mecanum\_kinematics.h@{source/module/control/KinematicSolution/OmniAMecanum/omni\_mecanum\_kinematics.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}motion\+\_\+state.\+h"{}}\newline
+omni\+\_\+mecanum\+\_\+kinematics.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{omni__mecanum__kinematics_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{omni__mecanum__kinematics_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{omni__mecanum__kinematics_8h_a793975f5306f8a3fb93ce9c35a0a1a8d}{CHASSIS\+\_\+\+WZ\+\_\+\+SET\+\_\+\+SCALE}}~(0.\+0f)
+\item 
+\#define \mbox{\hyperlink{omni__mecanum__kinematics_8h_ac38e7936c4eef74427fceafecc5b3996}{MOTOR\+\_\+\+DISTANCE\+\_\+\+TO\+\_\+\+CENTER}}~(1.\+2f)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{omni__mecanum__kinematics_8h_af99357e7a51caf648d37258ad1e34c47}{omni\+\_\+mecanum\+\_\+kinematics}} (\mbox{\hyperlink{structbasic__vector__t}{basic\+\_\+vector\+\_\+t}} \texorpdfstring{$\ast$}{*}motion\+\_\+vector, float \texorpdfstring{$\ast$}{*}motor\+\_\+speed\+\_\+out)
+\begin{DoxyCompactList}\small\item\em 计算全向轮（麦克纳姆轮）的运动学 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{宏定义说明}
+\Hypertarget{omni__mecanum__kinematics_8h_a793975f5306f8a3fb93ce9c35a0a1a8d}\index{omni\_mecanum\_kinematics.h@{omni\_mecanum\_kinematics.h}!CHASSIS\_WZ\_SET\_SCALE@{CHASSIS\_WZ\_SET\_SCALE}}
+\index{CHASSIS\_WZ\_SET\_SCALE@{CHASSIS\_WZ\_SET\_SCALE}!omni\_mecanum\_kinematics.h@{omni\_mecanum\_kinematics.h}}
+\doxysubsubsection{\texorpdfstring{CHASSIS\_WZ\_SET\_SCALE}{CHASSIS\_WZ\_SET\_SCALE}}
+{\footnotesize\ttfamily \label{omni__mecanum__kinematics_8h_a793975f5306f8a3fb93ce9c35a0a1a8d} 
+\#define CHASSIS\+\_\+\+WZ\+\_\+\+SET\+\_\+\+SCALE~(0.\+0f)}
+
+\Hypertarget{omni__mecanum__kinematics_8h_ac38e7936c4eef74427fceafecc5b3996}\index{omni\_mecanum\_kinematics.h@{omni\_mecanum\_kinematics.h}!MOTOR\_DISTANCE\_TO\_CENTER@{MOTOR\_DISTANCE\_TO\_CENTER}}
+\index{MOTOR\_DISTANCE\_TO\_CENTER@{MOTOR\_DISTANCE\_TO\_CENTER}!omni\_mecanum\_kinematics.h@{omni\_mecanum\_kinematics.h}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_DISTANCE\_TO\_CENTER}{MOTOR\_DISTANCE\_TO\_CENTER}}
+{\footnotesize\ttfamily \label{omni__mecanum__kinematics_8h_ac38e7936c4eef74427fceafecc5b3996} 
+\#define MOTOR\+\_\+\+DISTANCE\+\_\+\+TO\+\_\+\+CENTER~(1.\+2f)}
+
+
+
+\doxysubsection{函数说明}
+\Hypertarget{omni__mecanum__kinematics_8h_af99357e7a51caf648d37258ad1e34c47}\index{omni\_mecanum\_kinematics.h@{omni\_mecanum\_kinematics.h}!omni\_mecanum\_kinematics@{omni\_mecanum\_kinematics}}
+\index{omni\_mecanum\_kinematics@{omni\_mecanum\_kinematics}!omni\_mecanum\_kinematics.h@{omni\_mecanum\_kinematics.h}}
+\doxysubsubsection{\texorpdfstring{omni\_mecanum\_kinematics()}{omni\_mecanum\_kinematics()}}
+{\footnotesize\ttfamily \label{omni__mecanum__kinematics_8h_af99357e7a51caf648d37258ad1e34c47} 
+void omni\+\_\+mecanum\+\_\+kinematics (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbasic__vector__t}{basic\+\_\+vector\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motion\+\_\+vector}{, }\item[{float \texorpdfstring{$\ast$}{*}}]{motor\+\_\+speed\+\_\+out}{}\end{DoxyParamCaption})}
+
+
+
+计算全向轮（麦克纳姆轮）的运动学 
+
+该函数根据机器人的运动矢量（x方向速度、y方向速度和旋转速度）计算四个麦克纳姆轮的电机速度输出。 这使得机器人可以根据给定的运动矢量以全向方式移动。
+
+
+\begin{DoxyParams}{参数}
+{\em motion\+\_\+vector} & 指向包含机器人运动矢量的结构体指针，包括x、y方向速度和旋转速度wz \\
+\hline
+{\em motor\+\_\+speed\+\_\+out} & 指向用于存储计算出的四个电机速度输出的数组 \\
+\hline
+\end{DoxyParams}

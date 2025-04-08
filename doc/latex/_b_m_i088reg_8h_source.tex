@@ -1,0 +1,186 @@
+\doxysection{BMI088reg.\+h}
+\hypertarget{_b_m_i088reg_8h_source}{}\label{_b_m_i088reg_8h_source}\index{source/bsp/imu/BMI088/inc/BMI088reg.h@{source/bsp/imu/BMI088/inc/BMI088reg.h}}
+\mbox{\hyperlink{_b_m_i088reg_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BMI088REG\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BMI088REG\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_CHIP\_ID\ 0x00\ }\textcolor{comment}{//\ the\ register\ is\ \ "{}\ Who\ am\ I\ "{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_CHIP\_ID\_VALUE\ 0x1E}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_ERR\_REG\ 0x02}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ BMI088\_ACCEL\_CONGIF\_ERROR\_SHFITS\ 0x2}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ BMI088\_ACCEL\_CONGIF\_ERROR\ (1\ <<\ BMI088\_ACCEL\_CONGIF\_ERROR\_SHFITS)}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ BMI088\_FATAL\_ERROR\_SHFITS\ 0x0}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ BMI088\_FATAL\_ERROR\ (1\ <<\ BMI088\_FATAL\_ERROR)}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_STATUS\ 0x03}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ BMI088\_ACCEL\_DRDY\_SHFITS\ 0x7}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ BMI088\_ACCEL\_DRDY\ (1\ <<\ BMI088\_ACCEL\_DRDY\_SHFITS)}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ BMI088\_ACCEL\_XOUT\_L\ 0x12}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ BMI088\_ACCEL\_XOUT\_M\ 0x13}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ BMI088\_ACCEL\_YOUT\_L\ 0x14}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ BMI088\_ACCEL\_YOUT\_M\ 0x15}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ BMI088\_ACCEL\_ZOUT\_L\ 0x16}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ BMI088\_ACCEL\_ZOUT\_M\ 0x17}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ BMI088\_SENSORTIME\_DATA\_L\ 0x18}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ BMI088\_SENSORTIME\_DATA\_M\ 0x19}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ BMI088\_SENSORTIME\_DATA\_H\ 0x1A}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT\_STAT\_1\ 0x1D}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ BMI088\_ACCEL\_DRDY\_INTERRUPT\_SHFITS\ 0x7}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ BMI088\_ACCEL\_DRDY\_INTERRUPT\ (1\ <<\ BMI088\_ACCEL\_DRDY\_INTERRUPT\_SHFITS)}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ BMI088\_TEMP\_M\ 0x22}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ BMI088\_TEMP\_L\ 0x23}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_CONF\ 0x40}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_CONF\_MUST\_Set\ 0x80}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_BWP\_SHFITS\ 0x4}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_OSR4\ (0x0\ <<\ BMI088\_ACC\_BWP\_SHFITS)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_OSR2\ (0x1\ <<\ BMI088\_ACC\_BWP\_SHFITS)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_NORMAL\ (0x2\ <<\ BMI088\_ACC\_BWP\_SHFITS)}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_ODR\_SHFITS\ 0x0}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_12\_5\_HZ\ (0x5\ <<\ BMI088\_ACC\_ODR\_SHFITS)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_25\_HZ\ (0x6\ <<\ BMI088\_ACC\_ODR\_SHFITS)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_50\_HZ\ (0x7\ <<\ BMI088\_ACC\_ODR\_SHFITS)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_100\_HZ\ (0x8\ <<\ BMI088\_ACC\_ODR\_SHFITS)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_200\_HZ\ (0x9\ <<\ BMI088\_ACC\_ODR\_SHFITS)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_400\_HZ\ (0xA\ <<\ BMI088\_ACC\_ODR\_SHFITS)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_800\_HZ\ (0xB\ <<\ BMI088\_ACC\_ODR\_SHFITS)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_1600\_HZ\ (0xC\ <<\ BMI088\_ACC\_ODR\_SHFITS)}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_RANGE\ 0x41}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_RANGE\_SHFITS\ 0x0}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_RANGE\_3G\ (0x0\ <<\ BMI088\_ACC\_RANGE\_SHFITS)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_RANGE\_6G\ (0x1\ <<\ BMI088\_ACC\_RANGE\_SHFITS)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_RANGE\_12G\ (0x2\ <<\ BMI088\_ACC\_RANGE\_SHFITS)}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_RANGE\_24G\ (0x3\ <<\ BMI088\_ACC\_RANGE\_SHFITS)}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ BMI088\_INT1\_IO\_CTRL\ 0x53}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT1\_IO\_ENABLE\_SHFITS\ 0x3}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT1\_IO\_ENABLE\ (0x1\ <<\ BMI088\_ACC\_INT1\_IO\_ENABLE\_SHFITS)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT1\_GPIO\_MODE\_SHFITS\ 0x2}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT1\_GPIO\_PP\ (0x0\ <<\ BMI088\_ACC\_INT1\_GPIO\_MODE\_SHFITS)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT1\_GPIO\_OD\ (0x1\ <<\ BMI088\_ACC\_INT1\_GPIO\_MODE\_SHFITS)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT1\_GPIO\_LVL\_SHFITS\ 0x1}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT1\_GPIO\_LOW\ (0x0\ <<\ BMI088\_ACC\_INT1\_GPIO\_LVL\_SHFITS)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT1\_GPIO\_HIGH\ (0x1\ <<\ BMI088\_ACC\_INT1\_GPIO\_LVL\_SHFITS)}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ BMI088\_INT2\_IO\_CTRL\ 0x54}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT2\_IO\_ENABLE\_SHFITS\ 0x3}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT2\_IO\_ENABLE\ (0x1\ <<\ BMI088\_ACC\_INT2\_IO\_ENABLE\_SHFITS)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT2\_GPIO\_MODE\_SHFITS\ 0x2}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT2\_GPIO\_PP\ (0x0\ <<\ BMI088\_ACC\_INT2\_GPIO\_MODE\_SHFITS)}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT2\_GPIO\_OD\ (0x1\ <<\ BMI088\_ACC\_INT2\_GPIO\_MODE\_SHFITS)}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT2\_GPIO\_LVL\_SHFITS\ 0x1}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT2\_GPIO\_LOW\ (0x0\ <<\ BMI088\_ACC\_INT2\_GPIO\_LVL\_SHFITS)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT2\_GPIO\_HIGH\ (0x1\ <<\ BMI088\_ACC\_INT2\_GPIO\_LVL\_SHFITS)}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ BMI088\_INT\_MAP\_DATA\ 0x58}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT2\_DRDY\_INTERRUPT\_SHFITS\ 0x6}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT2\_DRDY\_INTERRUPT\ (0x1\ <<\ BMI088\_ACC\_INT2\_DRDY\_INTERRUPT\_SHFITS)}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT1\_DRDY\_INTERRUPT\_SHFITS\ 0x2}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_INT1\_DRDY\_INTERRUPT\ (0x1\ <<\ BMI088\_ACC\_INT1\_DRDY\_INTERRUPT\_SHFITS)}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_SELF\_TEST\ 0x6D}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_SELF\_TEST\_OFF\ 0x00}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_SELF\_TEST\_POSITIVE\_SIGNAL\ 0x0D}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_SELF\_TEST\_NEGATIVE\_SIGNAL\ 0x09}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_PWR\_CONF\ 0x7C}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_PWR\_SUSPEND\_MODE\ 0x03}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_PWR\_ACTIVE\_MODE\ 0x00}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_PWR\_CTRL\ 0x7D}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_ENABLE\_ACC\_OFF\ 0x00}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_ENABLE\_ACC\_ON\ 0x04}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_SOFTRESET\ 0x7E}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ BMI088\_ACC\_SOFTRESET\_VALUE\ 0xB6}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_CHIP\_ID\ 0x00}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_CHIP\_ID\_VALUE\ 0x0F}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_X\_L\ 0x02}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_X\_H\ 0x03}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_Y\_L\ 0x04}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_Y\_H\ 0x05}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_Z\_L\ 0x06}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_Z\_H\ 0x07}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT\_STAT\_1\ 0x0A}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_DYDR\_SHFITS\ 0x7}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_DYDR\ (0x1\ <<\ BMI088\_GYRO\_DYDR\_SHFITS)}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_RANGE\ 0x0F}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_RANGE\_SHFITS\ 0x0}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_2000\ (0x0\ <<\ BMI088\_GYRO\_RANGE\_SHFITS)}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_1000\ (0x1\ <<\ BMI088\_GYRO\_RANGE\_SHFITS)}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_500\ (0x2\ <<\ BMI088\_GYRO\_RANGE\_SHFITS)}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_250\ (0x3\ <<\ BMI088\_GYRO\_RANGE\_SHFITS)}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_125\ (0x4\ <<\ BMI088\_GYRO\_RANGE\_SHFITS)}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_BANDWIDTH\ 0x10}}
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ the\ first\ num\ means\ Output\ data\ \ rate,\ the\ second\ num\ means\ bandwidth}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_BANDWIDTH\_MUST\_Set\ 0x80}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_2000\_532\_HZ\ 0x00}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_2000\_230\_HZ\ 0x01}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_1000\_116\_HZ\ 0x02}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_400\_47\_HZ\ 0x03}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_200\_23\_HZ\ 0x04}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_100\_12\_HZ\ 0x05}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_200\_64\_HZ\ 0x06}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_100\_32\_HZ\ 0x07}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_LPM1\ 0x11}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_NORMAL\_MODE\ 0x00}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_SUSPEND\_MODE\ 0x80}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_DEEP\_SUSPEND\_MODE\ 0x20}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_SOFTRESET\ 0x14}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_SOFTRESET\_VALUE\ 0xB6}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_CTRL\ 0x15}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#define\ BMI088\_DRDY\_OFF\ 0x00}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#define\ BMI088\_DRDY\_ON\ 0x80}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT3\_INT4\_IO\_CONF\ 0x16}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT4\_GPIO\_MODE\_SHFITS\ 0x3}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT4\_GPIO\_PP\ (0x0\ <<\ BMI088\_GYRO\_INT4\_GPIO\_MODE\_SHFITS)}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT4\_GPIO\_OD\ (0x1\ <<\ BMI088\_GYRO\_INT4\_GPIO\_MODE\_SHFITS)}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT4\_GPIO\_LVL\_SHFITS\ 0x2}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT4\_GPIO\_LOW\ (0x0\ <<\ BMI088\_GYRO\_INT4\_GPIO\_LVL\_SHFITS)}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT4\_GPIO\_HIGH\ (0x1\ <<\ BMI088\_GYRO\_INT4\_GPIO\_LVL\_SHFITS)}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT3\_GPIO\_MODE\_SHFITS\ 0x1}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT3\_GPIO\_PP\ (0x0\ <<\ BMI088\_GYRO\_INT3\_GPIO\_MODE\_SHFITS)}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT3\_GPIO\_OD\ (0x1\ <<\ BMI088\_GYRO\_INT3\_GPIO\_MODE\_SHFITS)}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT3\_GPIO\_LVL\_SHFITS\ 0x0}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT3\_GPIO\_LOW\ (0x0\ <<\ BMI088\_GYRO\_INT3\_GPIO\_LVL\_SHFITS)}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT3\_GPIO\_HIGH\ (0x1\ <<\ BMI088\_GYRO\_INT3\_GPIO\_LVL\_SHFITS)}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_INT3\_INT4\_IO\_MAP\ 0x18}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_DRDY\_IO\_OFF\ 0x00}}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_DRDY\_IO\_INT3\ 0x01}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_DRDY\_IO\_INT4\ 0x80}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_DRDY\_IO\_BOTH\ (BMI088\_GYRO\_DRDY\_IO\_INT3\ |\ BMI088\_GYRO\_DRDY\_IO\_INT4)}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_SELF\_TEST\ 0x3C}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_RATE\_OK\_SHFITS\ 0x4}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_RATE\_OK\ (0x1\ <<\ BMI088\_GYRO\_RATE\_OK\_SHFITS)}}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_BIST\_FAIL\_SHFITS\ 0x2}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_BIST\_FAIL\ (0x1\ <<\ BMI088\_GYRO\_BIST\_FAIL\_SHFITS)}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_BIST\_RDY\_SHFITS\ 0x1}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_BIST\_RDY\ (0x1\ <<\ BMI088\_GYRO\_BIST\_RDY\_SHFITS)}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_TRIG\_BIST\_SHFITS\ 0x0}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#define\ BMI088\_GYRO\_TRIG\_BIST\ (0x1\ <<\ BMI088\_GYRO\_TRIG\_BIST\_SHFITS)}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,218 @@
+\doxysection{source/module/super\+Cap/\+Xidi\+Newise/super\+\_\+str.h 文件参考}
+\hypertarget{super__str_8h}{}\label{super__str_8h}\index{source/module/superCap/XidiNewise/super\_str.h@{source/module/superCap/XidiNewise/super\_str.h}}
+{\ttfamily \#include "{}stdint.\+h"{}}\newline
+{\ttfamily \#include "{}can\+\_\+struct.\+h"{}}\newline
+{\ttfamily \#include "{}stdbool.\+h"{}}\newline
+super\+\_\+str.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{super__str_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{super__str_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_super___c___msg}{Super\+\_\+\+C\+\_\+\+Msg}}
+\item 
+struct \mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{枚举}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{super__str_8h_a2c0b4b78b8462636866c730998a54c6b}{can\+\_\+msg\+\_\+id\+\_\+e}} \{ \mbox{\hyperlink{super__str_8h_a2c0b4b78b8462636866c730998a54c6ba834a463e0983e0115b16c3dbb59f974f}{Super\+\_\+\+C\+\_\+\+Tsg\+\_\+\+ID}} = 0x210
+, \mbox{\hyperlink{super__str_8h_a2c0b4b78b8462636866c730998a54c6ba89f1c818c51e4fa8fcf6f33c17a22aa7}{Super\+\_\+\+C\+\_\+\+Msg\+\_\+\+ID}} = 0x200
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{super__str_8h_a44ef9252e066853ee4c36f81c1dacea3}{Super\+\_\+\+TR\+\_\+\+Init}} (\mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}} \texorpdfstring{$\ast$}{*}super, uint32\+\_\+t can\+\_\+id, uint32\+\_\+t can\+\_\+send\+\_\+id, \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282}{can\+\_\+port\+\_\+t}} can\+\_\+port)
+\begin{DoxyCompactList}\small\item\em 超级电容模块初始化。 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{super__str_8h_a89dd682a7f87d41c712957a383255f90}{Super\+\_\+\+TR\+\_\+\+Send}} (\mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}} \texorpdfstring{$\ast$}{*}super, uint16\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em 超级电容模块发送数据。 \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{super__str_8h_a8e909b10ff38febd2e40627c6094b682}{Super\+\_\+\+TR\+\_\+\+Refresh}} (\mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}} \texorpdfstring{$\ast$}{*}super)
+\begin{DoxyCompactList}\small\item\em 超级电容模块刷新数据。 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{super__str_8h_a7209995ee7c4a98e36ae64c62780e1b2}{get\+\_\+\+Voilt\+\_\+\+In}} (\mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}} \texorpdfstring{$\ast$}{*}super)
+\begin{DoxyCompactList}\small\item\em 获取超级电容模块的输入电压。 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{super__str_8h_aaaf4a1acc2c7840865a39422180e8b37}{get\+\_\+\+Voilt\+\_\+C}} (\mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}} \texorpdfstring{$\ast$}{*}super)
+\begin{DoxyCompactList}\small\item\em 获取超级电容模块的电容电压。 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{super__str_8h_a55cb5720fc1d4aac0f4cea033b33f107}{get\+\_\+\+Current\+\_\+\+In}} (\mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}} \texorpdfstring{$\ast$}{*}super)
+\begin{DoxyCompactList}\small\item\em 获取超级电容模块的输入电流。 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{super__str_8h_a1fd53c06405f1606bca17372bac2a816}{get\+\_\+\+Target\+\_\+power}} (\mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}} \texorpdfstring{$\ast$}{*}super)
+\begin{DoxyCompactList}\small\item\em 获取超级电容模块的目标功率。 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{枚举类型说明}
+\Hypertarget{super__str_8h_a2c0b4b78b8462636866c730998a54c6b}\index{super\_str.h@{super\_str.h}!can\_msg\_id\_e@{can\_msg\_id\_e}}
+\index{can\_msg\_id\_e@{can\_msg\_id\_e}!super\_str.h@{super\_str.h}}
+\doxysubsubsection{\texorpdfstring{can\_msg\_id\_e}{can\_msg\_id\_e}}
+{\footnotesize\ttfamily \label{super__str_8h_a2c0b4b78b8462636866c730998a54c6b} 
+enum \mbox{\hyperlink{super__str_8h_a2c0b4b78b8462636866c730998a54c6b}{can\+\_\+msg\+\_\+id\+\_\+e}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Super\_C\_Tsg\_ID@{Super\_C\_Tsg\_ID}!super\_str.h@{super\_str.h}}\index{super\_str.h@{super\_str.h}!Super\_C\_Tsg\_ID@{Super\_C\_Tsg\_ID}}}\Hypertarget{super__str_8h_a2c0b4b78b8462636866c730998a54c6ba834a463e0983e0115b16c3dbb59f974f}\label{super__str_8h_a2c0b4b78b8462636866c730998a54c6ba834a463e0983e0115b16c3dbb59f974f} 
+Super\+\_\+\+C\+\_\+\+Tsg\+\_\+\+ID&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Super\_C\_Msg\_ID@{Super\_C\_Msg\_ID}!super\_str.h@{super\_str.h}}\index{super\_str.h@{super\_str.h}!Super\_C\_Msg\_ID@{Super\_C\_Msg\_ID}}}\Hypertarget{super__str_8h_a2c0b4b78b8462636866c730998a54c6ba89f1c818c51e4fa8fcf6f33c17a22aa7}\label{super__str_8h_a2c0b4b78b8462636866c730998a54c6ba89f1c818c51e4fa8fcf6f33c17a22aa7} 
+Super\+\_\+\+C\+\_\+\+Msg\+\_\+\+ID&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{super__str_8h_a55cb5720fc1d4aac0f4cea033b33f107}\index{super\_str.h@{super\_str.h}!get\_Current\_In@{get\_Current\_In}}
+\index{get\_Current\_In@{get\_Current\_In}!super\_str.h@{super\_str.h}}
+\doxysubsubsection{\texorpdfstring{get\_Current\_In()}{get\_Current\_In()}}
+{\footnotesize\ttfamily \label{super__str_8h_a55cb5720fc1d4aac0f4cea033b33f107} 
+float get\+\_\+\+Current\+\_\+\+In (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{super}{}\end{DoxyParamCaption})}
+
+
+
+获取超级电容模块的输入电流。 
+
+
+\begin{DoxyParams}{参数}
+{\em super} & 指向\+Super\+\_\+\+TR\+\_\+t结构体的指针，表示超级电容模块实例。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+float 输入电流值（单位：\+A）。 
+\end{DoxyReturn}
+\Hypertarget{super__str_8h_a1fd53c06405f1606bca17372bac2a816}\index{super\_str.h@{super\_str.h}!get\_Target\_power@{get\_Target\_power}}
+\index{get\_Target\_power@{get\_Target\_power}!super\_str.h@{super\_str.h}}
+\doxysubsubsection{\texorpdfstring{get\_Target\_power()}{get\_Target\_power()}}
+{\footnotesize\ttfamily \label{super__str_8h_a1fd53c06405f1606bca17372bac2a816} 
+float get\+\_\+\+Target\+\_\+power (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{super}{}\end{DoxyParamCaption})}
+
+
+
+获取超级电容模块的目标功率。 
+
+
+\begin{DoxyParams}{参数}
+{\em super} & 指向\+Super\+\_\+\+TR\+\_\+t结构体的指针，表示超级电容模块实例。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+float 目标功率值（单位：\+W）。 
+\end{DoxyReturn}
+\Hypertarget{super__str_8h_aaaf4a1acc2c7840865a39422180e8b37}\index{super\_str.h@{super\_str.h}!get\_Voilt\_C@{get\_Voilt\_C}}
+\index{get\_Voilt\_C@{get\_Voilt\_C}!super\_str.h@{super\_str.h}}
+\doxysubsubsection{\texorpdfstring{get\_Voilt\_C()}{get\_Voilt\_C()}}
+{\footnotesize\ttfamily \label{super__str_8h_aaaf4a1acc2c7840865a39422180e8b37} 
+float get\+\_\+\+Voilt\+\_\+C (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{super}{}\end{DoxyParamCaption})}
+
+
+
+获取超级电容模块的电容电压。 
+
+
+\begin{DoxyParams}{参数}
+{\em super} & 指向\+Super\+\_\+\+TR\+\_\+t结构体的指针，表示超级电容模块实例。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+float 电容电压值（单位：\+V）。 
+\end{DoxyReturn}
+\Hypertarget{super__str_8h_a7209995ee7c4a98e36ae64c62780e1b2}\index{super\_str.h@{super\_str.h}!get\_Voilt\_In@{get\_Voilt\_In}}
+\index{get\_Voilt\_In@{get\_Voilt\_In}!super\_str.h@{super\_str.h}}
+\doxysubsubsection{\texorpdfstring{get\_Voilt\_In()}{get\_Voilt\_In()}}
+{\footnotesize\ttfamily \label{super__str_8h_a7209995ee7c4a98e36ae64c62780e1b2} 
+float get\+\_\+\+Voilt\+\_\+\+In (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{super}{}\end{DoxyParamCaption})}
+
+
+
+获取超级电容模块的输入电压。 
+
+
+\begin{DoxyParams}{参数}
+{\em super} & 指向\+Super\+\_\+\+TR\+\_\+t结构体的指针，表示超级电容模块实例。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+float 输入电压值（单位：\+V）。 
+\end{DoxyReturn}
+\Hypertarget{super__str_8h_a44ef9252e066853ee4c36f81c1dacea3}\index{super\_str.h@{super\_str.h}!Super\_TR\_Init@{Super\_TR\_Init}}
+\index{Super\_TR\_Init@{Super\_TR\_Init}!super\_str.h@{super\_str.h}}
+\doxysubsubsection{\texorpdfstring{Super\_TR\_Init()}{Super\_TR\_Init()}}
+{\footnotesize\ttfamily \label{super__str_8h_a44ef9252e066853ee4c36f81c1dacea3} 
+bool Super\+\_\+\+TR\+\_\+\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{super}{, }\item[{uint32\+\_\+t}]{can\+\_\+id}{, }\item[{uint32\+\_\+t}]{can\+\_\+send\+\_\+id}{, }\item[{\mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282}{can\+\_\+port\+\_\+t}}}]{can\+\_\+port}{}\end{DoxyParamCaption})}
+
+
+
+超级电容模块初始化。 
+
+初始化超级电容模块的\+CAN接收和发送消息结构体，并将其添加到\+CAN消息队列中。
+
+
+\begin{DoxyParams}{参数}
+{\em super} & 指向\+Super\+\_\+\+TR\+\_\+t结构体的指针，表示超级电容模块实例。 \\
+\hline
+{\em can\+\_\+id} & 接收\+CAN消息的\+ID。 \\
+\hline
+{\em can\+\_\+send\+\_\+id} & 发送\+CAN消息的\+ID。 \\
+\hline
+{\em can\+\_\+port} & CAN端口类型。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+true 初始化成功。 
+
+false 初始化失败（例如参数super为空）。 
+\end{DoxyReturn}
+\Hypertarget{super__str_8h_a8e909b10ff38febd2e40627c6094b682}\index{super\_str.h@{super\_str.h}!Super\_TR\_Refresh@{Super\_TR\_Refresh}}
+\index{Super\_TR\_Refresh@{Super\_TR\_Refresh}!super\_str.h@{super\_str.h}}
+\doxysubsubsection{\texorpdfstring{Super\_TR\_Refresh()}{Super\_TR\_Refresh()}}
+{\footnotesize\ttfamily \label{super__str_8h_a8e909b10ff38febd2e40627c6094b682} 
+bool Super\+\_\+\+TR\+\_\+\+Refresh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{super}{}\end{DoxyParamCaption})}
+
+
+
+超级电容模块刷新数据。 
+
+解析从\+CAN总线接收到的数据，并将其存储到super\+\_\+can\+\_\+solve结构体中。
+
+
+\begin{DoxyParams}{参数}
+{\em super} & 指向\+Super\+\_\+\+TR\+\_\+t结构体的指针，表示超级电容模块实例。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+true 刷新成功。 
+
+false 刷新失败（例如参数super为空）。 
+\end{DoxyReturn}
+\Hypertarget{super__str_8h_a89dd682a7f87d41c712957a383255f90}\index{super\_str.h@{super\_str.h}!Super\_TR\_Send@{Super\_TR\_Send}}
+\index{Super\_TR\_Send@{Super\_TR\_Send}!super\_str.h@{super\_str.h}}
+\doxysubsubsection{\texorpdfstring{Super\_TR\_Send()}{Super\_TR\_Send()}}
+{\footnotesize\ttfamily \label{super__str_8h_a89dd682a7f87d41c712957a383255f90} 
+bool Super\+\_\+\+TR\+\_\+\+Send (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{super}{, }\item[{uint16\+\_\+t}]{data}{}\end{DoxyParamCaption})}
+
+
+
+超级电容模块发送数据。 
+
+将16位数据拆分为高字节和低字节，并通过\+CAN总线发送。
+
+
+\begin{DoxyParams}{参数}
+{\em super} & 指向\+Super\+\_\+\+TR\+\_\+t结构体的指针，表示超级电容模块实例。 \\
+\hline
+{\em data} & 需要发送的16位数据。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+true 发送成功。 
+
+false 发送失败（例如参数super为空）。 
+\end{DoxyReturn}

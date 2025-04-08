@@ -1,0 +1,435 @@
+  % Handle batch mode
+  % to overcome problems with too many open files
+  \let\mypdfximage\pdfximage\def\pdfximage{\immediate\mypdfximage}
+  \RequirePackage{iftex}
+  \ifLuaTeX
+    \directlua{pdf.setminorversion(7)}
+  \fi
+  \ifXeTeX
+    \special{pdf:minorversion 7}
+  \fi
+  \ifPDFTeX
+    \pdfminorversion=7
+  \fi
+  % Set document class depending on configuration
+  \documentclass[twoside]{book}
+  %% moved from doxygen.sty due to workaround for LaTex 2019 version and unmaintained tabu package
+  \usepackage{ifthen}
+  \ifx\requestedLaTeXdate\undefined
+    \usepackage{array}
+  \else
+    \usepackage{array}[=2016-10-06]
+  \fi
+  %%
+  % Packages required by doxygen
+  \makeatletter
+  \providecommand\IfFormatAtLeastTF{\@ifl@t@r\fmtversion}
+  % suppress package identification of infwarerr as it contains the word "warning"
+  \let\@@protected@wlog\protected@wlog
+  \def\protected@wlog#1{\wlog{package info suppressed}}
+  \RequirePackage{infwarerr}
+  \let\protected@wlog\@@protected@wlog
+  \makeatother
+  \IfFormatAtLeastTF{2016/01/01}{}{\usepackage{fixltx2e}} % for \textsubscript
+  \ifPDFTeX
+    \IfFormatAtLeastTF{2015/01/01}{\pdfsuppresswarningpagegroup=1}{}
+  \fi
+  \usepackage{doxygen}
+  \usepackage{graphicx}
+  \iftutex
+    \usepackage{fontspec}
+    \defaultfontfeatures{Ligatures={TeX}}
+    \usepackage{unicode-math}
+  \else
+    \usepackage[utf8]{inputenc}
+  \fi
+  \usepackage{makeidx}
+  \PassOptionsToPackage{warn}{textcomp}
+  \usepackage{textcomp}
+  \usepackage[nointegrals]{wasysym}
+  \usepackage{ifxetex}
+  % NLS support packages
+  \usepackage{CJKutf8}
+  % Define default fonts
+  % Font selection
+  % set main and monospaced font
+  \usepackage[scaled=.90]{helvet}
+\usepackage{courier}
+\renewcommand{\familydefault}{\sfdefault}
+  \doxyallsectionsfont{%
+    \fontseries{bc}\selectfont%
+    \color{darkgray}%
+  }
+  \renewcommand{\DoxyLabelFont}{%
+    \fontseries{bc}\selectfont%
+    \color{darkgray}%
+  }
+  \newcommand{\+}{\discretionary{\mbox{\scriptsize$\hookleftarrow$}}{}{}}
+   % Arguments of doxygenemoji:
+   % 1) ':<text>:' form of the emoji, already LaTeX-escaped
+   % 2) file with the name of the emoji without the .png extension
+   % in case image exist use this otherwise use the ':<text>:' form
+   \newcommand{\doxygenemoji}[2]{%
+     \IfFileExists{./#2.png}{\raisebox{-0.1em}{\includegraphics[height=0.9em]{./#2.png}}}{#1}%
+   }
+  % Page & text layout
+  \usepackage{geometry}
+  \geometry{%
+    a4paper,%
+    top=2.5cm,%
+    bottom=2.5cm,%
+    left=2.5cm,%
+    right=2.5cm%
+  }
+  \usepackage{changepage}
+  % Allow a bit of overflow to go unnoticed by other means
+  \tolerance=750
+  \hfuzz=15pt
+  \hbadness=750
+  \setlength{\emergencystretch}{15pt}
+  \setlength{\parindent}{0cm}
+  \newcommand{\doxynormalparskip}{\setlength{\parskip}{3ex plus 2ex minus 2ex}}
+  \newcommand{\doxytocparskip}{\setlength{\parskip}{1ex plus 0ex minus 0ex}}
+  \doxynormalparskip
+  % Redefine paragraph/subparagraph environments, using sectsty fonts
+  \makeatletter
+  \renewcommand{\paragraph}{%
+    \@startsection{paragraph}{4}{0ex}{-1.0ex}{1.0ex}{%
+      \normalfont\normalsize\bfseries\SS@parafont%
+    }%
+  }
+  \renewcommand{\subparagraph}{%
+    \@startsection{subparagraph}{5}{0ex}{-1.0ex}{1.0ex}{%
+      \normalfont\normalsize\bfseries\SS@subparafont%
+    }%
+  }
+  \makeatother
+  \makeatletter
+  \newcommand\hrulefilll{\leavevmode\leaders\hrule\hskip 0pt plus 1filll\kern\z@}
+  \makeatother
+  % Headers & footers
+  \usepackage{fancyhdr}
+  \pagestyle{fancyplain}
+  \renewcommand{\footrulewidth}{0.4pt}
+  \fancypagestyle{fancyplain}{
+    \fancyhf{}
+    \fancyhead[LE, RO]{\bfseries\thepage}
+    \fancyhead[LO]{\bfseries\rightmark}
+    \fancyhead[RE]{\bfseries\leftmark}
+    \fancyfoot[LO, RE]{\bfseries\scriptsize 制作者 Doxygen }
+  }
+  \fancypagestyle{plain}{
+    \fancyhf{}
+    \fancyfoot[LO, RE]{\bfseries\scriptsize 制作者 Doxygen }
+    \renewcommand{\headrulewidth}{0pt}
+  }
+  \pagestyle{fancyplain}
+  \renewcommand{\chaptermark}[1]{%
+    \markboth{#1}{}%
+  }
+  \renewcommand{\sectionmark}[1]{%
+    \markright{\thesection\ #1}%
+  }
+  % ToC, LoF, LoT, bibliography, and index
+  % Indices & bibliography
+  \usepackage[numbers]{natbib}
+  \usepackage[titles]{tocloft}
+  \setcounter{tocdepth}{3}
+  \setcounter{secnumdepth}{5}
+  % creating indexes
+  \makeindex
+  \ifPDFTeX
+\usepackage{newunicodechar}
+  \makeatletter
+    \def\doxynewunicodechar#1#2{%
+    \@tempswafalse
+    \edef\nuc@tempa{\detokenize{#1}}%
+    \if\relax\nuc@tempa\relax
+      \nuc@emptyargerr
+    \else
+      \edef\@tempb{\expandafter\@car\nuc@tempa\@nil}%
+      \nuc@check
+      \if@tempswa
+        \@namedef{u8:\nuc@tempa}{#2}%
+      \fi
+    \fi
+  }
+  \makeatother
+  \doxynewunicodechar{⁻}{${}^{-}$}% Superscript minus
+  \doxynewunicodechar{²}{${}^{2}$}% Superscript two
+  \doxynewunicodechar{³}{${}^{3}$}% Superscript three
+\fi
+  % Hyperlinks
+    % Hyperlinks (required, but should be loaded last)
+    \ifPDFTeX
+      \usepackage[pdftex,pagebackref=true]{hyperref}
+    \else
+      \ifXeTeX
+        \usepackage[xetex,pagebackref=true]{hyperref}
+      \else
+        \ifLuaTeX
+          \usepackage[luatex,pagebackref=true]{hyperref}
+        \else
+          \usepackage[ps2pdf,pagebackref=true]{hyperref}
+        \fi
+      \fi
+    \fi
+    \hypersetup{%
+      colorlinks=true,%
+      linkcolor=blue,%
+      citecolor=blue,%
+      unicode,%
+      pdftitle={basic\+\_\+\+DMH7},%
+      pdfsubject={河南科技大学鼎行双创战队基础电控组基础开发库}%
+    }
+  % Custom commands used by the header
+  % Custom commands
+  \newcommand{\clearemptydoublepage}{%
+    \newpage{\pagestyle{empty}\cleardoublepage}%
+  }
+  % caption style definition
+  \usepackage{caption}
+  \captionsetup{labelsep=space,justification=centering,font={bf},singlelinecheck=off,skip=4pt,position=top}
+  % in page table of contents
+  \IfFormatAtLeastTF{2023/05/01}{\usepackage[deeplevels]{etoc}}{\usepackage[deeplevels]{etoc_doxygen}}
+  \etocsettocstyle{\doxytocparskip}{\doxynormalparskip}
+  \etocsetlevel{subsubsubsection}{4}
+  \etocsetlevel{subsubsubsubsection}{5}
+  \etocsetlevel{subsubsubsubsubsection}{6}
+  \etocsetlevel{subsubsubsubsubsubsection}{7}
+  \etocsetlevel{paragraph}{8}
+  \etocsetlevel{subparagraph}{9}
+  % prevent numbers overlap the titles in toc
+  \renewcommand{\numberline}[1]{#1~}
+% End of preamble, now comes the document contents
+%===== C O N T E N T S =====
+\begin{document}
+  \raggedbottom
+  \begin{CJK}{UTF8}{gbsn}
+  % Titlepage & ToC
+    % To avoid duplicate page anchors due to reuse of same numbers for
+    % the index (be it as roman numbers)
+    \hypersetup{pageanchor=false,
+                bookmarksnumbered=true,
+                pdfencoding=unicode
+               }
+  \pagenumbering{alph}
+  \begin{titlepage}
+  \vspace*{7cm}
+  \begin{center}%
+  {\Large basic\+\_\+\+DMH7}\\
+  [1ex]\large 1.\+0.\+1 \\
+  \vspace*{1cm}
+  {\large 制作者 Doxygen 1.13.2}\\
+  \end{center}
+  \end{titlepage}
+  \clearemptydoublepage
+  \pagenumbering{roman}
+  \tableofcontents
+  \clearemptydoublepage
+  \pagenumbering{arabic}
+  % re-enable anchors again
+  \hypersetup{pageanchor=true}
+%--- Begin generated contents ---
+\input{md_source_2bsp_2can_2can__api}
+\input{md_source_2bsp_2uart_2uart__api}
+\input{md_source_2module_2computer_2computer__sys}
+\input{md_source_2module_2control_2_power_control_2_power_control}
+\input{md_source_2module_2_dbus_2_d_bus}
+\input{md_source_2module_2motor_2motor___dji_2motor___d_j_i}
+\input{md_source_2module_2motor_2motor___d_m_2motor___d_m}
+\input{md_source_2module_2super_cap_2_xidi_newise_2super__str}
+\chapter{结构体索引}
+\input{annotated}
+\chapter{文件索引}
+\input{files}
+\chapter{结构体说明}
+\input{structaerial__robot__energy__t}
+\input{structbasic__angle_v__t}
+\input{structbasic__vector__t}
+\input{structbmi088__data__t}
+\input{struct_b_m_i088___r_a_w___d_a_t_a}
+\input{struct_b_m_i088___r_e_a_l___d_a_t_a}
+\input{structcan__motor__t}
+\input{structcan__msg__t}
+\input{struct_communicate___receive_data__t}
+\input{struct_communicate___send_data__t}
+\input{structcustom__controller__data__t}
+\input{structcustom__controller__info__t}
+\input{struct_d_j_i__motor__t}
+\input{struct_d_m__motor__t}
+\input{struct_d_w_t___time__t}
+\input{structesc__inf__t}
+\input{structext__buff__musk__t}
+\input{structext__event__data__t}
+\input{structext__game__result__t}
+\input{structext__game__robot___h_p__t}
+\input{structext__game__robot__pos__t}
+\input{structext__game__robot__state__t}
+\input{structext__game__state__t}
+\input{structext__power__heat__data__t}
+\input{structext__robot__hurt__t}
+\input{structext__shoot__data__t}
+\input{structext__student__interactive__header__data__t}
+\input{structext__supply__projectile__action__t}
+\input{struct_graph___data__t}
+\input{structkeyboard__t}
+\input{structkf__t}
+\input{struct_low_pass_filter}
+\input{struct_motor_power_params__t}
+\input{structpid__type__def}
+\input{struct_q_e_k_f___i_n_s__t}
+\input{structrc__info__t}
+\input{struct_received_packet_robot_control__t}
+\input{struct_received_packet_twist__t}
+\input{struct_received_packet_vision__t}
+\input{structreferee__info__t}
+\input{structrobot__interactive__data__t}
+\input{struct_send_packet_all_robot_h_p__t}
+\input{struct_send_packet_game_status__t}
+\input{struct_send_packet_robot_status__t}
+\input{struct_send_packet_vision__t}
+\input{struct_solve_trajectory_params__t}
+\input{struct_string___data__t}
+\input{struct_super___c___msg}
+\input{struct_super___t_r__t}
+\input{structtar__pos}
+\input{structtotal__power__control__t}
+\input{structuart__msg__t}
+\input{structuart__rx__t}
+\input{structx_frame_header}
+\chapter{文件说明}
+\input{bsp_8h}
+\input{bsp_8h_source}
+\input{buzzer__bsp_8c}
+\input{buzzer__bsp_8h}
+\input{buzzer__bsp_8h_source}
+\input{can__api_8c}
+\input{can__api_8h}
+\input{can__api_8h_source}
+\input{can__api_8md}
+\input{can__bsp_8c}
+\input{can__bsp_8h}
+\input{can__bsp_8h_source}
+\input{can__struct_8h}
+\input{can__struct_8h_source}
+\input{crc__api_8c}
+\input{crc__api_8h}
+\input{crc__api_8h_source}
+\input{dwt__bsp_8c}
+\input{dwt__bsp_8h}
+\input{dwt__bsp_8h_source}
+\input{_gpio_exti_all_8c}
+\input{_gpio_exti_all_8h}
+\input{_gpio_exti_all_8h_source}
+\input{_b_m_i088driver_8c}
+\input{_b_m_i088_middleware_8c}
+\input{_b_m_i088driver_8h}
+\input{_b_m_i088driver_8h_source}
+\input{_b_m_i088_middleware_8h}
+\input{_b_m_i088_middleware_8h_source}
+\input{_b_m_i088reg_8h}
+\input{_b_m_i088reg_8h_source}
+\input{key_board_8h}
+\input{key_board_8h_source}
+\input{uart__api_8c}
+\input{uart__api_8h}
+\input{uart__api_8h_source}
+\input{uart__api_8md}
+\input{uart__bsp_8c}
+\input{uart__bsp_8h}
+\input{uart__bsp_8h_source}
+\input{config_8h}
+\input{config_8h_source}
+\input{computer__pack_8h}
+\input{computer__pack_8h_source}
+\input{computer__sys_8c}
+\input{computer__sys_8h}
+\input{computer__sys_8h_source}
+\input{computer__sys_8md}
+\input{radar_tool_8c}
+\input{radar_tool_8h}
+\input{radar_tool_8h_source}
+\input{send__robot__state_8c}
+\input{send__robot__state_8h}
+\input{send__robot__state_8h_source}
+\input{vision__receive_8c}
+\input{vision__receive_8h}
+\input{vision__receive_8h_source}
+\input{vision__solution_8c}
+\input{vision__solution_8h}
+\input{vision__solution_8h_source}
+\input{angle_map_8c}
+\input{angle_map_8h}
+\input{angle_map_8h_source}
+\input{motion__state_8h}
+\input{motion__state_8h_source}
+\input{omni__mecanum__kinematics_8c}
+\input{omni__mecanum__kinematics_8h}
+\input{omni__mecanum__kinematics_8h_source}
+\input{streering__wheel__kinematics_8c}
+\input{streering__wheel__kinematics_8h}
+\input{streering__wheel__kinematics_8h_source}
+\input{_p_i_dtool_8c}
+\input{_p_i_dtool_8h}
+\input{_p_i_dtool_8h_source}
+\input{_power_control_8c}
+\input{_power_control_8h}
+\input{_power_control_8h_source}
+\input{_power_control_8md}
+\input{tool_8c}
+\input{tool_8h}
+\input{tool_8h_source}
+\input{_d_bus_8md}
+\input{_d_bus_sys_8c}
+\input{_d_bus_sys_8h}
+\input{_d_bus_sys_8h_source}
+\input{_l_p_f_8c}
+\input{_l_p_f_8h}
+\input{_l_p_f_8h_source}
+\input{kalman__filter_8c}
+\input{kalman__filter_8h}
+\input{kalman__filter_8h_source}
+\input{_quaternion_e_k_f_8c}
+\input{_quaternion_e_k_f_8h}
+\input{_quaternion_e_k_f_8h_source}
+\input{_i_m_utool_8c}
+\input{_i_m_utool_8h}
+\input{_i_m_utool_8h_source}
+\input{_mahony_a_h_r_s_8c}
+\input{_mahony_a_h_r_s_8h}
+\input{_mahony_a_h_r_s_8h_source}
+\input{motor__basic_8h}
+\input{motor__basic_8h_source}
+\input{motor_8_d_j_i_8c}
+\input{motor___d_j_i_8h}
+\input{motor___d_j_i_8h_source}
+\input{motor___d_j_i_8md}
+\input{motor___d_m_8c}
+\input{motor___d_m_8h}
+\input{motor___d_m_8h_source}
+\input{motor___d_m_8md}
+\input{referee__api_8c}
+\input{referee__api_8h}
+\input{referee__api_8h_source}
+\input{referee__protocol_8h}
+\input{referee__protocol_8h_source}
+\input{super__str_8c}
+\input{super__str_8h}
+\input{super__str_8h_source}
+\input{super__str_8md}
+\input{imu_temp_ctrl_8c}
+\input{_remoter_8c}
+\chapter{示例}
+\input{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}
+%--- End generated contents ---
+% Index
+  \backmatter
+  \newpage
+  \phantomsection
+  \clearemptydoublepage
+  \addcontentsline{toc}{chapter}{\indexname}
+  \printindex
+% Required for some languages (in combination with latexdocumentpre from the header)
+\end{CJK}
+\end{document}

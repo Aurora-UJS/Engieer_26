@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/IMU/Mahony/MahonyAHRS.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_8b711e810999a9fe1de9e9ddd8899d9f.html">IMU</a></li><li class="navelem"><a class="el" href="dir_d16067a40a3401c3e27f61547d65d8e9.html">Mahony</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">MahonyAHRS.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_mahony_a_h_r_s_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//=============================================================================================</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// MahonyAHRS.h</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//=============================================================================================</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">//</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// Madgwick&#39;s implementation of Mayhony&#39;s AHRS algorithm.</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// See: http://www.x-io.co.uk/open-source-imu-and-ahrs-algorithms/</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// Date         Author          Notes</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// 29/09/2011   SOH Madgwick    Initial release</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// 02/10/2011   SOH Madgwick    Optimised for reduced CPU load</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">//</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//=============================================================================================</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef MahonyAHRS_h</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define MahonyAHRS_h</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keywordtype">void</span> <a class="code hl_function" href="_mahony_a_h_r_s_8h.html#aead7f9df2a4b30d84d265f635396c72a">Mahony_update</a>(<span class="keywordtype">float</span> gx, <span class="keywordtype">float</span> gy, <span class="keywordtype">float</span> gz, <span class="keywordtype">float</span> ax, <span class="keywordtype">float</span> ay, <span class="keywordtype">float</span> az, <span class="keywordtype">float</span> mx, <span class="keywordtype">float</span> my, <span class="keywordtype">float</span> mz);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keywordtype">void</span> <a class="code hl_function" href="_mahony_a_h_r_s_8h.html#ad9092ebf599265321a7181226153614b">Mahony_Init</a>(<span class="keywordtype">float</span> sampleFrequency);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keywordtype">void</span> <a class="code hl_function" href="_mahony_a_h_r_s_8h.html#afdf6a9a2d75608aea12fbc247368b471">MahonyAHRSupdateIMU</a>(<span class="keywordtype">float</span> gx, <span class="keywordtype">float</span> gy, <span class="keywordtype">float</span> gz, <span class="keywordtype">float</span> ax, <span class="keywordtype">float</span> ay, <span class="keywordtype">float</span> az);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keywordtype">void</span> <a class="code hl_function" href="_mahony_a_h_r_s_8h.html#a7a4f0d1726aebef6727aa87d15d27a1b">Mahony_computeAngles</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keywordtype">void</span> <a class="code hl_function" href="_mahony_a_h_r_s_8h.html#aa2baab5c4d30b4ecda7b7acf2c238337">MahonyAHRSinit</a>(<span class="keywordtype">float</span> ax, <span class="keywordtype">float</span> ay, <span class="keywordtype">float</span> az, <span class="keywordtype">float</span> mx, <span class="keywordtype">float</span> my, <span class="keywordtype">float</span> mz);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keywordtype">float</span> <a class="code hl_function" href="_mahony_a_h_r_s_8h.html#a0938ab0e194cfe5b545faad5cd87fde6">getRoll</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keywordtype">float</span> <a class="code hl_function" href="_mahony_a_h_r_s_8h.html#a49b5381b2cdad4ec80141c0e17b98bc2">getPitch</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keywordtype">float</span> <a class="code hl_function" href="_mahony_a_h_r_s_8h.html#a71fe28c45866e4f04c57bf829f3f6f6b">getYaw</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="_mahony_a_h_r_s_8h.html#a091516897d23b902e95d37823b67870d">   23</a></span><span class="keywordtype">float</span> <a class="code hl_function" href="_mahony_a_h_r_s_8h.html#a091516897d23b902e95d37823b67870d">getRollRadians</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="_mahony_a_h_r_s_8h.html#a206dbc44f4666404565384ae96722573">   24</a></span><span class="keywordtype">float</span> <a class="code hl_function" href="_mahony_a_h_r_s_8h.html#a206dbc44f4666404565384ae96722573">getPitchRadians</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="_mahony_a_h_r_s_8h.html#ad1421dfe94e8dda902ccdaec1399c323">   25</a></span><span class="keywordtype">float</span> <a class="code hl_function" href="_mahony_a_h_r_s_8h.html#ad1421dfe94e8dda902ccdaec1399c323">getYawRadians</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_mahony_a_h_r_s_8h_html_a091516897d23b902e95d37823b67870d"><div class="ttname"><a href="_mahony_a_h_r_s_8h.html#a091516897d23b902e95d37823b67870d">getRollRadians</a></div><div class="ttdeci">float getRollRadians(void)</div></div>
+<div class="ttc" id="a_mahony_a_h_r_s_8h_html_a0938ab0e194cfe5b545faad5cd87fde6"><div class="ttname"><a href="_mahony_a_h_r_s_8h.html#a0938ab0e194cfe5b545faad5cd87fde6">getRoll</a></div><div class="ttdeci">float getRoll(void)</div><div class="ttdef"><b>定义</b> MahonyAHRS.c:316</div></div>
+<div class="ttc" id="a_mahony_a_h_r_s_8h_html_a206dbc44f4666404565384ae96722573"><div class="ttname"><a href="_mahony_a_h_r_s_8h.html#a206dbc44f4666404565384ae96722573">getPitchRadians</a></div><div class="ttdeci">float getPitchRadians(void)</div></div>
+<div class="ttc" id="a_mahony_a_h_r_s_8h_html_a49b5381b2cdad4ec80141c0e17b98bc2"><div class="ttname"><a href="_mahony_a_h_r_s_8h.html#a49b5381b2cdad4ec80141c0e17b98bc2">getPitch</a></div><div class="ttdeci">float getPitch(void)</div><div class="ttdef"><b>定义</b> MahonyAHRS.c:322</div></div>
+<div class="ttc" id="a_mahony_a_h_r_s_8h_html_a71fe28c45866e4f04c57bf829f3f6f6b"><div class="ttname"><a href="_mahony_a_h_r_s_8h.html#a71fe28c45866e4f04c57bf829f3f6f6b">getYaw</a></div><div class="ttdeci">float getYaw(void)</div><div class="ttdef"><b>定义</b> MahonyAHRS.c:328</div></div>
+<div class="ttc" id="a_mahony_a_h_r_s_8h_html_a7a4f0d1726aebef6727aa87d15d27a1b"><div class="ttname"><a href="_mahony_a_h_r_s_8h.html#a7a4f0d1726aebef6727aa87d15d27a1b">Mahony_computeAngles</a></div><div class="ttdeci">void Mahony_computeAngles(void)</div><div class="ttdef"><b>定义</b> MahonyAHRS.c:307</div></div>
+<div class="ttc" id="a_mahony_a_h_r_s_8h_html_aa2baab5c4d30b4ecda7b7acf2c238337"><div class="ttname"><a href="_mahony_a_h_r_s_8h.html#aa2baab5c4d30b4ecda7b7acf2c238337">MahonyAHRSinit</a></div><div class="ttdeci">void MahonyAHRSinit(float ax, float ay, float az, float mx, float my, float mz)</div><div class="ttdef"><b>定义</b> MahonyAHRS.c:61</div></div>
+<div class="ttc" id="a_mahony_a_h_r_s_8h_html_ad1421dfe94e8dda902ccdaec1399c323"><div class="ttname"><a href="_mahony_a_h_r_s_8h.html#ad1421dfe94e8dda902ccdaec1399c323">getYawRadians</a></div><div class="ttdeci">float getYawRadians(void)</div></div>
+<div class="ttc" id="a_mahony_a_h_r_s_8h_html_ad9092ebf599265321a7181226153614b"><div class="ttname"><a href="_mahony_a_h_r_s_8h.html#ad9092ebf599265321a7181226153614b">Mahony_Init</a></div><div class="ttdeci">void Mahony_Init(float sampleFrequency)</div><div class="ttdef"><b>定义</b> MahonyAHRS.c:35</div></div>
+<div class="ttc" id="a_mahony_a_h_r_s_8h_html_aead7f9df2a4b30d84d265f635396c72a"><div class="ttname"><a href="_mahony_a_h_r_s_8h.html#aead7f9df2a4b30d84d265f635396c72a">Mahony_update</a></div><div class="ttdeci">void Mahony_update(float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz)</div><div class="ttdef"><b>定义</b> MahonyAHRS.c:121</div></div>
+<div class="ttc" id="a_mahony_a_h_r_s_8h_html_afdf6a9a2d75608aea12fbc247368b471"><div class="ttname"><a href="_mahony_a_h_r_s_8h.html#afdf6a9a2d75608aea12fbc247368b471">MahonyAHRSupdateIMU</a></div><div class="ttdeci">void MahonyAHRSupdateIMU(float gx, float gy, float gz, float ax, float ay, float az)</div><div class="ttdef"><b>定义</b> MahonyAHRS.c:237</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,127 @@
+\doxysection{source/bsp/can/can\+\_\+struct.h 文件参考}
+\hypertarget{can__struct_8h}{}\label{can__struct_8h}\index{source/bsp/can/can\_struct.h@{source/bsp/can/can\_struct.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}list.\+h"{}}\newline
+can\+\_\+struct.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=269pt]{can__struct_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can__struct_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcan__msg__t}{can\+\_\+msg\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{枚举}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282}{can\+\_\+port\+\_\+t}} \{ \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238}{CAN1\+\_\+\+PORT}} = 0
+, \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282afed66cb93dc9572d995bc83596f68a37}{CAN2\+\_\+\+PORT}}
+, \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282abc017982689593644573fba9e791072d}{CAN3\+\_\+\+PORT}}
+ \}
+\item 
+enum \mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t}} \{ \newline
+\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dab7db0e53b737c0839be931efcb79246e}{CAN\+\_\+\+OK}} = 0
+, \mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dadf1eab1c663a7f76481ec01420c4579a}{CAN\+\_\+\+Reg\+\_\+\+ERROR}} = 1
+, \mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dadf00dffe8d1ba85424f21fbb492f8e8a}{CAN\+\_\+\+PORT\+\_\+\+ERROR}} = 2
+, \mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1da4bd6ac0947f2dc4ed7da8af03f34acfd}{CAN\+\_\+\+MSG\+\_\+\+ERROR}} = 3
+, \newline
+\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dafae488d62fb9453429adde7b71c08b1e}{CAN\+\_\+\+MSG\+\_\+\+REPEAT}} = 4
+, \mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1daa23ed6c0f19779a04bc9961451664b47}{CAN\+\_\+\+MSG\+\_\+\+NOT\+\_\+\+FOUND}} = 5
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+List\+\_\+t \mbox{\hyperlink{can__struct_8h_a23f6a0d249ace51f1cb796a74e9fed84}{can1\+\_\+rx\+\_\+msg\+\_\+list}}
+\item 
+List\+\_\+t \mbox{\hyperlink{can__struct_8h_af251cf824c6932232e60b8f47d3c329e}{can2\+\_\+rx\+\_\+msg\+\_\+list}}
+\item 
+List\+\_\+t \mbox{\hyperlink{can__struct_8h_aec6c42e96f2c3b2f13b2c5c107cf1d60}{can3\+\_\+rx\+\_\+msg\+\_\+list}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{枚举类型说明}
+\Hypertarget{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282}\index{can\_struct.h@{can\_struct.h}!can\_port\_t@{can\_port\_t}}
+\index{can\_port\_t@{can\_port\_t}!can\_struct.h@{can\_struct.h}}
+\doxysubsubsection{\texorpdfstring{can\_port\_t}{can\_port\_t}}
+{\footnotesize\ttfamily \label{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282} 
+enum \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282}{can\+\_\+port\+\_\+t}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN1\_PORT@{CAN1\_PORT}!can\_struct.h@{can\_struct.h}}\index{can\_struct.h@{can\_struct.h}!CAN1\_PORT@{CAN1\_PORT}}}\Hypertarget{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238}\label{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238} 
+CAN1\+\_\+\+PORT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN2\_PORT@{CAN2\_PORT}!can\_struct.h@{can\_struct.h}}\index{can\_struct.h@{can\_struct.h}!CAN2\_PORT@{CAN2\_PORT}}}\Hypertarget{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282afed66cb93dc9572d995bc83596f68a37}\label{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282afed66cb93dc9572d995bc83596f68a37} 
+CAN2\+\_\+\+PORT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN3\_PORT@{CAN3\_PORT}!can\_struct.h@{can\_struct.h}}\index{can\_struct.h@{can\_struct.h}!CAN3\_PORT@{CAN3\_PORT}}}\Hypertarget{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282abc017982689593644573fba9e791072d}\label{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282abc017982689593644573fba9e791072d} 
+CAN3\+\_\+\+PORT&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}\index{can\_struct.h@{can\_struct.h}!can\_status\_t@{can\_status\_t}}
+\index{can\_status\_t@{can\_status\_t}!can\_struct.h@{can\_struct.h}}
+\doxysubsubsection{\texorpdfstring{can\_status\_t}{can\_status\_t}}
+{\footnotesize\ttfamily \label{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d} 
+enum \mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN\_OK@{CAN\_OK}!can\_struct.h@{can\_struct.h}}\index{can\_struct.h@{can\_struct.h}!CAN\_OK@{CAN\_OK}}}\Hypertarget{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dab7db0e53b737c0839be931efcb79246e}\label{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dab7db0e53b737c0839be931efcb79246e} 
+CAN\+\_\+\+OK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN\_Reg\_ERROR@{CAN\_Reg\_ERROR}!can\_struct.h@{can\_struct.h}}\index{can\_struct.h@{can\_struct.h}!CAN\_Reg\_ERROR@{CAN\_Reg\_ERROR}}}\Hypertarget{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dadf1eab1c663a7f76481ec01420c4579a}\label{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dadf1eab1c663a7f76481ec01420c4579a} 
+CAN\+\_\+\+Reg\+\_\+\+ERROR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN\_PORT\_ERROR@{CAN\_PORT\_ERROR}!can\_struct.h@{can\_struct.h}}\index{can\_struct.h@{can\_struct.h}!CAN\_PORT\_ERROR@{CAN\_PORT\_ERROR}}}\Hypertarget{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dadf00dffe8d1ba85424f21fbb492f8e8a}\label{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dadf00dffe8d1ba85424f21fbb492f8e8a} 
+CAN\+\_\+\+PORT\+\_\+\+ERROR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN\_MSG\_ERROR@{CAN\_MSG\_ERROR}!can\_struct.h@{can\_struct.h}}\index{can\_struct.h@{can\_struct.h}!CAN\_MSG\_ERROR@{CAN\_MSG\_ERROR}}}\Hypertarget{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1da4bd6ac0947f2dc4ed7da8af03f34acfd}\label{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1da4bd6ac0947f2dc4ed7da8af03f34acfd} 
+CAN\+\_\+\+MSG\+\_\+\+ERROR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN\_MSG\_REPEAT@{CAN\_MSG\_REPEAT}!can\_struct.h@{can\_struct.h}}\index{can\_struct.h@{can\_struct.h}!CAN\_MSG\_REPEAT@{CAN\_MSG\_REPEAT}}}\Hypertarget{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dafae488d62fb9453429adde7b71c08b1e}\label{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dafae488d62fb9453429adde7b71c08b1e} 
+CAN\+\_\+\+MSG\+\_\+\+REPEAT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CAN\_MSG\_NOT\_FOUND@{CAN\_MSG\_NOT\_FOUND}!can\_struct.h@{can\_struct.h}}\index{can\_struct.h@{can\_struct.h}!CAN\_MSG\_NOT\_FOUND@{CAN\_MSG\_NOT\_FOUND}}}\Hypertarget{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1daa23ed6c0f19779a04bc9961451664b47}\label{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1daa23ed6c0f19779a04bc9961451664b47} 
+CAN\+\_\+\+MSG\+\_\+\+NOT\+\_\+\+FOUND&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{变量说明}
+\Hypertarget{can__struct_8h_a23f6a0d249ace51f1cb796a74e9fed84}\index{can\_struct.h@{can\_struct.h}!can1\_rx\_msg\_list@{can1\_rx\_msg\_list}}
+\index{can1\_rx\_msg\_list@{can1\_rx\_msg\_list}!can\_struct.h@{can\_struct.h}}
+\doxysubsubsection{\texorpdfstring{can1\_rx\_msg\_list}{can1\_rx\_msg\_list}}
+{\footnotesize\ttfamily \label{can__struct_8h_a23f6a0d249ace51f1cb796a74e9fed84} 
+List\+\_\+t can1\+\_\+rx\+\_\+msg\+\_\+list\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{can__struct_8h_af251cf824c6932232e60b8f47d3c329e}\index{can\_struct.h@{can\_struct.h}!can2\_rx\_msg\_list@{can2\_rx\_msg\_list}}
+\index{can2\_rx\_msg\_list@{can2\_rx\_msg\_list}!can\_struct.h@{can\_struct.h}}
+\doxysubsubsection{\texorpdfstring{can2\_rx\_msg\_list}{can2\_rx\_msg\_list}}
+{\footnotesize\ttfamily \label{can__struct_8h_af251cf824c6932232e60b8f47d3c329e} 
+List\+\_\+t can2\+\_\+rx\+\_\+msg\+\_\+list\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{can__struct_8h_aec6c42e96f2c3b2f13b2c5c107cf1d60}\index{can\_struct.h@{can\_struct.h}!can3\_rx\_msg\_list@{can3\_rx\_msg\_list}}
+\index{can3\_rx\_msg\_list@{can3\_rx\_msg\_list}!can\_struct.h@{can\_struct.h}}
+\doxysubsubsection{\texorpdfstring{can3\_rx\_msg\_list}{can3\_rx\_msg\_list}}
+{\footnotesize\ttfamily \label{can__struct_8h_aec6c42e96f2c3b2f13b2c5c107cf1d60} 
+List\+\_\+t can3\+\_\+rx\+\_\+msg\+\_\+list\hspace{0.3cm}{\ttfamily [extern]}}
+

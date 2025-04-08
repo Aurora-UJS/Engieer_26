@@ -1,0 +1,32 @@
+\doxysection{dwt\+\_\+bsp.\+h}
+\hypertarget{dwt__bsp_8h_source}{}\label{dwt__bsp_8h_source}\index{source/bsp/dwt/dwt\_bsp.h@{source/bsp/dwt/dwt\_bsp.h}}
+\mbox{\hyperlink{dwt__bsp_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ \_BSP\_DWT\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ \_BSP\_DWT\_H}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}stdint.h"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_d_w_t___time__t_a2dee666f0c1fe072c549ff86b1d0a8ab}{s}};}
+\DoxyCodeLine{00022\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{struct_d_w_t___time__t_a8d03256977e8f265177523adc9bab6c0}{ms}};}
+\DoxyCodeLine{00023\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{struct_d_w_t___time__t_a8fc303618c54ef2935ee6b880f77bae4}{us}};}
+\DoxyCodeLine{00024\ \}\ \mbox{\hyperlink{struct_d_w_t___time__t}{DWT\_Time\_t}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dwt__bsp_8h_a80bda377ca5cef73b03e7211b1fa18b9}{DWT\_Init}}(uint32\_t\ CPU\_Freq\_mHz);}
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{dwt__bsp_8h_af3972f1a5023286afdabf8e79abc5ed7}{DWT\_GetDeltaT}}(uint32\_t\ *cnt\_last);}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{dwt__bsp_8h_ae3519a5f8a00524b8ced263a18fbc37e}{DWT\_GetDeltaT64}}(uint32\_t\ *cnt\_last);}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{dwt__bsp_8h_ab100be84fd91e5f606bd34b2cd62ecef}{DWT\_GetTimeline\_s}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{dwt__bsp_8h_aff20f0eb6b9b6e4df5c8e509b0ca06dd}{DWT\_GetTimeline\_ms}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00031\ uint64\_t\ \mbox{\hyperlink{dwt__bsp_8h_abf89a827c23ac1dcbb5639369d658081}{DWT\_GetTimeline\_us}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dwt__bsp_8h_a88912548ae8934bfc08e9c340974cab9}{DWT\_Delay}}(\textcolor{keywordtype}{float}\ Delay);}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{dwt__bsp_8h_a0f591d032752c63e190dc3d55ea959c7}{DWT\_SysTimeUpdate}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{struct_d_w_t___time__t}{DWT\_Time\_t}}\ \mbox{\hyperlink{dwt__bsp_8c_a27df2b0b1db5d3b21e183aa82229ccfe}{SysTime}};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ BSP\_DWT\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

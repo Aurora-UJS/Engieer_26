@@ -1,0 +1,102 @@
+\doxysection{source/module/\+Dbus/\+DBus\+Sys.c 文件参考}
+\hypertarget{_d_bus_sys_8c}{}\label{_d_bus_sys_8c}\index{source/module/Dbus/DBusSys.c@{source/module/Dbus/DBusSys.c}}
+{\ttfamily \#include "{}DBus\+Sys.\+h"{}}\newline
+{\ttfamily \#include "{}usart.\+h"{}}\newline
+{\ttfamily \#include "{}Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}String.\+h"{}}\newline
+{\ttfamily \#include "{}stdlib.\+h"{}}\newline
+DBus\+Sys.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_d_bus_sys_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_d_bus_sys_8c_a4eca38fb6dbe1f9f2ce1d809be84852a}{DBus\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em DBus\+Sys初始化函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_d_bus_sys_8c_a0b0aa26b8c49f5b7903ca3775c135b1f}{DBus\+\_\+\+Refresh}} (void)
+\begin{DoxyCompactList}\small\item\em DBus\+Sys刷新函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_d_bus_sys_8c_a8213ab13eadf18c6ed266fc5bf26685d}{get\+\_\+dr16\+\_\+data}} (\mbox{\hyperlink{structrc__info__t}{rc\+\_\+info\+\_\+t}} \texorpdfstring{$\ast$}{*}rc, uint8\+\_\+t buff\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em 解析\+DBus\+\_\+msg的接收缓冲区数据，更新遥控器数据 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structrc__info__t}{rc\+\_\+info\+\_\+t}} \mbox{\hyperlink{_d_bus_sys_8c_a90f47c018e09385654ce6352c61fc8c9}{remoter}}
+\item 
+\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \mbox{\hyperlink{_d_bus_sys_8c_add6c1ad907225882cde42f3a1f7da26e}{DBus\+\_\+msg}}
+\item 
+\mbox{\hyperlink{structuart__msg__t}{uart\+\_\+msg\+\_\+t}} \mbox{\hyperlink{_d_bus_sys_8c_a725ff18d4914a1ab4cbfef0c761a2313}{Dbus\+\_\+rx\+\_\+msg}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_d_bus_sys_8c_a96f064c9db562e3339a46a40a04c00bc}{Dbus\+\_\+rx\+\_\+buff}} \mbox{[}\mbox{\hyperlink{_d_bus_sys_8h_a448216d0d398b83a0e18955f06242eff}{DBUS\+\_\+\+BUFF\+\_\+\+SIZE}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{_d_bus_sys_8c_ac24b03424cc52d886e9c93059cc87d20}{Lsat\+\_\+\+Conut}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{_d_bus_sys_8c_a4eca38fb6dbe1f9f2ce1d809be84852a}\index{DBusSys.c@{DBusSys.c}!DBus\_Init@{DBus\_Init}}
+\index{DBus\_Init@{DBus\_Init}!DBusSys.c@{DBusSys.c}}
+\doxysubsubsection{\texorpdfstring{DBus\_Init()}{DBus\_Init()}}
+{\footnotesize\ttfamily \label{_d_bus_sys_8c_a4eca38fb6dbe1f9f2ce1d809be84852a} 
+void DBus\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+DBus\+Sys初始化函数 
+
+\Hypertarget{_d_bus_sys_8c_a0b0aa26b8c49f5b7903ca3775c135b1f}\index{DBusSys.c@{DBusSys.c}!DBus\_Refresh@{DBus\_Refresh}}
+\index{DBus\_Refresh@{DBus\_Refresh}!DBusSys.c@{DBusSys.c}}
+\doxysubsubsection{\texorpdfstring{DBus\_Refresh()}{DBus\_Refresh()}}
+{\footnotesize\ttfamily \label{_d_bus_sys_8c_a0b0aa26b8c49f5b7903ca3775c135b1f} 
+void DBus\+\_\+\+Refresh (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+DBus\+Sys刷新函数 
+
+\Hypertarget{_d_bus_sys_8c_a8213ab13eadf18c6ed266fc5bf26685d}\index{DBusSys.c@{DBusSys.c}!get\_dr16\_data@{get\_dr16\_data}}
+\index{get\_dr16\_data@{get\_dr16\_data}!DBusSys.c@{DBusSys.c}}
+\doxysubsubsection{\texorpdfstring{get\_dr16\_data()}{get\_dr16\_data()}}
+{\footnotesize\ttfamily \label{_d_bus_sys_8c_a8213ab13eadf18c6ed266fc5bf26685d} 
+void get\+\_\+dr16\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrc__info__t}{rc\+\_\+info\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rc}{, }\item[{uint8\+\_\+t}]{buff}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+解析\+DBus\+\_\+msg的接收缓冲区数据，更新遥控器数据 
+
+
+
+\doxysubsection{变量说明}
+\Hypertarget{_d_bus_sys_8c_add6c1ad907225882cde42f3a1f7da26e}\index{DBusSys.c@{DBusSys.c}!DBus\_msg@{DBus\_msg}}
+\index{DBus\_msg@{DBus\_msg}!DBusSys.c@{DBusSys.c}}
+\doxysubsubsection{\texorpdfstring{DBus\_msg}{DBus\_msg}}
+{\footnotesize\ttfamily \label{_d_bus_sys_8c_add6c1ad907225882cde42f3a1f7da26e} 
+\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} DBus\+\_\+msg}
+
+\Hypertarget{_d_bus_sys_8c_a96f064c9db562e3339a46a40a04c00bc}\index{DBusSys.c@{DBusSys.c}!Dbus\_rx\_buff@{Dbus\_rx\_buff}}
+\index{Dbus\_rx\_buff@{Dbus\_rx\_buff}!DBusSys.c@{DBusSys.c}}
+\doxysubsubsection{\texorpdfstring{Dbus\_rx\_buff}{Dbus\_rx\_buff}}
+{\footnotesize\ttfamily \label{_d_bus_sys_8c_a96f064c9db562e3339a46a40a04c00bc} 
+uint8\+\_\+t Dbus\+\_\+rx\+\_\+buff\mbox{[}\mbox{\hyperlink{_d_bus_sys_8h_a448216d0d398b83a0e18955f06242eff}{DBUS\+\_\+\+BUFF\+\_\+\+SIZE}}\mbox{]}}
+
+\Hypertarget{_d_bus_sys_8c_a725ff18d4914a1ab4cbfef0c761a2313}\index{DBusSys.c@{DBusSys.c}!Dbus\_rx\_msg@{Dbus\_rx\_msg}}
+\index{Dbus\_rx\_msg@{Dbus\_rx\_msg}!DBusSys.c@{DBusSys.c}}
+\doxysubsubsection{\texorpdfstring{Dbus\_rx\_msg}{Dbus\_rx\_msg}}
+{\footnotesize\ttfamily \label{_d_bus_sys_8c_a725ff18d4914a1ab4cbfef0c761a2313} 
+\mbox{\hyperlink{structuart__msg__t}{uart\+\_\+msg\+\_\+t}} Dbus\+\_\+rx\+\_\+msg}
+
+\Hypertarget{_d_bus_sys_8c_ac24b03424cc52d886e9c93059cc87d20}\index{DBusSys.c@{DBusSys.c}!Lsat\_Conut@{Lsat\_Conut}}
+\index{Lsat\_Conut@{Lsat\_Conut}!DBusSys.c@{DBusSys.c}}
+\doxysubsubsection{\texorpdfstring{Lsat\_Conut}{Lsat\_Conut}}
+{\footnotesize\ttfamily \label{_d_bus_sys_8c_ac24b03424cc52d886e9c93059cc87d20} 
+uint32\+\_\+t Lsat\+\_\+\+Conut}
+
+\Hypertarget{_d_bus_sys_8c_a90f47c018e09385654ce6352c61fc8c9}\index{DBusSys.c@{DBusSys.c}!remoter@{remoter}}
+\index{remoter@{remoter}!DBusSys.c@{DBusSys.c}}
+\doxysubsubsection{\texorpdfstring{remoter}{remoter}}
+{\footnotesize\ttfamily \label{_d_bus_sys_8c_a90f47c018e09385654ce6352c61fc8c9} 
+\mbox{\hyperlink{structrc__info__t}{rc\+\_\+info\+\_\+t}} remoter}
+

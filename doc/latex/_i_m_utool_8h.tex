@@ -1,0 +1,81 @@
+\doxysection{source/module/\+IMU/\+IMUtool.h 文件参考}
+\hypertarget{_i_m_utool_8h}{}\label{_i_m_utool_8h}\index{source/module/IMU/IMUtool.h@{source/module/IMU/IMUtool.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}Mahony\+AHRS.\+h"{}}\newline
+IMUtool.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=239pt]{_i_m_utool_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_i_m_utool_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structbmi088__data__t}{bmi088\+\_\+data\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_i_m_utool_8h_a7b69c8d1cd40b16364a3dec85ba1fd9b}{temple}} (void)
+\begin{DoxyCompactList}\small\item\em PID温度控制函数。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_i_m_utool_8h_ad29f96bd5db7d3a66c38856f36d4f8e7}{IMUsys}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structbmi088__data__t}{bmi088\+\_\+data\+\_\+t}} \mbox{\hyperlink{_i_m_utool_8h_a4054c62cd1b930c2a79a62483f21dc2b}{bmi088\+\_\+data}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_i_m_utool_8h_a981c11f5314644cebf6c9a9715810f68}{attitude\+\_\+flag}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{_i_m_utool_8h_ad29f96bd5db7d3a66c38856f36d4f8e7}\index{IMUtool.h@{IMUtool.h}!IMUsys@{IMUsys}}
+\index{IMUsys@{IMUsys}!IMUtool.h@{IMUtool.h}}
+\doxysubsubsection{\texorpdfstring{IMUsys()}{IMUsys()}}
+{\footnotesize\ttfamily \label{_i_m_utool_8h_ad29f96bd5db7d3a66c38856f36d4f8e7} 
+void IMUsys (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_i_m_utool_8h_a7b69c8d1cd40b16364a3dec85ba1fd9b}\index{IMUtool.h@{IMUtool.h}!temple@{temple}}
+\index{temple@{temple}!IMUtool.h@{IMUtool.h}}
+\doxysubsubsection{\texorpdfstring{temple()}{temple()}}
+{\footnotesize\ttfamily \label{_i_m_utool_8h_a7b69c8d1cd40b16364a3dec85ba1fd9b} 
+void temple (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+PID温度控制函数。 
+
+该函数实现了一个简单的\+PID控制器，用于调节\+IMU模块的温度至目标值（\+DES\+\_\+\+TEMP）。 控制器通过计算当前温度与目标温度之间的误差，调整\+PWM输出以控制加热功率。
+
+控制公式为： out = KP \texorpdfstring{$\ast$}{*} err + KI \texorpdfstring{$\ast$}{*} (err + err\+\_\+l + err\+\_\+ll) + KD \texorpdfstring{$\ast$}{*} (err -\/ err\+\_\+l) 其中：
+\begin{DoxyItemize}
+\item err\+: 当前温度误差。
+\item err\+\_\+l\+: 上一次温度误差。
+\item err\+\_\+ll\+: 上上次温度误差。
+\item KP, KI, KD\+: PID控制器的比例、积分、微分系数。
+\end{DoxyItemize}
+
+输出值被限制在 \mbox{[}0, MAX\+\_\+\+OUT\mbox{]} 范围内，并通过定时器通道（htim3.\+Instance-\/\texorpdfstring{$>$}{>}CCR4）设置\+PWM占空比。 
+
+\doxysubsection{变量说明}
+\Hypertarget{_i_m_utool_8h_a981c11f5314644cebf6c9a9715810f68}\index{IMUtool.h@{IMUtool.h}!attitude\_flag@{attitude\_flag}}
+\index{attitude\_flag@{attitude\_flag}!IMUtool.h@{IMUtool.h}}
+\doxysubsubsection{\texorpdfstring{attitude\_flag}{attitude\_flag}}
+{\footnotesize\ttfamily \label{_i_m_utool_8h_a981c11f5314644cebf6c9a9715810f68} 
+uint8\+\_\+t attitude\+\_\+flag\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_m_utool_8h_a4054c62cd1b930c2a79a62483f21dc2b}\index{IMUtool.h@{IMUtool.h}!bmi088\_data@{bmi088\_data}}
+\index{bmi088\_data@{bmi088\_data}!IMUtool.h@{IMUtool.h}}
+\doxysubsubsection{\texorpdfstring{bmi088\_data}{bmi088\_data}}
+{\footnotesize\ttfamily \label{_i_m_utool_8h_a4054c62cd1b930c2a79a62483f21dc2b} 
+\mbox{\hyperlink{structbmi088__data__t}{bmi088\+\_\+data\+\_\+t}} bmi088\+\_\+data\hspace{0.3cm}{\ttfamily [extern]}}
+

@@ -3,6 +3,16 @@
 #include "string.h"
 #include "main.h"
 #include "cmsis_os2.h"
+
+
+/**
+ * @brief 辅助PID零点跨越计算函数
+ * 
+ * @param target 目标值
+ * @param current 当前值
+ * @param circule_num 周期宽度（例如一圈周期宽度为2PI）
+ * @return float 
+ */
 float circule_compensate(float target, float current, float circule_num)
 {
     float temp = target - current;
@@ -35,12 +45,22 @@ float map(float value, float in_min, float in_max, float out_min, float out_max)
     return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
+/**
+ * @brief 限制函数
+ * 
+ * @param value 要限制的值
+ * @param min 最小值
+ * @param max 最大值
+ * @return float 
+ */
 float limit(float value, float min, float max)
 {
     // 检查 min 是否大于 max
     if (min > max)
     {
-        return NAN; // 返回 NaN 表示无效输入
+        float temp = min;
+        min = max;
+        max = temp;
     }
 
     // 检查是否为 NaN

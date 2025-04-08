@@ -1,0 +1,331 @@
+\doxysection{source/module/motor/motor\+\_\+\+DM/motor\+\_\+\+DM.c 文件参考}
+\hypertarget{motor___d_m_8c}{}\label{motor___d_m_8c}\index{source/module/motor/motor\_DM/motor\_DM.c@{source/module/motor/motor\_DM/motor\_DM.c}}
+{\ttfamily \#include "{}motor\+\_\+\+DM.\+h"{}}\newline
+{\ttfamily \#include "{}string.\+h"{}}\newline
+motor\+\_\+\+DM.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{motor___d_m_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{motor___d_m_8c_adbf3b4cabe278eb394de81cb2a8a3765}{float\+\_\+to\+\_\+uint}} (float x\+\_\+float, float x\+\_\+min, float x\+\_\+max, int bits)
+\begin{DoxyCompactList}\small\item\em \+: float\+\_\+to\+\_\+uint\+: 浮点数转换为无符号整数函数 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{motor___d_m_8c_a433c5c4bd939626b463a891392451dc2}{uint\+\_\+to\+\_\+float}} (unsigned int x\+\_\+int, float x\+\_\+min, float x\+\_\+max, int bits)
+\begin{DoxyCompactList}\small\item\em \+: uint\+\_\+to\+\_\+float\+: 无符号整数转换为浮点数函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8c_a65a366100839b300d25774b34fc1fa80}{Motor\+\_\+\+DM\+\_\+\+Init}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor)
+\begin{DoxyCompactList}\small\item\em \+: Motor\+\_\+\+DM\+\_\+\+Init\+: 电机初始化函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8c_a64b546c7ad05009cfede6bc962cff1b6}{Motor\+\_\+\+DM\+\_\+\+Refresh}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor)
+\begin{DoxyCompactList}\small\item\em \+: Motor\+\_\+\+DM\+\_\+\+Refresh\+: 电机刷新函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8c_ab3e894b32448d525e7c454682d24e0a1}{Motor\+\_\+\+DM\+\_\+\+Enable}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor)
+\begin{DoxyCompactList}\small\item\em \+: Motor\+\_\+\+DM\+\_\+\+Enable\+: 电机使能函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8c_a5fa285cb7fbf256fd9a2b47af6e3e549}{Motor\+\_\+\+DM\+\_\+\+Disable}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor)
+\begin{DoxyCompactList}\small\item\em \+: Motor\+\_\+\+DM\+\_\+\+Disable\+: 电机失能函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8c_a85fb575f9cd15c1e59a4ef9d5a6ee27d}{Motor\+\_\+\+DM\+\_\+\+Save\+\_\+\+Zero}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor)
+\begin{DoxyCompactList}\small\item\em \+: Motor\+\_\+\+DM\+\_\+\+Save\+\_\+\+Zero\+: 电机保存零点函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8c_a114aa82c54f6ec167ee799de97d0455c}{Motor\+\_\+\+DM\+\_\+\+Clear\+\_\+\+Error}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor)
+\begin{DoxyCompactList}\small\item\em \+: Motor\+\_\+\+DM\+\_\+\+Clear\+\_\+\+Error\+: 电机清除错误函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8c_a8998f183bc48af1f3e2884f0d281d7a6}{Speed\+\_\+\+Ctrl\+Motor\+DM}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor, float vel)
+\begin{DoxyCompactList}\small\item\em \+: speed\+\_\+ctrl\+: 速度控制函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8c_a2c8366551102091656e16022e7d9d9ff}{Pos\+Speed\+\_\+\+Ctrl\+Motor\+DM}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor, float \+\_\+pos, float \+\_\+vel)
+\begin{DoxyCompactList}\small\item\em 达妙电机位置速度模式控下控制帧 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8c_a4e5af5310ebc11b1939f30528159330d}{MIT\+\_\+\+Ctrl\+Motor\+DM}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor, float pos, float vel, float kp, float kd, float tor)
+\begin{DoxyCompactList}\small\item\em \+: mit\+\_\+ctrl\+: MIT模式下的电机控制函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{motor___d_m_8c_adbf3b4cabe278eb394de81cb2a8a3765}\index{motor\_DM.c@{motor\_DM.c}!float\_to\_uint@{float\_to\_uint}}
+\index{float\_to\_uint@{float\_to\_uint}!motor\_DM.c@{motor\_DM.c}}
+\doxysubsubsection{\texorpdfstring{float\_to\_uint()}{float\_to\_uint()}}
+{\footnotesize\ttfamily \label{motor___d_m_8c_adbf3b4cabe278eb394de81cb2a8a3765} 
+int float\+\_\+to\+\_\+uint (\begin{DoxyParamCaption}\item[{float}]{x\+\_\+float}{, }\item[{float}]{x\+\_\+min}{, }\item[{float}]{x\+\_\+max}{, }\item[{int}]{bits}{}\end{DoxyParamCaption})}
+
+
+
+\+: float\+\_\+to\+\_\+uint\+: 浮点数转换为无符号整数函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+x\+\_\+float\+: 待转换的浮点数 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+x\+\_\+min\+: 范围最小值 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+x\+\_\+max\+: 范围最大值 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+bits\+: 目标无符号整数的位数 
+\begin{DoxyRetVals}{返回值}
+{\em } & 无符号整数结果\\
+\hline
+\end{DoxyRetVals}
+\+: 将给定的浮点数 x 在指定范围 \mbox{[}x\+\_\+min, x\+\_\+max\mbox{]} 内进行线性映射，映射结果为一个指定位数的无符号整数 \Hypertarget{motor___d_m_8c_a4e5af5310ebc11b1939f30528159330d}\index{motor\_DM.c@{motor\_DM.c}!MIT\_CtrlMotorDM@{MIT\_CtrlMotorDM}}
+\index{MIT\_CtrlMotorDM@{MIT\_CtrlMotorDM}!motor\_DM.c@{motor\_DM.c}}
+\doxysubsubsection{\texorpdfstring{MIT\_CtrlMotorDM()}{MIT\_CtrlMotorDM()}}
+{\footnotesize\ttfamily \label{motor___d_m_8c_a4e5af5310ebc11b1939f30528159330d} 
+void MIT\+\_\+\+Ctrl\+Motor\+DM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{, }\item[{float}]{pos}{, }\item[{float}]{vel}{, }\item[{float}]{kp}{, }\item[{float}]{kd}{, }\item[{float}]{tor}{}\end{DoxyParamCaption})}
+
+
+
+\+: mit\+\_\+ctrl\+: MIT模式下的电机控制函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+hcan\+: 指向\+CAN\+\_\+\+Handle\+Type\+Def结构的指针，用于指定\+CAN总线 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+\_\+id\+: 电机\+ID，指定目标电机 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+pos\+: 位置给定值 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+vel\+: 速度给定值 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+kp\+: 位置比例系数 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+kd\+: 位置微分系数 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+torq\+: 转矩给定值 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+CAN总线向电机发送\+MIT模式下的控制帧。 \Hypertarget{motor___d_m_8c_a114aa82c54f6ec167ee799de97d0455c}\index{motor\_DM.c@{motor\_DM.c}!Motor\_DM\_Clear\_Error@{Motor\_DM\_Clear\_Error}}
+\index{Motor\_DM\_Clear\_Error@{Motor\_DM\_Clear\_Error}!motor\_DM.c@{motor\_DM.c}}
+\doxysubsubsection{\texorpdfstring{Motor\_DM\_Clear\_Error()}{Motor\_DM\_Clear\_Error()}}
+{\footnotesize\ttfamily \label{motor___d_m_8c_a114aa82c54f6ec167ee799de97d0455c} 
+void Motor\+\_\+\+DM\+\_\+\+Clear\+\_\+\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{}\end{DoxyParamCaption})}
+
+
+
+\+: Motor\+\_\+\+DM\+\_\+\+Clear\+\_\+\+Error\+: 电机清除错误函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+: 指向\+DM\+\_\+motor\+\_\+t结构体的指针，用于指定电机 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+CAN总线向电机发送清除错误命令 \Hypertarget{motor___d_m_8c_a5fa285cb7fbf256fd9a2b47af6e3e549}\index{motor\_DM.c@{motor\_DM.c}!Motor\_DM\_Disable@{Motor\_DM\_Disable}}
+\index{Motor\_DM\_Disable@{Motor\_DM\_Disable}!motor\_DM.c@{motor\_DM.c}}
+\doxysubsubsection{\texorpdfstring{Motor\_DM\_Disable()}{Motor\_DM\_Disable()}}
+{\footnotesize\ttfamily \label{motor___d_m_8c_a5fa285cb7fbf256fd9a2b47af6e3e549} 
+void Motor\+\_\+\+DM\+\_\+\+Disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{}\end{DoxyParamCaption})}
+
+
+
+\+: Motor\+\_\+\+DM\+\_\+\+Disable\+: 电机失能函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+: 指向\+DM\+\_\+motor\+\_\+t结构体的指针，用于指定电机 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+CAN总线向电机发送失能命令 \Hypertarget{motor___d_m_8c_ab3e894b32448d525e7c454682d24e0a1}\index{motor\_DM.c@{motor\_DM.c}!Motor\_DM\_Enable@{Motor\_DM\_Enable}}
+\index{Motor\_DM\_Enable@{Motor\_DM\_Enable}!motor\_DM.c@{motor\_DM.c}}
+\doxysubsubsection{\texorpdfstring{Motor\_DM\_Enable()}{Motor\_DM\_Enable()}}
+{\footnotesize\ttfamily \label{motor___d_m_8c_ab3e894b32448d525e7c454682d24e0a1} 
+void Motor\+\_\+\+DM\+\_\+\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{}\end{DoxyParamCaption})}
+
+
+
+\+: Motor\+\_\+\+DM\+\_\+\+Enable\+: 电机使能函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+: 指向\+DM\+\_\+motor\+\_\+t结构体的指针，用于指定电机 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+CAN总线向电机发送使能命令 \Hypertarget{motor___d_m_8c_a65a366100839b300d25774b34fc1fa80}\index{motor\_DM.c@{motor\_DM.c}!Motor\_DM\_Init@{Motor\_DM\_Init}}
+\index{Motor\_DM\_Init@{Motor\_DM\_Init}!motor\_DM.c@{motor\_DM.c}}
+\doxysubsubsection{\texorpdfstring{Motor\_DM\_Init()}{Motor\_DM\_Init()}}
+{\footnotesize\ttfamily \label{motor___d_m_8c_a65a366100839b300d25774b34fc1fa80} 
+void Motor\+\_\+\+DM\+\_\+\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{}\end{DoxyParamCaption})}
+
+
+
+\+: Motor\+\_\+\+DM\+\_\+\+Init\+: 电机初始化函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+: 指向\+DM\+\_\+motor\+\_\+t结构体的指针，用于指定电机 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 初始化电机参数 \Hypertarget{motor___d_m_8c_a64b546c7ad05009cfede6bc962cff1b6}\index{motor\_DM.c@{motor\_DM.c}!Motor\_DM\_Refresh@{Motor\_DM\_Refresh}}
+\index{Motor\_DM\_Refresh@{Motor\_DM\_Refresh}!motor\_DM.c@{motor\_DM.c}}
+\doxysubsubsection{\texorpdfstring{Motor\_DM\_Refresh()}{Motor\_DM\_Refresh()}}
+{\footnotesize\ttfamily \label{motor___d_m_8c_a64b546c7ad05009cfede6bc962cff1b6} 
+void Motor\+\_\+\+DM\+\_\+\+Refresh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{}\end{DoxyParamCaption})}
+
+
+
+\+: Motor\+\_\+\+DM\+\_\+\+Refresh\+: 电机刷新函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+: 指向\+DM\+\_\+motor\+\_\+t结构体的指针，用于指定电机 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+CAN总线接收电机反馈数据 \Hypertarget{motor___d_m_8c_a85fb575f9cd15c1e59a4ef9d5a6ee27d}\index{motor\_DM.c@{motor\_DM.c}!Motor\_DM\_Save\_Zero@{Motor\_DM\_Save\_Zero}}
+\index{Motor\_DM\_Save\_Zero@{Motor\_DM\_Save\_Zero}!motor\_DM.c@{motor\_DM.c}}
+\doxysubsubsection{\texorpdfstring{Motor\_DM\_Save\_Zero()}{Motor\_DM\_Save\_Zero()}}
+{\footnotesize\ttfamily \label{motor___d_m_8c_a85fb575f9cd15c1e59a4ef9d5a6ee27d} 
+void Motor\+\_\+\+DM\+\_\+\+Save\+\_\+\+Zero (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{}\end{DoxyParamCaption})}
+
+
+
+\+: Motor\+\_\+\+DM\+\_\+\+Save\+\_\+\+Zero\+: 电机保存零点函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+: 指向\+DM\+\_\+motor\+\_\+t结构体的指针，用于指定电机 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+CAN总线向电机发送保存零点命令 \Hypertarget{motor___d_m_8c_a2c8366551102091656e16022e7d9d9ff}\index{motor\_DM.c@{motor\_DM.c}!PosSpeed\_CtrlMotorDM@{PosSpeed\_CtrlMotorDM}}
+\index{PosSpeed\_CtrlMotorDM@{PosSpeed\_CtrlMotorDM}!motor\_DM.c@{motor\_DM.c}}
+\doxysubsubsection{\texorpdfstring{PosSpeed\_CtrlMotorDM()}{PosSpeed\_CtrlMotorDM()}}
+{\footnotesize\ttfamily \label{motor___d_m_8c_a2c8366551102091656e16022e7d9d9ff} 
+void Pos\+Speed\+\_\+\+Ctrl\+Motor\+DM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{, }\item[{float}]{\+\_\+pos}{, }\item[{float}]{\+\_\+vel}{}\end{DoxyParamCaption})}
+
+
+
+达妙电机位置速度模式控下控制帧 
+
+
+\begin{DoxyParams}{参数}
+{\em hcan} & CAN的句柄 \\
+\hline
+{\em ID} & 数据帧的\+ID \\
+\hline
+{\em \+\_\+pos} & 位置给定 \\
+\hline
+{\em \+\_\+vel} & 速度给定 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{motor___d_m_8c_a8998f183bc48af1f3e2884f0d281d7a6}\index{motor\_DM.c@{motor\_DM.c}!Speed\_CtrlMotorDM@{Speed\_CtrlMotorDM}}
+\index{Speed\_CtrlMotorDM@{Speed\_CtrlMotorDM}!motor\_DM.c@{motor\_DM.c}}
+\doxysubsubsection{\texorpdfstring{Speed\_CtrlMotorDM()}{Speed\_CtrlMotorDM()}}
+{\footnotesize\ttfamily \label{motor___d_m_8c_a8998f183bc48af1f3e2884f0d281d7a6} 
+void Speed\+\_\+\+Ctrl\+Motor\+DM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{, }\item[{float}]{vel}{}\end{DoxyParamCaption})}
+
+
+
+\+: speed\+\_\+ctrl\+: 速度控制函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+hcan\+: 指向\+CAN\+\_\+\+Handle\+Type\+Def结构的指针，用于指定\+CAN总线 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+\_\+id\+: 电机\+ID，指定目标电机 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+vel\+: 速度给定值 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+CAN总线向电机发送速度控制命令 \Hypertarget{motor___d_m_8c_a433c5c4bd939626b463a891392451dc2}\index{motor\_DM.c@{motor\_DM.c}!uint\_to\_float@{uint\_to\_float}}
+\index{uint\_to\_float@{uint\_to\_float}!motor\_DM.c@{motor\_DM.c}}
+\doxysubsubsection{\texorpdfstring{uint\_to\_float()}{uint\_to\_float()}}
+{\footnotesize\ttfamily \label{motor___d_m_8c_a433c5c4bd939626b463a891392451dc2} 
+float uint\+\_\+to\+\_\+float (\begin{DoxyParamCaption}\item[{unsigned int}]{x\+\_\+int}{, }\item[{float}]{x\+\_\+min}{, }\item[{float}]{x\+\_\+max}{, }\item[{int}]{bits}{}\end{DoxyParamCaption})}
+
+
+
+\+: uint\+\_\+to\+\_\+float\+: 无符号整数转换为浮点数函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+x\+\_\+int\+: 待转换的无符号整数 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+x\+\_\+min\+: 范围最小值 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+x\+\_\+max\+: 范围最大值 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+bits\+: 无符号整数的位数 
+\begin{DoxyRetVals}{返回值}
+{\em } & 浮点数结果\\
+\hline
+\end{DoxyRetVals}
+\+: 将给定的无符号整数 x\+\_\+int 在指定范围 \mbox{[}x\+\_\+min, x\+\_\+max\mbox{]} 内进行线性映射，映射结果为一个浮点数 

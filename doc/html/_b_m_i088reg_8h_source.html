@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/imu/BMI088/inc/BMI088reg.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_fda1e2a789251a234642f8099e409c7b.html">imu</a></li><li class="navelem"><a class="el" href="dir_fbf0e0d886075f876aba2d5f4960db13.html">BMI088</a></li><li class="navelem"><a class="el" href="dir_1469d48cff88994044fdefd536ff4baa.html">inc</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">BMI088reg.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_b_m_i088reg_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef BMI088REG_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define BMI088REG_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a48b3c7c7560500d80ef8821f6569ea95">    4</a></span><span class="preprocessor">#define BMI088_ACC_CHIP_ID 0x00 </span><span class="comment">// the register is  &quot; Who am I &quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aa96ce72f90965c89958fc89495202bd5">    5</a></span><span class="preprocessor">#define BMI088_ACC_CHIP_ID_VALUE 0x1E</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ad90e27b0a87af90f192133a96731eb96">    7</a></span><span class="preprocessor">#define BMI088_ACC_ERR_REG 0x02</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aaeb82a9e22ac4e9a4a7793a3de5805a6">    8</a></span><span class="preprocessor">#define BMI088_ACCEL_CONGIF_ERROR_SHFITS 0x2</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a36bfebc443d7b5a85d6304d7993736c3">    9</a></span><span class="preprocessor">#define BMI088_ACCEL_CONGIF_ERROR (1 &lt;&lt; BMI088_ACCEL_CONGIF_ERROR_SHFITS)</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#af0d03b971f2672f9d28a998680c41522">   10</a></span><span class="preprocessor">#define BMI088_FATAL_ERROR_SHFITS 0x0</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a9271e10a2699421efc2139f771c641f6">   11</a></span><span class="preprocessor">#define BMI088_FATAL_ERROR (1 &lt;&lt; BMI088_FATAL_ERROR)</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a58f04a2fc80135af8afd4f838075667a">   13</a></span><span class="preprocessor">#define BMI088_ACC_STATUS 0x03</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a6c1199ea9891acbe2c286ae2fc37d8b7">   14</a></span><span class="preprocessor">#define BMI088_ACCEL_DRDY_SHFITS 0x7</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a150361318e588fcfd8c773f655deda3c">   15</a></span><span class="preprocessor">#define BMI088_ACCEL_DRDY (1 &lt;&lt; BMI088_ACCEL_DRDY_SHFITS)</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a05f6ae3debe15050456da240efeda6cb">   17</a></span><span class="preprocessor">#define BMI088_ACCEL_XOUT_L 0x12</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#af69b1d472632fc7c6fb480cd7e2edcd6">   18</a></span><span class="preprocessor">#define BMI088_ACCEL_XOUT_M 0x13</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a643d59f4ebd76728ec0fab8d3e98a753">   19</a></span><span class="preprocessor">#define BMI088_ACCEL_YOUT_L 0x14</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a2604059f8e861efd1dd8ffc28928135e">   20</a></span><span class="preprocessor">#define BMI088_ACCEL_YOUT_M 0x15</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aa5844d8e158a51c3d5b7afee1a1d2fa8">   21</a></span><span class="preprocessor">#define BMI088_ACCEL_ZOUT_L 0x16</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a9cb7606a2b4e9544b35155ede50d6e6f">   22</a></span><span class="preprocessor">#define BMI088_ACCEL_ZOUT_M 0x17</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a70d2005b1fb74f7e108846fa7ad7b5af">   24</a></span><span class="preprocessor">#define BMI088_SENSORTIME_DATA_L 0x18</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a85ef5f6f61b13a6a07f92a68a8eadb15">   25</a></span><span class="preprocessor">#define BMI088_SENSORTIME_DATA_M 0x19</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a0b13ad45d91914161f37dd4c311713cf">   26</a></span><span class="preprocessor">#define BMI088_SENSORTIME_DATA_H 0x1A</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#af77fe69f44cb236d309f4424c7c8f4f1">   28</a></span><span class="preprocessor">#define BMI088_ACC_INT_STAT_1 0x1D</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#acbb85b28b6d6fd007c9a598728d6874b">   29</a></span><span class="preprocessor">#define BMI088_ACCEL_DRDY_INTERRUPT_SHFITS 0x7</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a30815b8b2085be41eb8208dde18bae7b">   30</a></span><span class="preprocessor">#define BMI088_ACCEL_DRDY_INTERRUPT (1 &lt;&lt; BMI088_ACCEL_DRDY_INTERRUPT_SHFITS)</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a051ac5820d52105902f0631a8a43a1ca">   32</a></span><span class="preprocessor">#define BMI088_TEMP_M 0x22</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aa44b6dae4923649860a1f205670e07d6">   34</a></span><span class="preprocessor">#define BMI088_TEMP_L 0x23</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a388df45e94a90f3055d99487f25effcc">   36</a></span><span class="preprocessor">#define BMI088_ACC_CONF 0x40</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a6dea15343f7d8b1f0b3b5c24ae6a159e">   37</a></span><span class="preprocessor">#define BMI088_ACC_CONF_MUST_Set 0x80</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a3108eb23cb20cc571fdba0b9c424c724">   38</a></span><span class="preprocessor">#define BMI088_ACC_BWP_SHFITS 0x4</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a582977e8fe5ade13f1b77edf71225810">   39</a></span><span class="preprocessor">#define BMI088_ACC_OSR4 (0x0 &lt;&lt; BMI088_ACC_BWP_SHFITS)</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a7cf3be3e59ac1acba3a21728caa8bcde">   40</a></span><span class="preprocessor">#define BMI088_ACC_OSR2 (0x1 &lt;&lt; BMI088_ACC_BWP_SHFITS)</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a38ef5402fb83c50bc8ac06e8fb70e958">   41</a></span><span class="preprocessor">#define BMI088_ACC_NORMAL (0x2 &lt;&lt; BMI088_ACC_BWP_SHFITS)</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a3802de292079674fd779d0186717c8c8">   43</a></span><span class="preprocessor">#define BMI088_ACC_ODR_SHFITS 0x0</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a49b75589f793f454b8d7f47373b9e8d1">   44</a></span><span class="preprocessor">#define BMI088_ACC_12_5_HZ (0x5 &lt;&lt; BMI088_ACC_ODR_SHFITS)</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a2b6e7f3256a6224348bcdb80b466f983">   45</a></span><span class="preprocessor">#define BMI088_ACC_25_HZ (0x6 &lt;&lt; BMI088_ACC_ODR_SHFITS)</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a09b0bd365d9c1f859ad1f8862a885f8c">   46</a></span><span class="preprocessor">#define BMI088_ACC_50_HZ (0x7 &lt;&lt; BMI088_ACC_ODR_SHFITS)</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ada13732306f5d4d61a74736064709521">   47</a></span><span class="preprocessor">#define BMI088_ACC_100_HZ (0x8 &lt;&lt; BMI088_ACC_ODR_SHFITS)</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#af17d370619e7218b6f2784df69eb3ab3">   48</a></span><span class="preprocessor">#define BMI088_ACC_200_HZ (0x9 &lt;&lt; BMI088_ACC_ODR_SHFITS)</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a3bc6f7740ec910328b6b23a8d9c9fa59">   49</a></span><span class="preprocessor">#define BMI088_ACC_400_HZ (0xA &lt;&lt; BMI088_ACC_ODR_SHFITS)</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a5a9d298e1b64a423bca24df2426cb96a">   50</a></span><span class="preprocessor">#define BMI088_ACC_800_HZ (0xB &lt;&lt; BMI088_ACC_ODR_SHFITS)</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a2145744d53fced43c5fb4ee35965eb72">   51</a></span><span class="preprocessor">#define BMI088_ACC_1600_HZ (0xC &lt;&lt; BMI088_ACC_ODR_SHFITS)</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a9b20ba6a9051c8eb6e355e9b782834c5">   53</a></span><span class="preprocessor">#define BMI088_ACC_RANGE 0x41</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ae8e9a7b9b391d63666f470de11a46551">   55</a></span><span class="preprocessor">#define BMI088_ACC_RANGE_SHFITS 0x0</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a65b88779b0fa8aff1f0ea417dd0b7807">   56</a></span><span class="preprocessor">#define BMI088_ACC_RANGE_3G (0x0 &lt;&lt; BMI088_ACC_RANGE_SHFITS)</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a72d461a0e0400bc99963533ca705458a">   57</a></span><span class="preprocessor">#define BMI088_ACC_RANGE_6G (0x1 &lt;&lt; BMI088_ACC_RANGE_SHFITS)</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a3a3115cbc3b1af6c69a7ba82da5bf578">   58</a></span><span class="preprocessor">#define BMI088_ACC_RANGE_12G (0x2 &lt;&lt; BMI088_ACC_RANGE_SHFITS)</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aca11be94578f2539b081f5a231a911ae">   59</a></span><span class="preprocessor">#define BMI088_ACC_RANGE_24G (0x3 &lt;&lt; BMI088_ACC_RANGE_SHFITS)</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aecb6ef5163e54e2e77c61f7c35c99950">   61</a></span><span class="preprocessor">#define BMI088_INT1_IO_CTRL 0x53</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ad6ee29021fce1810a1ca6e631ce92367">   62</a></span><span class="preprocessor">#define BMI088_ACC_INT1_IO_ENABLE_SHFITS 0x3</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#abbd21b0efcf1cf52391fe3ff321e671c">   63</a></span><span class="preprocessor">#define BMI088_ACC_INT1_IO_ENABLE (0x1 &lt;&lt; BMI088_ACC_INT1_IO_ENABLE_SHFITS)</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#afadca250143cd93c9460f48f24d78f4d">   64</a></span><span class="preprocessor">#define BMI088_ACC_INT1_GPIO_MODE_SHFITS 0x2</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a5ed8f833da0922c0911a03e7ddddb582">   65</a></span><span class="preprocessor">#define BMI088_ACC_INT1_GPIO_PP (0x0 &lt;&lt; BMI088_ACC_INT1_GPIO_MODE_SHFITS)</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aa8d69a9bb276c02fd714c35e1f76728b">   66</a></span><span class="preprocessor">#define BMI088_ACC_INT1_GPIO_OD (0x1 &lt;&lt; BMI088_ACC_INT1_GPIO_MODE_SHFITS)</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a4e3c9d8a8627a1a3b838dd607ab1ebe7">   67</a></span><span class="preprocessor">#define BMI088_ACC_INT1_GPIO_LVL_SHFITS 0x1</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aa45664ee9592c2d2e3236d6111d88c47">   68</a></span><span class="preprocessor">#define BMI088_ACC_INT1_GPIO_LOW (0x0 &lt;&lt; BMI088_ACC_INT1_GPIO_LVL_SHFITS)</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aaa3810102a23742b7805ecdf51717ae2">   69</a></span><span class="preprocessor">#define BMI088_ACC_INT1_GPIO_HIGH (0x1 &lt;&lt; BMI088_ACC_INT1_GPIO_LVL_SHFITS)</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ad654e8eccce136809f46d7eff589911c">   71</a></span><span class="preprocessor">#define BMI088_INT2_IO_CTRL 0x54</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a1588732bb34fc254a26732e279d7fce1">   72</a></span><span class="preprocessor">#define BMI088_ACC_INT2_IO_ENABLE_SHFITS 0x3</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a2d3908956d291ceb4b8d3fc07a94b7a1">   73</a></span><span class="preprocessor">#define BMI088_ACC_INT2_IO_ENABLE (0x1 &lt;&lt; BMI088_ACC_INT2_IO_ENABLE_SHFITS)</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ae876cdad960d3febe6f2738c9b2e7a6c">   74</a></span><span class="preprocessor">#define BMI088_ACC_INT2_GPIO_MODE_SHFITS 0x2</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#af7ee93879d67c24df6853377f393c1fc">   75</a></span><span class="preprocessor">#define BMI088_ACC_INT2_GPIO_PP (0x0 &lt;&lt; BMI088_ACC_INT2_GPIO_MODE_SHFITS)</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a9986a743da977b228f450b1ae15803d2">   76</a></span><span class="preprocessor">#define BMI088_ACC_INT2_GPIO_OD (0x1 &lt;&lt; BMI088_ACC_INT2_GPIO_MODE_SHFITS)</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a6daaaee7615eb997fb7428f885947dc9">   77</a></span><span class="preprocessor">#define BMI088_ACC_INT2_GPIO_LVL_SHFITS 0x1</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a9ff0c8eb51f17451d6a8b1562583e99c">   78</a></span><span class="preprocessor">#define BMI088_ACC_INT2_GPIO_LOW (0x0 &lt;&lt; BMI088_ACC_INT2_GPIO_LVL_SHFITS)</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a386493333196db417e94d742eadab035">   79</a></span><span class="preprocessor">#define BMI088_ACC_INT2_GPIO_HIGH (0x1 &lt;&lt; BMI088_ACC_INT2_GPIO_LVL_SHFITS)</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a884e0dd5a685d9bce99d3a570b118823">   81</a></span><span class="preprocessor">#define BMI088_INT_MAP_DATA 0x58</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a7863b492920b01cbb98b22a03ddf44e5">   82</a></span><span class="preprocessor">#define BMI088_ACC_INT2_DRDY_INTERRUPT_SHFITS 0x6</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a96b49372a0401fcdbd2bdc221bdbe7a3">   83</a></span><span class="preprocessor">#define BMI088_ACC_INT2_DRDY_INTERRUPT (0x1 &lt;&lt; BMI088_ACC_INT2_DRDY_INTERRUPT_SHFITS)</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ad6c75dea9b08f9fc2457d3a04659d715">   84</a></span><span class="preprocessor">#define BMI088_ACC_INT1_DRDY_INTERRUPT_SHFITS 0x2</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a7d38683ce947e6809b876cef91f90790">   85</a></span><span class="preprocessor">#define BMI088_ACC_INT1_DRDY_INTERRUPT (0x1 &lt;&lt; BMI088_ACC_INT1_DRDY_INTERRUPT_SHFITS)</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a8213ce0ebb38b65cc8d16e07e9a68068">   87</a></span><span class="preprocessor">#define BMI088_ACC_SELF_TEST 0x6D</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a074b87a2d14ed832f843d7199a3bbbef">   88</a></span><span class="preprocessor">#define BMI088_ACC_SELF_TEST_OFF 0x00</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a13ce8ccde0f955ae6157a7efd7736155">   89</a></span><span class="preprocessor">#define BMI088_ACC_SELF_TEST_POSITIVE_SIGNAL 0x0D</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a0b7d4e1c857eba1f5d0f10860a3a3fa9">   90</a></span><span class="preprocessor">#define BMI088_ACC_SELF_TEST_NEGATIVE_SIGNAL 0x09</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a71519cb1de994df5663583ad80dd88f5">   92</a></span><span class="preprocessor">#define BMI088_ACC_PWR_CONF 0x7C</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ae381683612f12debcccd73bd672f0607">   93</a></span><span class="preprocessor">#define BMI088_ACC_PWR_SUSPEND_MODE 0x03</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ab6a6c7a43efa1ea39297bcf4ebd616b5">   94</a></span><span class="preprocessor">#define BMI088_ACC_PWR_ACTIVE_MODE 0x00</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ad5d5add3592f876bfa9549b20ac340b8">   96</a></span><span class="preprocessor">#define BMI088_ACC_PWR_CTRL 0x7D</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#acb15d080c451624ef048c5a791dd3098">   97</a></span><span class="preprocessor">#define BMI088_ACC_ENABLE_ACC_OFF 0x00</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a2e0099c9bffb1d1f7c71a7475f2b4ad5">   98</a></span><span class="preprocessor">#define BMI088_ACC_ENABLE_ACC_ON 0x04</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a10828f8b450f9c3961c93cd25d5c09bf">  100</a></span><span class="preprocessor">#define BMI088_ACC_SOFTRESET 0x7E</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a04602d12e0bc425d9d60cae5fe339f10">  101</a></span><span class="preprocessor">#define BMI088_ACC_SOFTRESET_VALUE 0xB6</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a1b31a99767c476994425f97f2ade7246">  103</a></span><span class="preprocessor">#define BMI088_GYRO_CHIP_ID 0x00</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#afb4a75fe6aacdb50be4c8529a2208cda">  104</a></span><span class="preprocessor">#define BMI088_GYRO_CHIP_ID_VALUE 0x0F</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a097aed1c341241ca81afccb5ba8a0d9f">  106</a></span><span class="preprocessor">#define BMI088_GYRO_X_L 0x02</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a3727fe68e7062c571cbdd359a420e28e">  107</a></span><span class="preprocessor">#define BMI088_GYRO_X_H 0x03</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#afdebe6075325e230ead7c30c822a7a60">  108</a></span><span class="preprocessor">#define BMI088_GYRO_Y_L 0x04</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a584d6a185c9d1faf008e34bb5ca8edea">  109</a></span><span class="preprocessor">#define BMI088_GYRO_Y_H 0x05</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ade9f6f67831320b9a38f07bd44edc4aa">  110</a></span><span class="preprocessor">#define BMI088_GYRO_Z_L 0x06</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a843e5ab695ac349b332a0a453d116600">  111</a></span><span class="preprocessor">#define BMI088_GYRO_Z_H 0x07</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a3af58fb30e26aeda2425040f4dfd0bf6">  113</a></span><span class="preprocessor">#define BMI088_GYRO_INT_STAT_1 0x0A</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a7ae7b9e30eeeb94280d4200dc84dd8f0">  114</a></span><span class="preprocessor">#define BMI088_GYRO_DYDR_SHFITS 0x7</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#abe7d91e2f2ca9d667aa27b233c824f81">  115</a></span><span class="preprocessor">#define BMI088_GYRO_DYDR (0x1 &lt;&lt; BMI088_GYRO_DYDR_SHFITS)</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a1a52350916658a14389d0176ad7a1e76">  117</a></span><span class="preprocessor">#define BMI088_GYRO_RANGE 0x0F</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#af7fa23827924dcc4ee47f6077297c172">  118</a></span><span class="preprocessor">#define BMI088_GYRO_RANGE_SHFITS 0x0</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ae243cc151fcb89f1eedccee6bb6b2ebd">  119</a></span><span class="preprocessor">#define BMI088_GYRO_2000 (0x0 &lt;&lt; BMI088_GYRO_RANGE_SHFITS)</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aa2f9bc1a859ebf090a8758ca7b010b6e">  120</a></span><span class="preprocessor">#define BMI088_GYRO_1000 (0x1 &lt;&lt; BMI088_GYRO_RANGE_SHFITS)</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a270701176a64a3c61344c9adb6ea9aed">  121</a></span><span class="preprocessor">#define BMI088_GYRO_500 (0x2 &lt;&lt; BMI088_GYRO_RANGE_SHFITS)</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#af5a11803e268a18e543d0370dab8669c">  122</a></span><span class="preprocessor">#define BMI088_GYRO_250 (0x3 &lt;&lt; BMI088_GYRO_RANGE_SHFITS)</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a59eb4f227d6ed763d80c77e0d81b1142">  123</a></span><span class="preprocessor">#define BMI088_GYRO_125 (0x4 &lt;&lt; BMI088_GYRO_RANGE_SHFITS)</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a8c5ed346f1dd44c4606164978631ad2b">  125</a></span><span class="preprocessor">#define BMI088_GYRO_BANDWIDTH 0x10</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="comment">// the first num means Output data  rate, the second num means bandwidth</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a2534e69beccb98205e112437128217b2">  127</a></span><span class="preprocessor">#define BMI088_GYRO_BANDWIDTH_MUST_Set 0x80</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a37e1890fe82dbdfd872d2ee52146d393">  128</a></span><span class="preprocessor">#define BMI088_GYRO_2000_532_HZ 0x00</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aec76f5be8337bd807db4627411952775">  129</a></span><span class="preprocessor">#define BMI088_GYRO_2000_230_HZ 0x01</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a3413992710761f12483ba47f53305e9e">  130</a></span><span class="preprocessor">#define BMI088_GYRO_1000_116_HZ 0x02</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ab3a49498de34fda3481008239c248b54">  131</a></span><span class="preprocessor">#define BMI088_GYRO_400_47_HZ 0x03</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a7cfc91c35c19a62a544b79843c78530a">  132</a></span><span class="preprocessor">#define BMI088_GYRO_200_23_HZ 0x04</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a2d1758f282893c170f443be55a9a0737">  133</a></span><span class="preprocessor">#define BMI088_GYRO_100_12_HZ 0x05</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a9dddc5e1f2e19049a1bc7c2f6f6ff163">  134</a></span><span class="preprocessor">#define BMI088_GYRO_200_64_HZ 0x06</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a8eefdfc07a0113b628aa77b517706dcb">  135</a></span><span class="preprocessor">#define BMI088_GYRO_100_32_HZ 0x07</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ad9a4a5d7ff5a9499d1d65e8bbd543d4a">  137</a></span><span class="preprocessor">#define BMI088_GYRO_LPM1 0x11</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a31ecd5ee75c8c0e9cd304498f235d657">  138</a></span><span class="preprocessor">#define BMI088_GYRO_NORMAL_MODE 0x00</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a0f3712c3588395550adf8bc585eb271c">  139</a></span><span class="preprocessor">#define BMI088_GYRO_SUSPEND_MODE 0x80</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aca76f434078a0a2180917e9960754e46">  140</a></span><span class="preprocessor">#define BMI088_GYRO_DEEP_SUSPEND_MODE 0x20</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a9b96c1f66e565553c318804d0c87ec52">  142</a></span><span class="preprocessor">#define BMI088_GYRO_SOFTRESET 0x14</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aa0fb5c6a9e8e7623611a17b8371a4d82">  143</a></span><span class="preprocessor">#define BMI088_GYRO_SOFTRESET_VALUE 0xB6</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a5120c78dce7e25f197781b92b79dc2b2">  145</a></span><span class="preprocessor">#define BMI088_GYRO_CTRL 0x15</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a1f048287e4755f7163d3e2a08e3d54a3">  146</a></span><span class="preprocessor">#define BMI088_DRDY_OFF 0x00</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a0f169dfe8011ca2ef1142193e050c9b2">  147</a></span><span class="preprocessor">#define BMI088_DRDY_ON 0x80</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aaf3a5ace41a155ff8fecdc3289df9fb4">  149</a></span><span class="preprocessor">#define BMI088_GYRO_INT3_INT4_IO_CONF 0x16</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a4c97a7daff4ed5dc687b4a7cfdaad02d">  150</a></span><span class="preprocessor">#define BMI088_GYRO_INT4_GPIO_MODE_SHFITS 0x3</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a58b0a0d4bd7b2ff6ad8c612246f3a4ef">  151</a></span><span class="preprocessor">#define BMI088_GYRO_INT4_GPIO_PP (0x0 &lt;&lt; BMI088_GYRO_INT4_GPIO_MODE_SHFITS)</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#aadf34cba708b85aa365a3a88f3514390">  152</a></span><span class="preprocessor">#define BMI088_GYRO_INT4_GPIO_OD (0x1 &lt;&lt; BMI088_GYRO_INT4_GPIO_MODE_SHFITS)</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#abb3acbb88efa7c6eeef5052b134beb49">  153</a></span><span class="preprocessor">#define BMI088_GYRO_INT4_GPIO_LVL_SHFITS 0x2</span></div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#af7ba5b370fcd121e068b39f2a52beee7">  154</a></span><span class="preprocessor">#define BMI088_GYRO_INT4_GPIO_LOW (0x0 &lt;&lt; BMI088_GYRO_INT4_GPIO_LVL_SHFITS)</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ab222660253040988d33bcb0981bcce47">  155</a></span><span class="preprocessor">#define BMI088_GYRO_INT4_GPIO_HIGH (0x1 &lt;&lt; BMI088_GYRO_INT4_GPIO_LVL_SHFITS)</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a2d8b6fcdf6de20d64e2690bc6a92121a">  156</a></span><span class="preprocessor">#define BMI088_GYRO_INT3_GPIO_MODE_SHFITS 0x1</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a1969dc93c45fb0b738ddb5864875cb44">  157</a></span><span class="preprocessor">#define BMI088_GYRO_INT3_GPIO_PP (0x0 &lt;&lt; BMI088_GYRO_INT3_GPIO_MODE_SHFITS)</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a7ee8d448ed8870841bd2b883de56a491">  158</a></span><span class="preprocessor">#define BMI088_GYRO_INT3_GPIO_OD (0x1 &lt;&lt; BMI088_GYRO_INT3_GPIO_MODE_SHFITS)</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a55d378cb3b0221c062357d0a8a0ee54b">  159</a></span><span class="preprocessor">#define BMI088_GYRO_INT3_GPIO_LVL_SHFITS 0x0</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a18eed8235d745710071323275003be78">  160</a></span><span class="preprocessor">#define BMI088_GYRO_INT3_GPIO_LOW (0x0 &lt;&lt; BMI088_GYRO_INT3_GPIO_LVL_SHFITS)</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a74e2a73fe1bac3e8d7ac6a88ad8eb841">  161</a></span><span class="preprocessor">#define BMI088_GYRO_INT3_GPIO_HIGH (0x1 &lt;&lt; BMI088_GYRO_INT3_GPIO_LVL_SHFITS)</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#adce916b28ff75bc6baa01da9e415adca">  163</a></span><span class="preprocessor">#define BMI088_GYRO_INT3_INT4_IO_MAP 0x18</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ac083a3d3bef719463afb465e73e0bddb">  165</a></span><span class="preprocessor">#define BMI088_GYRO_DRDY_IO_OFF 0x00</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ae39a50fb0dc9563bbf5fa1360286eb6b">  166</a></span><span class="preprocessor">#define BMI088_GYRO_DRDY_IO_INT3 0x01</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a464840aff46078ff2506cb88bd3f3190">  167</a></span><span class="preprocessor">#define BMI088_GYRO_DRDY_IO_INT4 0x80</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a862de1373c10b27c68a6a6039e4d6149">  168</a></span><span class="preprocessor">#define BMI088_GYRO_DRDY_IO_BOTH (BMI088_GYRO_DRDY_IO_INT3 | BMI088_GYRO_DRDY_IO_INT4)</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a985638139ec41a3c1a4b73a5414e81f3">  170</a></span><span class="preprocessor">#define BMI088_GYRO_SELF_TEST 0x3C</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a13a6f2bb9170b4f3b9878ba153d9ec71">  171</a></span><span class="preprocessor">#define BMI088_GYRO_RATE_OK_SHFITS 0x4</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a43ac4a563b4432dba117e0521824d306">  172</a></span><span class="preprocessor">#define BMI088_GYRO_RATE_OK (0x1 &lt;&lt; BMI088_GYRO_RATE_OK_SHFITS)</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a4ecb4698f3052f7b46dd89ed93f84fe5">  173</a></span><span class="preprocessor">#define BMI088_GYRO_BIST_FAIL_SHFITS 0x2</span></div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a21696d91c861bca6cc69719b003094f6">  174</a></span><span class="preprocessor">#define BMI088_GYRO_BIST_FAIL (0x1 &lt;&lt; BMI088_GYRO_BIST_FAIL_SHFITS)</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#ab6937b81a6f1bd9c54f430cf164a8782">  175</a></span><span class="preprocessor">#define BMI088_GYRO_BIST_RDY_SHFITS 0x1</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a1ad9868dc8671c36e4b6bf0681b399dc">  176</a></span><span class="preprocessor">#define BMI088_GYRO_BIST_RDY (0x1 &lt;&lt; BMI088_GYRO_BIST_RDY_SHFITS)</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a16c81f4669c7c37e9b1b9a811840689a">  177</a></span><span class="preprocessor">#define BMI088_GYRO_TRIG_BIST_SHFITS 0x0</span></div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno"><a class="line" href="_b_m_i088reg_8h.html#a549b0bddfe5f2bf757900349009a92c3">  178</a></span><span class="preprocessor">#define BMI088_GYRO_TRIG_BIST (0x1 &lt;&lt; BMI088_GYRO_TRIG_BIST_SHFITS)</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">#endif</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

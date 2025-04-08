@@ -1,0 +1,46 @@
+\doxysection{source/module/control/\+Kinematic\+Solution/\+Steering\+Wheel/streering\+\_\+wheel\+\_\+kinematics.h 文件参考}
+\hypertarget{streering__wheel__kinematics_8h}{}\label{streering__wheel__kinematics_8h}\index{source/module/control/KinematicSolution/SteeringWheel/streering\_wheel\_kinematics.h@{source/module/control/KinematicSolution/SteeringWheel/streering\_wheel\_kinematics.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}motion\+\_\+state.\+h"{}}\newline
+streering\+\_\+wheel\+\_\+kinematics.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{streering__wheel__kinematics_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=256pt]{streering__wheel__kinematics_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structbasic__angle_v__t}{basic\+\_\+angle\+V\+\_\+t}} \mbox{\hyperlink{streering__wheel__kinematics_8h_add2b10143784dd718c9f254c09ed2e33}{steering\+\_\+wheel\+\_\+kinematics}} (\mbox{\hyperlink{structbasic__vector__t}{basic\+\_\+vector\+\_\+t}} \texorpdfstring{$\ast$}{*}motion\+\_\+vector, \mbox{\hyperlink{structbasic__angle_v__t}{basic\+\_\+angle\+V\+\_\+t}} \texorpdfstring{$\ast$}{*}motor\+\_\+angle\+V\+\_\+out)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{streering__wheel__kinematics_8h_add2b10143784dd718c9f254c09ed2e33}\index{streering\_wheel\_kinematics.h@{streering\_wheel\_kinematics.h}!steering\_wheel\_kinematics@{steering\_wheel\_kinematics}}
+\index{steering\_wheel\_kinematics@{steering\_wheel\_kinematics}!streering\_wheel\_kinematics.h@{streering\_wheel\_kinematics.h}}
+\doxysubsubsection{\texorpdfstring{steering\_wheel\_kinematics()}{steering\_wheel\_kinematics()}}
+{\footnotesize\ttfamily \label{streering__wheel__kinematics_8h_add2b10143784dd718c9f254c09ed2e33} 
+\mbox{\hyperlink{structbasic__angle_v__t}{basic\+\_\+angle\+V\+\_\+t}} steering\+\_\+wheel\+\_\+kinematics (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structbasic__vector__t}{basic\+\_\+vector\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motion\+\_\+vector}{, }\item[{\mbox{\hyperlink{structbasic__angle_v__t}{basic\+\_\+angle\+V\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor\+\_\+angle\+V\+\_\+out}{}\end{DoxyParamCaption})}
+
+计算转向轮的运动学特性
+
+根据机器人的运动向量和电机的角度向量，计算四个轮子（左前、右前、左后、右后）的线速度和角速度 这是通过将机器人的全局运动分解到每个轮子的局部坐标系中来实现的 \href{https://blog.csdn.net/weixin_73037889/article/details/131052481}{\texttt{ https\+://blog.\+csdn.\+net/weixin\+\_\+73037889/article/details/131052481}}
+
+
+\begin{DoxyParams}{参数}
+{\em motion\+\_\+vector} & 指向机器人运动向量的指针，包含机器人的线速度（x, y）和角速度（wz） \\
+\hline
+{\em motor\+\_\+angle\+V\+\_\+out} & 指向电机角度向量的指针，用于输出每个轮子的角速度和线速度 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+返回计算后的电机角度向量 
+\end{DoxyReturn}

@@ -1,0 +1,593 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/IMU/Mahony/MahonyAHRS.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_8b711e810999a9fe1de9e9ddd8899d9f.html">IMU</a></li><li class="navelem"><a class="el" href="dir_d16067a40a3401c3e27f61547d65d8e9.html">Mahony</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">MahonyAHRS.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="_mahony_a_h_r_s_8h_source.html">MahonyAHRS.h</a>&quot;</code><br />
+<code>#include &quot;dsp/fast_math_functions.h&quot;</code><br />
+<code>#include &quot;arm_math.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+MahonyAHRS.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="_mahony_a_h_r_s_8c__incl.png" border="0" usemap="#asource_2module_2_i_m_u_2_mahony_2_mahony_a_h_r_s_8c" alt=""/></div>
+<map name="asource_2module_2_i_m_u_2_mahony_2_mahony_a_h_r_s_8c" id="asource_2module_2_i_m_u_2_mahony_2_mahony_a_h_r_s_8c">
+<area shape="rect" title=" " alt="" coords="140,5,326,48"/>
+<area shape="rect" href="_mahony_a_h_r_s_8h.html" title=" " alt="" coords="5,96,122,123"/>
+<area shape="poly" title=" " alt="" coords="190,51,105,91,103,87,188,46"/>
+<area shape="rect" title=" " alt="" coords="145,96,320,123"/>
+<area shape="poly" title=" " alt="" coords="236,49,236,80,230,80,230,49"/>
+<area shape="rect" title=" " alt="" coords="345,96,435,123"/>
+<area shape="poly" title=" " alt="" coords="275,46,353,86,351,91,272,51"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ada29b0bd3e62d46e44776cb20f9a46df" id="r_ada29b0bd3e62d46e44776cb20f9a46df"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada29b0bd3e62d46e44776cb20f9a46df">twoKpDef</a>&#160;&#160;&#160;(2.0f * 0.5f)</td></tr>
+<tr class="separator:ada29b0bd3e62d46e44776cb20f9a46df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a61e034822b9a9851cdf6ac026053cd" id="r_a0a61e034822b9a9851cdf6ac026053cd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a61e034822b9a9851cdf6ac026053cd">twoKiDef</a>&#160;&#160;&#160;(2.0f * 0.0f)</td></tr>
+<tr class="separator:a0a61e034822b9a9851cdf6ac026053cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ad9092ebf599265321a7181226153614b" id="r_ad9092ebf599265321a7181226153614b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9092ebf599265321a7181226153614b">Mahony_Init</a> (float sampleFrequency)</td></tr>
+<tr class="separator:ad9092ebf599265321a7181226153614b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d8e39b56693b0d2f8db8d3af9d36e31" id="r_a0d8e39b56693b0d2f8db8d3af9d36e31"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d8e39b56693b0d2f8db8d3af9d36e31">Mahony_invSqrt</a> (float x)</td></tr>
+<tr class="separator:a0d8e39b56693b0d2f8db8d3af9d36e31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2baab5c4d30b4ecda7b7acf2c238337" id="r_aa2baab5c4d30b4ecda7b7acf2c238337"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2baab5c4d30b4ecda7b7acf2c238337">MahonyAHRSinit</a> (float ax, float ay, float az, float mx, float my, float mz)</td></tr>
+<tr class="separator:aa2baab5c4d30b4ecda7b7acf2c238337"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aead7f9df2a4b30d84d265f635396c72a" id="r_aead7f9df2a4b30d84d265f635396c72a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aead7f9df2a4b30d84d265f635396c72a">Mahony_update</a> (float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz)</td></tr>
+<tr class="separator:aead7f9df2a4b30d84d265f635396c72a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdf6a9a2d75608aea12fbc247368b471" id="r_afdf6a9a2d75608aea12fbc247368b471"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afdf6a9a2d75608aea12fbc247368b471">MahonyAHRSupdateIMU</a> (float gx, float gy, float gz, float ax, float ay, float az)</td></tr>
+<tr class="separator:afdf6a9a2d75608aea12fbc247368b471"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8dc457cfa1226bd98000c9943dc6e6b2" id="r_a8dc457cfa1226bd98000c9943dc6e6b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8dc457cfa1226bd98000c9943dc6e6b2">Mahony_computeAngles</a> ()</td></tr>
+<tr class="separator:a8dc457cfa1226bd98000c9943dc6e6b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80829684c889d9492db5f72006a8afbb" id="r_a80829684c889d9492db5f72006a8afbb"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80829684c889d9492db5f72006a8afbb">getRoll</a> ()</td></tr>
+<tr class="separator:a80829684c889d9492db5f72006a8afbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a550128a969585b8a64a53ecc384ec361" id="r_a550128a969585b8a64a53ecc384ec361"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a550128a969585b8a64a53ecc384ec361">getPitch</a> ()</td></tr>
+<tr class="separator:a550128a969585b8a64a53ecc384ec361"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4829acab810a443dd7001a73a20b83e5" id="r_a4829acab810a443dd7001a73a20b83e5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4829acab810a443dd7001a73a20b83e5">getYaw</a> ()</td></tr>
+<tr class="separator:a4829acab810a443dd7001a73a20b83e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a419874657945d9c9f1035fc0a8e8e03f" id="r_a419874657945d9c9f1035fc0a8e8e03f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a419874657945d9c9f1035fc0a8e8e03f">twoKi</a></td></tr>
+<tr class="separator:a419874657945d9c9f1035fc0a8e8e03f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27b8f713c4a449fb2fbb1cbdb3a1e149" id="r_a27b8f713c4a449fb2fbb1cbdb3a1e149"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a27b8f713c4a449fb2fbb1cbdb3a1e149">q0</a></td></tr>
+<tr class="separator:a27b8f713c4a449fb2fbb1cbdb3a1e149"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a209c65446ca302d32cbb908c4d75f616" id="r_a209c65446ca302d32cbb908c4d75f616"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a209c65446ca302d32cbb908c4d75f616">q1</a></td></tr>
+<tr class="separator:a209c65446ca302d32cbb908c4d75f616"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afddca3451c589f7b5928b6dccf8c88ba" id="r_afddca3451c589f7b5928b6dccf8c88ba"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afddca3451c589f7b5928b6dccf8c88ba">q2</a></td></tr>
+<tr class="separator:afddca3451c589f7b5928b6dccf8c88ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa92940755b1370321ed489e6f2448ad9" id="r_aa92940755b1370321ed489e6f2448ad9"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa92940755b1370321ed489e6f2448ad9">q3</a></td></tr>
+<tr class="separator:aa92940755b1370321ed489e6f2448ad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af619a3dcddbd06332469cc846ed72d76" id="r_af619a3dcddbd06332469cc846ed72d76"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af619a3dcddbd06332469cc846ed72d76">integralFBx</a></td></tr>
+<tr class="separator:af619a3dcddbd06332469cc846ed72d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aafd0489e75997c66753622b873a50d58" id="r_aafd0489e75997c66753622b873a50d58"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aafd0489e75997c66753622b873a50d58">integralFBy</a></td></tr>
+<tr class="separator:aafd0489e75997c66753622b873a50d58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47c95fe13c941379372582a9dd544651" id="r_a47c95fe13c941379372582a9dd544651"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47c95fe13c941379372582a9dd544651">integralFBz</a></td></tr>
+<tr class="separator:a47c95fe13c941379372582a9dd544651"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c3ff633baf1eb511d50b9f1e6fa6198" id="r_a2c3ff633baf1eb511d50b9f1e6fa6198"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c3ff633baf1eb511d50b9f1e6fa6198">invSampleFreq</a></td></tr>
+<tr class="separator:a2c3ff633baf1eb511d50b9f1e6fa6198"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a720d99ab31c6a7eb41cad413383ae19d" id="r_a720d99ab31c6a7eb41cad413383ae19d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a720d99ab31c6a7eb41cad413383ae19d">roll_mahony</a></td></tr>
+<tr class="separator:a720d99ab31c6a7eb41cad413383ae19d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3db8cf527e7931a5cf82934929273937" id="r_a3db8cf527e7931a5cf82934929273937"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3db8cf527e7931a5cf82934929273937">pitch_mahony</a></td></tr>
+<tr class="separator:a3db8cf527e7931a5cf82934929273937"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9851e6157f920fcad216f0dcf6634281" id="r_a9851e6157f920fcad216f0dcf6634281"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9851e6157f920fcad216f0dcf6634281">yaw_mahony</a></td></tr>
+<tr class="separator:a9851e6157f920fcad216f0dcf6634281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25a968f5ce1dd5581c3956626c89146b" id="r_a25a968f5ce1dd5581c3956626c89146b"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25a968f5ce1dd5581c3956626c89146b">anglesComputed</a></td></tr>
+<tr class="separator:a25a968f5ce1dd5581c3956626c89146b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="a0a61e034822b9a9851cdf6ac026053cd" name="a0a61e034822b9a9851cdf6ac026053cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a61e034822b9a9851cdf6ac026053cd">&#9670;&#160;</a></span>twoKiDef</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define twoKiDef&#160;&#160;&#160;(2.0f * 0.0f)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ada29b0bd3e62d46e44776cb20f9a46df" name="ada29b0bd3e62d46e44776cb20f9a46df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada29b0bd3e62d46e44776cb20f9a46df">&#9670;&#160;</a></span>twoKpDef</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define twoKpDef&#160;&#160;&#160;(2.0f * 0.5f)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a550128a969585b8a64a53ecc384ec361" name="a550128a969585b8a64a53ecc384ec361"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a550128a969585b8a64a53ecc384ec361">&#9670;&#160;</a></span>getPitch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getPitch </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a80829684c889d9492db5f72006a8afbb" name="a80829684c889d9492db5f72006a8afbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80829684c889d9492db5f72006a8afbb">&#9670;&#160;</a></span>getRoll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getRoll </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4829acab810a443dd7001a73a20b83e5" name="a4829acab810a443dd7001a73a20b83e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4829acab810a443dd7001a73a20b83e5">&#9670;&#160;</a></span>getYaw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float getYaw </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8dc457cfa1226bd98000c9943dc6e6b2" name="a8dc457cfa1226bd98000c9943dc6e6b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dc457cfa1226bd98000c9943dc6e6b2">&#9670;&#160;</a></span>Mahony_computeAngles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mahony_computeAngles </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9092ebf599265321a7181226153614b" name="ad9092ebf599265321a7181226153614b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9092ebf599265321a7181226153614b">&#9670;&#160;</a></span>Mahony_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mahony_Init </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>sampleFrequency</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0d8e39b56693b0d2f8db8d3af9d36e31" name="a0d8e39b56693b0d2f8db8d3af9d36e31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d8e39b56693b0d2f8db8d3af9d36e31">&#9670;&#160;</a></span>Mahony_invSqrt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Mahony_invSqrt </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aead7f9df2a4b30d84d265f635396c72a" name="aead7f9df2a4b30d84d265f635396c72a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aead7f9df2a4b30d84d265f635396c72a">&#9670;&#160;</a></span>Mahony_update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mahony_update </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gy</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gz</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ax</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ay</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>az</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>mx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>my</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>mz</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa2baab5c4d30b4ecda7b7acf2c238337" name="aa2baab5c4d30b4ecda7b7acf2c238337"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2baab5c4d30b4ecda7b7acf2c238337">&#9670;&#160;</a></span>MahonyAHRSinit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MahonyAHRSinit </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ax</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ay</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>az</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>mx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>my</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>mz</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afdf6a9a2d75608aea12fbc247368b471" name="afdf6a9a2d75608aea12fbc247368b471"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdf6a9a2d75608aea12fbc247368b471">&#9670;&#160;</a></span>MahonyAHRSupdateIMU()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MahonyAHRSupdateIMU </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gy</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gz</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ax</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ay</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>az</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a25a968f5ce1dd5581c3956626c89146b" name="a25a968f5ce1dd5581c3956626c89146b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25a968f5ce1dd5581c3956626c89146b">&#9670;&#160;</a></span>anglesComputed</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char anglesComputed</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af619a3dcddbd06332469cc846ed72d76" name="af619a3dcddbd06332469cc846ed72d76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af619a3dcddbd06332469cc846ed72d76">&#9670;&#160;</a></span>integralFBx</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float integralFBx</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aafd0489e75997c66753622b873a50d58" name="aafd0489e75997c66753622b873a50d58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafd0489e75997c66753622b873a50d58">&#9670;&#160;</a></span>integralFBy</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float integralFBy</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a47c95fe13c941379372582a9dd544651" name="a47c95fe13c941379372582a9dd544651"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47c95fe13c941379372582a9dd544651">&#9670;&#160;</a></span>integralFBz</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float integralFBz</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2c3ff633baf1eb511d50b9f1e6fa6198" name="a2c3ff633baf1eb511d50b9f1e6fa6198"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c3ff633baf1eb511d50b9f1e6fa6198">&#9670;&#160;</a></span>invSampleFreq</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float invSampleFreq</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3db8cf527e7931a5cf82934929273937" name="a3db8cf527e7931a5cf82934929273937"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3db8cf527e7931a5cf82934929273937">&#9670;&#160;</a></span>pitch_mahony</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float pitch_mahony</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a27b8f713c4a449fb2fbb1cbdb3a1e149" name="a27b8f713c4a449fb2fbb1cbdb3a1e149"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27b8f713c4a449fb2fbb1cbdb3a1e149">&#9670;&#160;</a></span>q0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float q0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a209c65446ca302d32cbb908c4d75f616" name="a209c65446ca302d32cbb908c4d75f616"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a209c65446ca302d32cbb908c4d75f616">&#9670;&#160;</a></span>q1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float q1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afddca3451c589f7b5928b6dccf8c88ba" name="afddca3451c589f7b5928b6dccf8c88ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afddca3451c589f7b5928b6dccf8c88ba">&#9670;&#160;</a></span>q2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float q2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa92940755b1370321ed489e6f2448ad9" name="aa92940755b1370321ed489e6f2448ad9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa92940755b1370321ed489e6f2448ad9">&#9670;&#160;</a></span>q3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float q3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a720d99ab31c6a7eb41cad413383ae19d" name="a720d99ab31c6a7eb41cad413383ae19d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a720d99ab31c6a7eb41cad413383ae19d">&#9670;&#160;</a></span>roll_mahony</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float roll_mahony</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a419874657945d9c9f1035fc0a8e8e03f" name="a419874657945d9c9f1035fc0a8e8e03f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a419874657945d9c9f1035fc0a8e8e03f">&#9670;&#160;</a></span>twoKi</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float twoKi</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9851e6157f920fcad216f0dcf6634281" name="a9851e6157f920fcad216f0dcf6634281"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9851e6157f920fcad216f0dcf6634281">&#9670;&#160;</a></span>yaw_mahony</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float yaw_mahony</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

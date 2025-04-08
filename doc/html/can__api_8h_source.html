@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/can/can_api.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_0fa7b5f3a2c703f9b05d3502dd47a261.html">can</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">can_api.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="can__api_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef __CAN_API_H__</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define __CAN_API_H__</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;main.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;FreeRTOS.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;list.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="can__struct_8h.html">can_struct.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="can__api_8h.html#a965da6337fbdc9a47ebb46340474bc27">   12</a></span><span class="preprocessor">#define CAN_MSG_Get_PORT(msg) ((msg)-&gt;port)</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="can__api_8h.html#aad550039ea41a894604130553450d92e">   13</a></span><span class="preprocessor">#define CAN_MSG_Get_ID(msg) ((msg)-&gt;id)</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="can__api_8h.html#ab612a56a915d6059027860940b2ee745">   14</a></span><span class="preprocessor">#define CAN_MSG_Get_DATA(msg) ((msg)-&gt;*data)</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="can__api_8h.html#a19c488e9a006ad9a690890213c88d7f8">   15</a></span><span class="preprocessor">#define CAN_MSG_Get_LEN(msg) ((msg)-&gt;len)</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="can__api_8h.html#a9d953f588a903c8f5e8832847ff7b41b">   16</a></span><span class="preprocessor">#define CAN_MSG_Get_RTR(msg) ((msg)-&gt;rtr)</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// 初始化CAN系统的函数</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keywordtype">void</span> <a class="code hl_function" href="can__api_8h.html#ad85c1f6d431113ab42f44d8a4c8be620">can_sys_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">// 根据CAN端口查找相应的消息列表(可以不用)</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>List_t *<a class="code hl_function" href="can__api_8h.html#aaba60a80fb460a91d76b3a01fc64d94c">can_msg_find_list</a>(<a class="code hl_enumeration" href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a> port);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">// 在给定的消息列表中查找特定ID的消息项</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a> *<a class="code hl_function" href="can__api_8h.html#ad0b2c94cd218077eb973a1686ce71df5">can_msg_find_item</a>(List_t *can_msg_list, uint32_t <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">// 向消息列表中添加消息项</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><a class="code hl_enumeration" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> <a class="code hl_function" href="can__api_8h.html#a71472eadef63e28b066402c06d687016">can_msg_add_item</a>(<a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a> *msg);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">// 从消息列表中删除指定ID的消息项</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><a class="code hl_enumeration" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> <a class="code hl_function" href="can__api_8h.html#aa4214c6ce3fe8b2ac16048962377e13b">can_msg_del_item</a>(<a class="code hl_enumeration" href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a> port, uint32_t <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// 发送经典CAN消息</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><a class="code hl_enumeration" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> <a class="code hl_function" href="can__api_8h.html#a4a59a0ba7c9a33b2784b7b0f09199511">can_msg_send_classical</a>(<a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a> *msg);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">// 发送扩展CAN消息</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><a class="code hl_enumeration" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> <a class="code hl_function" href="can__api_8h.html#ab5365a19d706f489876a2e537995dc0f">can_msg_send_extended</a>(<a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a> *msg);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">// 发送fdCAN消息</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><a class="code hl_enumeration" href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> <a class="code hl_function" href="can__api_8h.html#a1747af7a6d5b3b39b302cb507c00c4e7">can_msg_send_fd</a>(<a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a> *msg);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#endif </span><span class="comment">/* __CAN_API_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="acan__api_8h_html_a1747af7a6d5b3b39b302cb507c00c4e7"><div class="ttname"><a href="can__api_8h.html#a1747af7a6d5b3b39b302cb507c00c4e7">can_msg_send_fd</a></div><div class="ttdeci">can_status_t can_msg_send_fd(can_msg_t *msg)</div><div class="ttdoc">发送CAN FD格式的消息。</div><div class="ttdef"><b>定义</b> can_api.c:217</div></div>
+<div class="ttc" id="acan__api_8h_html_a4a59a0ba7c9a33b2784b7b0f09199511"><div class="ttname"><a href="can__api_8h.html#a4a59a0ba7c9a33b2784b7b0f09199511">can_msg_send_classical</a></div><div class="ttdeci">can_status_t can_msg_send_classical(can_msg_t *msg)</div><div class="ttdoc">发送经典CAN格式的消息。</div><div class="ttdef"><b>定义</b> can_api.c:157</div></div>
+<div class="ttc" id="acan__api_8h_html_a71472eadef63e28b066402c06d687016"><div class="ttname"><a href="can__api_8h.html#a71472eadef63e28b066402c06d687016">can_msg_add_item</a></div><div class="ttdeci">can_status_t can_msg_add_item(can_msg_t *msg)</div><div class="ttdoc">向CAN消息列表中添加一个新的消息项。</div><div class="ttdef"><b>定义</b> can_api.c:84</div></div>
+<div class="ttc" id="acan__api_8h_html_aa4214c6ce3fe8b2ac16048962377e13b"><div class="ttname"><a href="can__api_8h.html#aa4214c6ce3fe8b2ac16048962377e13b">can_msg_del_item</a></div><div class="ttdeci">can_status_t can_msg_del_item(can_port_t port, uint32_t id)</div><div class="ttdoc">根据CAN端口和消息ID从接收消息列表中删除消息项。</div><div class="ttdef"><b>定义</b> can_api.c:131</div></div>
+<div class="ttc" id="acan__api_8h_html_aaba60a80fb460a91d76b3a01fc64d94c"><div class="ttname"><a href="can__api_8h.html#aaba60a80fb460a91d76b3a01fc64d94c">can_msg_find_list</a></div><div class="ttdeci">List_t * can_msg_find_list(can_port_t port)</div><div class="ttdoc">根据CAN端口返回对应的接收消息列表指针。</div><div class="ttdef"><b>定义</b> can_api.c:36</div></div>
+<div class="ttc" id="acan__api_8h_html_ab5365a19d706f489876a2e537995dc0f"><div class="ttname"><a href="can__api_8h.html#ab5365a19d706f489876a2e537995dc0f">can_msg_send_extended</a></div><div class="ttdeci">can_status_t can_msg_send_extended(can_msg_t *msg)</div><div class="ttdoc">发送扩展CAN格式的消息。</div><div class="ttdef"><b>定义</b> can_api.c:187</div></div>
+<div class="ttc" id="acan__api_8h_html_ad0b2c94cd218077eb973a1686ce71df5"><div class="ttname"><a href="can__api_8h.html#ad0b2c94cd218077eb973a1686ce71df5">can_msg_find_item</a></div><div class="ttdeci">can_msg_t * can_msg_find_item(List_t *can_msg_list, uint32_t id)</div><div class="ttdoc">在指定的CAN消息列表中查找具有特定ID的消息项。</div><div class="ttdef"><b>定义</b> can_api.c:60</div></div>
+<div class="ttc" id="acan__api_8h_html_ad85c1f6d431113ab42f44d8a4c8be620"><div class="ttname"><a href="can__api_8h.html#ad85c1f6d431113ab42f44d8a4c8be620">can_sys_init</a></div><div class="ttdeci">void can_sys_init(void)</div><div class="ttdoc">CAN通讯初始化。</div><div class="ttdef"><b>定义</b> can_api.c:19</div></div>
+<div class="ttc" id="acan__struct_8h_html"><div class="ttname"><a href="can__struct_8h.html">can_struct.h</a></div></div>
+<div class="ttc" id="acan__struct_8h_html_a507b4ed3fc531e0c40aa8812174e3e1d"><div class="ttname"><a href="can__struct_8h.html#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a></div><div class="ttdeci">can_status_t</div><div class="ttdef"><b>定义</b> can_struct.h:29</div></div>
+<div class="ttc" id="acan__struct_8h_html_a99224aa31bc5a961c6643d5f0ec14282"><div class="ttname"><a href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a></div><div class="ttdeci">can_port_t</div><div class="ttdef"><b>定义</b> can_struct.h:11</div></div>
+<div class="ttc" id="astructcan__msg__t_html"><div class="ttname"><a href="structcan__msg__t.html">can_msg_t</a></div><div class="ttdef"><b>定义</b> can_struct.h:19</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

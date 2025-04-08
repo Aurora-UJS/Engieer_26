@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/superCap/XidiNewise/super_str.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_d0e6f6bf5e8b10d01de37391c8fbecc6.html">superCap</a></li><li class="navelem"><a class="el" href="dir_1fddad4f769a4a1fea7b5abfd36f8dde.html">XidiNewise</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">super_str.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="super__str_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef _SUPER_STR_H_</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define _SUPER_STR_H_</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;stdint.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="can__struct_8h.html">can_struct.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;stdbool.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="super__str_8h.html#a2c0b4b78b8462636866c730998a54c6b">    8</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="super__str_8h.html#a2c0b4b78b8462636866c730998a54c6ba834a463e0983e0115b16c3dbb59f974f">   10</a></span>    <a class="code hl_enumvalue" href="super__str_8h.html#a2c0b4b78b8462636866c730998a54c6ba834a463e0983e0115b16c3dbb59f974f">Super_C_Tsg_ID</a> = 0x210,</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="super__str_8h.html#a2c0b4b78b8462636866c730998a54c6ba89f1c818c51e4fa8fcf6f33c17a22aa7">   11</a></span>    <a class="code hl_enumvalue" href="super__str_8h.html#a2c0b4b78b8462636866c730998a54c6ba89f1c818c51e4fa8fcf6f33c17a22aa7">Super_C_Msg_ID</a> = 0x200,</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>} <a class="code hl_enumeration" href="super__str_8h.html#a2c0b4b78b8462636866c730998a54c6b">can_msg_id_e</a>;</div>
+</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="foldopen" id="foldopen00014" data-start="{" data-end="};">
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="struct_super___c___msg.html">   14</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="struct_super___c___msg.html#a5a2ba1712c556142fbfd1de15e87a081">   16</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_super___c___msg.html#a5a2ba1712c556142fbfd1de15e87a081">Voilt_In</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="struct_super___c___msg.html#a44f55019d2538972036d7f79bbf38992">   17</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_super___c___msg.html#a44f55019d2538972036d7f79bbf38992">Voilt_C</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="struct_super___c___msg.html#a60b1b80b9b87451fdc6d3df839d774f2">   18</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_super___c___msg.html#a60b1b80b9b87451fdc6d3df839d774f2">Current_In</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="struct_super___c___msg.html#a40e1631f3a82c2ea5f081186d64b979e">   19</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_super___c___msg.html#a40e1631f3a82c2ea5f081186d64b979e">Target_power</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>} <a class="code hl_struct" href="struct_super___c___msg.html">Super_C_Msg</a>;</div>
+</div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="struct_super___t_r__t.html">   21</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="struct_super___t_r__t.html#ade2412e5386f919a270b610150afbeba">   23</a></span>    <a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a> <a class="code hl_variable" href="struct_super___t_r__t.html#ade2412e5386f919a270b610150afbeba">super_can_send</a>;    <span class="comment">// 发送的 CAN 消息</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="struct_super___t_r__t.html#acb8aa6ae062adfef7aa597bf224dfd5c">   24</a></span>    <a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a> <a class="code hl_variable" href="struct_super___t_r__t.html#acb8aa6ae062adfef7aa597bf224dfd5c">super_can_receive</a>; <span class="comment">// 接收到的 CAN 消息</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="struct_super___t_r__t.html#a634b223da93c8a5115e16b70eb7550a1">   25</a></span>    <a class="code hl_struct" href="struct_super___c___msg.html">Super_C_Msg</a> <a class="code hl_variable" href="struct_super___t_r__t.html#a634b223da93c8a5115e16b70eb7550a1">super_can_solve</a>; <span class="comment">// 解析后的 CAN 消息</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>} <a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a>;</div>
+</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keywordtype">bool</span> <a class="code hl_function" href="super__str_8h.html#a44ef9252e066853ee4c36f81c1dacea3">Super_TR_Init</a>(<a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> *super, uint32_t can_id, uint32_t can_send_id, <a class="code hl_enumeration" href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a> can_port);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keywordtype">bool</span> <a class="code hl_function" href="super__str_8h.html#a89dd682a7f87d41c712957a383255f90">Super_TR_Send</a>(<a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> *super, uint16_t data);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keywordtype">bool</span> <a class="code hl_function" href="super__str_8h.html#a8e909b10ff38febd2e40627c6094b682">Super_TR_Refresh</a>(<a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> *super);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keywordtype">float</span> <a class="code hl_function" href="super__str_8h.html#a7209995ee7c4a98e36ae64c62780e1b2">get_Voilt_In</a>(<a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> *super);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keywordtype">float</span> <a class="code hl_function" href="super__str_8h.html#aaaf4a1acc2c7840865a39422180e8b37">get_Voilt_C</a>(<a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> *super);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keywordtype">float</span> <a class="code hl_function" href="super__str_8h.html#a55cb5720fc1d4aac0f4cea033b33f107">get_Current_In</a>(<a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> *super);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keywordtype">float</span> <a class="code hl_function" href="super__str_8h.html#a1fd53c06405f1606bca17372bac2a816">get_Target_power</a>(<a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> *super);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="acan__struct_8h_html"><div class="ttname"><a href="can__struct_8h.html">can_struct.h</a></div></div>
+<div class="ttc" id="acan__struct_8h_html_a99224aa31bc5a961c6643d5f0ec14282"><div class="ttname"><a href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a></div><div class="ttdeci">can_port_t</div><div class="ttdef"><b>定义</b> can_struct.h:11</div></div>
+<div class="ttc" id="astruct_super___c___msg_html"><div class="ttname"><a href="struct_super___c___msg.html">Super_C_Msg</a></div><div class="ttdef"><b>定义</b> super_str.h:15</div></div>
+<div class="ttc" id="astruct_super___c___msg_html_a40e1631f3a82c2ea5f081186d64b979e"><div class="ttname"><a href="struct_super___c___msg.html#a40e1631f3a82c2ea5f081186d64b979e">Super_C_Msg::Target_power</a></div><div class="ttdeci">float Target_power</div><div class="ttdef"><b>定义</b> super_str.h:19</div></div>
+<div class="ttc" id="astruct_super___c___msg_html_a44f55019d2538972036d7f79bbf38992"><div class="ttname"><a href="struct_super___c___msg.html#a44f55019d2538972036d7f79bbf38992">Super_C_Msg::Voilt_C</a></div><div class="ttdeci">float Voilt_C</div><div class="ttdef"><b>定义</b> super_str.h:17</div></div>
+<div class="ttc" id="astruct_super___c___msg_html_a5a2ba1712c556142fbfd1de15e87a081"><div class="ttname"><a href="struct_super___c___msg.html#a5a2ba1712c556142fbfd1de15e87a081">Super_C_Msg::Voilt_In</a></div><div class="ttdeci">float Voilt_In</div><div class="ttdef"><b>定义</b> super_str.h:16</div></div>
+<div class="ttc" id="astruct_super___c___msg_html_a60b1b80b9b87451fdc6d3df839d774f2"><div class="ttname"><a href="struct_super___c___msg.html#a60b1b80b9b87451fdc6d3df839d774f2">Super_C_Msg::Current_In</a></div><div class="ttdeci">float Current_In</div><div class="ttdef"><b>定义</b> super_str.h:18</div></div>
+<div class="ttc" id="astruct_super___t_r__t_html"><div class="ttname"><a href="struct_super___t_r__t.html">Super_TR_t</a></div><div class="ttdef"><b>定义</b> super_str.h:22</div></div>
+<div class="ttc" id="astruct_super___t_r__t_html_a634b223da93c8a5115e16b70eb7550a1"><div class="ttname"><a href="struct_super___t_r__t.html#a634b223da93c8a5115e16b70eb7550a1">Super_TR_t::super_can_solve</a></div><div class="ttdeci">Super_C_Msg super_can_solve</div><div class="ttdef"><b>定义</b> super_str.h:25</div></div>
+<div class="ttc" id="astruct_super___t_r__t_html_acb8aa6ae062adfef7aa597bf224dfd5c"><div class="ttname"><a href="struct_super___t_r__t.html#acb8aa6ae062adfef7aa597bf224dfd5c">Super_TR_t::super_can_receive</a></div><div class="ttdeci">can_msg_t super_can_receive</div><div class="ttdef"><b>定义</b> super_str.h:24</div></div>
+<div class="ttc" id="astruct_super___t_r__t_html_ade2412e5386f919a270b610150afbeba"><div class="ttname"><a href="struct_super___t_r__t.html#ade2412e5386f919a270b610150afbeba">Super_TR_t::super_can_send</a></div><div class="ttdeci">can_msg_t super_can_send</div><div class="ttdef"><b>定义</b> super_str.h:23</div></div>
+<div class="ttc" id="astructcan__msg__t_html"><div class="ttname"><a href="structcan__msg__t.html">can_msg_t</a></div><div class="ttdef"><b>定义</b> can_struct.h:19</div></div>
+<div class="ttc" id="asuper__str_8h_html_a1fd53c06405f1606bca17372bac2a816"><div class="ttname"><a href="super__str_8h.html#a1fd53c06405f1606bca17372bac2a816">get_Target_power</a></div><div class="ttdeci">float get_Target_power(Super_TR_t *super)</div><div class="ttdoc">获取超级电容模块的目标功率。</div><div class="ttdef"><b>定义</b> super_str.c:157</div></div>
+<div class="ttc" id="asuper__str_8h_html_a2c0b4b78b8462636866c730998a54c6b"><div class="ttname"><a href="super__str_8h.html#a2c0b4b78b8462636866c730998a54c6b">can_msg_id_e</a></div><div class="ttdeci">can_msg_id_e</div><div class="ttdef"><b>定义</b> super_str.h:9</div></div>
+<div class="ttc" id="asuper__str_8h_html_a2c0b4b78b8462636866c730998a54c6ba834a463e0983e0115b16c3dbb59f974f"><div class="ttname"><a href="super__str_8h.html#a2c0b4b78b8462636866c730998a54c6ba834a463e0983e0115b16c3dbb59f974f">Super_C_Tsg_ID</a></div><div class="ttdeci">@ Super_C_Tsg_ID</div><div class="ttdef"><b>定义</b> super_str.h:10</div></div>
+<div class="ttc" id="asuper__str_8h_html_a2c0b4b78b8462636866c730998a54c6ba89f1c818c51e4fa8fcf6f33c17a22aa7"><div class="ttname"><a href="super__str_8h.html#a2c0b4b78b8462636866c730998a54c6ba89f1c818c51e4fa8fcf6f33c17a22aa7">Super_C_Msg_ID</a></div><div class="ttdeci">@ Super_C_Msg_ID</div><div class="ttdef"><b>定义</b> super_str.h:11</div></div>
+<div class="ttc" id="asuper__str_8h_html_a44ef9252e066853ee4c36f81c1dacea3"><div class="ttname"><a href="super__str_8h.html#a44ef9252e066853ee4c36f81c1dacea3">Super_TR_Init</a></div><div class="ttdeci">bool Super_TR_Init(Super_TR_t *super, uint32_t can_id, uint32_t can_send_id, can_port_t can_port)</div><div class="ttdoc">超级电容模块初始化。</div><div class="ttdef"><b>定义</b> super_str.c:30</div></div>
+<div class="ttc" id="asuper__str_8h_html_a55cb5720fc1d4aac0f4cea033b33f107"><div class="ttname"><a href="super__str_8h.html#a55cb5720fc1d4aac0f4cea033b33f107">get_Current_In</a></div><div class="ttdeci">float get_Current_In(Super_TR_t *super)</div><div class="ttdoc">获取超级电容模块的输入电流。</div><div class="ttdef"><b>定义</b> super_str.c:146</div></div>
+<div class="ttc" id="asuper__str_8h_html_a7209995ee7c4a98e36ae64c62780e1b2"><div class="ttname"><a href="super__str_8h.html#a7209995ee7c4a98e36ae64c62780e1b2">get_Voilt_In</a></div><div class="ttdeci">float get_Voilt_In(Super_TR_t *super)</div><div class="ttdoc">获取超级电容模块的输入电压。</div><div class="ttdef"><b>定义</b> super_str.c:124</div></div>
+<div class="ttc" id="asuper__str_8h_html_a89dd682a7f87d41c712957a383255f90"><div class="ttname"><a href="super__str_8h.html#a89dd682a7f87d41c712957a383255f90">Super_TR_Send</a></div><div class="ttdeci">bool Super_TR_Send(Super_TR_t *super, uint16_t data)</div><div class="ttdoc">超级电容模块发送数据。</div><div class="ttdef"><b>定义</b> super_str.c:60</div></div>
+<div class="ttc" id="asuper__str_8h_html_a8e909b10ff38febd2e40627c6094b682"><div class="ttname"><a href="super__str_8h.html#a8e909b10ff38febd2e40627c6094b682">Super_TR_Refresh</a></div><div class="ttdeci">bool Super_TR_Refresh(Super_TR_t *super)</div><div class="ttdoc">超级电容模块刷新数据。</div><div class="ttdef"><b>定义</b> super_str.c:87</div></div>
+<div class="ttc" id="asuper__str_8h_html_aaaf4a1acc2c7840865a39422180e8b37"><div class="ttname"><a href="super__str_8h.html#aaaf4a1acc2c7840865a39422180e8b37">get_Voilt_C</a></div><div class="ttdeci">float get_Voilt_C(Super_TR_t *super)</div><div class="ttdoc">获取超级电容模块的电容电压。</div><div class="ttdef"><b>定义</b> super_str.c:135</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

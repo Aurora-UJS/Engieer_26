@@ -11,9 +11,10 @@ uart_msg_t Dbus_rx_msg;
 uint8_t Dbus_rx_buff[DBUS_BUFF_SIZE];
 uint32_t Lsat_Conut;
 
-// 函数功能：初始化DBus相关数据结构和资源
-// 参数：无
-// 返回值：无
+/**
+ * @brief  DBusSys初始化函数
+ * 
+ * */
 void DBus_Init(void)
 {
   // 分配内存给DBus_msg中的rx_msg结构体
@@ -28,9 +29,10 @@ void DBus_Init(void)
   uart_rx_init(&DBus_msg);
 }
 
-// 函数功能：处理DBus相关数据
-// 参数：无
-// 返回值：无
+/**
+ * @brief  DBusSys刷新函数
+ * 
+ * */
 void DBus_Refresh(void)
 {
   // 如果uart5_msg的count与上一次的Lsat_Conut不相等，说明有新数据接收
@@ -43,7 +45,10 @@ void DBus_Refresh(void)
   }
 }
 
-// 定义DBusSys的接口
+/**
+ * @brief  解析DBus_msg的接收缓冲区数据，更新遥控器数据
+ * 
+ * */
 void get_dr16_data(rc_info_t *rc, uint8_t buff[])
 {
   // satori：这里完成的是数据的分离和拼接，减去1024是为了让数据的中间值变为0
@@ -80,13 +85,13 @@ void get_dr16_data(rc_info_t *rc, uint8_t buff[])
     return;
   }
 
-  rc->mouse.x = buff[6] | (buff[7] << 8); // x axis
-  rc->mouse.y = buff[8] | (buff[9] << 8);
-  rc->mouse.z = buff[10] | (buff[11] << 8);
+  rc->keyboard.mouse_x = buff[6] | (buff[7] << 8); // x axis
+  rc->keyboard.mouse_y = buff[8] | (buff[9] << 8);
+  rc->keyboard.mouse_z = buff[10] | (buff[11] << 8);
 
-  rc->mouse.l = buff[12];
-  rc->mouse.r = buff[13];
+  rc->keyboard.left_button_down = buff[12];
+  rc->keyboard.right_button_down = buff[13];
 
-  rc->kb.key_code = buff[14] | buff[15] << 8; // key borad code
+  rc->keyboard.key_code.key_code = buff[14] | buff[15] << 8; // key borad code
   rc->wheel = (buff[16] | buff[17] << 8) - 1024;
 }

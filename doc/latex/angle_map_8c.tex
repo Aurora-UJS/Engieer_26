@@ -1,0 +1,42 @@
+\doxysection{source/module/control/\+Kinematic\+Solution/\+Angle\+Mapping/angle\+Map.c 文件参考}
+\hypertarget{angle_map_8c}{}\label{angle_map_8c}\index{source/module/control/KinematicSolution/AngleMapping/angleMap.c@{source/module/control/KinematicSolution/AngleMapping/angleMap.c}}
+{\ttfamily \#include "{}angle\+Map.\+h"{}}\newline
+{\ttfamily \#include "{}arm\+\_\+math.\+h"{}}\newline
+{\ttfamily \#include "{}motion\+\_\+state.\+h"{}}\newline
+angle\+Map.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{angle_map_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structbasic__vector__t}{basic\+\_\+vector\+\_\+t}} \mbox{\hyperlink{angle_map_8c_adbda46631f44e3b8c0e8eba1961df185}{Ref\+Frame\+\_\+\+Transform\+\_\+\+Calc}} (const \mbox{\hyperlink{structbasic__vector__t}{basic\+\_\+vector\+\_\+t}} basic, float \mbox{\hyperlink{imu_temp_ctrl_8c_a97993132b43bcbd8d52fb0f7325664f4}{angle}})
+\begin{DoxyCompactList}\small\item\em 执行坐标系变换，将输入向量从一个参考系变换到另一个参考系。 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{angle_map_8c_adbda46631f44e3b8c0e8eba1961df185}\index{angleMap.c@{angleMap.c}!RefFrame\_Transform\_Calc@{RefFrame\_Transform\_Calc}}
+\index{RefFrame\_Transform\_Calc@{RefFrame\_Transform\_Calc}!angleMap.c@{angleMap.c}}
+\doxysubsubsection{\texorpdfstring{RefFrame\_Transform\_Calc()}{RefFrame\_Transform\_Calc()}}
+{\footnotesize\ttfamily \label{angle_map_8c_adbda46631f44e3b8c0e8eba1961df185} 
+\mbox{\hyperlink{structbasic__vector__t}{basic\+\_\+vector\+\_\+t}} Ref\+Frame\+\_\+\+Transform\+\_\+\+Calc (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structbasic__vector__t}{basic\+\_\+vector\+\_\+t}}}]{basic}{, }\item[{float}]{angle}{}\end{DoxyParamCaption})}
+
+
+
+执行坐标系变换，将输入向量从一个参考系变换到另一个参考系。 
+
+该函数根据给定的角度对输入的二维向量进行旋转，并保持角速度分量不变。 变换公式为： x\textquotesingle{} = x \texorpdfstring{$\ast$}{*} cos(angle) -\/ y \texorpdfstring{$\ast$}{*} sin(angle) y\textquotesingle{} = x \texorpdfstring{$\ast$}{*} sin(angle) + y \texorpdfstring{$\ast$}{*} cos(angle) wz\textquotesingle{} = wz (保持不变)
+
+
+\begin{DoxyParams}{参数}
+{\em basic} & 输入的基本向量，包含x, y坐标和角速度wz。 \\
+\hline
+{\em angle} & 旋转角度（弧度制）。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+返回变换后的基本向量。 
+\end{DoxyReturn}

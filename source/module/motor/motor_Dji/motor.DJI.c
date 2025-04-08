@@ -3,8 +3,16 @@
 #include "motor_DJI.h"
 #include "stm32h7xx_hal_fdcan.h"
 #include "can_api.h"
-
-void set_motor_voltage(DJI_motor_t *msg, int16_t v1, int16_t v2, int16_t v3, int16_t v4)
+/**
+ * @brief 发送电机控制参数（电压或电流）
+ * 
+ * @param msg 大疆电机控制参数结构体
+ * @param v1 1号电机电压或电流
+ * @param v2 2号电机电压或电流
+ * @param v3 3号电机电压或电流
+ * @param v4 4号电机电压或电流
+ */
+void set_motor_parameter(DJI_motor_t *msg, int16_t v1, int16_t v2, int16_t v3, int16_t v4)
 {
 	msg->can_cfg.len = FDCAN_DLC_BYTES_8;
 	msg->can_cfg.data[0] = v1 >> 8;
@@ -19,6 +27,11 @@ void set_motor_voltage(DJI_motor_t *msg, int16_t v1, int16_t v2, int16_t v3, int
 	can_msg_send_classical(&msg->can_cfg);
 }
 
+/**
+ * @brief 大疆电机初始化
+ * 
+ * @param motor 大疆电机控制参数结构体
+ */
 void Motor_DJI_Init(DJI_motor_t *motor)
 {
 	// 初始化电机参数
@@ -32,6 +45,11 @@ void Motor_DJI_Init(DJI_motor_t *motor)
 	can_msg_add_item(&motor->motor_msg[3].can_msg);
 }
 
+/**
+ * @brief 大疆电机参数刷新
+ * 
+ * @param motor 大疆电机控制参数结构体
+ */
 void Motor_DJI_Refresh(DJI_motor_t *motor)
 {
 

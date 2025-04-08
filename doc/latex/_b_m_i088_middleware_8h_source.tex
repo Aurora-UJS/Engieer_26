@@ -1,0 +1,33 @@
+\doxysection{BMI088\+Middleware.\+h}
+\hypertarget{_b_m_i088_middleware_8h_source}{}\label{_b_m_i088_middleware_8h_source}\index{source/bsp/imu/BMI088/inc/BMI088Middleware.h@{source/bsp/imu/BMI088/inc/BMI088Middleware.h}}
+\mbox{\hyperlink{_b_m_i088_middleware_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ BMI088MIDDLEWARE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ BMI088MIDDLEWARE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}stdint.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ BMI088\_USE\_SPI}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\#define\ BMI088\_USE\_IIC}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_b_m_i088_middleware_8h_a636f04ec1e5c391ec8785451446398c6}{BMI088\_GPIO\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00010\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_b_m_i088_middleware_8h_a1478d5375f236499b2922025aa1e262b}{BMI088\_com\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00011\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_b_m_i088_middleware_8h_a82933f82dafd6b23f5ee4fe6c8162857}{BMI088\_delay\_ms}}(uint16\_t\ ms);}
+\DoxyCodeLine{00012\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_b_m_i088_middleware_8h_ae5ffcbbf1b04d867ac7b2e897eecb515}{BMI088\_delay\_us}}(uint16\_t\ us);}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#if\ defined(BMI088\_USE\_SPI)}}
+\DoxyCodeLine{00015\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_b_m_i088_middleware_8h_ad6798f0700771b94be54c7bc875ebec0}{BMI088\_ACCEL\_NS\_L}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00016\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_b_m_i088_middleware_8h_a3d6b6610eb8fefbcaa59db81b89ffbb3}{BMI088\_ACCEL\_NS\_H}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_b_m_i088_middleware_8h_a31f87b462165c98db7f957116e71512d}{BMI088\_GYRO\_NS\_L}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00019\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_b_m_i088_middleware_8h_a10ec41d7a428e9557fb82cdf289c634a}{BMI088\_GYRO\_NS\_H}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{_b_m_i088_middleware_8h_ae829c61f1662409cb5a4f72e74364a5a}{BMI088\_read\_write\_byte}}(uint8\_t\ reg);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#elif\ defined(BMI088\_USE\_IIC)}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

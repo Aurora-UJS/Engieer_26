@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/control/KinematicSolution/motion_state.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_25ff6885a748b7ac678af6e47152e090.html">control</a></li><li class="navelem"><a class="el" href="dir_844de94363a6b0e654a7d58d3aed6a48.html">KinematicSolution</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a>  </div>
+  <div class="headertitle"><div class="title">motion_state.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;arm_math.h&quot;</code><br />
+<code>#include &quot;main.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+motion_state.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="motion__state_8h__incl.png" border="0" usemap="#asource_2module_2control_2_kinematic_solution_2motion__state_8h" alt=""/></div>
+<map name="asource_2module_2control_2_kinematic_solution_2motion__state_8h" id="asource_2module_2control_2_kinematic_solution_2motion__state_8h">
+<area shape="rect" title=" " alt="" coords="13,5,186,64"/>
+<area shape="rect" title=" " alt="" coords="5,112,96,139"/>
+<area shape="poly" title=" " alt="" coords="86,66,67,100,63,97,82,63"/>
+<area shape="rect" title=" " alt="" coords="120,112,181,139"/>
+<area shape="poly" title=" " alt="" coords="118,63,138,97,133,100,114,66"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="motion__state_8h__dep__incl.png" border="0" usemap="#asource_2module_2control_2_kinematic_solution_2motion__state_8hdep" alt=""/></div>
+<map name="asource_2module_2control_2_kinematic_solution_2motion__state_8hdep" id="asource_2module_2control_2_kinematic_solution_2motion__state_8hdep">
+<area shape="rect" title=" " alt="" coords="296,5,470,64"/>
+<area shape="rect" href="angle_map_8c.html" title=" " alt="" coords="5,219,222,277"/>
+<area shape="poly" title=" " alt="" coords="282,55,183,80,144,96,120,114,107,138,103,165,104,193,108,218,103,219,99,194,98,165,102,136,115,110,141,91,181,75,280,50"/>
+<area shape="rect" href="angle_map_8h.html" title=" " alt="" coords="129,112,346,171"/>
+<area shape="poly" title=" " alt="" coords="332,76,279,114,276,109,329,71"/>
+<area shape="rect" href="omni__mecanum__kinematics_8c.html" title=" " alt="" coords="260,219,492,277"/>
+<area shape="poly" title=" " alt="" coords="384,79,380,218,374,218,379,79"/>
+<area shape="rect" href="omni__mecanum__kinematics_8h.html" title=" " alt="" coords="420,112,652,171"/>
+<area shape="poly" title=" " alt="" coords="439,71,496,109,493,114,436,75"/>
+<area shape="rect" href="streering__wheel__kinematics_8h.html" title=" " alt="" coords="688,112,923,171"/>
+<area shape="poly" title=" " alt="" coords="485,58,690,109,689,114,484,64"/>
+<area shape="poly" title=" " alt="" coords="194,183,149,220,146,216,190,179"/>
+<area shape="poly" title=" " alt="" coords="481,182,421,221,418,216,478,177"/>
+<area shape="rect" href="_remoter_8c.html" title=" " alt="" coords="516,235,671,261"/>
+<area shape="poly" title=" " alt="" coords="561,183,589,233,584,236,557,186"/>
+<area shape="rect" href="streering__wheel__kinematics_8c.html" title=" " alt="" coords="695,219,929,277"/>
+<area shape="poly" title=" " alt="" coords="811,186,813,218,808,218,806,187"/>
+</map>
+</div>
+</div>
+<p><a href="motion__state_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbasic__vector__t.html">basic_vector_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">基本运动矢量结构体  <a href="structbasic__vector__t.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structbasic__angle_v__t.html">basic_angleV_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a3a94ee28b3b17f17d7b5dd9cac5813d5" id="r_a3a94ee28b3b17f17d7b5dd9cac5813d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a94ee28b3b17f17d7b5dd9cac5813d5">MOTORLF</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a3a94ee28b3b17f17d7b5dd9cac5813d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6bd086f25bc86468bb6ca947e22c0f3" id="r_ae6bd086f25bc86468bb6ca947e22c0f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6bd086f25bc86468bb6ca947e22c0f3">MOTORLB</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ae6bd086f25bc86468bb6ca947e22c0f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec962bd7ff07eb15c223aebf3af7f8fd" id="r_aec962bd7ff07eb15c223aebf3af7f8fd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec962bd7ff07eb15c223aebf3af7f8fd">MOTORRB</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:aec962bd7ff07eb15c223aebf3af7f8fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9fba455bf325d45210ad5c364c925d1" id="r_ad9fba455bf325d45210ad5c364c925d1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9fba455bf325d45210ad5c364c925d1">MOTORRF</a>&#160;&#160;&#160;3</td></tr>
+<tr class="separator:ad9fba455bf325d45210ad5c364c925d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="ae6bd086f25bc86468bb6ca947e22c0f3" name="ae6bd086f25bc86468bb6ca947e22c0f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6bd086f25bc86468bb6ca947e22c0f3">&#9670;&#160;</a></span>MOTORLB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MOTORLB&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a94ee28b3b17f17d7b5dd9cac5813d5" name="a3a94ee28b3b17f17d7b5dd9cac5813d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a94ee28b3b17f17d7b5dd9cac5813d5">&#9670;&#160;</a></span>MOTORLF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MOTORLF&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aec962bd7ff07eb15c223aebf3af7f8fd" name="aec962bd7ff07eb15c223aebf3af7f8fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec962bd7ff07eb15c223aebf3af7f8fd">&#9670;&#160;</a></span>MOTORRB</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MOTORRB&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9fba455bf325d45210ad5c364c925d1" name="ad9fba455bf325d45210ad5c364c925d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9fba455bf325d45210ad5c364c925d1">&#9670;&#160;</a></span>MOTORRF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MOTORRF&#160;&#160;&#160;3</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

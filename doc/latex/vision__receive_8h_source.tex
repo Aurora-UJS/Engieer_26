@@ -1,0 +1,20 @@
+\doxysection{vision\+\_\+receive.\+h}
+\hypertarget{vision__receive_8h_source}{}\label{vision__receive_8h_source}\index{source/module/computer/vision/vision\_receive.h@{source/module/computer/vision/vision\_receive.h}}
+\mbox{\hyperlink{vision__receive_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ VISION\_RECEIVE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ VISION\_RECEIVE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{computer__pack_8h}{computer\_pack.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{struct_received_packet_vision__t}{ReceivedPacketVision\_t}}\ \mbox{\hyperlink{vision__receive_8c_a67301d1ae0220d759837c8109c97fcb1}{ReceivedPacketVision}};\ \textcolor{comment}{//\ 保存接收到的视觉数据}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ get\_vision\_id()\ (ReceivedPacketVision.id)}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ is\_tracking()\ (ReceivedPacketVision.tracking)}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vision__receive_8h_a277c81e2321db61ca47e3e7d570b4016}{vision\_receive\_solve}}(uint8\_t\ *rx\_buf);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !VISION\_RECEIVE\_H}}
+
+\end{DoxyCode}

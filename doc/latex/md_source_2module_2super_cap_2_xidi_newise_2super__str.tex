@@ -1,0 +1,131 @@
+\chapter{Super\+\_\+\+TR\+\_\+\+Driver 文档}
+\hypertarget{md_source_2module_2super_cap_2_xidi_newise_2super__str}{}\label{md_source_2module_2super_cap_2_xidi_newise_2super__str}\index{Super\_TR\_Driver 文档@{Super\_TR\_Driver 文档}}
+\label{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md53}%
+\Hypertarget{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md53}%
+\hypertarget{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md54}{}\doxysection{\texorpdfstring{概述}{概述}}\label{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md54}
+本文档描述了 Super\+\_\+\+TR\+\_\+\+Driver，这是为“溪地创新”的超级电容设计的 CAN 通信模块。该驱动程序便于超级电容系统在 CAN 总线上进行初始化、数据传输、接收和解析过程。\hypertarget{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md55}{}\doxysection{\texorpdfstring{函数}{函数}}\label{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md55}
+\hypertarget{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md56}{}\doxysubsection{\texorpdfstring{Super\+\_\+\+TR\+\_\+\+Init}{Super\+\_\+\+TR\+\_\+\+Init}}\label{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md56}
+初始化 Super\+\_\+\+TR\+\_\+\+Manager 结构体。
+
+{\bfseries{原型}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{super__str_8c_a44ef9252e066853ee4c36f81c1dacea3}{Super\_TR\_Init}}(\mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ *super,\ uint32\_t\ can\_id,\ uint32\_t\ can\_send\_id,\ \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282}{can\_port\_t}}\ can\_port);}
+
+\end{DoxyCode}
+
+
+{\bfseries{参数}}
+\begin{DoxyItemize}
+\item {\ttfamily super}\+: 指向 \doxylink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t} 结构体的指针。
+\item {\ttfamily can\+\_\+id}\+: 接收消息的 CAN ID。
+\item {\ttfamily can\+\_\+send\+\_\+id}\+: 发送消息的 CAN ID。
+\item {\ttfamily can\+\_\+port}\+: 通信的 CAN 端口。
+\end{DoxyItemize}
+
+{\bfseries{返回值}}
+\begin{DoxyItemize}
+\item {\ttfamily true}\+: 初始化成功。
+\item {\ttfamily false}\+: 初始化失败（例如，空指针）。
+\end{DoxyItemize}\hypertarget{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md57}{}\doxysubsection{\texorpdfstring{Super\+\_\+\+TR\+\_\+\+Send}{Super\+\_\+\+TR\+\_\+\+Send}}\label{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md57}
+发送带有 16 位数据的有效载荷的 CAN 消息。
+
+{\bfseries{原型}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{super__str_8c_a89dd682a7f87d41c712957a383255f90}{Super\_TR\_Send}}(\mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ *super,\ uint16\_t\ data);}
+
+\end{DoxyCode}
+
+
+{\bfseries{参数}}
+\begin{DoxyItemize}
+\item {\ttfamily super}\+: 指向 \doxylink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t} 结构体的指针。
+\item {\ttfamily data}\+: 要发送的 16 位数据。
+\end{DoxyItemize}
+
+{\bfseries{返回值}}
+\begin{DoxyItemize}
+\item {\ttfamily true}\+: 消息发送成功。
+\item {\ttfamily false}\+: 发送失败（例如，空指针）。
+\end{DoxyItemize}\hypertarget{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md58}{}\doxysubsection{\texorpdfstring{Super\+\_\+\+TR\+\_\+\+Refresh}{Super\+\_\+\+TR\+\_\+\+Refresh}}\label{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md58}
+带检测机制的接收和解析 CAN 消息。
+
+{\bfseries{原型}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{super__str_8c_a8e909b10ff38febd2e40627c6094b682}{Super\_TR\_Refresh}}(\mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ *super);}
+
+\end{DoxyCode}
+
+
+{\bfseries{参数}}
+\begin{DoxyItemize}
+\item {\ttfamily super}\+: 指向 \doxylink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t} 结构体的指针。
+\end{DoxyItemize}
+
+{\bfseries{返回值}}
+\begin{DoxyItemize}
+\item {\ttfamily true}\+: 消息接收和解析成功。
+\item {\ttfamily false}\+: 接收或解析失败（例如，空指针）。
+\end{DoxyItemize}\hypertarget{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md59}{}\doxysubsection{\texorpdfstring{数据访问函数}{数据访问函数}}\label{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md59}
+这些函数提供从接收到的 CAN 消息中解析数据的访问。
+
+{\bfseries{原型}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{float}\ \mbox{\hyperlink{super__str_8c_a7209995ee7c4a98e36ae64c62780e1b2}{get\_Voilt\_In}}(\mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ *super);}
+\DoxyCodeLine{\textcolor{keywordtype}{float}\ \mbox{\hyperlink{super__str_8c_aaaf4a1acc2c7840865a39422180e8b37}{get\_Voilt\_C}}(\mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ *super);}
+\DoxyCodeLine{\textcolor{keywordtype}{float}\ \mbox{\hyperlink{super__str_8c_a55cb5720fc1d4aac0f4cea033b33f107}{get\_Current\_In}}(\mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ *super);}
+\DoxyCodeLine{\textcolor{keywordtype}{float}\ \mbox{\hyperlink{super__str_8c_a1fd53c06405f1606bca17372bac2a816}{get\_Target\_power}}(\mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ *super);}
+
+\end{DoxyCode}
+
+
+{\bfseries{参数}}
+\begin{DoxyItemize}
+\item {\ttfamily super}\+: 指向 \doxylink{struct_super___t_r__t}{Super\+\_\+\+TR\+\_\+t} 结构体的指针。
+\end{DoxyItemize}
+
+{\bfseries{返回值}}
+\begin{DoxyItemize}
+\item 分别返回解析后的数据值（输入电压、电容电压、输入电流、目标功率）。
+\end{DoxyItemize}\hypertarget{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md60}{}\doxysection{\texorpdfstring{使用示例}{使用示例}}\label{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md60}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{super__str_8h}{super\_str.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ super\_cap;}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ receive\_can\_id\ =\ 0x211;}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ send\_can\_id\ =\ 0x210;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282}{can\_port\_t}}\ can\_port\ =\ \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238}{CAN1\_PORT}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 初始化}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{super__str_8c_a44ef9252e066853ee4c36f81c1dacea3}{Super\_TR\_Init}}(\&super\_cap,\ receive\_can\_id,\ send\_can\_id,\ can\_port))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 处理初始化错误}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 发送数据}}
+\DoxyCodeLine{\ \ \ \ uint16\_t\ data\_to\_send\ =\ 3500;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{super__str_8c_a89dd682a7f87d41c712957a383255f90}{Super\_TR\_Send}}(\&super\_cap,\ data\_to\_send))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 处理发送错误}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 接收和解析数据}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{super__str_8c_a8e909b10ff38febd2e40627c6094b682}{Super\_TR\_Refresh}}(\&super\_cap))\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ voltage\_in\ =\ \mbox{\hyperlink{super__str_8c_a7209995ee7c4a98e36ae64c62780e1b2}{get\_Voilt\_In}}(\&super\_cap);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ voltage\_cap\ =\ \mbox{\hyperlink{super__str_8c_aaaf4a1acc2c7840865a39422180e8b37}{get\_Voilt\_C}}(\&super\_cap);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ current\_in\ =\ \mbox{\hyperlink{super__str_8c_a55cb5720fc1d4aac0f4cea033b33f107}{get\_Current\_In}}(\&super\_cap);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ target\_power\ =\ \mbox{\hyperlink{super__str_8c_a1fd53c06405f1606bca17372bac2a816}{get\_Target\_power}}(\&super\_cap);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 使用解析后的数据}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md61}{}\doxysection{\texorpdfstring{注意事项}{注意事项}}\label{md_source_2module_2super_cap_2_xidi_newise_2super__str_autotoc_md61}
+
+\begin{DoxyItemize}
+\item 确保对空指针和通信失败进行适当的错误处理。
+\item CAN ID 和端口应根据系统要求进行配置。
+\item 数据解析假设特定的消息格式；根据 CAN 消息规范进行调整。 
+\end{DoxyItemize}

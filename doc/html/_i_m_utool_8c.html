@@ -1,0 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/IMU/IMUtool.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_8b711e810999a9fe1de9e9ddd8899d9f.html">IMU</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">IMUtool.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="_i_m_utool_8h_source.html">IMUtool.h</a>&quot;</code><br />
+<code>#include &quot;main.h&quot;</code><br />
+<code>#include &quot;cmsis_os.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="_b_m_i088driver_8h_source.html">BMI088driver.h</a>&quot;</code><br />
+<code>#include &quot;gpio.h&quot;</code><br />
+<code>#include &quot;tim.h&quot;</code><br />
+<code>#include &quot;string.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+IMUtool.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="_i_m_utool_8c__incl.png" border="0" usemap="#asource_2module_2_i_m_u_2_i_m_utool_8c" alt=""/></div>
+<map name="asource_2module_2_i_m_u_2_i_m_utool_8c" id="asource_2module_2_i_m_u_2_i_m_utool_8c">
+<area shape="rect" title=" " alt="" coords="263,5,459,32"/>
+<area shape="rect" href="_i_m_utool_8h.html" title=" " alt="" coords="42,80,120,107"/>
+<area shape="poly" title=" " alt="" coords="313,35,136,81,134,76,311,30"/>
+<area shape="rect" title=" " alt="" coords="145,155,206,181"/>
+<area shape="poly" title=" " alt="" coords="263,34,219,52,200,65,184,82,177,95,173,109,173,139,168,139,168,109,172,93,180,78,197,61,217,47,261,29"/>
+<area shape="rect" title=" " alt="" coords="194,80,282,107"/>
+<area shape="poly" title=" " alt="" coords="341,35,274,74,272,69,338,30"/>
+<area shape="rect" href="_b_m_i088driver_8h.html" title=" " alt="" coords="306,80,416,107"/>
+<area shape="poly" title=" " alt="" coords="364,33,364,64,358,64,358,33"/>
+<area shape="rect" title=" " alt="" coords="439,80,496,107"/>
+<area shape="poly" title=" " alt="" coords="381,30,438,69,435,73,378,35"/>
+<area shape="rect" title=" " alt="" coords="520,80,570,107"/>
+<area shape="poly" title=" " alt="" coords="394,30,506,74,504,79,392,35"/>
+<area shape="rect" title=" " alt="" coords="594,80,658,107"/>
+<area shape="poly" title=" " alt="" coords="408,30,580,77,578,82,407,35"/>
+<area shape="poly" title=" " alt="" coords="99,105,149,143,145,147,96,109"/>
+<area shape="rect" href="_mahony_a_h_r_s_8h.html" title=" " alt="" coords="5,155,122,181"/>
+<area shape="poly" title=" " alt="" coords="80,108,73,140,67,139,75,107"/>
+<area shape="poly" title=" " alt="" coords="330,110,221,152,219,147,328,105"/>
+<area shape="rect" title=" " alt="" coords="329,155,393,181"/>
+<area shape="poly" title=" " alt="" coords="364,107,364,139,358,139,358,107"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a7b69c8d1cd40b16364a3dec85ba1fd9b" id="r_a7b69c8d1cd40b16364a3dec85ba1fd9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b69c8d1cd40b16364a3dec85ba1fd9b">temple</a> (void)</td></tr>
+<tr class="memdesc:a7b69c8d1cd40b16364a3dec85ba1fd9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">PID温度控制函数。  <br /></td></tr>
+<tr class="separator:a7b69c8d1cd40b16364a3dec85ba1fd9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad29f96bd5db7d3a66c38856f36d4f8e7" id="r_ad29f96bd5db7d3a66c38856f36d4f8e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad29f96bd5db7d3a66c38856f36d4f8e7">IMUsys</a> (void)</td></tr>
+<tr class="separator:ad29f96bd5db7d3a66c38856f36d4f8e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:af5a45dbcaa926b186e6f71d08212acc3" id="r_af5a45dbcaa926b186e6f71d08212acc3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5a45dbcaa926b186e6f71d08212acc3">out</a> = 0</td></tr>
+<tr class="separator:af5a45dbcaa926b186e6f71d08212acc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bc58d43105d723b774621219125aeb1" id="r_a5bc58d43105d723b774621219125aeb1"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bc58d43105d723b774621219125aeb1">err</a> = 0</td></tr>
+<tr class="separator:a5bc58d43105d723b774621219125aeb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adad8380dabbf4bc5798967c1591bd489" id="r_adad8380dabbf4bc5798967c1591bd489"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adad8380dabbf4bc5798967c1591bd489">err_l</a> = 0</td></tr>
+<tr class="separator:adad8380dabbf4bc5798967c1591bd489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb9424d10fa1a722cb082ede21bbfef6" id="r_adb9424d10fa1a722cb082ede21bbfef6"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb9424d10fa1a722cb082ede21bbfef6">err_ll</a> = 0</td></tr>
+<tr class="separator:adb9424d10fa1a722cb082ede21bbfef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addac5578d412440de5e9c3760475dec7" id="r_addac5578d412440de5e9c3760475dec7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#addac5578d412440de5e9c3760475dec7">gyro</a> [3]</td></tr>
+<tr class="separator:addac5578d412440de5e9c3760475dec7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a579c1a74d7de6ed4e97b8a29d6d826cd" id="r_a579c1a74d7de6ed4e97b8a29d6d826cd"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a579c1a74d7de6ed4e97b8a29d6d826cd">accel</a> [3]</td></tr>
+<tr class="separator:a579c1a74d7de6ed4e97b8a29d6d826cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0c59db08914a05cbe9adc574ecf3eaf" id="r_ad0c59db08914a05cbe9adc574ecf3eaf"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0c59db08914a05cbe9adc574ecf3eaf">angles</a> [3]</td></tr>
+<tr class="separator:ad0c59db08914a05cbe9adc574ecf3eaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24d61a35b72d7299eb6b5f48e71a571b" id="r_a24d61a35b72d7299eb6b5f48e71a571b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24d61a35b72d7299eb6b5f48e71a571b">temp</a></td></tr>
+<tr class="separator:a24d61a35b72d7299eb6b5f48e71a571b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f0b74e5aa63c31cec57d7ef5b2f8377" id="r_a9f0b74e5aa63c31cec57d7ef5b2f8377"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f0b74e5aa63c31cec57d7ef5b2f8377">forceStop</a> = 0</td></tr>
+<tr class="separator:a9f0b74e5aa63c31cec57d7ef5b2f8377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04a8e4cdb23bf7b076261f71c9b4fe9f" id="r_a04a8e4cdb23bf7b076261f71c9b4fe9f"><td class="memItemLeft" align="right" valign="top">osSemaphoreId&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a04a8e4cdb23bf7b076261f71c9b4fe9f">imuBinarySem01Handle</a></td></tr>
+<tr class="separator:a04a8e4cdb23bf7b076261f71c9b4fe9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4054c62cd1b930c2a79a62483f21dc2b" id="r_a4054c62cd1b930c2a79a62483f21dc2b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structbmi088__data__t.html">bmi088_data_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4054c62cd1b930c2a79a62483f21dc2b">bmi088_data</a></td></tr>
+<tr class="separator:a4054c62cd1b930c2a79a62483f21dc2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a846e0d042b9b9619bee27d868f8d8314" id="r_a846e0d042b9b9619bee27d868f8d8314"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a846e0d042b9b9619bee27d868f8d8314">temp_Ticks</a> = 0</td></tr>
+<tr class="separator:a846e0d042b9b9619bee27d868f8d8314"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a981c11f5314644cebf6c9a9715810f68" id="r_a981c11f5314644cebf6c9a9715810f68"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a981c11f5314644cebf6c9a9715810f68">attitude_flag</a> = 0</td></tr>
+<tr class="separator:a981c11f5314644cebf6c9a9715810f68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecc64bef1905754b85be266bbd4426e5" id="r_aecc64bef1905754b85be266bbd4426e5"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecc64bef1905754b85be266bbd4426e5">correct_times</a> = 0</td></tr>
+<tr class="separator:aecc64bef1905754b85be266bbd4426e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5778c527415e355b3fbd4505779afb65" id="r_a5778c527415e355b3fbd4505779afb65"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5778c527415e355b3fbd4505779afb65">gyro_correct</a> [3] = {0}</td></tr>
+<tr class="separator:a5778c527415e355b3fbd4505779afb65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="ad29f96bd5db7d3a66c38856f36d4f8e7" name="ad29f96bd5db7d3a66c38856f36d4f8e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad29f96bd5db7d3a66c38856f36d4f8e7">&#9670;&#160;</a></span>IMUsys()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IMUsys </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7b69c8d1cd40b16364a3dec85ba1fd9b" name="a7b69c8d1cd40b16364a3dec85ba1fd9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b69c8d1cd40b16364a3dec85ba1fd9b">&#9670;&#160;</a></span>temple()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void temple </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PID温度控制函数。 </p>
+<p>该函数实现了一个简单的PID控制器，用于调节IMU模块的温度至目标值（DES_TEMP）。 控制器通过计算当前温度与目标温度之间的误差，调整PWM输出以控制加热功率。</p>
+<p>控制公式为： out = KP * err + KI * (err + err_l + err_ll) + KD * (err - err_l) 其中：</p><ul>
+<li>err: 当前温度误差。</li>
+<li>err_l: 上一次温度误差。</li>
+<li>err_ll: 上上次温度误差。</li>
+<li>KP, KI, KD: PID控制器的比例、积分、微分系数。</li>
+</ul>
+<p>输出值被限制在 [0, MAX_OUT] 范围内，并通过定时器通道（htim3.Instance-&gt;CCR4）设置PWM占空比。 </p>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a579c1a74d7de6ed4e97b8a29d6d826cd" name="a579c1a74d7de6ed4e97b8a29d6d826cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a579c1a74d7de6ed4e97b8a29d6d826cd">&#9670;&#160;</a></span>accel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float accel[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad0c59db08914a05cbe9adc574ecf3eaf" name="ad0c59db08914a05cbe9adc574ecf3eaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0c59db08914a05cbe9adc574ecf3eaf">&#9670;&#160;</a></span>angles</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float angles[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a981c11f5314644cebf6c9a9715810f68" name="a981c11f5314644cebf6c9a9715810f68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a981c11f5314644cebf6c9a9715810f68">&#9670;&#160;</a></span>attitude_flag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t attitude_flag = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4054c62cd1b930c2a79a62483f21dc2b" name="a4054c62cd1b930c2a79a62483f21dc2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4054c62cd1b930c2a79a62483f21dc2b">&#9670;&#160;</a></span>bmi088_data</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structbmi088__data__t.html">bmi088_data_t</a> bmi088_data</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aecc64bef1905754b85be266bbd4426e5" name="aecc64bef1905754b85be266bbd4426e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecc64bef1905754b85be266bbd4426e5">&#9670;&#160;</a></span>correct_times</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t correct_times = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5bc58d43105d723b774621219125aeb1" name="a5bc58d43105d723b774621219125aeb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bc58d43105d723b774621219125aeb1">&#9670;&#160;</a></span>err</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float err = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adad8380dabbf4bc5798967c1591bd489" name="adad8380dabbf4bc5798967c1591bd489"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adad8380dabbf4bc5798967c1591bd489">&#9670;&#160;</a></span>err_l</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float err_l = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adb9424d10fa1a722cb082ede21bbfef6" name="adb9424d10fa1a722cb082ede21bbfef6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb9424d10fa1a722cb082ede21bbfef6">&#9670;&#160;</a></span>err_ll</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float err_ll = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9f0b74e5aa63c31cec57d7ef5b2f8377" name="a9f0b74e5aa63c31cec57d7ef5b2f8377"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f0b74e5aa63c31cec57d7ef5b2f8377">&#9670;&#160;</a></span>forceStop</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t forceStop = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="addac5578d412440de5e9c3760475dec7" name="addac5578d412440de5e9c3760475dec7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addac5578d412440de5e9c3760475dec7">&#9670;&#160;</a></span>gyro</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float gyro[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5778c527415e355b3fbd4505779afb65" name="a5778c527415e355b3fbd4505779afb65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5778c527415e355b3fbd4505779afb65">&#9670;&#160;</a></span>gyro_correct</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float gyro_correct[3] = {0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a04a8e4cdb23bf7b076261f71c9b4fe9f" name="a04a8e4cdb23bf7b076261f71c9b4fe9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04a8e4cdb23bf7b076261f71c9b4fe9f">&#9670;&#160;</a></span>imuBinarySem01Handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">osSemaphoreId imuBinarySem01Handle</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af5a45dbcaa926b186e6f71d08212acc3" name="af5a45dbcaa926b186e6f71d08212acc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5a45dbcaa926b186e6f71d08212acc3">&#9670;&#160;</a></span>out</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float out = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a24d61a35b72d7299eb6b5f48e71a571b" name="a24d61a35b72d7299eb6b5f48e71a571b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24d61a35b72d7299eb6b5f48e71a571b">&#9670;&#160;</a></span>temp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float temp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a846e0d042b9b9619bee27d868f8d8314" name="a846e0d042b9b9619bee27d868f8d8314"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a846e0d042b9b9619bee27d868f8d8314">&#9670;&#160;</a></span>temp_Ticks</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t temp_Ticks = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

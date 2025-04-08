@@ -1,0 +1,49 @@
+\doxysection{can\+\_\+struct.\+h}
+\hypertarget{can__struct_8h_source}{}\label{can__struct_8h_source}\index{source/bsp/can/can\_struct.h@{source/bsp/can/can\_struct.h}}
+\mbox{\hyperlink{can__struct_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_CAN\_STRUCT\_H\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_CAN\_STRUCT\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}FreeRTOS.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}list.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ 定义CAN端口的枚举类型}}
+\DoxyCodeLine{00010\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238}{CAN1\_PORT}}\ =\ 0,}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282afed66cb93dc9572d995bc83596f68a37}{CAN2\_PORT}},}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282abc017982689593644573fba9e791072d}{CAN3\_PORT}},}
+\DoxyCodeLine{00015\ \}\ \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282}{can\_port\_t}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ 定义CAN消息的结构体}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structcan__msg__t_a2fa54f9024782843172506fadbee2ac8}{port}};\ \textcolor{comment}{//\ CAN1\_ID,\ CAN2\_ID,\ CAN3\_ID}}
+\DoxyCodeLine{00021\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structcan__msg__t_abaabdc509cdaba7df9f56c6c76f3ae19}{id}};}
+\DoxyCodeLine{00022\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structcan__msg__t_afb87d045bbf32b236fc425efe02bdc7b}{data}}[8];}
+\DoxyCodeLine{00023\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structcan__msg__t_a5723e60ffd628510c699eddbce90be23}{len}};}
+\DoxyCodeLine{00024\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structcan__msg__t_a052c6d6c4fd9b6fe5b2c4330b1376e57}{cnt}};}
+\DoxyCodeLine{00025\ \}\mbox{\hyperlink{structcan__msg__t}{can\_msg\_t}};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ 定义CAN状态的枚举类型}}
+\DoxyCodeLine{00028\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dab7db0e53b737c0839be931efcb79246e}{CAN\_OK}}\ =\ 0,}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dadf1eab1c663a7f76481ec01420c4579a}{CAN\_Reg\_ERROR}}\ =\ 1,}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dadf00dffe8d1ba85424f21fbb492f8e8a}{CAN\_PORT\_ERROR}}\ =\ 2,}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1da4bd6ac0947f2dc4ed7da8af03f34acfd}{CAN\_MSG\_ERROR}}\ =\ 3,}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1dafae488d62fb9453429adde7b71c08b1e}{CAN\_MSG\_REPEAT}}\ =\ 4,}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1daa23ed6c0f19779a04bc9961451664b47}{CAN\_MSG\_NOT\_FOUND}}\ =\ 5,}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \}\ \mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\_status\_t}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{extern}\ List\_t\ \mbox{\hyperlink{can__api_8c_a23f6a0d249ace51f1cb796a74e9fed84}{can1\_rx\_msg\_list}};}
+\DoxyCodeLine{00040\ \textcolor{keyword}{extern}\ List\_t\ \mbox{\hyperlink{can__api_8c_af251cf824c6932232e60b8f47d3c329e}{can2\_rx\_msg\_list}};}
+\DoxyCodeLine{00041\ \textcolor{keyword}{extern}\ List\_t\ \mbox{\hyperlink{can__api_8c_aec6c42e96f2c3b2f13b2c5c107cf1d60}{can3\_rx\_msg\_list}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_CAN\_STRUCT\_H\_\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

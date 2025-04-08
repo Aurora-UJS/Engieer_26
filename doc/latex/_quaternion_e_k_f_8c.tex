@@ -1,0 +1,214 @@
+\doxysection{source/module/\+IMU/ekf/\+Quaternion\+EKF.c 文件参考}
+\hypertarget{_quaternion_e_k_f_8c}{}\label{_quaternion_e_k_f_8c}\index{source/module/IMU/ekf/QuaternionEKF.c@{source/module/IMU/ekf/QuaternionEKF.c}}
+
+
+attitude update with gyro bias estimate and chi-\/square test  
+
+
+{\ttfamily \#include "{}Quaternion\+EKF.\+h"{}}\newline
+{\ttfamily \#include "{}arm\+\_\+math.\+h"{}}\newline
+Quaternion\+EKF.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{_quaternion_e_k_f_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_quaternion_e_k_f_8c_a5f6786be602a9b18cc716e3c6de14fc6}{IMU\+\_\+\+Quaternion\+EKF\+\_\+\+Init}} (float process\+\_\+noise1, float process\+\_\+noise2, float measure\+\_\+noise, float lambda, float dt, float lpf)
+\begin{DoxyCompactList}\small\item\em Quaternion EKF initialization and some reference value \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_quaternion_e_k_f_8c_a3e96165d892e72c475ed2a4a99bc8a3a}{IMU\+\_\+\+Quaternion\+EKF\+\_\+\+Reset}} (void)
+\begin{DoxyCompactList}\small\item\em 重置四元数扩展卡尔曼滤波器（\+QEKF）的状态和参数。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_quaternion_e_k_f_8c_ae323af11f1e78bd5438e27fb7cb494f1}{IMU\+\_\+\+Quaternion\+EKF\+\_\+\+Update}} (float gx, float gy, float gz, float ax, float ay, float az)
+\begin{DoxyCompactList}\small\item\em Quaternion EKF update \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{_quaternion_e_k_f_8c_a05f168bf475ce9252080e60022d95026}{Get\+\_\+\+Pitch}} ()
+\item 
+float \mbox{\hyperlink{_quaternion_e_k_f_8c_a7186c9a5a833ce142c72ed5ce1e09ac9}{Get\+\_\+\+Roll}} ()
+\item 
+float \mbox{\hyperlink{_quaternion_e_k_f_8c_ad9cfde26d10427637a1cda31607c5e20}{Get\+\_\+\+Yaw}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_q_e_k_f___i_n_s__t}{QEKF\+\_\+\+INS\+\_\+t}} \mbox{\hyperlink{_quaternion_e_k_f_8c_a2f6ee130c2912fa1106128c97aa54d69}{QEKF\+\_\+\+INS}} =\{0\}
+\item 
+const float \mbox{\hyperlink{_quaternion_e_k_f_8c_a5ff985346f2535a005af3c921af23f48}{IMU\+\_\+\+Quaternion\+EKF\+\_\+F}} \mbox{[}36\mbox{]}
+\item 
+const float \mbox{\hyperlink{_quaternion_e_k_f_8c_a2d6f5c84a36817b1eb3522db27cc4b86}{IMU\+\_\+\+Quaternion\+EKF\+\_\+\+P\+\_\+\+Const}} \mbox{[}36\mbox{]}
+\item 
+float \mbox{\hyperlink{_quaternion_e_k_f_8c_a21d0ce3767bc89c03d0037a3a5bd219e}{IMU\+\_\+\+Quaternion\+EKF\+\_\+P}} \mbox{[}36\mbox{]}
+\item 
+float \mbox{\hyperlink{_quaternion_e_k_f_8c_afee53610f74b2408ae7548f9cce19b54}{IMU\+\_\+\+Quaternion\+EKF\+\_\+K}} \mbox{[}18\mbox{]}
+\item 
+float \mbox{\hyperlink{_quaternion_e_k_f_8c_a3011e2fa4795ab6a359d141fedef06ea}{IMU\+\_\+\+Quaternion\+EKF\+\_\+H}} \mbox{[}18\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+attitude update with gyro bias estimate and chi-\/square test 
+
+\begin{DoxyAuthor}{作者}
+Wang Hongxi 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+V1.\+2.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2022/3/8 
+\end{DoxyDate}
+\begin{DoxyAttention}{注意}
+1st order LPF transfer function\+: 1 ——————— as + 1 
+\end{DoxyAttention}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{_quaternion_e_k_f_8c_a05f168bf475ce9252080e60022d95026}\index{QuaternionEKF.c@{QuaternionEKF.c}!Get\_Pitch@{Get\_Pitch}}
+\index{Get\_Pitch@{Get\_Pitch}!QuaternionEKF.c@{QuaternionEKF.c}}
+\doxysubsubsection{\texorpdfstring{Get\_Pitch()}{Get\_Pitch()}}
+{\footnotesize\ttfamily \label{_quaternion_e_k_f_8c_a05f168bf475ce9252080e60022d95026} 
+float Get\+\_\+\+Pitch (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_quaternion_e_k_f_8c_a7186c9a5a833ce142c72ed5ce1e09ac9}\index{QuaternionEKF.c@{QuaternionEKF.c}!Get\_Roll@{Get\_Roll}}
+\index{Get\_Roll@{Get\_Roll}!QuaternionEKF.c@{QuaternionEKF.c}}
+\doxysubsubsection{\texorpdfstring{Get\_Roll()}{Get\_Roll()}}
+{\footnotesize\ttfamily \label{_quaternion_e_k_f_8c_a7186c9a5a833ce142c72ed5ce1e09ac9} 
+float Get\+\_\+\+Roll (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_quaternion_e_k_f_8c_ad9cfde26d10427637a1cda31607c5e20}\index{QuaternionEKF.c@{QuaternionEKF.c}!Get\_Yaw@{Get\_Yaw}}
+\index{Get\_Yaw@{Get\_Yaw}!QuaternionEKF.c@{QuaternionEKF.c}}
+\doxysubsubsection{\texorpdfstring{Get\_Yaw()}{Get\_Yaw()}}
+{\footnotesize\ttfamily \label{_quaternion_e_k_f_8c_ad9cfde26d10427637a1cda31607c5e20} 
+float Get\+\_\+\+Yaw (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_quaternion_e_k_f_8c_a5f6786be602a9b18cc716e3c6de14fc6}\index{QuaternionEKF.c@{QuaternionEKF.c}!IMU\_QuaternionEKF\_Init@{IMU\_QuaternionEKF\_Init}}
+\index{IMU\_QuaternionEKF\_Init@{IMU\_QuaternionEKF\_Init}!QuaternionEKF.c@{QuaternionEKF.c}}
+\doxysubsubsection{\texorpdfstring{IMU\_QuaternionEKF\_Init()}{IMU\_QuaternionEKF\_Init()}}
+{\footnotesize\ttfamily \label{_quaternion_e_k_f_8c_a5f6786be602a9b18cc716e3c6de14fc6} 
+void IMU\+\_\+\+Quaternion\+EKF\+\_\+\+Init (\begin{DoxyParamCaption}\item[{float}]{process\+\_\+noise1}{, }\item[{float}]{process\+\_\+noise2}{, }\item[{float}]{measure\+\_\+noise}{, }\item[{float}]{lambda}{, }\item[{float}]{dt}{, }\item[{float}]{lpf}{}\end{DoxyParamCaption})}
+
+
+
+Quaternion EKF initialization and some reference value 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em process\+\_\+noise1} & quaternion process noise 10 \\
+\hline
+\mbox{\texttt{ in}}  & {\em process\+\_\+noise2} & gyro bias process noise 0.\+001 \\
+\hline
+\mbox{\texttt{ in}}  & {\em measure\+\_\+noise} & accel measure noise 1000000 \\
+\hline
+\mbox{\texttt{ in}}  & {\em lambda} & fading coefficient 0.\+9996 \\
+\hline
+\mbox{\texttt{ in}}  & {\em dt} & update period in s \\
+\hline
+\end{DoxyParams}
+\Hypertarget{_quaternion_e_k_f_8c_a3e96165d892e72c475ed2a4a99bc8a3a}\index{QuaternionEKF.c@{QuaternionEKF.c}!IMU\_QuaternionEKF\_Reset@{IMU\_QuaternionEKF\_Reset}}
+\index{IMU\_QuaternionEKF\_Reset@{IMU\_QuaternionEKF\_Reset}!QuaternionEKF.c@{QuaternionEKF.c}}
+\doxysubsubsection{\texorpdfstring{IMU\_QuaternionEKF\_Reset()}{IMU\_QuaternionEKF\_Reset()}}
+{\footnotesize\ttfamily \label{_quaternion_e_k_f_8c_a3e96165d892e72c475ed2a4a99bc8a3a} 
+void IMU\+\_\+\+Quaternion\+EKF\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+重置四元数扩展卡尔曼滤波器（\+QEKF）的状态和参数。 
+
+此函数用于将\+QEKF的状态和参数恢复到初始状态，适用于滤波器发散或需要重新初始化的情况。 主要操作包括：
+\begin{DoxyEnumerate}
+\item 调用通用的\+Kalman\+\_\+\+Filter\+\_\+\+Reset函数重置卡尔曼滤波器的核心矩阵。
+\item 恢复协方差矩阵\+P到其初始值。
+\item 初始化姿态四元数为单位四元数（表示零姿态）。
+\item 设置标志位以跳过标准卡尔曼滤波步骤中的增益计算（\+Set\+K）和后验估计更新（xhat\+Update），改用自定义实现。
+\item 恢复状态转移矩阵\+F和协方差矩阵\+P的初始值。 
+\end{DoxyEnumerate}\Hypertarget{_quaternion_e_k_f_8c_ae323af11f1e78bd5438e27fb7cb494f1}\index{QuaternionEKF.c@{QuaternionEKF.c}!IMU\_QuaternionEKF\_Update@{IMU\_QuaternionEKF\_Update}}
+\index{IMU\_QuaternionEKF\_Update@{IMU\_QuaternionEKF\_Update}!QuaternionEKF.c@{QuaternionEKF.c}}
+\doxysubsubsection{\texorpdfstring{IMU\_QuaternionEKF\_Update()}{IMU\_QuaternionEKF\_Update()}}
+{\footnotesize\ttfamily \label{_quaternion_e_k_f_8c_ae323af11f1e78bd5438e27fb7cb494f1} 
+void IMU\+\_\+\+Quaternion\+EKF\+\_\+\+Update (\begin{DoxyParamCaption}\item[{float}]{gx}{, }\item[{float}]{gy}{, }\item[{float}]{gz}{, }\item[{float}]{ax}{, }\item[{float}]{ay}{, }\item[{float}]{az}{}\end{DoxyParamCaption})}
+
+
+
+Quaternion EKF update 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em quaternion} & need to be updated \\
+\hline
+\mbox{\texttt{ in}}  & {\em gyro} & x y z in rad/s \\
+\hline
+\mbox{\texttt{ in}}  & {\em accel} & x y z in m/s² \\
+\hline
+\mbox{\texttt{ in}}  & {\em update} & period in s \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{变量说明}
+\Hypertarget{_quaternion_e_k_f_8c_a5ff985346f2535a005af3c921af23f48}\index{QuaternionEKF.c@{QuaternionEKF.c}!IMU\_QuaternionEKF\_F@{IMU\_QuaternionEKF\_F}}
+\index{IMU\_QuaternionEKF\_F@{IMU\_QuaternionEKF\_F}!QuaternionEKF.c@{QuaternionEKF.c}}
+\doxysubsubsection{\texorpdfstring{IMU\_QuaternionEKF\_F}{IMU\_QuaternionEKF\_F}}
+{\footnotesize\ttfamily \label{_quaternion_e_k_f_8c_a5ff985346f2535a005af3c921af23f48} 
+const float IMU\+\_\+\+Quaternion\+EKF\+\_\+F\mbox{[}36\mbox{]}}
+
+{\bfseries 初始值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{1,\ 0,\ 0,\ 0,\ 0,\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ 1,\ 0,\ 0,\ 0,\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ 0,\ 1,\ 0,\ 0,\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ 0,\ 0,\ 1,\ 0,\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ 0,\ 0,\ 0,\ 1,\ 0,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,\ 0,\ 0,\ 0,\ 0,\ 1\}}
+
+\end{DoxyCode}
+\Hypertarget{_quaternion_e_k_f_8c_a3011e2fa4795ab6a359d141fedef06ea}\index{QuaternionEKF.c@{QuaternionEKF.c}!IMU\_QuaternionEKF\_H@{IMU\_QuaternionEKF\_H}}
+\index{IMU\_QuaternionEKF\_H@{IMU\_QuaternionEKF\_H}!QuaternionEKF.c@{QuaternionEKF.c}}
+\doxysubsubsection{\texorpdfstring{IMU\_QuaternionEKF\_H}{IMU\_QuaternionEKF\_H}}
+{\footnotesize\ttfamily \label{_quaternion_e_k_f_8c_a3011e2fa4795ab6a359d141fedef06ea} 
+float IMU\+\_\+\+Quaternion\+EKF\+\_\+H\mbox{[}18\mbox{]}}
+
+\Hypertarget{_quaternion_e_k_f_8c_afee53610f74b2408ae7548f9cce19b54}\index{QuaternionEKF.c@{QuaternionEKF.c}!IMU\_QuaternionEKF\_K@{IMU\_QuaternionEKF\_K}}
+\index{IMU\_QuaternionEKF\_K@{IMU\_QuaternionEKF\_K}!QuaternionEKF.c@{QuaternionEKF.c}}
+\doxysubsubsection{\texorpdfstring{IMU\_QuaternionEKF\_K}{IMU\_QuaternionEKF\_K}}
+{\footnotesize\ttfamily \label{_quaternion_e_k_f_8c_afee53610f74b2408ae7548f9cce19b54} 
+float IMU\+\_\+\+Quaternion\+EKF\+\_\+K\mbox{[}18\mbox{]}}
+
+\Hypertarget{_quaternion_e_k_f_8c_a21d0ce3767bc89c03d0037a3a5bd219e}\index{QuaternionEKF.c@{QuaternionEKF.c}!IMU\_QuaternionEKF\_P@{IMU\_QuaternionEKF\_P}}
+\index{IMU\_QuaternionEKF\_P@{IMU\_QuaternionEKF\_P}!QuaternionEKF.c@{QuaternionEKF.c}}
+\doxysubsubsection{\texorpdfstring{IMU\_QuaternionEKF\_P}{IMU\_QuaternionEKF\_P}}
+{\footnotesize\ttfamily \label{_quaternion_e_k_f_8c_a21d0ce3767bc89c03d0037a3a5bd219e} 
+float IMU\+\_\+\+Quaternion\+EKF\+\_\+P\mbox{[}36\mbox{]}}
+
+{\bfseries 初始值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{100000,\ 0.1,\ 0.1,\ 0.1,\ 0.1,\ 0.1,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.1,\ 100000,\ 0.1,\ 0.1,\ 0.1,\ 0.1,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.1,\ 0.1,\ 100000,\ 0.1,\ 0.1,\ 0.1,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.1,\ 0.1,\ 0.1,\ 100000,\ 0.1,\ 0.1,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.1,\ 0.1,\ 0.1,\ 0.1,\ 100,\ 0.1,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.1,\ 0.1,\ 0.1,\ 0.1,\ 0.1,\ 100\}}
+
+\end{DoxyCode}
+\Hypertarget{_quaternion_e_k_f_8c_a2d6f5c84a36817b1eb3522db27cc4b86}\index{QuaternionEKF.c@{QuaternionEKF.c}!IMU\_QuaternionEKF\_P\_Const@{IMU\_QuaternionEKF\_P\_Const}}
+\index{IMU\_QuaternionEKF\_P\_Const@{IMU\_QuaternionEKF\_P\_Const}!QuaternionEKF.c@{QuaternionEKF.c}}
+\doxysubsubsection{\texorpdfstring{IMU\_QuaternionEKF\_P\_Const}{IMU\_QuaternionEKF\_P\_Const}}
+{\footnotesize\ttfamily \label{_quaternion_e_k_f_8c_a2d6f5c84a36817b1eb3522db27cc4b86} 
+const float IMU\+\_\+\+Quaternion\+EKF\+\_\+\+P\+\_\+\+Const\mbox{[}36\mbox{]}}
+
+{\bfseries 初始值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{100000,\ 0.1,\ 0.1,\ 0.1,\ 0.1,\ 0.1,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.1,\ 100000,\ 0.1,\ 0.1,\ 0.1,\ 0.1,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.1,\ 0.1,\ 100000,\ 0.1,\ 0.1,\ 0.1,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.1,\ 0.1,\ 0.1,\ 100000,\ 0.1,\ 0.1,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.1,\ 0.1,\ 0.1,\ 0.1,\ 100,\ 0.1,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.1,\ 0.1,\ 0.1,\ 0.1,\ 0.1,\ 100\}}
+
+\end{DoxyCode}
+\Hypertarget{_quaternion_e_k_f_8c_a2f6ee130c2912fa1106128c97aa54d69}\index{QuaternionEKF.c@{QuaternionEKF.c}!QEKF\_INS@{QEKF\_INS}}
+\index{QEKF\_INS@{QEKF\_INS}!QuaternionEKF.c@{QuaternionEKF.c}}
+\doxysubsubsection{\texorpdfstring{QEKF\_INS}{QEKF\_INS}}
+{\footnotesize\ttfamily \label{_quaternion_e_k_f_8c_a2f6ee130c2912fa1106128c97aa54d69} 
+\mbox{\hyperlink{struct_q_e_k_f___i_n_s__t}{QEKF\+\_\+\+INS\+\_\+t}} QEKF\+\_\+\+INS =\{0\}}
+

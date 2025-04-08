@@ -15,29 +15,27 @@ typedef enum
 typedef struct
 {
     pid_type_def chassis_power_pid; // 底盘功率缓冲PID
-    uint16_t *chassis_power_buffer;    // 指向功率缓冲值的指针
+    uint16_t *chassis_power_buffer; // 指向功率缓冲值的指针
     float *chassis_power_MAX;       // 裁判系统最大允许功率
 } total_power_control_t;
 
 // 电机功率计算参数结构体
 typedef struct
 {
-    float torque_coeff;  // 扭矩系数 (默认: 1.99688994e-6f)
-    float k1;  // 机械损耗系数 (默认: 1.23e-07)
-    float k2; // 铜损系数 (默认: 1.453e-07)
-    float k3; // 恒定损耗 (默认: 4.081f)
+    float torque_coeff; // 扭矩系数 (3508电机: 1.99688994e-6f)
+    float k1;           // 速度平方功率修正(3508电机: 1.23e-07)
+    float k2;           // 力矩平方功率修正(3508电机: 1.453e-07)
+    float k3;           // 静态功率(3508电机: 4.081f)
 } MotorPowerParams_t;
 
 void PowerControl_Init(uint16_t *buffer_ptr,
                        float *cap_ptr,
                        float *max_power,
-                       pid_type_def *pid_params, void (*hook)(float,float));
+                       pid_type_def *pid_params, void (*hook)(float));
 void PowerControl_Update(void);                        // 更新功率控制状态
 void Set_PowerControlMode(power_control_state_t mode); // 设置功率控制模式
-float calculate_Torque_dis(float motor_speed, MotorPowerParams_t params, float scaled_power);
-float calculate_speed_dis(float torque, MotorPowerParams_t params, float max_power);
 float MotorPower_CalculateSingle(
-    float pid_output,
+    float torque_nm,
     float speed_rpm,
     const MotorPowerParams_t *params);
 #endif // !POWERCONTROL_H

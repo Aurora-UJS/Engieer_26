@@ -41,6 +41,15 @@ float uint_to_float(unsigned int x_int, float x_min, float x_max, int bits)
 	float offset = x_min;
 	return ((float)x_int)*span/((float)((1<<bits)-1)) + offset;
 }
+
+/**
+************************************************************************
+* @brief:      	Motor_DM_Init: 电机初始化函数
+* @param[in]:   motor: 		指向DM_motor_t结构体的指针，用于指定电机
+* @retval:     	void
+* @details:    	初始化电机参数
+************************************************************************
+**/
 void Motor_DM_Init(DM_motor_t *motor)
 {
     // 初始化电机参数
@@ -48,6 +57,14 @@ void Motor_DM_Init(DM_motor_t *motor)
     can_msg_add_item(&motor->motor_msg.can_msg);
 }
 
+/**
+************************************************************************
+* @brief:      	Motor_DM_Refresh: 电机刷新函数
+* @param[in]:   motor: 		指向DM_motor_t结构体的指针，用于指定电机
+* @retval:     	void
+* @details:    	通过CAN总线接收电机反馈数据
+************************************************************************
+**/
 void Motor_DM_Refresh(DM_motor_t *motor)
 {
     //开始解算
@@ -65,6 +82,14 @@ void Motor_DM_Refresh(DM_motor_t *motor)
     motor->motor_msg.torque_current = uint_to_float(torque_current, -motor->tmp.TMAX, motor->tmp.TMAX, 12); // (-18.0,18.0)
 }
 
+/**
+************************************************************************
+* @brief:      	Motor_DM_Enable: 电机使能函数
+* @param[in]:   motor: 		指向DM_motor_t结构体的指针，用于指定电机
+* @retval:     	void
+* @details:    	通过CAN总线向电机发送使能命令
+************************************************************************
+**/
 void Motor_DM_Enable(DM_motor_t *motor)
 {
     // 使能电机
@@ -75,6 +100,14 @@ void Motor_DM_Enable(DM_motor_t *motor)
     can_msg_send_classical(&motor->can_cfg);
 }
 
+/**
+************************************************************************
+* @brief:      	Motor_DM_Disable: 电机失能函数
+* @param[in]:   motor: 		指向DM_motor_t结构体的指针，用于指定电机
+* @retval:     	void
+* @details:    	通过CAN总线向电机发送失能命令
+************************************************************************
+**/
 void Motor_DM_Disable(DM_motor_t *motor)
 {
     // 失能电机
@@ -84,6 +117,14 @@ void Motor_DM_Disable(DM_motor_t *motor)
     can_msg_send_classical(&motor->can_cfg);
 }
 
+/**
+************************************************************************
+* @brief:      	Motor_DM_Save_Zero: 电机保存零点函数
+* @param[in]:   motor: 		指向DM_motor_t结构体的指针，用于指定电机
+* @retval:     	void
+* @details:    	通过CAN总线向电机发送保存零点命令
+************************************************************************
+**/
 void Motor_DM_Save_Zero(DM_motor_t *motor)
 {
     // 保存零点
@@ -93,6 +134,14 @@ void Motor_DM_Save_Zero(DM_motor_t *motor)
     can_msg_send_classical(&motor->can_cfg);
 }
 
+/**
+************************************************************************
+* @brief:      	Motor_DM_Clear_Error: 电机清除错误函数
+* @param[in]:   motor: 		指向DM_motor_t结构体的指针，用于指定电机
+* @retval:     	void
+* @details:    	通过CAN总线向电机发送清除错误命令
+************************************************************************
+**/
 void Motor_DM_Clear_Error(DM_motor_t *motor)
 {
     // 清除错误

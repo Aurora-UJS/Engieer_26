@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/uart/uart_api.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_e15554ffa95d85c63a6610d46bc13c18.html">uart</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">uart_api.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="uart__api_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef __UART_API_H__</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define __UART_API_H__</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;main.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="structuart__msg__t.html">    6</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="structuart__msg__t.html#a1ed7dab212fde0a3a4600d33399c67b6">    8</a></span>    UART_HandleTypeDef *<a class="code hl_variable" href="structuart__msg__t.html#a1ed7dab212fde0a3a4600d33399c67b6">huart</a>;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="structuart__msg__t.html#aa5faf55893cc19f5b15ba4a8a1ab3028">    9</a></span>    uint8_t *<a class="code hl_variable" href="structuart__msg__t.html#aa5faf55893cc19f5b15ba4a8a1ab3028">pBuffer</a>;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="structuart__msg__t.html#acc14a7c0e6034b69c26f4004cc462d23">   10</a></span>    uint16_t <a class="code hl_variable" href="structuart__msg__t.html#acc14a7c0e6034b69c26f4004cc462d23">Len</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}<a class="code hl_struct" href="structuart__msg__t.html">uart_msg_t</a>;</div>
+</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="foldopen" id="foldopen00013" data-start="{" data-end="};">
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="structuart__rx__t.html">   13</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structuart__rx__t.html#a98e534c6de95c3bc0f81bcf53734f651">   15</a></span>    <a class="code hl_struct" href="structuart__msg__t.html">uart_msg_t</a> *<a class="code hl_variable" href="structuart__rx__t.html#a98e534c6de95c3bc0f81bcf53734f651">rx_msg</a>;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="structuart__rx__t.html#a86988a65e0d3ece7990c032c159786d6">   16</a></span>    uint32_t <a class="code hl_variable" href="structuart__rx__t.html#a86988a65e0d3ece7990c032c159786d6">count</a>; <span class="comment">//接收计数</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structuart__rx__t.html#a93658cf9f03a3303cdb292e655c657e7">   17</a></span>    uint16_t <a class="code hl_variable" href="structuart__rx__t.html#a93658cf9f03a3303cdb292e655c657e7">time</a>; <span class="comment">//超时时间</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}<a class="code hl_struct" href="structuart__rx__t.html">uart_rx_t</a>;</div>
+</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35">   20</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a525187963c0aaa465f2a35b30b894d07">   22</a></span>    <a class="code hl_enumvalue" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a525187963c0aaa465f2a35b30b894d07">UART_OK</a> = 0,</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46">   23</a></span>    <a class="code hl_enumvalue" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46">UART_ERROR</a>,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a6db8855475c024fa80574d98d7e60fe3">   24</a></span>    <a class="code hl_enumvalue" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a6db8855475c024fa80574d98d7e60fe3">UART_TIMEOUT</a></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}<a class="code hl_enumeration" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35">uart_status_t</a>;</div>
+</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">extern</span> <a class="code hl_struct" href="structuart__rx__t.html">uart_rx_t</a>* <a class="code hl_variable" href="uart__api_8c.html#a58fccfc641bbc772491e1961e7b6eac8">uart5_msg</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">extern</span> <a class="code hl_struct" href="structuart__rx__t.html">uart_rx_t</a>* <a class="code hl_variable" href="uart__api_8c.html#acba7239ddafe3a0e1a684a340186b214">uart7_msg</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">extern</span> <a class="code hl_struct" href="structuart__rx__t.html">uart_rx_t</a>* <a class="code hl_variable" href="uart__api_8c.html#a298787b204e4dcbb6f14ae38d3b9953e">uart1_msg</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">extern</span> <a class="code hl_struct" href="structuart__rx__t.html">uart_rx_t</a>* <a class="code hl_variable" href="uart__api_8c.html#aaed6fa00aa4e7c53d8117e7cc97788ee">uart2_msg</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">extern</span> <a class="code hl_struct" href="structuart__rx__t.html">uart_rx_t</a>* <a class="code hl_variable" href="uart__api_8c.html#a3f84661686108b07a24b125b5d107f12">uart3_msg</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">extern</span> <a class="code hl_struct" href="structuart__rx__t.html">uart_rx_t</a>* <a class="code hl_variable" href="uart__api_8c.html#af5175ccfa7797325ef4f2838093e2799">uart10_msg</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">extern</span> void (*<a class="code hl_variable" href="uart__api_8c.html#a4152fb317c0d689b4af6a51382107c41">uart5_rx_hook</a>)(uint8_t *pData, uint32_t size);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">extern</span> void (*<a class="code hl_variable" href="uart__api_8c.html#abfc7a17ab4f5554d166c5b139a909d2a">uart7_rx_hook</a>)(uint8_t *pData, uint32_t size);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">extern</span> void (*<a class="code hl_variable" href="uart__api_8c.html#ace8c5389ea2fed25cd2e5fd7e21b2bc1">uart1_rx_hook</a>)(uint8_t *pData, uint32_t size);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">extern</span> void (*<a class="code hl_variable" href="uart__api_8c.html#af1d549517fcbe9f28fad36fbc05bc5ec">uart2_rx_hook</a>)(uint8_t *pData, uint32_t size);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">extern</span> void (*<a class="code hl_variable" href="uart__api_8c.html#af548df49d30a91108a9353173ad82953">uart3_rx_hook</a>)(uint8_t *pData, uint32_t size);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">extern</span> void (*<a class="code hl_variable" href="uart__api_8c.html#adf7a09f3a204900ea3eb6428780fdc41">uart10_rx_hook</a>)(uint8_t *pData, uint32_t size);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><a class="code hl_enumeration" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35">uart_status_t</a> <a class="code hl_function" href="uart__api_8h.html#adae66f03eb4104357f0be2795e6ef9f8">uart_rx_cheak</a>(<a class="code hl_struct" href="structuart__rx__t.html">uart_rx_t</a> *uart_rx_msg);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><a class="code hl_enumeration" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35">uart_status_t</a> <a class="code hl_function" href="uart__api_8h.html#ae120b89a070ed4e11d81345cb7619177">uart_msg_cheak</a>(<a class="code hl_struct" href="structuart__msg__t.html">uart_msg_t</a> *rx_msg);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><a class="code hl_enumeration" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35">uart_status_t</a> <a class="code hl_function" href="uart__api_8h.html#a059b78ea3cd2a68dabd8d3080e7b9927">uart_rx_init</a>(<a class="code hl_struct" href="structuart__rx__t.html">uart_rx_t</a>* uart_rx_msg);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif </span><span class="comment">/* __UART_API_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="astructuart__msg__t_html"><div class="ttname"><a href="structuart__msg__t.html">uart_msg_t</a></div><div class="ttdef"><b>定义</b> uart_api.h:7</div></div>
+<div class="ttc" id="astructuart__msg__t_html_a1ed7dab212fde0a3a4600d33399c67b6"><div class="ttname"><a href="structuart__msg__t.html#a1ed7dab212fde0a3a4600d33399c67b6">uart_msg_t::huart</a></div><div class="ttdeci">UART_HandleTypeDef * huart</div><div class="ttdef"><b>定义</b> uart_api.h:8</div></div>
+<div class="ttc" id="astructuart__msg__t_html_aa5faf55893cc19f5b15ba4a8a1ab3028"><div class="ttname"><a href="structuart__msg__t.html#aa5faf55893cc19f5b15ba4a8a1ab3028">uart_msg_t::pBuffer</a></div><div class="ttdeci">uint8_t * pBuffer</div><div class="ttdef"><b>定义</b> uart_api.h:9</div></div>
+<div class="ttc" id="astructuart__msg__t_html_acc14a7c0e6034b69c26f4004cc462d23"><div class="ttname"><a href="structuart__msg__t.html#acc14a7c0e6034b69c26f4004cc462d23">uart_msg_t::Len</a></div><div class="ttdeci">uint16_t Len</div><div class="ttdef"><b>定义</b> uart_api.h:10</div></div>
+<div class="ttc" id="astructuart__rx__t_html"><div class="ttname"><a href="structuart__rx__t.html">uart_rx_t</a></div><div class="ttdef"><b>定义</b> uart_api.h:14</div></div>
+<div class="ttc" id="astructuart__rx__t_html_a86988a65e0d3ece7990c032c159786d6"><div class="ttname"><a href="structuart__rx__t.html#a86988a65e0d3ece7990c032c159786d6">uart_rx_t::count</a></div><div class="ttdeci">uint32_t count</div><div class="ttdef"><b>定义</b> uart_api.h:16</div></div>
+<div class="ttc" id="astructuart__rx__t_html_a93658cf9f03a3303cdb292e655c657e7"><div class="ttname"><a href="structuart__rx__t.html#a93658cf9f03a3303cdb292e655c657e7">uart_rx_t::time</a></div><div class="ttdeci">uint16_t time</div><div class="ttdef"><b>定义</b> uart_api.h:17</div></div>
+<div class="ttc" id="astructuart__rx__t_html_a98e534c6de95c3bc0f81bcf53734f651"><div class="ttname"><a href="structuart__rx__t.html#a98e534c6de95c3bc0f81bcf53734f651">uart_rx_t::rx_msg</a></div><div class="ttdeci">uart_msg_t * rx_msg</div><div class="ttdef"><b>定义</b> uart_api.h:15</div></div>
+<div class="ttc" id="auart__api_8c_html_a298787b204e4dcbb6f14ae38d3b9953e"><div class="ttname"><a href="uart__api_8c.html#a298787b204e4dcbb6f14ae38d3b9953e">uart1_msg</a></div><div class="ttdeci">uart_rx_t * uart1_msg</div><div class="ttdef"><b>定义</b> uart_api.c:10</div></div>
+<div class="ttc" id="auart__api_8c_html_a3f84661686108b07a24b125b5d107f12"><div class="ttname"><a href="uart__api_8c.html#a3f84661686108b07a24b125b5d107f12">uart3_msg</a></div><div class="ttdeci">uart_rx_t * uart3_msg</div><div class="ttdef"><b>定义</b> uart_api.c:12</div></div>
+<div class="ttc" id="auart__api_8c_html_a4152fb317c0d689b4af6a51382107c41"><div class="ttname"><a href="uart__api_8c.html#a4152fb317c0d689b4af6a51382107c41">uart5_rx_hook</a></div><div class="ttdeci">void(* uart5_rx_hook)(uint8_t *pData, uint32_t size)</div><div class="ttdef"><b>定义</b> uart_api.c:15</div></div>
+<div class="ttc" id="auart__api_8c_html_a58fccfc641bbc772491e1961e7b6eac8"><div class="ttname"><a href="uart__api_8c.html#a58fccfc641bbc772491e1961e7b6eac8">uart5_msg</a></div><div class="ttdeci">uart_rx_t * uart5_msg</div><div class="ttdef"><b>定义</b> uart_api.c:8</div></div>
+<div class="ttc" id="auart__api_8c_html_aaed6fa00aa4e7c53d8117e7cc97788ee"><div class="ttname"><a href="uart__api_8c.html#aaed6fa00aa4e7c53d8117e7cc97788ee">uart2_msg</a></div><div class="ttdeci">uart_rx_t * uart2_msg</div><div class="ttdef"><b>定义</b> uart_api.c:11</div></div>
+<div class="ttc" id="auart__api_8c_html_abfc7a17ab4f5554d166c5b139a909d2a"><div class="ttname"><a href="uart__api_8c.html#abfc7a17ab4f5554d166c5b139a909d2a">uart7_rx_hook</a></div><div class="ttdeci">void(* uart7_rx_hook)(uint8_t *pData, uint32_t size)</div><div class="ttdef"><b>定义</b> uart_api.c:16</div></div>
+<div class="ttc" id="auart__api_8c_html_acba7239ddafe3a0e1a684a340186b214"><div class="ttname"><a href="uart__api_8c.html#acba7239ddafe3a0e1a684a340186b214">uart7_msg</a></div><div class="ttdeci">uart_rx_t * uart7_msg</div><div class="ttdef"><b>定义</b> uart_api.c:9</div></div>
+<div class="ttc" id="auart__api_8c_html_ace8c5389ea2fed25cd2e5fd7e21b2bc1"><div class="ttname"><a href="uart__api_8c.html#ace8c5389ea2fed25cd2e5fd7e21b2bc1">uart1_rx_hook</a></div><div class="ttdeci">void(* uart1_rx_hook)(uint8_t *pData, uint32_t size)</div><div class="ttdef"><b>定义</b> uart_api.c:17</div></div>
+<div class="ttc" id="auart__api_8c_html_adf7a09f3a204900ea3eb6428780fdc41"><div class="ttname"><a href="uart__api_8c.html#adf7a09f3a204900ea3eb6428780fdc41">uart10_rx_hook</a></div><div class="ttdeci">void(* uart10_rx_hook)(uint8_t *pData, uint32_t size)</div><div class="ttdef"><b>定义</b> uart_api.c:20</div></div>
+<div class="ttc" id="auart__api_8c_html_af1d549517fcbe9f28fad36fbc05bc5ec"><div class="ttname"><a href="uart__api_8c.html#af1d549517fcbe9f28fad36fbc05bc5ec">uart2_rx_hook</a></div><div class="ttdeci">void(* uart2_rx_hook)(uint8_t *pData, uint32_t size)</div><div class="ttdef"><b>定义</b> uart_api.c:18</div></div>
+<div class="ttc" id="auart__api_8c_html_af5175ccfa7797325ef4f2838093e2799"><div class="ttname"><a href="uart__api_8c.html#af5175ccfa7797325ef4f2838093e2799">uart10_msg</a></div><div class="ttdeci">uart_rx_t * uart10_msg</div><div class="ttdef"><b>定义</b> uart_api.c:13</div></div>
+<div class="ttc" id="auart__api_8c_html_af548df49d30a91108a9353173ad82953"><div class="ttname"><a href="uart__api_8c.html#af548df49d30a91108a9353173ad82953">uart3_rx_hook</a></div><div class="ttdeci">void(* uart3_rx_hook)(uint8_t *pData, uint32_t size)</div><div class="ttdef"><b>定义</b> uart_api.c:19</div></div>
+<div class="ttc" id="auart__api_8h_html_a059b78ea3cd2a68dabd8d3080e7b9927"><div class="ttname"><a href="uart__api_8h.html#a059b78ea3cd2a68dabd8d3080e7b9927">uart_rx_init</a></div><div class="ttdeci">uart_status_t uart_rx_init(uart_rx_t *uart_rx_msg)</div><div class="ttdef"><b>定义</b> uart_api.c:98</div></div>
+<div class="ttc" id="auart__api_8h_html_adae66f03eb4104357f0be2795e6ef9f8"><div class="ttname"><a href="uart__api_8h.html#adae66f03eb4104357f0be2795e6ef9f8">uart_rx_cheak</a></div><div class="ttdeci">uart_status_t uart_rx_cheak(uart_rx_t *uart_rx_msg)</div><div class="ttdef"><b>定义</b> uart_api.c:22</div></div>
+<div class="ttc" id="auart__api_8h_html_ae120b89a070ed4e11d81345cb7619177"><div class="ttname"><a href="uart__api_8h.html#ae120b89a070ed4e11d81345cb7619177">uart_msg_cheak</a></div><div class="ttdeci">uart_status_t uart_msg_cheak(uart_msg_t *rx_msg)</div><div class="ttdef"><b>定义</b> uart_api.c:39</div></div>
+<div class="ttc" id="auart__api_8h_html_af7d6a356f1601c95992ab6990320fd35"><div class="ttname"><a href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35">uart_status_t</a></div><div class="ttdeci">uart_status_t</div><div class="ttdef"><b>定义</b> uart_api.h:21</div></div>
+<div class="ttc" id="auart__api_8h_html_af7d6a356f1601c95992ab6990320fd35a525187963c0aaa465f2a35b30b894d07"><div class="ttname"><a href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a525187963c0aaa465f2a35b30b894d07">UART_OK</a></div><div class="ttdeci">@ UART_OK</div><div class="ttdef"><b>定义</b> uart_api.h:22</div></div>
+<div class="ttc" id="auart__api_8h_html_af7d6a356f1601c95992ab6990320fd35a6db8855475c024fa80574d98d7e60fe3"><div class="ttname"><a href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a6db8855475c024fa80574d98d7e60fe3">UART_TIMEOUT</a></div><div class="ttdeci">@ UART_TIMEOUT</div><div class="ttdef"><b>定义</b> uart_api.h:24</div></div>
+<div class="ttc" id="auart__api_8h_html_af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46"><div class="ttname"><a href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46">UART_ERROR</a></div><div class="ttdeci">@ UART_ERROR</div><div class="ttdef"><b>定义</b> uart_api.h:23</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

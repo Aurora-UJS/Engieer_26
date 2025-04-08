@@ -1,0 +1,158 @@
+\chapter{功率控制模块使用说明}
+\hypertarget{md_source_2module_2control_2_power_control_2_power_control}{}\label{md_source_2module_2control_2_power_control_2_power_control}\index{功率控制模块使用说明@{功率控制模块使用说明}}
+\label{md_source_2module_2control_2_power_control_2_power_control_autotoc_md36}%
+\Hypertarget{md_source_2module_2control_2_power_control_2_power_control_autotoc_md36}%
+\hypertarget{md_source_2module_2control_2_power_control_2_power_control_autotoc_md37}{}\doxysection{\texorpdfstring{1. 概述}{1. 概述}}\label{md_source_2module_2control_2_power_control_2_power_control_autotoc_md37}
+功率控制模块用于控制设备的功率输出，包括设备的率调节操作。该模块提供了一系列的\+API接口，用户可以通过调用这些接口来实现对设备的控制。但当前主要是进行电机的功率控制。\hypertarget{md_source_2module_2control_2_power_control_2_power_control_autotoc_md38}{}\doxysection{\texorpdfstring{2. 接口说明}{2. 接口说明}}\label{md_source_2module_2control_2_power_control_2_power_control_autotoc_md38}
+\hypertarget{md_source_2module_2control_2_power_control_2_power_control_autotoc_md39}{}\doxysubsection{\texorpdfstring{2.\+1. 初始化函数}{2.\+1. 初始化函数}}\label{md_source_2module_2control_2_power_control_2_power_control_autotoc_md39}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{_power_control_8c_afb47d084f93e87da21a629fb9f8fdfc8}{PowerControl\_Init}}(\textcolor{keywordtype}{float}\ *buffer\_ptr,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ *cap\_ptr,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ max\_power,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structpid__type__def}{pid\_type\_def}}\ *pid\_params,\ \textcolor{keywordtype}{void}\ (*hook)(\textcolor{keywordtype}{float}));}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{_power_control_8c_a09970f532849b821a660c63928955607}{PowerControl\_Update}}(\textcolor{keywordtype}{void});\ \textcolor{comment}{//\ 更新功率控制状态}}
+
+\end{DoxyCode}
+
+
+函数功能：初始化功率控制模块，设置功率控制参数。
+
+参数说明：
+
+
+\begin{DoxyItemize}
+\item {\ttfamily buffer\+\_\+ptr}：功率控制缓冲区指针，用于存储功率控制数据。
+\item {\ttfamily cap\+\_\+ptr}：功率控制电容指针，用于存储功率控制电容数据。
+\item {\ttfamily max\+\_\+power}：功率控制最大功率，用于限制功率控制的最大输出功率。
+\item {\ttfamily pid\+\_\+params}：\+PID参数结构体指针，用于设置功率控制的\+PID参数。
+\item {\ttfamily hook}：回调函数指针，用于在功率控制过程中调用主要设备参数。
+\end{DoxyItemize}\hypertarget{md_source_2module_2control_2_power_control_2_power_control_autotoc_md40}{}\doxysubsection{\texorpdfstring{2.\+2. 更新函数}{2.\+2. 更新函数}}\label{md_source_2module_2control_2_power_control_2_power_control_autotoc_md40}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{_power_control_8c_a09970f532849b821a660c63928955607}{PowerControl\_Update}}(\textcolor{keywordtype}{void});\ \textcolor{comment}{//\ 更新功率控制状态}}
+
+\end{DoxyCode}
+
+
+函数功能：更新功率控制状态。\hypertarget{md_source_2module_2control_2_power_control_2_power_control_autotoc_md41}{}\doxysubsection{\texorpdfstring{2.\+3. 其他函数}{2.\+3. 其他函数}}\label{md_source_2module_2control_2_power_control_2_power_control_autotoc_md41}
+\hypertarget{md_source_2module_2control_2_power_control_2_power_control_autotoc_md42}{}\doxysubsubsection{\texorpdfstring{2.\+3.\+1. 电机功率计算函数}{2.\+3.\+1. 电机功率计算函数}}\label{md_source_2module_2control_2_power_control_2_power_control_autotoc_md42}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{float}\ \mbox{\hyperlink{_power_control_8c_aaeba10002e9e1f2c4bd09bd7f3190666}{MotorPower\_CalculateSingle}}(}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ pid\_output,\ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ speed\_rpm,\ }
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_motor_power_params__t}{MotorPowerParams\_t}}\ *params);}
+
+\end{DoxyCode}
+
+
+函数功能：计算单个电机的理论功率消耗。
+
+参数说明：
+
+
+\begin{DoxyItemize}
+\item {\ttfamily pid\+\_\+output}：\+PID输出值，用于计算功率消耗。
+\item {\ttfamily speed\+\_\+rpm}：电机转速，用于计算功率消耗。
+\item {\ttfamily params}：电机功率参数结构体指针，用于设置电机功率参数。
+\end{DoxyItemize}
+
+返回值：
+
+
+\begin{DoxyItemize}
+\item 返回计算得到的电机功率消耗值。
+\item 如果输入参数有\+NULL，则返回0。
+\end{DoxyItemize}\hypertarget{md_source_2module_2control_2_power_control_2_power_control_autotoc_md43}{}\doxysection{\texorpdfstring{3. 使用示例}{3. 使用示例}}\label{md_source_2module_2control_2_power_control_2_power_control_autotoc_md43}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_power_control_8h}{PowerControl.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ hook(\textcolor{keywordtype}{float}\ power)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 在这里调用主要设备参数}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ buffer;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ cap;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{float}\ max\_power\ =\ 100.0;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{structpid__type__def}{pid\_type\_def}}\ pid\_params;}
+\DoxyCodeLine{\ \ \ \ pid\_init(\&pid\_params,\ 1,\ 0,\ 0,\ 16000,16000);\ \ }
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_power_control_8c_afb47d084f93e87da21a629fb9f8fdfc8}{PowerControl\_Init}}(\&buffer,\ \&cap,\ \&max\_power,\ \&pid\_params,\ hook);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{while}\ (1)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{_power_control_8c_a09970f532849b821a660c63928955607}{PowerControl\_Update}}();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_source_2module_2control_2_power_control_2_power_control_autotoc_md44}{}\doxysection{\texorpdfstring{4. 注意事项}{4. 注意事项}}\label{md_source_2module_2control_2_power_control_2_power_control_autotoc_md44}
+
+\begin{DoxyItemize}
+\item 在使用功率控制模块之前，需要先初始化功率控制模块。
+\end{DoxyItemize}\hypertarget{md_source_2module_2control_2_power_control_2_power_control_autotoc_md45}{}\doxysection{\texorpdfstring{5. 附录}{5. 附录}}\label{md_source_2module_2control_2_power_control_2_power_control_autotoc_md45}
+一些功率控制模块的实现示例代码。
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ hook(\textcolor{keywordtype}{float}\ power)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\textcolor{comment}{//以下是只针对于底盘的功率控制}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ 4;\ i++)\ \textcolor{comment}{//计算初始底盘电机功率和总电机功率,此处最重要的是机械功率——即为第一项}}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ initial\_chassis\_give\_power[i]\ =\ pid\_3508\_speed\_chassis[i]-\/>Pout\ *\ power\_control-\/>toque\_coefficient\ *\ chassis\_Rx1[i]-\/>motor\_speed\ \ +}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ k2\ *\ chassis\_Rx1[i]-\/>motor\_speed\ *\ chassis\_Rx1[i]-\/>motor\_speed\ +}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{imu_temp_ctrl_8c_a4aec1a5be9d9a4a394a2e49e9744286e}{a}}\ *\ pid\_3508\_speed\_chassis[i]-\/>Pout\ *\ pid\_3508\_speed\_chassis[i]-\/>Pout\ +\ power\_control-\/>nomal\_power;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (initial\_chassis\_give\_power[i]\ <\ 0)\ \textcolor{comment}{//负功率不包含（过渡）}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ initial\_chassis\_total\_power\ +=\ initial\_chassis\_give\_power[i];\textcolor{comment}{//此处为总功率}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (initial\_chassis\_total\_power\ >\ power\_control-\/>chassis\_max\_power)\ \textcolor{comment}{//功率判断，确定是否大于最大功率}}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ power\_scale\ =\ power\_control-\/>chassis\_max\_power\ /\ initial\_chassis\_total\_power;\textcolor{comment}{//功率缩放比例}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ 4;\ i++)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ scaled\_chassis\_give\_power[i]\ =\ initial\_chassis\_give\_power[i]\ *\ power\_scale;\ \textcolor{comment}{//缩放的功率}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (scaled\_chassis\_give\_power[i]\ <\ 0)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//此后的内容为力矩的逆解，但此处是以逆解的电流值输出的}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{imu_temp_ctrl_8c_a83fc1af92e29717b4513d121b0c72c7d}{b}}\ =\ power\_control-\/>toque\_coefficient\ *\ chassis\_Rx1[i]-\/>motor\_speed;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ c\ =\ k2\ *\ chassis\_Rx1[i]-\/>motor\_speed\ *\ chassis\_Rx1[i]-\/>motor\_speed\ -\/\ scaled\_chassis\_give\_power[i]\ +\ power\_control-\/>nomal\_power;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pid\_3508\_speed\_chassis[i]-\/>Pout\ >\ 0)\ \textcolor{comment}{//\ Selection\ of\ the\ calculation\ formula\ according\ to\ the\ direction\ of\ the\ original\ moment}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_i_m_utool_8c_a24d61a35b72d7299eb6b5f48e71a571b}{temp}}\ =\ (-\/\mbox{\hyperlink{imu_temp_ctrl_8c_a83fc1af92e29717b4513d121b0c72c7d}{b}}\ +\ sqrt(\mbox{\hyperlink{imu_temp_ctrl_8c_a83fc1af92e29717b4513d121b0c72c7d}{b}}\ *\ \mbox{\hyperlink{imu_temp_ctrl_8c_a83fc1af92e29717b4513d121b0c72c7d}{b}}\ -\/\ 4\ *\ \mbox{\hyperlink{imu_temp_ctrl_8c_a4aec1a5be9d9a4a394a2e49e9744286e}{a}}\ *\ c))\ /\ (2\ *\ \mbox{\hyperlink{imu_temp_ctrl_8c_a4aec1a5be9d9a4a394a2e49e9744286e}{a}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_i_m_utool_8c_a24d61a35b72d7299eb6b5f48e71a571b}{temp}}\ >\ 16000)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pid\_3508\_speed\_chassis[i]-\/>Pout\ =\ 16000;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pid\_3508\_speed\_chassis[i]-\/>Pout\ =\ \mbox{\hyperlink{_i_m_utool_8c_a24d61a35b72d7299eb6b5f48e71a571b}{temp}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_i_m_utool_8c_a24d61a35b72d7299eb6b5f48e71a571b}{temp}}\ =\ (-\/\mbox{\hyperlink{imu_temp_ctrl_8c_a83fc1af92e29717b4513d121b0c72c7d}{b}}\ -\/\ sqrt(\mbox{\hyperlink{imu_temp_ctrl_8c_a83fc1af92e29717b4513d121b0c72c7d}{b}}\ *\ \mbox{\hyperlink{imu_temp_ctrl_8c_a83fc1af92e29717b4513d121b0c72c7d}{b}}\ -\/\ 4\ *\ \mbox{\hyperlink{imu_temp_ctrl_8c_a4aec1a5be9d9a4a394a2e49e9744286e}{a}}\ *\ c))\ /\ (2\ *\ \mbox{\hyperlink{imu_temp_ctrl_8c_a4aec1a5be9d9a4a394a2e49e9744286e}{a}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{_i_m_utool_8c_a24d61a35b72d7299eb6b5f48e71a571b}{temp}}\ <\ -\/16000)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pid\_3508\_speed\_chassis[i]-\/>Pout\ =\ -\/16000;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pid\_3508\_speed\_chassis[i]-\/>Pout\ =\ \mbox{\hyperlink{_i_m_utool_8c_a24d61a35b72d7299eb6b5f48e71a571b}{temp}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

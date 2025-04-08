@@ -1,0 +1,103 @@
+\doxysection{source/module/computer/vision/send\+\_\+robot\+\_\+state.c 文件参考}
+\hypertarget{send__robot__state_8c}{}\label{send__robot__state_8c}\index{source/module/computer/vision/send\_robot\_state.c@{source/module/computer/vision/send\_robot\_state.c}}
+{\ttfamily \#include "{}computer\+\_\+pack.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}usart.\+h"{}}\newline
+{\ttfamily \#include "{}uart\+\_\+api.\+h"{}}\newline
+{\ttfamily \#include "{}vision\+\_\+solution.\+h"{}}\newline
+{\ttfamily \#include "{}crc\+\_\+api.\+h"{}}\newline
+send\+\_\+robot\+\_\+state.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{send__robot__state_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{send__robot__state_8c_af6aeb20f4987ae6418e20186c0569f18}{robot\+\_\+state\+\_\+msg\+\_\+init}} (UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}huart)
+\begin{DoxyCompactList}\small\item\em 初始化机器人状态\+UART消息结构体 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{send__robot__state_8c_af523661dfa1f732b5efb3aa36d5fb05a}{send\+\_\+robot\+\_\+state}} ()
+\begin{DoxyCompactList}\small\item\em 发送机器人状态数据包 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{send__robot__state_8c_a88e496cac10a79c7a79df6ff4c6dd4a4}{set\+\_\+robot\+\_\+angle}} (float \texorpdfstring{$\ast$}{*}yaw, float \texorpdfstring{$\ast$}{*}pitch)
+\item 
+void \mbox{\hyperlink{send__robot__state_8c_a82cbabb02ad140dbdb43581dcf538c7b}{set\+\_\+robot\+\_\+id}} (uint16\+\_\+t id)
+\item 
+void \mbox{\hyperlink{send__robot__state_8c_a9efdc6b03b03346b91735caa62ff151c}{change\+\_\+robot\+\_\+target}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_send_packet_vision__t}{Send\+Packet\+Vision\+\_\+t}} \mbox{\hyperlink{send__robot__state_8c_abd2ece965ae737b142f1fa475713f7e3}{robot\+\_\+\+State\+\_\+\+Data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{send__robot__state_8c_a9efdc6b03b03346b91735caa62ff151c}\index{send\_robot\_state.c@{send\_robot\_state.c}!change\_robot\_target@{change\_robot\_target}}
+\index{change\_robot\_target@{change\_robot\_target}!send\_robot\_state.c@{send\_robot\_state.c}}
+\doxysubsubsection{\texorpdfstring{change\_robot\_target()}{change\_robot\_target()}}
+{\footnotesize\ttfamily \label{send__robot__state_8c_a9efdc6b03b03346b91735caa62ff151c} 
+void change\+\_\+robot\+\_\+target (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{send__robot__state_8c_af6aeb20f4987ae6418e20186c0569f18}\index{send\_robot\_state.c@{send\_robot\_state.c}!robot\_state\_msg\_init@{robot\_state\_msg\_init}}
+\index{robot\_state\_msg\_init@{robot\_state\_msg\_init}!send\_robot\_state.c@{send\_robot\_state.c}}
+\doxysubsubsection{\texorpdfstring{robot\_state\_msg\_init()}{robot\_state\_msg\_init()}}
+{\footnotesize\ttfamily \label{send__robot__state_8c_af6aeb20f4987ae6418e20186c0569f18} 
+void robot\+\_\+state\+\_\+msg\+\_\+init (\begin{DoxyParamCaption}\item[{UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{huart}{}\end{DoxyParamCaption})}
+
+
+
+初始化机器人状态\+UART消息结构体 
+
+
+\begin{DoxyParams}{参数}
+{\em huart} & 指向\+UART外设句柄的指针 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{注解}
+配置\+UART参数并关联数据缓冲区 
+\end{DoxyNote}
+\Hypertarget{send__robot__state_8c_af523661dfa1f732b5efb3aa36d5fb05a}\index{send\_robot\_state.c@{send\_robot\_state.c}!send\_robot\_state@{send\_robot\_state}}
+\index{send\_robot\_state@{send\_robot\_state}!send\_robot\_state.c@{send\_robot\_state.c}}
+\doxysubsubsection{\texorpdfstring{send\_robot\_state()}{send\_robot\_state()}}
+{\footnotesize\ttfamily \label{send__robot__state_8c_af523661dfa1f732b5efb3aa36d5fb05a} 
+void send\+\_\+robot\+\_\+state (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+发送机器人状态数据包 
+
+\begin{DoxyNote}{注解}
+数据包结构：
+\begin{DoxyItemize}
+\item 包头：0x5\+A（固定标识）
+\item 颜色检测：0=未检测颜色模式
+\item 跟踪重置：0=保持当前跟踪状态
+\item 预留字段：保留未来扩展
+\item 姿态数据：当前偏航/俯仰角度
+\item 目标坐标：归一化后的三维坐标
+\item 自动添加\+CRC16校验 
+\end{DoxyItemize}
+\end{DoxyNote}
+\Hypertarget{send__robot__state_8c_a88e496cac10a79c7a79df6ff4c6dd4a4}\index{send\_robot\_state.c@{send\_robot\_state.c}!set\_robot\_angle@{set\_robot\_angle}}
+\index{set\_robot\_angle@{set\_robot\_angle}!send\_robot\_state.c@{send\_robot\_state.c}}
+\doxysubsubsection{\texorpdfstring{set\_robot\_angle()}{set\_robot\_angle()}}
+{\footnotesize\ttfamily \label{send__robot__state_8c_a88e496cac10a79c7a79df6ff4c6dd4a4} 
+void set\+\_\+robot\+\_\+angle (\begin{DoxyParamCaption}\item[{float \texorpdfstring{$\ast$}{*}}]{yaw}{, }\item[{float \texorpdfstring{$\ast$}{*}}]{pitch}{}\end{DoxyParamCaption})}
+
+\Hypertarget{send__robot__state_8c_a82cbabb02ad140dbdb43581dcf538c7b}\index{send\_robot\_state.c@{send\_robot\_state.c}!set\_robot\_id@{set\_robot\_id}}
+\index{set\_robot\_id@{set\_robot\_id}!send\_robot\_state.c@{send\_robot\_state.c}}
+\doxysubsubsection{\texorpdfstring{set\_robot\_id()}{set\_robot\_id()}}
+{\footnotesize\ttfamily \label{send__robot__state_8c_a82cbabb02ad140dbdb43581dcf538c7b} 
+void set\+\_\+robot\+\_\+id (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{id}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{变量说明}
+\Hypertarget{send__robot__state_8c_abd2ece965ae737b142f1fa475713f7e3}\index{send\_robot\_state.c@{send\_robot\_state.c}!robot\_State\_Data@{robot\_State\_Data}}
+\index{robot\_State\_Data@{robot\_State\_Data}!send\_robot\_state.c@{send\_robot\_state.c}}
+\doxysubsubsection{\texorpdfstring{robot\_State\_Data}{robot\_State\_Data}}
+{\footnotesize\ttfamily \label{send__robot__state_8c_abd2ece965ae737b142f1fa475713f7e3} 
+\mbox{\hyperlink{struct_send_packet_vision__t}{Send\+Packet\+Vision\+\_\+t}} robot\+\_\+\+State\+\_\+\+Data}
+

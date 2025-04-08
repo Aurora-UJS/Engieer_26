@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/filter/lpf/LPF.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_feb9e5b3bfb6cd1495cd404855fe795a.html">filter</a></li><li class="navelem"><a class="el" href="dir_91b99bfa282ab36bc99ab7a3290c0b97.html">lpf</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">LPF.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_l_p_f_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef __LPF_H__</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define __LPF_H__</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="foldopen" id="foldopen00004" data-start="{" data-end="};">
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="struct_low_pass_filter.html">    4</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>{</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="struct_low_pass_filter.html#ab1551d8043c2aa4410fb7dbb1fe3be7b">    6</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_low_pass_filter.html#ab1551d8043c2aa4410fb7dbb1fe3be7b">alpha</a>;           <span class="comment">// 时间常数</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="struct_low_pass_filter.html#a48762e45dde9fae8df648bf9665af69e">    7</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_low_pass_filter.html#a48762e45dde9fae8df648bf9665af69e">previous_output</a>; <span class="comment">// 上一时刻的输出</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>} <a class="code hl_struct" href="struct_low_pass_filter.html">LowPassFilter</a>;</div>
+</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="_l_p_f_8h.html#acfef86a1f91468c8d5668538caa7538f">   10</a></span><span class="keywordtype">float</span> <a class="code hl_function" href="_l_p_f_8h.html#acfef86a1f91468c8d5668538caa7538f">filterValue</a>(<a class="code hl_struct" href="struct_low_pass_filter.html">LowPassFilter</a> *filter, <span class="keywordtype">float</span> input);     <span class="comment">// 输入新的数据，返回滤波后的数据</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="_l_p_f_8h.html#a0f0da563e54b740a537e965d18e53a9c">   11</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="_l_p_f_8h.html#a0f0da563e54b740a537e965d18e53a9c">initializeFilter</a>(<a class="code hl_struct" href="struct_low_pass_filter.html">LowPassFilter</a> *filter, <span class="keywordtype">float</span> alpha); <span class="comment">// 初始化滤波器</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_l_p_f_8h_html_a0f0da563e54b740a537e965d18e53a9c"><div class="ttname"><a href="_l_p_f_8h.html#a0f0da563e54b740a537e965d18e53a9c">initializeFilter</a></div><div class="ttdeci">void initializeFilter(LowPassFilter *filter, float alpha)</div></div>
+<div class="ttc" id="a_l_p_f_8h_html_acfef86a1f91468c8d5668538caa7538f"><div class="ttname"><a href="_l_p_f_8h.html#acfef86a1f91468c8d5668538caa7538f">filterValue</a></div><div class="ttdeci">float filterValue(LowPassFilter *filter, float input)</div></div>
+<div class="ttc" id="astruct_low_pass_filter_html"><div class="ttname"><a href="struct_low_pass_filter.html">LowPassFilter</a></div><div class="ttdef"><b>定义</b> LPF.h:5</div></div>
+<div class="ttc" id="astruct_low_pass_filter_html_a48762e45dde9fae8df648bf9665af69e"><div class="ttname"><a href="struct_low_pass_filter.html#a48762e45dde9fae8df648bf9665af69e">LowPassFilter::previous_output</a></div><div class="ttdeci">float previous_output</div><div class="ttdef"><b>定义</b> LPF.h:7</div></div>
+<div class="ttc" id="astruct_low_pass_filter_html_ab1551d8043c2aa4410fb7dbb1fe3be7b"><div class="ttname"><a href="struct_low_pass_filter.html#ab1551d8043c2aa4410fb7dbb1fe3be7b">LowPassFilter::alpha</a></div><div class="ttdeci">float alpha</div><div class="ttdef"><b>定义</b> LPF.h:6</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

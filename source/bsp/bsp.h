@@ -2,7 +2,7 @@
 #define _BSP_H_
 
 #include "can_api.h"
-#include "bsp_dwt.h"
+#include "dwt_bsp.h"
 #include "uart_api.h"
 #include "buzzer_bsp.h"
 

@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/IMU/ekf/QuaternionEKF.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_8b711e810999a9fe1de9e9ddd8899d9f.html">IMU</a></li><li class="navelem"><a class="el" href="dir_3b8d80945d87372d4de6e5070e9e2fcb.html">ekf</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">QuaternionEKF.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>attitude update with gyro bias estimate and chi-square test  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="_quaternion_e_k_f_8h_source.html">QuaternionEKF.h</a>&quot;</code><br />
+<code>#include &quot;arm_math.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+QuaternionEKF.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="_quaternion_e_k_f_8c__incl.png" border="0" usemap="#asource_2module_2_i_m_u_2ekf_2_quaternion_e_k_f_8c" alt=""/></div>
+<map name="asource_2module_2_i_m_u_2ekf_2_quaternion_e_k_f_8c" id="asource_2module_2_i_m_u_2ekf_2_quaternion_e_k_f_8c">
+<area shape="rect" title="attitude update with gyro bias estimate and chi&#45;square test" alt="" coords="96,5,254,48"/>
+<area shape="rect" href="_quaternion_e_k_f_8h.html" title="attitude update with gyro bias estimate and chi&#45;square test" alt="" coords="67,96,187,123"/>
+<area shape="poly" title=" " alt="" coords="165,50,144,84,140,81,160,47"/>
+<area shape="rect" title=" " alt="" coords="182,245,272,272"/>
+<area shape="poly" title=" " alt="" coords="186,48,201,95,217,168,226,230,221,230,212,169,196,97,181,49"/>
+<area shape="rect" href="kalman__filter_8h.html" title=" " alt="" coords="72,171,179,197"/>
+<area shape="poly" title=" " alt="" coords="129,123,129,155,123,155,124,123"/>
+<area shape="rect" title=" " alt="" coords="5,245,70,272"/>
+<area shape="poly" title=" " alt="" coords="112,200,66,237,63,233,108,196"/>
+<area shape="rect" title=" " alt="" coords="94,245,157,272"/>
+<area shape="poly" title=" " alt="" coords="128,198,128,230,123,230,123,198"/>
+<area shape="poly" title=" " alt="" coords="145,196,198,234,195,238,142,200"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a5f6786be602a9b18cc716e3c6de14fc6" id="r_a5f6786be602a9b18cc716e3c6de14fc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f6786be602a9b18cc716e3c6de14fc6">IMU_QuaternionEKF_Init</a> (float process_noise1, float process_noise2, float measure_noise, float lambda, float dt, float lpf)</td></tr>
+<tr class="memdesc:a5f6786be602a9b18cc716e3c6de14fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quaternion EKF initialization and some reference value  <br /></td></tr>
+<tr class="separator:a5f6786be602a9b18cc716e3c6de14fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e96165d892e72c475ed2a4a99bc8a3a" id="r_a3e96165d892e72c475ed2a4a99bc8a3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e96165d892e72c475ed2a4a99bc8a3a">IMU_QuaternionEKF_Reset</a> (void)</td></tr>
+<tr class="memdesc:a3e96165d892e72c475ed2a4a99bc8a3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">重置四元数扩展卡尔曼滤波器（QEKF）的状态和参数。  <br /></td></tr>
+<tr class="separator:a3e96165d892e72c475ed2a4a99bc8a3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae323af11f1e78bd5438e27fb7cb494f1" id="r_ae323af11f1e78bd5438e27fb7cb494f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae323af11f1e78bd5438e27fb7cb494f1">IMU_QuaternionEKF_Update</a> (float gx, float gy, float gz, float ax, float ay, float az)</td></tr>
+<tr class="memdesc:ae323af11f1e78bd5438e27fb7cb494f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quaternion EKF update  <br /></td></tr>
+<tr class="separator:ae323af11f1e78bd5438e27fb7cb494f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05f168bf475ce9252080e60022d95026" id="r_a05f168bf475ce9252080e60022d95026"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05f168bf475ce9252080e60022d95026">Get_Pitch</a> ()</td></tr>
+<tr class="separator:a05f168bf475ce9252080e60022d95026"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7186c9a5a833ce142c72ed5ce1e09ac9" id="r_a7186c9a5a833ce142c72ed5ce1e09ac9"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7186c9a5a833ce142c72ed5ce1e09ac9">Get_Roll</a> ()</td></tr>
+<tr class="separator:a7186c9a5a833ce142c72ed5ce1e09ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9cfde26d10427637a1cda31607c5e20" id="r_ad9cfde26d10427637a1cda31607c5e20"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9cfde26d10427637a1cda31607c5e20">Get_Yaw</a> ()</td></tr>
+<tr class="separator:ad9cfde26d10427637a1cda31607c5e20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a2f6ee130c2912fa1106128c97aa54d69" id="r_a2f6ee130c2912fa1106128c97aa54d69"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_q_e_k_f___i_n_s__t.html">QEKF_INS_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f6ee130c2912fa1106128c97aa54d69">QEKF_INS</a> ={0}</td></tr>
+<tr class="separator:a2f6ee130c2912fa1106128c97aa54d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff985346f2535a005af3c921af23f48" id="r_a5ff985346f2535a005af3c921af23f48"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ff985346f2535a005af3c921af23f48">IMU_QuaternionEKF_F</a> [36]</td></tr>
+<tr class="separator:a5ff985346f2535a005af3c921af23f48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d6f5c84a36817b1eb3522db27cc4b86" id="r_a2d6f5c84a36817b1eb3522db27cc4b86"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d6f5c84a36817b1eb3522db27cc4b86">IMU_QuaternionEKF_P_Const</a> [36]</td></tr>
+<tr class="separator:a2d6f5c84a36817b1eb3522db27cc4b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21d0ce3767bc89c03d0037a3a5bd219e" id="r_a21d0ce3767bc89c03d0037a3a5bd219e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21d0ce3767bc89c03d0037a3a5bd219e">IMU_QuaternionEKF_P</a> [36]</td></tr>
+<tr class="separator:a21d0ce3767bc89c03d0037a3a5bd219e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afee53610f74b2408ae7548f9cce19b54" id="r_afee53610f74b2408ae7548f9cce19b54"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afee53610f74b2408ae7548f9cce19b54">IMU_QuaternionEKF_K</a> [18]</td></tr>
+<tr class="separator:afee53610f74b2408ae7548f9cce19b54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3011e2fa4795ab6a359d141fedef06ea" id="r_a3011e2fa4795ab6a359d141fedef06ea"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3011e2fa4795ab6a359d141fedef06ea">IMU_QuaternionEKF_H</a> [18]</td></tr>
+<tr class="separator:a3011e2fa4795ab6a359d141fedef06ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>attitude update with gyro bias estimate and chi-square test </p>
+<dl class="section author"><dt>作者</dt><dd>Wang Hongxi </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>V1.2.0 </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2022/3/8 </dd></dl>
+<dl class="section attention"><dt>注意</dt><dd>1st order LPF transfer function: 1 ——————— as + 1 </dd></dl>
+</div><h2 class="groupheader">函数说明</h2>
+<a id="a05f168bf475ce9252080e60022d95026" name="a05f168bf475ce9252080e60022d95026"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05f168bf475ce9252080e60022d95026">&#9670;&#160;</a></span>Get_Pitch()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Get_Pitch </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7186c9a5a833ce142c72ed5ce1e09ac9" name="a7186c9a5a833ce142c72ed5ce1e09ac9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7186c9a5a833ce142c72ed5ce1e09ac9">&#9670;&#160;</a></span>Get_Roll()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Get_Roll </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9cfde26d10427637a1cda31607c5e20" name="ad9cfde26d10427637a1cda31607c5e20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9cfde26d10427637a1cda31607c5e20">&#9670;&#160;</a></span>Get_Yaw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Get_Yaw </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f6786be602a9b18cc716e3c6de14fc6" name="a5f6786be602a9b18cc716e3c6de14fc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f6786be602a9b18cc716e3c6de14fc6">&#9670;&#160;</a></span>IMU_QuaternionEKF_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IMU_QuaternionEKF_Init </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>process_noise1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>process_noise2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>measure_noise</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>lambda</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>dt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>lpf</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Quaternion EKF initialization and some reference value </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">process_noise1</td><td>quaternion process noise 10 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">process_noise2</td><td>gyro bias process noise 0.001 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">measure_noise</td><td>accel measure noise 1000000 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lambda</td><td>fading coefficient 0.9996 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dt</td><td>update period in s </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3e96165d892e72c475ed2a4a99bc8a3a" name="a3e96165d892e72c475ed2a4a99bc8a3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e96165d892e72c475ed2a4a99bc8a3a">&#9670;&#160;</a></span>IMU_QuaternionEKF_Reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IMU_QuaternionEKF_Reset </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>重置四元数扩展卡尔曼滤波器（QEKF）的状态和参数。 </p>
+<p>此函数用于将QEKF的状态和参数恢复到初始状态，适用于滤波器发散或需要重新初始化的情况。 主要操作包括：</p><ol type="1">
+<li>调用通用的Kalman_Filter_Reset函数重置卡尔曼滤波器的核心矩阵。</li>
+<li>恢复协方差矩阵P到其初始值。</li>
+<li>初始化姿态四元数为单位四元数（表示零姿态）。</li>
+<li>设置标志位以跳过标准卡尔曼滤波步骤中的增益计算（SetK）和后验估计更新（xhatUpdate），改用自定义实现。</li>
+<li>恢复状态转移矩阵F和协方差矩阵P的初始值。 </li>
+</ol>
+
+</div>
+</div>
+<a id="ae323af11f1e78bd5438e27fb7cb494f1" name="ae323af11f1e78bd5438e27fb7cb494f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae323af11f1e78bd5438e27fb7cb494f1">&#9670;&#160;</a></span>IMU_QuaternionEKF_Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IMU_QuaternionEKF_Update </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gy</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gz</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ax</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ay</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>az</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Quaternion EKF update </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">quaternion</td><td>need to be updated </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gyro</td><td>x y z in rad/s </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">accel</td><td>x y z in m/s² </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">update</td><td>period in s </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a5ff985346f2535a005af3c921af23f48" name="a5ff985346f2535a005af3c921af23f48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ff985346f2535a005af3c921af23f48">&#9670;&#160;</a></span>IMU_QuaternionEKF_F</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float IMU_QuaternionEKF_F[36]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">= {1, 0, 0, 0, 0, 0,</div>
+<div class="line">                                       0, 1, 0, 0, 0, 0,</div>
+<div class="line">                                       0, 0, 1, 0, 0, 0,</div>
+<div class="line">                                       0, 0, 0, 1, 0, 0,</div>
+<div class="line">                                       0, 0, 0, 0, 1, 0,</div>
+<div class="line">                                       0, 0, 0, 0, 0, 1}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a3011e2fa4795ab6a359d141fedef06ea" name="a3011e2fa4795ab6a359d141fedef06ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3011e2fa4795ab6a359d141fedef06ea">&#9670;&#160;</a></span>IMU_QuaternionEKF_H</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float IMU_QuaternionEKF_H[18]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afee53610f74b2408ae7548f9cce19b54" name="afee53610f74b2408ae7548f9cce19b54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afee53610f74b2408ae7548f9cce19b54">&#9670;&#160;</a></span>IMU_QuaternionEKF_K</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float IMU_QuaternionEKF_K[18]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a21d0ce3767bc89c03d0037a3a5bd219e" name="a21d0ce3767bc89c03d0037a3a5bd219e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21d0ce3767bc89c03d0037a3a5bd219e">&#9670;&#160;</a></span>IMU_QuaternionEKF_P</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float IMU_QuaternionEKF_P[36]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">= {100000, 0.1, 0.1, 0.1, 0.1, 0.1,</div>
+<div class="line">                                 0.1, 100000, 0.1, 0.1, 0.1, 0.1,</div>
+<div class="line">                                 0.1, 0.1, 100000, 0.1, 0.1, 0.1,</div>
+<div class="line">                                 0.1, 0.1, 0.1, 100000, 0.1, 0.1,</div>
+<div class="line">                                 0.1, 0.1, 0.1, 0.1, 100, 0.1,</div>
+<div class="line">                                 0.1, 0.1, 0.1, 0.1, 0.1, 100}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a2d6f5c84a36817b1eb3522db27cc4b86" name="a2d6f5c84a36817b1eb3522db27cc4b86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d6f5c84a36817b1eb3522db27cc4b86">&#9670;&#160;</a></span>IMU_QuaternionEKF_P_Const</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float IMU_QuaternionEKF_P_Const[36]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">= {100000, 0.1, 0.1, 0.1, 0.1, 0.1,</div>
+<div class="line">                                 0.1, 100000, 0.1, 0.1, 0.1, 0.1,</div>
+<div class="line">                                 0.1, 0.1, 100000, 0.1, 0.1, 0.1,</div>
+<div class="line">                                 0.1, 0.1, 0.1, 100000, 0.1, 0.1,</div>
+<div class="line">                                 0.1, 0.1, 0.1, 0.1, 100, 0.1,</div>
+<div class="line">                                 0.1, 0.1, 0.1, 0.1, 0.1, 100}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a2f6ee130c2912fa1106128c97aa54d69" name="a2f6ee130c2912fa1106128c97aa54d69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f6ee130c2912fa1106128c97aa54d69">&#9670;&#160;</a></span>QEKF_INS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_q_e_k_f___i_n_s__t.html">QEKF_INS_t</a> QEKF_INS ={0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

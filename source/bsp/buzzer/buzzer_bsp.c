@@ -1,11 +1,21 @@
 #include "buzzer_bsp.h"
 #include "tim.h"
 
+/**
+ * @brief 蜂鸣器初始化
+ * 
+ */
 void buzzer_init(void)
 {
     HAL_TIM_PWM_Start(&htim12, TIM_CHANNEL_2);
 }
 
+/**
+ * @brief 蜂鸣器开关
+ * 
+ * @param frequency 频率
+ * @param duty_cycle 占空比
+ */
 void buzzer_on(uint32_t frequency, float duty_cycle)
 {
     if (frequency < 16)
@@ -29,6 +39,10 @@ void buzzer_on(uint32_t frequency, float duty_cycle)
     __HAL_TIM_SetCompare(&htim12, TIM_CHANNEL_2, (uint16_t)pwm_duty_pulse);
 }
 
+/**
+ * @brief 蜂鸣器关闭
+ * 
+ */
 void buzzer_off(void)
 {
     buzzer_on(16, 0);

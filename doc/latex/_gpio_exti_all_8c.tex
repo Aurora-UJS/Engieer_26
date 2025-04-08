@@ -1,0 +1,40 @@
+\doxysection{source/bsp/gpio/\+Gpio\+Exti\+All.c 文件参考}
+\hypertarget{_gpio_exti_all_8c}{}\label{_gpio_exti_all_8c}\index{source/bsp/gpio/GpioExtiAll.c@{source/bsp/gpio/GpioExtiAll.c}}
+{\ttfamily \#include "{}Gpio\+Exti\+All.\+h"{}}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os.\+h"{}}\newline
+{\ttfamily \#include "{}Free\+RTOS.\+h"{}}\newline
+Gpio\+Exti\+All.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{_gpio_exti_all_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_gpio_exti_all_8c_a0cd91fd3a9608559c2a87a8ba6cba55f}{HAL\+\_\+\+GPIO\+\_\+\+EXTI\+\_\+\+Callback}} (uint16\+\_\+t GPIO\+\_\+\+Pin)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+os\+Semaphore\+Id \mbox{\hyperlink{_gpio_exti_all_8c_a04a8e4cdb23bf7b076261f71c9b4fe9f}{imu\+Binary\+Sem01\+Handle}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{_gpio_exti_all_8c_a0cd91fd3a9608559c2a87a8ba6cba55f}\index{GpioExtiAll.c@{GpioExtiAll.c}!HAL\_GPIO\_EXTI\_Callback@{HAL\_GPIO\_EXTI\_Callback}}
+\index{HAL\_GPIO\_EXTI\_Callback@{HAL\_GPIO\_EXTI\_Callback}!GpioExtiAll.c@{GpioExtiAll.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_GPIO\_EXTI\_Callback()}{HAL\_GPIO\_EXTI\_Callback()}}
+{\footnotesize\ttfamily \label{_gpio_exti_all_8c_a0cd91fd3a9608559c2a87a8ba6cba55f} 
+void HAL\+\_\+\+GPIO\+\_\+\+EXTI\+\_\+\+Callback (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{GPIO\+\_\+\+Pin}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{变量说明}
+\Hypertarget{_gpio_exti_all_8c_a04a8e4cdb23bf7b076261f71c9b4fe9f}\index{GpioExtiAll.c@{GpioExtiAll.c}!imuBinarySem01Handle@{imuBinarySem01Handle}}
+\index{imuBinarySem01Handle@{imuBinarySem01Handle}!GpioExtiAll.c@{GpioExtiAll.c}}
+\doxysubsubsection{\texorpdfstring{imuBinarySem01Handle}{imuBinarySem01Handle}}
+{\footnotesize\ttfamily \label{_gpio_exti_all_8c_a04a8e4cdb23bf7b076261f71c9b4fe9f} 
+os\+Semaphore\+Id imu\+Binary\+Sem01\+Handle\hspace{0.3cm}{\ttfamily [extern]}}
+

@@ -1,0 +1,639 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/refereeSys/referee_protocol.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_0637427c7cee0e571dfdc3ad762e2d12.html">refereeSys</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#enum-members">枚举</a>  </div>
+  <div class="headertitle"><div class="title">referee_protocol.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;stdint.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="key_board_8h_source.html">keyboard.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+referee_protocol.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="referee__protocol_8h__incl.png" border="0" usemap="#asource_2module_2referee_sys_2referee__protocol_8h" alt=""/></div>
+<map name="asource_2module_2referee_sys_2referee__protocol_8h" id="asource_2module_2referee_sys_2referee__protocol_8h">
+<area shape="rect" title=" " alt="" coords="5,5,179,48"/>
+<area shape="rect" title=" " alt="" coords="10,96,75,123"/>
+<area shape="poly" title=" " alt="" coords="82,50,61,84,56,81,77,47"/>
+<area shape="rect" href="key_board_8h.html" title=" " alt="" coords="99,96,184,123"/>
+<area shape="poly" title=" " alt="" coords="107,47,128,81,123,84,102,50"/>
+<area shape="rect" title=" " alt="" coords="111,171,172,197"/>
+<area shape="poly" title=" " alt="" coords="144,123,144,155,139,155,139,123"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="referee__protocol_8h__dep__incl.png" border="0" usemap="#asource_2module_2referee_sys_2referee__protocol_8hdep" alt=""/></div>
+<map name="asource_2module_2referee_sys_2referee__protocol_8hdep" id="asource_2module_2referee_sys_2referee__protocol_8hdep">
+<area shape="rect" title=" " alt="" coords="5,5,179,48"/>
+<area shape="rect" href="referee__api_8h.html" title=" " alt="" coords="5,96,179,139"/>
+<area shape="poly" title=" " alt="" coords="95,64,95,96,89,96,89,64"/>
+<area shape="rect" href="referee__api_8c.html" title=" " alt="" coords="5,187,179,229"/>
+<area shape="poly" title=" " alt="" coords="95,154,95,186,89,186,89,154"/>
+</map>
+</div>
+</div>
+<p><a href="referee__protocol_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structx_frame_header.html">xFrameHeader</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__game__state__t.html">ext_game_state_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__game__result__t.html">ext_game_result_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__game__robot___h_p__t.html">ext_game_robot_HP_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__event__data__t.html">ext_event_data_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__supply__projectile__action__t.html">ext_supply_projectile_action_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__game__robot__state__t.html">ext_game_robot_state_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__power__heat__data__t.html">ext_power_heat_data_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__game__robot__pos__t.html">ext_game_robot_pos_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__buff__musk__t.html">ext_buff_musk_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structaerial__robot__energy__t.html">aerial_robot_energy_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__robot__hurt__t.html">ext_robot_hurt_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__shoot__data__t.html">ext_shoot_data_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_graph___data__t.html">Graph_Data_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structext__student__interactive__header__data__t.html">ext_student_interactive_header_data_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrobot__interactive__data__t.html">robot_interactive_data_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_communicate___send_data__t.html">Communicate_SendData_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_communicate___receive_data__t.html">Communicate_ReceiveData_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_string___data__t.html">String_Data_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcustom__controller__data__t.html">custom_controller_data_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a8bd70b9c0eb16965f6bac2c97ca0d9cb" id="r_a8bd70b9c0eb16965f6bac2c97ca0d9cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8bd70b9c0eb16965f6bac2c97ca0d9cb">REFEREE_SOF</a>&#160;&#160;&#160;0xA5</td></tr>
+<tr class="separator:a8bd70b9c0eb16965f6bac2c97ca0d9cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b7cc2733bd2f02a173bef5569f2d22e" id="r_a0b7cc2733bd2f02a173bef5569f2d22e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b7cc2733bd2f02a173bef5569f2d22e">Robot_Red</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a0b7cc2733bd2f02a173bef5569f2d22e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae07eefcadbb8964c4ceb41d85a0251e1" id="r_ae07eefcadbb8964c4ceb41d85a0251e1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae07eefcadbb8964c4ceb41d85a0251e1">Robot_Blue</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ae07eefcadbb8964c4ceb41d85a0251e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a57d5084965554eeebcf051284acbce" id="r_a9a57d5084965554eeebcf051284acbce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a57d5084965554eeebcf051284acbce">Communicate_Data_LEN</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:a9a57d5084965554eeebcf051284acbce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a0f3239cac1e1f98203d496f550018e2f" id="r_a0f3239cac1e1f98203d496f550018e2f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0f3239cac1e1f98203d496f550018e2f">JudgeFrameOffset_e</a> { <a class="el" href="#a0f3239cac1e1f98203d496f550018e2fa49bf2d738fbeb5d0d67c578935297323">FRAME_HEADER_Offset</a> = 0
+, <a class="el" href="#a0f3239cac1e1f98203d496f550018e2fa093b37a3190dbc734a43c0fe545ec457">CMD_ID_Offset</a> = 5
+, <a class="el" href="#a0f3239cac1e1f98203d496f550018e2faef51b635081d087da63df3bb2558f855">DATA_Offset</a> = 7
+ }</td></tr>
+<tr class="separator:a0f3239cac1e1f98203d496f550018e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ab7d46cd17fa1691f25c0c7273fe82e" id="r_a3ab7d46cd17fa1691f25c0c7273fe82e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ab7d46cd17fa1691f25c0c7273fe82e">JudgeFrameLength_e</a> { <a class="el" href="#a3ab7d46cd17fa1691f25c0c7273fe82ea5649e5b6ebd90c709096bb6777f38b67">LEN_HEADER</a> = 5
+, <a class="el" href="#a3ab7d46cd17fa1691f25c0c7273fe82ea7a40597c42cff298ebc840f0d5b7ce6e">LEN_CMDID</a> = 2
+, <a class="el" href="#a3ab7d46cd17fa1691f25c0c7273fe82eaf50383abfb1c790b6a5f0504a0400fd5">LEN_TAIL</a> = 2
+, <a class="el" href="#a3ab7d46cd17fa1691f25c0c7273fe82eae9fce512ea1f0f1ba97ed3102b334864">LEN_CRC8</a> = 4
+ }</td></tr>
+<tr class="separator:a3ab7d46cd17fa1691f25c0c7273fe82e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ed77ca35e2f25536f6303dc4213c48d" id="r_a5ed77ca35e2f25536f6303dc4213c48d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ed77ca35e2f25536f6303dc4213c48d">FrameHeaderOffset_e</a> { <a class="el" href="#a5ed77ca35e2f25536f6303dc4213c48da567b73be8a61af6ac865b15bfeabbf59">SOF</a> = 0
+, <a class="el" href="#a5ed77ca35e2f25536f6303dc4213c48da7f3df1c13c3920d1c6771f3cdb0bd3ef">DATA_LENGTH</a> = 1
+, <a class="el" href="#a5ed77ca35e2f25536f6303dc4213c48da9985ac4cb7cda855d785a610e6a866a7">SEQ</a> = 3
+, <a class="el" href="#a5ed77ca35e2f25536f6303dc4213c48da852cb403a2665ed279b28679f11567d8">CRC8</a> = 4
+ }</td></tr>
+<tr class="separator:a5ed77ca35e2f25536f6303dc4213c48d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae214f2133148521c75bbe672fc377d82" id="r_ae214f2133148521c75bbe672fc377d82"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae214f2133148521c75bbe672fc377d82">CmdID_e</a> { <br />
+&#160;&#160;<a class="el" href="#ae214f2133148521c75bbe672fc377d82a830df8dce291a7d83113a6b31406596e">ID_game_state</a> = 0x0001
+, <a class="el" href="#ae214f2133148521c75bbe672fc377d82a6b8db94f4e77ca865d1d3075b421c96c">ID_game_result</a> = 0x0002
+, <a class="el" href="#ae214f2133148521c75bbe672fc377d82a18925a925609dc542bf3de32268a4685">ID_game_robot_survivors</a> = 0x0003
+, <a class="el" href="#ae214f2133148521c75bbe672fc377d82a36cba273d8a8c1608ee57aa47069341c">ID_event_data</a> = 0x0101
+, <br />
+&#160;&#160;<a class="el" href="#ae214f2133148521c75bbe672fc377d82a7581f15d52c4934363ea220dc3599f65">ID_supply_projectile_action</a> = 0x0102
+, <a class="el" href="#ae214f2133148521c75bbe672fc377d82a042f582cbe85cf799f2dedee5343898f">ID_supply_projectile_booking</a> = 0x0103
+, <a class="el" href="#ae214f2133148521c75bbe672fc377d82a3a82274b1040cb3f745e487c0dda4d66">ID_game_robot_state</a> = 0x0201
+, <a class="el" href="#ae214f2133148521c75bbe672fc377d82a7cb0241beb56c5b88292f53f0e92f207">ID_power_heat_data</a> = 0x0202
+, <br />
+&#160;&#160;<a class="el" href="#ae214f2133148521c75bbe672fc377d82abf9fec1a00b4ed6d3db76d3e15b0efee">ID_game_robot_pos</a> = 0x0203
+, <a class="el" href="#ae214f2133148521c75bbe672fc377d82ac9ad280c2b3e5a96ee16d96b0f3f5775">ID_buff_musk</a> = 0x0204
+, <a class="el" href="#ae214f2133148521c75bbe672fc377d82a1e52362060e66e96f89347ee5b8ea2a8">ID_aerial_robot_energy</a> = 0x0205
+, <a class="el" href="#ae214f2133148521c75bbe672fc377d82a260e7dbbc0bbb1d70ea8004b64bfd5d3">ID_robot_hurt</a> = 0x0206
+, <br />
+&#160;&#160;<a class="el" href="#ae214f2133148521c75bbe672fc377d82ad061576010d94bf3b5877030a4f0b74c">ID_shoot_data</a> = 0x0207
+, <a class="el" href="#ae214f2133148521c75bbe672fc377d82ab1a8193d05062b309e405681fbba0122">ID_student_interactive</a> = 0x0301
+, <a class="el" href="#ae214f2133148521c75bbe672fc377d82ace0d1d9da8d99e4f66ebf71844e8d77f">ID_custom_controller</a> = 0x0302
+<br />
+ }</td></tr>
+<tr class="separator:ae214f2133148521c75bbe672fc377d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a34e9aa1f3ec7834dd52bf725dc88af" id="r_a0a34e9aa1f3ec7834dd52bf725dc88af"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88af">JudgeDataLength_e</a> { <br />
+&#160;&#160;<a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afafc2ccfe11f54adade5b225b19ef852f5">LEN_game_state</a> = 11
+, <a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afa80c4ad213175cb38e8f31328e4710636">LEN_game_result</a> = 1
+, <a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afa62944ed4e423f98a0f2b22cdf19009ac">LEN_game_robot_HP</a> = 32
+, <a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afaff969b6431a3b2a1312d9e356e0b5a17">LEN_event_data</a> = 4
+, <br />
+&#160;&#160;<a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afabe7165fd9c5cec0b8568c9689cf88060">LEN_supply_projectile_action</a> = 4
+, <a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afafb1f141666559d05dd9c6159c4f93fb5">LEN_game_robot_state</a> = 13
+, <a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afa813850de41fb4c056fc3db50692f6f9f">LEN_power_heat_data</a> = 16
+, <a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afa35ca9f848ec3bb9575c3089fc29368a3">LEN_game_robot_pos</a> = 16
+, <br />
+&#160;&#160;<a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afa615e0242067ba2596e9b38684f554a59">LEN_buff_musk</a> = 6
+, <a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afa4de04cd8b4f92dbf7d534ad3accd1512">LEN_aerial_robot_energy</a> = 2
+, <a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afada547b8386c11c7a9a23f1cfa1d5dd56">LEN_robot_hurt</a> = 1
+, <a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afab92acba28b2ed55718a513e605d853b9">LEN_shoot_data</a> = 7
+, <br />
+&#160;&#160;<a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afa0d5f47550dcb3074aba03ece0bfbe7f8">LEN_receive_data</a> = 6 + Communicate_Data_LEN
+, <a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afa3a32b353668e6596dfde19c254b62d0d">LEN_custom_controller</a> = 20
+, <a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88afa1c1aa022cfae0fa90db3be50085826e6">LEN_keyboard</a> = 12
+<br />
+ }</td></tr>
+<tr class="separator:a0a34e9aa1f3ec7834dd52bf725dc88af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a387f365443d2f9be5b00a7325876eb6b" id="r_a387f365443d2f9be5b00a7325876eb6b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a387f365443d2f9be5b00a7325876eb6b">Robot_ID_e</a> { <br />
+&#160;&#160;<a class="el" href="#a387f365443d2f9be5b00a7325876eb6ba82bbe02f275e311e37e4b65178cdafb2">RobotID_RHero</a> = 1
+, <a class="el" href="#a387f365443d2f9be5b00a7325876eb6ba4e6f8d0d60fc7331e70577edc8313cdf">RobotID_REngineer</a> = 2
+, <a class="el" href="#a387f365443d2f9be5b00a7325876eb6baa1ab225cdb62a5d5f9aa8f70448db8d9">RobotID_RStandard1</a> = 3
+, <a class="el" href="#a387f365443d2f9be5b00a7325876eb6ba99e02efc96e70d442b8cd5d07bc797b1">RobotID_RStandard2</a> = 4
+, <br />
+&#160;&#160;<a class="el" href="#a387f365443d2f9be5b00a7325876eb6ba14a504bf213ad1239d5b20dddceac883">RobotID_RStandard3</a> = 5
+, <a class="el" href="#a387f365443d2f9be5b00a7325876eb6baabeb8b982f1f3f480c621a0bd7be95c1">RobotID_RAerial</a> = 6
+, <a class="el" href="#a387f365443d2f9be5b00a7325876eb6ba64c86ff312235257a3aba3a9c42a4856">RobotID_RSentry</a> = 7
+, <a class="el" href="#a387f365443d2f9be5b00a7325876eb6ba7572faabaf54c6d1ded5028222512c62">RobotID_RRadar</a> = 9
+, <br />
+&#160;&#160;<a class="el" href="#a387f365443d2f9be5b00a7325876eb6ba1700750589497717d2c1dd64baa0368a">RobotID_BHero</a> = 101
+, <a class="el" href="#a387f365443d2f9be5b00a7325876eb6bad9a81dcebfefb4d801acafcefdb96c47">RobotID_BEngineer</a> = 102
+, <a class="el" href="#a387f365443d2f9be5b00a7325876eb6ba9f6b38e9d695aaf907179689c35ad3fa">RobotID_BStandard1</a> = 103
+, <a class="el" href="#a387f365443d2f9be5b00a7325876eb6bae051219fe239e0c1e9bc5a913b847893">RobotID_BStandard2</a> = 104
+, <br />
+&#160;&#160;<a class="el" href="#a387f365443d2f9be5b00a7325876eb6ba9bce8ac23314bf39eca99fdf4bfdd7be">RobotID_BStandard3</a> = 105
+, <a class="el" href="#a387f365443d2f9be5b00a7325876eb6ba2f473efa0830ca91aeb07a39c5908fac">RobotID_BAerial</a> = 106
+, <a class="el" href="#a387f365443d2f9be5b00a7325876eb6ba0962466912e4941b7cd07b6fb701430a">RobotID_BSentry</a> = 107
+, <a class="el" href="#a387f365443d2f9be5b00a7325876eb6ba1bdd17f76e80c8d3efd13f162ea9857a">RobotID_BRadar</a> = 109
+<br />
+ }</td></tr>
+<tr class="separator:a387f365443d2f9be5b00a7325876eb6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae84dd4eec4d60e51701acd8f3382bf23" id="r_ae84dd4eec4d60e51701acd8f3382bf23"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae84dd4eec4d60e51701acd8f3382bf23">Interactive_Data_ID_e</a> { <br />
+&#160;&#160;<a class="el" href="#ae84dd4eec4d60e51701acd8f3382bf23a5863f5fef5f41a75f0cab01d6a276258">UI_Data_ID_Del</a> = 0x100
+, <a class="el" href="#ae84dd4eec4d60e51701acd8f3382bf23aca355af6bc3a748d89b7e8d02d679ecb">UI_Data_ID_Draw1</a> = 0x101
+, <a class="el" href="#ae84dd4eec4d60e51701acd8f3382bf23ae3d736910f1871443172600138abed79">UI_Data_ID_Draw2</a> = 0x102
+, <a class="el" href="#ae84dd4eec4d60e51701acd8f3382bf23ac3b5d0b60f5f750b7e68b38c5d4eb1bb">UI_Data_ID_Draw5</a> = 0x103
+, <br />
+&#160;&#160;<a class="el" href="#ae84dd4eec4d60e51701acd8f3382bf23a4ce700939c148ac4f572218e6ff06673">UI_Data_ID_Draw7</a> = 0x104
+, <a class="el" href="#ae84dd4eec4d60e51701acd8f3382bf23adf5beab799addcba6f0c202f851ad31a">UI_Data_ID_DrawChar</a> = 0x110
+, <a class="el" href="#ae84dd4eec4d60e51701acd8f3382bf23abf2f5c650ac7899519a70317a0ab0fa6">Communicate_Data_ID</a> = 0x0200
+<br />
+ }</td></tr>
+<tr class="separator:ae84dd4eec4d60e51701acd8f3382bf23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a995bbef0fa91b0937112c9da6f2397c5" id="r_a995bbef0fa91b0937112c9da6f2397c5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a995bbef0fa91b0937112c9da6f2397c5">Interactive_Data_Length_e</a> { <a class="el" href="#a995bbef0fa91b0937112c9da6f2397c5a055bd43ffa3e29d47102b4ceceb6bb75">Interactive_Data_LEN_Head</a> = 6
+, <a class="el" href="#a995bbef0fa91b0937112c9da6f2397c5a9e67f191a0b9115d95197b1312252b0d">UI_Operate_LEN_Del</a> = 2
+, <a class="el" href="#a995bbef0fa91b0937112c9da6f2397c5ab91b3442ab4a9452794798a5daab5ad9">UI_Operate_LEN_PerDraw</a> = 15
+, <a class="el" href="#a995bbef0fa91b0937112c9da6f2397c5a6c71ea57c8b480c62785ad387bc67235">UI_Operate_LEN_DrawChar</a> = 15 + 30
+ }</td></tr>
+<tr class="separator:a995bbef0fa91b0937112c9da6f2397c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6ed5ce3862a8dff49d6f45a22a90f62" id="r_ae6ed5ce3862a8dff49d6f45a22a90f62"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6ed5ce3862a8dff49d6f45a22a90f62">UI_Delete_Operate_e</a> { <a class="el" href="#ae6ed5ce3862a8dff49d6f45a22a90f62a2ef334c1307a84f1a257e8716fd46486">UI_Data_Del_NoOperate</a> = 0
+, <a class="el" href="#ae6ed5ce3862a8dff49d6f45a22a90f62a260b8c69a2f5514f17a5c4925e09c79a">UI_Data_Del_Layer</a> = 1
+, <a class="el" href="#ae6ed5ce3862a8dff49d6f45a22a90f62ac8003a61d459e5959920e14d435c361a">UI_Data_Del_ALL</a> = 2
+ }</td></tr>
+<tr class="separator:ae6ed5ce3862a8dff49d6f45a22a90f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fbf82e3a08b8b56e6bd8c688ee384e5" id="r_a6fbf82e3a08b8b56e6bd8c688ee384e5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fbf82e3a08b8b56e6bd8c688ee384e5">UI_Graph_Operate_e</a> { <a class="el" href="#a6fbf82e3a08b8b56e6bd8c688ee384e5a0a6e8b9a6abbba0af8a716f85e1433f5">UI_Graph_ADD</a> = 1
+, <a class="el" href="#a6fbf82e3a08b8b56e6bd8c688ee384e5aff1d14377dea689b2b291a3b357c655e">UI_Graph_Change</a> = 2
+, <a class="el" href="#a6fbf82e3a08b8b56e6bd8c688ee384e5a10a88ba15e7fb1df1344653b11634337">UI_Graph_Del</a> = 3
+ }</td></tr>
+<tr class="separator:a6fbf82e3a08b8b56e6bd8c688ee384e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2e98bc0eced878e29164187f1e64c08" id="r_ad2e98bc0eced878e29164187f1e64c08"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2e98bc0eced878e29164187f1e64c08">UI_Graph_Type_e</a> { <br />
+&#160;&#160;<a class="el" href="#ad2e98bc0eced878e29164187f1e64c08a7783eb04a06d8cefa48342340f2a0ab0">UI_Graph_Line</a> = 0
+, <a class="el" href="#ad2e98bc0eced878e29164187f1e64c08a81b21ed08fbff53190d07b3a0d38cef5">UI_Graph_Rectangle</a> = 1
+, <a class="el" href="#ad2e98bc0eced878e29164187f1e64c08aea6a4b3fecabd3d40c089673514659ab">UI_Graph_Circle</a> = 2
+, <a class="el" href="#ad2e98bc0eced878e29164187f1e64c08a6be1051507322d8341aba99418a3922b">UI_Graph_Ellipse</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="#ad2e98bc0eced878e29164187f1e64c08aca8ad5c27793151298711a93a21d9c74">UI_Graph_Arc</a> = 4
+, <a class="el" href="#ad2e98bc0eced878e29164187f1e64c08ad66a5a963d3b16eb9519424671b223db">UI_Graph_Float</a> = 5
+, <a class="el" href="#ad2e98bc0eced878e29164187f1e64c08acb0af0edcaa555906fc5cde33fa3047b">UI_Graph_Int</a> = 6
+, <a class="el" href="#ad2e98bc0eced878e29164187f1e64c08a1b69e466aae17678c58f390b0cc5e3e9">UI_Graph_Char</a> = 7
+<br />
+ }</td></tr>
+<tr class="separator:ad2e98bc0eced878e29164187f1e64c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a821be2ee23089ff8960f5f1e96ef2a1e" id="r_a821be2ee23089ff8960f5f1e96ef2a1e"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a821be2ee23089ff8960f5f1e96ef2a1e">UI_Graph_Color_e</a> { <br />
+&#160;&#160;<a class="el" href="#a821be2ee23089ff8960f5f1e96ef2a1eacb2d4c41e008d10d8b729d0ea4898bff">UI_Color_Main</a> = 0
+, <a class="el" href="#a821be2ee23089ff8960f5f1e96ef2a1ea733caae36ca5dca69f5d9de536f05dfb">UI_Color_Yellow</a> = 1
+, <a class="el" href="#a821be2ee23089ff8960f5f1e96ef2a1eaf3b0d2fa53b3370dd9bb4fbc82b6e118">UI_Color_Green</a> = 2
+, <a class="el" href="#a821be2ee23089ff8960f5f1e96ef2a1ea04bbd5aea17aa42ab7848874e2343e56">UI_Color_Orange</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="#a821be2ee23089ff8960f5f1e96ef2a1ea286386dc8f5b9167d2f5201b022afd8e">UI_Color_Purplish_red</a> = 4
+, <a class="el" href="#a821be2ee23089ff8960f5f1e96ef2a1ea1a941108d08631fd7590475b08cabce6">UI_Color_Pink</a> = 5
+, <a class="el" href="#a821be2ee23089ff8960f5f1e96ef2a1eabff6406e275831f946444ccbd033b0b1">UI_Color_Cyan</a> = 6
+, <a class="el" href="#a821be2ee23089ff8960f5f1e96ef2a1ea5633b7451218144762bace49a4dd78d3">UI_Color_Black</a> = 7
+, <br />
+&#160;&#160;<a class="el" href="#a821be2ee23089ff8960f5f1e96ef2a1ead111a6fa3980914fe95648cd9018e30c">UI_Color_White</a> = 8
+<br />
+ }</td></tr>
+<tr class="separator:a821be2ee23089ff8960f5f1e96ef2a1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><dl class="section author"><dt>作者</dt><dd>kidneygood (<a href="#" onclick="location.href='mai'+'lto:'+'you'+'@d'+'oma'+'in'+'.co'+'m'; return false;">you@d<span class="obfuscator">.nosp@m.</span>omai<span class="obfuscator">.nosp@m.</span>n.com</a>) </dd></dl>
+<dl class="section version"><dt>版本</dt><dd>0.1 </dd></dl>
+<dl class="section date"><dt>日期</dt><dd>2022-12-02</dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd>Copyright (c) HNU YueLu EC 2022 all rights reserved </dd></dl>
+</div><h2 class="groupheader">宏定义说明</h2>
+<a id="a9a57d5084965554eeebcf051284acbce" name="a9a57d5084965554eeebcf051284acbce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a57d5084965554eeebcf051284acbce">&#9670;&#160;</a></span>Communicate_Data_LEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Communicate_Data_LEN&#160;&#160;&#160;5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8bd70b9c0eb16965f6bac2c97ca0d9cb" name="a8bd70b9c0eb16965f6bac2c97ca0d9cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bd70b9c0eb16965f6bac2c97ca0d9cb">&#9670;&#160;</a></span>REFEREE_SOF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REFEREE_SOF&#160;&#160;&#160;0xA5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae07eefcadbb8964c4ceb41d85a0251e1" name="ae07eefcadbb8964c4ceb41d85a0251e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae07eefcadbb8964c4ceb41d85a0251e1">&#9670;&#160;</a></span>Robot_Blue</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Robot_Blue&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0b7cc2733bd2f02a173bef5569f2d22e" name="a0b7cc2733bd2f02a173bef5569f2d22e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b7cc2733bd2f02a173bef5569f2d22e">&#9670;&#160;</a></span>Robot_Red</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Robot_Red&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">枚举类型说明</h2>
+<a id="ae214f2133148521c75bbe672fc377d82" name="ae214f2133148521c75bbe672fc377d82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae214f2133148521c75bbe672fc377d82">&#9670;&#160;</a></span>CmdID_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ae214f2133148521c75bbe672fc377d82">CmdID_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82a830df8dce291a7d83113a6b31406596e" name="ae214f2133148521c75bbe672fc377d82a830df8dce291a7d83113a6b31406596e"></a>ID_game_state&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82a6b8db94f4e77ca865d1d3075b421c96c" name="ae214f2133148521c75bbe672fc377d82a6b8db94f4e77ca865d1d3075b421c96c"></a>ID_game_result&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82a18925a925609dc542bf3de32268a4685" name="ae214f2133148521c75bbe672fc377d82a18925a925609dc542bf3de32268a4685"></a>ID_game_robot_survivors&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82a36cba273d8a8c1608ee57aa47069341c" name="ae214f2133148521c75bbe672fc377d82a36cba273d8a8c1608ee57aa47069341c"></a>ID_event_data&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82a7581f15d52c4934363ea220dc3599f65" name="ae214f2133148521c75bbe672fc377d82a7581f15d52c4934363ea220dc3599f65"></a>ID_supply_projectile_action&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82a042f582cbe85cf799f2dedee5343898f" name="ae214f2133148521c75bbe672fc377d82a042f582cbe85cf799f2dedee5343898f"></a>ID_supply_projectile_booking&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82a3a82274b1040cb3f745e487c0dda4d66" name="ae214f2133148521c75bbe672fc377d82a3a82274b1040cb3f745e487c0dda4d66"></a>ID_game_robot_state&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82a7cb0241beb56c5b88292f53f0e92f207" name="ae214f2133148521c75bbe672fc377d82a7cb0241beb56c5b88292f53f0e92f207"></a>ID_power_heat_data&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82abf9fec1a00b4ed6d3db76d3e15b0efee" name="ae214f2133148521c75bbe672fc377d82abf9fec1a00b4ed6d3db76d3e15b0efee"></a>ID_game_robot_pos&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82ac9ad280c2b3e5a96ee16d96b0f3f5775" name="ae214f2133148521c75bbe672fc377d82ac9ad280c2b3e5a96ee16d96b0f3f5775"></a>ID_buff_musk&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82a1e52362060e66e96f89347ee5b8ea2a8" name="ae214f2133148521c75bbe672fc377d82a1e52362060e66e96f89347ee5b8ea2a8"></a>ID_aerial_robot_energy&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82a260e7dbbc0bbb1d70ea8004b64bfd5d3" name="ae214f2133148521c75bbe672fc377d82a260e7dbbc0bbb1d70ea8004b64bfd5d3"></a>ID_robot_hurt&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82ad061576010d94bf3b5877030a4f0b74c" name="ae214f2133148521c75bbe672fc377d82ad061576010d94bf3b5877030a4f0b74c"></a>ID_shoot_data&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82ab1a8193d05062b309e405681fbba0122" name="ae214f2133148521c75bbe672fc377d82ab1a8193d05062b309e405681fbba0122"></a>ID_student_interactive&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae214f2133148521c75bbe672fc377d82ace0d1d9da8d99e4f66ebf71844e8d77f" name="ae214f2133148521c75bbe672fc377d82ace0d1d9da8d99e4f66ebf71844e8d77f"></a>ID_custom_controller&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a5ed77ca35e2f25536f6303dc4213c48d" name="a5ed77ca35e2f25536f6303dc4213c48d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ed77ca35e2f25536f6303dc4213c48d">&#9670;&#160;</a></span>FrameHeaderOffset_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a5ed77ca35e2f25536f6303dc4213c48d">FrameHeaderOffset_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a5ed77ca35e2f25536f6303dc4213c48da567b73be8a61af6ac865b15bfeabbf59" name="a5ed77ca35e2f25536f6303dc4213c48da567b73be8a61af6ac865b15bfeabbf59"></a>SOF&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5ed77ca35e2f25536f6303dc4213c48da7f3df1c13c3920d1c6771f3cdb0bd3ef" name="a5ed77ca35e2f25536f6303dc4213c48da7f3df1c13c3920d1c6771f3cdb0bd3ef"></a>DATA_LENGTH&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5ed77ca35e2f25536f6303dc4213c48da9985ac4cb7cda855d785a610e6a866a7" name="a5ed77ca35e2f25536f6303dc4213c48da9985ac4cb7cda855d785a610e6a866a7"></a>SEQ&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a5ed77ca35e2f25536f6303dc4213c48da852cb403a2665ed279b28679f11567d8" name="a5ed77ca35e2f25536f6303dc4213c48da852cb403a2665ed279b28679f11567d8"></a>CRC8&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="ae84dd4eec4d60e51701acd8f3382bf23" name="ae84dd4eec4d60e51701acd8f3382bf23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae84dd4eec4d60e51701acd8f3382bf23">&#9670;&#160;</a></span>Interactive_Data_ID_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ae84dd4eec4d60e51701acd8f3382bf23">Interactive_Data_ID_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ae84dd4eec4d60e51701acd8f3382bf23a5863f5fef5f41a75f0cab01d6a276258" name="ae84dd4eec4d60e51701acd8f3382bf23a5863f5fef5f41a75f0cab01d6a276258"></a>UI_Data_ID_Del&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae84dd4eec4d60e51701acd8f3382bf23aca355af6bc3a748d89b7e8d02d679ecb" name="ae84dd4eec4d60e51701acd8f3382bf23aca355af6bc3a748d89b7e8d02d679ecb"></a>UI_Data_ID_Draw1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae84dd4eec4d60e51701acd8f3382bf23ae3d736910f1871443172600138abed79" name="ae84dd4eec4d60e51701acd8f3382bf23ae3d736910f1871443172600138abed79"></a>UI_Data_ID_Draw2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae84dd4eec4d60e51701acd8f3382bf23ac3b5d0b60f5f750b7e68b38c5d4eb1bb" name="ae84dd4eec4d60e51701acd8f3382bf23ac3b5d0b60f5f750b7e68b38c5d4eb1bb"></a>UI_Data_ID_Draw5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae84dd4eec4d60e51701acd8f3382bf23a4ce700939c148ac4f572218e6ff06673" name="ae84dd4eec4d60e51701acd8f3382bf23a4ce700939c148ac4f572218e6ff06673"></a>UI_Data_ID_Draw7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae84dd4eec4d60e51701acd8f3382bf23adf5beab799addcba6f0c202f851ad31a" name="ae84dd4eec4d60e51701acd8f3382bf23adf5beab799addcba6f0c202f851ad31a"></a>UI_Data_ID_DrawChar&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae84dd4eec4d60e51701acd8f3382bf23abf2f5c650ac7899519a70317a0ab0fa6" name="ae84dd4eec4d60e51701acd8f3382bf23abf2f5c650ac7899519a70317a0ab0fa6"></a>Communicate_Data_ID&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a995bbef0fa91b0937112c9da6f2397c5" name="a995bbef0fa91b0937112c9da6f2397c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a995bbef0fa91b0937112c9da6f2397c5">&#9670;&#160;</a></span>Interactive_Data_Length_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a995bbef0fa91b0937112c9da6f2397c5">Interactive_Data_Length_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a995bbef0fa91b0937112c9da6f2397c5a055bd43ffa3e29d47102b4ceceb6bb75" name="a995bbef0fa91b0937112c9da6f2397c5a055bd43ffa3e29d47102b4ceceb6bb75"></a>Interactive_Data_LEN_Head&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a995bbef0fa91b0937112c9da6f2397c5a9e67f191a0b9115d95197b1312252b0d" name="a995bbef0fa91b0937112c9da6f2397c5a9e67f191a0b9115d95197b1312252b0d"></a>UI_Operate_LEN_Del&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a995bbef0fa91b0937112c9da6f2397c5ab91b3442ab4a9452794798a5daab5ad9" name="a995bbef0fa91b0937112c9da6f2397c5ab91b3442ab4a9452794798a5daab5ad9"></a>UI_Operate_LEN_PerDraw&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a995bbef0fa91b0937112c9da6f2397c5a6c71ea57c8b480c62785ad387bc67235" name="a995bbef0fa91b0937112c9da6f2397c5a6c71ea57c8b480c62785ad387bc67235"></a>UI_Operate_LEN_DrawChar&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a0a34e9aa1f3ec7834dd52bf725dc88af" name="a0a34e9aa1f3ec7834dd52bf725dc88af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a34e9aa1f3ec7834dd52bf725dc88af">&#9670;&#160;</a></span>JudgeDataLength_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a0a34e9aa1f3ec7834dd52bf725dc88af">JudgeDataLength_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afafc2ccfe11f54adade5b225b19ef852f5" name="a0a34e9aa1f3ec7834dd52bf725dc88afafc2ccfe11f54adade5b225b19ef852f5"></a>LEN_game_state&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afa80c4ad213175cb38e8f31328e4710636" name="a0a34e9aa1f3ec7834dd52bf725dc88afa80c4ad213175cb38e8f31328e4710636"></a>LEN_game_result&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afa62944ed4e423f98a0f2b22cdf19009ac" name="a0a34e9aa1f3ec7834dd52bf725dc88afa62944ed4e423f98a0f2b22cdf19009ac"></a>LEN_game_robot_HP&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afaff969b6431a3b2a1312d9e356e0b5a17" name="a0a34e9aa1f3ec7834dd52bf725dc88afaff969b6431a3b2a1312d9e356e0b5a17"></a>LEN_event_data&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afabe7165fd9c5cec0b8568c9689cf88060" name="a0a34e9aa1f3ec7834dd52bf725dc88afabe7165fd9c5cec0b8568c9689cf88060"></a>LEN_supply_projectile_action&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afafb1f141666559d05dd9c6159c4f93fb5" name="a0a34e9aa1f3ec7834dd52bf725dc88afafb1f141666559d05dd9c6159c4f93fb5"></a>LEN_game_robot_state&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afa813850de41fb4c056fc3db50692f6f9f" name="a0a34e9aa1f3ec7834dd52bf725dc88afa813850de41fb4c056fc3db50692f6f9f"></a>LEN_power_heat_data&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afa35ca9f848ec3bb9575c3089fc29368a3" name="a0a34e9aa1f3ec7834dd52bf725dc88afa35ca9f848ec3bb9575c3089fc29368a3"></a>LEN_game_robot_pos&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afa615e0242067ba2596e9b38684f554a59" name="a0a34e9aa1f3ec7834dd52bf725dc88afa615e0242067ba2596e9b38684f554a59"></a>LEN_buff_musk&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afa4de04cd8b4f92dbf7d534ad3accd1512" name="a0a34e9aa1f3ec7834dd52bf725dc88afa4de04cd8b4f92dbf7d534ad3accd1512"></a>LEN_aerial_robot_energy&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afada547b8386c11c7a9a23f1cfa1d5dd56" name="a0a34e9aa1f3ec7834dd52bf725dc88afada547b8386c11c7a9a23f1cfa1d5dd56"></a>LEN_robot_hurt&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afab92acba28b2ed55718a513e605d853b9" name="a0a34e9aa1f3ec7834dd52bf725dc88afab92acba28b2ed55718a513e605d853b9"></a>LEN_shoot_data&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afa0d5f47550dcb3074aba03ece0bfbe7f8" name="a0a34e9aa1f3ec7834dd52bf725dc88afa0d5f47550dcb3074aba03ece0bfbe7f8"></a>LEN_receive_data&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afa3a32b353668e6596dfde19c254b62d0d" name="a0a34e9aa1f3ec7834dd52bf725dc88afa3a32b353668e6596dfde19c254b62d0d"></a>LEN_custom_controller&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0a34e9aa1f3ec7834dd52bf725dc88afa1c1aa022cfae0fa90db3be50085826e6" name="a0a34e9aa1f3ec7834dd52bf725dc88afa1c1aa022cfae0fa90db3be50085826e6"></a>LEN_keyboard&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a3ab7d46cd17fa1691f25c0c7273fe82e" name="a3ab7d46cd17fa1691f25c0c7273fe82e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ab7d46cd17fa1691f25c0c7273fe82e">&#9670;&#160;</a></span>JudgeFrameLength_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a3ab7d46cd17fa1691f25c0c7273fe82e">JudgeFrameLength_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a3ab7d46cd17fa1691f25c0c7273fe82ea5649e5b6ebd90c709096bb6777f38b67" name="a3ab7d46cd17fa1691f25c0c7273fe82ea5649e5b6ebd90c709096bb6777f38b67"></a>LEN_HEADER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3ab7d46cd17fa1691f25c0c7273fe82ea7a40597c42cff298ebc840f0d5b7ce6e" name="a3ab7d46cd17fa1691f25c0c7273fe82ea7a40597c42cff298ebc840f0d5b7ce6e"></a>LEN_CMDID&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3ab7d46cd17fa1691f25c0c7273fe82eaf50383abfb1c790b6a5f0504a0400fd5" name="a3ab7d46cd17fa1691f25c0c7273fe82eaf50383abfb1c790b6a5f0504a0400fd5"></a>LEN_TAIL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a3ab7d46cd17fa1691f25c0c7273fe82eae9fce512ea1f0f1ba97ed3102b334864" name="a3ab7d46cd17fa1691f25c0c7273fe82eae9fce512ea1f0f1ba97ed3102b334864"></a>LEN_CRC8&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a0f3239cac1e1f98203d496f550018e2f" name="a0f3239cac1e1f98203d496f550018e2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f3239cac1e1f98203d496f550018e2f">&#9670;&#160;</a></span>JudgeFrameOffset_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a0f3239cac1e1f98203d496f550018e2f">JudgeFrameOffset_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a0f3239cac1e1f98203d496f550018e2fa49bf2d738fbeb5d0d67c578935297323" name="a0f3239cac1e1f98203d496f550018e2fa49bf2d738fbeb5d0d67c578935297323"></a>FRAME_HEADER_Offset&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0f3239cac1e1f98203d496f550018e2fa093b37a3190dbc734a43c0fe545ec457" name="a0f3239cac1e1f98203d496f550018e2fa093b37a3190dbc734a43c0fe545ec457"></a>CMD_ID_Offset&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0f3239cac1e1f98203d496f550018e2faef51b635081d087da63df3bb2558f855" name="a0f3239cac1e1f98203d496f550018e2faef51b635081d087da63df3bb2558f855"></a>DATA_Offset&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a387f365443d2f9be5b00a7325876eb6b" name="a387f365443d2f9be5b00a7325876eb6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a387f365443d2f9be5b00a7325876eb6b">&#9670;&#160;</a></span>Robot_ID_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a387f365443d2f9be5b00a7325876eb6b">Robot_ID_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6ba82bbe02f275e311e37e4b65178cdafb2" name="a387f365443d2f9be5b00a7325876eb6ba82bbe02f275e311e37e4b65178cdafb2"></a>RobotID_RHero&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6ba4e6f8d0d60fc7331e70577edc8313cdf" name="a387f365443d2f9be5b00a7325876eb6ba4e6f8d0d60fc7331e70577edc8313cdf"></a>RobotID_REngineer&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6baa1ab225cdb62a5d5f9aa8f70448db8d9" name="a387f365443d2f9be5b00a7325876eb6baa1ab225cdb62a5d5f9aa8f70448db8d9"></a>RobotID_RStandard1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6ba99e02efc96e70d442b8cd5d07bc797b1" name="a387f365443d2f9be5b00a7325876eb6ba99e02efc96e70d442b8cd5d07bc797b1"></a>RobotID_RStandard2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6ba14a504bf213ad1239d5b20dddceac883" name="a387f365443d2f9be5b00a7325876eb6ba14a504bf213ad1239d5b20dddceac883"></a>RobotID_RStandard3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6baabeb8b982f1f3f480c621a0bd7be95c1" name="a387f365443d2f9be5b00a7325876eb6baabeb8b982f1f3f480c621a0bd7be95c1"></a>RobotID_RAerial&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6ba64c86ff312235257a3aba3a9c42a4856" name="a387f365443d2f9be5b00a7325876eb6ba64c86ff312235257a3aba3a9c42a4856"></a>RobotID_RSentry&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6ba7572faabaf54c6d1ded5028222512c62" name="a387f365443d2f9be5b00a7325876eb6ba7572faabaf54c6d1ded5028222512c62"></a>RobotID_RRadar&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6ba1700750589497717d2c1dd64baa0368a" name="a387f365443d2f9be5b00a7325876eb6ba1700750589497717d2c1dd64baa0368a"></a>RobotID_BHero&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6bad9a81dcebfefb4d801acafcefdb96c47" name="a387f365443d2f9be5b00a7325876eb6bad9a81dcebfefb4d801acafcefdb96c47"></a>RobotID_BEngineer&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6ba9f6b38e9d695aaf907179689c35ad3fa" name="a387f365443d2f9be5b00a7325876eb6ba9f6b38e9d695aaf907179689c35ad3fa"></a>RobotID_BStandard1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6bae051219fe239e0c1e9bc5a913b847893" name="a387f365443d2f9be5b00a7325876eb6bae051219fe239e0c1e9bc5a913b847893"></a>RobotID_BStandard2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6ba9bce8ac23314bf39eca99fdf4bfdd7be" name="a387f365443d2f9be5b00a7325876eb6ba9bce8ac23314bf39eca99fdf4bfdd7be"></a>RobotID_BStandard3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6ba2f473efa0830ca91aeb07a39c5908fac" name="a387f365443d2f9be5b00a7325876eb6ba2f473efa0830ca91aeb07a39c5908fac"></a>RobotID_BAerial&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6ba0962466912e4941b7cd07b6fb701430a" name="a387f365443d2f9be5b00a7325876eb6ba0962466912e4941b7cd07b6fb701430a"></a>RobotID_BSentry&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a387f365443d2f9be5b00a7325876eb6ba1bdd17f76e80c8d3efd13f162ea9857a" name="a387f365443d2f9be5b00a7325876eb6ba1bdd17f76e80c8d3efd13f162ea9857a"></a>RobotID_BRadar&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="ae6ed5ce3862a8dff49d6f45a22a90f62" name="ae6ed5ce3862a8dff49d6f45a22a90f62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6ed5ce3862a8dff49d6f45a22a90f62">&#9670;&#160;</a></span>UI_Delete_Operate_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ae6ed5ce3862a8dff49d6f45a22a90f62">UI_Delete_Operate_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ae6ed5ce3862a8dff49d6f45a22a90f62a2ef334c1307a84f1a257e8716fd46486" name="ae6ed5ce3862a8dff49d6f45a22a90f62a2ef334c1307a84f1a257e8716fd46486"></a>UI_Data_Del_NoOperate&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae6ed5ce3862a8dff49d6f45a22a90f62a260b8c69a2f5514f17a5c4925e09c79a" name="ae6ed5ce3862a8dff49d6f45a22a90f62a260b8c69a2f5514f17a5c4925e09c79a"></a>UI_Data_Del_Layer&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ae6ed5ce3862a8dff49d6f45a22a90f62ac8003a61d459e5959920e14d435c361a" name="ae6ed5ce3862a8dff49d6f45a22a90f62ac8003a61d459e5959920e14d435c361a"></a>UI_Data_Del_ALL&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a821be2ee23089ff8960f5f1e96ef2a1e" name="a821be2ee23089ff8960f5f1e96ef2a1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a821be2ee23089ff8960f5f1e96ef2a1e">&#9670;&#160;</a></span>UI_Graph_Color_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a821be2ee23089ff8960f5f1e96ef2a1e">UI_Graph_Color_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a821be2ee23089ff8960f5f1e96ef2a1eacb2d4c41e008d10d8b729d0ea4898bff" name="a821be2ee23089ff8960f5f1e96ef2a1eacb2d4c41e008d10d8b729d0ea4898bff"></a>UI_Color_Main&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a821be2ee23089ff8960f5f1e96ef2a1ea733caae36ca5dca69f5d9de536f05dfb" name="a821be2ee23089ff8960f5f1e96ef2a1ea733caae36ca5dca69f5d9de536f05dfb"></a>UI_Color_Yellow&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a821be2ee23089ff8960f5f1e96ef2a1eaf3b0d2fa53b3370dd9bb4fbc82b6e118" name="a821be2ee23089ff8960f5f1e96ef2a1eaf3b0d2fa53b3370dd9bb4fbc82b6e118"></a>UI_Color_Green&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a821be2ee23089ff8960f5f1e96ef2a1ea04bbd5aea17aa42ab7848874e2343e56" name="a821be2ee23089ff8960f5f1e96ef2a1ea04bbd5aea17aa42ab7848874e2343e56"></a>UI_Color_Orange&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a821be2ee23089ff8960f5f1e96ef2a1ea286386dc8f5b9167d2f5201b022afd8e" name="a821be2ee23089ff8960f5f1e96ef2a1ea286386dc8f5b9167d2f5201b022afd8e"></a>UI_Color_Purplish_red&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a821be2ee23089ff8960f5f1e96ef2a1ea1a941108d08631fd7590475b08cabce6" name="a821be2ee23089ff8960f5f1e96ef2a1ea1a941108d08631fd7590475b08cabce6"></a>UI_Color_Pink&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a821be2ee23089ff8960f5f1e96ef2a1eabff6406e275831f946444ccbd033b0b1" name="a821be2ee23089ff8960f5f1e96ef2a1eabff6406e275831f946444ccbd033b0b1"></a>UI_Color_Cyan&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a821be2ee23089ff8960f5f1e96ef2a1ea5633b7451218144762bace49a4dd78d3" name="a821be2ee23089ff8960f5f1e96ef2a1ea5633b7451218144762bace49a4dd78d3"></a>UI_Color_Black&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a821be2ee23089ff8960f5f1e96ef2a1ead111a6fa3980914fe95648cd9018e30c" name="a821be2ee23089ff8960f5f1e96ef2a1ead111a6fa3980914fe95648cd9018e30c"></a>UI_Color_White&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a6fbf82e3a08b8b56e6bd8c688ee384e5" name="a6fbf82e3a08b8b56e6bd8c688ee384e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fbf82e3a08b8b56e6bd8c688ee384e5">&#9670;&#160;</a></span>UI_Graph_Operate_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a6fbf82e3a08b8b56e6bd8c688ee384e5">UI_Graph_Operate_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a6fbf82e3a08b8b56e6bd8c688ee384e5a0a6e8b9a6abbba0af8a716f85e1433f5" name="a6fbf82e3a08b8b56e6bd8c688ee384e5a0a6e8b9a6abbba0af8a716f85e1433f5"></a>UI_Graph_ADD&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6fbf82e3a08b8b56e6bd8c688ee384e5aff1d14377dea689b2b291a3b357c655e" name="a6fbf82e3a08b8b56e6bd8c688ee384e5aff1d14377dea689b2b291a3b357c655e"></a>UI_Graph_Change&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6fbf82e3a08b8b56e6bd8c688ee384e5a10a88ba15e7fb1df1344653b11634337" name="a6fbf82e3a08b8b56e6bd8c688ee384e5a10a88ba15e7fb1df1344653b11634337"></a>UI_Graph_Del&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="ad2e98bc0eced878e29164187f1e64c08" name="ad2e98bc0eced878e29164187f1e64c08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2e98bc0eced878e29164187f1e64c08">&#9670;&#160;</a></span>UI_Graph_Type_e</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ad2e98bc0eced878e29164187f1e64c08">UI_Graph_Type_e</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ad2e98bc0eced878e29164187f1e64c08a7783eb04a06d8cefa48342340f2a0ab0" name="ad2e98bc0eced878e29164187f1e64c08a7783eb04a06d8cefa48342340f2a0ab0"></a>UI_Graph_Line&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad2e98bc0eced878e29164187f1e64c08a81b21ed08fbff53190d07b3a0d38cef5" name="ad2e98bc0eced878e29164187f1e64c08a81b21ed08fbff53190d07b3a0d38cef5"></a>UI_Graph_Rectangle&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad2e98bc0eced878e29164187f1e64c08aea6a4b3fecabd3d40c089673514659ab" name="ad2e98bc0eced878e29164187f1e64c08aea6a4b3fecabd3d40c089673514659ab"></a>UI_Graph_Circle&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad2e98bc0eced878e29164187f1e64c08a6be1051507322d8341aba99418a3922b" name="ad2e98bc0eced878e29164187f1e64c08a6be1051507322d8341aba99418a3922b"></a>UI_Graph_Ellipse&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad2e98bc0eced878e29164187f1e64c08aca8ad5c27793151298711a93a21d9c74" name="ad2e98bc0eced878e29164187f1e64c08aca8ad5c27793151298711a93a21d9c74"></a>UI_Graph_Arc&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad2e98bc0eced878e29164187f1e64c08ad66a5a963d3b16eb9519424671b223db" name="ad2e98bc0eced878e29164187f1e64c08ad66a5a963d3b16eb9519424671b223db"></a>UI_Graph_Float&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad2e98bc0eced878e29164187f1e64c08acb0af0edcaa555906fc5cde33fa3047b" name="ad2e98bc0eced878e29164187f1e64c08acb0af0edcaa555906fc5cde33fa3047b"></a>UI_Graph_Int&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ad2e98bc0eced878e29164187f1e64c08a1b69e466aae17678c58f390b0cc5e3e9" name="ad2e98bc0eced878e29164187f1e64c08a1b69e466aae17678c58f390b0cc5e3e9"></a>UI_Graph_Char&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

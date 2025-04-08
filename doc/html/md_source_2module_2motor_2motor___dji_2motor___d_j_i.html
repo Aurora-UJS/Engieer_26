@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: 大疆电机模块使用说明</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">大疆电机模块使用说明</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md49"></a></p>
+<h1><a class="anchor" id="autotoc_md50"></a>
+1. 示例代码</h1>
+<div class="fragment"><div class="line">{</div>
+<div class="line">    <span class="comment">// 定义一个指向 DJI_motor_t 类型的指针 DJMotor</span></div>
+<div class="line">    <a class="code hl_struct" href="struct_d_j_i__motor__t.html">DJI_motor_t</a> *DJMotor;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 动态分配内存，以创建一个 DJI_motor_t 类型的实例，并将其地址赋给 DJMotor</span></div>
+<div class="line">    DJMotor = pvPortMalloc(<span class="keyword">sizeof</span>(<a class="code hl_struct" href="struct_d_j_i__motor__t.html">DJI_motor_t</a>));</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 配置 DJMotor 的 CAN 端口，设置为 CAN1_PORT</span></div>
+<div class="line">    DJMotor-&gt;<a class="code hl_variable" href="struct_d_j_i__motor__t.html#a14f42c85faa99e48d6974c25f369f8eb">can_cfg</a>.<a class="code hl_variable" href="structcan__msg__t.html#a2fa54f9024782843172506fadbee2ac8">port</a> = <a class="code hl_enumvalue" href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238">CAN1_PORT</a>;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 配置 DJMotor 的 CAN 通信 ID，设置为 0x200</span></div>
+<div class="line">    DJMotor-&gt;<a class="code hl_variable" href="struct_d_j_i__motor__t.html#a14f42c85faa99e48d6974c25f369f8eb">can_cfg</a>.<a class="code hl_variable" href="structcan__msg__t.html#abaabdc509cdaba7df9f56c6c76f3ae19">id</a> = 0x200;</div>
+<div class="line">    </div>
+<div class="line">    <span class="comment">// 配置电机消息的 CAN ID，依次设置为 0x201, 0x202, 0x203, 0x204</span></div>
+<div class="line">    DJMotor-&gt;<a class="code hl_variable" href="struct_d_j_i__motor__t.html#ad5045a9c055a09a1c9523bab16571aa7">motor_msg</a>[0].<a class="code hl_variable" href="structcan__motor__t.html#af7783107481632d59624f7bb8e6274ed">can_msg</a>.<a class="code hl_variable" href="structcan__msg__t.html#abaabdc509cdaba7df9f56c6c76f3ae19">id</a> = 0x201;</div>
+<div class="line">    DJMotor-&gt;<a class="code hl_variable" href="struct_d_j_i__motor__t.html#ad5045a9c055a09a1c9523bab16571aa7">motor_msg</a>[1].<a class="code hl_variable" href="structcan__motor__t.html#af7783107481632d59624f7bb8e6274ed">can_msg</a>.<a class="code hl_variable" href="structcan__msg__t.html#abaabdc509cdaba7df9f56c6c76f3ae19">id</a> = 0x202;</div>
+<div class="line">    DJMotor-&gt;<a class="code hl_variable" href="struct_d_j_i__motor__t.html#ad5045a9c055a09a1c9523bab16571aa7">motor_msg</a>[2].<a class="code hl_variable" href="structcan__motor__t.html#af7783107481632d59624f7bb8e6274ed">can_msg</a>.<a class="code hl_variable" href="structcan__msg__t.html#abaabdc509cdaba7df9f56c6c76f3ae19">id</a> = 0x203;</div>
+<div class="line">    DJMotor-&gt;<a class="code hl_variable" href="struct_d_j_i__motor__t.html#ad5045a9c055a09a1c9523bab16571aa7">motor_msg</a>[3].<a class="code hl_variable" href="structcan__motor__t.html#af7783107481632d59624f7bb8e6274ed">can_msg</a>.<a class="code hl_variable" href="structcan__msg__t.html#abaabdc509cdaba7df9f56c6c76f3ae19">id</a> = 0x204;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 调用初始化函数，对 DJI_motor 进行初始化设置</span></div>
+<div class="line">    <a class="code hl_function" href="motor_8_d_j_i_8c.html#aa58303faf6213e5527880d02243c85c3">Motor_DJI_Init</a>(DJMotor);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 开始无限循环，持续控制电机</span></div>
+<div class="line">    <span class="keywordflow">while</span> (1)</div>
+<div class="line">    {</div>
+<div class="line">        <span class="comment">// 刷新 DJMotor 状态，以获取最新的电机数据</span></div>
+<div class="line">        <a class="code hl_function" href="motor_8_d_j_i_8c.html#abfe775d5de240e993f95bbce4c795b23">Motor_DJI_Refresh</a>(DJMotor);</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// 设置电机的参数，参数解释为 CAN 端口，CAN ID 和多个参数（电压或电流）值</span></div>
+<div class="line">        <a class="code hl_function" href="motor_8_d_j_i_8c.html#a1b6f009cefceb070da8f11ef9d7c2f24">set_motor_parameter</a>(&amp;DJMotor, <a class="code hl_enumvalue" href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238">CAN1_PORT</a>, 0x200, 1000, 1000, 1000, 1000);</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="ttc" id="acan__struct_8h_html_a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238"><div class="ttname"><a href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238">CAN1_PORT</a></div><div class="ttdeci">@ CAN1_PORT</div><div class="ttdef"><b>定义</b> can_struct.h:12</div></div>
+<div class="ttc" id="amotor_8_d_j_i_8c_html_a1b6f009cefceb070da8f11ef9d7c2f24"><div class="ttname"><a href="motor_8_d_j_i_8c.html#a1b6f009cefceb070da8f11ef9d7c2f24">set_motor_parameter</a></div><div class="ttdeci">void set_motor_parameter(DJI_motor_t *msg, int16_t v1, int16_t v2, int16_t v3, int16_t v4)</div><div class="ttdoc">发送电机控制参数（电压或电流）</div><div class="ttdef"><b>定义</b> motor.DJI.c:15</div></div>
+<div class="ttc" id="amotor_8_d_j_i_8c_html_aa58303faf6213e5527880d02243c85c3"><div class="ttname"><a href="motor_8_d_j_i_8c.html#aa58303faf6213e5527880d02243c85c3">Motor_DJI_Init</a></div><div class="ttdeci">void Motor_DJI_Init(DJI_motor_t *motor)</div><div class="ttdoc">大疆电机初始化</div><div class="ttdef"><b>定义</b> motor.DJI.c:35</div></div>
+<div class="ttc" id="amotor_8_d_j_i_8c_html_abfe775d5de240e993f95bbce4c795b23"><div class="ttname"><a href="motor_8_d_j_i_8c.html#abfe775d5de240e993f95bbce4c795b23">Motor_DJI_Refresh</a></div><div class="ttdeci">void Motor_DJI_Refresh(DJI_motor_t *motor)</div><div class="ttdoc">大疆电机参数刷新</div><div class="ttdef"><b>定义</b> motor.DJI.c:53</div></div>
+<div class="ttc" id="astruct_d_j_i__motor__t_html"><div class="ttname"><a href="struct_d_j_i__motor__t.html">DJI_motor_t</a></div><div class="ttdef"><b>定义</b> motor_DJI.h:9</div></div>
+<div class="ttc" id="astruct_d_j_i__motor__t_html_a14f42c85faa99e48d6974c25f369f8eb"><div class="ttname"><a href="struct_d_j_i__motor__t.html#a14f42c85faa99e48d6974c25f369f8eb">DJI_motor_t::can_cfg</a></div><div class="ttdeci">can_msg_t can_cfg</div><div class="ttdef"><b>定义</b> motor_DJI.h:11</div></div>
+<div class="ttc" id="astruct_d_j_i__motor__t_html_ad5045a9c055a09a1c9523bab16571aa7"><div class="ttname"><a href="struct_d_j_i__motor__t.html#ad5045a9c055a09a1c9523bab16571aa7">DJI_motor_t::motor_msg</a></div><div class="ttdeci">can_motor_t motor_msg[4]</div><div class="ttdef"><b>定义</b> motor_DJI.h:10</div></div>
+<div class="ttc" id="astructcan__motor__t_html_af7783107481632d59624f7bb8e6274ed"><div class="ttname"><a href="structcan__motor__t.html#af7783107481632d59624f7bb8e6274ed">can_motor_t::can_msg</a></div><div class="ttdeci">can_msg_t can_msg</div><div class="ttdef"><b>定义</b> motor_basic.h:14</div></div>
+<div class="ttc" id="astructcan__msg__t_html_a2fa54f9024782843172506fadbee2ac8"><div class="ttname"><a href="structcan__msg__t.html#a2fa54f9024782843172506fadbee2ac8">can_msg_t::port</a></div><div class="ttdeci">uint8_t port</div><div class="ttdef"><b>定义</b> can_struct.h:20</div></div>
+<div class="ttc" id="astructcan__msg__t_html_abaabdc509cdaba7df9f56c6c76f3ae19"><div class="ttname"><a href="structcan__msg__t.html#abaabdc509cdaba7df9f56c6c76f3ae19">can_msg_t::id</a></div><div class="ttdeci">uint32_t id</div><div class="ttdef"><b>定义</b> can_struct.h:21</div></div>
+</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

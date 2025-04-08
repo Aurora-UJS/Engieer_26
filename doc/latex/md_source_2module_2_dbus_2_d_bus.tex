@@ -1,0 +1,29 @@
+\chapter{大疆遥控器模块使用说明}
+\hypertarget{md_source_2module_2_dbus_2_d_bus}{}\label{md_source_2module_2_dbus_2_d_bus}\index{大疆遥控器模块使用说明@{大疆遥控器模块使用说明}}
+\label{md_source_2module_2_dbus_2_d_bus_autotoc_md46}%
+\Hypertarget{md_source_2module_2_dbus_2_d_bus_autotoc_md46}%
+\hypertarget{md_source_2module_2_dbus_2_d_bus_autotoc_md47}{}\doxysection{\texorpdfstring{1. 示例代码}{1. 示例代码}}\label{md_source_2module_2_dbus_2_d_bus_autotoc_md47}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_d_bus_sys_8c_a4eca38fb6dbe1f9f2ce1d809be84852a}{DBus\_Init}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 开始无限循环，持续接收数据}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{while}\ (1)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{_d_bus_sys_8c_a0b0aa26b8c49f5b7903ca3775c135b1f}{DBus\_Refresh}}();}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md_source_2module_2_dbus_2_d_bus_autotoc_md48}{}\doxysection{\texorpdfstring{2.调用}{2.调用}}\label{md_source_2module_2_dbus_2_d_bus_autotoc_md48}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#\#include\ "{}Dbus.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_d_bus_sys_8c_a90f47c018e09385654ce6352c61fc8c9}{remoter}}.ch1;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_d_bus_sys_8c_a90f47c018e09385654ce6352c61fc8c9}{remoter}}.mouse.x;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{_d_bus_sys_8c_a90f47c018e09385654ce6352c61fc8c9}{remoter}}.kb.bit.w;}
+
+\end{DoxyCode}
+ 

@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/crc/crc_api.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_ef9a55411767b6df4ff2cba192914618.html">crc</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">crc_api.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;main.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+crc_api.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="crc__api_8h__incl.png" border="0" usemap="#asource_2bsp_2crc_2crc__api_8h" alt=""/></div>
+<map name="asource_2bsp_2crc_2crc__api_8h" id="asource_2bsp_2crc_2crc__api_8h">
+<area shape="rect" title=" " alt="" coords="5,5,135,48"/>
+<area shape="rect" title=" " alt="" coords="40,96,100,123"/>
+<area shape="poly" title=" " alt="" coords="73,49,73,80,67,80,67,49"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="crc__api_8h__dep__incl.png" border="0" usemap="#asource_2bsp_2crc_2crc__api_8hdep" alt=""/></div>
+<map name="asource_2bsp_2crc_2crc__api_8hdep" id="asource_2bsp_2crc_2crc__api_8hdep">
+<area shape="rect" title=" " alt="" coords="369,5,499,48"/>
+<area shape="rect" href="crc__api_8c.html" title=" " alt="" coords="5,96,135,139"/>
+<area shape="poly" title=" " alt="" coords="354,49,147,99,136,101,134,96,145,93,353,44"/>
+<area shape="rect" href="radar_tool_8c.html" title=" " alt="" coords="158,96,323,139"/>
+<area shape="poly" title=" " alt="" coords="376,57,287,98,285,93,374,53"/>
+<area shape="rect" href="send__robot__state_8c.html" title=" " alt="" coords="347,96,521,139"/>
+<area shape="poly" title=" " alt="" coords="437,64,437,96,431,96,431,64"/>
+<area shape="rect" href="vision__receive_8c.html" title=" " alt="" coords="545,96,710,139"/>
+<area shape="poly" title=" " alt="" coords="494,53,583,93,581,98,492,57"/>
+<area shape="rect" href="referee__api_8h.html" title=" " alt="" coords="734,96,907,139"/>
+<area shape="poly" title=" " alt="" coords="515,44,734,94,733,99,513,49"/>
+<area shape="rect" href="referee__api_8c.html" title=" " alt="" coords="734,187,907,229"/>
+<area shape="poly" title=" " alt="" coords="823,154,823,186,818,186,818,154"/>
+</map>
+</div>
+</div>
+<p><a href="crc__api_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a420d92853d7d7f9712915310047a0476" id="r_a420d92853d7d7f9712915310047a0476"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a420d92853d7d7f9712915310047a0476">CRC_Check_False</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a420d92853d7d7f9712915310047a0476"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf7ae23437ab6dd9c41f43ccbbfc19c6" id="r_acf7ae23437ab6dd9c41f43ccbbfc19c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf7ae23437ab6dd9c41f43ccbbfc19c6">CRC_Check_True</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:acf7ae23437ab6dd9c41f43ccbbfc19c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ad08438585d98c13e70fc0fa50d811607" id="r_ad08438585d98c13e70fc0fa50d811607"><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad08438585d98c13e70fc0fa50d811607">Get_CRC8_Check_Sum</a> (unsigned char *pchMessage, unsigned int dwLength, unsigned char ucCRC8)</td></tr>
+<tr class="separator:ad08438585d98c13e70fc0fa50d811607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59cbf0c4fa053609ab2a37129f644751" id="r_a59cbf0c4fa053609ab2a37129f644751"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59cbf0c4fa053609ab2a37129f644751">Verify_CRC8_Check_Sum</a> (unsigned char *pchMessage, unsigned int dwLength)</td></tr>
+<tr class="separator:a59cbf0c4fa053609ab2a37129f644751"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6597501f13b4c73b399ef72ad9db8b24" id="r_a6597501f13b4c73b399ef72ad9db8b24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6597501f13b4c73b399ef72ad9db8b24">Append_CRC8_Check_Sum</a> (unsigned char *pchMessage, unsigned int dwLength)</td></tr>
+<tr class="separator:a6597501f13b4c73b399ef72ad9db8b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a928a76d69162e1145e02cd538250fe91" id="r_a928a76d69162e1145e02cd538250fe91"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a928a76d69162e1145e02cd538250fe91">Get_CRC16_Check_Sum</a> (uint8_t *pchMessage, uint32_t dwLength, uint16_t wCRC)</td></tr>
+<tr class="separator:a928a76d69162e1145e02cd538250fe91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad713b5a9da8d5c59d5e067ae6ecd25ac" id="r_ad713b5a9da8d5c59d5e067ae6ecd25ac"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad713b5a9da8d5c59d5e067ae6ecd25ac">Verify_CRC16_Check_Sum</a> (uint8_t *pchMessage, uint32_t dwLength)</td></tr>
+<tr class="separator:ad713b5a9da8d5c59d5e067ae6ecd25ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab64afc0e5dec0d04dee81fb98c274894" id="r_ab64afc0e5dec0d04dee81fb98c274894"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab64afc0e5dec0d04dee81fb98c274894">Append_CRC16_Check_Sum</a> (uint8_t *pchMessage, uint32_t dwLength)</td></tr>
+<tr class="separator:ab64afc0e5dec0d04dee81fb98c274894"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="a420d92853d7d7f9712915310047a0476" name="a420d92853d7d7f9712915310047a0476"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a420d92853d7d7f9712915310047a0476">&#9670;&#160;</a></span>CRC_Check_False</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CRC_Check_False&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acf7ae23437ab6dd9c41f43ccbbfc19c6" name="acf7ae23437ab6dd9c41f43ccbbfc19c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf7ae23437ab6dd9c41f43ccbbfc19c6">&#9670;&#160;</a></span>CRC_Check_True</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CRC_Check_True&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="ab64afc0e5dec0d04dee81fb98c274894" name="ab64afc0e5dec0d04dee81fb98c274894"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab64afc0e5dec0d04dee81fb98c274894">&#9670;&#160;</a></span>Append_CRC16_Check_Sum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Append_CRC16_Check_Sum </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>pchMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>dwLength</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6597501f13b4c73b399ef72ad9db8b24" name="a6597501f13b4c73b399ef72ad9db8b24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6597501f13b4c73b399ef72ad9db8b24">&#9670;&#160;</a></span>Append_CRC8_Check_Sum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Append_CRC8_Check_Sum </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char *</td>          <td class="paramname"><span class="paramname"><em>pchMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>dwLength</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a928a76d69162e1145e02cd538250fe91" name="a928a76d69162e1145e02cd538250fe91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a928a76d69162e1145e02cd538250fe91">&#9670;&#160;</a></span>Get_CRC16_Check_Sum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t Get_CRC16_Check_Sum </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>pchMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>dwLength</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>wCRC</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad08438585d98c13e70fc0fa50d811607" name="ad08438585d98c13e70fc0fa50d811607"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad08438585d98c13e70fc0fa50d811607">&#9670;&#160;</a></span>Get_CRC8_Check_Sum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned char Get_CRC8_Check_Sum </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char *</td>          <td class="paramname"><span class="paramname"><em>pchMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>dwLength</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned char</td>          <td class="paramname"><span class="paramname"><em>ucCRC8</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad713b5a9da8d5c59d5e067ae6ecd25ac" name="ad713b5a9da8d5c59d5e067ae6ecd25ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad713b5a9da8d5c59d5e067ae6ecd25ac">&#9670;&#160;</a></span>Verify_CRC16_Check_Sum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t Verify_CRC16_Check_Sum </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>pchMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>dwLength</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a59cbf0c4fa053609ab2a37129f644751" name="a59cbf0c4fa053609ab2a37129f644751"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59cbf0c4fa053609ab2a37129f644751">&#9670;&#160;</a></span>Verify_CRC8_Check_Sum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Verify_CRC8_Check_Sum </td>
+          <td>(</td>
+          <td class="paramtype">unsigned char *</td>          <td class="paramname"><span class="paramname"><em>pchMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>dwLength</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

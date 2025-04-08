@@ -1,0 +1,40 @@
+\doxysection{DBus\+Sys.\+h}
+\hypertarget{_d_bus_sys_8h_source}{}\label{_d_bus_sys_8h_source}\index{source/module/Dbus/DBusSys.h@{source/module/Dbus/DBusSys.h}}
+\mbox{\hyperlink{_d_bus_sys_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DBUSSYS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DBUSSYS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{uart__api_8h}{uart\_api.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{key_board_8h}{keyboard.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ DBUS\_BUFF\_SIZE\ \ 18}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \textcolor{comment}{/*\ rocker\ channel\ information\ */}}
+\DoxyCodeLine{00015\ \ \ int16\_t\ \mbox{\hyperlink{structrc__info__t_a4c2d767716cf729386e6c5d66c3ea711}{ch1}};}
+\DoxyCodeLine{00016\ \ \ int16\_t\ \mbox{\hyperlink{structrc__info__t_a15f63fe68fed6af49138221213d1c6da}{ch2}};}
+\DoxyCodeLine{00017\ \ \ int16\_t\ \mbox{\hyperlink{structrc__info__t_ac8587de39dc644bbee30a4fd7db5dfad}{ch3}};}
+\DoxyCodeLine{00018\ \ \ int16\_t\ \mbox{\hyperlink{structrc__info__t_a6ed60ba4283c4b8c21e842d6a10bbebc}{ch4}};}
+\DoxyCodeLine{00019\ \ \ \textcolor{comment}{/*\ left\ and\ right\ lever\ information\ */}}
+\DoxyCodeLine{00020\ \ \ uint8\_t\ \mbox{\hyperlink{structrc__info__t_a35fccfa61d4d1192acb29fc8d3b297c1}{sw1}};}
+\DoxyCodeLine{00021\ \ \ uint8\_t\ \mbox{\hyperlink{structrc__info__t_ab5112836df7936eac234884eb4789b20}{sw2}};}
+\DoxyCodeLine{00022\ \ \ \textcolor{comment}{/*\ mouse\ movement\ and\ button\ information\ */}}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{structkeyboard__t}{keyboard\_t}}\ \mbox{\hyperlink{structrc__info__t_a07d722ae4dea0e0617a5ad99231abfdd}{keyboard}};}
+\DoxyCodeLine{00024\ \ \ int16\_t\ \mbox{\hyperlink{structrc__info__t_adcb7ca881ae1e3da23824d70611f7060}{wheel}};}
+\DoxyCodeLine{00025\ \}\mbox{\hyperlink{structrc__info__t}{rc\_info\_t}};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_d_bus_sys_8h_a8213ab13eadf18c6ed266fc5bf26685d}{get\_dr16\_data}}(\mbox{\hyperlink{structrc__info__t}{rc\_info\_t}}\ *rc,\ uint8\_t\ buff[]);}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_d_bus_sys_8h_a4eca38fb6dbe1f9f2ce1d809be84852a}{DBus\_Init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_d_bus_sys_8h_a0b0aa26b8c49f5b7903ca3775c135b1f}{DBus\_Refresh}}(\textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structrc__info__t}{rc\_info\_t}}\ \mbox{\hyperlink{_d_bus_sys_8c_a90f47c018e09385654ce6352c61fc8c9}{remoter}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !DBUSSYS\_H}}
+
+\end{DoxyCode}

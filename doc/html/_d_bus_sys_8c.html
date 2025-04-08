@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/Dbus/DBusSys.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_e5dddd478ca86593bed4cc3b1ca95723.html">Dbus</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">DBusSys.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="_d_bus_sys_8h_source.html">DBusSys.h</a>&quot;</code><br />
+<code>#include &quot;usart.h&quot;</code><br />
+<code>#include &quot;FreeRTOS.h&quot;</code><br />
+<code>#include &quot;String.h&quot;</code><br />
+<code>#include &quot;stdlib.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+DBusSys.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="_d_bus_sys_8c__incl.png" border="0" usemap="#asource_2module_2_dbus_2_d_bus_sys_8c" alt=""/></div>
+<map name="asource_2module_2_dbus_2_d_bus_sys_8c" id="asource_2module_2_dbus_2_d_bus_sys_8c">
+<area shape="rect" title=" " alt="" coords="188,5,330,48"/>
+<area shape="rect" href="_d_bus_sys_8h.html" title=" " alt="" coords="15,96,103,123"/>
+<area shape="poly" title=" " alt="" coords="208,51,105,92,103,87,206,46"/>
+<area shape="rect" title=" " alt="" coords="127,96,188,123"/>
+<area shape="poly" title=" " alt="" coords="234,51,187,88,184,84,231,47"/>
+<area shape="rect" title=" " alt="" coords="212,96,306,123"/>
+<area shape="poly" title=" " alt="" coords="262,49,262,80,256,80,256,49"/>
+<area shape="rect" title=" " alt="" coords="330,96,396,123"/>
+<area shape="poly" title=" " alt="" coords="287,46,336,84,333,88,284,51"/>
+<area shape="rect" title=" " alt="" coords="421,96,484,123"/>
+<area shape="poly" title=" " alt="" coords="310,46,409,87,407,92,308,51"/>
+<area shape="rect" title=" " alt="" coords="29,245,89,272"/>
+<area shape="poly" title=" " alt="" coords="45,125,31,139,17,157,9,176,11,197,21,216,35,232,31,236,16,219,6,198,4,176,13,154,27,136,42,121"/>
+<area shape="rect" href="uart__api_8h.html" title=" " alt="" coords="20,171,98,197"/>
+<area shape="poly" title=" " alt="" coords="62,123,62,155,56,155,56,123"/>
+<area shape="rect" href="key_board_8h.html" title=" " alt="" coords="122,171,207,197"/>
+<area shape="poly" title=" " alt="" coords="79,121,135,159,132,164,76,125"/>
+<area shape="poly" title=" " alt="" coords="62,198,62,230,56,230,56,198"/>
+<area shape="poly" title=" " alt="" coords="147,200,91,238,88,234,144,196"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a4eca38fb6dbe1f9f2ce1d809be84852a" id="r_a4eca38fb6dbe1f9f2ce1d809be84852a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4eca38fb6dbe1f9f2ce1d809be84852a">DBus_Init</a> (void)</td></tr>
+<tr class="memdesc:a4eca38fb6dbe1f9f2ce1d809be84852a"><td class="mdescLeft">&#160;</td><td class="mdescRight">DBusSys初始化函数  <br /></td></tr>
+<tr class="separator:a4eca38fb6dbe1f9f2ce1d809be84852a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b0aa26b8c49f5b7903ca3775c135b1f" id="r_a0b0aa26b8c49f5b7903ca3775c135b1f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b0aa26b8c49f5b7903ca3775c135b1f">DBus_Refresh</a> (void)</td></tr>
+<tr class="memdesc:a0b0aa26b8c49f5b7903ca3775c135b1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">DBusSys刷新函数  <br /></td></tr>
+<tr class="separator:a0b0aa26b8c49f5b7903ca3775c135b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8213ab13eadf18c6ed266fc5bf26685d" id="r_a8213ab13eadf18c6ed266fc5bf26685d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8213ab13eadf18c6ed266fc5bf26685d">get_dr16_data</a> (<a class="el" href="structrc__info__t.html">rc_info_t</a> *rc, uint8_t buff[])</td></tr>
+<tr class="memdesc:a8213ab13eadf18c6ed266fc5bf26685d"><td class="mdescLeft">&#160;</td><td class="mdescRight">解析DBus_msg的接收缓冲区数据，更新遥控器数据  <br /></td></tr>
+<tr class="separator:a8213ab13eadf18c6ed266fc5bf26685d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a90f47c018e09385654ce6352c61fc8c9" id="r_a90f47c018e09385654ce6352c61fc8c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrc__info__t.html">rc_info_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90f47c018e09385654ce6352c61fc8c9">remoter</a></td></tr>
+<tr class="separator:a90f47c018e09385654ce6352c61fc8c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add6c1ad907225882cde42f3a1f7da26e" id="r_add6c1ad907225882cde42f3a1f7da26e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuart__rx__t.html">uart_rx_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add6c1ad907225882cde42f3a1f7da26e">DBus_msg</a></td></tr>
+<tr class="separator:add6c1ad907225882cde42f3a1f7da26e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a725ff18d4914a1ab4cbfef0c761a2313" id="r_a725ff18d4914a1ab4cbfef0c761a2313"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structuart__msg__t.html">uart_msg_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a725ff18d4914a1ab4cbfef0c761a2313">Dbus_rx_msg</a></td></tr>
+<tr class="separator:a725ff18d4914a1ab4cbfef0c761a2313"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96f064c9db562e3339a46a40a04c00bc" id="r_a96f064c9db562e3339a46a40a04c00bc"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96f064c9db562e3339a46a40a04c00bc">Dbus_rx_buff</a> [<a class="el" href="_d_bus_sys_8h.html#a448216d0d398b83a0e18955f06242eff">DBUS_BUFF_SIZE</a>]</td></tr>
+<tr class="separator:a96f064c9db562e3339a46a40a04c00bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac24b03424cc52d886e9c93059cc87d20" id="r_ac24b03424cc52d886e9c93059cc87d20"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac24b03424cc52d886e9c93059cc87d20">Lsat_Conut</a></td></tr>
+<tr class="separator:ac24b03424cc52d886e9c93059cc87d20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a4eca38fb6dbe1f9f2ce1d809be84852a" name="a4eca38fb6dbe1f9f2ce1d809be84852a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eca38fb6dbe1f9f2ce1d809be84852a">&#9670;&#160;</a></span>DBus_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DBus_Init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DBusSys初始化函数 </p>
+
+</div>
+</div>
+<a id="a0b0aa26b8c49f5b7903ca3775c135b1f" name="a0b0aa26b8c49f5b7903ca3775c135b1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b0aa26b8c49f5b7903ca3775c135b1f">&#9670;&#160;</a></span>DBus_Refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DBus_Refresh </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DBusSys刷新函数 </p>
+
+</div>
+</div>
+<a id="a8213ab13eadf18c6ed266fc5bf26685d" name="a8213ab13eadf18c6ed266fc5bf26685d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8213ab13eadf18c6ed266fc5bf26685d">&#9670;&#160;</a></span>get_dr16_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void get_dr16_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrc__info__t.html">rc_info_t</a> *</td>          <td class="paramname"><span class="paramname"><em>rc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>buff</em></span>[]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>解析DBus_msg的接收缓冲区数据，更新遥控器数据 </p>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="add6c1ad907225882cde42f3a1f7da26e" name="add6c1ad907225882cde42f3a1f7da26e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add6c1ad907225882cde42f3a1f7da26e">&#9670;&#160;</a></span>DBus_msg</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structuart__rx__t.html">uart_rx_t</a> DBus_msg</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a96f064c9db562e3339a46a40a04c00bc" name="a96f064c9db562e3339a46a40a04c00bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96f064c9db562e3339a46a40a04c00bc">&#9670;&#160;</a></span>Dbus_rx_buff</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Dbus_rx_buff[<a class="el" href="_d_bus_sys_8h.html#a448216d0d398b83a0e18955f06242eff">DBUS_BUFF_SIZE</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a725ff18d4914a1ab4cbfef0c761a2313" name="a725ff18d4914a1ab4cbfef0c761a2313"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a725ff18d4914a1ab4cbfef0c761a2313">&#9670;&#160;</a></span>Dbus_rx_msg</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structuart__msg__t.html">uart_msg_t</a> Dbus_rx_msg</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac24b03424cc52d886e9c93059cc87d20" name="ac24b03424cc52d886e9c93059cc87d20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac24b03424cc52d886e9c93059cc87d20">&#9670;&#160;</a></span>Lsat_Conut</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t Lsat_Conut</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a90f47c018e09385654ce6352c61fc8c9" name="a90f47c018e09385654ce6352c61fc8c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90f47c018e09385654ce6352c61fc8c9">&#9670;&#160;</a></span>remoter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structrc__info__t.html">rc_info_t</a> remoter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

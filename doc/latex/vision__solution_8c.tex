@@ -1,0 +1,72 @@
+\doxysection{source/module/computer/vision/vision\+\_\+solution.c 文件参考}
+\hypertarget{vision__solution_8c}{}\label{vision__solution_8c}\index{source/module/computer/vision/vision\_solution.c@{source/module/computer/vision/vision\_solution.c}}
+{\ttfamily \#include "{}vision\+\_\+solution.\+h"{}}\newline
+{\ttfamily \#include "{}uart\+\_\+api.\+h"{}}\newline
+{\ttfamily \#include "{}vision\+\_\+receive.\+h"{}}\newline
+{\ttfamily \#include "{}config.\+h"{}}\newline
+{\ttfamily \#include "{}arm\+\_\+math.\+h"{}}\newline
+vision\+\_\+solution.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vision__solution_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{vision__solution_8c_a728368a3f501c6e5e3b6631d894a670a}{aim\+\_\+x\+\_\+n}} = 0
+\item 
+float \mbox{\hyperlink{vision__solution_8c_af69c8b370a6e8bdb6209d0f50664e3c3}{aim\+\_\+y\+\_\+n}} = 0
+\item 
+float \mbox{\hyperlink{vision__solution_8c_afe721c914141cd48b15fb0b453f4c4ff}{aim\+\_\+z\+\_\+n}} = 0
+\item 
+\mbox{\hyperlink{struct_solve_trajectory_params__t}{Solve\+Trajectory\+Params\+\_\+t}} \mbox{\hyperlink{vision__solution_8c_a24efe78294a82ce91ac13a662cfd60be}{Solve\+Trajectory\+Params}}
+\item 
+float \mbox{\hyperlink{vision__solution_8c_a5fe4167b1856c9e10d1ace466456f233}{last\+\_\+flight\+\_\+time}} = 0.\+3f
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{变量说明}
+\Hypertarget{vision__solution_8c_a728368a3f501c6e5e3b6631d894a670a}\index{vision\_solution.c@{vision\_solution.c}!aim\_x\_n@{aim\_x\_n}}
+\index{aim\_x\_n@{aim\_x\_n}!vision\_solution.c@{vision\_solution.c}}
+\doxysubsubsection{\texorpdfstring{aim\_x\_n}{aim\_x\_n}}
+{\footnotesize\ttfamily \label{vision__solution_8c_a728368a3f501c6e5e3b6631d894a670a} 
+float aim\+\_\+x\+\_\+n = 0}
+
+\Hypertarget{vision__solution_8c_af69c8b370a6e8bdb6209d0f50664e3c3}\index{vision\_solution.c@{vision\_solution.c}!aim\_y\_n@{aim\_y\_n}}
+\index{aim\_y\_n@{aim\_y\_n}!vision\_solution.c@{vision\_solution.c}}
+\doxysubsubsection{\texorpdfstring{aim\_y\_n}{aim\_y\_n}}
+{\footnotesize\ttfamily \label{vision__solution_8c_af69c8b370a6e8bdb6209d0f50664e3c3} 
+float aim\+\_\+y\+\_\+n = 0}
+
+\Hypertarget{vision__solution_8c_afe721c914141cd48b15fb0b453f4c4ff}\index{vision\_solution.c@{vision\_solution.c}!aim\_z\_n@{aim\_z\_n}}
+\index{aim\_z\_n@{aim\_z\_n}!vision\_solution.c@{vision\_solution.c}}
+\doxysubsubsection{\texorpdfstring{aim\_z\_n}{aim\_z\_n}}
+{\footnotesize\ttfamily \label{vision__solution_8c_afe721c914141cd48b15fb0b453f4c4ff} 
+float aim\+\_\+z\+\_\+n = 0}
+
+\Hypertarget{vision__solution_8c_a5fe4167b1856c9e10d1ace466456f233}\index{vision\_solution.c@{vision\_solution.c}!last\_flight\_time@{last\_flight\_time}}
+\index{last\_flight\_time@{last\_flight\_time}!vision\_solution.c@{vision\_solution.c}}
+\doxysubsubsection{\texorpdfstring{last\_flight\_time}{last\_flight\_time}}
+{\footnotesize\ttfamily \label{vision__solution_8c_a5fe4167b1856c9e10d1ace466456f233} 
+float last\+\_\+flight\+\_\+time = 0.\+3f}
+
+\Hypertarget{vision__solution_8c_a24efe78294a82ce91ac13a662cfd60be}\index{vision\_solution.c@{vision\_solution.c}!SolveTrajectoryParams@{SolveTrajectoryParams}}
+\index{SolveTrajectoryParams@{SolveTrajectoryParams}!vision\_solution.c@{vision\_solution.c}}
+\doxysubsubsection{\texorpdfstring{SolveTrajectoryParams}{SolveTrajectoryParams}}
+{\footnotesize\ttfamily \label{vision__solution_8c_a24efe78294a82ce91ac13a662cfd60be} 
+\mbox{\hyperlink{struct_solve_trajectory_params__t}{Solve\+Trajectory\+Params\+\_\+t}} Solve\+Trajectory\+Params}
+
+{\bfseries 初始值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ .k\ =\ \mbox{\hyperlink{config_8h_a0755b2ca684caf7fdb2aa0c32eba2029}{BULLET\_K}},\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ .bullet\_type\ =\ \mbox{\hyperlink{config_8h_a3b6216634d6dcf575aa06d745c9bac7b}{BULLET\_TYPE}},\ }
+\DoxyCodeLine{\ \ \ \ .current\_v\ =\ \mbox{\hyperlink{config_8h_a70b3e643b533b8f785b7912e69434161}{BULLET\_SPEED}},\ \ }
+\DoxyCodeLine{\ \ \ \ .bias\_time\ =\ \mbox{\hyperlink{config_8h_a8b63549b871f0639d48991d3fa75cdbc}{BIAS\_TIME}},\ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ .s\_bias\ =\ \mbox{\hyperlink{config_8h_a100da9ebe26e07e8f7b246c6e1b1bbc8}{S\_BIAS}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ .z\_bias\ =\ \mbox{\hyperlink{config_8h_a37e83354570b977b5978635ea7b5058f}{Z\_BIAS}},\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

@@ -1,0 +1,449 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/imu/BMI088/BMI088Middleware.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_fda1e2a789251a234642f8099e409c7b.html">imu</a></li><li class="navelem"><a class="el" href="dir_fbf0e0d886075f876aba2d5f4960db13.html">BMI088</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">BMI088Middleware.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="_b_m_i088_middleware_8h_source.html">BMI088Middleware.h</a>&quot;</code><br />
+<code>#include &quot;main.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+BMI088Middleware.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="_b_m_i088_middleware_8c__incl.png" border="0" usemap="#asource_2bsp_2imu_2_b_m_i088_2_b_m_i088_middleware_8c" alt=""/></div>
+<map name="asource_2bsp_2imu_2_b_m_i088_2_b_m_i088_middleware_8c" id="asource_2bsp_2imu_2_b_m_i088_2_b_m_i088_middleware_8c">
+<area shape="rect" title=" " alt="" coords="60,5,219,48"/>
+<area shape="rect" href="_b_m_i088_middleware_8h.html" title=" " alt="" coords="5,96,149,123"/>
+<area shape="poly" title=" " alt="" coords="126,50,98,85,94,82,121,47"/>
+<area shape="rect" title=" " alt="" coords="172,96,232,123"/>
+<area shape="poly" title=" " alt="" coords="158,47,185,82,181,85,154,50"/>
+<area shape="rect" title=" " alt="" coords="45,171,109,197"/>
+<area shape="poly" title=" " alt="" coords="80,123,80,155,74,155,74,123"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:aae104c9966a06c2c4098104e3478dcdf" id="r_aae104c9966a06c2c4098104e3478dcdf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aae104c9966a06c2c4098104e3478dcdf">BMI088_USING_SPI_UNIT</a>&#160;&#160;&#160;hspi2</td></tr>
+<tr class="separator:aae104c9966a06c2c4098104e3478dcdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a636f04ec1e5c391ec8785451446398c6" id="r_a636f04ec1e5c391ec8785451446398c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a636f04ec1e5c391ec8785451446398c6">BMI088_GPIO_init</a> (void)</td></tr>
+<tr class="memdesc:a636f04ec1e5c391ec8785451446398c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#a636f04ec1e5c391ec8785451446398c6" title=": BMI088_GPIO_init(void)">BMI088_GPIO_init(void)</a>  <br /></td></tr>
+<tr class="separator:a636f04ec1e5c391ec8785451446398c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1478d5375f236499b2922025aa1e262b" id="r_a1478d5375f236499b2922025aa1e262b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1478d5375f236499b2922025aa1e262b">BMI088_com_init</a> (void)</td></tr>
+<tr class="memdesc:a1478d5375f236499b2922025aa1e262b"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#a1478d5375f236499b2922025aa1e262b" title=": BMI088_com_init(void)">BMI088_com_init(void)</a>  <br /></td></tr>
+<tr class="separator:a1478d5375f236499b2922025aa1e262b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82933f82dafd6b23f5ee4fe6c8162857" id="r_a82933f82dafd6b23f5ee4fe6c8162857"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82933f82dafd6b23f5ee4fe6c8162857">BMI088_delay_ms</a> (uint16_t ms)</td></tr>
+<tr class="memdesc:a82933f82dafd6b23f5ee4fe6c8162857"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#a82933f82dafd6b23f5ee4fe6c8162857" title=": BMI088_delay_ms(uint16_t ms)">BMI088_delay_ms(uint16_t ms)</a>  <br /></td></tr>
+<tr class="separator:a82933f82dafd6b23f5ee4fe6c8162857"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5ffcbbf1b04d867ac7b2e897eecb515" id="r_ae5ffcbbf1b04d867ac7b2e897eecb515"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5ffcbbf1b04d867ac7b2e897eecb515">BMI088_delay_us</a> (uint16_t us)</td></tr>
+<tr class="memdesc:ae5ffcbbf1b04d867ac7b2e897eecb515"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#ae5ffcbbf1b04d867ac7b2e897eecb515" title=": BMI088_delay_us(uint16_t us)">BMI088_delay_us(uint16_t us)</a>  <br /></td></tr>
+<tr class="separator:ae5ffcbbf1b04d867ac7b2e897eecb515"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6798f0700771b94be54c7bc875ebec0" id="r_ad6798f0700771b94be54c7bc875ebec0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6798f0700771b94be54c7bc875ebec0">BMI088_ACCEL_NS_L</a> (void)</td></tr>
+<tr class="memdesc:ad6798f0700771b94be54c7bc875ebec0"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#ad6798f0700771b94be54c7bc875ebec0" title=": BMI088_ACCEL_NS_L(void)">BMI088_ACCEL_NS_L(void)</a>  <br /></td></tr>
+<tr class="separator:ad6798f0700771b94be54c7bc875ebec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d6b6610eb8fefbcaa59db81b89ffbb3" id="r_a3d6b6610eb8fefbcaa59db81b89ffbb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d6b6610eb8fefbcaa59db81b89ffbb3">BMI088_ACCEL_NS_H</a> (void)</td></tr>
+<tr class="memdesc:a3d6b6610eb8fefbcaa59db81b89ffbb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#a3d6b6610eb8fefbcaa59db81b89ffbb3" title=": BMI088_ACCEL_NS_H(void)">BMI088_ACCEL_NS_H(void)</a>  <br /></td></tr>
+<tr class="separator:a3d6b6610eb8fefbcaa59db81b89ffbb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31f87b462165c98db7f957116e71512d" id="r_a31f87b462165c98db7f957116e71512d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31f87b462165c98db7f957116e71512d">BMI088_GYRO_NS_L</a> (void)</td></tr>
+<tr class="memdesc:a31f87b462165c98db7f957116e71512d"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#a31f87b462165c98db7f957116e71512d" title=": BMI088_GYRO_NS_L(void)">BMI088_GYRO_NS_L(void)</a>  <br /></td></tr>
+<tr class="separator:a31f87b462165c98db7f957116e71512d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10ec41d7a428e9557fb82cdf289c634a" id="r_a10ec41d7a428e9557fb82cdf289c634a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10ec41d7a428e9557fb82cdf289c634a">BMI088_GYRO_NS_H</a> (void)</td></tr>
+<tr class="memdesc:a10ec41d7a428e9557fb82cdf289c634a"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#a10ec41d7a428e9557fb82cdf289c634a" title=": BMI088_GYRO_NS_H(void)">BMI088_GYRO_NS_H(void)</a>  <br /></td></tr>
+<tr class="separator:a10ec41d7a428e9557fb82cdf289c634a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8b9879ca15710391c12caacbfa6e808" id="r_af8b9879ca15710391c12caacbfa6e808"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8b9879ca15710391c12caacbfa6e808">BMI088_read_write_byte</a> (uint8_t txdata)</td></tr>
+<tr class="memdesc:af8b9879ca15710391c12caacbfa6e808"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#af8b9879ca15710391c12caacbfa6e808" title=": BMI088_read_write_byte(uint8_t txdata)">BMI088_read_write_byte(uint8_t txdata)</a>  <br /></td></tr>
+<tr class="separator:af8b9879ca15710391c12caacbfa6e808"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:abb61fe5fca77bf895eb8f0a2e37cb399" id="r_abb61fe5fca77bf895eb8f0a2e37cb399"><td class="memItemLeft" align="right" valign="top">SPI_HandleTypeDef&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb61fe5fca77bf895eb8f0a2e37cb399">BMI088_USING_SPI_UNIT</a></td></tr>
+<tr class="separator:abb61fe5fca77bf895eb8f0a2e37cb399"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="aae104c9966a06c2c4098104e3478dcdf" name="aae104c9966a06c2c4098104e3478dcdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae104c9966a06c2c4098104e3478dcdf">&#9670;&#160;</a></span>BMI088_USING_SPI_UNIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_USING_SPI_UNIT&#160;&#160;&#160;hspi2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a3d6b6610eb8fefbcaa59db81b89ffbb3" name="a3d6b6610eb8fefbcaa59db81b89ffbb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d6b6610eb8fefbcaa59db81b89ffbb3">&#9670;&#160;</a></span>BMI088_ACCEL_NS_H()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BMI088_ACCEL_NS_H </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#a3d6b6610eb8fefbcaa59db81b89ffbb3" title=": BMI088_ACCEL_NS_H(void)">BMI088_ACCEL_NS_H(void)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>void </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 将BMI088加速度计片选信号置高，使其处于非选中状态 </p>
+
+</div>
+</div>
+<a id="ad6798f0700771b94be54c7bc875ebec0" name="ad6798f0700771b94be54c7bc875ebec0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6798f0700771b94be54c7bc875ebec0">&#9670;&#160;</a></span>BMI088_ACCEL_NS_L()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BMI088_ACCEL_NS_L </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#ad6798f0700771b94be54c7bc875ebec0" title=": BMI088_ACCEL_NS_L(void)">BMI088_ACCEL_NS_L(void)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>void </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 将BMI088加速度计片选信号置低，使其处于选中状态 </p>
+
+</div>
+</div>
+<a id="a1478d5375f236499b2922025aa1e262b" name="a1478d5375f236499b2922025aa1e262b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1478d5375f236499b2922025aa1e262b">&#9670;&#160;</a></span>BMI088_com_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BMI088_com_init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#a1478d5375f236499b2922025aa1e262b" title=": BMI088_com_init(void)">BMI088_com_init(void)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>void </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: BMI088传感器通信初始化函数 </p>
+
+</div>
+</div>
+<a id="a82933f82dafd6b23f5ee4fe6c8162857" name="a82933f82dafd6b23f5ee4fe6c8162857"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82933f82dafd6b23f5ee4fe6c8162857">&#9670;&#160;</a></span>BMI088_delay_ms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BMI088_delay_ms </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>ms</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#a82933f82dafd6b23f5ee4fe6c8162857" title=": BMI088_delay_ms(uint16_t ms)">BMI088_delay_ms(uint16_t ms)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>ms - 要延迟的毫秒数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 延迟指定毫秒数的函数，基于微秒延迟实现 </p>
+
+</div>
+</div>
+<a id="ae5ffcbbf1b04d867ac7b2e897eecb515" name="ae5ffcbbf1b04d867ac7b2e897eecb515"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5ffcbbf1b04d867ac7b2e897eecb515">&#9670;&#160;</a></span>BMI088_delay_us()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BMI088_delay_us </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>us</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#ae5ffcbbf1b04d867ac7b2e897eecb515" title=": BMI088_delay_us(uint16_t us)">BMI088_delay_us(uint16_t us)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>us - 要延迟的微秒数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 微秒级延迟函数，使用SysTick定时器实现 </p>
+
+</div>
+</div>
+<a id="a636f04ec1e5c391ec8785451446398c6" name="a636f04ec1e5c391ec8785451446398c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a636f04ec1e5c391ec8785451446398c6">&#9670;&#160;</a></span>BMI088_GPIO_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BMI088_GPIO_init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#a636f04ec1e5c391ec8785451446398c6" title=": BMI088_GPIO_init(void)">BMI088_GPIO_init(void)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>void </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: BMI088传感器GPIO初始化函数 </p>
+
+</div>
+</div>
+<a id="a10ec41d7a428e9557fb82cdf289c634a" name="a10ec41d7a428e9557fb82cdf289c634a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10ec41d7a428e9557fb82cdf289c634a">&#9670;&#160;</a></span>BMI088_GYRO_NS_H()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BMI088_GYRO_NS_H </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#a10ec41d7a428e9557fb82cdf289c634a" title=": BMI088_GYRO_NS_H(void)">BMI088_GYRO_NS_H(void)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>void </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 将BMI088陀螺仪片选信号置高，使其处于非选中状态 </p>
+
+</div>
+</div>
+<a id="a31f87b462165c98db7f957116e71512d" name="a31f87b462165c98db7f957116e71512d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31f87b462165c98db7f957116e71512d">&#9670;&#160;</a></span>BMI088_GYRO_NS_L()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BMI088_GYRO_NS_L </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#a31f87b462165c98db7f957116e71512d" title=": BMI088_GYRO_NS_L(void)">BMI088_GYRO_NS_L(void)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>void </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 将BMI088陀螺仪片选信号置低，使其处于选中状态 </p>
+
+</div>
+</div>
+<a id="af8b9879ca15710391c12caacbfa6e808" name="af8b9879ca15710391c12caacbfa6e808"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8b9879ca15710391c12caacbfa6e808">&#9670;&#160;</a></span>BMI088_read_write_byte()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t BMI088_read_write_byte </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>txdata</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#af8b9879ca15710391c12caacbfa6e808" title=": BMI088_read_write_byte(uint8_t txdata)">BMI088_read_write_byte(uint8_t txdata)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>txdata - 要发送的数据 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>uint8_t - 接收到的数据</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 通过BMI088使用的SPI总线进行单字节的读写操作 </p>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="abb61fe5fca77bf895eb8f0a2e37cb399" name="abb61fe5fca77bf895eb8f0a2e37cb399"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb61fe5fca77bf895eb8f0a2e37cb399">&#9670;&#160;</a></span>BMI088_USING_SPI_UNIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SPI_HandleTypeDef BMI088_USING_SPI_UNIT</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

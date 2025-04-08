@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/computer/vision/vision_receive.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_975f036152d1b8ba6403704f48098465.html">computer</a></li><li class="navelem"><a class="el" href="dir_9539319793484e263c9ac670f3dffa0a.html">vision</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">vision_receive.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="vision__receive_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef VISION_RECEIVE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define VISION_RECEIVE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="computer__pack_8h.html">computer_pack.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_received_packet_vision__t.html">ReceivedPacketVision_t</a> <a class="code hl_variable" href="vision__receive_8c.html#a67301d1ae0220d759837c8109c97fcb1">ReceivedPacketVision</a>; <span class="comment">// 保存接收到的视觉数据</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="vision__receive_8h.html#ad502f18d2b58a73e7cfa9910022718e5">   16</a></span><span class="preprocessor">#define get_vision_id() (ReceivedPacketVision.id)</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="vision__receive_8h.html#ab02de687bf2a48583b1871473f020323">   26</a></span><span class="preprocessor">#define is_tracking() (ReceivedPacketVision.tracking)</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keywordtype">void</span> <a class="code hl_function" href="vision__receive_8h.html#a277c81e2321db61ca47e3e7d570b4016">vision_receive_solve</a>(uint8_t *rx_buf);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#endif </span><span class="comment">// !VISION_RECEIVE_H</span></div>
+<div class="ttc" id="acomputer__pack_8h_html"><div class="ttname"><a href="computer__pack_8h.html">computer_pack.h</a></div></div>
+<div class="ttc" id="astruct_received_packet_vision__t_html"><div class="ttname"><a href="struct_received_packet_vision__t.html">ReceivedPacketVision_t</a></div><div class="ttdef"><b>定义</b> computer_pack.h:24</div></div>
+<div class="ttc" id="avision__receive_8c_html_a67301d1ae0220d759837c8109c97fcb1"><div class="ttname"><a href="vision__receive_8c.html#a67301d1ae0220d759837c8109c97fcb1">ReceivedPacketVision</a></div><div class="ttdeci">ReceivedPacketVision_t ReceivedPacketVision</div><div class="ttdef"><b>定义</b> vision_receive.c:7</div></div>
+<div class="ttc" id="avision__receive_8h_html_a277c81e2321db61ca47e3e7d570b4016"><div class="ttname"><a href="vision__receive_8h.html#a277c81e2321db61ca47e3e7d570b4016">vision_receive_solve</a></div><div class="ttdeci">void vision_receive_solve(uint8_t *rx_buf)</div><div class="ttdef"><b>定义</b> vision_receive.c:8</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

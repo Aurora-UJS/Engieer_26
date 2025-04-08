@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/can/can_struct.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_0fa7b5f3a2c703f9b05d3502dd47a261.html">can</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#enum-members">枚举</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">can_struct.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;main.h&quot;</code><br />
+<code>#include &quot;FreeRTOS.h&quot;</code><br />
+<code>#include &quot;list.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+can_struct.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="can__struct_8h__incl.png" border="0" usemap="#asource_2bsp_2can_2can__struct_8h" alt=""/></div>
+<map name="asource_2bsp_2can_2can__struct_8h" id="asource_2bsp_2can_2can__struct_8h">
+<area shape="rect" title=" " alt="" coords="69,5,204,48"/>
+<area shape="rect" title=" " alt="" coords="5,96,66,123"/>
+<area shape="poly" title=" " alt="" coords="112,51,65,88,62,84,109,47"/>
+<area shape="rect" title=" " alt="" coords="90,96,184,123"/>
+<area shape="poly" title=" " alt="" coords="140,49,140,80,134,80,134,49"/>
+<area shape="rect" title=" " alt="" coords="208,96,258,123"/>
+<area shape="poly" title=" " alt="" coords="163,47,208,84,204,88,160,51"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="can__struct_8h__dep__incl.png" border="0" usemap="#asource_2bsp_2can_2can__struct_8hdep" alt=""/></div>
+<map name="asource_2bsp_2can_2can__struct_8hdep" id="asource_2bsp_2can_2can__struct_8hdep">
+<area shape="rect" title=" " alt="" coords="234,5,369,48"/>
+<area shape="rect" href="can__api_8c.html" title=" " alt="" coords="30,187,165,229"/>
+<area shape="poly" title=" " alt="" coords="267,60,223,98,122,188,118,184,220,94,264,56"/>
+<area shape="rect" href="can__api_8h.html" title=" " alt="" coords="234,96,369,139"/>
+<area shape="poly" title=" " alt="" coords="304,64,304,96,299,96,299,64"/>
+<area shape="rect" href="motor___d_j_i_8h.html" title=" " alt="" coords="240,368,397,411"/>
+<area shape="poly" title=" " alt="" coords="220,51,138,79,97,97,61,118,32,142,14,168,9,197,12,212,20,228,40,256,64,280,121,320,182,349,240,368,239,373,180,354,118,324,61,284,36,259,15,231,7,213,4,197,9,166,28,138,58,114,95,92,136,74,218,46"/>
+<area shape="rect" href="can__bsp_8c.html" title=" " alt="" coords="386,187,521,229"/>
+<area shape="poly" title=" " alt="" coords="343,56,383,94,419,142,445,185,440,188,414,145,379,98,340,60"/>
+<area shape="rect" href="super__str_8h.html" title=" " alt="" coords="505,96,671,139"/>
+<area shape="poly" title=" " alt="" coords="384,50,522,93,520,98,382,56"/>
+<area shape="poly" title=" " alt="" coords="241,148,146,188,144,184,239,143"/>
+<area shape="rect" href="bsp_8h.html" title=" " alt="" coords="241,195,362,221"/>
+<area shape="poly" title=" " alt="" coords="304,154,304,194,299,194,299,154"/>
+<area shape="rect" href="motor_8_d_j_i_8c.html" title=" " alt="" coords="126,459,280,501"/>
+<area shape="poly" title=" " alt="" coords="261,151,245,168,232,188,218,224,208,262,198,339,198,408,203,458,197,458,193,408,193,339,202,261,212,222,227,185,241,165,257,147"/>
+<area shape="poly" title=" " alt="" coords="352,145,419,184,417,188,349,149"/>
+<area shape="rect" href="super__str_8c.html" title="超级电容模块相关功能实现。" alt="" coords="545,187,711,229"/>
+<area shape="poly" title=" " alt="" coords="385,138,552,183,551,189,384,144"/>
+<area shape="rect" href="motor__basic_8h.html" title=" " alt="" coords="247,277,390,320"/>
+<area shape="poly" title=" " alt="" coords="309,236,317,276,312,277,304,237"/>
+<area shape="rect" href="motor___d_m_8h.html" title=" " alt="" coords="422,368,584,411"/>
+<area shape="poly" title=" " alt="" coords="377,325,461,365,459,370,374,330"/>
+<area shape="poly" title=" " alt="" coords="321,336,321,368,316,368,316,336"/>
+<area shape="rect" href="motor___d_m_8c.html" title=" " alt="" coords="483,459,645,501"/>
+<area shape="poly" title=" " alt="" coords="528,422,552,457,548,460,524,425"/>
+<area shape="rect" href="_remoter_8c.html" title=" " alt="" coords="304,467,459,493"/>
+<area shape="poly" title=" " alt="" coords="464,422,400,468,397,464,461,418"/>
+<area shape="poly" title=" " alt="" coords="344,422,375,465,370,468,340,425"/>
+<area shape="poly" title=" " alt="" coords="282,422,232,460,228,456,278,418"/>
+<area shape="poly" title=" " alt="" coords="606,152,621,185,616,187,601,154"/>
+</map>
+</div>
+</div>
+<p><a href="can__struct_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structcan__msg__t.html">can_msg_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a99224aa31bc5a961c6643d5f0ec14282" id="r_a99224aa31bc5a961c6643d5f0ec14282"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a> { <a class="el" href="#a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238">CAN1_PORT</a> = 0
+, <a class="el" href="#a99224aa31bc5a961c6643d5f0ec14282afed66cb93dc9572d995bc83596f68a37">CAN2_PORT</a>
+, <a class="el" href="#a99224aa31bc5a961c6643d5f0ec14282abc017982689593644573fba9e791072d">CAN3_PORT</a>
+ }</td></tr>
+<tr class="separator:a99224aa31bc5a961c6643d5f0ec14282"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a507b4ed3fc531e0c40aa8812174e3e1d" id="r_a507b4ed3fc531e0c40aa8812174e3e1d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a> { <br />
+&#160;&#160;<a class="el" href="#a507b4ed3fc531e0c40aa8812174e3e1dab7db0e53b737c0839be931efcb79246e">CAN_OK</a> = 0
+, <a class="el" href="#a507b4ed3fc531e0c40aa8812174e3e1dadf1eab1c663a7f76481ec01420c4579a">CAN_Reg_ERROR</a> = 1
+, <a class="el" href="#a507b4ed3fc531e0c40aa8812174e3e1dadf00dffe8d1ba85424f21fbb492f8e8a">CAN_PORT_ERROR</a> = 2
+, <a class="el" href="#a507b4ed3fc531e0c40aa8812174e3e1da4bd6ac0947f2dc4ed7da8af03f34acfd">CAN_MSG_ERROR</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="#a507b4ed3fc531e0c40aa8812174e3e1dafae488d62fb9453429adde7b71c08b1e">CAN_MSG_REPEAT</a> = 4
+, <a class="el" href="#a507b4ed3fc531e0c40aa8812174e3e1daa23ed6c0f19779a04bc9961451664b47">CAN_MSG_NOT_FOUND</a> = 5
+<br />
+ }</td></tr>
+<tr class="separator:a507b4ed3fc531e0c40aa8812174e3e1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a23f6a0d249ace51f1cb796a74e9fed84" id="r_a23f6a0d249ace51f1cb796a74e9fed84"><td class="memItemLeft" align="right" valign="top">List_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23f6a0d249ace51f1cb796a74e9fed84">can1_rx_msg_list</a></td></tr>
+<tr class="separator:a23f6a0d249ace51f1cb796a74e9fed84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af251cf824c6932232e60b8f47d3c329e" id="r_af251cf824c6932232e60b8f47d3c329e"><td class="memItemLeft" align="right" valign="top">List_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af251cf824c6932232e60b8f47d3c329e">can2_rx_msg_list</a></td></tr>
+<tr class="separator:af251cf824c6932232e60b8f47d3c329e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec6c42e96f2c3b2f13b2c5c107cf1d60" id="r_aec6c42e96f2c3b2f13b2c5c107cf1d60"><td class="memItemLeft" align="right" valign="top">List_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec6c42e96f2c3b2f13b2c5c107cf1d60">can3_rx_msg_list</a></td></tr>
+<tr class="separator:aec6c42e96f2c3b2f13b2c5c107cf1d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">枚举类型说明</h2>
+<a id="a99224aa31bc5a961c6643d5f0ec14282" name="a99224aa31bc5a961c6643d5f0ec14282"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99224aa31bc5a961c6643d5f0ec14282">&#9670;&#160;</a></span>can_port_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238" name="a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238"></a>CAN1_PORT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a99224aa31bc5a961c6643d5f0ec14282afed66cb93dc9572d995bc83596f68a37" name="a99224aa31bc5a961c6643d5f0ec14282afed66cb93dc9572d995bc83596f68a37"></a>CAN2_PORT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a99224aa31bc5a961c6643d5f0ec14282abc017982689593644573fba9e791072d" name="a99224aa31bc5a961c6643d5f0ec14282abc017982689593644573fba9e791072d"></a>CAN3_PORT&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a507b4ed3fc531e0c40aa8812174e3e1d" name="a507b4ed3fc531e0c40aa8812174e3e1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a507b4ed3fc531e0c40aa8812174e3e1d">&#9670;&#160;</a></span>can_status_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a507b4ed3fc531e0c40aa8812174e3e1d">can_status_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a507b4ed3fc531e0c40aa8812174e3e1dab7db0e53b737c0839be931efcb79246e" name="a507b4ed3fc531e0c40aa8812174e3e1dab7db0e53b737c0839be931efcb79246e"></a>CAN_OK&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a507b4ed3fc531e0c40aa8812174e3e1dadf1eab1c663a7f76481ec01420c4579a" name="a507b4ed3fc531e0c40aa8812174e3e1dadf1eab1c663a7f76481ec01420c4579a"></a>CAN_Reg_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a507b4ed3fc531e0c40aa8812174e3e1dadf00dffe8d1ba85424f21fbb492f8e8a" name="a507b4ed3fc531e0c40aa8812174e3e1dadf00dffe8d1ba85424f21fbb492f8e8a"></a>CAN_PORT_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a507b4ed3fc531e0c40aa8812174e3e1da4bd6ac0947f2dc4ed7da8af03f34acfd" name="a507b4ed3fc531e0c40aa8812174e3e1da4bd6ac0947f2dc4ed7da8af03f34acfd"></a>CAN_MSG_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a507b4ed3fc531e0c40aa8812174e3e1dafae488d62fb9453429adde7b71c08b1e" name="a507b4ed3fc531e0c40aa8812174e3e1dafae488d62fb9453429adde7b71c08b1e"></a>CAN_MSG_REPEAT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a507b4ed3fc531e0c40aa8812174e3e1daa23ed6c0f19779a04bc9961451664b47" name="a507b4ed3fc531e0c40aa8812174e3e1daa23ed6c0f19779a04bc9961451664b47"></a>CAN_MSG_NOT_FOUND&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a23f6a0d249ace51f1cb796a74e9fed84" name="a23f6a0d249ace51f1cb796a74e9fed84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23f6a0d249ace51f1cb796a74e9fed84">&#9670;&#160;</a></span>can1_rx_msg_list</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List_t can1_rx_msg_list</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af251cf824c6932232e60b8f47d3c329e" name="af251cf824c6932232e60b8f47d3c329e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af251cf824c6932232e60b8f47d3c329e">&#9670;&#160;</a></span>can2_rx_msg_list</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List_t can2_rx_msg_list</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aec6c42e96f2c3b2f13b2c5c107cf1d60" name="aec6c42e96f2c3b2f13b2c5c107cf1d60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec6c42e96f2c3b2f13b2c5c107cf1d60">&#9670;&#160;</a></span>can3_rx_msg_list</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List_t can3_rx_msg_list</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

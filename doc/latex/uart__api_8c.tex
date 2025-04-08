@@ -1,0 +1,170 @@
+\doxysection{source/bsp/uart/uart\+\_\+api.c 文件参考}
+\hypertarget{uart__api_8c}{}\label{uart__api_8c}\index{source/bsp/uart/uart\_api.c@{source/bsp/uart/uart\_api.c}}
+{\ttfamily \#include "{}uart\+\_\+api.\+h"{}}\newline
+{\ttfamily \#include "{}usart.\+h"{}}\newline
+{\ttfamily \#include "{}string.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+uart\+\_\+api.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart__api_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{uart__api_8h_af7d6a356f1601c95992ab6990320fd35}{uart\+\_\+status\+\_\+t}} \mbox{\hyperlink{uart__api_8c_adae66f03eb4104357f0be2795e6ef9f8}{uart\+\_\+rx\+\_\+cheak}} (\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \texorpdfstring{$\ast$}{*}uart\+\_\+rx\+\_\+msg)
+\item 
+\mbox{\hyperlink{uart__api_8h_af7d6a356f1601c95992ab6990320fd35}{uart\+\_\+status\+\_\+t}} \mbox{\hyperlink{uart__api_8c_ae120b89a070ed4e11d81345cb7619177}{uart\+\_\+msg\+\_\+cheak}} (\mbox{\hyperlink{structuart__msg__t}{uart\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*}rx\+\_\+msg)
+\item 
+\mbox{\hyperlink{uart__api_8h_af7d6a356f1601c95992ab6990320fd35}{uart\+\_\+status\+\_\+t}} \mbox{\hyperlink{uart__api_8c_a6946eb69318aeb754435f94e74d6bd80}{uart\+\_\+reg\+\_\+cheak}} (\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \texorpdfstring{$\ast$}{*}uart\+\_\+rx\+\_\+msg)
+\item 
+\mbox{\hyperlink{uart__api_8h_af7d6a356f1601c95992ab6990320fd35}{uart\+\_\+status\+\_\+t}} \mbox{\hyperlink{uart__api_8c_a059b78ea3cd2a68dabd8d3080e7b9927}{uart\+\_\+rx\+\_\+init}} (\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \texorpdfstring{$\ast$}{*}uart\+\_\+rx\+\_\+msg)
+\item 
+\mbox{\hyperlink{uart__api_8h_af7d6a356f1601c95992ab6990320fd35}{uart\+\_\+status\+\_\+t}} \mbox{\hyperlink{uart__api_8c_afe169a52ac52421b2761e11466db27af}{uart\+\_\+tx\+\_\+send\+\_\+\+IT}} (\mbox{\hyperlink{structuart__msg__t}{uart\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*}uart\+\_\+msg)
+\item 
+\mbox{\hyperlink{uart__api_8h_af7d6a356f1601c95992ab6990320fd35}{uart\+\_\+status\+\_\+t}} \mbox{\hyperlink{uart__api_8c_ad913b7146321aec28a31cb67c5edb663}{uart\+\_\+rx\+\_\+hook\+\_\+reg}} (\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \texorpdfstring{$\ast$}{*}uart\+\_\+rx\+\_\+msg, void(\texorpdfstring{$\ast$}{*}hook)(uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint32\+\_\+t size))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart__api_8c_a58fccfc641bbc772491e1961e7b6eac8}{uart5\+\_\+msg}}
+\item 
+\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart__api_8c_acba7239ddafe3a0e1a684a340186b214}{uart7\+\_\+msg}}
+\item 
+\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart__api_8c_a298787b204e4dcbb6f14ae38d3b9953e}{uart1\+\_\+msg}}
+\item 
+\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart__api_8c_aaed6fa00aa4e7c53d8117e7cc97788ee}{uart2\+\_\+msg}}
+\item 
+\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart__api_8c_a3f84661686108b07a24b125b5d107f12}{uart3\+\_\+msg}}
+\item 
+\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart__api_8c_af5175ccfa7797325ef4f2838093e2799}{uart10\+\_\+msg}}
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart__api_8c_a4152fb317c0d689b4af6a51382107c41}{uart5\+\_\+rx\+\_\+hook}} )(uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint32\+\_\+t size) = NULL
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart__api_8c_abfc7a17ab4f5554d166c5b139a909d2a}{uart7\+\_\+rx\+\_\+hook}} )(uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint32\+\_\+t size) = NULL
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart__api_8c_ace8c5389ea2fed25cd2e5fd7e21b2bc1}{uart1\+\_\+rx\+\_\+hook}} )(uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint32\+\_\+t size) = NULL
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart__api_8c_af1d549517fcbe9f28fad36fbc05bc5ec}{uart2\+\_\+rx\+\_\+hook}} )(uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint32\+\_\+t size) = NULL
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart__api_8c_af548df49d30a91108a9353173ad82953}{uart3\+\_\+rx\+\_\+hook}} )(uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint32\+\_\+t size) = NULL
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{uart__api_8c_adf7a09f3a204900ea3eb6428780fdc41}{uart10\+\_\+rx\+\_\+hook}} )(uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint32\+\_\+t size) = NULL
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{uart__api_8c_ae120b89a070ed4e11d81345cb7619177}\index{uart\_api.c@{uart\_api.c}!uart\_msg\_cheak@{uart\_msg\_cheak}}
+\index{uart\_msg\_cheak@{uart\_msg\_cheak}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart\_msg\_cheak()}{uart\_msg\_cheak()}}
+{\footnotesize\ttfamily \label{uart__api_8c_ae120b89a070ed4e11d81345cb7619177} 
+\mbox{\hyperlink{uart__api_8h_af7d6a356f1601c95992ab6990320fd35}{uart\+\_\+status\+\_\+t}} uart\+\_\+msg\+\_\+cheak (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuart__msg__t}{uart\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rx\+\_\+msg}{}\end{DoxyParamCaption})}
+
+\Hypertarget{uart__api_8c_a6946eb69318aeb754435f94e74d6bd80}\index{uart\_api.c@{uart\_api.c}!uart\_reg\_cheak@{uart\_reg\_cheak}}
+\index{uart\_reg\_cheak@{uart\_reg\_cheak}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart\_reg\_cheak()}{uart\_reg\_cheak()}}
+{\footnotesize\ttfamily \label{uart__api_8c_a6946eb69318aeb754435f94e74d6bd80} 
+\mbox{\hyperlink{uart__api_8h_af7d6a356f1601c95992ab6990320fd35}{uart\+\_\+status\+\_\+t}} uart\+\_\+reg\+\_\+cheak (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{uart\+\_\+rx\+\_\+msg}{}\end{DoxyParamCaption})}
+
+\Hypertarget{uart__api_8c_adae66f03eb4104357f0be2795e6ef9f8}\index{uart\_api.c@{uart\_api.c}!uart\_rx\_cheak@{uart\_rx\_cheak}}
+\index{uart\_rx\_cheak@{uart\_rx\_cheak}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart\_rx\_cheak()}{uart\_rx\_cheak()}}
+{\footnotesize\ttfamily \label{uart__api_8c_adae66f03eb4104357f0be2795e6ef9f8} 
+\mbox{\hyperlink{uart__api_8h_af7d6a356f1601c95992ab6990320fd35}{uart\+\_\+status\+\_\+t}} uart\+\_\+rx\+\_\+cheak (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{uart\+\_\+rx\+\_\+msg}{}\end{DoxyParamCaption})}
+
+\Hypertarget{uart__api_8c_ad913b7146321aec28a31cb67c5edb663}\index{uart\_api.c@{uart\_api.c}!uart\_rx\_hook\_reg@{uart\_rx\_hook\_reg}}
+\index{uart\_rx\_hook\_reg@{uart\_rx\_hook\_reg}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart\_rx\_hook\_reg()}{uart\_rx\_hook\_reg()}}
+{\footnotesize\ttfamily \label{uart__api_8c_ad913b7146321aec28a31cb67c5edb663} 
+\mbox{\hyperlink{uart__api_8h_af7d6a356f1601c95992ab6990320fd35}{uart\+\_\+status\+\_\+t}} uart\+\_\+rx\+\_\+hook\+\_\+reg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{uart\+\_\+rx\+\_\+msg}{, }\item[{void(\texorpdfstring{$\ast$}{*}}]{hook~}{)(uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint32\+\_\+t size)}\end{DoxyParamCaption})}
+
+\Hypertarget{uart__api_8c_a059b78ea3cd2a68dabd8d3080e7b9927}\index{uart\_api.c@{uart\_api.c}!uart\_rx\_init@{uart\_rx\_init}}
+\index{uart\_rx\_init@{uart\_rx\_init}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart\_rx\_init()}{uart\_rx\_init()}}
+{\footnotesize\ttfamily \label{uart__api_8c_a059b78ea3cd2a68dabd8d3080e7b9927} 
+\mbox{\hyperlink{uart__api_8h_af7d6a356f1601c95992ab6990320fd35}{uart\+\_\+status\+\_\+t}} uart\+\_\+rx\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{uart\+\_\+rx\+\_\+msg}{}\end{DoxyParamCaption})}
+
+\Hypertarget{uart__api_8c_afe169a52ac52421b2761e11466db27af}\index{uart\_api.c@{uart\_api.c}!uart\_tx\_send\_IT@{uart\_tx\_send\_IT}}
+\index{uart\_tx\_send\_IT@{uart\_tx\_send\_IT}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart\_tx\_send\_IT()}{uart\_tx\_send\_IT()}}
+{\footnotesize\ttfamily \label{uart__api_8c_afe169a52ac52421b2761e11466db27af} 
+\mbox{\hyperlink{uart__api_8h_af7d6a356f1601c95992ab6990320fd35}{uart\+\_\+status\+\_\+t}} uart\+\_\+tx\+\_\+send\+\_\+\+IT (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structuart__msg__t}{uart\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{uart\+\_\+msg}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{变量说明}
+\Hypertarget{uart__api_8c_af5175ccfa7797325ef4f2838093e2799}\index{uart\_api.c@{uart\_api.c}!uart10\_msg@{uart10\_msg}}
+\index{uart10\_msg@{uart10\_msg}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart10\_msg}{uart10\_msg}}
+{\footnotesize\ttfamily \label{uart__api_8c_af5175ccfa7797325ef4f2838093e2799} 
+\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}}\texorpdfstring{$\ast$}{*} uart10\+\_\+msg}
+
+\Hypertarget{uart__api_8c_adf7a09f3a204900ea3eb6428780fdc41}\index{uart\_api.c@{uart\_api.c}!uart10\_rx\_hook@{uart10\_rx\_hook}}
+\index{uart10\_rx\_hook@{uart10\_rx\_hook}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart10\_rx\_hook}{uart10\_rx\_hook}}
+{\footnotesize\ttfamily \label{uart__api_8c_adf7a09f3a204900ea3eb6428780fdc41} 
+void(\texorpdfstring{$\ast$}{*} uart10\+\_\+rx\+\_\+hook) (uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint32\+\_\+t size) (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Data}{, }\item[{uint32\+\_\+t}]{size}{}\end{DoxyParamCaption}) = NULL}
+
+\Hypertarget{uart__api_8c_a298787b204e4dcbb6f14ae38d3b9953e}\index{uart\_api.c@{uart\_api.c}!uart1\_msg@{uart1\_msg}}
+\index{uart1\_msg@{uart1\_msg}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart1\_msg}{uart1\_msg}}
+{\footnotesize\ttfamily \label{uart__api_8c_a298787b204e4dcbb6f14ae38d3b9953e} 
+\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}}\texorpdfstring{$\ast$}{*} uart1\+\_\+msg}
+
+\Hypertarget{uart__api_8c_ace8c5389ea2fed25cd2e5fd7e21b2bc1}\index{uart\_api.c@{uart\_api.c}!uart1\_rx\_hook@{uart1\_rx\_hook}}
+\index{uart1\_rx\_hook@{uart1\_rx\_hook}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart1\_rx\_hook}{uart1\_rx\_hook}}
+{\footnotesize\ttfamily \label{uart__api_8c_ace8c5389ea2fed25cd2e5fd7e21b2bc1} 
+void(\texorpdfstring{$\ast$}{*} uart1\+\_\+rx\+\_\+hook) (uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint32\+\_\+t size) (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Data}{, }\item[{uint32\+\_\+t}]{size}{}\end{DoxyParamCaption}) = NULL}
+
+\Hypertarget{uart__api_8c_aaed6fa00aa4e7c53d8117e7cc97788ee}\index{uart\_api.c@{uart\_api.c}!uart2\_msg@{uart2\_msg}}
+\index{uart2\_msg@{uart2\_msg}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart2\_msg}{uart2\_msg}}
+{\footnotesize\ttfamily \label{uart__api_8c_aaed6fa00aa4e7c53d8117e7cc97788ee} 
+\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}}\texorpdfstring{$\ast$}{*} uart2\+\_\+msg}
+
+\Hypertarget{uart__api_8c_af1d549517fcbe9f28fad36fbc05bc5ec}\index{uart\_api.c@{uart\_api.c}!uart2\_rx\_hook@{uart2\_rx\_hook}}
+\index{uart2\_rx\_hook@{uart2\_rx\_hook}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart2\_rx\_hook}{uart2\_rx\_hook}}
+{\footnotesize\ttfamily \label{uart__api_8c_af1d549517fcbe9f28fad36fbc05bc5ec} 
+void(\texorpdfstring{$\ast$}{*} uart2\+\_\+rx\+\_\+hook) (uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint32\+\_\+t size) (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Data}{, }\item[{uint32\+\_\+t}]{size}{}\end{DoxyParamCaption}) = NULL}
+
+\Hypertarget{uart__api_8c_a3f84661686108b07a24b125b5d107f12}\index{uart\_api.c@{uart\_api.c}!uart3\_msg@{uart3\_msg}}
+\index{uart3\_msg@{uart3\_msg}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart3\_msg}{uart3\_msg}}
+{\footnotesize\ttfamily \label{uart__api_8c_a3f84661686108b07a24b125b5d107f12} 
+\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}}\texorpdfstring{$\ast$}{*} uart3\+\_\+msg}
+
+\Hypertarget{uart__api_8c_af548df49d30a91108a9353173ad82953}\index{uart\_api.c@{uart\_api.c}!uart3\_rx\_hook@{uart3\_rx\_hook}}
+\index{uart3\_rx\_hook@{uart3\_rx\_hook}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart3\_rx\_hook}{uart3\_rx\_hook}}
+{\footnotesize\ttfamily \label{uart__api_8c_af548df49d30a91108a9353173ad82953} 
+void(\texorpdfstring{$\ast$}{*} uart3\+\_\+rx\+\_\+hook) (uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint32\+\_\+t size) (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Data}{, }\item[{uint32\+\_\+t}]{size}{}\end{DoxyParamCaption}) = NULL}
+
+\Hypertarget{uart__api_8c_a58fccfc641bbc772491e1961e7b6eac8}\index{uart\_api.c@{uart\_api.c}!uart5\_msg@{uart5\_msg}}
+\index{uart5\_msg@{uart5\_msg}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart5\_msg}{uart5\_msg}}
+{\footnotesize\ttfamily \label{uart__api_8c_a58fccfc641bbc772491e1961e7b6eac8} 
+\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}}\texorpdfstring{$\ast$}{*} uart5\+\_\+msg}
+
+\Hypertarget{uart__api_8c_a4152fb317c0d689b4af6a51382107c41}\index{uart\_api.c@{uart\_api.c}!uart5\_rx\_hook@{uart5\_rx\_hook}}
+\index{uart5\_rx\_hook@{uart5\_rx\_hook}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart5\_rx\_hook}{uart5\_rx\_hook}}
+{\footnotesize\ttfamily \label{uart__api_8c_a4152fb317c0d689b4af6a51382107c41} 
+void(\texorpdfstring{$\ast$}{*} uart5\+\_\+rx\+\_\+hook) (uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint32\+\_\+t size) (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Data}{, }\item[{uint32\+\_\+t}]{size}{}\end{DoxyParamCaption}) = NULL}
+
+\Hypertarget{uart__api_8c_acba7239ddafe3a0e1a684a340186b214}\index{uart\_api.c@{uart\_api.c}!uart7\_msg@{uart7\_msg}}
+\index{uart7\_msg@{uart7\_msg}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart7\_msg}{uart7\_msg}}
+{\footnotesize\ttfamily \label{uart__api_8c_acba7239ddafe3a0e1a684a340186b214} 
+\mbox{\hyperlink{structuart__rx__t}{uart\+\_\+rx\+\_\+t}}\texorpdfstring{$\ast$}{*} uart7\+\_\+msg}
+
+\Hypertarget{uart__api_8c_abfc7a17ab4f5554d166c5b139a909d2a}\index{uart\_api.c@{uart\_api.c}!uart7\_rx\_hook@{uart7\_rx\_hook}}
+\index{uart7\_rx\_hook@{uart7\_rx\_hook}!uart\_api.c@{uart\_api.c}}
+\doxysubsubsection{\texorpdfstring{uart7\_rx\_hook}{uart7\_rx\_hook}}
+{\footnotesize\ttfamily \label{uart__api_8c_abfc7a17ab4f5554d166c5b139a909d2a} 
+void(\texorpdfstring{$\ast$}{*} uart7\+\_\+rx\+\_\+hook) (uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+Data, uint32\+\_\+t size) (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+Data}{, }\item[{uint32\+\_\+t}]{size}{}\end{DoxyParamCaption}) = NULL}
+

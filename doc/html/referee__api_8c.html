@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/refereeSys/referee_api.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_0637427c7cee0e571dfdc3ad762e2d12.html">refereeSys</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">referee_api.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="referee__api_8h_source.html">referee_api.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+referee_api.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="referee__api_8c__incl.png" border="0" usemap="#asource_2module_2referee_sys_2referee__api_8c" alt=""/></div>
+<map name="asource_2module_2referee_sys_2referee__api_8c" id="asource_2module_2referee_sys_2referee__api_8c">
+<area shape="rect" title=" " alt="" coords="165,5,339,48"/>
+<area shape="rect" href="referee__api_8h.html" title=" " alt="" coords="204,96,300,123"/>
+<area shape="poly" title=" " alt="" coords="255,49,255,80,249,80,249,49"/>
+<area shape="rect" title=" " alt="" coords="174,320,234,347"/>
+<area shape="poly" title=" " alt="" coords="204,116,166,121,123,132,82,148,45,173,29,189,21,205,12,246,9,259,12,271,26,286,42,298,80,316,121,326,159,330,158,335,120,331,79,321,39,303,22,290,7,273,3,259,7,245,16,203,25,186,41,169,79,143,122,126,165,116,203,110"/>
+<area shape="rect" href="referee__protocol_8h.html" title=" " alt="" coords="55,171,180,197"/>
+<area shape="poly" title=" " alt="" coords="230,126,156,165,153,160,227,121"/>
+<area shape="rect" href="crc__api_8h.html" title=" " alt="" coords="219,245,293,272"/>
+<area shape="poly" title=" " alt="" coords="252,123,246,157,245,197,251,230,246,231,240,198,241,156,246,123"/>
+<area shape="rect" title=" " alt="" coords="255,171,319,197"/>
+<area shape="poly" title=" " alt="" coords="261,122,277,155,272,158,256,124"/>
+<area shape="rect" href="uart__api_8h.html" title=" " alt="" coords="317,245,395,272"/>
+<area shape="poly" title=" " alt="" coords="277,121,306,141,333,169,348,199,355,230,350,231,343,201,329,172,303,145,274,125"/>
+<area shape="rect" title=" " alt="" coords="393,171,455,197"/>
+<area shape="poly" title=" " alt="" coords="283,121,381,162,379,167,281,126"/>
+<area shape="rect" title=" " alt="" coords="21,245,86,272"/>
+<area shape="poly" title=" " alt="" coords="108,200,77,235,73,232,104,196"/>
+<area shape="rect" href="key_board_8h.html" title=" " alt="" coords="109,245,195,272"/>
+<area shape="poly" title=" " alt="" coords="126,197,142,230,137,232,121,199"/>
+<area shape="poly" title=" " alt="" coords="163,271,189,306,184,309,159,274"/>
+<area shape="poly" title=" " alt="" coords="249,274,224,309,220,306,245,271"/>
+<area shape="poly" title=" " alt="" coords="331,275,246,315,243,310,329,270"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ad699279a6acba86c8f04e05e0dbb442c" id="r_ad699279a6acba86c8f04e05e0dbb442c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad699279a6acba86c8f04e05e0dbb442c">referee_init</a> (UART_HandleTypeDef *huart)</td></tr>
+<tr class="memdesc:ad699279a6acba86c8f04e05e0dbb442c"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化裁判模块的UART接收配置  <br /></td></tr>
+<tr class="separator:ad699279a6acba86c8f04e05e0dbb442c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace5aafee38a85f0755a3cb0bab1f7308" id="r_ace5aafee38a85f0755a3cb0bab1f7308"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace5aafee38a85f0755a3cb0bab1f7308">ctrller_init</a> (UART_HandleTypeDef *huart)</td></tr>
+<tr class="memdesc:ace5aafee38a85f0755a3cb0bab1f7308"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化控制器模块的UART接收配置  <br /></td></tr>
+<tr class="separator:ace5aafee38a85f0755a3cb0bab1f7308"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d96079c6c4156132361228e84d214ea" id="r_a9d96079c6c4156132361228e84d214ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d96079c6c4156132361228e84d214ea">JudgeReadData</a> (uint8_t *buff)</td></tr>
+<tr class="memdesc:a9d96079c6c4156132361228e84d214ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">解析裁判数据包，处理帧头校验和数据分发  <br /></td></tr>
+<tr class="separator:a9d96079c6c4156132361228e84d214ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe2a73fa3598a227339c0f0341f43650" id="r_abe2a73fa3598a227339c0f0341f43650"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe2a73fa3598a227339c0f0341f43650">CtrllerReadData</a> (uint8_t *buff)</td></tr>
+<tr class="memdesc:abe2a73fa3598a227339c0f0341f43650"><td class="mdescLeft">&#160;</td><td class="mdescRight">解析控制器数据包，处理帧头校验和数据分发  <br /></td></tr>
+<tr class="separator:abe2a73fa3598a227339c0f0341f43650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d2038fef235be5aefdb58e8184a322c" id="r_a2d2038fef235be5aefdb58e8184a322c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structreferee__info__t.html">referee_info_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d2038fef235be5aefdb58e8184a322c">get_referee_msg</a> (void)</td></tr>
+<tr class="memdesc:a2d2038fef235be5aefdb58e8184a322c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取解析后的裁判信息数据  <br /></td></tr>
+<tr class="separator:a2d2038fef235be5aefdb58e8184a322c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44afc451c49110e093c708e1c5f67887" id="r_a44afc451c49110e093c708e1c5f67887"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structcustom__controller__info__t.html">custom_controller_info_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44afc451c49110e093c708e1c5f67887">get_custom_controller_msg</a> (void)</td></tr>
+<tr class="memdesc:a44afc451c49110e093c708e1c5f67887"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取解析后的自定义控制器信息数据  <br /></td></tr>
+<tr class="separator:a44afc451c49110e093c708e1c5f67887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d736a70557ee9ae3d5170790fff1a92" id="r_a1d736a70557ee9ae3d5170790fff1a92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d736a70557ee9ae3d5170790fff1a92">referee_data_pack_handle</a> (uint8_t sof, uint16_t cmd_id, uint8_t *p_data, uint16_t len)</td></tr>
+<tr class="separator:a1d736a70557ee9ae3d5170790fff1a92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a3f47451edd2274525a52e40f4e26c399" id="r_a3f47451edd2274525a52e40f4e26c399"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f47451edd2274525a52e40f4e26c399">seq</a> = 0</td></tr>
+<tr class="memdesc:a3f47451edd2274525a52e40f4e26c399"><td class="mdescLeft">&#160;</td><td class="mdescRight">将数据打包并通过UART发送到底层设备  <br /></td></tr>
+<tr class="separator:a3f47451edd2274525a52e40f4e26c399"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="ace5aafee38a85f0755a3cb0bab1f7308" name="ace5aafee38a85f0755a3cb0bab1f7308"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace5aafee38a85f0755a3cb0bab1f7308">&#9670;&#160;</a></span>ctrller_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ctrller_init </td>
+          <td>(</td>
+          <td class="paramtype">UART_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>huart</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初始化控制器模块的UART接收配置 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">huart</td><td>指向UART句柄的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abe2a73fa3598a227339c0f0341f43650" name="abe2a73fa3598a227339c0f0341f43650"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe2a73fa3598a227339c0f0341f43650">&#9670;&#160;</a></span>CtrllerReadData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CtrllerReadData </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>buff</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>解析控制器数据包，处理帧头校验和数据分发 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buff</td><td>输入的数据缓冲区指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a44afc451c49110e093c708e1c5f67887" name="a44afc451c49110e093c708e1c5f67887"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44afc451c49110e093c708e1c5f67887">&#9670;&#160;</a></span>get_custom_controller_msg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structcustom__controller__info__t.html">custom_controller_info_t</a> * get_custom_controller_msg </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取解析后的自定义控制器信息数据 </p>
+<dl class="section return"><dt>返回</dt><dd>当前自定义控制器数据结构体 </dd></dl>
+
+</div>
+</div>
+<a id="a2d2038fef235be5aefdb58e8184a322c" name="a2d2038fef235be5aefdb58e8184a322c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d2038fef235be5aefdb58e8184a322c">&#9670;&#160;</a></span>get_referee_msg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structreferee__info__t.html">referee_info_t</a> * get_referee_msg </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取解析后的裁判信息数据 </p>
+<dl class="section return"><dt>返回</dt><dd>当前裁判数据结构体 </dd></dl>
+
+</div>
+</div>
+<a id="a9d96079c6c4156132361228e84d214ea" name="a9d96079c6c4156132361228e84d214ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d96079c6c4156132361228e84d214ea">&#9670;&#160;</a></span>JudgeReadData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void JudgeReadData </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>buff</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>解析裁判数据包，处理帧头校验和数据分发 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buff</td><td>输入的数据缓冲区指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1d736a70557ee9ae3d5170790fff1a92" name="a1d736a70557ee9ae3d5170790fff1a92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d736a70557ee9ae3d5170790fff1a92">&#9670;&#160;</a></span>referee_data_pack_handle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void referee_data_pack_handle </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>sof</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>cmd_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>p_data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad699279a6acba86c8f04e05e0dbb442c" name="ad699279a6acba86c8f04e05e0dbb442c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad699279a6acba86c8f04e05e0dbb442c">&#9670;&#160;</a></span>referee_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void referee_init </td>
+          <td>(</td>
+          <td class="paramtype">UART_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>huart</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初始化裁判模块的UART接收配置 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">huart</td><td>指向UART句柄的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a3f47451edd2274525a52e40f4e26c399" name="a3f47451edd2274525a52e40f4e26c399"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f47451edd2274525a52e40f4e26c399">&#9670;&#160;</a></span>seq</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t seq = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>将数据打包并通过UART发送到底层设备 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sof</td><td>帧头标识符 </td></tr>
+    <tr><td class="paramname">cmd_id</td><td>数据命令ID </td></tr>
+    <tr><td class="paramname">p_data</td><td>待发送数据的指针 </td></tr>
+    <tr><td class="paramname">len</td><td>数据长度 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>uint8_t 无意义返回值（函数未使用返回值） </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

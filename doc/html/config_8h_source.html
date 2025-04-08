@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/config.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">config.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="config_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef CONFIG_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define CONFIG_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="config_8h.html#ab0355ba8e4e9cfa450f0e4176f88bfc3">    4</a></span><span class="preprocessor">#define VISION_VERSION 1 </span><span class="comment">// 视觉版本号</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="config_8h.html#ae262b91c80d4ec900d89c9e9984a2c92">    6</a></span><span class="preprocessor">#define text1 0 </span><span class="comment">// 拨弹设计测试开关</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="config_8h.html#a8fb516af6721bd051c8e6f8dc54ff081">    8</a></span><span class="preprocessor">#define conturl 0 </span><span class="comment">// 遥控器紧急断电控制</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="config_8h.html#adfced33eb40574943586762cb90b373c">   10</a></span><span class="preprocessor">#define AIM_MOD 3 </span><span class="comment">// 瞄准模式</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="config_8h.html#a1764108468f2a405023e6342ac6841c8">   12</a></span><span class="preprocessor">#define radar_MOD 1 </span><span class="comment">// 雷达模式 0:无雷达 1:雷达</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// 车辆弹道解算参数默认配置</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="config_8h.html#a11e701dadcda3bab49ced8e3c5691409">   15</a></span><span class="preprocessor">#define BALLISTIC_SOLVER 2 </span><span class="comment">// 弹道解算器  1-&gt;弹道解算器v1.0  2-&gt;弹道解算器v2.0</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="config_8h.html#a3b6216634d6dcf575aa06d745c9bac7b">   16</a></span><span class="preprocessor">#define BULLET_TYPE 0   </span><span class="comment">// 子弹类型 0-&gt;17mm 1-&gt;42mm</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="config_8h.html#a70b3e643b533b8f785b7912e69434161">   17</a></span><span class="preprocessor">#define BULLET_SPEED 17 </span><span class="comment">// 子弹速度</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="config_8h.html#a0755b2ca684caf7fdb2aa0c32eba2029">   18</a></span><span class="preprocessor">#define BULLET_K 0.092  </span><span class="comment">// 弹道系数</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="config_8h.html#a8b63549b871f0639d48991d3fa75cdbc">   19</a></span><span class="preprocessor">#define BIAS_TIME 10.0   </span><span class="comment">// 弹道补偿时间(偏置时间)</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="config_8h.html#a100da9ebe26e07e8f7b246c6e1b1bbc8">   20</a></span><span class="preprocessor">#define S_BIAS 0.085f      </span><span class="comment">// 枪口前推的时间</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="config_8h.html#a37e83354570b977b5978635ea7b5058f">   21</a></span><span class="preprocessor">#define Z_BIAS 0.265f      </span><span class="comment">// yaw电机到枪口水平面的垂直距离</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="config_8h.html#a9da532e1aa41d1d3bb8f88e96aa41ca5">   22</a></span><span class="preprocessor">#define G_NUM 9.80665f       </span><span class="comment">// 重力加速度</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="config_8h.html#acd517c6f195c75b9dd0f3aad65326f3b">   23</a></span><span class="preprocessor">#define MAX_ITER 20      </span><span class="comment">// 最大迭代次数</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="config_8h.html#a30c17564229ec2e37dfea9c6c9ad643e">   24</a></span><span class="preprocessor">#define TOLERANCE 0.005f    </span><span class="comment">// 收敛阈值(5mm)</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="config_8h.html#a65fd90f232757535f02c46a885e49012">   25</a></span><span class="preprocessor">#define TIME_STEP 0.001f  </span><span class="comment">// 弹道模拟时间步长(v2.0)</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="config_8h.html#a92f1af467cfadf34a6ffe03ab6e586ca">   26</a></span><span class="preprocessor">#define ESTIMATED_FLIGHT_TIME 0.5f  </span><span class="comment">// 预估的飞行时间 (s)</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#endif </span><span class="comment">// !CONFIG_H</span></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

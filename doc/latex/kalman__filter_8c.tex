@@ -1,0 +1,251 @@
+\doxysection{source/module/\+IMU/ekf/kalman\+\_\+filter.c 文件参考}
+\hypertarget{kalman__filter_8c}{}\label{kalman__filter_8c}\index{source/module/IMU/ekf/kalman\_filter.c@{source/module/IMU/ekf/kalman\_filter.c}}
+{\ttfamily \#include "{}kalman\+\_\+filter.\+h"{}}\newline
+{\ttfamily \#include "{}Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}task.\+h"{}}\newline
+kalman\+\_\+filter.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{kalman__filter_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}{user\+\_\+malloc}} (size\+\_\+t size)
+\item 
+void \mbox{\hyperlink{kalman__filter_8c_a3e87008e6a41b2857bdfc64bd510b66a}{Kalman\+\_\+\+Filter\+\_\+\+Init}} (\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}kf, uint8\+\_\+t xhat\+Size, uint8\+\_\+t u\+Size, uint8\+\_\+t z\+Size)
+\begin{DoxyCompactList}\small\item\em 初始化矩阵维度信息并为矩阵分配空间 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{kalman__filter_8c_acb3774ba4b09bc24b3c053536e3d5d2c}{Kalman\+\_\+\+Filter\+\_\+\+Reset}} (\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}kf, uint8\+\_\+t xhat\+Size, uint8\+\_\+t u\+Size, uint8\+\_\+t z\+Size)
+\begin{DoxyCompactList}\small\item\em 重置卡尔曼数据 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{kalman__filter_8c_a379830b0bea773473090e13eb4523d38}{Kalman\+\_\+\+Filter\+\_\+\+Measure}} (\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)
+\begin{DoxyCompactList}\small\item\em 根据量测情况更新卡尔曼滤波器的输入数据，并调整矩阵\+H、\+K、\+R。 如果启用了自动调整（\+Use\+Auto\+Adjustment），则调用\+H\+\_\+\+K\+\_\+\+R\+\_\+\+Adjustment函数动态调整矩阵； 否则直接将\+Measured\+Vector赋值给z\+\_\+data，并清零\+Measured\+Vector。 同时，将\+Control\+Vector赋值给u\+\_\+data。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{kalman__filter_8c_a573703c080ee84ef82f3f64e72240031}{Kalman\+\_\+\+Filter\+\_\+xhat\+Minus\+Update}} (\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)
+\begin{DoxyCompactList}\small\item\em 更新先验状态估计值xhat\textquotesingle{}(k) = F·xhat(k-\/1) + B·u。 如果存在控制输入（u\+Size \texorpdfstring{$>$}{>} 0），则计算\+F·xhat(k-\/1)和\+B·u的和； 否则仅计算\+F·xhat(k-\/1)。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{kalman__filter_8c_adefde0d796e0eb0bf528683675ee958b}{Kalman\+\_\+\+Filter\+\_\+\+Pminus\+Update}} (\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)
+\begin{DoxyCompactList}\small\item\em 更新先验协方差矩阵P\textquotesingle{}(k) = F·P(k-\/1)·\+FT + Q。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{kalman__filter_8c_a42fe5e97c8911e25bea663cce9c28147}{Kalman\+\_\+\+Filter\+\_\+\+SetK}} (\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)
+\begin{DoxyCompactList}\small\item\em 计算卡尔曼增益\+K(k) = P\textquotesingle{}(k)·\+HT / (H·P\textquotesingle{}(k)·\+HT + R)。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{kalman__filter_8c_ae260165c66e4e9d275a6b4c149fb5084}{Kalman\+\_\+\+Filter\+\_\+xhat\+Update}} (\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)
+\begin{DoxyCompactList}\small\item\em 更新后验状态估计值xhat(k) = xhat\textquotesingle{}(k) + K(k)·(z(k) -\/ H·xhat\textquotesingle{}(k))。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{kalman__filter_8c_a2ca34138fbb07fe0befdfacf5d36336b}{Kalman\+\_\+\+Filter\+\_\+\+P\+\_\+\+Update}} (\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)
+\begin{DoxyCompactList}\small\item\em 更新后验协方差矩阵\+P(k) = P\textquotesingle{}(k) -\/ K(k)·\+H·P\textquotesingle{}(k)。 \end{DoxyCompactList}\item 
+float \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kalman__filter_8c_ae52e87083cda5ca6e918768312c424f7}{Kalman\+\_\+\+Filter\+\_\+\+Update}} (\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}kf)
+\begin{DoxyCompactList}\small\item\em 执行卡尔曼滤波黄金五式,提供了用户定义函数,可以替代五个中的任意一个环节,方便自行扩展为\+EKF/\+UKF/\+ESKF/\+AUKF等 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\+\_\+float}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{kalman__filter_8c_a0ce754bf27dc96cbb3216b52e5cd56dd}{sizeof\+\_\+double}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{kalman__filter_8c_a3e87008e6a41b2857bdfc64bd510b66a}\index{kalman\_filter.c@{kalman\_filter.c}!Kalman\_Filter\_Init@{Kalman\_Filter\_Init}}
+\index{Kalman\_Filter\_Init@{Kalman\_Filter\_Init}!kalman\_filter.c@{kalman\_filter.c}}
+\doxysubsubsection{\texorpdfstring{Kalman\_Filter\_Init()}{Kalman\_Filter\_Init()}}
+{\footnotesize\ttfamily \label{kalman__filter_8c_a3e87008e6a41b2857bdfc64bd510b66a} 
+void Kalman\+\_\+\+Filter\+\_\+\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{kf}{, }\item[{uint8\+\_\+t}]{xhat\+Size}{, }\item[{uint8\+\_\+t}]{u\+Size}{, }\item[{uint8\+\_\+t}]{z\+Size}{}\end{DoxyParamCaption})}
+
+
+
+初始化矩阵维度信息并为矩阵分配空间 
+
+
+\begin{DoxyParams}{参数}
+{\em kf} & kf类型定义 \\
+\hline
+{\em xhat\+Size} & 状态变量维度 \\
+\hline
+{\em u\+Size} & 控制变量维度 \\
+\hline
+{\em z\+Size} & 观测量维度 \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{kalman__filter_8c_a379830b0bea773473090e13eb4523d38}\index{kalman\_filter.c@{kalman\_filter.c}!Kalman\_Filter\_Measure@{Kalman\_Filter\_Measure}}
+\index{Kalman\_Filter\_Measure@{Kalman\_Filter\_Measure}!kalman\_filter.c@{kalman\_filter.c}}
+\doxysubsubsection{\texorpdfstring{Kalman\_Filter\_Measure()}{Kalman\_Filter\_Measure()}}
+{\footnotesize\ttfamily \label{kalman__filter_8c_a379830b0bea773473090e13eb4523d38} 
+void Kalman\+\_\+\+Filter\+\_\+\+Measure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{kf}{}\end{DoxyParamCaption})}
+
+
+
+根据量测情况更新卡尔曼滤波器的输入数据，并调整矩阵\+H、\+K、\+R。 如果启用了自动调整（\+Use\+Auto\+Adjustment），则调用\+H\+\_\+\+K\+\_\+\+R\+\_\+\+Adjustment函数动态调整矩阵； 否则直接将\+Measured\+Vector赋值给z\+\_\+data，并清零\+Measured\+Vector。 同时，将\+Control\+Vector赋值给u\+\_\+data。 
+
+
+\begin{DoxyParams}{参数}
+{\em kf} & 指向\+Kalman\+Filter\+\_\+t结构体的指针 \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{kalman__filter_8c_a2ca34138fbb07fe0befdfacf5d36336b}\index{kalman\_filter.c@{kalman\_filter.c}!Kalman\_Filter\_P\_Update@{Kalman\_Filter\_P\_Update}}
+\index{Kalman\_Filter\_P\_Update@{Kalman\_Filter\_P\_Update}!kalman\_filter.c@{kalman\_filter.c}}
+\doxysubsubsection{\texorpdfstring{Kalman\_Filter\_P\_Update()}{Kalman\_Filter\_P\_Update()}}
+{\footnotesize\ttfamily \label{kalman__filter_8c_a2ca34138fbb07fe0befdfacf5d36336b} 
+void Kalman\+\_\+\+Filter\+\_\+\+P\+\_\+\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{kf}{}\end{DoxyParamCaption})}
+
+
+
+更新后验协方差矩阵\+P(k) = P\textquotesingle{}(k) -\/ K(k)·\+H·P\textquotesingle{}(k)。 
+
+
+\begin{DoxyParams}{参数}
+{\em kf} & 指向\+Kalman\+Filter\+\_\+t结构体的指针 \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{kalman__filter_8c_adefde0d796e0eb0bf528683675ee958b}\index{kalman\_filter.c@{kalman\_filter.c}!Kalman\_Filter\_PminusUpdate@{Kalman\_Filter\_PminusUpdate}}
+\index{Kalman\_Filter\_PminusUpdate@{Kalman\_Filter\_PminusUpdate}!kalman\_filter.c@{kalman\_filter.c}}
+\doxysubsubsection{\texorpdfstring{Kalman\_Filter\_PminusUpdate()}{Kalman\_Filter\_PminusUpdate()}}
+{\footnotesize\ttfamily \label{kalman__filter_8c_adefde0d796e0eb0bf528683675ee958b} 
+void Kalman\+\_\+\+Filter\+\_\+\+Pminus\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{kf}{}\end{DoxyParamCaption})}
+
+
+
+更新先验协方差矩阵P\textquotesingle{}(k) = F·P(k-\/1)·\+FT + Q。 
+
+
+\begin{DoxyParams}{参数}
+{\em kf} & 指向\+Kalman\+Filter\+\_\+t结构体的指针 \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{kalman__filter_8c_acb3774ba4b09bc24b3c053536e3d5d2c}\index{kalman\_filter.c@{kalman\_filter.c}!Kalman\_Filter\_Reset@{Kalman\_Filter\_Reset}}
+\index{Kalman\_Filter\_Reset@{Kalman\_Filter\_Reset}!kalman\_filter.c@{kalman\_filter.c}}
+\doxysubsubsection{\texorpdfstring{Kalman\_Filter\_Reset()}{Kalman\_Filter\_Reset()}}
+{\footnotesize\ttfamily \label{kalman__filter_8c_acb3774ba4b09bc24b3c053536e3d5d2c} 
+void Kalman\+\_\+\+Filter\+\_\+\+Reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{kf}{, }\item[{uint8\+\_\+t}]{xhat\+Size}{, }\item[{uint8\+\_\+t}]{u\+Size}{, }\item[{uint8\+\_\+t}]{z\+Size}{}\end{DoxyParamCaption})}
+
+
+
+重置卡尔曼数据 
+
+
+\begin{DoxyParams}{参数}
+{\em kf} & Kalman Filter \\
+\hline
+{\em xhat\+Size} & xhat size \\
+\hline
+{\em u\+Size} & u size \\
+\hline
+{\em z\+Size} & z size \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{kalman__filter_8c_a42fe5e97c8911e25bea663cce9c28147}\index{kalman\_filter.c@{kalman\_filter.c}!Kalman\_Filter\_SetK@{Kalman\_Filter\_SetK}}
+\index{Kalman\_Filter\_SetK@{Kalman\_Filter\_SetK}!kalman\_filter.c@{kalman\_filter.c}}
+\doxysubsubsection{\texorpdfstring{Kalman\_Filter\_SetK()}{Kalman\_Filter\_SetK()}}
+{\footnotesize\ttfamily \label{kalman__filter_8c_a42fe5e97c8911e25bea663cce9c28147} 
+void Kalman\+\_\+\+Filter\+\_\+\+SetK (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{kf}{}\end{DoxyParamCaption})}
+
+
+
+计算卡尔曼增益\+K(k) = P\textquotesingle{}(k)·\+HT / (H·P\textquotesingle{}(k)·\+HT + R)。 
+
+
+\begin{DoxyParams}{参数}
+{\em kf} & 指向\+Kalman\+Filter\+\_\+t结构体的指针 \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{kalman__filter_8c_ae52e87083cda5ca6e918768312c424f7}\index{kalman\_filter.c@{kalman\_filter.c}!Kalman\_Filter\_Update@{Kalman\_Filter\_Update}}
+\index{Kalman\_Filter\_Update@{Kalman\_Filter\_Update}!kalman\_filter.c@{kalman\_filter.c}}
+\doxysubsubsection{\texorpdfstring{Kalman\_Filter\_Update()}{Kalman\_Filter\_Update()}}
+{\footnotesize\ttfamily \label{kalman__filter_8c_ae52e87083cda5ca6e918768312c424f7} 
+float \texorpdfstring{$\ast$}{*} Kalman\+\_\+\+Filter\+\_\+\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{kf}{}\end{DoxyParamCaption})}
+
+
+
+执行卡尔曼滤波黄金五式,提供了用户定义函数,可以替代五个中的任意一个环节,方便自行扩展为\+EKF/\+UKF/\+ESKF/\+AUKF等 
+
+
+\begin{DoxyParams}{参数}
+{\em kf} & kf类型定义 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+float\texorpdfstring{$\ast$}{*} 返回滤波值 
+\end{DoxyReturn}
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{kalman__filter_8c_a573703c080ee84ef82f3f64e72240031}\index{kalman\_filter.c@{kalman\_filter.c}!Kalman\_Filter\_xhatMinusUpdate@{Kalman\_Filter\_xhatMinusUpdate}}
+\index{Kalman\_Filter\_xhatMinusUpdate@{Kalman\_Filter\_xhatMinusUpdate}!kalman\_filter.c@{kalman\_filter.c}}
+\doxysubsubsection{\texorpdfstring{Kalman\_Filter\_xhatMinusUpdate()}{Kalman\_Filter\_xhatMinusUpdate()}}
+{\footnotesize\ttfamily \label{kalman__filter_8c_a573703c080ee84ef82f3f64e72240031} 
+void Kalman\+\_\+\+Filter\+\_\+xhat\+Minus\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{kf}{}\end{DoxyParamCaption})}
+
+
+
+更新先验状态估计值xhat\textquotesingle{}(k) = F·xhat(k-\/1) + B·u。 如果存在控制输入（u\+Size \texorpdfstring{$>$}{>} 0），则计算\+F·xhat(k-\/1)和\+B·u的和； 否则仅计算\+F·xhat(k-\/1)。 
+
+
+\begin{DoxyParams}{参数}
+{\em kf} & 指向\+Kalman\+Filter\+\_\+t结构体的指针 \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{kalman__filter_8c_ae260165c66e4e9d275a6b4c149fb5084}\index{kalman\_filter.c@{kalman\_filter.c}!Kalman\_Filter\_xhatUpdate@{Kalman\_Filter\_xhatUpdate}}
+\index{Kalman\_Filter\_xhatUpdate@{Kalman\_Filter\_xhatUpdate}!kalman\_filter.c@{kalman\_filter.c}}
+\doxysubsubsection{\texorpdfstring{Kalman\_Filter\_xhatUpdate()}{Kalman\_Filter\_xhatUpdate()}}
+{\footnotesize\ttfamily \label{kalman__filter_8c_ae260165c66e4e9d275a6b4c149fb5084} 
+void Kalman\+\_\+\+Filter\+\_\+xhat\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{Kalman\+Filter\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{kf}{}\end{DoxyParamCaption})}
+
+
+
+更新后验状态估计值xhat(k) = xhat\textquotesingle{}(k) + K(k)·(z(k) -\/ H·xhat\textquotesingle{}(k))。 
+
+
+\begin{DoxyParams}{参数}
+{\em kf} & 指向\+Kalman\+Filter\+\_\+t结构体的指针 \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+\Hypertarget{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3}\index{kalman\_filter.c@{kalman\_filter.c}!user\_malloc@{user\_malloc}}
+\index{user\_malloc@{user\_malloc}!kalman\_filter.c@{kalman\_filter.c}}
+\doxysubsubsection{\texorpdfstring{user\_malloc()}{user\_malloc()}}
+{\footnotesize\ttfamily \label{kalman__filter_8c_a4bca043427da3a6795439010c911c3f3} 
+void \texorpdfstring{$\ast$}{*} user\+\_\+malloc (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size}{}\end{DoxyParamCaption})}
+
+\begin{Desc}
+\item[示例]\par
+\mbox{\hyperlink{_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example}{D\+:/\+OCCProject/stm32/\+RM/basic\+\_\+\+DMH7/source/module/\+IMU/ekf/kalman\+\_\+filter.\+c}}.\end{Desc}
+
+
+\doxysubsection{变量说明}
+\Hypertarget{kalman__filter_8c_a0ce754bf27dc96cbb3216b52e5cd56dd}\index{kalman\_filter.c@{kalman\_filter.c}!sizeof\_double@{sizeof\_double}}
+\index{sizeof\_double@{sizeof\_double}!kalman\_filter.c@{kalman\_filter.c}}
+\doxysubsubsection{\texorpdfstring{sizeof\_double}{sizeof\_double}}
+{\footnotesize\ttfamily \label{kalman__filter_8c_a0ce754bf27dc96cbb3216b52e5cd56dd} 
+uint16\+\_\+t sizeof\+\_\+double}
+
+\Hypertarget{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}\index{kalman\_filter.c@{kalman\_filter.c}!sizeof\_float@{sizeof\_float}}
+\index{sizeof\_float@{sizeof\_float}!kalman\_filter.c@{kalman\_filter.c}}
+\doxysubsubsection{\texorpdfstring{sizeof\_float}{sizeof\_float}}
+{\footnotesize\ttfamily \label{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62} 
+uint16\+\_\+t sizeof\+\_\+float}
+

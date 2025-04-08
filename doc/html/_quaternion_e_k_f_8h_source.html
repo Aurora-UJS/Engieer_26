@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/IMU/ekf/QuaternionEKF.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_8b711e810999a9fe1de9e9ddd8899d9f.html">IMU</a></li><li class="navelem"><a class="el" href="dir_3b8d80945d87372d4de6e5070e9e2fcb.html">ekf</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">QuaternionEKF.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_quaternion_e_k_f_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef _QUAT_EKF_H</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define _QUAT_EKF_H</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="kalman__filter_8h.html">kalman_filter.h</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">/* boolean type definitions */</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#ifndef TRUE</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="_quaternion_e_k_f_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">   19</a></span><span class="preprocessor">#define TRUE 1 </span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#ifndef FALSE</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="_quaternion_e_k_f_8h.html#aa93f0eb578d23995850d61f7d61c55c1">   23</a></span><span class="preprocessor">#define FALSE 0 </span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="};">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html">   29</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a885a68e632ab9a6189c31f5f8a648f35">   31</a></span>    uint8_t <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a885a68e632ab9a6189c31f5f8a648f35">Initialized</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#aa31a9eb1b01a731007ea8eb4384b6206">   32</a></span>    <a class="code hl_typedef" href="kalman__filter_8h.html#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#aa31a9eb1b01a731007ea8eb4384b6206">IMU_QuaternionEKF</a>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a4a0b6e7c35e051f9c1bc256c63239148">   33</a></span>    uint8_t <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a4a0b6e7c35e051f9c1bc256c63239148">ConvergeFlag</a>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a751fa039ff4c73431bddbace2ce0412e">   34</a></span>    uint8_t <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a751fa039ff4c73431bddbace2ce0412e">StableFlag</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a783384fb59519cef9c964a8e3991383b">   35</a></span>    uint64_t <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a783384fb59519cef9c964a8e3991383b">ErrorCount</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#ad3aef96e4194e2a0d7c43aa520e152ee">   36</a></span>    uint64_t <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#ad3aef96e4194e2a0d7c43aa520e152ee">UpdateCount</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#acbffa34110f15b21994d3d087a0f4e7f">   38</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#acbffa34110f15b21994d3d087a0f4e7f">q</a>[4];        <span class="comment">// 四元数估计值</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a284052175f76a36705a2d606ec608eaa">   39</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a284052175f76a36705a2d606ec608eaa">GyroBias</a>[3]; <span class="comment">// 陀螺仪零偏估计值</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#ad211be2646a6b9b8882f17c37537d5f0">   41</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#ad211be2646a6b9b8882f17c37537d5f0">Gyro</a>[3];</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#abc3945dea44b028a22a7cc6ae17bc016">   42</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#abc3945dea44b028a22a7cc6ae17bc016">Accel</a>[3];</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a104bd47b4718c296a8727bd064535ead">   44</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a104bd47b4718c296a8727bd064535ead">OrientationCosine</a>[3];</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a7ae8475a96adecbe94b886aa6afed70d">   46</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a7ae8475a96adecbe94b886aa6afed70d">accLPFcoef</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#ab850d578c34c42ab0280b5d716cfdd22">   47</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#ab850d578c34c42ab0280b5d716cfdd22">gyro_norm</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#abc0c91915001cea9d27455a3cac3c068">   48</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#abc0c91915001cea9d27455a3cac3c068">accl_norm</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a0214ed6132d979c452d6c2b1219df109">   49</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a0214ed6132d979c452d6c2b1219df109">AdaptiveGainScale</a>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#ade9e1f9555516012861be1695fe4a9a0">   51</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#ade9e1f9555516012861be1695fe4a9a0">Roll</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#aa412fb786d18d393b80ce4d2a00ba51c">   52</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#aa412fb786d18d393b80ce4d2a00ba51c">Pitch</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a86cd3708ed18a9bdfec5c43fc837f206">   53</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a86cd3708ed18a9bdfec5c43fc837f206">Yaw</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a80a2a092ac905ae4883248304f7aadab">   55</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a80a2a092ac905ae4883248304f7aadab">YawTotalAngle</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a6ea410e354f385041c3a7c62a7a3de2d">   57</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a6ea410e354f385041c3a7c62a7a3de2d">Q1</a>; <span class="comment">// 四元数更新过程噪声</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#af3cfae9022c0052ea7d66466f20e9b46">   58</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#af3cfae9022c0052ea7d66466f20e9b46">Q2</a>; <span class="comment">// 陀螺仪零偏过程噪声</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a4c4b08e61e92b3da1ed512f4e006f34a">   59</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a4c4b08e61e92b3da1ed512f4e006f34a">R</a>;  <span class="comment">// 加速度计量测噪声</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a778e38aa889751afffa2dea6b803e67a">   61</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a778e38aa889751afffa2dea6b803e67a">dt</a>; <span class="comment">// 姿态更新周期</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a32733f1840591bffbfce55eadd946c52">   62</a></span>    <a class="code hl_define" href="kalman__filter_8h.html#a25f351d8faacd808387ec773e0a8ede7">mat</a> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a32733f1840591bffbfce55eadd946c52">ChiSquare</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a45c2c0b05b6dfdea57156433e191b33e">   63</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a45c2c0b05b6dfdea57156433e191b33e">ChiSquare_Data</a>[1];      <span class="comment">// 卡方检验检测函数</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a2ecd12f4d1bb02708ce10df387787007">   64</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a2ecd12f4d1bb02708ce10df387787007">ChiSquareTestThreshold</a>; <span class="comment">// 卡方检验阈值</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#acac4a565486bad0b88b62387d8a5d891">   65</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#acac4a565486bad0b88b62387d8a5d891">lambda</a>;                 <span class="comment">// 渐消因子</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a7f5b31937cd8c34486c2d09bd618f560">   67</a></span>    int16_t <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a7f5b31937cd8c34486c2d09bd618f560">YawRoundCount</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="struct_q_e_k_f___i_n_s__t.html#a331e1b45c28a0d0a7eb582b1711efea2">   69</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_q_e_k_f___i_n_s__t.html#a331e1b45c28a0d0a7eb582b1711efea2">YawAngleLast</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>} <a class="code hl_struct" href="struct_q_e_k_f___i_n_s__t.html">QEKF_INS_t</a>;</div>
+</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_q_e_k_f___i_n_s__t.html">QEKF_INS_t</a> <a class="code hl_variable" href="_quaternion_e_k_f_8c.html#a2f6ee130c2912fa1106128c97aa54d69">QEKF_INS</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">extern</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="_quaternion_e_k_f_8h.html#a2e0e191413114f9d3d801199ae634c1f">chiSquare</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">extern</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="_quaternion_e_k_f_8h.html#a2ecd12f4d1bb02708ce10df387787007">ChiSquareTestThreshold</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keywordtype">void</span> <a class="code hl_function" href="_quaternion_e_k_f_8h.html#a5f6786be602a9b18cc716e3c6de14fc6">IMU_QuaternionEKF_Init</a>(<span class="keywordtype">float</span> process_noise1, <span class="keywordtype">float</span> process_noise2, <span class="keywordtype">float</span> measure_noise, <span class="keywordtype">float</span> lambda, <span class="keywordtype">float</span> dt, <span class="keywordtype">float</span> lpf);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keywordtype">void</span> <a class="code hl_function" href="_quaternion_e_k_f_8h.html#ae323af11f1e78bd5438e27fb7cb494f1">IMU_QuaternionEKF_Update</a>(<span class="keywordtype">float</span> gx, <span class="keywordtype">float</span> gy, <span class="keywordtype">float</span> gz, <span class="keywordtype">float</span> ax, <span class="keywordtype">float</span> ay, <span class="keywordtype">float</span> az);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keywordtype">void</span> <a class="code hl_function" href="_quaternion_e_k_f_8h.html#a3e96165d892e72c475ed2a4a99bc8a3a">IMU_QuaternionEKF_Reset</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keywordtype">float</span> <a class="code hl_function" href="_quaternion_e_k_f_8h.html#a152babe74f10ee018f57c718c7740340">Get_Pitch</a>(<span class="keywordtype">void</span>);<span class="comment">//get pitch</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keywordtype">float</span> <a class="code hl_function" href="_quaternion_e_k_f_8h.html#aa143fd0323b5b3e4a51d3540abe6cad1">Get_Roll</a>(<span class="keywordtype">void</span>);<span class="comment">//get roll</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keywordtype">float</span> <a class="code hl_function" href="_quaternion_e_k_f_8h.html#abb5539540e212717cad7c8bc7291043c">Get_Yaw</a>(<span class="keywordtype">void</span>);<span class="comment">//get yaw</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_quaternion_e_k_f_8c_html_a2f6ee130c2912fa1106128c97aa54d69"><div class="ttname"><a href="_quaternion_e_k_f_8c.html#a2f6ee130c2912fa1106128c97aa54d69">QEKF_INS</a></div><div class="ttdeci">QEKF_INS_t QEKF_INS</div><div class="ttdef"><b>定义</b> QuaternionEKF.c:18</div></div>
+<div class="ttc" id="a_quaternion_e_k_f_8h_html_a152babe74f10ee018f57c718c7740340"><div class="ttname"><a href="_quaternion_e_k_f_8h.html#a152babe74f10ee018f57c718c7740340">Get_Pitch</a></div><div class="ttdeci">float Get_Pitch(void)</div><div class="ttdef"><b>定义</b> QuaternionEKF.c:520</div></div>
+<div class="ttc" id="a_quaternion_e_k_f_8h_html_a2e0e191413114f9d3d801199ae634c1f"><div class="ttname"><a href="_quaternion_e_k_f_8h.html#a2e0e191413114f9d3d801199ae634c1f">chiSquare</a></div><div class="ttdeci">float chiSquare</div></div>
+<div class="ttc" id="a_quaternion_e_k_f_8h_html_a2ecd12f4d1bb02708ce10df387787007"><div class="ttname"><a href="_quaternion_e_k_f_8h.html#a2ecd12f4d1bb02708ce10df387787007">ChiSquareTestThreshold</a></div><div class="ttdeci">float ChiSquareTestThreshold</div></div>
+<div class="ttc" id="a_quaternion_e_k_f_8h_html_a3e96165d892e72c475ed2a4a99bc8a3a"><div class="ttname"><a href="_quaternion_e_k_f_8h.html#a3e96165d892e72c475ed2a4a99bc8a3a">IMU_QuaternionEKF_Reset</a></div><div class="ttdeci">void IMU_QuaternionEKF_Reset(void)</div><div class="ttdoc">重置四元数扩展卡尔曼滤波器（QEKF）的状态和参数。</div><div class="ttdef"><b>定义</b> QuaternionEKF.c:110</div></div>
+<div class="ttc" id="a_quaternion_e_k_f_8h_html_a5f6786be602a9b18cc716e3c6de14fc6"><div class="ttname"><a href="_quaternion_e_k_f_8h.html#a5f6786be602a9b18cc716e3c6de14fc6">IMU_QuaternionEKF_Init</a></div><div class="ttdeci">void IMU_QuaternionEKF_Init(float process_noise1, float process_noise2, float measure_noise, float lambda, float dt, float lpf)</div><div class="ttdoc">Quaternion EKF initialization and some reference value</div><div class="ttdef"><b>定义</b> QuaternionEKF.c:57</div></div>
+<div class="ttc" id="a_quaternion_e_k_f_8h_html_aa143fd0323b5b3e4a51d3540abe6cad1"><div class="ttname"><a href="_quaternion_e_k_f_8h.html#aa143fd0323b5b3e4a51d3540abe6cad1">Get_Roll</a></div><div class="ttdeci">float Get_Roll(void)</div><div class="ttdef"><b>定义</b> QuaternionEKF.c:525</div></div>
+<div class="ttc" id="a_quaternion_e_k_f_8h_html_abb5539540e212717cad7c8bc7291043c"><div class="ttname"><a href="_quaternion_e_k_f_8h.html#abb5539540e212717cad7c8bc7291043c">Get_Yaw</a></div><div class="ttdeci">float Get_Yaw(void)</div><div class="ttdef"><b>定义</b> QuaternionEKF.c:530</div></div>
+<div class="ttc" id="a_quaternion_e_k_f_8h_html_ae323af11f1e78bd5438e27fb7cb494f1"><div class="ttname"><a href="_quaternion_e_k_f_8h.html#ae323af11f1e78bd5438e27fb7cb494f1">IMU_QuaternionEKF_Update</a></div><div class="ttdeci">void IMU_QuaternionEKF_Update(float gx, float gy, float gz, float ax, float ay, float az)</div><div class="ttdoc">Quaternion EKF update</div><div class="ttdef"><b>定义</b> QuaternionEKF.c:141</div></div>
+<div class="ttc" id="akalman__filter_8h_html"><div class="ttname"><a href="kalman__filter_8h.html">kalman_filter.h</a></div></div>
+<div class="ttc" id="akalman__filter_8h_html_a25f351d8faacd808387ec773e0a8ede7"><div class="ttname"><a href="kalman__filter_8h.html#a25f351d8faacd808387ec773e0a8ede7">mat</a></div><div class="ttdeci">#define mat</div><div class="ttdef"><b>定义</b> kalman_filter.h:36</div></div>
+<div class="ttc" id="akalman__filter_8h_html_af02bc9b785abb47505f15cedcbad2ba5"><div class="ttname"><a href="kalman__filter_8h.html#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a></div><div class="ttdeci">struct kf_t KalmanFilter_t</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html">QEKF_INS_t</a></div><div class="ttdef"><b>定义</b> QuaternionEKF.h:30</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a0214ed6132d979c452d6c2b1219df109"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a0214ed6132d979c452d6c2b1219df109">QEKF_INS_t::AdaptiveGainScale</a></div><div class="ttdeci">float AdaptiveGainScale</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:49</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a104bd47b4718c296a8727bd064535ead"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a104bd47b4718c296a8727bd064535ead">QEKF_INS_t::OrientationCosine</a></div><div class="ttdeci">float OrientationCosine[3]</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:44</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a284052175f76a36705a2d606ec608eaa"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a284052175f76a36705a2d606ec608eaa">QEKF_INS_t::GyroBias</a></div><div class="ttdeci">float GyroBias[3]</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:39</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a2ecd12f4d1bb02708ce10df387787007"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a2ecd12f4d1bb02708ce10df387787007">QEKF_INS_t::ChiSquareTestThreshold</a></div><div class="ttdeci">float ChiSquareTestThreshold</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:64</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a32733f1840591bffbfce55eadd946c52"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a32733f1840591bffbfce55eadd946c52">QEKF_INS_t::ChiSquare</a></div><div class="ttdeci">mat ChiSquare</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:62</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a331e1b45c28a0d0a7eb582b1711efea2"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a331e1b45c28a0d0a7eb582b1711efea2">QEKF_INS_t::YawAngleLast</a></div><div class="ttdeci">float YawAngleLast</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:69</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a45c2c0b05b6dfdea57156433e191b33e"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a45c2c0b05b6dfdea57156433e191b33e">QEKF_INS_t::ChiSquare_Data</a></div><div class="ttdeci">float ChiSquare_Data[1]</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:63</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a4a0b6e7c35e051f9c1bc256c63239148"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a4a0b6e7c35e051f9c1bc256c63239148">QEKF_INS_t::ConvergeFlag</a></div><div class="ttdeci">uint8_t ConvergeFlag</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:33</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a4c4b08e61e92b3da1ed512f4e006f34a"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a4c4b08e61e92b3da1ed512f4e006f34a">QEKF_INS_t::R</a></div><div class="ttdeci">float R</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:59</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a6ea410e354f385041c3a7c62a7a3de2d"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a6ea410e354f385041c3a7c62a7a3de2d">QEKF_INS_t::Q1</a></div><div class="ttdeci">float Q1</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:57</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a751fa039ff4c73431bddbace2ce0412e"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a751fa039ff4c73431bddbace2ce0412e">QEKF_INS_t::StableFlag</a></div><div class="ttdeci">uint8_t StableFlag</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:34</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a778e38aa889751afffa2dea6b803e67a"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a778e38aa889751afffa2dea6b803e67a">QEKF_INS_t::dt</a></div><div class="ttdeci">float dt</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:61</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a783384fb59519cef9c964a8e3991383b"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a783384fb59519cef9c964a8e3991383b">QEKF_INS_t::ErrorCount</a></div><div class="ttdeci">uint64_t ErrorCount</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:35</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a7ae8475a96adecbe94b886aa6afed70d"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a7ae8475a96adecbe94b886aa6afed70d">QEKF_INS_t::accLPFcoef</a></div><div class="ttdeci">float accLPFcoef</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:46</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a7f5b31937cd8c34486c2d09bd618f560"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a7f5b31937cd8c34486c2d09bd618f560">QEKF_INS_t::YawRoundCount</a></div><div class="ttdeci">int16_t YawRoundCount</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:67</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a80a2a092ac905ae4883248304f7aadab"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a80a2a092ac905ae4883248304f7aadab">QEKF_INS_t::YawTotalAngle</a></div><div class="ttdeci">float YawTotalAngle</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:55</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a86cd3708ed18a9bdfec5c43fc837f206"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a86cd3708ed18a9bdfec5c43fc837f206">QEKF_INS_t::Yaw</a></div><div class="ttdeci">float Yaw</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:53</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_a885a68e632ab9a6189c31f5f8a648f35"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#a885a68e632ab9a6189c31f5f8a648f35">QEKF_INS_t::Initialized</a></div><div class="ttdeci">uint8_t Initialized</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:31</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_aa31a9eb1b01a731007ea8eb4384b6206"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#aa31a9eb1b01a731007ea8eb4384b6206">QEKF_INS_t::IMU_QuaternionEKF</a></div><div class="ttdeci">KalmanFilter_t IMU_QuaternionEKF</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:32</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_aa412fb786d18d393b80ce4d2a00ba51c"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#aa412fb786d18d393b80ce4d2a00ba51c">QEKF_INS_t::Pitch</a></div><div class="ttdeci">float Pitch</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:52</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_ab850d578c34c42ab0280b5d716cfdd22"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#ab850d578c34c42ab0280b5d716cfdd22">QEKF_INS_t::gyro_norm</a></div><div class="ttdeci">float gyro_norm</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:47</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_abc0c91915001cea9d27455a3cac3c068"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#abc0c91915001cea9d27455a3cac3c068">QEKF_INS_t::accl_norm</a></div><div class="ttdeci">float accl_norm</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:48</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_abc3945dea44b028a22a7cc6ae17bc016"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#abc3945dea44b028a22a7cc6ae17bc016">QEKF_INS_t::Accel</a></div><div class="ttdeci">float Accel[3]</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:42</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_acac4a565486bad0b88b62387d8a5d891"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#acac4a565486bad0b88b62387d8a5d891">QEKF_INS_t::lambda</a></div><div class="ttdeci">float lambda</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:65</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_acbffa34110f15b21994d3d087a0f4e7f"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#acbffa34110f15b21994d3d087a0f4e7f">QEKF_INS_t::q</a></div><div class="ttdeci">float q[4]</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:38</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_ad211be2646a6b9b8882f17c37537d5f0"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#ad211be2646a6b9b8882f17c37537d5f0">QEKF_INS_t::Gyro</a></div><div class="ttdeci">float Gyro[3]</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:41</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_ad3aef96e4194e2a0d7c43aa520e152ee"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#ad3aef96e4194e2a0d7c43aa520e152ee">QEKF_INS_t::UpdateCount</a></div><div class="ttdeci">uint64_t UpdateCount</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:36</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_ade9e1f9555516012861be1695fe4a9a0"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#ade9e1f9555516012861be1695fe4a9a0">QEKF_INS_t::Roll</a></div><div class="ttdeci">float Roll</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:51</div></div>
+<div class="ttc" id="astruct_q_e_k_f___i_n_s__t_html_af3cfae9022c0052ea7d66466f20e9b46"><div class="ttname"><a href="struct_q_e_k_f___i_n_s__t.html#af3cfae9022c0052ea7d66466f20e9b46">QEKF_INS_t::Q2</a></div><div class="ttdeci">float Q2</div><div class="ttdef"><b>定义</b> QuaternionEKF.h:58</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

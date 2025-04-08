@@ -1,0 +1,42 @@
+\chapter{大疆电机模块使用说明}
+\hypertarget{md_source_2module_2motor_2motor___dji_2motor___d_j_i}{}\label{md_source_2module_2motor_2motor___dji_2motor___d_j_i}\index{大疆电机模块使用说明@{大疆电机模块使用说明}}
+\label{md_source_2module_2motor_2motor___dji_2motor___d_j_i_autotoc_md49}%
+\Hypertarget{md_source_2module_2motor_2motor___dji_2motor___d_j_i_autotoc_md49}%
+\hypertarget{md_source_2module_2motor_2motor___dji_2motor___d_j_i_autotoc_md50}{}\doxysection{\texorpdfstring{1. 示例代码}{1. 示例代码}}\label{md_source_2module_2motor_2motor___dji_2motor___d_j_i_autotoc_md50}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 定义一个指向\ DJI\_motor\_t\ 类型的指针\ DJMotor}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct_d_j_i__motor__t}{DJI\_motor\_t}}\ *DJMotor;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 动态分配内存，以创建一个\ DJI\_motor\_t\ 类型的实例，并将其地址赋给\ DJMotor}}
+\DoxyCodeLine{\ \ \ \ DJMotor\ =\ pvPortMalloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_d_j_i__motor__t}{DJI\_motor\_t}}));}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 配置\ DJMotor\ 的\ CAN\ 端口，设置为\ CAN1\_PORT}}
+\DoxyCodeLine{\ \ \ \ DJMotor-\/>\mbox{\hyperlink{struct_d_j_i__motor__t_a14f42c85faa99e48d6974c25f369f8eb}{can\_cfg}}.\mbox{\hyperlink{structcan__msg__t_a2fa54f9024782843172506fadbee2ac8}{port}}\ =\ \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238}{CAN1\_PORT}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 配置\ DJMotor\ 的\ CAN\ 通信\ ID，设置为\ 0x200}}
+\DoxyCodeLine{\ \ \ \ DJMotor-\/>\mbox{\hyperlink{struct_d_j_i__motor__t_a14f42c85faa99e48d6974c25f369f8eb}{can\_cfg}}.\mbox{\hyperlink{structcan__msg__t_abaabdc509cdaba7df9f56c6c76f3ae19}{id}}\ =\ 0x200;}
+\DoxyCodeLine{\ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 配置电机消息的\ CAN\ ID，依次设置为\ 0x201,\ 0x202,\ 0x203,\ 0x204}}
+\DoxyCodeLine{\ \ \ \ DJMotor-\/>\mbox{\hyperlink{struct_d_j_i__motor__t_ad5045a9c055a09a1c9523bab16571aa7}{motor\_msg}}[0].\mbox{\hyperlink{structcan__motor__t_af7783107481632d59624f7bb8e6274ed}{can\_msg}}.\mbox{\hyperlink{structcan__msg__t_abaabdc509cdaba7df9f56c6c76f3ae19}{id}}\ =\ 0x201;}
+\DoxyCodeLine{\ \ \ \ DJMotor-\/>\mbox{\hyperlink{struct_d_j_i__motor__t_ad5045a9c055a09a1c9523bab16571aa7}{motor\_msg}}[1].\mbox{\hyperlink{structcan__motor__t_af7783107481632d59624f7bb8e6274ed}{can\_msg}}.\mbox{\hyperlink{structcan__msg__t_abaabdc509cdaba7df9f56c6c76f3ae19}{id}}\ =\ 0x202;}
+\DoxyCodeLine{\ \ \ \ DJMotor-\/>\mbox{\hyperlink{struct_d_j_i__motor__t_ad5045a9c055a09a1c9523bab16571aa7}{motor\_msg}}[2].\mbox{\hyperlink{structcan__motor__t_af7783107481632d59624f7bb8e6274ed}{can\_msg}}.\mbox{\hyperlink{structcan__msg__t_abaabdc509cdaba7df9f56c6c76f3ae19}{id}}\ =\ 0x203;}
+\DoxyCodeLine{\ \ \ \ DJMotor-\/>\mbox{\hyperlink{struct_d_j_i__motor__t_ad5045a9c055a09a1c9523bab16571aa7}{motor\_msg}}[3].\mbox{\hyperlink{structcan__motor__t_af7783107481632d59624f7bb8e6274ed}{can\_msg}}.\mbox{\hyperlink{structcan__msg__t_abaabdc509cdaba7df9f56c6c76f3ae19}{id}}\ =\ 0x204;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 调用初始化函数，对\ DJI\_motor\ 进行初始化设置}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{motor_8_d_j_i_8c_aa58303faf6213e5527880d02243c85c3}{Motor\_DJI\_Init}}(DJMotor);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 开始无限循环，持续控制电机}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{while}\ (1)}
+\DoxyCodeLine{\ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 刷新\ DJMotor\ 状态，以获取最新的电机数据}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{motor_8_d_j_i_8c_abfe775d5de240e993f95bbce4c795b23}{Motor\_DJI\_Refresh}}(DJMotor);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 设置电机的参数，参数解释为\ CAN\ 端口，CAN\ ID\ 和多个参数（电压或电流）值}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{motor_8_d_j_i_8c_a1b6f009cefceb070da8f11ef9d7c2f24}{set\_motor\_parameter}}(\&DJMotor,\ \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238}{CAN1\_PORT}},\ 0x200,\ 1000,\ 1000,\ 1000,\ 1000);}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 

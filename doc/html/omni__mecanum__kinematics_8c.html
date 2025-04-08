@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/control/KinematicSolution/OmniAMecanum/omni_mecanum_kinematics.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_25ff6885a748b7ac678af6e47152e090.html">control</a></li><li class="navelem"><a class="el" href="dir_844de94363a6b0e654a7d58d3aed6a48.html">KinematicSolution</a></li><li class="navelem"><a class="el" href="dir_6fc30a70c0200a1e210021909432d4ad.html">OmniAMecanum</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">omni_mecanum_kinematics.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;stm32h7xx.h&quot;</code><br />
+<code>#include &quot;arm_math.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="omni__mecanum__kinematics_8h_source.html">omni_mecanum_kinematics.h</a>&quot;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="motion__state_8h_source.html">motion_state.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+omni_mecanum_kinematics.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="omni__mecanum__kinematics_8c__incl.png" border="0" usemap="#asource_2module_2control_2_kinematic_solution_2_omni_a_mecanum_2omni__mecanum__kinematics_8c" alt=""/></div>
+<map name="asource_2module_2control_2_kinematic_solution_2_omni_a_mecanum_2omni__mecanum__kinematics_8c" id="asource_2module_2control_2_kinematic_solution_2_omni_a_mecanum_2omni__mecanum__kinematics_8c">
+<area shape="rect" title=" " alt="" coords="74,5,305,64"/>
+<area shape="rect" title=" " alt="" coords="5,112,102,139"/>
+<area shape="poly" title=" " alt="" coords="147,67,87,106,84,101,144,62"/>
+<area shape="rect" title=" " alt="" coords="134,261,224,288"/>
+<area shape="poly" title=" " alt="" coords="184,65,171,132,167,173,168,213,174,246,169,247,163,214,162,173,165,132,179,64"/>
+<area shape="rect" href="omni__mecanum__kinematics_8h.html" title=" " alt="" coords="227,112,421,139"/>
+<area shape="poly" title=" " alt="" coords="235,62,294,101,291,106,232,67"/>
+<area shape="rect" href="motion__state_8h.html" title=" " alt="" coords="177,187,284,213"/>
+<area shape="poly" title=" " alt="" coords="199,64,217,138,226,171,221,172,212,139,194,65"/>
+<area shape="rect" title=" " alt="" coords="445,112,510,139"/>
+<area shape="poly" title=" " alt="" coords="284,62,431,107,430,112,282,67"/>
+<area shape="rect" title=" " alt="" coords="270,261,330,288"/>
+<area shape="poly" title=" " alt="" coords="325,140,307,246,302,245,319,139"/>
+<area shape="poly" title=" " alt="" coords="310,141,260,179,257,175,306,137"/>
+<area shape="poly" title=" " alt="" coords="224,215,199,250,194,247,220,212"/>
+<area shape="poly" title=" " alt="" coords="245,212,280,248,276,252,241,216"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:af99357e7a51caf648d37258ad1e34c47" id="r_af99357e7a51caf648d37258ad1e34c47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af99357e7a51caf648d37258ad1e34c47">omni_mecanum_kinematics</a> (<a class="el" href="structbasic__vector__t.html">basic_vector_t</a> *motion_vector, float *motor_speed_out)</td></tr>
+<tr class="memdesc:af99357e7a51caf648d37258ad1e34c47"><td class="mdescLeft">&#160;</td><td class="mdescRight">计算全向轮（麦克纳姆轮）的运动学  <br /></td></tr>
+<tr class="separator:af99357e7a51caf648d37258ad1e34c47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="af99357e7a51caf648d37258ad1e34c47" name="af99357e7a51caf648d37258ad1e34c47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af99357e7a51caf648d37258ad1e34c47">&#9670;&#160;</a></span>omni_mecanum_kinematics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void omni_mecanum_kinematics </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structbasic__vector__t.html">basic_vector_t</a> *</td>          <td class="paramname"><span class="paramname"><em>motion_vector</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>motor_speed_out</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>计算全向轮（麦克纳姆轮）的运动学 </p>
+<p>该函数根据机器人的运动矢量（x方向速度、y方向速度和旋转速度）计算四个麦克纳姆轮的电机速度输出。 这使得机器人可以根据给定的运动矢量以全向方式移动。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">motion_vector</td><td>指向包含机器人运动矢量的结构体指针，包括x、y方向速度和旋转速度wz </td></tr>
+    <tr><td class="paramname">motor_speed_out</td><td>指向用于存储计算出的四个电机速度输出的数组 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

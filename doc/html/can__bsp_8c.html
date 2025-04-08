@@ -1,0 +1,527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/can/can_bsp.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_0fa7b5f3a2c703f9b05d3502dd47a261.html">can</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">can_bsp.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="can__struct_8h_source.html">can_struct.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="can__api_8h_source.html">can_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="can__bsp_8h_source.html">can_bsp.h</a>&quot;</code><br />
+<code>#include &quot;list.h&quot;</code><br />
+<code>#include &quot;string.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+can_bsp.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="can__bsp_8c__incl.png" border="0" usemap="#asource_2bsp_2can_2can__bsp_8c" alt=""/></div>
+<map name="asource_2bsp_2can_2can__bsp_8c" id="asource_2bsp_2can_2can__bsp_8c">
+<area shape="rect" title=" " alt="" coords="110,5,246,48"/>
+<area shape="rect" href="can__struct_8h.html" title=" " alt="" coords="118,171,211,197"/>
+<area shape="poly" title=" " alt="" coords="179,48,170,155,164,155,174,48"/>
+<area shape="rect" title=" " alt="" coords="5,245,55,272"/>
+<area shape="poly" title=" " alt="" coords="115,51,81,70,54,98,38,130,30,166,28,200,29,230,24,230,23,200,25,165,33,128,49,94,78,66,112,46"/>
+<area shape="rect" href="can__api_8h.html" title=" " alt="" coords="63,96,141,123"/>
+<area shape="poly" title=" " alt="" coords="160,50,126,86,122,83,156,47"/>
+<area shape="rect" href="can__bsp_8h.html" title=" " alt="" coords="244,96,325,123"/>
+<area shape="poly" title=" " alt="" coords="207,46,257,84,254,88,204,51"/>
+<area shape="rect" title=" " alt="" coords="350,96,414,123"/>
+<area shape="poly" title=" " alt="" coords="232,46,337,87,335,92,230,51"/>
+<area shape="rect" title=" " alt="" coords="218,245,279,272"/>
+<area shape="poly" title=" " alt="" coords="181,196,224,233,221,237,178,200"/>
+<area shape="rect" title=" " alt="" coords="90,245,184,272"/>
+<area shape="poly" title=" " alt="" coords="162,199,149,232,144,230,157,197"/>
+<area shape="poly" title=" " alt="" coords="142,200,68,240,66,235,140,196"/>
+<area shape="poly" title=" " alt="" coords="115,121,146,157,142,161,111,125"/>
+<area shape="poly" title=" " alt="" coords="142,118,186,137,207,151,225,169,241,198,249,229,244,230,236,200,221,172,204,156,183,142,140,123"/>
+<area shape="poly" title=" " alt="" coords="104,123,103,157,109,197,123,231,118,233,103,198,98,157,98,123"/>
+<area shape="poly" title=" " alt="" coords="98,124,45,232,40,230,93,122"/>
+<area shape="poly" title=" " alt="" coords="285,124,270,198,260,231,255,230,265,197,280,123"/>
+<area shape="rect" title=" " alt="" coords="336,171,401,197"/>
+<area shape="poly" title=" " alt="" coords="301,121,344,158,341,162,298,125"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a2ebfa607b1b3eef0346b7d156fb12d68" id="r_a2ebfa607b1b3eef0346b7d156fb12d68"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ebfa607b1b3eef0346b7d156fb12d68">can_bsp_init</a> (void)</td></tr>
+<tr class="memdesc:a2ebfa607b1b3eef0346b7d156fb12d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#a2ebfa607b1b3eef0346b7d156fb12d68" title=": can_bsp_init(void)">can_bsp_init(void)</a>  <br /></td></tr>
+<tr class="separator:a2ebfa607b1b3eef0346b7d156fb12d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91b470cec2134692a415997c95dba833" id="r_a91b470cec2134692a415997c95dba833"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91b470cec2134692a415997c95dba833">can_filter_init</a> (void)</td></tr>
+<tr class="memdesc:a91b470cec2134692a415997c95dba833"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#a91b470cec2134692a415997c95dba833" title=": can_filter_init(void)">can_filter_init(void)</a>  <br /></td></tr>
+<tr class="separator:a91b470cec2134692a415997c95dba833"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0aaa310fbfd6b42a7b8080e978c5ac02" id="r_a0aaa310fbfd6b42a7b8080e978c5ac02"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0aaa310fbfd6b42a7b8080e978c5ac02">fdcanx_send_data</a> (FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)</td></tr>
+<tr class="memdesc:a0aaa310fbfd6b42a7b8080e978c5ac02"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#a0aaa310fbfd6b42a7b8080e978c5ac02" title=": fdcanx_send_data(FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)">fdcanx_send_data(FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)</a>  <br /></td></tr>
+<tr class="separator:a0aaa310fbfd6b42a7b8080e978c5ac02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33d13750f662e37eecb89d55afcd851f" id="r_a33d13750f662e37eecb89d55afcd851f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33d13750f662e37eecb89d55afcd851f">fdcanx_send_data_ext</a> (FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)</td></tr>
+<tr class="memdesc:a33d13750f662e37eecb89d55afcd851f"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#a33d13750f662e37eecb89d55afcd851f" title=": fdcanx_send_data_ext(FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)">fdcanx_send_data_ext(FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)</a>  <br /></td></tr>
+<tr class="separator:a33d13750f662e37eecb89d55afcd851f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bb22a6f7231728f60e6f149d1f10ae0" id="r_a5bb22a6f7231728f60e6f149d1f10ae0"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bb22a6f7231728f60e6f149d1f10ae0">fdcanx_send_data_fd</a> (FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)</td></tr>
+<tr class="separator:a5bb22a6f7231728f60e6f149d1f10ae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1de47675f355f641d54778d1a29a593f" id="r_a1de47675f355f641d54778d1a29a593f"><td class="memItemLeft" align="right" valign="top">FDCAN_RxHeaderTypeDef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1de47675f355f641d54778d1a29a593f">fdcanx_receive</a> (FDCAN_HandleTypeDef *hfdcan, uint8_t *buf)</td></tr>
+<tr class="separator:a1de47675f355f641d54778d1a29a593f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37d92c0f4f667c4dd4cbc9c3b5d5dad4" id="r_a37d92c0f4f667c4dd4cbc9c3b5d5dad4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a37d92c0f4f667c4dd4cbc9c3b5d5dad4">HAL_FDCAN_RxFifo0Callback</a> (FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)</td></tr>
+<tr class="memdesc:a37d92c0f4f667c4dd4cbc9c3b5d5dad4"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#a37d92c0f4f667c4dd4cbc9c3b5d5dad4" title=": HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)">HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)</a>  <br /></td></tr>
+<tr class="separator:a37d92c0f4f667c4dd4cbc9c3b5d5dad4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac51de6cf6c580ddaad2b5061062f83da" id="r_ac51de6cf6c580ddaad2b5061062f83da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac51de6cf6c580ddaad2b5061062f83da">fdcan1_rx_callback</a> (void)</td></tr>
+<tr class="separator:ac51de6cf6c580ddaad2b5061062f83da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf28ae68f18643ff76e4ad5331e328c8" id="r_aaf28ae68f18643ff76e4ad5331e328c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf28ae68f18643ff76e4ad5331e328c8">fdcan2_rx_callback</a> (void)</td></tr>
+<tr class="separator:aaf28ae68f18643ff76e4ad5331e328c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8da3a7c741435db59143efb68873cc5e" id="r_a8da3a7c741435db59143efb68873cc5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8da3a7c741435db59143efb68873cc5e">fdcan3_rx_callback</a> (void)</td></tr>
+<tr class="separator:a8da3a7c741435db59143efb68873cc5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a654b79842b0f8a1b566c8665a13418b5" id="r_a654b79842b0f8a1b566c8665a13418b5"><td class="memItemLeft" align="right" valign="top">FDCAN_RxHeaderTypeDef&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a654b79842b0f8a1b566c8665a13418b5">fdcan_RxHeader</a></td></tr>
+<tr class="memdesc:a654b79842b0f8a1b566c8665a13418b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="#a1de47675f355f641d54778d1a29a593f">fdcanx_receive(FDCAN_HandleTypeDef *hfdcan, uint8_t *buf)</a>  <br /></td></tr>
+<tr class="separator:a654b79842b0f8a1b566c8665a13418b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cda4488b4b34629e4ad114d09f0cc01" id="r_a6cda4488b4b34629e4ad114d09f0cc01"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6cda4488b4b34629e4ad114d09f0cc01">rx_data1</a> [8] = {0}</td></tr>
+<tr class="memdesc:a6cda4488b4b34629e4ad114d09f0cc01"><td class="mdescLeft">&#160;</td><td class="mdescRight">: fdcan_rx_callback(void)  <br /></td></tr>
+<tr class="separator:a6cda4488b4b34629e4ad114d09f0cc01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2802d5682a8bb58db018dd19452cd4f9" id="r_a2802d5682a8bb58db018dd19452cd4f9"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2802d5682a8bb58db018dd19452cd4f9">rx_data2</a> [8] = {0}</td></tr>
+<tr class="separator:a2802d5682a8bb58db018dd19452cd4f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a651bfd9589533504546da122797312ae" id="r_a651bfd9589533504546da122797312ae"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a651bfd9589533504546da122797312ae">rx_data3</a> [8] = {0}</td></tr>
+<tr class="separator:a651bfd9589533504546da122797312ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a2ebfa607b1b3eef0346b7d156fb12d68" name="a2ebfa607b1b3eef0346b7d156fb12d68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ebfa607b1b3eef0346b7d156fb12d68">&#9670;&#160;</a></span>can_bsp_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void can_bsp_init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#a2ebfa607b1b3eef0346b7d156fb12d68" title=": can_bsp_init(void)">can_bsp_init(void)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>void </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: CAN 使能 </p>
+
+</div>
+</div>
+<a id="a91b470cec2134692a415997c95dba833" name="a91b470cec2134692a415997c95dba833"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91b470cec2134692a415997c95dba833">&#9670;&#160;</a></span>can_filter_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void can_filter_init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#a91b470cec2134692a415997c95dba833" title=": can_filter_init(void)">can_filter_init(void)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>void </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: CAN滤波器初始化 </p>
+
+</div>
+</div>
+<a id="ac51de6cf6c580ddaad2b5061062f83da" name="ac51de6cf6c580ddaad2b5061062f83da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac51de6cf6c580ddaad2b5061062f83da">&#9670;&#160;</a></span>fdcan1_rx_callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fdcan1_rx_callback </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaf28ae68f18643ff76e4ad5331e328c8" name="aaf28ae68f18643ff76e4ad5331e328c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf28ae68f18643ff76e4ad5331e328c8">&#9670;&#160;</a></span>fdcan2_rx_callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fdcan2_rx_callback </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8da3a7c741435db59143efb68873cc5e" name="a8da3a7c741435db59143efb68873cc5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8da3a7c741435db59143efb68873cc5e">&#9670;&#160;</a></span>fdcan3_rx_callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fdcan3_rx_callback </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1de47675f355f641d54778d1a29a593f" name="a1de47675f355f641d54778d1a29a593f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1de47675f355f641d54778d1a29a593f">&#9670;&#160;</a></span>fdcanx_receive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FDCAN_RxHeaderTypeDef * fdcanx_receive </td>
+          <td>(</td>
+          <td class="paramtype">FDCAN_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>hfdcan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>buf</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0aaa310fbfd6b42a7b8080e978c5ac02" name="a0aaa310fbfd6b42a7b8080e978c5ac02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0aaa310fbfd6b42a7b8080e978c5ac02">&#9670;&#160;</a></span>fdcanx_send_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t fdcanx_send_data </td>
+          <td>(</td>
+          <td class="paramtype">FDCAN_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>hfdcan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#a0aaa310fbfd6b42a7b8080e978c5ac02" title=": fdcanx_send_data(FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)">fdcanx_send_data(FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>hfdcan：FDCAN句柄 </td></tr>
+    <tr><td class="paramname"></td><td>id：CAN设备ID </td></tr>
+    <tr><td class="paramname"></td><td>data：发送的数据 </td></tr>
+    <tr><td class="paramname"></td><td>len：发送的数据长度 用Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_fdcan.h第967行的宏定义！！！ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 发送数据 </p>
+
+</div>
+</div>
+<a id="a33d13750f662e37eecb89d55afcd851f" name="a33d13750f662e37eecb89d55afcd851f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33d13750f662e37eecb89d55afcd851f">&#9670;&#160;</a></span>fdcanx_send_data_ext()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t fdcanx_send_data_ext </td>
+          <td>(</td>
+          <td class="paramtype">FDCAN_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>hfdcan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#a33d13750f662e37eecb89d55afcd851f" title=": fdcanx_send_data_ext(FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)">fdcanx_send_data_ext(FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hfdcan</td><td>hfdcan：FDCAN句柄 </td></tr>
+    <tr><td class="paramname">id</td><td>id：CAN设备ID </td></tr>
+    <tr><td class="paramname">data</td><td>data：发送的数据 </td></tr>
+    <tr><td class="paramname">len</td><td>len：发送的数据长度 用Drivers\STM32H7xx_HAL_Driver\Inc\stm32h7xx_hal_fdcan.h第967行的宏定义！！ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>uint8_t</dd></dl>
+<p>: 发送数据 </p>
+
+</div>
+</div>
+<a id="a5bb22a6f7231728f60e6f149d1f10ae0" name="a5bb22a6f7231728f60e6f149d1f10ae0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bb22a6f7231728f60e6f149d1f10ae0">&#9670;&#160;</a></span>fdcanx_send_data_fd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t fdcanx_send_data_fd </td>
+          <td>(</td>
+          <td class="paramtype">FDCAN_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>hfdcan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>len</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a37d92c0f4f667c4dd4cbc9c3b5d5dad4" name="a37d92c0f4f667c4dd4cbc9c3b5d5dad4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37d92c0f4f667c4dd4cbc9c3b5d5dad4">&#9670;&#160;</a></span>HAL_FDCAN_RxFifo0Callback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void HAL_FDCAN_RxFifo0Callback </td>
+          <td>(</td>
+          <td class="paramtype">FDCAN_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>hfdcan</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>RxFifo0ITs</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#a37d92c0f4f667c4dd4cbc9c3b5d5dad4" title=": HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)">HAL_FDCAN_RxFifo0Callback(FDCAN_HandleTypeDef *hfdcan, uint32_t RxFifo0ITs)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>hfdcan；FDCAN句柄 </td></tr>
+    <tr><td class="paramname"></td><td>RxFifo0ITs：中断标志位 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: HAL库的FDCAN中断回调函数 </p>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a654b79842b0f8a1b566c8665a13418b5" name="a654b79842b0f8a1b566c8665a13418b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a654b79842b0f8a1b566c8665a13418b5">&#9670;&#160;</a></span>fdcan_RxHeader</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">FDCAN_RxHeaderTypeDef fdcan_RxHeader</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="#a1de47675f355f641d54778d1a29a593f">fdcanx_receive(FDCAN_HandleTypeDef *hfdcan, uint8_t *buf)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>hfdcan：FDCAN句柄 </td></tr>
+    <tr><td class="paramname"></td><td>buf：接收数据缓存 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>接收的数据长度</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 接收数据 </p>
+
+</div>
+</div>
+<a id="a6cda4488b4b34629e4ad114d09f0cc01" name="a6cda4488b4b34629e4ad114d09f0cc01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cda4488b4b34629e4ad114d09f0cc01">&#9670;&#160;</a></span>rx_data1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t rx_data1[8] = {0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: fdcan_rx_callback(void) </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>void </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 供用户调用的接收弱函数 </p>
+
+</div>
+</div>
+<a id="a2802d5682a8bb58db018dd19452cd4f9" name="a2802d5682a8bb58db018dd19452cd4f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2802d5682a8bb58db018dd19452cd4f9">&#9670;&#160;</a></span>rx_data2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t rx_data2[8] = {0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a651bfd9589533504546da122797312ae" name="a651bfd9589533504546da122797312ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a651bfd9589533504546da122797312ae">&#9670;&#160;</a></span>rx_data3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t rx_data3[8] = {0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/buzzer/buzzer_bsp.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_1fc50e0e41aabfa60341f10a6f21fe21.html">buzzer</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">buzzer_bsp.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="buzzer__bsp_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef __BUZZER_BSP_H__</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define __BUZZER_BSP_H__</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;main.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#a8b20ad9302b6360a021efcc2faf31dac">    5</a></span><span class="preprocessor">#define   SOUND_L1     262-1</span><span class="comment">//低调 do 的频率</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#a7c868f07c76337a44f609813a34841c5">    6</a></span><span class="preprocessor">#define   SOUND_L2     294-1</span><span class="comment">//低调 re 的频率</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#acbe4f9fd1f08e0727a46ba5c0b2c6ed5">    7</a></span><span class="preprocessor">#define   SOUND_L3     330-1</span><span class="comment">//低调 mi 的频率</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#a3e1775d8443b171c23bb35e47a2039e6">    8</a></span><span class="preprocessor">#define   SOUND_L4     350-1</span><span class="comment">//低调 fa 的频率</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#af61571f969ebd8a3a7c776ac415daa5a">    9</a></span><span class="preprocessor">#define   SOUND_L5     392-1</span><span class="comment">//低调 sol 的频率</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#ae9b33cfcf27733906a998bf3096e882d">   10</a></span><span class="preprocessor">#define   SOUND_L6     440-1</span><span class="comment">//低调 la 的频率</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#af7be9325791b8dfd39e53bf6daba0b31">   11</a></span><span class="preprocessor">#define   SOUND_L7     494-1</span><span class="comment">//低调 si 的频率</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>                                     </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#ac548f0547b3779527fddb842b03bed67">   13</a></span><span class="preprocessor">#define   SOUND_M1     524-1</span><span class="comment">//中调 do 的频率</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#aa71994f3bf433a708de329f7e1cf4dae">   14</a></span><span class="preprocessor">#define   SOUND_M2     588-1</span><span class="comment">//中调 re 的频率</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#acbfc6e8f453542a88358298e12fb6e0d">   15</a></span><span class="preprocessor">#define   SOUND_M3     660-1</span><span class="comment">//中调 mi 的频率</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#a841b6f9f3a0a520addb9308263170ad9">   16</a></span><span class="preprocessor">#define   SOUND_M4     700-1</span><span class="comment">//中调 fa 的频率</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#a1bbb021b725c6ca0253816e7d0f7437b">   17</a></span><span class="preprocessor">#define   SOUND_M5     784-1</span><span class="comment">//中调 sol 的频率</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#a13f176baac661c48a1e96bf318f40f18">   18</a></span><span class="preprocessor">#define   SOUND_M6     880-1</span><span class="comment">//中调 la 的频率</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#a684f216ac62a24a0624253355d9bc3b9">   19</a></span><span class="preprocessor">#define   SOUND_M7     988-1</span><span class="comment">//中调 si 的频率</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#a779cc45580fd31304c432b2582e94953">   21</a></span><span class="preprocessor">#define   SOUND_H1     1048-1</span><span class="comment">//高调 do 的频率</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#a8aeeeb1a420c4f8b23fe5c7960045a06">   22</a></span><span class="preprocessor">#define   SOUND_H2     1176-1</span><span class="comment">//高调 re 的频率</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#a931824d8aaced5b4db469aa58517d993">   23</a></span><span class="preprocessor">#define   SOUND_H3     1320-1</span><span class="comment">//高调 mi 的频率</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#a76ecb025d0e813c14ca974f033a77ddd">   24</a></span><span class="preprocessor">#define   SOUND_H4     1480-1</span><span class="comment">//高调 fa 的频率</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#a693f3ef42e8258e5d8a5d7e81844f3bd">   25</a></span><span class="preprocessor">#define   SOUND_H5     1640-1</span><span class="comment">//高调 sol 的频率</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#af95d18574b5493548eefe4b8a31aee00">   26</a></span><span class="preprocessor">#define   SOUND_H6     1760-1</span><span class="comment">//高调 la 的频率</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#a16e2916fb5f8c622a97519914f37f364">   27</a></span><span class="preprocessor">#define   SOUND_H7     1976-1</span><span class="comment">//高调 si 的频率</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="buzzer__bsp_8h.html#a3094a7839a22e506d6c433f0580bb775">   29</a></span><span class="preprocessor">#define   SOUND_S      0</span><span class="comment">//不发音</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keywordtype">void</span> <a class="code hl_function" href="buzzer__bsp_8h.html#a0cead532fdd0c0de5fa1c1de0f6556bd">buzzer_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keywordtype">void</span> <a class="code hl_function" href="buzzer__bsp_8h.html#aa29f83d7661765eaae19f2b93b32cfa1">buzzer_on</a>(uint32_t frequency, <span class="keywordtype">float</span> duty_cycle);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keywordtype">void</span> <a class="code hl_function" href="buzzer__bsp_8h.html#a93d07c81691fec7a85ea85117d6eca4f">buzzer_off</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#endif </span><span class="comment">/* __BUZZER_BSP_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="abuzzer__bsp_8h_html_a0cead532fdd0c0de5fa1c1de0f6556bd"><div class="ttname"><a href="buzzer__bsp_8h.html#a0cead532fdd0c0de5fa1c1de0f6556bd">buzzer_init</a></div><div class="ttdeci">void buzzer_init(void)</div><div class="ttdoc">蜂鸣器初始化</div><div class="ttdef"><b>定义</b> buzzer_bsp.c:8</div></div>
+<div class="ttc" id="abuzzer__bsp_8h_html_a93d07c81691fec7a85ea85117d6eca4f"><div class="ttname"><a href="buzzer__bsp_8h.html#a93d07c81691fec7a85ea85117d6eca4f">buzzer_off</a></div><div class="ttdeci">void buzzer_off(void)</div><div class="ttdoc">蜂鸣器关闭</div><div class="ttdef"><b>定义</b> buzzer_bsp.c:46</div></div>
+<div class="ttc" id="abuzzer__bsp_8h_html_aa29f83d7661765eaae19f2b93b32cfa1"><div class="ttname"><a href="buzzer__bsp_8h.html#aa29f83d7661765eaae19f2b93b32cfa1">buzzer_on</a></div><div class="ttdeci">void buzzer_on(uint32_t frequency, float duty_cycle)</div><div class="ttdoc">蜂鸣器开关</div><div class="ttdef"><b>定义</b> buzzer_bsp.c:19</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

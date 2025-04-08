@@ -31,8 +31,8 @@
         // 刷新 DJMotor 状态，以获取最新的电机数据
         Motor_DJI_Refresh(DJMotor);
 
-        // 设置电机的电压，参数解释为 CAN 端口，CAN ID 和多个电压值
-        set_motor_voltage(&DJMotor, CAN1_PORT, 0x200, 1000, 1000, 1000, 1000);
+        // 设置电机的参数，参数解释为 CAN 端口，CAN ID 和多个参数（电压或电流）值
+        set_motor_parameter(&DJMotor, CAN1_PORT, 0x200, 1000, 1000, 1000, 1000);
     }
 }
 

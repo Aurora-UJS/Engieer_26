@@ -1,0 +1,312 @@
+\doxysection{source/module/computer/radar/radar\+Tool.h 文件参考}
+\hypertarget{radar_tool_8h}{}\label{radar_tool_8h}\index{source/module/computer/radar/radarTool.h@{source/module/computer/radar/radarTool.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}stdint.\+h"{}}\newline
+{\ttfamily \#include "{}stdbool.\+h"{}}\newline
+{\ttfamily \#include "{}radar\+Tool.\+h"{}}\newline
+{\ttfamily \#include "{}computer\+\_\+pack.\+h"{}}\newline
+radar\+Tool.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=269pt]{radar_tool_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{radar_tool_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{radar_tool_8h_a09dfa0928ba2c33381146287b2983368}{RADAR\+\_\+\+BUFFER\+\_\+\+SIZE}}~100
+\item 
+\#define \mbox{\hyperlink{radar_tool_8h_a420d92853d7d7f9712915310047a0476}{CRC\+\_\+\+Check\+\_\+\+False}}~0
+\item 
+\#define \mbox{\hyperlink{radar_tool_8h_acf7ae23437ab6dd9c41f43ccbbfc19c6}{CRC\+\_\+\+Check\+\_\+\+True}}~1
+\item 
+\#define \mbox{\hyperlink{radar_tool_8h_a3f1b16300a94fcdfa473b6c1e1819d38}{get\+\_\+target\+\_\+x}}()
+\begin{DoxyCompactList}\small\item\em 获取目标在\+X轴方向的线速度 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{radar_tool_8h_a3f1b16300a94fcdfa473b6c1e1819d38}{get\+\_\+target\+\_\+x}}()
+\begin{DoxyCompactList}\small\item\em 获取目标在\+X轴方向的线速度 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{radar_tool_8h_a4b64f9f0cae59ecaf9e6a43dc3c32bc9}{get\+\_\+target\+\_\+z}}()
+\begin{DoxyCompactList}\small\item\em 获取目标在\+Z轴方向的线速度 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{radar_tool_8h_a5e17a82d36ee2748576b924e6f404cb9}{get\+\_\+angular\+\_\+x}}()
+\begin{DoxyCompactList}\small\item\em 获取雷达/云台绕\+X轴的旋转角速度 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{radar_tool_8h_ae01257e81a325bad24edcf6290c04c9a}{get\+\_\+angular\+\_\+y}}()
+\begin{DoxyCompactList}\small\item\em 获取雷达/云台绕\+Y轴的旋转角速度 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{radar_tool_8h_a4d87aaba26416858aed2cdab34fd486f}{get\+\_\+angular\+\_\+z}}()
+\begin{DoxyCompactList}\small\item\em 获取雷达/云台绕\+Z轴的旋转角速度 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{radar_tool_8h_a882fd40cdf9f834b8aecb688a0add027}{get\+\_\+gimbal\+\_\+stop}}()
+\begin{DoxyCompactList}\small\item\em 获取云台扫描停止状态 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{radar_tool_8h_a65d845d9acc36198176a0222c296c3df}{get\+\_\+chassis\+\_\+spin}}()
+\begin{DoxyCompactList}\small\item\em 获取底盘旋转速度 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{类型定义}
+\begin{DoxyCompactItemize}
+\item 
+typedef unsigned char \mbox{\hyperlink{radar_tool_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{radar_tool_8h_afb32475002e03848c95added742c8d9e}{receive\+Radar\+Data}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}rx\+\_\+buffer)
+\item 
+void \mbox{\hyperlink{radar_tool_8h_a05668ae0c9dd6692724d3e7eb8140902}{radar\+\_\+msg\+\_\+init}} (UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}huart)
+\item 
+void \mbox{\hyperlink{radar_tool_8h_a5de457b45d63ace4654ebb51135c180f}{send\+All\+Robot\+HPData}} (\mbox{\hyperlink{struct_send_packet_all_robot_h_p__t}{Send\+Packet\+All\+Robot\+HP\+\_\+t}} \texorpdfstring{$\ast$}{*}send\+All\+Robot\+HP)
+\item 
+void \mbox{\hyperlink{radar_tool_8h_ad970dbdaac0eb52709ffebc0661aedb3}{send\+Game\+Status\+Data}} (\mbox{\hyperlink{struct_send_packet_game_status__t}{Send\+Packet\+Game\+Status\+\_\+t}} \texorpdfstring{$\ast$}{*}send\+Game\+Status)
+\item 
+void \mbox{\hyperlink{radar_tool_8h_a6c0552a9ff98e1f3f066d6ab7463b81a}{send\+Robot\+Status\+Data}} (\mbox{\hyperlink{struct_send_packet_robot_status__t}{Send\+Packet\+Robot\+Status\+\_\+t}} \texorpdfstring{$\ast$}{*}send\+Robot\+Status)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{radar_tool_8h_ae965cb05b834fe821d9b938c7922601c}{rader\+\_\+rx\+\_\+buffer}} \mbox{[}\mbox{\hyperlink{radar_tool_8h_a09dfa0928ba2c33381146287b2983368}{RADAR\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}
+\item 
+\mbox{\hyperlink{struct_received_packet_twist__t}{Received\+Packet\+Twist\+\_\+t}} \mbox{\hyperlink{radar_tool_8h_a5c5d0891ab44746fd8df239fc28f8e42}{radar\+Twist}}
+\item 
+\mbox{\hyperlink{struct_received_packet_robot_control__t}{Received\+Packet\+Robot\+Control\+\_\+t}} \mbox{\hyperlink{radar_tool_8h_a146582af8d382e43975069e75103c928}{robot\+Control}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{宏定义说明}
+\Hypertarget{radar_tool_8h_a420d92853d7d7f9712915310047a0476}\index{radarTool.h@{radarTool.h}!CRC\_Check\_False@{CRC\_Check\_False}}
+\index{CRC\_Check\_False@{CRC\_Check\_False}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{CRC\_Check\_False}{CRC\_Check\_False}}
+{\footnotesize\ttfamily \label{radar_tool_8h_a420d92853d7d7f9712915310047a0476} 
+\#define CRC\+\_\+\+Check\+\_\+\+False~0}
+
+\Hypertarget{radar_tool_8h_acf7ae23437ab6dd9c41f43ccbbfc19c6}\index{radarTool.h@{radarTool.h}!CRC\_Check\_True@{CRC\_Check\_True}}
+\index{CRC\_Check\_True@{CRC\_Check\_True}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{CRC\_Check\_True}{CRC\_Check\_True}}
+{\footnotesize\ttfamily \label{radar_tool_8h_acf7ae23437ab6dd9c41f43ccbbfc19c6} 
+\#define CRC\+\_\+\+Check\+\_\+\+True~1}
+
+\Hypertarget{radar_tool_8h_a5e17a82d36ee2748576b924e6f404cb9}\index{radarTool.h@{radarTool.h}!get\_angular\_x@{get\_angular\_x}}
+\index{get\_angular\_x@{get\_angular\_x}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{get\_angular\_x}{get\_angular\_x}}
+{\footnotesize\ttfamily \label{radar_tool_8h_a5e17a82d36ee2748576b924e6f404cb9} 
+\#define get\+\_\+angular\+\_\+x(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{radar_tool_8c_a5c5d0891ab44746fd8df239fc28f8e42}{radarTwist}}.angular\_x)}
+
+\end{DoxyCode}
+
+
+获取雷达/云台绕\+X轴的旋转角速度 
+
+\begin{DoxyReturn}{返回}
+X轴角速度值，单位：弧度/秒(rad/s) 
+\end{DoxyReturn}
+\Hypertarget{radar_tool_8h_ae01257e81a325bad24edcf6290c04c9a}\index{radarTool.h@{radarTool.h}!get\_angular\_y@{get\_angular\_y}}
+\index{get\_angular\_y@{get\_angular\_y}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{get\_angular\_y}{get\_angular\_y}}
+{\footnotesize\ttfamily \label{radar_tool_8h_ae01257e81a325bad24edcf6290c04c9a} 
+\#define get\+\_\+angular\+\_\+y(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{radar_tool_8c_a5c5d0891ab44746fd8df239fc28f8e42}{radarTwist}}.angular\_y)}
+
+\end{DoxyCode}
+
+
+获取雷达/云台绕\+Y轴的旋转角速度 
+
+\begin{DoxyReturn}{返回}
+Y轴角速度值，单位：弧度/秒(rad/s) 
+\end{DoxyReturn}
+\Hypertarget{radar_tool_8h_a4d87aaba26416858aed2cdab34fd486f}\index{radarTool.h@{radarTool.h}!get\_angular\_z@{get\_angular\_z}}
+\index{get\_angular\_z@{get\_angular\_z}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{get\_angular\_z}{get\_angular\_z}}
+{\footnotesize\ttfamily \label{radar_tool_8h_a4d87aaba26416858aed2cdab34fd486f} 
+\#define get\+\_\+angular\+\_\+z(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{radar_tool_8c_a5c5d0891ab44746fd8df239fc28f8e42}{radarTwist}}.angular\_z)}
+
+\end{DoxyCode}
+
+
+获取雷达/云台绕\+Z轴的旋转角速度 
+
+\begin{DoxyReturn}{返回}
+Z轴角速度值，单位：弧度/秒(rad/s) 
+\end{DoxyReturn}
+\Hypertarget{radar_tool_8h_a65d845d9acc36198176a0222c296c3df}\index{radarTool.h@{radarTool.h}!get\_chassis\_spin@{get\_chassis\_spin}}
+\index{get\_chassis\_spin@{get\_chassis\_spin}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{get\_chassis\_spin}{get\_chassis\_spin}}
+{\footnotesize\ttfamily \label{radar_tool_8h_a65d845d9acc36198176a0222c296c3df} 
+\#define get\+\_\+chassis\+\_\+spin(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{radar_tool_8c_a146582af8d382e43975069e75103c928}{robotControl}}.chassis\_spin\_vel)}
+
+\end{DoxyCode}
+
+
+获取底盘旋转速度 
+
+\begin{DoxyReturn}{返回}
+底盘旋转速度值，单位：弧度/秒(rad/s) 
+\end{DoxyReturn}
+\begin{DoxyNote}{注解}
+正值表示顺时针旋转，负值表示逆时针旋转 
+\end{DoxyNote}
+\Hypertarget{radar_tool_8h_a882fd40cdf9f834b8aecb688a0add027}\index{radarTool.h@{radarTool.h}!get\_gimbal\_stop@{get\_gimbal\_stop}}
+\index{get\_gimbal\_stop@{get\_gimbal\_stop}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{get\_gimbal\_stop}{get\_gimbal\_stop}}
+{\footnotesize\ttfamily \label{radar_tool_8h_a882fd40cdf9f834b8aecb688a0add027} 
+\#define get\+\_\+gimbal\+\_\+stop(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{radar_tool_8c_a146582af8d382e43975069e75103c928}{robotControl}}.stop\_gimbal\_scan)}
+
+\end{DoxyCode}
+
+
+获取云台扫描停止状态 
+
+\begin{DoxyReturn}{返回}
+停止扫描标志位，布尔类型：true-\/停止扫描，false-\/允许扫描 
+\end{DoxyReturn}
+\Hypertarget{radar_tool_8h_a3f1b16300a94fcdfa473b6c1e1819d38}\index{radarTool.h@{radarTool.h}!get\_target\_x@{get\_target\_x}}
+\index{get\_target\_x@{get\_target\_x}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{get\_target\_x}{get\_target\_x}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{radar_tool_8h_a3f1b16300a94fcdfa473b6c1e1819d38} 
+\#define get\+\_\+target\+\_\+x(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{radar_tool_8c_a5c5d0891ab44746fd8df239fc28f8e42}{radarTwist}}.linear\_x)}
+
+\end{DoxyCode}
+
+
+获取目标在\+X轴方向的线速度 
+
+获取目标在\+Y轴方向的线速度
+
+\begin{DoxyReturn}{返回}
+目标\+X轴线速度值，单位：米/秒(m/s)
+
+目标\+Y轴线速度值，单位：米/秒(m/s) 
+\end{DoxyReturn}
+\Hypertarget{radar_tool_8h_a3f1b16300a94fcdfa473b6c1e1819d38}\index{radarTool.h@{radarTool.h}!get\_target\_x@{get\_target\_x}}
+\index{get\_target\_x@{get\_target\_x}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{get\_target\_x}{get\_target\_x}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{radar_tool_8h_a3f1b16300a94fcdfa473b6c1e1819d38} 
+\#define get\+\_\+target\+\_\+x(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{radar_tool_8c_a5c5d0891ab44746fd8df239fc28f8e42}{radarTwist}}.linear\_x)}
+
+\end{DoxyCode}
+
+
+获取目标在\+X轴方向的线速度 
+
+获取目标在\+Y轴方向的线速度
+
+\begin{DoxyReturn}{返回}
+目标\+X轴线速度值，单位：米/秒(m/s)
+
+目标\+Y轴线速度值，单位：米/秒(m/s) 
+\end{DoxyReturn}
+\Hypertarget{radar_tool_8h_a4b64f9f0cae59ecaf9e6a43dc3c32bc9}\index{radarTool.h@{radarTool.h}!get\_target\_z@{get\_target\_z}}
+\index{get\_target\_z@{get\_target\_z}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{get\_target\_z}{get\_target\_z}}
+{\footnotesize\ttfamily \label{radar_tool_8h_a4b64f9f0cae59ecaf9e6a43dc3c32bc9} 
+\#define get\+\_\+target\+\_\+z(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{radar_tool_8c_a5c5d0891ab44746fd8df239fc28f8e42}{radarTwist}}.angular\_z)}
+
+\end{DoxyCode}
+
+
+获取目标在\+Z轴方向的线速度 
+
+\begin{DoxyReturn}{返回}
+目标\+Z轴线速度值，单位：弧度/秒(rad/s) 
+\end{DoxyReturn}
+\Hypertarget{radar_tool_8h_a09dfa0928ba2c33381146287b2983368}\index{radarTool.h@{radarTool.h}!RADAR\_BUFFER\_SIZE@{RADAR\_BUFFER\_SIZE}}
+\index{RADAR\_BUFFER\_SIZE@{RADAR\_BUFFER\_SIZE}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{RADAR\_BUFFER\_SIZE}{RADAR\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \label{radar_tool_8h_a09dfa0928ba2c33381146287b2983368} 
+\#define RADAR\+\_\+\+BUFFER\+\_\+\+SIZE~100}
+
+
+
+\doxysubsection{类型定义说明}
+\Hypertarget{radar_tool_8h_aed742c436da53c1080638ce6ef7d13de}\index{radarTool.h@{radarTool.h}!u8@{u8}}
+\index{u8@{u8}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{u8}{u8}}
+{\footnotesize\ttfamily \label{radar_tool_8h_aed742c436da53c1080638ce6ef7d13de} 
+typedef unsigned char \mbox{\hyperlink{radar_tool_8h_aed742c436da53c1080638ce6ef7d13de}{u8}}}
+
+
+
+\doxysubsection{函数说明}
+\Hypertarget{radar_tool_8h_a05668ae0c9dd6692724d3e7eb8140902}\index{radarTool.h@{radarTool.h}!radar\_msg\_init@{radar\_msg\_init}}
+\index{radar\_msg\_init@{radar\_msg\_init}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{radar\_msg\_init()}{radar\_msg\_init()}}
+{\footnotesize\ttfamily \label{radar_tool_8h_a05668ae0c9dd6692724d3e7eb8140902} 
+void radar\+\_\+msg\+\_\+init (\begin{DoxyParamCaption}\item[{UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{huart}{}\end{DoxyParamCaption})}
+
+\Hypertarget{radar_tool_8h_afb32475002e03848c95added742c8d9e}\index{radarTool.h@{radarTool.h}!receiveRadarData@{receiveRadarData}}
+\index{receiveRadarData@{receiveRadarData}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{receiveRadarData()}{receiveRadarData()}}
+{\footnotesize\ttfamily \label{radar_tool_8h_afb32475002e03848c95added742c8d9e} 
+void receive\+Radar\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{rx\+\_\+buffer}{}\end{DoxyParamCaption})}
+
+\Hypertarget{radar_tool_8h_a5de457b45d63ace4654ebb51135c180f}\index{radarTool.h@{radarTool.h}!sendAllRobotHPData@{sendAllRobotHPData}}
+\index{sendAllRobotHPData@{sendAllRobotHPData}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{sendAllRobotHPData()}{sendAllRobotHPData()}}
+{\footnotesize\ttfamily \label{radar_tool_8h_a5de457b45d63ace4654ebb51135c180f} 
+void send\+All\+Robot\+HPData (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_send_packet_all_robot_h_p__t}{Send\+Packet\+All\+Robot\+HP\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{send\+All\+Robot\+HP}{}\end{DoxyParamCaption})}
+
+\Hypertarget{radar_tool_8h_ad970dbdaac0eb52709ffebc0661aedb3}\index{radarTool.h@{radarTool.h}!sendGameStatusData@{sendGameStatusData}}
+\index{sendGameStatusData@{sendGameStatusData}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{sendGameStatusData()}{sendGameStatusData()}}
+{\footnotesize\ttfamily \label{radar_tool_8h_ad970dbdaac0eb52709ffebc0661aedb3} 
+void send\+Game\+Status\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_send_packet_game_status__t}{Send\+Packet\+Game\+Status\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{send\+Game\+Status}{}\end{DoxyParamCaption})}
+
+\Hypertarget{radar_tool_8h_a6c0552a9ff98e1f3f066d6ab7463b81a}\index{radarTool.h@{radarTool.h}!sendRobotStatusData@{sendRobotStatusData}}
+\index{sendRobotStatusData@{sendRobotStatusData}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{sendRobotStatusData()}{sendRobotStatusData()}}
+{\footnotesize\ttfamily \label{radar_tool_8h_a6c0552a9ff98e1f3f066d6ab7463b81a} 
+void send\+Robot\+Status\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_send_packet_robot_status__t}{Send\+Packet\+Robot\+Status\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{send\+Robot\+Status}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{变量说明}
+\Hypertarget{radar_tool_8h_a5c5d0891ab44746fd8df239fc28f8e42}\index{radarTool.h@{radarTool.h}!radarTwist@{radarTwist}}
+\index{radarTwist@{radarTwist}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{radarTwist}{radarTwist}}
+{\footnotesize\ttfamily \label{radar_tool_8h_a5c5d0891ab44746fd8df239fc28f8e42} 
+\mbox{\hyperlink{struct_received_packet_twist__t}{Received\+Packet\+Twist\+\_\+t}} radar\+Twist\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{radar_tool_8h_ae965cb05b834fe821d9b938c7922601c}\index{radarTool.h@{radarTool.h}!rader\_rx\_buffer@{rader\_rx\_buffer}}
+\index{rader\_rx\_buffer@{rader\_rx\_buffer}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{rader\_rx\_buffer}{rader\_rx\_buffer}}
+{\footnotesize\ttfamily \label{radar_tool_8h_ae965cb05b834fe821d9b938c7922601c} 
+uint8\+\_\+t rader\+\_\+rx\+\_\+buffer\mbox{[}\mbox{\hyperlink{radar_tool_8h_a09dfa0928ba2c33381146287b2983368}{RADAR\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{radar_tool_8h_a146582af8d382e43975069e75103c928}\index{radarTool.h@{radarTool.h}!robotControl@{robotControl}}
+\index{robotControl@{robotControl}!radarTool.h@{radarTool.h}}
+\doxysubsubsection{\texorpdfstring{robotControl}{robotControl}}
+{\footnotesize\ttfamily \label{radar_tool_8h_a146582af8d382e43975069e75103c928} 
+\mbox{\hyperlink{struct_received_packet_robot_control__t}{Received\+Packet\+Robot\+Control\+\_\+t}} robot\+Control\hspace{0.3cm}{\ttfamily [extern]}}
+

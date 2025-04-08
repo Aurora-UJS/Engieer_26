@@ -1,0 +1,35 @@
+\doxysection{config.\+h}
+\hypertarget{config_8h_source}{}\label{config_8h_source}\index{source/config.h@{source/config.h}}
+\mbox{\hyperlink{config_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CONFIG\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CONFIG\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ VISION\_VERSION\ 1\ }\textcolor{comment}{//\ 视觉版本号}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ text1\ 0\ }\textcolor{comment}{//\ 拨弹设计测试开关}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ conturl\ 0\ }\textcolor{comment}{//\ 遥控器紧急断电控制}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ AIM\_MOD\ 3\ }\textcolor{comment}{//\ 瞄准模式}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ radar\_MOD\ 1\ }\textcolor{comment}{//\ 雷达模式\ 0:无雷达\ 1:雷达}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ 车辆弹道解算参数默认配置}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ BALLISTIC\_SOLVER\ 2\ }\textcolor{comment}{//\ 弹道解算器\ \ 1-\/>弹道解算器v1.0\ \ 2-\/>弹道解算器v2.0}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ BULLET\_TYPE\ 0\ \ \ }\textcolor{comment}{//\ 子弹类型\ 0-\/>17mm\ 1-\/>42mm}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ BULLET\_SPEED\ 17\ }\textcolor{comment}{//\ 子弹速度}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ BULLET\_K\ 0.092\ \ }\textcolor{comment}{//\ 弹道系数}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ BIAS\_TIME\ 10.0\ \ \ }\textcolor{comment}{//\ 弹道补偿时间(偏置时间)}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ S\_BIAS\ 0.085f\ \ \ \ \ \ }\textcolor{comment}{//\ 枪口前推的时间}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ Z\_BIAS\ 0.265f\ \ \ \ \ \ }\textcolor{comment}{//\ yaw电机到枪口水平面的垂直距离}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ G\_NUM\ 9.80665f\ \ \ \ \ \ \ }\textcolor{comment}{//\ 重力加速度}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ MAX\_ITER\ 20\ \ \ \ \ \ }\textcolor{comment}{//\ 最大迭代次数}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ TOLERANCE\ 0.005f\ \ \ \ }\textcolor{comment}{//\ 收敛阈值(5mm)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ TIME\_STEP\ 0.001f\ \ }\textcolor{comment}{//\ 弹道模拟时间步长(v2.0)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ ESTIMATED\_FLIGHT\_TIME\ 0.5f\ \ }\textcolor{comment}{//\ 预估的飞行时间\ (s)}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !CONFIG\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: Super_TR_Driver 文档</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">Super_TR_Driver 文档</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md53"></a></p>
+<h1><a class="anchor" id="autotoc_md54"></a>
+概述</h1>
+<p>本文档描述了 Super_TR_Driver，这是为“溪地创新”的超级电容设计的 CAN 通信模块。该驱动程序便于超级电容系统在 CAN 总线上进行初始化、数据传输、接收和解析过程。</p>
+<h1><a class="anchor" id="autotoc_md55"></a>
+函数</h1>
+<h2><a class="anchor" id="autotoc_md56"></a>
+Super_TR_Init</h2>
+<p>初始化 Super_TR_Manager 结构体。</p>
+<p><b>原型</b> </p><div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="super__str_8c.html#a44ef9252e066853ee4c36f81c1dacea3">Super_TR_Init</a>(<a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> *super, uint32_t can_id, uint32_t can_send_id, <a class="code hl_enumeration" href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a> can_port);</div>
+<div class="ttc" id="acan__struct_8h_html_a99224aa31bc5a961c6643d5f0ec14282"><div class="ttname"><a href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a></div><div class="ttdeci">can_port_t</div><div class="ttdef"><b>定义</b> can_struct.h:11</div></div>
+<div class="ttc" id="astruct_super___t_r__t_html"><div class="ttname"><a href="struct_super___t_r__t.html">Super_TR_t</a></div><div class="ttdef"><b>定义</b> super_str.h:22</div></div>
+<div class="ttc" id="asuper__str_8c_html_a44ef9252e066853ee4c36f81c1dacea3"><div class="ttname"><a href="super__str_8c.html#a44ef9252e066853ee4c36f81c1dacea3">Super_TR_Init</a></div><div class="ttdeci">bool Super_TR_Init(Super_TR_t *super, uint32_t can_id, uint32_t can_send_id, can_port_t can_port)</div><div class="ttdoc">超级电容模块初始化。</div><div class="ttdef"><b>定义</b> super_str.c:30</div></div>
+</div><!-- fragment --><p><b>参数</b></p><ul>
+<li><code>super</code>: 指向 <a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> 结构体的指针。</li>
+<li><code>can_id</code>: 接收消息的 CAN ID。</li>
+<li><code>can_send_id</code>: 发送消息的 CAN ID。</li>
+<li><code>can_port</code>: 通信的 CAN 端口。</li>
+</ul>
+<p><b>返回值</b></p><ul>
+<li><code>true</code>: 初始化成功。</li>
+<li><code>false</code>: 初始化失败（例如，空指针）。</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md57"></a>
+Super_TR_Send</h2>
+<p>发送带有 16 位数据的有效载荷的 CAN 消息。</p>
+<p><b>原型</b> </p><div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="super__str_8c.html#a89dd682a7f87d41c712957a383255f90">Super_TR_Send</a>(<a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> *super, uint16_t data);</div>
+<div class="ttc" id="asuper__str_8c_html_a89dd682a7f87d41c712957a383255f90"><div class="ttname"><a href="super__str_8c.html#a89dd682a7f87d41c712957a383255f90">Super_TR_Send</a></div><div class="ttdeci">bool Super_TR_Send(Super_TR_t *super, uint16_t data)</div><div class="ttdoc">超级电容模块发送数据。</div><div class="ttdef"><b>定义</b> super_str.c:60</div></div>
+</div><!-- fragment --><p><b>参数</b></p><ul>
+<li><code>super</code>: 指向 <a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> 结构体的指针。</li>
+<li><code>data</code>: 要发送的 16 位数据。</li>
+</ul>
+<p><b>返回值</b></p><ul>
+<li><code>true</code>: 消息发送成功。</li>
+<li><code>false</code>: 发送失败（例如，空指针）。</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md58"></a>
+Super_TR_Refresh</h2>
+<p>带检测机制的接收和解析 CAN 消息。</p>
+<p><b>原型</b> </p><div class="fragment"><div class="line"><span class="keywordtype">bool</span> <a class="code hl_function" href="super__str_8c.html#a8e909b10ff38febd2e40627c6094b682">Super_TR_Refresh</a>(<a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> *super);</div>
+<div class="ttc" id="asuper__str_8c_html_a8e909b10ff38febd2e40627c6094b682"><div class="ttname"><a href="super__str_8c.html#a8e909b10ff38febd2e40627c6094b682">Super_TR_Refresh</a></div><div class="ttdeci">bool Super_TR_Refresh(Super_TR_t *super)</div><div class="ttdoc">超级电容模块刷新数据。</div><div class="ttdef"><b>定义</b> super_str.c:87</div></div>
+</div><!-- fragment --><p><b>参数</b></p><ul>
+<li><code>super</code>: 指向 <a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> 结构体的指针。</li>
+</ul>
+<p><b>返回值</b></p><ul>
+<li><code>true</code>: 消息接收和解析成功。</li>
+<li><code>false</code>: 接收或解析失败（例如，空指针）。</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md59"></a>
+数据访问函数</h2>
+<p>这些函数提供从接收到的 CAN 消息中解析数据的访问。</p>
+<p><b>原型</b> </p><div class="fragment"><div class="line"><span class="keywordtype">float</span> <a class="code hl_function" href="super__str_8c.html#a7209995ee7c4a98e36ae64c62780e1b2">get_Voilt_In</a>(<a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> *super);</div>
+<div class="line"><span class="keywordtype">float</span> <a class="code hl_function" href="super__str_8c.html#aaaf4a1acc2c7840865a39422180e8b37">get_Voilt_C</a>(<a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> *super);</div>
+<div class="line"><span class="keywordtype">float</span> <a class="code hl_function" href="super__str_8c.html#a55cb5720fc1d4aac0f4cea033b33f107">get_Current_In</a>(<a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> *super);</div>
+<div class="line"><span class="keywordtype">float</span> <a class="code hl_function" href="super__str_8c.html#a1fd53c06405f1606bca17372bac2a816">get_Target_power</a>(<a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> *super);</div>
+<div class="ttc" id="asuper__str_8c_html_a1fd53c06405f1606bca17372bac2a816"><div class="ttname"><a href="super__str_8c.html#a1fd53c06405f1606bca17372bac2a816">get_Target_power</a></div><div class="ttdeci">float get_Target_power(Super_TR_t *super)</div><div class="ttdoc">获取超级电容模块的目标功率。</div><div class="ttdef"><b>定义</b> super_str.c:157</div></div>
+<div class="ttc" id="asuper__str_8c_html_a55cb5720fc1d4aac0f4cea033b33f107"><div class="ttname"><a href="super__str_8c.html#a55cb5720fc1d4aac0f4cea033b33f107">get_Current_In</a></div><div class="ttdeci">float get_Current_In(Super_TR_t *super)</div><div class="ttdoc">获取超级电容模块的输入电流。</div><div class="ttdef"><b>定义</b> super_str.c:146</div></div>
+<div class="ttc" id="asuper__str_8c_html_a7209995ee7c4a98e36ae64c62780e1b2"><div class="ttname"><a href="super__str_8c.html#a7209995ee7c4a98e36ae64c62780e1b2">get_Voilt_In</a></div><div class="ttdeci">float get_Voilt_In(Super_TR_t *super)</div><div class="ttdoc">获取超级电容模块的输入电压。</div><div class="ttdef"><b>定义</b> super_str.c:124</div></div>
+<div class="ttc" id="asuper__str_8c_html_aaaf4a1acc2c7840865a39422180e8b37"><div class="ttname"><a href="super__str_8c.html#aaaf4a1acc2c7840865a39422180e8b37">get_Voilt_C</a></div><div class="ttdeci">float get_Voilt_C(Super_TR_t *super)</div><div class="ttdoc">获取超级电容模块的电容电压。</div><div class="ttdef"><b>定义</b> super_str.c:135</div></div>
+</div><!-- fragment --><p><b>参数</b></p><ul>
+<li><code>super</code>: 指向 <a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> 结构体的指针。</li>
+</ul>
+<p><b>返回值</b></p><ul>
+<li>分别返回解析后的数据值（输入电压、电容电压、输入电流、目标功率）。</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md60"></a>
+使用示例</h1>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="super__str_8h.html">super_str.h</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    <a class="code hl_struct" href="struct_super___t_r__t.html">Super_TR_t</a> super_cap;</div>
+<div class="line">    uint32_t receive_can_id = 0x211;</div>
+<div class="line">    uint32_t send_can_id = 0x210;</div>
+<div class="line">    <a class="code hl_enumeration" href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a> can_port = <a class="code hl_enumvalue" href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238">CAN1_PORT</a>;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 初始化</span></div>
+<div class="line">    <span class="keywordflow">if</span> (!<a class="code hl_function" href="super__str_8c.html#a44ef9252e066853ee4c36f81c1dacea3">Super_TR_Init</a>(&amp;super_cap, receive_can_id, send_can_id, can_port)) {</div>
+<div class="line">        <span class="comment">// 处理初始化错误</span></div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 发送数据</span></div>
+<div class="line">    uint16_t data_to_send = 3500;</div>
+<div class="line">    <span class="keywordflow">if</span> (!<a class="code hl_function" href="super__str_8c.html#a89dd682a7f87d41c712957a383255f90">Super_TR_Send</a>(&amp;super_cap, data_to_send)) {</div>
+<div class="line">        <span class="comment">// 处理发送错误</span></div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 接收和解析数据</span></div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_function" href="super__str_8c.html#a8e909b10ff38febd2e40627c6094b682">Super_TR_Refresh</a>(&amp;super_cap)) {</div>
+<div class="line">        <span class="keywordtype">float</span> voltage_in = <a class="code hl_function" href="super__str_8c.html#a7209995ee7c4a98e36ae64c62780e1b2">get_Voilt_In</a>(&amp;super_cap);</div>
+<div class="line">        <span class="keywordtype">float</span> voltage_cap = <a class="code hl_function" href="super__str_8c.html#aaaf4a1acc2c7840865a39422180e8b37">get_Voilt_C</a>(&amp;super_cap);</div>
+<div class="line">        <span class="keywordtype">float</span> current_in = <a class="code hl_function" href="super__str_8c.html#a55cb5720fc1d4aac0f4cea033b33f107">get_Current_In</a>(&amp;super_cap);</div>
+<div class="line">        <span class="keywordtype">float</span> target_power = <a class="code hl_function" href="super__str_8c.html#a1fd53c06405f1606bca17372bac2a816">get_Target_power</a>(&amp;super_cap);</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// 使用解析后的数据</span></div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="acan__struct_8h_html_a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238"><div class="ttname"><a href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282a728c991de9fb51b0726edc39e5132238">CAN1_PORT</a></div><div class="ttdeci">@ CAN1_PORT</div><div class="ttdef"><b>定义</b> can_struct.h:12</div></div>
+<div class="ttc" id="asuper__str_8h_html"><div class="ttname"><a href="super__str_8h.html">super_str.h</a></div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md61"></a>
+注意事项</h1>
+<ul>
+<li>确保对空指针和通信失败进行适当的错误处理。</li>
+<li>CAN ID 和端口应根据系统要求进行配置。</li>
+<li>数据解析假设特定的消息格式；根据 CAN 消息规范进行调整。 </li>
+</ul>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

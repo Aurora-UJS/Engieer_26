@@ -1,0 +1,406 @@
+\doxysection{referee\+\_\+protocol.\+h}
+\hypertarget{referee__protocol_8h_source}{}\label{referee__protocol_8h_source}\index{source/module/refereeSys/referee\_protocol.h@{source/module/refereeSys/referee\_protocol.h}}
+\mbox{\hyperlink{referee__protocol_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ referee\_protocol\_H}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ referee\_protocol\_H}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}stdint.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{key_board_8h}{keyboard.h}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{/****************************宏定义部分****************************/}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ REFEREE\_SOF\ 0xA5\ }\textcolor{comment}{//\ 起始字节,协议固定为0xA5}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ Robot\_Red\ 0}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ Robot\_Blue\ 1}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ Communicate\_Data\_LEN\ 5\ }\textcolor{comment}{//\ 自定义交互数据长度，该长度决定了我方发送和他方接收，自定义交互数据协议更改时只需要更改此宏定义即可}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#pragma\ pack(1)}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{/****************************通信协议格式****************************/}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{/*\ 通信协议格式偏移，枚举类型,代替\#define声明\ */}}
+\DoxyCodeLine{00029\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2fa49bf2d738fbeb5d0d67c578935297323}{FRAME\_HEADER\_Offset}}\ =\ 0,}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2fa093b37a3190dbc734a43c0fe545ec457}{CMD\_ID\_Offset}}\ =\ 5,}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2faef51b635081d087da63df3bb2558f855}{DATA\_Offset}}\ =\ 7,}
+\DoxyCodeLine{00034\ \}\ \mbox{\hyperlink{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2f}{JudgeFrameOffset\_e}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{/*\ 通信协议长度\ */}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82ea5649e5b6ebd90c709096bb6777f38b67}{LEN\_HEADER}}\ =\ 5,\ \textcolor{comment}{//\ 帧头长}}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82ea7a40597c42cff298ebc840f0d5b7ce6e}{LEN\_CMDID}}\ =\ 2,\ \ \textcolor{comment}{//\ 命令码长度}}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82eaf50383abfb1c790b6a5f0504a0400fd5}{LEN\_TAIL}}\ =\ 2,\ \ \ \textcolor{comment}{//\ 帧尾CRC16}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82eae9fce512ea1f0f1ba97ed3102b334864}{LEN\_CRC8}}\ =\ 4,\ \textcolor{comment}{//\ 帧头CRC8校验长度=帧头+数据长+包序号}}
+\DoxyCodeLine{00044\ \}\ \mbox{\hyperlink{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82e}{JudgeFrameLength\_e}};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{comment}{/****************************帧头****************************/}}
+\DoxyCodeLine{00047\ \textcolor{comment}{/****************************帧头****************************/}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{/*\ 帧头偏移\ */}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da567b73be8a61af6ac865b15bfeabbf59}{SOF}}\ =\ 0,\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 起始位}}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da7f3df1c13c3920d1c6771f3cdb0bd3ef}{DATA\_LENGTH}}\ =\ 1,\ \textcolor{comment}{//\ 帧内数据长度,根据这个来获取数据长度}}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da9985ac4cb7cda855d785a610e6a866a7}{SEQ}}\ =\ 3,\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 包序号}}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da852cb403a2665ed279b28679f11567d8}{CRC8}}\ =\ 4\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CRC8}}
+\DoxyCodeLine{00056\ \}\ \mbox{\hyperlink{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48d}{FrameHeaderOffset\_e}};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{comment}{/*\ 帧头定义\ */}}
+\DoxyCodeLine{00059\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structx_frame_header_a469a1c8bec37bb224f75fb029a9ea780}{SOF}};}
+\DoxyCodeLine{00062\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structx_frame_header_a6236ab9719c7ba873cb61361347e3563}{DataLength}};}
+\DoxyCodeLine{00063\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structx_frame_header_ae807c3faff4387a3319fa9c5284e4560}{Seq}};}
+\DoxyCodeLine{00064\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structx_frame_header_ab17f10d408f9a364347e2f0e0a714d38}{CRC8}};}
+\DoxyCodeLine{00065\ \}\ \mbox{\hyperlink{structx_frame_header}{xFrameHeader}};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{comment}{/****************************cmd\_id命令码说明****************************/}}
+\DoxyCodeLine{00068\ \textcolor{comment}{/****************************cmd\_id命令码说明****************************/}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{/*\ 命令码ID,用来判断接收的是什么数据\ */}}
+\DoxyCodeLine{00071\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a830df8dce291a7d83113a6b31406596e}{ID\_game\_state}}\ =\ 0x0001,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 比赛状态数据}}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a6b8db94f4e77ca865d1d3075b421c96c}{ID\_game\_result}}\ =\ 0x0002,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 比赛结果数据}}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a18925a925609dc542bf3de32268a4685}{ID\_game\_robot\_survivors}}\ =\ 0x0003,\ \ \ \ \ \ \textcolor{comment}{//\ 比赛机器人血量数据}}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a36cba273d8a8c1608ee57aa47069341c}{ID\_event\_data}}\ =\ 0x0101,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 场地事件数据}}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a7581f15d52c4934363ea220dc3599f65}{ID\_supply\_projectile\_action}}\ =\ 0x0102,\ \ \textcolor{comment}{//\ 场地补给站动作标识数据}}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a042f582cbe85cf799f2dedee5343898f}{ID\_supply\_projectile\_booking}}\ =\ 0x0103,\ \textcolor{comment}{//\ 场地补给站预约子弹数据}}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a3a82274b1040cb3f745e487c0dda4d66}{ID\_game\_robot\_state}}\ =\ 0x0201,\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 机器人状态数据}}
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a7cb0241beb56c5b88292f53f0e92f207}{ID\_power\_heat\_data}}\ =\ 0x0202,\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 实时功率热量数据}}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82abf9fec1a00b4ed6d3db76d3e15b0efee}{ID\_game\_robot\_pos}}\ =\ 0x0203,\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 机器人位置数据}}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ac9ad280c2b3e5a96ee16d96b0f3f5775}{ID\_buff\_musk}}\ =\ 0x0204,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 机器人增益数据}}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a1e52362060e66e96f89347ee5b8ea2a8}{ID\_aerial\_robot\_energy}}\ =\ 0x0205,\ \ \ \ \ \ \ \textcolor{comment}{//\ 空中机器人能量状态数据}}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a260e7dbbc0bbb1d70ea8004b64bfd5d3}{ID\_robot\_hurt}}\ =\ 0x0206,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 伤害状态数据}}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ad061576010d94bf3b5877030a4f0b74c}{ID\_shoot\_data}}\ =\ 0x0207,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 实时射击数据}}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ab1a8193d05062b309e405681fbba0122}{ID\_student\_interactive}}\ =\ 0x0301,\ \ \ \ \ \ \ \textcolor{comment}{//\ 机器人间交互数据}}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ace0d1d9da8d99e4f66ebf71844e8d77f}{ID\_custom\_controller}}\ =\ 0x0302,\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 自定义控制器数据}}
+\DoxyCodeLine{00088\ \}\ \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82}{CmdID\_e}};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{comment}{/*\ 命令码数据段长,根据官方协议来定义长度，还有自定义数据长度\ */}}
+\DoxyCodeLine{00091\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00092\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afafc2ccfe11f54adade5b225b19ef852f5}{LEN\_game\_state}}\ =\ 11,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0001}}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa80c4ad213175cb38e8f31328e4710636}{LEN\_game\_result}}\ =\ 1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0002}}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa62944ed4e423f98a0f2b22cdf19009ac}{LEN\_game\_robot\_HP}}\ =\ 32,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0003}}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afaff969b6431a3b2a1312d9e356e0b5a17}{LEN\_event\_data}}\ =\ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0101}}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afabe7165fd9c5cec0b8568c9689cf88060}{LEN\_supply\_projectile\_action}}\ =\ 4,\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0102}}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afafb1f141666559d05dd9c6159c4f93fb5}{LEN\_game\_robot\_state}}\ =\ 13,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0201}}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa813850de41fb4c056fc3db50692f6f9f}{LEN\_power\_heat\_data}}\ =\ 16,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0202}}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa35ca9f848ec3bb9575c3089fc29368a3}{LEN\_game\_robot\_pos}}\ =\ 16,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0203}}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa615e0242067ba2596e9b38684f554a59}{LEN\_buff\_musk}}\ =\ 6,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0204}}
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa4de04cd8b4f92dbf7d534ad3accd1512}{LEN\_aerial\_robot\_energy}}\ =\ 2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0205}}
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afada547b8386c11c7a9a23f1cfa1d5dd56}{LEN\_robot\_hurt}}\ =\ 1,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0206}}
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afab92acba28b2ed55718a513e605d853b9}{LEN\_shoot\_data}}\ =\ 7,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0207}}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa0d5f47550dcb3074aba03ece0bfbe7f8}{LEN\_receive\_data}}\ =\ 6\ +\ \mbox{\hyperlink{referee__protocol_8h_a9a57d5084965554eeebcf051284acbce}{Communicate\_Data\_LEN}},\ \textcolor{comment}{//\ 0x0301}}
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa3a32b353668e6596dfde19c254b62d0d}{LEN\_custom\_controller}}\ =\ 20,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0302}}
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa1c1aa022cfae0fa90db3be50085826e6}{LEN\_keyboard}}\ =\ 12,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x0304}}
+\DoxyCodeLine{00108\ \}\ \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88af}{JudgeDataLength\_e}};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{comment}{/****************************接收数据的详细说明****************************/}}
+\DoxyCodeLine{00111\ \textcolor{comment}{/****************************接收数据的详细说明****************************/}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{comment}{/*\ ID:\ 0x0001\ \ Byte:\ \ 11\ \ \ \ 比赛状态数据\ */}}
+\DoxyCodeLine{00114\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00115\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__game__state__t_ad6321bb68e773e085c55be6851c7d3c2}{game\_type}}\ :\ 4;}
+\DoxyCodeLine{00117\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__game__state__t_ac7c29bb602a6df3c4219919cc4cff551}{game\_progress}}\ :\ 4;}
+\DoxyCodeLine{00118\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__state__t_aafbb23a8cdb3f72bab6d48f33bb2f2b7}{stage\_remain\_time}};}
+\DoxyCodeLine{00119\ \ \ \ \ uint64\_t\ \mbox{\hyperlink{structext__game__state__t_ae64c0c09af419be14eba3b79b4da6294}{SyncTimeStamp}};}
+\DoxyCodeLine{00120\ \}\ \mbox{\hyperlink{structext__game__state__t}{ext\_game\_state\_t}};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{comment}{/*\ ID:\ 0x0002\ \ Byte:\ \ 1\ \ \ \ 比赛结果数据\ */}}
+\DoxyCodeLine{00123\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00124\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__game__result__t_a88048661694356b402fe7219efefe6b2}{winner}};}
+\DoxyCodeLine{00126\ \}\ \mbox{\hyperlink{structext__game__result__t}{ext\_game\_result\_t}};}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{comment}{/*\ ID:\ 0x0003\ \ Byte:\ \ 32\ \ \ \ 比赛机器人血量数据\ */}}
+\DoxyCodeLine{00129\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00130\ \{}
+\DoxyCodeLine{00131\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_aa4d554d04a1f08c7b985585e7ac502e4}{red\_1\_robot\_HP}};}
+\DoxyCodeLine{00132\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_a11f1656a162a63506e6ebabd7a822537}{red\_2\_robot\_HP}};}
+\DoxyCodeLine{00133\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_a6d7bef82d2ef22d962bb4688eb3bebd0}{red\_3\_robot\_HP}};}
+\DoxyCodeLine{00134\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_a1b27e71465cf43439ebc3178b5b0d54d}{red\_4\_robot\_HP}};}
+\DoxyCodeLine{00135\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_a0c51ef9eb7561a0412bce16a1a986227}{red\_5\_robot\_HP}};}
+\DoxyCodeLine{00136\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_a00f230df9e6e32acd24ea8368823ae25}{red\_7\_robot\_HP}};}
+\DoxyCodeLine{00137\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_a185cb2d857e0b9f914c6ccc4752ac99b}{red\_outpost\_HP}};}
+\DoxyCodeLine{00138\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_ab8e7c4e86f41dbb693598bbcfaaf09ca}{red\_base\_HP}};}
+\DoxyCodeLine{00139\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_af88d2b3fa3e2b9ea3d6a06e192a6668d}{blue\_1\_robot\_HP}};}
+\DoxyCodeLine{00140\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_af5376f6b5139b163528b658c71bbd77c}{blue\_2\_robot\_HP}};}
+\DoxyCodeLine{00141\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_a12927cfe3c104766a3c9e3640a995cf6}{blue\_3\_robot\_HP}};}
+\DoxyCodeLine{00142\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_a1d87a2480994d2b1401ee5b0771d0064}{blue\_4\_robot\_HP}};}
+\DoxyCodeLine{00143\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_ab49d1e883318c8534c30491041eb6d09}{blue\_5\_robot\_HP}};}
+\DoxyCodeLine{00144\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_a552e6ea635fd55d60b3feb38b9158b27}{blue\_7\_robot\_HP}};}
+\DoxyCodeLine{00145\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_ae5a172e3e628133a365a0b69f3146cdb}{blue\_outpost\_HP}};}
+\DoxyCodeLine{00146\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot___h_p__t_ab8c981285c0c2f2765afb276e6061b38}{blue\_base\_HP}};}
+\DoxyCodeLine{00147\ \}\ \mbox{\hyperlink{structext__game__robot___h_p__t}{ext\_game\_robot\_HP\_t}};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{comment}{/*\ ID:\ 0x0101\ \ Byte:\ \ 4\ \ \ \ 场地事件数据\ */}}
+\DoxyCodeLine{00150\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00151\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structext__event__data__t_a45def65890de0da17bc0d6e2ca2b3a9f}{event\_type}};}
+\DoxyCodeLine{00153\ \}\ \mbox{\hyperlink{structext__event__data__t}{ext\_event\_data\_t}};}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{comment}{/*\ ID:\ 0x0102\ \ Byte:\ \ 3\ \ \ \ 场地补给站动作标识数据\ */}}
+\DoxyCodeLine{00156\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00157\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__supply__projectile__action__t_a1af3701c5e8fe16e26b9949f248efc6d}{supply\_projectile\_id}};}
+\DoxyCodeLine{00159\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__supply__projectile__action__t_aea324f1b7df86490662953e9e6acb669}{supply\_robot\_id}};}
+\DoxyCodeLine{00160\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__supply__projectile__action__t_ac0de4499789ab8e5dc3638f7bacca05c}{supply\_projectile\_step}};}
+\DoxyCodeLine{00161\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__supply__projectile__action__t_aa5fdfae8a5a152e629700789eb1a97d0}{supply\_projectile\_num}};}
+\DoxyCodeLine{00162\ \}\ \mbox{\hyperlink{structext__supply__projectile__action__t}{ext\_supply\_projectile\_action\_t}};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{comment}{/*\ ID:\ 0X0201\ \ Byte:\ 13\ \ \ \ 机器人状态数据\ */}}
+\DoxyCodeLine{00165\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00166\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__game__robot__state__t_a524267edfe3d399c8a91ca69fdcd7c42}{robot\_id}};}
+\DoxyCodeLine{00168\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__game__robot__state__t_a56509616345d1039662b789c24045b20}{robot\_level}};}
+\DoxyCodeLine{00169\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot__state__t_a795419562bcae8f388dcb540d3526565}{current\_HP}};}
+\DoxyCodeLine{00170\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot__state__t_a2cbba18c1bcbf327b727a369505a8c24}{maximum\_HP}};}
+\DoxyCodeLine{00171\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot__state__t_ab88aa2070a2233e4f9ec7cfdb14cd0bd}{shooter\_barrel\_cooling\_value}};}
+\DoxyCodeLine{00172\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot__state__t_a7cc5b39ac83b306398ac899f7452d2d6}{shooter\_barrel\_heat\_limit}};}
+\DoxyCodeLine{00173\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__game__robot__state__t_af20b33f36c6d1dd84b35e5f8729062b2}{chassis\_power\_limit}};}
+\DoxyCodeLine{00174\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__game__robot__state__t_aad8faa4e05bf3b31a94778f97d5abfc0}{power\_management\_gimbal\_output}}\ :\ 1;}
+\DoxyCodeLine{00175\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__game__robot__state__t_ae1a6d9d5e1023fe30f657cf6b5886ada}{power\_management\_chassis\_output}}\ :\ 1;}
+\DoxyCodeLine{00176\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__game__robot__state__t_ab91e102e743ed9b7584a8e5db4ea7d27}{power\_management\_shooter\_output}}\ :\ 1;}
+\DoxyCodeLine{00177\ \}\ \mbox{\hyperlink{structext__game__robot__state__t}{ext\_game\_robot\_state\_t}};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \textcolor{comment}{/*\ ID:\ 0X0202\ \ Byte:\ 16\ \ \ \ 实时功率热量数据\ */}}
+\DoxyCodeLine{00180\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00181\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__power__heat__data__t_ac8c01ca85723adcf9ebe6969c2f575bf}{chassis\_voltage}};}
+\DoxyCodeLine{00183\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__power__heat__data__t_a6064e905f836e1a5dedc659f463f49cf}{chassis\_current}};}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structext__power__heat__data__t_a250e80dc0171e67e7af98038460bc4c2}{chassis\_power}};}
+\DoxyCodeLine{00185\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__power__heat__data__t_aa3c753149a640a8a36468ea65e5e104d}{buffer\_energy}};}
+\DoxyCodeLine{00186\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__power__heat__data__t_ae142581bed75d8173bff51dd79ddbd0f}{shooter\_17mm\_1\_barrel\_heat}};}
+\DoxyCodeLine{00187\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__power__heat__data__t_a8dd70f587a0a33e63f0bc2a9839f0f52}{shooter\_17mm\_2\_barrel\_heat}};}
+\DoxyCodeLine{00188\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__power__heat__data__t_a74cb3c56d3f17bdb6e4f54177e0ea92b}{shooter\_42mm\_barrel\_heat}};}
+\DoxyCodeLine{00189\ \}\ \mbox{\hyperlink{structext__power__heat__data__t}{ext\_power\_heat\_data\_t}};}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{comment}{/*\ ID:\ 0x0203\ \ Byte:\ 16\ \ \ \ 机器人位置数据\ */}}
+\DoxyCodeLine{00192\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00193\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structext__game__robot__pos__t_ad0da36b2558901e21e7a30f6c227a45e}{x}};}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structext__game__robot__pos__t_aa4f0d3eebc3c443f9be81bf48561a217}{y}};}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structext__game__robot__pos__t_af73583b1e980b0aa03f9884812e9fd4d}{z}};}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structext__game__robot__pos__t_a7efc219781df4a1e281cb5d348b7fbf9}{yaw}};}
+\DoxyCodeLine{00198\ \}\ \mbox{\hyperlink{structext__game__robot__pos__t}{ext\_game\_robot\_pos\_t}};}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \textcolor{comment}{/*\ ID:\ 0x0204\ \ Byte:\ \ 6\ \ \ \ 机器人增益数据\ */}}
+\DoxyCodeLine{00201\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00202\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__buff__musk__t_a3fa92ca27b4ea9c0bfaa7c80bb9a2272}{recovery\_buff}};}
+\DoxyCodeLine{00204\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__buff__musk__t_ac9c6a1739d9ca5b39e12e52d020ef50f}{cooling\_buff}};}
+\DoxyCodeLine{00205\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__buff__musk__t_ad522b41b9e5bfd5a94d5f8d8ee2ac2c5}{defence\_buff}};}
+\DoxyCodeLine{00206\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__buff__musk__t_a95932bdfc8a366435f0959d317f101cc}{vulnerability\_buff}};}
+\DoxyCodeLine{00207\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__buff__musk__t_ae45cddbb49e75cda66c5822c1e03d494}{attack\_buff}};}
+\DoxyCodeLine{00208\ \}\ \mbox{\hyperlink{structext__buff__musk__t}{ext\_buff\_musk\_t}};}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{comment}{/*\ ID:\ 0x0205\ \ Byte:\ \ 2\ \ \ \ 空中机器人能量状态数据\ */}}
+\DoxyCodeLine{00211\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00212\ \{}
+\DoxyCodeLine{00213\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structaerial__robot__energy__t_ae5a1428b677561df38250cf6508c3da2}{airforce\_status}};}
+\DoxyCodeLine{00214\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structaerial__robot__energy__t_af9c4488d251bad8a714d130501350244}{time\_remain}};}
+\DoxyCodeLine{00215\ \}\ \mbox{\hyperlink{structaerial__robot__energy__t}{aerial\_robot\_energy\_t}};}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{comment}{/*\ ID:\ 0x0206\ \ Byte:\ \ 1\ \ \ \ 伤害状态数据\ */}}
+\DoxyCodeLine{00218\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00219\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__robot__hurt__t_a8fd38fed58b331e4613ae810bd484498}{armor\_id}}\ :\ 4;}
+\DoxyCodeLine{00221\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__robot__hurt__t_a82414de57fd508fec989f1c2770b2935}{hurt\_type}}\ :\ 4;}
+\DoxyCodeLine{00222\ \}\ \mbox{\hyperlink{structext__robot__hurt__t}{ext\_robot\_hurt\_t}};}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \textcolor{comment}{/*\ ID:\ 0x0207\ \ Byte:\ \ 7\ \ \ \ 实时射击数据\ */}}
+\DoxyCodeLine{00225\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00226\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__shoot__data__t_a5be8e3ed1c84de808bfe1778af6ab0ba}{bullet\_type}};}
+\DoxyCodeLine{00228\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__shoot__data__t_a27899bf44476e0aecf7fba09b91c04bc}{shooter\_id}};}
+\DoxyCodeLine{00229\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structext__shoot__data__t_a76166f13cee6ce40bf8fb32dae260eb9}{bullet\_freq}};}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structext__shoot__data__t_af1c7ccafed07144c435bca6657aba434}{bullet\_speed}};}
+\DoxyCodeLine{00231\ \}\ \mbox{\hyperlink{structext__shoot__data__t}{ext\_shoot\_data\_t}};}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \textcolor{comment}{/****************************机器人交互数据****************************/}}
+\DoxyCodeLine{00234\ \textcolor{comment}{/****************************机器人交互数据****************************/}}
+\DoxyCodeLine{00235\ \textcolor{comment}{/*\ 发送的内容数据段最大为\ 113\ 检测是否超出大小限制?实际上图形段不会超，数据段最多30个，也不会超*/}}
+\DoxyCodeLine{00236\ \textcolor{comment}{/*\ 交互数据头结构\ */}}
+\DoxyCodeLine{00237\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00238\ \{}
+\DoxyCodeLine{00239\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_graph___data__t_ab204c1a8f1daf7b3e3d7678259004f00}{graphic\_name}}[3];}
+\DoxyCodeLine{00240\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_graph___data__t_a7155d8814063923eb6c520c047fbf787}{operate\_tpye}}\ :\ 3;}
+\DoxyCodeLine{00241\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_graph___data__t_ae3c07c81f2bbe586a9aec8fd41e5b84f}{graphic\_tpye}}\ :\ 3;}
+\DoxyCodeLine{00242\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_graph___data__t_a409927059c14d4306d64ae02dd71b79d}{layer}}\ :\ 4;}
+\DoxyCodeLine{00243\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_graph___data__t_a66b2ef8398a8bbb0f5816f22a7b138da}{color}}\ :\ 4;}
+\DoxyCodeLine{00244\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_graph___data__t_a917145eabe49e7e9e96ce9d980ca3d35}{start\_angle}}\ :\ 9;}
+\DoxyCodeLine{00245\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_graph___data__t_aed0deb2e46e71eada799a7a70df0c0bf}{end\_angle}}\ :\ 9;}
+\DoxyCodeLine{00246\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_graph___data__t_a325272ddd9a962f05deb905101d25cbd}{width}}\ :\ 10;}
+\DoxyCodeLine{00247\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_graph___data__t_a1cdcbb9c2d13ca178900a3cd47bc5466}{start\_x}}\ :\ 11;}
+\DoxyCodeLine{00248\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_graph___data__t_a63c4f1dddf3949e6149f3522f009f255}{start\_y}}\ :\ 11;}
+\DoxyCodeLine{00249\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_graph___data__t_a717462214d2d8f1d768bccfb01a63d08}{radius}}\ :\ 10;}
+\DoxyCodeLine{00250\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_graph___data__t_affb997a3f02a6ac2acc69976e72c42d0}{end\_x}}\ :\ 11;}
+\DoxyCodeLine{00251\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_graph___data__t_ae2a4b0fb459adc19e16b0a00aafaa6f0}{end\_y}}\ :\ 11;}
+\DoxyCodeLine{00252\ \}\ \mbox{\hyperlink{struct_graph___data__t}{Graph\_Data\_t}};}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00255\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__student__interactive__header__data__t_a332ab0cef4b8299dc1332266546ca785}{data\_cmd\_id}};\ \textcolor{comment}{//\ 由于存在多个内容\ ID，但整个cmd\_id\ 上行频率最大为\ 10Hz，请合理安排带宽。注意交互部分的上行频率}}
+\DoxyCodeLine{00257\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__student__interactive__header__data__t_a7ce5dfbf1befd78cdc7d1b112488b347}{sender\_ID}};}
+\DoxyCodeLine{00258\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structext__student__interactive__header__data__t_a621711df48076efeabeb8a4de3100e58}{receiver\_ID}};}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \mbox{\hyperlink{struct_graph___data__t}{Graph\_Data\_t}}\ \mbox{\hyperlink{structext__student__interactive__header__data__t_a1f0cbc90c45bc6beda6b133c005cac72}{graph\_data}};}
+\DoxyCodeLine{00261\ \}\ \mbox{\hyperlink{structext__student__interactive__header__data__t}{ext\_student\_interactive\_header\_data\_t}};}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \textcolor{comment}{/*\ 机器人id\ */}}
+\DoxyCodeLine{00264\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00265\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{comment}{//\ 红方机器人ID}}
+\DoxyCodeLine{00267\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba82bbe02f275e311e37e4b65178cdafb2}{RobotID\_RHero}}\ =\ 1,}
+\DoxyCodeLine{00268\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba4e6f8d0d60fc7331e70577edc8313cdf}{RobotID\_REngineer}}\ =\ 2,}
+\DoxyCodeLine{00269\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6baa1ab225cdb62a5d5f9aa8f70448db8d9}{RobotID\_RStandard1}}\ =\ 3,}
+\DoxyCodeLine{00270\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba99e02efc96e70d442b8cd5d07bc797b1}{RobotID\_RStandard2}}\ =\ 4,}
+\DoxyCodeLine{00271\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba14a504bf213ad1239d5b20dddceac883}{RobotID\_RStandard3}}\ =\ 5,}
+\DoxyCodeLine{00272\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6baabeb8b982f1f3f480c621a0bd7be95c1}{RobotID\_RAerial}}\ =\ 6,}
+\DoxyCodeLine{00273\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba64c86ff312235257a3aba3a9c42a4856}{RobotID\_RSentry}}\ =\ 7,}
+\DoxyCodeLine{00274\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba7572faabaf54c6d1ded5028222512c62}{RobotID\_RRadar}}\ =\ 9,}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{comment}{//\ 蓝方机器人ID}}
+\DoxyCodeLine{00276\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba1700750589497717d2c1dd64baa0368a}{RobotID\_BHero}}\ =\ 101,}
+\DoxyCodeLine{00277\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6bad9a81dcebfefb4d801acafcefdb96c47}{RobotID\_BEngineer}}\ =\ 102,}
+\DoxyCodeLine{00278\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba9f6b38e9d695aaf907179689c35ad3fa}{RobotID\_BStandard1}}\ =\ 103,}
+\DoxyCodeLine{00279\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6bae051219fe239e0c1e9bc5a913b847893}{RobotID\_BStandard2}}\ =\ 104,}
+\DoxyCodeLine{00280\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba9bce8ac23314bf39eca99fdf4bfdd7be}{RobotID\_BStandard3}}\ =\ 105,}
+\DoxyCodeLine{00281\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba2f473efa0830ca91aeb07a39c5908fac}{RobotID\_BAerial}}\ =\ 106,}
+\DoxyCodeLine{00282\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba0962466912e4941b7cd07b6fb701430a}{RobotID\_BSentry}}\ =\ 107,}
+\DoxyCodeLine{00283\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba1bdd17f76e80c8d3efd13f162ea9857a}{RobotID\_BRadar}}\ =\ 109,}
+\DoxyCodeLine{00284\ \}\ \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6b}{Robot\_ID\_e}};}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \textcolor{comment}{/*\ 交互数据ID\ */}}
+\DoxyCodeLine{00287\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00288\ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23a5863f5fef5f41a75f0cab01d6a276258}{UI\_Data\_ID\_Del}}\ =\ 0x100,}
+\DoxyCodeLine{00290\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23aca355af6bc3a748d89b7e8d02d679ecb}{UI\_Data\_ID\_Draw1}}\ =\ 0x101,}
+\DoxyCodeLine{00291\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23ae3d736910f1871443172600138abed79}{UI\_Data\_ID\_Draw2}}\ =\ 0x102,}
+\DoxyCodeLine{00292\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23ac3b5d0b60f5f750b7e68b38c5d4eb1bb}{UI\_Data\_ID\_Draw5}}\ =\ 0x103,}
+\DoxyCodeLine{00293\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23a4ce700939c148ac4f572218e6ff06673}{UI\_Data\_ID\_Draw7}}\ =\ 0x104,}
+\DoxyCodeLine{00294\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23adf5beab799addcba6f0c202f851ad31a}{UI\_Data\_ID\_DrawChar}}\ =\ 0x110,}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{comment}{/*\ 自定义交互数据部分\ */}}
+\DoxyCodeLine{00297\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23abf2f5c650ac7899519a70317a0ab0fa6}{Communicate\_Data\_ID}}\ =\ 0x0200,}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \}\ \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23}{Interactive\_Data\_ID\_e}};}
+\DoxyCodeLine{00300\ \textcolor{comment}{/*\ 交互数据长度\ */}}
+\DoxyCodeLine{00301\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00302\ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5a055bd43ffa3e29d47102b4ceceb6bb75}{Interactive\_Data\_LEN\_Head}}\ =\ 6,}
+\DoxyCodeLine{00304\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5a9e67f191a0b9115d95197b1312252b0d}{UI\_Operate\_LEN\_Del}}\ =\ 2,}
+\DoxyCodeLine{00305\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5ab91b3442ab4a9452794798a5daab5ad9}{UI\_Operate\_LEN\_PerDraw}}\ =\ 15,}
+\DoxyCodeLine{00306\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5a6c71ea57c8b480c62785ad387bc67235}{UI\_Operate\_LEN\_DrawChar}}\ =\ 15\ +\ 30,}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{comment}{/*\ 自定义交互数据部分\ */}}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{comment}{//\ Communicate\_Data\_LEN\ =\ 5,}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \}\ \mbox{\hyperlink{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5}{Interactive\_Data\_Length\_e}};}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \textcolor{comment}{/****************************自定义交互数据****************************/}}
+\DoxyCodeLine{00314\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00315\ \textcolor{comment}{\ \ \ \ 学生机器人间通信\ cmd\_id\ 0x0301，内容\ ID:0x0200\string~0x02FF}}
+\DoxyCodeLine{00316\ \textcolor{comment}{\ \ \ \ 自定义交互数据\ 机器人间通信：0x0301。}}
+\DoxyCodeLine{00317\ \textcolor{comment}{\ \ \ \ 发送频率：上限\ 10Hz}}
+\DoxyCodeLine{00318\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00319\ \textcolor{comment}{//\ 自定义交互数据协议，可更改，更改后需要修改最上方宏定义数据长度的值}}
+\DoxyCodeLine{00320\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00321\ \{}
+\DoxyCodeLine{00322\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structrobot__interactive__data__t_a7e307529e40ded8fef45fc77b6aff042}{data}}[\mbox{\hyperlink{referee__protocol_8h_a9a57d5084965554eeebcf051284acbce}{Communicate\_Data\_LEN}}];\ \textcolor{comment}{//\ 数据段,n需要小于113}}
+\DoxyCodeLine{00323\ \}\ \mbox{\hyperlink{structrobot__interactive__data__t}{robot\_interactive\_data\_t}};}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \textcolor{comment}{//\ \ 机器人交互信息\_发送}}
+\DoxyCodeLine{00326\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00327\ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \mbox{\hyperlink{structx_frame_header}{xFrameHeader}}\ \mbox{\hyperlink{struct_communicate___send_data__t_a1b9527bf9c7d5162c76433c4f145b7fc}{FrameHeader}};}
+\DoxyCodeLine{00329\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{struct_communicate___send_data__t_a7c025c4c155e17501fedcd0240272b5f}{CmdID}};}
+\DoxyCodeLine{00330\ \ \ \ \ \mbox{\hyperlink{structext__student__interactive__header__data__t}{ext\_student\_interactive\_header\_data\_t}}\ \mbox{\hyperlink{struct_communicate___send_data__t_a70ba11fddf5aebdb42d7187b62b51809}{datahead}};}
+\DoxyCodeLine{00331\ \ \ \ \ \mbox{\hyperlink{structrobot__interactive__data__t}{robot\_interactive\_data\_t}}\ \mbox{\hyperlink{struct_communicate___send_data__t_ad491cdd8bdedfa77afe17bf5516a97f7}{Data}};\ \textcolor{comment}{//\ 数据段}}
+\DoxyCodeLine{00332\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{struct_communicate___send_data__t_af52b216bc13a27cfe2b44a4e618d0fdd}{frametail}};}
+\DoxyCodeLine{00333\ \}\ \mbox{\hyperlink{struct_communicate___send_data__t}{Communicate\_SendData\_t}};}
+\DoxyCodeLine{00334\ \textcolor{comment}{//\ \ 机器人交互信息\_接收}}
+\DoxyCodeLine{00335\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00336\ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \mbox{\hyperlink{structext__student__interactive__header__data__t}{ext\_student\_interactive\_header\_data\_t}}\ \mbox{\hyperlink{struct_communicate___receive_data__t_a70ba11fddf5aebdb42d7187b62b51809}{datahead}};}
+\DoxyCodeLine{00338\ \ \ \ \ \mbox{\hyperlink{structrobot__interactive__data__t}{robot\_interactive\_data\_t}}\ \mbox{\hyperlink{struct_communicate___receive_data__t_ad491cdd8bdedfa77afe17bf5516a97f7}{Data}};\ \textcolor{comment}{//\ 数据段}}
+\DoxyCodeLine{00339\ \}\ \mbox{\hyperlink{struct_communicate___receive_data__t}{Communicate\_ReceiveData\_t}};}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \textcolor{comment}{/****************************UI交互数据****************************/}}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \textcolor{comment}{/*\ 图形数据\ */}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00346\ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \mbox{\hyperlink{struct_graph___data__t}{Graph\_Data\_t}}\ \mbox{\hyperlink{struct_string___data__t_a1e0ff6c753478f6c3053972b3ec244bc}{Graph\_Control}};}
+\DoxyCodeLine{00348\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_string___data__t_a294905486c8c02918aec440849bb3ac6}{show\_Data}}[30];}
+\DoxyCodeLine{00349\ \}\ \mbox{\hyperlink{struct_string___data__t}{String\_Data\_t}};\ \textcolor{comment}{//\ 打印字符串数据}}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \textcolor{comment}{/*\ 删除操作\ */}}
+\DoxyCodeLine{00352\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00353\ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62a2ef334c1307a84f1a257e8716fd46486}{UI\_Data\_Del\_NoOperate}}\ =\ 0,}
+\DoxyCodeLine{00355\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62a260b8c69a2f5514f17a5c4925e09c79a}{UI\_Data\_Del\_Layer}}\ =\ 1,}
+\DoxyCodeLine{00356\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62ac8003a61d459e5959920e14d435c361a}{UI\_Data\_Del\_ALL}}\ =\ 2,\ \textcolor{comment}{//\ 删除全部图层，后面的参数已经不重要了。}}
+\DoxyCodeLine{00357\ \}\ \mbox{\hyperlink{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62}{UI\_Delete\_Operate\_e}};}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \textcolor{comment}{/*\ 图形配置参数\_\_图形操作\ */}}
+\DoxyCodeLine{00360\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00361\ \{}
+\DoxyCodeLine{00362\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5a0a6e8b9a6abbba0af8a716f85e1433f5}{UI\_Graph\_ADD}}\ =\ 1,}
+\DoxyCodeLine{00363\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5aff1d14377dea689b2b291a3b357c655e}{UI\_Graph\_Change}}\ =\ 2,}
+\DoxyCodeLine{00364\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5a10a88ba15e7fb1df1344653b11634337}{UI\_Graph\_Del}}\ =\ 3,}
+\DoxyCodeLine{00365\ \}\ \mbox{\hyperlink{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5}{UI\_Graph\_Operate\_e}};}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \textcolor{comment}{/*\ 图形配置参数\_\_图形类型\ */}}
+\DoxyCodeLine{00368\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00369\ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a7783eb04a06d8cefa48342340f2a0ab0}{UI\_Graph\_Line}}\ =\ 0,\ \ \ \ \ \ \textcolor{comment}{//\ 直线}}
+\DoxyCodeLine{00371\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a81b21ed08fbff53190d07b3a0d38cef5}{UI\_Graph\_Rectangle}}\ =\ 1,\ \textcolor{comment}{//\ 矩形}}
+\DoxyCodeLine{00372\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08aea6a4b3fecabd3d40c089673514659ab}{UI\_Graph\_Circle}}\ =\ 2,\ \ \ \ \textcolor{comment}{//\ 整圆}}
+\DoxyCodeLine{00373\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a6be1051507322d8341aba99418a3922b}{UI\_Graph\_Ellipse}}\ =\ 3,\ \ \ \textcolor{comment}{//\ 椭圆}}
+\DoxyCodeLine{00374\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08aca8ad5c27793151298711a93a21d9c74}{UI\_Graph\_Arc}}\ =\ 4,\ \ \ \ \ \ \ \textcolor{comment}{//\ 圆弧}}
+\DoxyCodeLine{00375\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08ad66a5a963d3b16eb9519424671b223db}{UI\_Graph\_Float}}\ =\ 5,\ \ \ \ \ \textcolor{comment}{//\ 浮点型}}
+\DoxyCodeLine{00376\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08acb0af0edcaa555906fc5cde33fa3047b}{UI\_Graph\_Int}}\ =\ 6,\ \ \ \ \ \ \ \textcolor{comment}{//\ 整形}}
+\DoxyCodeLine{00377\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a1b69e466aae17678c58f390b0cc5e3e9}{UI\_Graph\_Char}}\ =\ 7,\ \ \ \ \ \ \textcolor{comment}{//\ 字符型}}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \}\ \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08}{UI\_Graph\_Type\_e}};}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \textcolor{comment}{/*\ 图形配置参数\_\_图形颜色\ */}}
+\DoxyCodeLine{00382\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00383\ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1eacb2d4c41e008d10d8b729d0ea4898bff}{UI\_Color\_Main}}\ =\ 0,\ \textcolor{comment}{//\ 红蓝主色}}
+\DoxyCodeLine{00385\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea733caae36ca5dca69f5d9de536f05dfb}{UI\_Color\_Yellow}}\ =\ 1,}
+\DoxyCodeLine{00386\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1eaf3b0d2fa53b3370dd9bb4fbc82b6e118}{UI\_Color\_Green}}\ =\ 2,}
+\DoxyCodeLine{00387\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea04bbd5aea17aa42ab7848874e2343e56}{UI\_Color\_Orange}}\ =\ 3,}
+\DoxyCodeLine{00388\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea286386dc8f5b9167d2f5201b022afd8e}{UI\_Color\_Purplish\_red}}\ =\ 4,\ \textcolor{comment}{//\ 紫红色}}
+\DoxyCodeLine{00389\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea1a941108d08631fd7590475b08cabce6}{UI\_Color\_Pink}}\ =\ 5,}
+\DoxyCodeLine{00390\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1eabff6406e275831f946444ccbd033b0b1}{UI\_Color\_Cyan}}\ =\ 6,\ \textcolor{comment}{//\ 青色}}
+\DoxyCodeLine{00391\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea5633b7451218144762bace49a4dd78d3}{UI\_Color\_Black}}\ =\ 7,}
+\DoxyCodeLine{00392\ \ \ \ \ \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ead111a6fa3980914fe95648cd9018e30c}{UI\_Color\_White}}\ =\ 8,}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \}\ \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1e}{UI\_Graph\_Color\_e}};}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00397\ \{}
+\DoxyCodeLine{00398\ \ \ \ \ int32\_t\ \mbox{\hyperlink{structcustom__controller__data__t_a145a9a4419deaf07afa244deecf4b0fb}{encoder\_1\_value}};}
+\DoxyCodeLine{00399\ \ \ \ \ int32\_t\ \mbox{\hyperlink{structcustom__controller__data__t_a7a440dc948b043504b349805afd8b571}{encoder\_2\_value}};}
+\DoxyCodeLine{00400\ \ \ \ \ int32\_t\ \mbox{\hyperlink{structcustom__controller__data__t_aa0cd684ca5e0d399f9d827d20b01e4e8}{encoder\_3\_value}};}
+\DoxyCodeLine{00401\ \ \ \ \ int32\_t\ \mbox{\hyperlink{structcustom__controller__data__t_a6a2866d8f38b7cea53954c30cca2daf8}{encoder\_4\_value}};}
+\DoxyCodeLine{00402\ \ \ \ \ int32\_t\ \mbox{\hyperlink{structcustom__controller__data__t_a5d37e855d0e5e8f54691dae9e69c5fcc}{encoder\_5\_value}};}
+\DoxyCodeLine{00403\ \ \ \ \ int32\_t\ \mbox{\hyperlink{structcustom__controller__data__t_ad76b7f3f8290e6fd28eb6f5b2a8fbc1c}{encoder\_6\_value}};}
+\DoxyCodeLine{00404\ \}\ \mbox{\hyperlink{structcustom__controller__data__t}{custom\_controller\_data\_t}};}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \textcolor{preprocessor}{\#pragma\ pack()}}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

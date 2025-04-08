@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/computer/vision/vision_solution.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_975f036152d1b8ba6403704f48098465.html">computer</a></li><li class="navelem"><a class="el" href="dir_9539319793484e263c9ac670f3dffa0a.html">vision</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">vision_solution.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="vision__solution_8h_source.html">vision_solution.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="uart__api_8h_source.html">uart_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="vision__receive_8h_source.html">vision_receive.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="config_8h_source.html">config.h</a>&quot;</code><br />
+<code>#include &quot;arm_math.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+vision_solution.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="vision__solution_8c__incl.png" border="0" usemap="#asource_2module_2computer_2vision_2vision__solution_8c" alt=""/></div>
+<map name="asource_2module_2computer_2vision_2vision__solution_8c" id="asource_2module_2computer_2vision_2vision__solution_8c">
+<area shape="rect" title=" " alt="" coords="190,5,355,48"/>
+<area shape="rect" href="vision__solution_8h.html" title=" " alt="" coords="72,96,190,123"/>
+<area shape="poly" title=" " alt="" coords="237,51,168,90,165,86,235,46"/>
+<area shape="rect" href="uart__api_8h.html" title=" " alt="" coords="5,171,84,197"/>
+<area shape="poly" title=" " alt="" coords="191,37,156,45,122,57,90,74,63,98,54,111,49,125,45,155,40,155,44,124,49,108,58,94,87,70,120,52,155,40,189,32"/>
+<area shape="rect" href="vision__receive_8h.html" title=" " alt="" coords="215,96,330,123"/>
+<area shape="poly" title=" " alt="" coords="275,49,275,80,270,80,270,49"/>
+<area shape="rect" href="config_8h.html" title=" " alt="" coords="355,96,422,123"/>
+<area shape="poly" title=" " alt="" coords="304,46,360,85,357,89,301,51"/>
+<area shape="rect" title=" " alt="" coords="446,96,536,123"/>
+<area shape="poly" title=" " alt="" coords="330,46,444,88,442,93,328,51"/>
+<area shape="rect" title=" " alt="" coords="96,245,156,272"/>
+<area shape="poly" title=" " alt="" coords="133,123,129,230,124,230,128,123"/>
+<area shape="rect" href="computer__pack_8h.html" title=" " alt="" coords="164,171,285,197"/>
+<area shape="poly" title=" " alt="" coords="149,121,198,159,195,163,146,125"/>
+<area shape="poly" title=" " alt="" coords="209,200,156,238,153,234,206,196"/>
+<area shape="rect" title=" " alt="" coords="187,245,262,272"/>
+<area shape="poly" title=" " alt="" coords="227,198,227,230,222,230,222,198"/>
+<area shape="poly" title=" " alt="" coords="60,196,102,233,99,237,57,200"/>
+<area shape="poly" title=" " alt="" coords="266,125,243,159,239,156,262,122"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a728368a3f501c6e5e3b6631d894a670a" id="r_a728368a3f501c6e5e3b6631d894a670a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a728368a3f501c6e5e3b6631d894a670a">aim_x_n</a> = 0</td></tr>
+<tr class="separator:a728368a3f501c6e5e3b6631d894a670a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af69c8b370a6e8bdb6209d0f50664e3c3" id="r_af69c8b370a6e8bdb6209d0f50664e3c3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af69c8b370a6e8bdb6209d0f50664e3c3">aim_y_n</a> = 0</td></tr>
+<tr class="separator:af69c8b370a6e8bdb6209d0f50664e3c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe721c914141cd48b15fb0b453f4c4ff" id="r_afe721c914141cd48b15fb0b453f4c4ff"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe721c914141cd48b15fb0b453f4c4ff">aim_z_n</a> = 0</td></tr>
+<tr class="separator:afe721c914141cd48b15fb0b453f4c4ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24efe78294a82ce91ac13a662cfd60be" id="r_a24efe78294a82ce91ac13a662cfd60be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_solve_trajectory_params__t.html">SolveTrajectoryParams_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24efe78294a82ce91ac13a662cfd60be">SolveTrajectoryParams</a></td></tr>
+<tr class="separator:a24efe78294a82ce91ac13a662cfd60be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fe4167b1856c9e10d1ace466456f233" id="r_a5fe4167b1856c9e10d1ace466456f233"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fe4167b1856c9e10d1ace466456f233">last_flight_time</a> = 0.3f</td></tr>
+<tr class="separator:a5fe4167b1856c9e10d1ace466456f233"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">变量说明</h2>
+<a id="a728368a3f501c6e5e3b6631d894a670a" name="a728368a3f501c6e5e3b6631d894a670a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a728368a3f501c6e5e3b6631d894a670a">&#9670;&#160;</a></span>aim_x_n</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float aim_x_n = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af69c8b370a6e8bdb6209d0f50664e3c3" name="af69c8b370a6e8bdb6209d0f50664e3c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af69c8b370a6e8bdb6209d0f50664e3c3">&#9670;&#160;</a></span>aim_y_n</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float aim_y_n = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afe721c914141cd48b15fb0b453f4c4ff" name="afe721c914141cd48b15fb0b453f4c4ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe721c914141cd48b15fb0b453f4c4ff">&#9670;&#160;</a></span>aim_z_n</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float aim_z_n = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5fe4167b1856c9e10d1ace466456f233" name="a5fe4167b1856c9e10d1ace466456f233"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fe4167b1856c9e10d1ace466456f233">&#9670;&#160;</a></span>last_flight_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float last_flight_time = 0.3f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a24efe78294a82ce91ac13a662cfd60be" name="a24efe78294a82ce91ac13a662cfd60be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24efe78294a82ce91ac13a662cfd60be">&#9670;&#160;</a></span>SolveTrajectoryParams</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_solve_trajectory_params__t.html">SolveTrajectoryParams_t</a> SolveTrajectoryParams</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    .k = <a class="code hl_define" href="config_8h.html#a0755b2ca684caf7fdb2aa0c32eba2029">BULLET_K</a>,              </div>
+<div class="line">    .bullet_type = <a class="code hl_define" href="config_8h.html#a3b6216634d6dcf575aa06d745c9bac7b">BULLET_TYPE</a>, </div>
+<div class="line">    .current_v = <a class="code hl_define" href="config_8h.html#a70b3e643b533b8f785b7912e69434161">BULLET_SPEED</a>,  </div>
+<div class="line">    .bias_time = <a class="code hl_define" href="config_8h.html#a8b63549b871f0639d48991d3fa75cdbc">BIAS_TIME</a>,     </div>
+<div class="line">    .s_bias = <a class="code hl_define" href="config_8h.html#a100da9ebe26e07e8f7b246c6e1b1bbc8">S_BIAS</a>,           </div>
+<div class="line">    .z_bias = <a class="code hl_define" href="config_8h.html#a37e83354570b977b5978635ea7b5058f">Z_BIAS</a>,           </div>
+<div class="line">}</div>
+<div class="ttc" id="aconfig_8h_html_a0755b2ca684caf7fdb2aa0c32eba2029"><div class="ttname"><a href="config_8h.html#a0755b2ca684caf7fdb2aa0c32eba2029">BULLET_K</a></div><div class="ttdeci">#define BULLET_K</div><div class="ttdef"><b>定义</b> config.h:18</div></div>
+<div class="ttc" id="aconfig_8h_html_a100da9ebe26e07e8f7b246c6e1b1bbc8"><div class="ttname"><a href="config_8h.html#a100da9ebe26e07e8f7b246c6e1b1bbc8">S_BIAS</a></div><div class="ttdeci">#define S_BIAS</div><div class="ttdef"><b>定义</b> config.h:20</div></div>
+<div class="ttc" id="aconfig_8h_html_a37e83354570b977b5978635ea7b5058f"><div class="ttname"><a href="config_8h.html#a37e83354570b977b5978635ea7b5058f">Z_BIAS</a></div><div class="ttdeci">#define Z_BIAS</div><div class="ttdef"><b>定义</b> config.h:21</div></div>
+<div class="ttc" id="aconfig_8h_html_a3b6216634d6dcf575aa06d745c9bac7b"><div class="ttname"><a href="config_8h.html#a3b6216634d6dcf575aa06d745c9bac7b">BULLET_TYPE</a></div><div class="ttdeci">#define BULLET_TYPE</div><div class="ttdef"><b>定义</b> config.h:16</div></div>
+<div class="ttc" id="aconfig_8h_html_a70b3e643b533b8f785b7912e69434161"><div class="ttname"><a href="config_8h.html#a70b3e643b533b8f785b7912e69434161">BULLET_SPEED</a></div><div class="ttdeci">#define BULLET_SPEED</div><div class="ttdef"><b>定义</b> config.h:17</div></div>
+<div class="ttc" id="aconfig_8h_html_a8b63549b871f0639d48991d3fa75cdbc"><div class="ttname"><a href="config_8h.html#a8b63549b871f0639d48991d3fa75cdbc">BIAS_TIME</a></div><div class="ttdeci">#define BIAS_TIME</div><div class="ttdef"><b>定义</b> config.h:19</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,83 @@
+\chapter{CAN API说明}
+\hypertarget{md_source_2bsp_2can_2can__api}{}\label{md_source_2bsp_2can_2can__api}\index{CAN API说明@{CAN API说明}}
+\label{md_source_2bsp_2can_2can__api_autotoc_md0}%
+\Hypertarget{md_source_2bsp_2can_2can__api_autotoc_md0}%
+\hypertarget{md_source_2bsp_2can_2can__api_autotoc_md1}{}\doxysection{\texorpdfstring{1. 简介}{1. 简介}}\label{md_source_2bsp_2can_2can__api_autotoc_md1}
+CAN API提供了一系列的函数，用于操作\+CAN总线。\hypertarget{md_source_2bsp_2can_2can__api_autotoc_md2}{}\doxysection{\texorpdfstring{2. 基础配置}{2. 基础配置}}\label{md_source_2bsp_2can_2can__api_autotoc_md2}
+\hypertarget{md_source_2bsp_2can_2can__api_autotoc_md3}{}\doxysubsection{\texorpdfstring{2.\+1 can数据包介绍}{2.\+1 can数据包介绍}}\label{md_source_2bsp_2can_2can__api_autotoc_md3}
+CAN数据包是\+CAN总线上发送和接收的数据单元。在发送和接收中都会用到这个数据包。\hypertarget{md_source_2bsp_2can_2can__api_autotoc_md4}{}\doxysubsection{\texorpdfstring{2.\+2 can数据包结构体介绍}{2.\+2 can数据包结构体介绍}}\label{md_source_2bsp_2can_2can__api_autotoc_md4}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ 定义CAN消息的结构体}}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{\ \ \ \ uint8\_t\ port;\ \textcolor{comment}{//\ CAN1\_ID,\ CAN2\_ID,\ CAN3\_ID}}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ id;}
+\DoxyCodeLine{\ \ \ \ uint8\_t\ data[8];}
+\DoxyCodeLine{\ \ \ \ uint8\_t\ len;}
+\DoxyCodeLine{\ \ \ \ uint8\_t\ cnt;}
+\DoxyCodeLine{\}\mbox{\hyperlink{structcan__msg__t}{can\_msg\_t}};}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item port\+: CAN端口号，\+CAN1\+\_\+\+ID, CAN2\+\_\+\+ID, CAN3\+\_\+\+ID
+\item id\+: CAN消息\+ID
+\item data\+: CAN消息数据，最大8字节
+\item len\+: CAN消息数据长度，最大8字节
+\item cnt\+: 发送计数器，每发送一次计数器加1，最大255。
+\end{DoxyItemize}
+
+在发送和接收中，都会用到这个数据包结构体。\hypertarget{md_source_2bsp_2can_2can__api_autotoc_md5}{}\doxysubsection{\texorpdfstring{3.\+1 can初始化}{3.\+1 can初始化}}\label{md_source_2bsp_2can_2can__api_autotoc_md5}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{can__api_8c_ad85c1f6d431113ab42f44d8a4c8be620}{can\_sys\_init}}();}
+
+\end{DoxyCode}
+
+
+该函数用于初始化\+CAN总线。 已经加入头文件“bsp.\+h”中，无需再调用。\hypertarget{md_source_2bsp_2can_2can__api_autotoc_md6}{}\doxysubsection{\texorpdfstring{3.\+2 can数据发送}{3.\+2 can数据发送}}\label{md_source_2bsp_2can_2can__api_autotoc_md6}
+在发送数据时，需要先定义一个“can\+\_\+msg\+\_\+t”结构体即\+CAN数据包，然后调用相应的发送函数。 这个can数据包需要预先配置好\+CAN端口号、\+ID、数据、数据长度等信息。 以下是一个配置的例子：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{structcan__msg__t}{can\_msg\_t}}\ msg;}
+\DoxyCodeLine{msg.\mbox{\hyperlink{structcan__msg__t_a2fa54f9024782843172506fadbee2ac8}{port}}\ =\ CAN1\_ID;}
+\DoxyCodeLine{msg.\mbox{\hyperlink{structcan__msg__t_abaabdc509cdaba7df9f56c6c76f3ae19}{id}}\ =\ 0x123;}
+\DoxyCodeLine{msg.\mbox{\hyperlink{structcan__msg__t_afb87d045bbf32b236fc425efe02bdc7b}{data}}[0]\ =\ 0x01;}
+\DoxyCodeLine{msg.\mbox{\hyperlink{structcan__msg__t_afb87d045bbf32b236fc425efe02bdc7b}{data}}[1]\ =\ 0x02;}
+\DoxyCodeLine{msg.\mbox{\hyperlink{structcan__msg__t_afb87d045bbf32b236fc425efe02bdc7b}{data}}[2]\ =\ 0x03;}
+\DoxyCodeLine{msg.\mbox{\hyperlink{structcan__msg__t_afb87d045bbf32b236fc425efe02bdc7b}{data}}[3]\ =\ 0x04;}
+\DoxyCodeLine{msg.\mbox{\hyperlink{structcan__msg__t_afb87d045bbf32b236fc425efe02bdc7b}{data}}[4]\ =\ 0x05;}
+\DoxyCodeLine{msg.\mbox{\hyperlink{structcan__msg__t_afb87d045bbf32b236fc425efe02bdc7b}{data}}[5]\ =\ 0x06;}
+\DoxyCodeLine{msg.\mbox{\hyperlink{structcan__msg__t_afb87d045bbf32b236fc425efe02bdc7b}{data}}[6]\ =\ 0x07;}
+\DoxyCodeLine{msg.\mbox{\hyperlink{structcan__msg__t_afb87d045bbf32b236fc425efe02bdc7b}{data}}[7]\ =\ 0x08;}
+\DoxyCodeLine{msg.\mbox{\hyperlink{structcan__msg__t_a5723e60ffd628510c699eddbce90be23}{len}}\ =\ FDCAN\_DLC\_BYTES\_8;}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ 发送经典CAN消息}}
+\DoxyCodeLine{\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\_status\_t}}\ \mbox{\hyperlink{can__api_8c_a4a59a0ba7c9a33b2784b7b0f09199511}{can\_msg\_send\_classical}}(\mbox{\hyperlink{structcan__msg__t}{can\_msg\_t}}\ *msg);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ 发送扩展CAN消息}}
+\DoxyCodeLine{\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\_status\_t}}\ \mbox{\hyperlink{can__api_8c_ab5365a19d706f489876a2e537995dc0f}{can\_msg\_send\_extended}}(\mbox{\hyperlink{structcan__msg__t}{can\_msg\_t}}\ *msg);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ 发送fdCAN消息}}
+\DoxyCodeLine{\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\_status\_t}}\ \mbox{\hyperlink{can__api_8c_a1747af7a6d5b3b39b302cb507c00c4e7}{can\_msg\_send\_fd}}(\mbox{\hyperlink{structcan__msg__t}{can\_msg\_t}}\ *msg);}
+
+\end{DoxyCode}
+\hypertarget{md_source_2bsp_2can_2can__api_autotoc_md7}{}\doxysubsection{\texorpdfstring{3.\+3 can数据接收}{3.\+3 can数据接收}}\label{md_source_2bsp_2can_2can__api_autotoc_md7}
+要配置can接收消息，需要先配置一个“can\+\_\+msg\+\_\+t”结构体，然后调用can\+\_\+msg\+\_\+add\+\_\+item函数，将需要收的\+ID添加到消息列表中。
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ 向消息列表中添加消息项}}
+\DoxyCodeLine{\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\_status\_t}}\ \mbox{\hyperlink{can__api_8c_a71472eadef63e28b066402c06d687016}{can\_msg\_add\_item}}(\mbox{\hyperlink{structcan__msg__t}{can\_msg\_t}}\ *msg);}
+
+\end{DoxyCode}
+ 

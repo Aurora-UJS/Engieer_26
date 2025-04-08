@@ -1,0 +1,28 @@
+\doxysection{tool.\+h}
+\hypertarget{tool_8h_source}{}\label{tool_8h_source}\index{source/module/control/toolBox/tool.h@{source/module/control/toolBox/tool.h}}
+\mbox{\hyperlink{tool_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TOOL}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ TOOL}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ LimitMax(input,\ max)\ \ \ \(\backslash\)}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ if\ (input\ >\ max)\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ input\ =\ max;\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ else\ if\ (input\ <\ -\/max)\ \(\backslash\)}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ input\ =\ -\/max;\ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ \ \ Pi\ 3.14159265358979323846}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{tool_8h_a74211e712a5b343d1e35644209828942}{circule\_compensate}}(\textcolor{keywordtype}{float}\ target,\ \textcolor{keywordtype}{float}\ current,\ \textcolor{keywordtype}{float}\ circule\_num);}
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{tool_8h_acd5555bf5602278a33dcbb7c0b27380c}{map}}(\textcolor{keywordtype}{float}\ value,\ \textcolor{keywordtype}{float}\ in\_min,\ \textcolor{keywordtype}{float}\ in\_max,\ \textcolor{keywordtype}{float}\ out\_min,\ \textcolor{keywordtype}{float}\ out\_max);}
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{tool_8h_a9d1c3f55d521ae55c7bc51946518d9e2}{limit}}(\textcolor{keywordtype}{float}\ value,\ \textcolor{keywordtype}{float}\ min,\ \textcolor{keywordtype}{float}\ max);}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !TOOL}}
+\DoxyCodeLine{00022\ }
+
+\end{DoxyCode}

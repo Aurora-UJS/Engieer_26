@@ -1,0 +1,721 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/motor/motor_DM/motor_DM.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_55275f164995bff569199267ebec3968.html">motor</a></li><li class="navelem"><a class="el" href="dir_78885f52dd5b4fbd7f457b2643935ed6.html">motor_DM</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#enum-members">枚举</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">motor_DM.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;main.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="motor__basic_8h_source.html">motor_basic.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+motor_DM.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="motor___d_m_8h__incl.png" border="0" usemap="#asource_2module_2motor_2motor___d_m_2motor___d_m_8h" alt=""/></div>
+<map name="asource_2module_2motor_2motor___d_m_2motor___d_m_8h" id="asource_2module_2motor_2motor___d_m_2motor___d_m_8h">
+<area shape="rect" title=" " alt="" coords="5,5,168,48"/>
+<area shape="rect" title=" " alt="" coords="380,395,441,421"/>
+<area shape="poly" title=" " alt="" coords="79,49,57,109,49,145,45,183,45,260,48,272,54,283,81,306,120,327,168,345,274,376,366,396,365,401,273,381,166,350,118,331,78,310,50,287,43,274,40,260,40,183,43,144,52,107,74,48"/>
+<area shape="rect" href="motor__basic_8h.html" title=" " alt="" coords="110,96,213,123"/>
+<area shape="poly" title=" " alt="" coords="108,47,141,83,137,86,104,50"/>
+<area shape="poly" title=" " alt="" coords="165,123,183,238,199,303,208,328,219,345,251,370,290,387,329,397,365,402,364,408,328,402,288,392,249,375,215,348,204,330,194,305,177,239,160,124"/>
+<area shape="rect" href="bsp_8h.html" title=" " alt="" coords="340,171,393,197"/>
+<area shape="poly" title=" " alt="" coords="198,121,326,166,324,171,196,126"/>
+<area shape="rect" title=" " alt="" coords="80,171,154,197"/>
+<area shape="poly" title=" " alt="" coords="156,125,135,159,130,156,151,122"/>
+<area shape="rect" href="can__api_8h.html" title=" " alt="" coords="516,245,593,272"/>
+<area shape="poly" title=" " alt="" coords="394,193,509,237,507,242,392,198"/>
+<area shape="rect" href="dwt__bsp_8h.html" title=" " alt="" coords="239,245,320,272"/>
+<area shape="poly" title=" " alt="" coords="353,200,308,237,305,233,350,196"/>
+<area shape="rect" href="uart__api_8h.html" title=" " alt="" coords="409,245,487,272"/>
+<area shape="poly" title=" " alt="" coords="382,196,424,233,421,237,379,200"/>
+<area shape="rect" href="buzzer__bsp_8h.html" title=" " alt="" coords="317,320,416,347"/>
+<area shape="poly" title=" " alt="" coords="369,198,369,304,364,304,364,198"/>
+<area shape="poly" title=" " alt="" coords="544,274,435,385,431,382,540,271"/>
+<area shape="rect" title=" " alt="" coords="525,395,619,421"/>
+<area shape="poly" title=" " alt="" coords="559,272,571,379,566,379,553,273"/>
+<area shape="rect" title=" " alt="" coords="679,395,728,421"/>
+<area shape="poly" title=" " alt="" coords="594,263,621,269,650,280,677,296,699,318,707,333,711,349,711,379,706,379,705,349,702,335,695,322,674,300,648,285,620,274,593,268"/>
+<area shape="rect" href="can__struct_8h.html" title=" " alt="" coords="592,320,685,347"/>
+<area shape="poly" title=" " alt="" coords="571,271,614,308,611,312,567,275"/>
+<area shape="poly" title=" " alt="" coords="600,350,456,395,455,390,598,345"/>
+<area shape="poly" title=" " alt="" coords="629,349,595,385,592,381,625,345"/>
+<area shape="poly" title=" " alt="" coords="652,345,685,381,681,385,648,349"/>
+<area shape="rect" title=" " alt="" coords="229,320,293,347"/>
+<area shape="poly" title=" " alt="" coords="279,273,271,305,266,304,274,272"/>
+<area shape="poly" title=" " alt="" coords="448,273,430,347,421,380,416,379,425,346,443,272"/>
+<area shape="poly" title=" " alt="" coords="376,346,397,380,393,383,372,349"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="motor___d_m_8h__dep__incl.png" border="0" usemap="#asource_2module_2motor_2motor___d_m_2motor___d_m_8hdep" alt=""/></div>
+<map name="asource_2module_2motor_2motor___d_m_2motor___d_m_8hdep" id="asource_2module_2motor_2motor___d_m_2motor___d_m_8hdep">
+<area shape="rect" title=" " alt="" coords="96,5,258,48"/>
+<area shape="rect" href="motor___d_m_8c.html" title=" " alt="" coords="5,96,168,139"/>
+<area shape="poly" title=" " alt="" coords="147,61,109,98,106,94,143,57"/>
+<area shape="rect" href="_remoter_8c.html" title=" " alt="" coords="192,104,346,131"/>
+<area shape="poly" title=" " alt="" coords="211,57,258,102,254,106,207,61"/>
+</map>
+</div>
+</div>
+<p><a href="motor___d_m_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structesc__inf__t.html">esc_inf_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ac6fbf79005f87d50b33a9df719323ae9" id="r_ac6fbf79005f87d50b33a9df719323ae9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6fbf79005f87d50b33a9df719323ae9">MIT_MODE</a>&#160;&#160;&#160;0x000</td></tr>
+<tr class="separator:ac6fbf79005f87d50b33a9df719323ae9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ec4444c65098be339d120d2dde7c557" id="r_a9ec4444c65098be339d120d2dde7c557"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ec4444c65098be339d120d2dde7c557">POS_MODE</a>&#160;&#160;&#160;0x100</td></tr>
+<tr class="separator:a9ec4444c65098be339d120d2dde7c557"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a6dff487062359ea4eb4fa666b2d17e" id="r_a4a6dff487062359ea4eb4fa666b2d17e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a6dff487062359ea4eb4fa666b2d17e">SPD_MODE</a>&#160;&#160;&#160;0x200</td></tr>
+<tr class="separator:a4a6dff487062359ea4eb4fa666b2d17e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a47e65bb5d132e4f5ad167fa49d9893" id="r_a3a47e65bb5d132e4f5ad167fa49d9893"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3a47e65bb5d132e4f5ad167fa49d9893">PSI_MODE</a>&#160;&#160;&#160;0x300</td></tr>
+<tr class="separator:a3a47e65bb5d132e4f5ad167fa49d9893"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3d01fc831262a9a98e0fd6268de7d88" id="r_ad3d01fc831262a9a98e0fd6268de7d88"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3d01fc831262a9a98e0fd6268de7d88">KP_MIN</a>&#160;&#160;&#160;0.0f</td></tr>
+<tr class="separator:ad3d01fc831262a9a98e0fd6268de7d88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9d52ab37f81101cc95a087f68c367ea" id="r_aa9d52ab37f81101cc95a087f68c367ea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9d52ab37f81101cc95a087f68c367ea">KP_MAX</a>&#160;&#160;&#160;500.0f</td></tr>
+<tr class="separator:aa9d52ab37f81101cc95a087f68c367ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69ea995c7d9ec14d28344a5500902a18" id="r_a69ea995c7d9ec14d28344a5500902a18"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69ea995c7d9ec14d28344a5500902a18">KD_MIN</a>&#160;&#160;&#160;0.0f</td></tr>
+<tr class="separator:a69ea995c7d9ec14d28344a5500902a18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51cfd12a9d9052706b607b2135868a1a" id="r_a51cfd12a9d9052706b607b2135868a1a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51cfd12a9d9052706b607b2135868a1a">KD_MAX</a>&#160;&#160;&#160;5.0f</td></tr>
+<tr class="separator:a51cfd12a9d9052706b607b2135868a1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62508f17ca83466d0ba328584ee16340" id="r_a62508f17ca83466d0ba328584ee16340"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62508f17ca83466d0ba328584ee16340">hcan_t</a>&#160;&#160;&#160;FDCAN_HandleTypeDef</td></tr>
+<tr class="separator:a62508f17ca83466d0ba328584ee16340"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a84e72ad63bcd85d091c11bb56b0fac6a" id="r_a84e72ad63bcd85d091c11bb56b0fac6a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a84e72ad63bcd85d091c11bb56b0fac6a">DM_motor_error_t</a> { <br />
+&#160;&#160;<a class="el" href="#a84e72ad63bcd85d091c11bb56b0fac6aa52248db5e3fa7ff2b2a53eb30ccfafd4">Motor_DM_DISABLE</a> = 0
+, <a class="el" href="#a84e72ad63bcd85d091c11bb56b0fac6aa9f662d0ae6e5f37b8a454d2f6b951506">MOTOR_DM_ENABLE</a> = 1
+, <a class="el" href="#a84e72ad63bcd85d091c11bb56b0fac6aa5cf02d342be94ba03ffbb15b7819139f">MOTOR_DM_ERROR_OVER_VOLTAGE</a> = 8
+, <a class="el" href="#a84e72ad63bcd85d091c11bb56b0fac6aa476414a4c7d36d5d2062ca733285082c">MOTOR_DM_ERROR_LESS_VOLTAGE</a> = 9
+, <br />
+&#160;&#160;<a class="el" href="#a84e72ad63bcd85d091c11bb56b0fac6aa0f97e4224424c30bba0bf303b33b7c4b">MOTOR_DM_ERROR_OVER_CURRENT</a> = 0xA
+, <a class="el" href="#a84e72ad63bcd85d091c11bb56b0fac6aad52f5d5a90c4e01b306b3998548bdbbe">MOTOR_DM_ERROR_OVER_TEMPERATURE_MOS</a> = 0xB
+, <a class="el" href="#a84e72ad63bcd85d091c11bb56b0fac6aa566fb28fd64a2367ea687bc9b0d14a04">MOTOR_DM_ERROR_OVER_TEMPERATURE_MOTOR</a> = 0xC
+, <a class="el" href="#a84e72ad63bcd85d091c11bb56b0fac6aa7f2ad927e3fa4dbcfbdc8fc316e81651">MOTOR_DM_ERROR_LOSS_COMMUNICATION</a> = 0xD
+, <br />
+&#160;&#160;<a class="el" href="#a84e72ad63bcd85d091c11bb56b0fac6aa08e3eb7265a7d2d8c2fd1dc712ef74ae">MOTOR_DM_ERROR_OVER_LOAD</a> = 0xE
+<br />
+ }</td></tr>
+<tr class="separator:a84e72ad63bcd85d091c11bb56b0fac6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a65a366100839b300d25774b34fc1fa80" id="r_a65a366100839b300d25774b34fc1fa80"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65a366100839b300d25774b34fc1fa80">Motor_DM_Init</a> (<a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor)</td></tr>
+<tr class="memdesc:a65a366100839b300d25774b34fc1fa80"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Motor_DM_Init: 电机初始化函数  <br /></td></tr>
+<tr class="separator:a65a366100839b300d25774b34fc1fa80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64b546c7ad05009cfede6bc962cff1b6" id="r_a64b546c7ad05009cfede6bc962cff1b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64b546c7ad05009cfede6bc962cff1b6">Motor_DM_Refresh</a> (<a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor)</td></tr>
+<tr class="memdesc:a64b546c7ad05009cfede6bc962cff1b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Motor_DM_Refresh: 电机刷新函数  <br /></td></tr>
+<tr class="separator:a64b546c7ad05009cfede6bc962cff1b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3e894b32448d525e7c454682d24e0a1" id="r_ab3e894b32448d525e7c454682d24e0a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3e894b32448d525e7c454682d24e0a1">Motor_DM_Enable</a> (<a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor)</td></tr>
+<tr class="memdesc:ab3e894b32448d525e7c454682d24e0a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Motor_DM_Enable: 电机使能函数  <br /></td></tr>
+<tr class="separator:ab3e894b32448d525e7c454682d24e0a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fa285cb7fbf256fd9a2b47af6e3e549" id="r_a5fa285cb7fbf256fd9a2b47af6e3e549"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fa285cb7fbf256fd9a2b47af6e3e549">Motor_DM_Disable</a> (<a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor)</td></tr>
+<tr class="memdesc:a5fa285cb7fbf256fd9a2b47af6e3e549"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Motor_DM_Disable: 电机失能函数  <br /></td></tr>
+<tr class="separator:a5fa285cb7fbf256fd9a2b47af6e3e549"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85fb575f9cd15c1e59a4ef9d5a6ee27d" id="r_a85fb575f9cd15c1e59a4ef9d5a6ee27d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a85fb575f9cd15c1e59a4ef9d5a6ee27d">Motor_DM_Save_Zero</a> (<a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor)</td></tr>
+<tr class="memdesc:a85fb575f9cd15c1e59a4ef9d5a6ee27d"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Motor_DM_Save_Zero: 电机保存零点函数  <br /></td></tr>
+<tr class="separator:a85fb575f9cd15c1e59a4ef9d5a6ee27d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a114aa82c54f6ec167ee799de97d0455c" id="r_a114aa82c54f6ec167ee799de97d0455c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a114aa82c54f6ec167ee799de97d0455c">Motor_DM_Clear_Error</a> (<a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor)</td></tr>
+<tr class="memdesc:a114aa82c54f6ec167ee799de97d0455c"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Motor_DM_Clear_Error: 电机清除错误函数  <br /></td></tr>
+<tr class="separator:a114aa82c54f6ec167ee799de97d0455c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8998f183bc48af1f3e2884f0d281d7a6" id="r_a8998f183bc48af1f3e2884f0d281d7a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8998f183bc48af1f3e2884f0d281d7a6">Speed_CtrlMotorDM</a> (<a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor, float vel)</td></tr>
+<tr class="memdesc:a8998f183bc48af1f3e2884f0d281d7a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">: speed_ctrl: 速度控制函数  <br /></td></tr>
+<tr class="separator:a8998f183bc48af1f3e2884f0d281d7a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c8366551102091656e16022e7d9d9ff" id="r_a2c8366551102091656e16022e7d9d9ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c8366551102091656e16022e7d9d9ff">PosSpeed_CtrlMotorDM</a> (<a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor, float _pos, float _vel)</td></tr>
+<tr class="memdesc:a2c8366551102091656e16022e7d9d9ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">达妙电机位置速度模式控下控制帧  <br /></td></tr>
+<tr class="separator:a2c8366551102091656e16022e7d9d9ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e5af5310ebc11b1939f30528159330d" id="r_a4e5af5310ebc11b1939f30528159330d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e5af5310ebc11b1939f30528159330d">MIT_CtrlMotorDM</a> (<a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor, float pos, float vel, float kp, float kd, float tor)</td></tr>
+<tr class="memdesc:a4e5af5310ebc11b1939f30528159330d"><td class="mdescLeft">&#160;</td><td class="mdescRight">: mit_ctrl: MIT模式下的电机控制函数  <br /></td></tr>
+<tr class="separator:a4e5af5310ebc11b1939f30528159330d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="a62508f17ca83466d0ba328584ee16340" name="a62508f17ca83466d0ba328584ee16340"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62508f17ca83466d0ba328584ee16340">&#9670;&#160;</a></span>hcan_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define hcan_t&#160;&#160;&#160;FDCAN_HandleTypeDef</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a51cfd12a9d9052706b607b2135868a1a" name="a51cfd12a9d9052706b607b2135868a1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51cfd12a9d9052706b607b2135868a1a">&#9670;&#160;</a></span>KD_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KD_MAX&#160;&#160;&#160;5.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69ea995c7d9ec14d28344a5500902a18" name="a69ea995c7d9ec14d28344a5500902a18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69ea995c7d9ec14d28344a5500902a18">&#9670;&#160;</a></span>KD_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KD_MIN&#160;&#160;&#160;0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa9d52ab37f81101cc95a087f68c367ea" name="aa9d52ab37f81101cc95a087f68c367ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9d52ab37f81101cc95a087f68c367ea">&#9670;&#160;</a></span>KP_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KP_MAX&#160;&#160;&#160;500.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad3d01fc831262a9a98e0fd6268de7d88" name="ad3d01fc831262a9a98e0fd6268de7d88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3d01fc831262a9a98e0fd6268de7d88">&#9670;&#160;</a></span>KP_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define KP_MIN&#160;&#160;&#160;0.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac6fbf79005f87d50b33a9df719323ae9" name="ac6fbf79005f87d50b33a9df719323ae9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6fbf79005f87d50b33a9df719323ae9">&#9670;&#160;</a></span>MIT_MODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIT_MODE&#160;&#160;&#160;0x000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9ec4444c65098be339d120d2dde7c557" name="a9ec4444c65098be339d120d2dde7c557"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ec4444c65098be339d120d2dde7c557">&#9670;&#160;</a></span>POS_MODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define POS_MODE&#160;&#160;&#160;0x100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3a47e65bb5d132e4f5ad167fa49d9893" name="a3a47e65bb5d132e4f5ad167fa49d9893"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a47e65bb5d132e4f5ad167fa49d9893">&#9670;&#160;</a></span>PSI_MODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PSI_MODE&#160;&#160;&#160;0x300</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a6dff487062359ea4eb4fa666b2d17e" name="a4a6dff487062359ea4eb4fa666b2d17e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a6dff487062359ea4eb4fa666b2d17e">&#9670;&#160;</a></span>SPD_MODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SPD_MODE&#160;&#160;&#160;0x200</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">枚举类型说明</h2>
+<a id="a84e72ad63bcd85d091c11bb56b0fac6a" name="a84e72ad63bcd85d091c11bb56b0fac6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84e72ad63bcd85d091c11bb56b0fac6a">&#9670;&#160;</a></span>DM_motor_error_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a84e72ad63bcd85d091c11bb56b0fac6a">DM_motor_error_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a84e72ad63bcd85d091c11bb56b0fac6aa52248db5e3fa7ff2b2a53eb30ccfafd4" name="a84e72ad63bcd85d091c11bb56b0fac6aa52248db5e3fa7ff2b2a53eb30ccfafd4"></a>Motor_DM_DISABLE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a84e72ad63bcd85d091c11bb56b0fac6aa9f662d0ae6e5f37b8a454d2f6b951506" name="a84e72ad63bcd85d091c11bb56b0fac6aa9f662d0ae6e5f37b8a454d2f6b951506"></a>MOTOR_DM_ENABLE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a84e72ad63bcd85d091c11bb56b0fac6aa5cf02d342be94ba03ffbb15b7819139f" name="a84e72ad63bcd85d091c11bb56b0fac6aa5cf02d342be94ba03ffbb15b7819139f"></a>MOTOR_DM_ERROR_OVER_VOLTAGE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a84e72ad63bcd85d091c11bb56b0fac6aa476414a4c7d36d5d2062ca733285082c" name="a84e72ad63bcd85d091c11bb56b0fac6aa476414a4c7d36d5d2062ca733285082c"></a>MOTOR_DM_ERROR_LESS_VOLTAGE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a84e72ad63bcd85d091c11bb56b0fac6aa0f97e4224424c30bba0bf303b33b7c4b" name="a84e72ad63bcd85d091c11bb56b0fac6aa0f97e4224424c30bba0bf303b33b7c4b"></a>MOTOR_DM_ERROR_OVER_CURRENT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a84e72ad63bcd85d091c11bb56b0fac6aad52f5d5a90c4e01b306b3998548bdbbe" name="a84e72ad63bcd85d091c11bb56b0fac6aad52f5d5a90c4e01b306b3998548bdbbe"></a>MOTOR_DM_ERROR_OVER_TEMPERATURE_MOS&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a84e72ad63bcd85d091c11bb56b0fac6aa566fb28fd64a2367ea687bc9b0d14a04" name="a84e72ad63bcd85d091c11bb56b0fac6aa566fb28fd64a2367ea687bc9b0d14a04"></a>MOTOR_DM_ERROR_OVER_TEMPERATURE_MOTOR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a84e72ad63bcd85d091c11bb56b0fac6aa7f2ad927e3fa4dbcfbdc8fc316e81651" name="a84e72ad63bcd85d091c11bb56b0fac6aa7f2ad927e3fa4dbcfbdc8fc316e81651"></a>MOTOR_DM_ERROR_LOSS_COMMUNICATION&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a84e72ad63bcd85d091c11bb56b0fac6aa08e3eb7265a7d2d8c2fd1dc712ef74ae" name="a84e72ad63bcd85d091c11bb56b0fac6aa08e3eb7265a7d2d8c2fd1dc712ef74ae"></a>MOTOR_DM_ERROR_OVER_LOAD&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a4e5af5310ebc11b1939f30528159330d" name="a4e5af5310ebc11b1939f30528159330d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e5af5310ebc11b1939f30528159330d">&#9670;&#160;</a></span>MIT_CtrlMotorDM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MIT_CtrlMotorDM </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *</td>          <td class="paramname"><span class="paramname"><em>motor</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>kp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>kd</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>tor</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: mit_ctrl: MIT模式下的电机控制函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>hcan: 指向CAN_HandleTypeDef结构的指针，用于指定CAN总线 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>motor_id: 电机ID，指定目标电机 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>pos: 位置给定值 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>vel: 速度给定值 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>kp: 位置比例系数 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>kd: 位置微分系数 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>torq: 转矩给定值 </p><dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 通过CAN总线向电机发送MIT模式下的控制帧。 </p>
+
+</div>
+</div>
+<a id="a114aa82c54f6ec167ee799de97d0455c" name="a114aa82c54f6ec167ee799de97d0455c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a114aa82c54f6ec167ee799de97d0455c">&#9670;&#160;</a></span>Motor_DM_Clear_Error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Motor_DM_Clear_Error </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *</td>          <td class="paramname"><span class="paramname"><em>motor</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: Motor_DM_Clear_Error: 电机清除错误函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>motor: 指向DM_motor_t结构体的指针，用于指定电机 </p><dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 通过CAN总线向电机发送清除错误命令 </p>
+
+</div>
+</div>
+<a id="a5fa285cb7fbf256fd9a2b47af6e3e549" name="a5fa285cb7fbf256fd9a2b47af6e3e549"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fa285cb7fbf256fd9a2b47af6e3e549">&#9670;&#160;</a></span>Motor_DM_Disable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Motor_DM_Disable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *</td>          <td class="paramname"><span class="paramname"><em>motor</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: Motor_DM_Disable: 电机失能函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>motor: 指向DM_motor_t结构体的指针，用于指定电机 </p><dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 通过CAN总线向电机发送失能命令 </p>
+
+</div>
+</div>
+<a id="ab3e894b32448d525e7c454682d24e0a1" name="ab3e894b32448d525e7c454682d24e0a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3e894b32448d525e7c454682d24e0a1">&#9670;&#160;</a></span>Motor_DM_Enable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Motor_DM_Enable </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *</td>          <td class="paramname"><span class="paramname"><em>motor</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: Motor_DM_Enable: 电机使能函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>motor: 指向DM_motor_t结构体的指针，用于指定电机 </p><dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 通过CAN总线向电机发送使能命令 </p>
+
+</div>
+</div>
+<a id="a65a366100839b300d25774b34fc1fa80" name="a65a366100839b300d25774b34fc1fa80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65a366100839b300d25774b34fc1fa80">&#9670;&#160;</a></span>Motor_DM_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Motor_DM_Init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *</td>          <td class="paramname"><span class="paramname"><em>motor</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: Motor_DM_Init: 电机初始化函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>motor: 指向DM_motor_t结构体的指针，用于指定电机 </p><dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 初始化电机参数 </p>
+
+</div>
+</div>
+<a id="a64b546c7ad05009cfede6bc962cff1b6" name="a64b546c7ad05009cfede6bc962cff1b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64b546c7ad05009cfede6bc962cff1b6">&#9670;&#160;</a></span>Motor_DM_Refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Motor_DM_Refresh </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *</td>          <td class="paramname"><span class="paramname"><em>motor</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: Motor_DM_Refresh: 电机刷新函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>motor: 指向DM_motor_t结构体的指针，用于指定电机 </p><dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 通过CAN总线接收电机反馈数据 </p>
+
+</div>
+</div>
+<a id="a85fb575f9cd15c1e59a4ef9d5a6ee27d" name="a85fb575f9cd15c1e59a4ef9d5a6ee27d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85fb575f9cd15c1e59a4ef9d5a6ee27d">&#9670;&#160;</a></span>Motor_DM_Save_Zero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Motor_DM_Save_Zero </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *</td>          <td class="paramname"><span class="paramname"><em>motor</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: Motor_DM_Save_Zero: 电机保存零点函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>motor: 指向DM_motor_t结构体的指针，用于指定电机 </p><dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 通过CAN总线向电机发送保存零点命令 </p>
+
+</div>
+</div>
+<a id="a2c8366551102091656e16022e7d9d9ff" name="a2c8366551102091656e16022e7d9d9ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c8366551102091656e16022e7d9d9ff">&#9670;&#160;</a></span>PosSpeed_CtrlMotorDM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PosSpeed_CtrlMotorDM </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *</td>          <td class="paramname"><span class="paramname"><em>motor</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>_pos</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>_vel</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>达妙电机位置速度模式控下控制帧 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hcan</td><td>CAN的句柄 </td></tr>
+    <tr><td class="paramname">ID</td><td>数据帧的ID </td></tr>
+    <tr><td class="paramname">_pos</td><td>位置给定 </td></tr>
+    <tr><td class="paramname">_vel</td><td>速度给定 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8998f183bc48af1f3e2884f0d281d7a6" name="a8998f183bc48af1f3e2884f0d281d7a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8998f183bc48af1f3e2884f0d281d7a6">&#9670;&#160;</a></span>Speed_CtrlMotorDM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Speed_CtrlMotorDM </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_d_m__motor__t.html">DM_motor_t</a> *</td>          <td class="paramname"><span class="paramname"><em>motor</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>vel</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: speed_ctrl: 速度控制函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>hcan: 指向CAN_HandleTypeDef结构的指针，用于指定CAN总线 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>motor_id: 电机ID，指定目标电机 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>vel: 速度给定值 </p><dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 通过CAN总线向电机发送速度控制命令 </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,44 @@
+\doxysection{key\+Board.\+h}
+\hypertarget{key_board_8h_source}{}\label{key_board_8h_source}\index{source/bsp/keyboard/keyBoard.h@{source/bsp/keyboard/keyBoard.h}}
+\mbox{\hyperlink{key_board_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ KeyBoard\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ KeyBoard\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ int16\_t\ \mbox{\hyperlink{structkeyboard__t_af31a1d563ee2613b5b30838bf58f012a}{mouse\_x}};}
+\DoxyCodeLine{00009\ \ \ \ \ int16\_t\ \mbox{\hyperlink{structkeyboard__t_a780edb8ad65677d73615b4e40d06f5f1}{mouse\_y}};}
+\DoxyCodeLine{00010\ \ \ \ \ int16\_t\ \mbox{\hyperlink{structkeyboard__t_ab6e02005aae5cefc62ed06ac051f86b6}{mouse\_z}};}
+\DoxyCodeLine{00011\ \ \ \ \ int8\_t\ \mbox{\hyperlink{structkeyboard__t_a42bbafc9234afd5a759270e7cca635b9}{left\_button\_down}};}
+\DoxyCodeLine{00012\ \ \ \ \ int8\_t\ \mbox{\hyperlink{structkeyboard__t_a3b760d5bc9f111288a703f065696a09a}{right\_button\_down}};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{union\ }\{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_a0c10b14e393ad8a91578d2d6bd529890}{key\_code}};}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_ad1193f0da05a941478b6bb1bfc364b4a}{W}}\ :\ 1;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_ae89ba51d49f65d2f13bec9fcc0f12458}{S}}\ :\ 1;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_a48f5a6b346491762f3f7a32882f31bed}{A}}\ :\ 1;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_a4cb75a149c87fed12732b82ba38992aa}{D}}\ :\ 1;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_a2ea97e84534c35b5c3a322d4e2f8b4ed}{SHIFT}}\ :\ 1;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_a14832e9473d5b41d42a91be486383d7e}{CTRL}}\ :\ 1;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_a7d960594ed7501ef7bb24d5a34a351b6}{Q}}\ :\ 1;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_ab264bae2d92f317456e293e8d3c3d10f}{E}}\ :\ 1;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_a588189ccf0d87c74b0e2a1d5972fe63c}{R}}\ :\ 1;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_a5a3710e27da8ac2fe4677635bfc22ec8}{F}}\ :\ 1;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_a876a5f8a01d13e2f0a427afae34875cc}{G}}\ :\ 1;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_a5a8eb607e6c3f820a971b163abc936d5}{Z}}\ :\ 1;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_a60eb5e8306eb4f0eaa95ff5d16651e35}{X}}\ :\ 1;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_a8e2c76aa83b8611dfee62ccee8384a34}{C}}\ :\ 1;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_a21fef1295ccb279efb5fb8dd723ed52d}{V}}\ :\ 1;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_ae783bd90764c8455228772c025c064e4}{B}}\ :\ 1;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \}\ bit;}
+\DoxyCodeLine{00034\ \ \ \ \ \}\ key\_code;}
+\DoxyCodeLine{00035\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structkeyboard__t_a5a6ed8c04a3db86066924b1a1bf4dad3}{reserved}};}
+\DoxyCodeLine{00036\ \}\mbox{\hyperlink{structkeyboard__t}{keyboard\_t}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

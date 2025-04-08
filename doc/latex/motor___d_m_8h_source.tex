@@ -1,0 +1,67 @@
+\doxysection{motor\+\_\+\+DM.\+h}
+\hypertarget{motor___d_m_8h_source}{}\label{motor___d_m_8h_source}\index{source/module/motor/motor\_DM/motor\_DM.h@{source/module/motor/motor\_DM/motor\_DM.h}}
+\mbox{\hyperlink{motor___d_m_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MOTOR\_DM\_H\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MOTOR\_DM\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{motor__basic_8h}{motor\_basic.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ MIT\_MODE\ \ \ \ \ \ \ \ \ \ \ \ 0x000}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ POS\_MODE\ \ \ \ \ \ \ \ \ \ \ \ 0x100}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ SPD\_MODE\ \ \ \ \ \ \ \ \ \ \ \ 0x200}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ PSI\_MODE\ \ \ \ \ \ \ \ \ \ \ \ 0x300}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ KP\_MIN\ 0.0f}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ KP\_MAX\ 500.0f}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ KD\_MIN\ 0.0f}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ KD\_MAX\ 5.0f}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ hcan\_t\ FDCAN\_HandleTypeDef}}
+\DoxyCodeLine{00019\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structesc__inf__t_aecae5172d6d7e14d57938fe0cd34c0ed}{MST\_ID}};\ \ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \mbox{\hyperlink{structesc__inf__t_a1195d5a6ea412cf1cf98879c61dabf56}{PMAX}};\ \ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \mbox{\hyperlink{structesc__inf__t_aa48fbb7799a8eeeb7a4d10cc9ac9d4fb}{VMAX}};\ \ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \mbox{\hyperlink{structesc__inf__t_a6f4a781d8c24a59bab3f651ae9c5acfc}{TMAX}};\ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \}\ \mbox{\hyperlink{structesc__inf__t}{esc\_inf\_t}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa52248db5e3fa7ff2b2a53eb30ccfafd4}{Motor\_DM\_DISABLE}}\ =\ 0,}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa9f662d0ae6e5f37b8a454d2f6b951506}{MOTOR\_DM\_ENABLE}}\ =\ 1,}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa5cf02d342be94ba03ffbb15b7819139f}{MOTOR\_DM\_ERROR\_OVER\_VOLTAGE}}\ =\ 8,}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa476414a4c7d36d5d2062ca733285082c}{MOTOR\_DM\_ERROR\_LESS\_VOLTAGE}}\ =\ 9,}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa0f97e4224424c30bba0bf303b33b7c4b}{MOTOR\_DM\_ERROR\_OVER\_CURRENT}}\ =\ 0xA,}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aad52f5d5a90c4e01b306b3998548bdbbe}{MOTOR\_DM\_ERROR\_OVER\_TEMPERATURE\_MOS}}\ =\ 0xB,}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa566fb28fd64a2367ea687bc9b0d14a04}{MOTOR\_DM\_ERROR\_OVER\_TEMPERATURE\_MOTOR}}\ =\ 0xC,}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa7f2ad927e3fa4dbcfbdc8fc316e81651}{MOTOR\_DM\_ERROR\_LOSS\_COMMUNICATION}}\ =\ 0xD,}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa08e3eb7265a7d2d8c2fd1dc712ef74ae}{MOTOR\_DM\_ERROR\_OVER\_LOAD}}\ =\ 0xE,}
+\DoxyCodeLine{00039\ \}\mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6a}{DM\_motor\_error\_t}};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{structcan__motor__t}{can\_motor\_t}}\ \mbox{\hyperlink{struct_d_m__motor__t_ad023c6d987a2ea4cd1a7a60c0bf4b004}{motor\_msg}};\textcolor{comment}{//电机数据包}}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{structcan__msg__t}{can\_msg\_t}}\ \mbox{\hyperlink{struct_d_m__motor__t_a14f42c85faa99e48d6974c25f369f8eb}{can\_cfg}};\ \textcolor{comment}{//CAN发送数据配置}}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6a}{DM\_motor\_error\_t}}\ \mbox{\hyperlink{struct_d_m__motor__t_a1506658f33a1a9e5c8695b12bf6b2583}{error\_code}};\ \textcolor{comment}{//电机错误码}}
+\DoxyCodeLine{00046\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_d_m__motor__t_a37e90f5e3bd99fac2021fb3a326607d4}{mode}};\ \textcolor{comment}{//电机模式}}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{structesc__inf__t}{esc\_inf\_t}}\ \mbox{\hyperlink{struct_d_m__motor__t_a3863d7a2f7256f100e3564984c44b0ac}{tmp}};}
+\DoxyCodeLine{00048\ \}\mbox{\hyperlink{struct_d_m__motor__t}{DM\_motor\_t}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motor___d_m_8h_a65a366100839b300d25774b34fc1fa80}{Motor\_DM\_Init}}(\mbox{\hyperlink{struct_d_m__motor__t}{DM\_motor\_t}}\ *motor);}
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motor___d_m_8h_a64b546c7ad05009cfede6bc962cff1b6}{Motor\_DM\_Refresh}}(\mbox{\hyperlink{struct_d_m__motor__t}{DM\_motor\_t}}\ *motor);}
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motor___d_m_8h_ab3e894b32448d525e7c454682d24e0a1}{Motor\_DM\_Enable}}(\mbox{\hyperlink{struct_d_m__motor__t}{DM\_motor\_t}}\ *motor);}
+\DoxyCodeLine{00053\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motor___d_m_8h_a5fa285cb7fbf256fd9a2b47af6e3e549}{Motor\_DM\_Disable}}(\mbox{\hyperlink{struct_d_m__motor__t}{DM\_motor\_t}}\ *motor);}
+\DoxyCodeLine{00054\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motor___d_m_8h_a85fb575f9cd15c1e59a4ef9d5a6ee27d}{Motor\_DM\_Save\_Zero}}(\mbox{\hyperlink{struct_d_m__motor__t}{DM\_motor\_t}}\ *motor);}
+\DoxyCodeLine{00055\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motor___d_m_8h_a114aa82c54f6ec167ee799de97d0455c}{Motor\_DM\_Clear\_Error}}(\mbox{\hyperlink{struct_d_m__motor__t}{DM\_motor\_t}}\ *motor);}
+\DoxyCodeLine{00056\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motor___d_m_8h_a8998f183bc48af1f3e2884f0d281d7a6}{Speed\_CtrlMotorDM}}(\mbox{\hyperlink{struct_d_m__motor__t}{DM\_motor\_t}}\ *motor,\ \textcolor{keywordtype}{float}\ vel);}
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motor___d_m_8h_a2c8366551102091656e16022e7d9d9ff}{PosSpeed\_CtrlMotorDM}}(\mbox{\hyperlink{struct_d_m__motor__t}{DM\_motor\_t}}\ *motor,\ \textcolor{keywordtype}{float}\ \_pos,\ \textcolor{keywordtype}{float}\ \_vel);}
+\DoxyCodeLine{00058\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{motor___d_m_8h_a4e5af5310ebc11b1939f30528159330d}{MIT\_CtrlMotorDM}}(\ \mbox{\hyperlink{struct_d_m__motor__t}{DM\_motor\_t}}\ *motor,\ \ \textcolor{keywordtype}{float}\ pos,\ \textcolor{keywordtype}{float}\ vel,\textcolor{keywordtype}{float}\ kp,\ \textcolor{keywordtype}{float}\ kd,\ \textcolor{keywordtype}{float}\ tor);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_MOTOR\_DM\_H\_\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

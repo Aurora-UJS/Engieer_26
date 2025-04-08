@@ -155,6 +155,9 @@ void CtrllerReadData(uint8_t *buff)
                 case 0x0302:  // 0x0302
 					memcpy(&custom_controller_info.CustomController, (buff + DATA_Offset), LEN_custom_controller);
 					break;
+
+					case 0x0304:
+					memcpy(&custom_controller_info.keyboard, (buff + DATA_Offset), LEN_keyboard);
 				}
 			}
 		}

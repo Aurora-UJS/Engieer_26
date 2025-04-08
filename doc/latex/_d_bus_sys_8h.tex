@@ -1,0 +1,94 @@
+\doxysection{source/module/\+Dbus/\+DBus\+Sys.h 文件参考}
+\hypertarget{_d_bus_sys_8h}{}\label{_d_bus_sys_8h}\index{source/module/Dbus/DBusSys.h@{source/module/Dbus/DBusSys.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}uart\+\_\+api.\+h"{}}\newline
+{\ttfamily \#include "{}keyboard.\+h"{}}\newline
+DBus\+Sys.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{_d_bus_sys_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_d_bus_sys_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrc__info__t}{rc\+\_\+info\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_d_bus_sys_8h_a448216d0d398b83a0e18955f06242eff}{DBUS\+\_\+\+BUFF\+\_\+\+SIZE}}~18
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_d_bus_sys_8h_a8213ab13eadf18c6ed266fc5bf26685d}{get\+\_\+dr16\+\_\+data}} (\mbox{\hyperlink{structrc__info__t}{rc\+\_\+info\+\_\+t}} \texorpdfstring{$\ast$}{*}rc, uint8\+\_\+t buff\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em 解析\+DBus\+\_\+msg的接收缓冲区数据，更新遥控器数据 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_d_bus_sys_8h_a4eca38fb6dbe1f9f2ce1d809be84852a}{DBus\+\_\+\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em DBus\+Sys初始化函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_d_bus_sys_8h_a0b0aa26b8c49f5b7903ca3775c135b1f}{DBus\+\_\+\+Refresh}} (void)
+\begin{DoxyCompactList}\small\item\em DBus\+Sys刷新函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structrc__info__t}{rc\+\_\+info\+\_\+t}} \mbox{\hyperlink{_d_bus_sys_8h_a90f47c018e09385654ce6352c61fc8c9}{remoter}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{宏定义说明}
+\Hypertarget{_d_bus_sys_8h_a448216d0d398b83a0e18955f06242eff}\index{DBusSys.h@{DBusSys.h}!DBUS\_BUFF\_SIZE@{DBUS\_BUFF\_SIZE}}
+\index{DBUS\_BUFF\_SIZE@{DBUS\_BUFF\_SIZE}!DBusSys.h@{DBusSys.h}}
+\doxysubsubsection{\texorpdfstring{DBUS\_BUFF\_SIZE}{DBUS\_BUFF\_SIZE}}
+{\footnotesize\ttfamily \label{_d_bus_sys_8h_a448216d0d398b83a0e18955f06242eff} 
+\#define DBUS\+\_\+\+BUFF\+\_\+\+SIZE~18}
+
+
+
+\doxysubsection{函数说明}
+\Hypertarget{_d_bus_sys_8h_a4eca38fb6dbe1f9f2ce1d809be84852a}\index{DBusSys.h@{DBusSys.h}!DBus\_Init@{DBus\_Init}}
+\index{DBus\_Init@{DBus\_Init}!DBusSys.h@{DBusSys.h}}
+\doxysubsubsection{\texorpdfstring{DBus\_Init()}{DBus\_Init()}}
+{\footnotesize\ttfamily \label{_d_bus_sys_8h_a4eca38fb6dbe1f9f2ce1d809be84852a} 
+void DBus\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+DBus\+Sys初始化函数 
+
+\Hypertarget{_d_bus_sys_8h_a0b0aa26b8c49f5b7903ca3775c135b1f}\index{DBusSys.h@{DBusSys.h}!DBus\_Refresh@{DBus\_Refresh}}
+\index{DBus\_Refresh@{DBus\_Refresh}!DBusSys.h@{DBusSys.h}}
+\doxysubsubsection{\texorpdfstring{DBus\_Refresh()}{DBus\_Refresh()}}
+{\footnotesize\ttfamily \label{_d_bus_sys_8h_a0b0aa26b8c49f5b7903ca3775c135b1f} 
+void DBus\+\_\+\+Refresh (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+DBus\+Sys刷新函数 
+
+\Hypertarget{_d_bus_sys_8h_a8213ab13eadf18c6ed266fc5bf26685d}\index{DBusSys.h@{DBusSys.h}!get\_dr16\_data@{get\_dr16\_data}}
+\index{get\_dr16\_data@{get\_dr16\_data}!DBusSys.h@{DBusSys.h}}
+\doxysubsubsection{\texorpdfstring{get\_dr16\_data()}{get\_dr16\_data()}}
+{\footnotesize\ttfamily \label{_d_bus_sys_8h_a8213ab13eadf18c6ed266fc5bf26685d} 
+void get\+\_\+dr16\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structrc__info__t}{rc\+\_\+info\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{rc}{, }\item[{uint8\+\_\+t}]{buff}{\mbox{[}$\,$\mbox{]}}\end{DoxyParamCaption})}
+
+
+
+解析\+DBus\+\_\+msg的接收缓冲区数据，更新遥控器数据 
+
+
+
+\doxysubsection{变量说明}
+\Hypertarget{_d_bus_sys_8h_a90f47c018e09385654ce6352c61fc8c9}\index{DBusSys.h@{DBusSys.h}!remoter@{remoter}}
+\index{remoter@{remoter}!DBusSys.h@{DBusSys.h}}
+\doxysubsubsection{\texorpdfstring{remoter}{remoter}}
+{\footnotesize\ttfamily \label{_d_bus_sys_8h_a90f47c018e09385654ce6352c61fc8c9} 
+\mbox{\hyperlink{structrc__info__t}{rc\+\_\+info\+\_\+t}} remoter\hspace{0.3cm}{\ttfamily [extern]}}
+

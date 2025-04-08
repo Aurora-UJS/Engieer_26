@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/task/imuTempCtrl.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_434d78435b0e7c728cecbd5305cec790.html">task</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">imuTempCtrl.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;usart.h&quot;</code><br />
+<code>#include &quot;tim.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="_i_m_utool_8h_source.html">IMUtool.h</a>&quot;</code><br />
+<code>#include &quot;cmsis_os2.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="_b_m_i088driver_8h_source.html">BMI088driver.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+imuTempCtrl.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="imu_temp_ctrl_8c__incl.png" border="0" usemap="#asource_2task_2imu_temp_ctrl_8c" alt=""/></div>
+<map name="asource_2task_2imu_temp_ctrl_8c" id="asource_2task_2imu_temp_ctrl_8c">
+<area shape="rect" title=" " alt="" coords="115,5,293,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,67,107"/>
+<area shape="poly" title=" " alt="" coords="176,35,80,76,78,71,174,30"/>
+<area shape="rect" title=" " alt="" coords="91,80,141,107"/>
+<area shape="poly" title=" " alt="" coords="190,35,145,72,141,68,187,30"/>
+<area shape="rect" href="_i_m_utool_8h.html" title=" " alt="" coords="165,80,243,107"/>
+<area shape="poly" title=" " alt="" coords="207,33,207,64,201,64,201,33"/>
+<area shape="rect" title=" " alt="" coords="267,80,362,107"/>
+<area shape="poly" title=" " alt="" coords="225,30,284,69,281,74,222,35"/>
+<area shape="rect" href="_b_m_i088driver_8h.html" title=" " alt="" coords="387,80,496,107"/>
+<area shape="poly" title=" " alt="" coords="246,30,386,72,384,78,245,35"/>
+<area shape="rect" title=" " alt="" coords="306,155,366,181"/>
+<area shape="poly" title=" " alt="" coords="228,105,301,145,299,149,226,110"/>
+<area shape="rect" href="_mahony_a_h_r_s_8h.html" title=" " alt="" coords="146,155,262,181"/>
+<area shape="poly" title=" " alt="" coords="207,107,207,139,201,139,201,107"/>
+<area shape="poly" title=" " alt="" coords="424,109,368,148,365,143,421,105"/>
+<area shape="rect" title=" " alt="" coords="409,155,474,181"/>
+<area shape="poly" title=" " alt="" coords="444,107,444,139,439,139,439,107"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a39b51811c747331d4f89e02c9de19f1b" id="r_a39b51811c747331d4f89e02c9de19f1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39b51811c747331d4f89e02c9de19f1b">IMU_TempCtrlTask</a> (void const *argument)</td></tr>
+<tr class="separator:a39b51811c747331d4f89e02c9de19f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a97993132b43bcbd8d52fb0f7325664f4" id="r_a97993132b43bcbd8d52fb0f7325664f4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97993132b43bcbd8d52fb0f7325664f4">angle</a> [4]</td></tr>
+<tr class="separator:a97993132b43bcbd8d52fb0f7325664f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5db90e4025b4304597db65cee3bb5c44" id="r_a5db90e4025b4304597db65cee3bb5c44"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5db90e4025b4304597db65cee3bb5c44">yaw_update</a></td></tr>
+<tr class="separator:a5db90e4025b4304597db65cee3bb5c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aec1a5be9d9a4a394a2e49e9744286e" id="r_a4aec1a5be9d9a4a394a2e49e9744286e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4aec1a5be9d9a4a394a2e49e9744286e">a</a></td></tr>
+<tr class="separator:a4aec1a5be9d9a4a394a2e49e9744286e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83fc1af92e29717b4513d121b0c72c7d" id="r_a83fc1af92e29717b4513d121b0c72c7d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83fc1af92e29717b4513d121b0c72c7d">b</a></td></tr>
+<tr class="separator:a83fc1af92e29717b4513d121b0c72c7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20302e2c99a60d3f612dba57e3f6333b" id="r_a20302e2c99a60d3f612dba57e3f6333b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20302e2c99a60d3f612dba57e3f6333b">count</a></td></tr>
+<tr class="separator:a20302e2c99a60d3f612dba57e3f6333b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="a39b51811c747331d4f89e02c9de19f1b" name="a39b51811c747331d4f89e02c9de19f1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39b51811c747331d4f89e02c9de19f1b">&#9670;&#160;</a></span>IMU_TempCtrlTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IMU_TempCtrlTask </td>
+          <td>(</td>
+          <td class="paramtype">void const *</td>          <td class="paramname"><span class="paramname"><em>argument</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a4aec1a5be9d9a4a394a2e49e9744286e" name="a4aec1a5be9d9a4a394a2e49e9744286e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4aec1a5be9d9a4a394a2e49e9744286e">&#9670;&#160;</a></span>a</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float a</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a97993132b43bcbd8d52fb0f7325664f4" name="a97993132b43bcbd8d52fb0f7325664f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97993132b43bcbd8d52fb0f7325664f4">&#9670;&#160;</a></span>angle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float angle[4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a83fc1af92e29717b4513d121b0c72c7d" name="a83fc1af92e29717b4513d121b0c72c7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83fc1af92e29717b4513d121b0c72c7d">&#9670;&#160;</a></span>b</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float b</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a20302e2c99a60d3f612dba57e3f6333b" name="a20302e2c99a60d3f612dba57e3f6333b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20302e2c99a60d3f612dba57e3f6333b">&#9670;&#160;</a></span>count</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t count</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5db90e4025b4304597db65cee3bb5c44" name="a5db90e4025b4304597db65cee3bb5c44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5db90e4025b4304597db65cee3bb5c44">&#9670;&#160;</a></span>yaw_update</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float yaw_update</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

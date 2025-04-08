@@ -1,0 +1,72 @@
+\doxysection{vision\+\_\+solution.\+h}
+\hypertarget{vision__solution_8h_source}{}\label{vision__solution_8h_source}\index{source/module/computer/vision/vision\_solution.h@{source/module/computer/vision/vision\_solution.h}}
+\mbox{\hyperlink{vision__solution_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ VISION\_SOLUTION\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ VISION\_SOLUTION\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{computer__pack_8h}{computer\_pack.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075}{ARMOR\_ID}}}
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ \ \ \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a33189c94b3cfa7ffcdd6bf4a7cb040e2}{ARMOR\_OUTPOST}}\ =\ 0,}
+\DoxyCodeLine{00010\ \ \ \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a49d5e7e1f60410a91d18cd9399334db8}{ARMOR\_HERO}}\ =\ 1,}
+\DoxyCodeLine{00011\ \ \ \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075acc2f6be8c4d5eb9b66dd99a87ee7bb2f}{ARMOR\_ENGINEER}}\ =\ 2,}
+\DoxyCodeLine{00012\ \ \ \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a90942078e0cad835d429bc742fe9d3e5}{ARMOR\_INFANTRY3}}\ =\ 3,}
+\DoxyCodeLine{00013\ \ \ \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a5a0517db0f060bad2003fb01a7d22cfe}{ARMOR\_INFANTRY4}}\ =\ 4,}
+\DoxyCodeLine{00014\ \ \ \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a8f405f62b8da04a1a71f4ba1d2bc578e}{ARMOR\_INFANTRY5}}\ =\ 5,}
+\DoxyCodeLine{00015\ \ \ \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a5a589a73749b598abfcc4ced92a619c4}{ARMOR\_GUARD}}\ =\ 6,}
+\DoxyCodeLine{00016\ \ \ \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075ad79f53083994e277dfb575531bcab911}{ARMOR\_BASE}}\ =\ 7}
+\DoxyCodeLine{00017\ \};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807}{ARMOR\_NUM}}}
+\DoxyCodeLine{00020\ \{}
+\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807aad4f31931f376bedb7748f0dbc1b7c6e}{ARMOR\_NUM\_BALANCE}}\ =\ 2,}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807af5cf39d6f09dae819873753761cdeb58}{ARMOR\_NUM\_OUTPOST}}\ =\ 3,}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807a98e046a8baeb1dc6e74298e576409a02}{ARMOR\_NUM\_NORMAL}}\ =\ 4}
+\DoxyCodeLine{00024\ \};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_a9fc4cca635a26c692681a7071e379aa7}{k}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//弹道系数}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \textcolor{comment}{//自身参数}}
+\DoxyCodeLine{00031\ \ \ uint8\_t\ \mbox{\hyperlink{struct_solve_trajectory_params__t_a5be8e3ed1c84de808bfe1778af6ab0ba}{bullet\_type}};\ \ \textcolor{comment}{//自身机器人类型\ 0-\/步兵\ 1-\/英雄}}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_a571d68f0f30fdae825b5ed6d1645d102}{current\_v}};\ \ \ \ \ \ \textcolor{comment}{//当前弹速}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \textcolor{comment}{//目标参数}}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_aaf937f5e480727602b3852a005b7cadb}{xw}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ROS坐标系下的x}}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_a9feb06d401bab4a244dbfc571a778c9d}{yw}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ROS坐标系下的y}}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_ae74129c585e74c29c8b3478f74654ffc}{zw}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ROS坐标系下的z}}
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_aa2c8bc3525e099f594cf986b04ee72e9}{vxw}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ROS坐标系下的vx}}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_a8c162b20aa7e324e282cb2d969f4dd9c}{vyw}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ROS坐标系下的vy}}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_ae92caa8b9b807ae1daf9f69a44384a03}{vzw}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//ROS坐标系下的vz}}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_a5897b8e5dd8618af813ccacde3026f0e}{tar\_yaw}};\ \ \ \ \ \ \ \ \textcolor{comment}{//目标yaw}}
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_a2fcafb9fc16c900e5ed21b0591961a87}{v\_yaw}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//目标yaw速度}}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_a1f47f51cace576c94f6c1c9483d28a8f}{r1}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//目标中心到前后装甲板的距离}}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_ab7a69dabaa7151dae4d7a3998167e2f3}{r2}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//目标中心到左右装甲板的距离}}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_a31755dd9c32708851ef90978cd814b35}{dz}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//装甲板的高度差}}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_a36a08b1081be4ca1ceeaae29bfc295b3}{bias\_time}};\ \ \ \ \ \ \ \ \textcolor{comment}{//偏置时间}}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_a1905843488c81e3aef0155f2a73e8126}{s\_bias}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//枪口前推的时间}}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_a6e265324293107afbfa9e587941a4036}{z\_bias}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//yaw电机到枪口水平面的垂直距离}}
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075}{ARMOR\_ID}}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_a111a4caa85e39e92052c4952345c12e8}{armor\_id}};\ \ \ \ \ \textcolor{comment}{//装甲板类型\ \ 0-\/outpost\ 6-\/guard\ 7-\/base}}
+\DoxyCodeLine{00050\ \ \ \textcolor{comment}{//1-\/英雄\ 2-\/工程\ 3-\/4-\/5-\/步兵\ }}
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807}{ARMOR\_NUM}}\ \mbox{\hyperlink{struct_solve_trajectory_params__t_a4f1570dd75a165d29cdbefa50e1af84f}{armor\_num}};\ \ \ \textcolor{comment}{//装甲板数字\ \ 2-\/balance\ 3-\/outpost\ 4-\/normal}}
+\DoxyCodeLine{00052\ \}\mbox{\hyperlink{struct_solve_trajectory_params__t}{SolveTrajectoryParams\_t}};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structtar__pos_ad0da36b2558901e21e7a30f6c227a45e}{x}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//装甲板在世界坐标系下的x}}
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structtar__pos_aa4f0d3eebc3c443f9be81bf48561a217}{y}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//装甲板在世界坐标系下的y}}
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structtar__pos_af73583b1e980b0aa03f9884812e9fd4d}{z}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//装甲板在世界坐标系下的z}}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structtar__pos_a7efc219781df4a1e281cb5d348b7fbf9}{yaw}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//装甲板在世界坐标系下的yaw角度}}
+\DoxyCodeLine{00060\ \}\mbox{\hyperlink{structtar__pos}{tar\_pos}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{vision__solution_8c_a728368a3f501c6e5e3b6631d894a670a}{aim\_x\_n}},\ \mbox{\hyperlink{vision__solution_8c_af69c8b370a6e8bdb6209d0f50664e3c3}{aim\_y\_n}},\ \mbox{\hyperlink{vision__solution_8c_afe721c914141cd48b15fb0b453f4c4ff}{aim\_z\_n}};\textcolor{comment}{//机器人目标点}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{vision__solution_8h_a2123644d01e0d4dbd1a1ce113508d0a4}{vision\_solution}}(\textcolor{keywordtype}{float}\ *target\_yaw,\ \textcolor{keywordtype}{float}\ *target\_pitch);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !}}
+
+\end{DoxyCode}

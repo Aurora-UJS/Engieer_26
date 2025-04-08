@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/can/can_bsp.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_0fa7b5f3a2c703f9b05d3502dd47a261.html">can</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">can_bsp.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="can__bsp_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef CANTOOL_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define CANTOOL_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;main.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;fdcan.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keywordtype">void</span> <a class="code hl_function" href="can__bsp_8h.html#a2ebfa607b1b3eef0346b7d156fb12d68">can_bsp_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keywordtype">void</span> <a class="code hl_function" href="can__bsp_8h.html#a91b470cec2134692a415997c95dba833">can_filter_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>uint8_t <a class="code hl_function" href="can__bsp_8h.html#a0aaa310fbfd6b42a7b8080e978c5ac02">fdcanx_send_data</a>(FDCAN_HandleTypeDef *hfdcan, uint16_t <span class="keywordtype">id</span>, uint8_t *data, uint32_t len);</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>uint8_t <a class="code hl_function" href="can__bsp_8h.html#a33d13750f662e37eecb89d55afcd851f">fdcanx_send_data_ext</a>(FDCAN_HandleTypeDef *hfdcan, uint16_t <span class="keywordtype">id</span>, uint8_t *data, uint32_t len);</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>uint8_t <a class="code hl_function" href="can__bsp_8h.html#a5bb22a6f7231728f60e6f149d1f10ae0">fdcanx_send_data_fd</a>(FDCAN_HandleTypeDef *hfdcan, uint16_t <span class="keywordtype">id</span>, uint8_t *data, uint32_t len);</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>FDCAN_RxHeaderTypeDef* <a class="code hl_function" href="can__bsp_8h.html#a1de47675f355f641d54778d1a29a593f">fdcanx_receive</a>(FDCAN_HandleTypeDef *hfdcan, uint8_t *buf);</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keywordtype">void</span> <a class="code hl_function" href="can__bsp_8h.html#ac51de6cf6c580ddaad2b5061062f83da">fdcan1_rx_callback</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keywordtype">void</span> <a class="code hl_function" href="can__bsp_8h.html#aaf28ae68f18643ff76e4ad5331e328c8">fdcan2_rx_callback</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keywordtype">void</span> <a class="code hl_function" href="can__bsp_8h.html#a8da3a7c741435db59143efb68873cc5e">fdcan3_rx_callback</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif </span><span class="comment">// !CANTOOL_H</span></div>
+<div class="ttc" id="acan__bsp_8h_html_a0aaa310fbfd6b42a7b8080e978c5ac02"><div class="ttname"><a href="can__bsp_8h.html#a0aaa310fbfd6b42a7b8080e978c5ac02">fdcanx_send_data</a></div><div class="ttdeci">uint8_t fdcanx_send_data(FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)</div><div class="ttdoc">: fdcanx_send_data(FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)</div><div class="ttdef"><b>定义</b> can_bsp.c:82</div></div>
+<div class="ttc" id="acan__bsp_8h_html_a1de47675f355f641d54778d1a29a593f"><div class="ttname"><a href="can__bsp_8h.html#a1de47675f355f641d54778d1a29a593f">fdcanx_receive</a></div><div class="ttdeci">FDCAN_RxHeaderTypeDef * fdcanx_receive(FDCAN_HandleTypeDef *hfdcan, uint8_t *buf)</div><div class="ttdef"><b>定义</b> can_bsp.c:159</div></div>
+<div class="ttc" id="acan__bsp_8h_html_a2ebfa607b1b3eef0346b7d156fb12d68"><div class="ttname"><a href="can__bsp_8h.html#a2ebfa607b1b3eef0346b7d156fb12d68">can_bsp_init</a></div><div class="ttdeci">void can_bsp_init(void)</div><div class="ttdoc">: can_bsp_init(void)</div><div class="ttdef"><b>定义</b> can_bsp.c:16</div></div>
+<div class="ttc" id="acan__bsp_8h_html_a33d13750f662e37eecb89d55afcd851f"><div class="ttname"><a href="can__bsp_8h.html#a33d13750f662e37eecb89d55afcd851f">fdcanx_send_data_ext</a></div><div class="ttdeci">uint8_t fdcanx_send_data_ext(FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)</div><div class="ttdoc">: fdcanx_send_data_ext(FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)</div><div class="ttdef"><b>定义</b> can_bsp.c:111</div></div>
+<div class="ttc" id="acan__bsp_8h_html_a5bb22a6f7231728f60e6f149d1f10ae0"><div class="ttname"><a href="can__bsp_8h.html#a5bb22a6f7231728f60e6f149d1f10ae0">fdcanx_send_data_fd</a></div><div class="ttdeci">uint8_t fdcanx_send_data_fd(FDCAN_HandleTypeDef *hfdcan, uint16_t id, uint8_t *data, uint32_t len)</div><div class="ttdef"><b>定义</b> can_bsp.c:130</div></div>
+<div class="ttc" id="acan__bsp_8h_html_a8da3a7c741435db59143efb68873cc5e"><div class="ttname"><a href="can__bsp_8h.html#a8da3a7c741435db59143efb68873cc5e">fdcan3_rx_callback</a></div><div class="ttdeci">void fdcan3_rx_callback(void)</div><div class="ttdef"><b>定义</b> can_bsp.c:229</div></div>
+<div class="ttc" id="acan__bsp_8h_html_a91b470cec2134692a415997c95dba833"><div class="ttname"><a href="can__bsp_8h.html#a91b470cec2134692a415997c95dba833">can_filter_init</a></div><div class="ttdeci">void can_filter_init(void)</div><div class="ttdoc">: can_filter_init(void)</div><div class="ttdef"><b>定义</b> can_bsp.c:34</div></div>
+<div class="ttc" id="acan__bsp_8h_html_aaf28ae68f18643ff76e4ad5331e328c8"><div class="ttname"><a href="can__bsp_8h.html#aaf28ae68f18643ff76e4ad5331e328c8">fdcan2_rx_callback</a></div><div class="ttdeci">void fdcan2_rx_callback(void)</div><div class="ttdef"><b>定义</b> can_bsp.c:216</div></div>
+<div class="ttc" id="acan__bsp_8h_html_ac51de6cf6c580ddaad2b5061062f83da"><div class="ttname"><a href="can__bsp_8h.html#ac51de6cf6c580ddaad2b5061062f83da">fdcan1_rx_callback</a></div><div class="ttdeci">void fdcan1_rx_callback(void)</div><div class="ttdef"><b>定义</b> can_bsp.c:202</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

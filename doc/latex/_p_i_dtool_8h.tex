@@ -1,0 +1,95 @@
+\doxysection{source/module/control/\+PID/\+PIDtool.h 文件参考}
+\hypertarget{_p_i_dtool_8h}{}\label{_p_i_dtool_8h}\index{source/module/control/PID/PIDtool.h@{source/module/control/PID/PIDtool.h}}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_p_i_dtool_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpid__type__def}{pid\+\_\+type\+\_\+def}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_p_i_dtool_8h_aa377f5768c06393ee8584b95f4838619}{PID\+\_\+\+Init}} (\mbox{\hyperlink{structpid__type__def}{pid\+\_\+type\+\_\+def}} \texorpdfstring{$\ast$}{*}pid, const float kp, const float ki, const float kd, float max\+\_\+out, float max\+\_\+iout)
+\begin{DoxyCompactList}\small\item\em 初始化\+PID控制器 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{_p_i_dtool_8h_aa0095f495acfcd52136c806babcf8865}{PID\+\_\+\+Calc\+\_\+\+Add}} (\mbox{\hyperlink{structpid__type__def}{pid\+\_\+type\+\_\+def}} \texorpdfstring{$\ast$}{*}pid, float now, float target)
+\begin{DoxyCompactList}\small\item\em 计算增量式\+PID控制器输出 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{_p_i_dtool_8h_a9e5b99371019f97d2bd86e3bbcdd9aab}{PID\+\_\+\+Calc\+\_\+\+Pos}} (\mbox{\hyperlink{structpid__type__def}{pid\+\_\+type\+\_\+def}} \texorpdfstring{$\ast$}{*}pid, float now, float target)
+\begin{DoxyCompactList}\small\item\em 计算位置式\+PID控制器输出 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{_p_i_dtool_8h_aa0095f495acfcd52136c806babcf8865}\index{PIDtool.h@{PIDtool.h}!PID\_Calc\_Add@{PID\_Calc\_Add}}
+\index{PID\_Calc\_Add@{PID\_Calc\_Add}!PIDtool.h@{PIDtool.h}}
+\doxysubsubsection{\texorpdfstring{PID\_Calc\_Add()}{PID\_Calc\_Add()}}
+{\footnotesize\ttfamily \label{_p_i_dtool_8h_aa0095f495acfcd52136c806babcf8865} 
+float PID\+\_\+\+Calc\+\_\+\+Add (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpid__type__def}{pid\+\_\+type\+\_\+def}} \texorpdfstring{$\ast$}{*}}]{pid}{, }\item[{float}]{now}{, }\item[{float}]{target}{}\end{DoxyParamCaption})}
+
+
+
+计算增量式\+PID控制器输出 
+
+
+\begin{DoxyParams}{参数}
+{\em pid} & pid控制器结构体 \\
+\hline
+{\em now} & 当前值 \\
+\hline
+{\em target} & 目标值 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+float 输出值 
+\end{DoxyReturn}
+\Hypertarget{_p_i_dtool_8h_a9e5b99371019f97d2bd86e3bbcdd9aab}\index{PIDtool.h@{PIDtool.h}!PID\_Calc\_Pos@{PID\_Calc\_Pos}}
+\index{PID\_Calc\_Pos@{PID\_Calc\_Pos}!PIDtool.h@{PIDtool.h}}
+\doxysubsubsection{\texorpdfstring{PID\_Calc\_Pos()}{PID\_Calc\_Pos()}}
+{\footnotesize\ttfamily \label{_p_i_dtool_8h_a9e5b99371019f97d2bd86e3bbcdd9aab} 
+float PID\+\_\+\+Calc\+\_\+\+Pos (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpid__type__def}{pid\+\_\+type\+\_\+def}} \texorpdfstring{$\ast$}{*}}]{pid}{, }\item[{float}]{now}{, }\item[{float}]{target}{}\end{DoxyParamCaption})}
+
+
+
+计算位置式\+PID控制器输出 
+
+
+\begin{DoxyParams}{参数}
+{\em pid} & pid控制器结构体 \\
+\hline
+{\em now} & 当前值 \\
+\hline
+{\em target} & 目标值 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+float 输出值 
+\end{DoxyReturn}
+\Hypertarget{_p_i_dtool_8h_aa377f5768c06393ee8584b95f4838619}\index{PIDtool.h@{PIDtool.h}!PID\_Init@{PID\_Init}}
+\index{PID\_Init@{PID\_Init}!PIDtool.h@{PIDtool.h}}
+\doxysubsubsection{\texorpdfstring{PID\_Init()}{PID\_Init()}}
+{\footnotesize\ttfamily \label{_p_i_dtool_8h_aa377f5768c06393ee8584b95f4838619} 
+void PID\+\_\+\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpid__type__def}{pid\+\_\+type\+\_\+def}} \texorpdfstring{$\ast$}{*}}]{pid}{, }\item[{const float}]{kp}{, }\item[{const float}]{ki}{, }\item[{const float}]{kd}{, }\item[{float}]{max\+\_\+out}{, }\item[{float}]{max\+\_\+iout}{}\end{DoxyParamCaption})}
+
+
+
+初始化\+PID控制器 
+
+
+\begin{DoxyParams}{参数}
+{\em pid} & pid控制器结构体 \\
+\hline
+{\em kp} & 比例系数 \\
+\hline
+{\em ki} & 积分系数 \\
+\hline
+{\em kd} & 微分系数 \\
+\hline
+{\em max\+\_\+out} & 输出最大值 \\
+\hline
+{\em max\+\_\+iout} & 积分输出最大值 \\
+\hline
+\end{DoxyParams}

@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/control/PowerControl/PowerControl.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_25ff6885a748b7ac678af6e47152e090.html">control</a></li><li class="navelem"><a class="el" href="dir_1432beb8d455320faba55f3702949502.html">PowerControl</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">PowerControl.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_power_control_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef POWERCONTROL_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define POWERCONTROL_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;main.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="_p_i_dtool_8h.html">PIDtool.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">/* 类型定义 */</span></div>
+<div class="foldopen" id="foldopen00008" data-start="{" data-end="};">
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="_power_control_8h.html#a798f43871260b6e9840a4308352a67e5">    8</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="_power_control_8h.html#a798f43871260b6e9840a4308352a67e5ad2e86a9101306569e395daab35abe1ea">   10</a></span>    <a class="code hl_enumvalue" href="_power_control_8h.html#a798f43871260b6e9840a4308352a67e5ad2e86a9101306569e395daab35abe1ea">POWER_LOSS</a> = 0, <span class="comment">// 功率受限模式</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="_power_control_8h.html#a798f43871260b6e9840a4308352a67e5a5a368a37e843764aee66acb119837b93">   11</a></span>    <a class="code hl_enumvalue" href="_power_control_8h.html#a798f43871260b6e9840a4308352a67e5a5a368a37e843764aee66acb119837b93">POWER_NORMAL</a>,   <span class="comment">// 电容常规支持模式</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="_power_control_8h.html#a798f43871260b6e9840a4308352a67e5a4c65ce336a7a7e1068fc68039d367ae1">   12</a></span>    <a class="code hl_enumvalue" href="_power_control_8h.html#a798f43871260b6e9840a4308352a67e5a4c65ce336a7a7e1068fc68039d367ae1">POWER_BURST</a>     <span class="comment">// 电容爆发输出模式</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>} <a class="code hl_enumeration" href="_power_control_8h.html#a798f43871260b6e9840a4308352a67e5">power_control_state_t</a>;</div>
+</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="foldopen" id="foldopen00015" data-start="{" data-end="};">
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="structtotal__power__control__t.html">   15</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structtotal__power__control__t.html#a2d501ed8aec3bd33b407b440d4363134">   17</a></span>    <a class="code hl_struct" href="structpid__type__def.html">pid_type_def</a> <a class="code hl_variable" href="structtotal__power__control__t.html#a2d501ed8aec3bd33b407b440d4363134">chassis_power_pid</a>; <span class="comment">// 底盘功率缓冲PID</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structtotal__power__control__t.html#ade8db48b039cdc26f28fa9c87dd4c88b">   18</a></span>    uint16_t *<a class="code hl_variable" href="structtotal__power__control__t.html#ade8db48b039cdc26f28fa9c87dd4c88b">chassis_power_buffer</a>; <span class="comment">// 指向功率缓冲值的指针</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structtotal__power__control__t.html#afd5700eb3cb25d06e90269d6a65bae4c">   19</a></span>    <span class="keywordtype">float</span> *<a class="code hl_variable" href="structtotal__power__control__t.html#afd5700eb3cb25d06e90269d6a65bae4c">chassis_power_MAX</a>;       <span class="comment">// 裁判系统最大允许功率</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>} <a class="code hl_struct" href="structtotal__power__control__t.html">total_power_control_t</a>;</div>
+</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">// 电机功率计算参数结构体</span></div>
+<div class="foldopen" id="foldopen00023" data-start="{" data-end="};">
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="struct_motor_power_params__t.html">   23</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="struct_motor_power_params__t.html#a9636975475da97a5abc41480e68517f2">   25</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_motor_power_params__t.html#a9636975475da97a5abc41480e68517f2">torque_coeff</a>; <span class="comment">// 扭矩系数 (3508电机: 1.99688994e-6f)</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="struct_motor_power_params__t.html#a1414fec601b89b592f3c5c21ae2f6d19">   26</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_motor_power_params__t.html#a1414fec601b89b592f3c5c21ae2f6d19">k1</a>;           <span class="comment">// 速度平方功率修正(3508电机: 1.23e-07)</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="struct_motor_power_params__t.html#a3d0ed5cd804881f475c023cc7a8ae525">   27</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_motor_power_params__t.html#a3d0ed5cd804881f475c023cc7a8ae525">k2</a>;           <span class="comment">// 力矩平方功率修正(3508电机: 1.453e-07)</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="struct_motor_power_params__t.html#adc5653e60425fc42b91d1891987c2f4d">   28</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_motor_power_params__t.html#adc5653e60425fc42b91d1891987c2f4d">k3</a>;           <span class="comment">// 静态功率(3508电机: 4.081f)</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>} <a class="code hl_struct" href="struct_motor_power_params__t.html">MotorPowerParams_t</a>;</div>
+</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keywordtype">void</span> <a class="code hl_function" href="_power_control_8h.html#afb47d084f93e87da21a629fb9f8fdfc8">PowerControl_Init</a>(uint16_t *buffer_ptr,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                       <span class="keywordtype">float</span> *cap_ptr,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                       <span class="keywordtype">float</span> *max_power,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                       <a class="code hl_struct" href="structpid__type__def.html">pid_type_def</a> *pid_params, <span class="keywordtype">void</span> (*hook)(<span class="keywordtype">float</span>));</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keywordtype">void</span> <a class="code hl_function" href="_power_control_8h.html#a09970f532849b821a660c63928955607">PowerControl_Update</a>(<span class="keywordtype">void</span>);                        <span class="comment">// 更新功率控制状态</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keywordtype">void</span> <a class="code hl_function" href="_power_control_8h.html#a4b599ccc7a391b40850611949c0c5597">Set_PowerControlMode</a>(<a class="code hl_enumeration" href="_power_control_8h.html#a798f43871260b6e9840a4308352a67e5">power_control_state_t</a> mode); <span class="comment">// 设置功率控制模式</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keywordtype">float</span> <a class="code hl_function" href="_power_control_8h.html#a5e0641d792056524faa5debfd0d5b7bb">MotorPower_CalculateSingle</a>(</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">float</span> torque_nm,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">float</span> speed_rpm,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">const</span> <a class="code hl_struct" href="struct_motor_power_params__t.html">MotorPowerParams_t</a> *params);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#endif </span><span class="comment">// !POWERCONTROL_H</span></div>
+<div class="ttc" id="a_p_i_dtool_8h_html"><div class="ttname"><a href="_p_i_dtool_8h.html">PIDtool.h</a></div></div>
+<div class="ttc" id="a_power_control_8h_html_a09970f532849b821a660c63928955607"><div class="ttname"><a href="_power_control_8h.html#a09970f532849b821a660c63928955607">PowerControl_Update</a></div><div class="ttdeci">void PowerControl_Update(void)</div><div class="ttdef"><b>定义</b> PowerControl.c:63</div></div>
+<div class="ttc" id="a_power_control_8h_html_a4b599ccc7a391b40850611949c0c5597"><div class="ttname"><a href="_power_control_8h.html#a4b599ccc7a391b40850611949c0c5597">Set_PowerControlMode</a></div><div class="ttdeci">void Set_PowerControlMode(power_control_state_t mode)</div><div class="ttdef"><b>定义</b> PowerControl.c:108</div></div>
+<div class="ttc" id="a_power_control_8h_html_a5e0641d792056524faa5debfd0d5b7bb"><div class="ttname"><a href="_power_control_8h.html#a5e0641d792056524faa5debfd0d5b7bb">MotorPower_CalculateSingle</a></div><div class="ttdeci">float MotorPower_CalculateSingle(float torque_nm, float speed_rpm, const MotorPowerParams_t *params)</div><div class="ttdoc">计算单个电机的理论功率消耗</div><div class="ttdef"><b>定义</b> PowerControl.c:123</div></div>
+<div class="ttc" id="a_power_control_8h_html_a798f43871260b6e9840a4308352a67e5"><div class="ttname"><a href="_power_control_8h.html#a798f43871260b6e9840a4308352a67e5">power_control_state_t</a></div><div class="ttdeci">power_control_state_t</div><div class="ttdef"><b>定义</b> PowerControl.h:9</div></div>
+<div class="ttc" id="a_power_control_8h_html_a798f43871260b6e9840a4308352a67e5a4c65ce336a7a7e1068fc68039d367ae1"><div class="ttname"><a href="_power_control_8h.html#a798f43871260b6e9840a4308352a67e5a4c65ce336a7a7e1068fc68039d367ae1">POWER_BURST</a></div><div class="ttdeci">@ POWER_BURST</div><div class="ttdef"><b>定义</b> PowerControl.h:12</div></div>
+<div class="ttc" id="a_power_control_8h_html_a798f43871260b6e9840a4308352a67e5a5a368a37e843764aee66acb119837b93"><div class="ttname"><a href="_power_control_8h.html#a798f43871260b6e9840a4308352a67e5a5a368a37e843764aee66acb119837b93">POWER_NORMAL</a></div><div class="ttdeci">@ POWER_NORMAL</div><div class="ttdef"><b>定义</b> PowerControl.h:11</div></div>
+<div class="ttc" id="a_power_control_8h_html_a798f43871260b6e9840a4308352a67e5ad2e86a9101306569e395daab35abe1ea"><div class="ttname"><a href="_power_control_8h.html#a798f43871260b6e9840a4308352a67e5ad2e86a9101306569e395daab35abe1ea">POWER_LOSS</a></div><div class="ttdeci">@ POWER_LOSS</div><div class="ttdef"><b>定义</b> PowerControl.h:10</div></div>
+<div class="ttc" id="a_power_control_8h_html_afb47d084f93e87da21a629fb9f8fdfc8"><div class="ttname"><a href="_power_control_8h.html#afb47d084f93e87da21a629fb9f8fdfc8">PowerControl_Init</a></div><div class="ttdeci">void PowerControl_Init(uint16_t *buffer_ptr, float *cap_ptr, float *max_power, pid_type_def *pid_params, void(*hook)(float))</div><div class="ttdef"><b>定义</b> PowerControl.c:35</div></div>
+<div class="ttc" id="astruct_motor_power_params__t_html"><div class="ttname"><a href="struct_motor_power_params__t.html">MotorPowerParams_t</a></div><div class="ttdef"><b>定义</b> PowerControl.h:24</div></div>
+<div class="ttc" id="astruct_motor_power_params__t_html_a1414fec601b89b592f3c5c21ae2f6d19"><div class="ttname"><a href="struct_motor_power_params__t.html#a1414fec601b89b592f3c5c21ae2f6d19">MotorPowerParams_t::k1</a></div><div class="ttdeci">float k1</div><div class="ttdef"><b>定义</b> PowerControl.h:26</div></div>
+<div class="ttc" id="astruct_motor_power_params__t_html_a3d0ed5cd804881f475c023cc7a8ae525"><div class="ttname"><a href="struct_motor_power_params__t.html#a3d0ed5cd804881f475c023cc7a8ae525">MotorPowerParams_t::k2</a></div><div class="ttdeci">float k2</div><div class="ttdef"><b>定义</b> PowerControl.h:27</div></div>
+<div class="ttc" id="astruct_motor_power_params__t_html_a9636975475da97a5abc41480e68517f2"><div class="ttname"><a href="struct_motor_power_params__t.html#a9636975475da97a5abc41480e68517f2">MotorPowerParams_t::torque_coeff</a></div><div class="ttdeci">float torque_coeff</div><div class="ttdef"><b>定义</b> PowerControl.h:25</div></div>
+<div class="ttc" id="astruct_motor_power_params__t_html_adc5653e60425fc42b91d1891987c2f4d"><div class="ttname"><a href="struct_motor_power_params__t.html#adc5653e60425fc42b91d1891987c2f4d">MotorPowerParams_t::k3</a></div><div class="ttdeci">float k3</div><div class="ttdef"><b>定义</b> PowerControl.h:28</div></div>
+<div class="ttc" id="astructpid__type__def_html"><div class="ttname"><a href="structpid__type__def.html">pid_type_def</a></div><div class="ttdef"><b>定义</b> PIDtool.h:5</div></div>
+<div class="ttc" id="astructtotal__power__control__t_html"><div class="ttname"><a href="structtotal__power__control__t.html">total_power_control_t</a></div><div class="ttdef"><b>定义</b> PowerControl.h:16</div></div>
+<div class="ttc" id="astructtotal__power__control__t_html_a2d501ed8aec3bd33b407b440d4363134"><div class="ttname"><a href="structtotal__power__control__t.html#a2d501ed8aec3bd33b407b440d4363134">total_power_control_t::chassis_power_pid</a></div><div class="ttdeci">pid_type_def chassis_power_pid</div><div class="ttdef"><b>定义</b> PowerControl.h:17</div></div>
+<div class="ttc" id="astructtotal__power__control__t_html_ade8db48b039cdc26f28fa9c87dd4c88b"><div class="ttname"><a href="structtotal__power__control__t.html#ade8db48b039cdc26f28fa9c87dd4c88b">total_power_control_t::chassis_power_buffer</a></div><div class="ttdeci">uint16_t * chassis_power_buffer</div><div class="ttdef"><b>定义</b> PowerControl.h:18</div></div>
+<div class="ttc" id="astructtotal__power__control__t_html_afd5700eb3cb25d06e90269d6a65bae4c"><div class="ttname"><a href="structtotal__power__control__t.html#afd5700eb3cb25d06e90269d6a65bae4c">total_power_control_t::chassis_power_MAX</a></div><div class="ttdeci">float * chassis_power_MAX</div><div class="ttdef"><b>定义</b> PowerControl.h:19</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

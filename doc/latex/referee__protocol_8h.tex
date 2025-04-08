@@ -1,0 +1,714 @@
+\doxysection{source/module/referee\+Sys/referee\+\_\+protocol.h 文件参考}
+\hypertarget{referee__protocol_8h}{}\label{referee__protocol_8h}\index{source/module/refereeSys/referee\_protocol.h@{source/module/refereeSys/referee\_protocol.h}}
+{\ttfamily \#include "{}stdint.\+h"{}}\newline
+{\ttfamily \#include "{}keyboard.\+h"{}}\newline
+referee\+\_\+protocol.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{referee__protocol_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{referee__protocol_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structx_frame_header}{x\+Frame\+Header}}
+\item 
+struct \mbox{\hyperlink{structext__game__state__t}{ext\+\_\+game\+\_\+state\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structext__game__result__t}{ext\+\_\+game\+\_\+result\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structext__game__robot___h_p__t}{ext\+\_\+game\+\_\+robot\+\_\+\+HP\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structext__event__data__t}{ext\+\_\+event\+\_\+data\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structext__supply__projectile__action__t}{ext\+\_\+supply\+\_\+projectile\+\_\+action\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structext__game__robot__state__t}{ext\+\_\+game\+\_\+robot\+\_\+state\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structext__power__heat__data__t}{ext\+\_\+power\+\_\+heat\+\_\+data\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structext__game__robot__pos__t}{ext\+\_\+game\+\_\+robot\+\_\+pos\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structext__buff__musk__t}{ext\+\_\+buff\+\_\+musk\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structaerial__robot__energy__t}{aerial\+\_\+robot\+\_\+energy\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structext__robot__hurt__t}{ext\+\_\+robot\+\_\+hurt\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structext__shoot__data__t}{ext\+\_\+shoot\+\_\+data\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{struct_graph___data__t}{Graph\+\_\+\+Data\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structext__student__interactive__header__data__t}{ext\+\_\+student\+\_\+interactive\+\_\+header\+\_\+data\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structrobot__interactive__data__t}{robot\+\_\+interactive\+\_\+data\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{struct_communicate___send_data__t}{Communicate\+\_\+\+Send\+Data\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{struct_communicate___receive_data__t}{Communicate\+\_\+\+Receive\+Data\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{struct_string___data__t}{String\+\_\+\+Data\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structcustom__controller__data__t}{custom\+\_\+controller\+\_\+data\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{referee__protocol_8h_a8bd70b9c0eb16965f6bac2c97ca0d9cb}{REFEREE\+\_\+\+SOF}}~0x\+A5
+\item 
+\#define \mbox{\hyperlink{referee__protocol_8h_a0b7cc2733bd2f02a173bef5569f2d22e}{Robot\+\_\+\+Red}}~0
+\item 
+\#define \mbox{\hyperlink{referee__protocol_8h_ae07eefcadbb8964c4ceb41d85a0251e1}{Robot\+\_\+\+Blue}}~1
+\item 
+\#define \mbox{\hyperlink{referee__protocol_8h_a9a57d5084965554eeebcf051284acbce}{Communicate\+\_\+\+Data\+\_\+\+LEN}}~5
+\end{DoxyCompactItemize}
+\doxysubsubsection*{枚举}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2f}{Judge\+Frame\+Offset\+\_\+e}} \{ \mbox{\hyperlink{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2fa49bf2d738fbeb5d0d67c578935297323}{FRAME\+\_\+\+HEADER\+\_\+\+Offset}} = 0
+, \mbox{\hyperlink{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2fa093b37a3190dbc734a43c0fe545ec457}{CMD\+\_\+\+ID\+\_\+\+Offset}} = 5
+, \mbox{\hyperlink{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2faef51b635081d087da63df3bb2558f855}{DATA\+\_\+\+Offset}} = 7
+ \}
+\item 
+enum \mbox{\hyperlink{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82e}{Judge\+Frame\+Length\+\_\+e}} \{ \mbox{\hyperlink{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82ea5649e5b6ebd90c709096bb6777f38b67}{LEN\+\_\+\+HEADER}} = 5
+, \mbox{\hyperlink{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82ea7a40597c42cff298ebc840f0d5b7ce6e}{LEN\+\_\+\+CMDID}} = 2
+, \mbox{\hyperlink{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82eaf50383abfb1c790b6a5f0504a0400fd5}{LEN\+\_\+\+TAIL}} = 2
+, \mbox{\hyperlink{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82eae9fce512ea1f0f1ba97ed3102b334864}{LEN\+\_\+\+CRC8}} = 4
+ \}
+\item 
+enum \mbox{\hyperlink{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48d}{Frame\+Header\+Offset\+\_\+e}} \{ \mbox{\hyperlink{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da567b73be8a61af6ac865b15bfeabbf59}{SOF}} = 0
+, \mbox{\hyperlink{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da7f3df1c13c3920d1c6771f3cdb0bd3ef}{DATA\+\_\+\+LENGTH}} = 1
+, \mbox{\hyperlink{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da9985ac4cb7cda855d785a610e6a866a7}{SEQ}} = 3
+, \mbox{\hyperlink{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da852cb403a2665ed279b28679f11567d8}{CRC8}} = 4
+ \}
+\item 
+enum \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82}{Cmd\+ID\+\_\+e}} \{ \newline
+\mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a830df8dce291a7d83113a6b31406596e}{ID\+\_\+game\+\_\+state}} = 0x0001
+, \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a6b8db94f4e77ca865d1d3075b421c96c}{ID\+\_\+game\+\_\+result}} = 0x0002
+, \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a18925a925609dc542bf3de32268a4685}{ID\+\_\+game\+\_\+robot\+\_\+survivors}} = 0x0003
+, \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a36cba273d8a8c1608ee57aa47069341c}{ID\+\_\+event\+\_\+data}} = 0x0101
+, \newline
+\mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a7581f15d52c4934363ea220dc3599f65}{ID\+\_\+supply\+\_\+projectile\+\_\+action}} = 0x0102
+, \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a042f582cbe85cf799f2dedee5343898f}{ID\+\_\+supply\+\_\+projectile\+\_\+booking}} = 0x0103
+, \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a3a82274b1040cb3f745e487c0dda4d66}{ID\+\_\+game\+\_\+robot\+\_\+state}} = 0x0201
+, \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a7cb0241beb56c5b88292f53f0e92f207}{ID\+\_\+power\+\_\+heat\+\_\+data}} = 0x0202
+, \newline
+\mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82abf9fec1a00b4ed6d3db76d3e15b0efee}{ID\+\_\+game\+\_\+robot\+\_\+pos}} = 0x0203
+, \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ac9ad280c2b3e5a96ee16d96b0f3f5775}{ID\+\_\+buff\+\_\+musk}} = 0x0204
+, \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a1e52362060e66e96f89347ee5b8ea2a8}{ID\+\_\+aerial\+\_\+robot\+\_\+energy}} = 0x0205
+, \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a260e7dbbc0bbb1d70ea8004b64bfd5d3}{ID\+\_\+robot\+\_\+hurt}} = 0x0206
+, \newline
+\mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ad061576010d94bf3b5877030a4f0b74c}{ID\+\_\+shoot\+\_\+data}} = 0x0207
+, \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ab1a8193d05062b309e405681fbba0122}{ID\+\_\+student\+\_\+interactive}} = 0x0301
+, \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ace0d1d9da8d99e4f66ebf71844e8d77f}{ID\+\_\+custom\+\_\+controller}} = 0x0302
+ \}
+\item 
+enum \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88af}{Judge\+Data\+Length\+\_\+e}} \{ \newline
+\mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afafc2ccfe11f54adade5b225b19ef852f5}{LEN\+\_\+game\+\_\+state}} = 11
+, \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa80c4ad213175cb38e8f31328e4710636}{LEN\+\_\+game\+\_\+result}} = 1
+, \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa62944ed4e423f98a0f2b22cdf19009ac}{LEN\+\_\+game\+\_\+robot\+\_\+\+HP}} = 32
+, \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afaff969b6431a3b2a1312d9e356e0b5a17}{LEN\+\_\+event\+\_\+data}} = 4
+, \newline
+\mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afabe7165fd9c5cec0b8568c9689cf88060}{LEN\+\_\+supply\+\_\+projectile\+\_\+action}} = 4
+, \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afafb1f141666559d05dd9c6159c4f93fb5}{LEN\+\_\+game\+\_\+robot\+\_\+state}} = 13
+, \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa813850de41fb4c056fc3db50692f6f9f}{LEN\+\_\+power\+\_\+heat\+\_\+data}} = 16
+, \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa35ca9f848ec3bb9575c3089fc29368a3}{LEN\+\_\+game\+\_\+robot\+\_\+pos}} = 16
+, \newline
+\mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa615e0242067ba2596e9b38684f554a59}{LEN\+\_\+buff\+\_\+musk}} = 6
+, \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa4de04cd8b4f92dbf7d534ad3accd1512}{LEN\+\_\+aerial\+\_\+robot\+\_\+energy}} = 2
+, \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afada547b8386c11c7a9a23f1cfa1d5dd56}{LEN\+\_\+robot\+\_\+hurt}} = 1
+, \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afab92acba28b2ed55718a513e605d853b9}{LEN\+\_\+shoot\+\_\+data}} = 7
+, \newline
+\mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa0d5f47550dcb3074aba03ece0bfbe7f8}{LEN\+\_\+receive\+\_\+data}} = 6 + Communicate\+\_\+\+Data\+\_\+\+LEN
+, \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa3a32b353668e6596dfde19c254b62d0d}{LEN\+\_\+custom\+\_\+controller}} = 20
+, \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa1c1aa022cfae0fa90db3be50085826e6}{LEN\+\_\+keyboard}} = 12
+ \}
+\item 
+enum \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6b}{Robot\+\_\+\+ID\+\_\+e}} \{ \newline
+\mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba82bbe02f275e311e37e4b65178cdafb2}{Robot\+ID\+\_\+\+RHero}} = 1
+, \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba4e6f8d0d60fc7331e70577edc8313cdf}{Robot\+ID\+\_\+\+REngineer}} = 2
+, \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6baa1ab225cdb62a5d5f9aa8f70448db8d9}{Robot\+ID\+\_\+\+RStandard1}} = 3
+, \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba99e02efc96e70d442b8cd5d07bc797b1}{Robot\+ID\+\_\+\+RStandard2}} = 4
+, \newline
+\mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba14a504bf213ad1239d5b20dddceac883}{Robot\+ID\+\_\+\+RStandard3}} = 5
+, \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6baabeb8b982f1f3f480c621a0bd7be95c1}{Robot\+ID\+\_\+\+RAerial}} = 6
+, \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba64c86ff312235257a3aba3a9c42a4856}{Robot\+ID\+\_\+\+RSentry}} = 7
+, \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba7572faabaf54c6d1ded5028222512c62}{Robot\+ID\+\_\+\+RRadar}} = 9
+, \newline
+\mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba1700750589497717d2c1dd64baa0368a}{Robot\+ID\+\_\+\+BHero}} = 101
+, \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6bad9a81dcebfefb4d801acafcefdb96c47}{Robot\+ID\+\_\+\+BEngineer}} = 102
+, \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba9f6b38e9d695aaf907179689c35ad3fa}{Robot\+ID\+\_\+\+BStandard1}} = 103
+, \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6bae051219fe239e0c1e9bc5a913b847893}{Robot\+ID\+\_\+\+BStandard2}} = 104
+, \newline
+\mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba9bce8ac23314bf39eca99fdf4bfdd7be}{Robot\+ID\+\_\+\+BStandard3}} = 105
+, \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba2f473efa0830ca91aeb07a39c5908fac}{Robot\+ID\+\_\+\+BAerial}} = 106
+, \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba0962466912e4941b7cd07b6fb701430a}{Robot\+ID\+\_\+\+BSentry}} = 107
+, \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba1bdd17f76e80c8d3efd13f162ea9857a}{Robot\+ID\+\_\+\+BRadar}} = 109
+ \}
+\item 
+enum \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23}{Interactive\+\_\+\+Data\+\_\+\+ID\+\_\+e}} \{ \newline
+\mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23a5863f5fef5f41a75f0cab01d6a276258}{UI\+\_\+\+Data\+\_\+\+ID\+\_\+\+Del}} = 0x100
+, \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23aca355af6bc3a748d89b7e8d02d679ecb}{UI\+\_\+\+Data\+\_\+\+ID\+\_\+\+Draw1}} = 0x101
+, \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23ae3d736910f1871443172600138abed79}{UI\+\_\+\+Data\+\_\+\+ID\+\_\+\+Draw2}} = 0x102
+, \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23ac3b5d0b60f5f750b7e68b38c5d4eb1bb}{UI\+\_\+\+Data\+\_\+\+ID\+\_\+\+Draw5}} = 0x103
+, \newline
+\mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23a4ce700939c148ac4f572218e6ff06673}{UI\+\_\+\+Data\+\_\+\+ID\+\_\+\+Draw7}} = 0x104
+, \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23adf5beab799addcba6f0c202f851ad31a}{UI\+\_\+\+Data\+\_\+\+ID\+\_\+\+Draw\+Char}} = 0x110
+, \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23abf2f5c650ac7899519a70317a0ab0fa6}{Communicate\+\_\+\+Data\+\_\+\+ID}} = 0x0200
+ \}
+\item 
+enum \mbox{\hyperlink{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5}{Interactive\+\_\+\+Data\+\_\+\+Length\+\_\+e}} \{ \mbox{\hyperlink{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5a055bd43ffa3e29d47102b4ceceb6bb75}{Interactive\+\_\+\+Data\+\_\+\+LEN\+\_\+\+Head}} = 6
+, \mbox{\hyperlink{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5a9e67f191a0b9115d95197b1312252b0d}{UI\+\_\+\+Operate\+\_\+\+LEN\+\_\+\+Del}} = 2
+, \mbox{\hyperlink{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5ab91b3442ab4a9452794798a5daab5ad9}{UI\+\_\+\+Operate\+\_\+\+LEN\+\_\+\+Per\+Draw}} = 15
+, \mbox{\hyperlink{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5a6c71ea57c8b480c62785ad387bc67235}{UI\+\_\+\+Operate\+\_\+\+LEN\+\_\+\+Draw\+Char}} = 15 + 30
+ \}
+\item 
+enum \mbox{\hyperlink{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62}{UI\+\_\+\+Delete\+\_\+\+Operate\+\_\+e}} \{ \mbox{\hyperlink{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62a2ef334c1307a84f1a257e8716fd46486}{UI\+\_\+\+Data\+\_\+\+Del\+\_\+\+No\+Operate}} = 0
+, \mbox{\hyperlink{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62a260b8c69a2f5514f17a5c4925e09c79a}{UI\+\_\+\+Data\+\_\+\+Del\+\_\+\+Layer}} = 1
+, \mbox{\hyperlink{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62ac8003a61d459e5959920e14d435c361a}{UI\+\_\+\+Data\+\_\+\+Del\+\_\+\+ALL}} = 2
+ \}
+\item 
+enum \mbox{\hyperlink{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5}{UI\+\_\+\+Graph\+\_\+\+Operate\+\_\+e}} \{ \mbox{\hyperlink{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5a0a6e8b9a6abbba0af8a716f85e1433f5}{UI\+\_\+\+Graph\+\_\+\+ADD}} = 1
+, \mbox{\hyperlink{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5aff1d14377dea689b2b291a3b357c655e}{UI\+\_\+\+Graph\+\_\+\+Change}} = 2
+, \mbox{\hyperlink{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5a10a88ba15e7fb1df1344653b11634337}{UI\+\_\+\+Graph\+\_\+\+Del}} = 3
+ \}
+\item 
+enum \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08}{UI\+\_\+\+Graph\+\_\+\+Type\+\_\+e}} \{ \newline
+\mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a7783eb04a06d8cefa48342340f2a0ab0}{UI\+\_\+\+Graph\+\_\+\+Line}} = 0
+, \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a81b21ed08fbff53190d07b3a0d38cef5}{UI\+\_\+\+Graph\+\_\+\+Rectangle}} = 1
+, \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08aea6a4b3fecabd3d40c089673514659ab}{UI\+\_\+\+Graph\+\_\+\+Circle}} = 2
+, \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a6be1051507322d8341aba99418a3922b}{UI\+\_\+\+Graph\+\_\+\+Ellipse}} = 3
+, \newline
+\mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08aca8ad5c27793151298711a93a21d9c74}{UI\+\_\+\+Graph\+\_\+\+Arc}} = 4
+, \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08ad66a5a963d3b16eb9519424671b223db}{UI\+\_\+\+Graph\+\_\+\+Float}} = 5
+, \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08acb0af0edcaa555906fc5cde33fa3047b}{UI\+\_\+\+Graph\+\_\+\+Int}} = 6
+, \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a1b69e466aae17678c58f390b0cc5e3e9}{UI\+\_\+\+Graph\+\_\+\+Char}} = 7
+ \}
+\item 
+enum \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1e}{UI\+\_\+\+Graph\+\_\+\+Color\+\_\+e}} \{ \newline
+\mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1eacb2d4c41e008d10d8b729d0ea4898bff}{UI\+\_\+\+Color\+\_\+\+Main}} = 0
+, \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea733caae36ca5dca69f5d9de536f05dfb}{UI\+\_\+\+Color\+\_\+\+Yellow}} = 1
+, \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1eaf3b0d2fa53b3370dd9bb4fbc82b6e118}{UI\+\_\+\+Color\+\_\+\+Green}} = 2
+, \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea04bbd5aea17aa42ab7848874e2343e56}{UI\+\_\+\+Color\+\_\+\+Orange}} = 3
+, \newline
+\mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea286386dc8f5b9167d2f5201b022afd8e}{UI\+\_\+\+Color\+\_\+\+Purplish\+\_\+red}} = 4
+, \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea1a941108d08631fd7590475b08cabce6}{UI\+\_\+\+Color\+\_\+\+Pink}} = 5
+, \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1eabff6406e275831f946444ccbd033b0b1}{UI\+\_\+\+Color\+\_\+\+Cyan}} = 6
+, \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea5633b7451218144762bace49a4dd78d3}{UI\+\_\+\+Color\+\_\+\+Black}} = 7
+, \newline
+\mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ead111a6fa3980914fe95648cd9018e30c}{UI\+\_\+\+Color\+\_\+\+White}} = 8
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{详细描述}
+\begin{DoxyAuthor}{作者}
+kidneygood (\href{mailto:you@domain.com}{\texttt{ you@domain.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{版本}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{日期}
+2022-\/12-\/02
+\end{DoxyDate}
+\begin{DoxyCopyright}{版权所有}
+Copyright (c) HNU Yue\+Lu EC 2022 all rights reserved 
+\end{DoxyCopyright}
+
+
+\doxysubsection{宏定义说明}
+\Hypertarget{referee__protocol_8h_a9a57d5084965554eeebcf051284acbce}\index{referee\_protocol.h@{referee\_protocol.h}!Communicate\_Data\_LEN@{Communicate\_Data\_LEN}}
+\index{Communicate\_Data\_LEN@{Communicate\_Data\_LEN}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{Communicate\_Data\_LEN}{Communicate\_Data\_LEN}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_a9a57d5084965554eeebcf051284acbce} 
+\#define Communicate\+\_\+\+Data\+\_\+\+LEN~5}
+
+\Hypertarget{referee__protocol_8h_a8bd70b9c0eb16965f6bac2c97ca0d9cb}\index{referee\_protocol.h@{referee\_protocol.h}!REFEREE\_SOF@{REFEREE\_SOF}}
+\index{REFEREE\_SOF@{REFEREE\_SOF}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{REFEREE\_SOF}{REFEREE\_SOF}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_a8bd70b9c0eb16965f6bac2c97ca0d9cb} 
+\#define REFEREE\+\_\+\+SOF~0x\+A5}
+
+\Hypertarget{referee__protocol_8h_ae07eefcadbb8964c4ceb41d85a0251e1}\index{referee\_protocol.h@{referee\_protocol.h}!Robot\_Blue@{Robot\_Blue}}
+\index{Robot\_Blue@{Robot\_Blue}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{Robot\_Blue}{Robot\_Blue}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_ae07eefcadbb8964c4ceb41d85a0251e1} 
+\#define Robot\+\_\+\+Blue~1}
+
+\Hypertarget{referee__protocol_8h_a0b7cc2733bd2f02a173bef5569f2d22e}\index{referee\_protocol.h@{referee\_protocol.h}!Robot\_Red@{Robot\_Red}}
+\index{Robot\_Red@{Robot\_Red}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{Robot\_Red}{Robot\_Red}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_a0b7cc2733bd2f02a173bef5569f2d22e} 
+\#define Robot\+\_\+\+Red~0}
+
+
+
+\doxysubsection{枚举类型说明}
+\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82}\index{referee\_protocol.h@{referee\_protocol.h}!CmdID\_e@{CmdID\_e}}
+\index{CmdID\_e@{CmdID\_e}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{CmdID\_e}{CmdID\_e}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82} 
+enum \mbox{\hyperlink{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82}{Cmd\+ID\+\_\+e}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_game\_state@{ID\_game\_state}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_game\_state@{ID\_game\_state}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a830df8dce291a7d83113a6b31406596e}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a830df8dce291a7d83113a6b31406596e} 
+ID\+\_\+game\+\_\+state&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_game\_result@{ID\_game\_result}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_game\_result@{ID\_game\_result}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a6b8db94f4e77ca865d1d3075b421c96c}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a6b8db94f4e77ca865d1d3075b421c96c} 
+ID\+\_\+game\+\_\+result&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_game\_robot\_survivors@{ID\_game\_robot\_survivors}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_game\_robot\_survivors@{ID\_game\_robot\_survivors}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a18925a925609dc542bf3de32268a4685}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a18925a925609dc542bf3de32268a4685} 
+ID\+\_\+game\+\_\+robot\+\_\+survivors&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_event\_data@{ID\_event\_data}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_event\_data@{ID\_event\_data}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a36cba273d8a8c1608ee57aa47069341c}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a36cba273d8a8c1608ee57aa47069341c} 
+ID\+\_\+event\+\_\+data&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_supply\_projectile\_action@{ID\_supply\_projectile\_action}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_supply\_projectile\_action@{ID\_supply\_projectile\_action}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a7581f15d52c4934363ea220dc3599f65}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a7581f15d52c4934363ea220dc3599f65} 
+ID\+\_\+supply\+\_\+projectile\+\_\+action&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_supply\_projectile\_booking@{ID\_supply\_projectile\_booking}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_supply\_projectile\_booking@{ID\_supply\_projectile\_booking}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a042f582cbe85cf799f2dedee5343898f}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a042f582cbe85cf799f2dedee5343898f} 
+ID\+\_\+supply\+\_\+projectile\+\_\+booking&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_game\_robot\_state@{ID\_game\_robot\_state}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_game\_robot\_state@{ID\_game\_robot\_state}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a3a82274b1040cb3f745e487c0dda4d66}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a3a82274b1040cb3f745e487c0dda4d66} 
+ID\+\_\+game\+\_\+robot\+\_\+state&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_power\_heat\_data@{ID\_power\_heat\_data}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_power\_heat\_data@{ID\_power\_heat\_data}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a7cb0241beb56c5b88292f53f0e92f207}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a7cb0241beb56c5b88292f53f0e92f207} 
+ID\+\_\+power\+\_\+heat\+\_\+data&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_game\_robot\_pos@{ID\_game\_robot\_pos}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_game\_robot\_pos@{ID\_game\_robot\_pos}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82abf9fec1a00b4ed6d3db76d3e15b0efee}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82abf9fec1a00b4ed6d3db76d3e15b0efee} 
+ID\+\_\+game\+\_\+robot\+\_\+pos&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_buff\_musk@{ID\_buff\_musk}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_buff\_musk@{ID\_buff\_musk}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ac9ad280c2b3e5a96ee16d96b0f3f5775}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ac9ad280c2b3e5a96ee16d96b0f3f5775} 
+ID\+\_\+buff\+\_\+musk&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_aerial\_robot\_energy@{ID\_aerial\_robot\_energy}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_aerial\_robot\_energy@{ID\_aerial\_robot\_energy}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a1e52362060e66e96f89347ee5b8ea2a8}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a1e52362060e66e96f89347ee5b8ea2a8} 
+ID\+\_\+aerial\+\_\+robot\+\_\+energy&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_robot\_hurt@{ID\_robot\_hurt}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_robot\_hurt@{ID\_robot\_hurt}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a260e7dbbc0bbb1d70ea8004b64bfd5d3}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82a260e7dbbc0bbb1d70ea8004b64bfd5d3} 
+ID\+\_\+robot\+\_\+hurt&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_shoot\_data@{ID\_shoot\_data}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_shoot\_data@{ID\_shoot\_data}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ad061576010d94bf3b5877030a4f0b74c}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ad061576010d94bf3b5877030a4f0b74c} 
+ID\+\_\+shoot\+\_\+data&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_student\_interactive@{ID\_student\_interactive}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_student\_interactive@{ID\_student\_interactive}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ab1a8193d05062b309e405681fbba0122}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ab1a8193d05062b309e405681fbba0122} 
+ID\+\_\+student\+\_\+interactive&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ID\_custom\_controller@{ID\_custom\_controller}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!ID\_custom\_controller@{ID\_custom\_controller}}}\Hypertarget{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ace0d1d9da8d99e4f66ebf71844e8d77f}\label{referee__protocol_8h_ae214f2133148521c75bbe672fc377d82ace0d1d9da8d99e4f66ebf71844e8d77f} 
+ID\+\_\+custom\+\_\+controller&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48d}\index{referee\_protocol.h@{referee\_protocol.h}!FrameHeaderOffset\_e@{FrameHeaderOffset\_e}}
+\index{FrameHeaderOffset\_e@{FrameHeaderOffset\_e}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{FrameHeaderOffset\_e}{FrameHeaderOffset\_e}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48d} 
+enum \mbox{\hyperlink{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48d}{Frame\+Header\+Offset\+\_\+e}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SOF@{SOF}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!SOF@{SOF}}}\Hypertarget{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da567b73be8a61af6ac865b15bfeabbf59}\label{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da567b73be8a61af6ac865b15bfeabbf59} 
+SOF&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA\_LENGTH@{DATA\_LENGTH}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!DATA\_LENGTH@{DATA\_LENGTH}}}\Hypertarget{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da7f3df1c13c3920d1c6771f3cdb0bd3ef}\label{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da7f3df1c13c3920d1c6771f3cdb0bd3ef} 
+DATA\+\_\+\+LENGTH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SEQ@{SEQ}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!SEQ@{SEQ}}}\Hypertarget{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da9985ac4cb7cda855d785a610e6a866a7}\label{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da9985ac4cb7cda855d785a610e6a866a7} 
+SEQ&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CRC8@{CRC8}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!CRC8@{CRC8}}}\Hypertarget{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da852cb403a2665ed279b28679f11567d8}\label{referee__protocol_8h_a5ed77ca35e2f25536f6303dc4213c48da852cb403a2665ed279b28679f11567d8} 
+CRC8&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23}\index{referee\_protocol.h@{referee\_protocol.h}!Interactive\_Data\_ID\_e@{Interactive\_Data\_ID\_e}}
+\index{Interactive\_Data\_ID\_e@{Interactive\_Data\_ID\_e}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{Interactive\_Data\_ID\_e}{Interactive\_Data\_ID\_e}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23} 
+enum \mbox{\hyperlink{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23}{Interactive\+\_\+\+Data\+\_\+\+ID\+\_\+e}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Data\_ID\_Del@{UI\_Data\_ID\_Del}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Data\_ID\_Del@{UI\_Data\_ID\_Del}}}\Hypertarget{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23a5863f5fef5f41a75f0cab01d6a276258}\label{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23a5863f5fef5f41a75f0cab01d6a276258} 
+UI\+\_\+\+Data\+\_\+\+ID\+\_\+\+Del&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Data\_ID\_Draw1@{UI\_Data\_ID\_Draw1}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Data\_ID\_Draw1@{UI\_Data\_ID\_Draw1}}}\Hypertarget{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23aca355af6bc3a748d89b7e8d02d679ecb}\label{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23aca355af6bc3a748d89b7e8d02d679ecb} 
+UI\+\_\+\+Data\+\_\+\+ID\+\_\+\+Draw1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Data\_ID\_Draw2@{UI\_Data\_ID\_Draw2}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Data\_ID\_Draw2@{UI\_Data\_ID\_Draw2}}}\Hypertarget{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23ae3d736910f1871443172600138abed79}\label{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23ae3d736910f1871443172600138abed79} 
+UI\+\_\+\+Data\+\_\+\+ID\+\_\+\+Draw2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Data\_ID\_Draw5@{UI\_Data\_ID\_Draw5}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Data\_ID\_Draw5@{UI\_Data\_ID\_Draw5}}}\Hypertarget{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23ac3b5d0b60f5f750b7e68b38c5d4eb1bb}\label{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23ac3b5d0b60f5f750b7e68b38c5d4eb1bb} 
+UI\+\_\+\+Data\+\_\+\+ID\+\_\+\+Draw5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Data\_ID\_Draw7@{UI\_Data\_ID\_Draw7}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Data\_ID\_Draw7@{UI\_Data\_ID\_Draw7}}}\Hypertarget{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23a4ce700939c148ac4f572218e6ff06673}\label{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23a4ce700939c148ac4f572218e6ff06673} 
+UI\+\_\+\+Data\+\_\+\+ID\+\_\+\+Draw7&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Data\_ID\_DrawChar@{UI\_Data\_ID\_DrawChar}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Data\_ID\_DrawChar@{UI\_Data\_ID\_DrawChar}}}\Hypertarget{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23adf5beab799addcba6f0c202f851ad31a}\label{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23adf5beab799addcba6f0c202f851ad31a} 
+UI\+\_\+\+Data\+\_\+\+ID\+\_\+\+Draw\+Char&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Communicate\_Data\_ID@{Communicate\_Data\_ID}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!Communicate\_Data\_ID@{Communicate\_Data\_ID}}}\Hypertarget{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23abf2f5c650ac7899519a70317a0ab0fa6}\label{referee__protocol_8h_ae84dd4eec4d60e51701acd8f3382bf23abf2f5c650ac7899519a70317a0ab0fa6} 
+Communicate\+\_\+\+Data\+\_\+\+ID&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5}\index{referee\_protocol.h@{referee\_protocol.h}!Interactive\_Data\_Length\_e@{Interactive\_Data\_Length\_e}}
+\index{Interactive\_Data\_Length\_e@{Interactive\_Data\_Length\_e}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{Interactive\_Data\_Length\_e}{Interactive\_Data\_Length\_e}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5} 
+enum \mbox{\hyperlink{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5}{Interactive\+\_\+\+Data\+\_\+\+Length\+\_\+e}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Interactive\_Data\_LEN\_Head@{Interactive\_Data\_LEN\_Head}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!Interactive\_Data\_LEN\_Head@{Interactive\_Data\_LEN\_Head}}}\Hypertarget{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5a055bd43ffa3e29d47102b4ceceb6bb75}\label{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5a055bd43ffa3e29d47102b4ceceb6bb75} 
+Interactive\+\_\+\+Data\+\_\+\+LEN\+\_\+\+Head&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Operate\_LEN\_Del@{UI\_Operate\_LEN\_Del}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Operate\_LEN\_Del@{UI\_Operate\_LEN\_Del}}}\Hypertarget{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5a9e67f191a0b9115d95197b1312252b0d}\label{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5a9e67f191a0b9115d95197b1312252b0d} 
+UI\+\_\+\+Operate\+\_\+\+LEN\+\_\+\+Del&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Operate\_LEN\_PerDraw@{UI\_Operate\_LEN\_PerDraw}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Operate\_LEN\_PerDraw@{UI\_Operate\_LEN\_PerDraw}}}\Hypertarget{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5ab91b3442ab4a9452794798a5daab5ad9}\label{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5ab91b3442ab4a9452794798a5daab5ad9} 
+UI\+\_\+\+Operate\+\_\+\+LEN\+\_\+\+Per\+Draw&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Operate\_LEN\_DrawChar@{UI\_Operate\_LEN\_DrawChar}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Operate\_LEN\_DrawChar@{UI\_Operate\_LEN\_DrawChar}}}\Hypertarget{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5a6c71ea57c8b480c62785ad387bc67235}\label{referee__protocol_8h_a995bbef0fa91b0937112c9da6f2397c5a6c71ea57c8b480c62785ad387bc67235} 
+UI\+\_\+\+Operate\+\_\+\+LEN\+\_\+\+Draw\+Char&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88af}\index{referee\_protocol.h@{referee\_protocol.h}!JudgeDataLength\_e@{JudgeDataLength\_e}}
+\index{JudgeDataLength\_e@{JudgeDataLength\_e}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{JudgeDataLength\_e}{JudgeDataLength\_e}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88af} 
+enum \mbox{\hyperlink{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88af}{Judge\+Data\+Length\+\_\+e}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_game\_state@{LEN\_game\_state}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_game\_state@{LEN\_game\_state}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afafc2ccfe11f54adade5b225b19ef852f5}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afafc2ccfe11f54adade5b225b19ef852f5} 
+LEN\+\_\+game\+\_\+state&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_game\_result@{LEN\_game\_result}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_game\_result@{LEN\_game\_result}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa80c4ad213175cb38e8f31328e4710636}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa80c4ad213175cb38e8f31328e4710636} 
+LEN\+\_\+game\+\_\+result&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_game\_robot\_HP@{LEN\_game\_robot\_HP}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_game\_robot\_HP@{LEN\_game\_robot\_HP}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa62944ed4e423f98a0f2b22cdf19009ac}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa62944ed4e423f98a0f2b22cdf19009ac} 
+LEN\+\_\+game\+\_\+robot\+\_\+\+HP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_event\_data@{LEN\_event\_data}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_event\_data@{LEN\_event\_data}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afaff969b6431a3b2a1312d9e356e0b5a17}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afaff969b6431a3b2a1312d9e356e0b5a17} 
+LEN\+\_\+event\+\_\+data&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_supply\_projectile\_action@{LEN\_supply\_projectile\_action}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_supply\_projectile\_action@{LEN\_supply\_projectile\_action}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afabe7165fd9c5cec0b8568c9689cf88060}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afabe7165fd9c5cec0b8568c9689cf88060} 
+LEN\+\_\+supply\+\_\+projectile\+\_\+action&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_game\_robot\_state@{LEN\_game\_robot\_state}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_game\_robot\_state@{LEN\_game\_robot\_state}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afafb1f141666559d05dd9c6159c4f93fb5}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afafb1f141666559d05dd9c6159c4f93fb5} 
+LEN\+\_\+game\+\_\+robot\+\_\+state&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_power\_heat\_data@{LEN\_power\_heat\_data}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_power\_heat\_data@{LEN\_power\_heat\_data}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa813850de41fb4c056fc3db50692f6f9f}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa813850de41fb4c056fc3db50692f6f9f} 
+LEN\+\_\+power\+\_\+heat\+\_\+data&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_game\_robot\_pos@{LEN\_game\_robot\_pos}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_game\_robot\_pos@{LEN\_game\_robot\_pos}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa35ca9f848ec3bb9575c3089fc29368a3}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa35ca9f848ec3bb9575c3089fc29368a3} 
+LEN\+\_\+game\+\_\+robot\+\_\+pos&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_buff\_musk@{LEN\_buff\_musk}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_buff\_musk@{LEN\_buff\_musk}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa615e0242067ba2596e9b38684f554a59}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa615e0242067ba2596e9b38684f554a59} 
+LEN\+\_\+buff\+\_\+musk&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_aerial\_robot\_energy@{LEN\_aerial\_robot\_energy}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_aerial\_robot\_energy@{LEN\_aerial\_robot\_energy}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa4de04cd8b4f92dbf7d534ad3accd1512}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa4de04cd8b4f92dbf7d534ad3accd1512} 
+LEN\+\_\+aerial\+\_\+robot\+\_\+energy&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_robot\_hurt@{LEN\_robot\_hurt}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_robot\_hurt@{LEN\_robot\_hurt}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afada547b8386c11c7a9a23f1cfa1d5dd56}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afada547b8386c11c7a9a23f1cfa1d5dd56} 
+LEN\+\_\+robot\+\_\+hurt&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_shoot\_data@{LEN\_shoot\_data}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_shoot\_data@{LEN\_shoot\_data}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afab92acba28b2ed55718a513e605d853b9}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afab92acba28b2ed55718a513e605d853b9} 
+LEN\+\_\+shoot\+\_\+data&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_receive\_data@{LEN\_receive\_data}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_receive\_data@{LEN\_receive\_data}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa0d5f47550dcb3074aba03ece0bfbe7f8}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa0d5f47550dcb3074aba03ece0bfbe7f8} 
+LEN\+\_\+receive\+\_\+data&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_custom\_controller@{LEN\_custom\_controller}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_custom\_controller@{LEN\_custom\_controller}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa3a32b353668e6596dfde19c254b62d0d}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa3a32b353668e6596dfde19c254b62d0d} 
+LEN\+\_\+custom\+\_\+controller&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_keyboard@{LEN\_keyboard}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_keyboard@{LEN\_keyboard}}}\Hypertarget{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa1c1aa022cfae0fa90db3be50085826e6}\label{referee__protocol_8h_a0a34e9aa1f3ec7834dd52bf725dc88afa1c1aa022cfae0fa90db3be50085826e6} 
+LEN\+\_\+keyboard&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82e}\index{referee\_protocol.h@{referee\_protocol.h}!JudgeFrameLength\_e@{JudgeFrameLength\_e}}
+\index{JudgeFrameLength\_e@{JudgeFrameLength\_e}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{JudgeFrameLength\_e}{JudgeFrameLength\_e}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82e} 
+enum \mbox{\hyperlink{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82e}{Judge\+Frame\+Length\+\_\+e}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_HEADER@{LEN\_HEADER}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_HEADER@{LEN\_HEADER}}}\Hypertarget{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82ea5649e5b6ebd90c709096bb6777f38b67}\label{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82ea5649e5b6ebd90c709096bb6777f38b67} 
+LEN\+\_\+\+HEADER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_CMDID@{LEN\_CMDID}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_CMDID@{LEN\_CMDID}}}\Hypertarget{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82ea7a40597c42cff298ebc840f0d5b7ce6e}\label{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82ea7a40597c42cff298ebc840f0d5b7ce6e} 
+LEN\+\_\+\+CMDID&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_TAIL@{LEN\_TAIL}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_TAIL@{LEN\_TAIL}}}\Hypertarget{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82eaf50383abfb1c790b6a5f0504a0400fd5}\label{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82eaf50383abfb1c790b6a5f0504a0400fd5} 
+LEN\+\_\+\+TAIL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{LEN\_CRC8@{LEN\_CRC8}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!LEN\_CRC8@{LEN\_CRC8}}}\Hypertarget{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82eae9fce512ea1f0f1ba97ed3102b334864}\label{referee__protocol_8h_a3ab7d46cd17fa1691f25c0c7273fe82eae9fce512ea1f0f1ba97ed3102b334864} 
+LEN\+\_\+\+CRC8&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2f}\index{referee\_protocol.h@{referee\_protocol.h}!JudgeFrameOffset\_e@{JudgeFrameOffset\_e}}
+\index{JudgeFrameOffset\_e@{JudgeFrameOffset\_e}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{JudgeFrameOffset\_e}{JudgeFrameOffset\_e}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2f} 
+enum \mbox{\hyperlink{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2f}{Judge\+Frame\+Offset\+\_\+e}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FRAME\_HEADER\_Offset@{FRAME\_HEADER\_Offset}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!FRAME\_HEADER\_Offset@{FRAME\_HEADER\_Offset}}}\Hypertarget{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2fa49bf2d738fbeb5d0d67c578935297323}\label{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2fa49bf2d738fbeb5d0d67c578935297323} 
+FRAME\+\_\+\+HEADER\+\_\+\+Offset&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CMD\_ID\_Offset@{CMD\_ID\_Offset}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!CMD\_ID\_Offset@{CMD\_ID\_Offset}}}\Hypertarget{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2fa093b37a3190dbc734a43c0fe545ec457}\label{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2fa093b37a3190dbc734a43c0fe545ec457} 
+CMD\+\_\+\+ID\+\_\+\+Offset&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{DATA\_Offset@{DATA\_Offset}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!DATA\_Offset@{DATA\_Offset}}}\Hypertarget{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2faef51b635081d087da63df3bb2558f855}\label{referee__protocol_8h_a0f3239cac1e1f98203d496f550018e2faef51b635081d087da63df3bb2558f855} 
+DATA\+\_\+\+Offset&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6b}\index{referee\_protocol.h@{referee\_protocol.h}!Robot\_ID\_e@{Robot\_ID\_e}}
+\index{Robot\_ID\_e@{Robot\_ID\_e}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{Robot\_ID\_e}{Robot\_ID\_e}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6b} 
+enum \mbox{\hyperlink{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6b}{Robot\+\_\+\+ID\+\_\+e}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_RHero@{RobotID\_RHero}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_RHero@{RobotID\_RHero}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba82bbe02f275e311e37e4b65178cdafb2}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba82bbe02f275e311e37e4b65178cdafb2} 
+Robot\+ID\+\_\+\+RHero&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_REngineer@{RobotID\_REngineer}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_REngineer@{RobotID\_REngineer}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba4e6f8d0d60fc7331e70577edc8313cdf}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba4e6f8d0d60fc7331e70577edc8313cdf} 
+Robot\+ID\+\_\+\+REngineer&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_RStandard1@{RobotID\_RStandard1}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_RStandard1@{RobotID\_RStandard1}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6baa1ab225cdb62a5d5f9aa8f70448db8d9}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6baa1ab225cdb62a5d5f9aa8f70448db8d9} 
+Robot\+ID\+\_\+\+RStandard1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_RStandard2@{RobotID\_RStandard2}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_RStandard2@{RobotID\_RStandard2}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba99e02efc96e70d442b8cd5d07bc797b1}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba99e02efc96e70d442b8cd5d07bc797b1} 
+Robot\+ID\+\_\+\+RStandard2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_RStandard3@{RobotID\_RStandard3}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_RStandard3@{RobotID\_RStandard3}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba14a504bf213ad1239d5b20dddceac883}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba14a504bf213ad1239d5b20dddceac883} 
+Robot\+ID\+\_\+\+RStandard3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_RAerial@{RobotID\_RAerial}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_RAerial@{RobotID\_RAerial}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6baabeb8b982f1f3f480c621a0bd7be95c1}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6baabeb8b982f1f3f480c621a0bd7be95c1} 
+Robot\+ID\+\_\+\+RAerial&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_RSentry@{RobotID\_RSentry}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_RSentry@{RobotID\_RSentry}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba64c86ff312235257a3aba3a9c42a4856}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba64c86ff312235257a3aba3a9c42a4856} 
+Robot\+ID\+\_\+\+RSentry&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_RRadar@{RobotID\_RRadar}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_RRadar@{RobotID\_RRadar}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba7572faabaf54c6d1ded5028222512c62}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba7572faabaf54c6d1ded5028222512c62} 
+Robot\+ID\+\_\+\+RRadar&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_BHero@{RobotID\_BHero}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_BHero@{RobotID\_BHero}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba1700750589497717d2c1dd64baa0368a}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba1700750589497717d2c1dd64baa0368a} 
+Robot\+ID\+\_\+\+BHero&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_BEngineer@{RobotID\_BEngineer}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_BEngineer@{RobotID\_BEngineer}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6bad9a81dcebfefb4d801acafcefdb96c47}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6bad9a81dcebfefb4d801acafcefdb96c47} 
+Robot\+ID\+\_\+\+BEngineer&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_BStandard1@{RobotID\_BStandard1}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_BStandard1@{RobotID\_BStandard1}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba9f6b38e9d695aaf907179689c35ad3fa}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba9f6b38e9d695aaf907179689c35ad3fa} 
+Robot\+ID\+\_\+\+BStandard1&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_BStandard2@{RobotID\_BStandard2}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_BStandard2@{RobotID\_BStandard2}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6bae051219fe239e0c1e9bc5a913b847893}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6bae051219fe239e0c1e9bc5a913b847893} 
+Robot\+ID\+\_\+\+BStandard2&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_BStandard3@{RobotID\_BStandard3}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_BStandard3@{RobotID\_BStandard3}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba9bce8ac23314bf39eca99fdf4bfdd7be}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba9bce8ac23314bf39eca99fdf4bfdd7be} 
+Robot\+ID\+\_\+\+BStandard3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_BAerial@{RobotID\_BAerial}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_BAerial@{RobotID\_BAerial}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba2f473efa0830ca91aeb07a39c5908fac}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba2f473efa0830ca91aeb07a39c5908fac} 
+Robot\+ID\+\_\+\+BAerial&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_BSentry@{RobotID\_BSentry}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_BSentry@{RobotID\_BSentry}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba0962466912e4941b7cd07b6fb701430a}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba0962466912e4941b7cd07b6fb701430a} 
+Robot\+ID\+\_\+\+BSentry&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RobotID\_BRadar@{RobotID\_BRadar}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!RobotID\_BRadar@{RobotID\_BRadar}}}\Hypertarget{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba1bdd17f76e80c8d3efd13f162ea9857a}\label{referee__protocol_8h_a387f365443d2f9be5b00a7325876eb6ba1bdd17f76e80c8d3efd13f162ea9857a} 
+Robot\+ID\+\_\+\+BRadar&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Delete\_Operate\_e@{UI\_Delete\_Operate\_e}}
+\index{UI\_Delete\_Operate\_e@{UI\_Delete\_Operate\_e}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{UI\_Delete\_Operate\_e}{UI\_Delete\_Operate\_e}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62} 
+enum \mbox{\hyperlink{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62}{UI\+\_\+\+Delete\+\_\+\+Operate\+\_\+e}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Data\_Del\_NoOperate@{UI\_Data\_Del\_NoOperate}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Data\_Del\_NoOperate@{UI\_Data\_Del\_NoOperate}}}\Hypertarget{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62a2ef334c1307a84f1a257e8716fd46486}\label{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62a2ef334c1307a84f1a257e8716fd46486} 
+UI\+\_\+\+Data\+\_\+\+Del\+\_\+\+No\+Operate&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Data\_Del\_Layer@{UI\_Data\_Del\_Layer}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Data\_Del\_Layer@{UI\_Data\_Del\_Layer}}}\Hypertarget{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62a260b8c69a2f5514f17a5c4925e09c79a}\label{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62a260b8c69a2f5514f17a5c4925e09c79a} 
+UI\+\_\+\+Data\+\_\+\+Del\+\_\+\+Layer&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Data\_Del\_ALL@{UI\_Data\_Del\_ALL}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Data\_Del\_ALL@{UI\_Data\_Del\_ALL}}}\Hypertarget{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62ac8003a61d459e5959920e14d435c361a}\label{referee__protocol_8h_ae6ed5ce3862a8dff49d6f45a22a90f62ac8003a61d459e5959920e14d435c361a} 
+UI\+\_\+\+Data\+\_\+\+Del\+\_\+\+ALL&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1e}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Graph\_Color\_e@{UI\_Graph\_Color\_e}}
+\index{UI\_Graph\_Color\_e@{UI\_Graph\_Color\_e}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{UI\_Graph\_Color\_e}{UI\_Graph\_Color\_e}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1e} 
+enum \mbox{\hyperlink{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1e}{UI\+\_\+\+Graph\+\_\+\+Color\+\_\+e}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Color\_Main@{UI\_Color\_Main}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Color\_Main@{UI\_Color\_Main}}}\Hypertarget{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1eacb2d4c41e008d10d8b729d0ea4898bff}\label{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1eacb2d4c41e008d10d8b729d0ea4898bff} 
+UI\+\_\+\+Color\+\_\+\+Main&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Color\_Yellow@{UI\_Color\_Yellow}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Color\_Yellow@{UI\_Color\_Yellow}}}\Hypertarget{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea733caae36ca5dca69f5d9de536f05dfb}\label{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea733caae36ca5dca69f5d9de536f05dfb} 
+UI\+\_\+\+Color\+\_\+\+Yellow&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Color\_Green@{UI\_Color\_Green}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Color\_Green@{UI\_Color\_Green}}}\Hypertarget{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1eaf3b0d2fa53b3370dd9bb4fbc82b6e118}\label{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1eaf3b0d2fa53b3370dd9bb4fbc82b6e118} 
+UI\+\_\+\+Color\+\_\+\+Green&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Color\_Orange@{UI\_Color\_Orange}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Color\_Orange@{UI\_Color\_Orange}}}\Hypertarget{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea04bbd5aea17aa42ab7848874e2343e56}\label{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea04bbd5aea17aa42ab7848874e2343e56} 
+UI\+\_\+\+Color\+\_\+\+Orange&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Color\_Purplish\_red@{UI\_Color\_Purplish\_red}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Color\_Purplish\_red@{UI\_Color\_Purplish\_red}}}\Hypertarget{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea286386dc8f5b9167d2f5201b022afd8e}\label{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea286386dc8f5b9167d2f5201b022afd8e} 
+UI\+\_\+\+Color\+\_\+\+Purplish\+\_\+red&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Color\_Pink@{UI\_Color\_Pink}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Color\_Pink@{UI\_Color\_Pink}}}\Hypertarget{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea1a941108d08631fd7590475b08cabce6}\label{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea1a941108d08631fd7590475b08cabce6} 
+UI\+\_\+\+Color\+\_\+\+Pink&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Color\_Cyan@{UI\_Color\_Cyan}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Color\_Cyan@{UI\_Color\_Cyan}}}\Hypertarget{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1eabff6406e275831f946444ccbd033b0b1}\label{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1eabff6406e275831f946444ccbd033b0b1} 
+UI\+\_\+\+Color\+\_\+\+Cyan&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Color\_Black@{UI\_Color\_Black}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Color\_Black@{UI\_Color\_Black}}}\Hypertarget{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea5633b7451218144762bace49a4dd78d3}\label{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ea5633b7451218144762bace49a4dd78d3} 
+UI\+\_\+\+Color\+\_\+\+Black&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Color\_White@{UI\_Color\_White}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Color\_White@{UI\_Color\_White}}}\Hypertarget{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ead111a6fa3980914fe95648cd9018e30c}\label{referee__protocol_8h_a821be2ee23089ff8960f5f1e96ef2a1ead111a6fa3980914fe95648cd9018e30c} 
+UI\+\_\+\+Color\+\_\+\+White&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Graph\_Operate\_e@{UI\_Graph\_Operate\_e}}
+\index{UI\_Graph\_Operate\_e@{UI\_Graph\_Operate\_e}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{UI\_Graph\_Operate\_e}{UI\_Graph\_Operate\_e}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5} 
+enum \mbox{\hyperlink{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5}{UI\+\_\+\+Graph\+\_\+\+Operate\+\_\+e}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Graph\_ADD@{UI\_Graph\_ADD}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Graph\_ADD@{UI\_Graph\_ADD}}}\Hypertarget{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5a0a6e8b9a6abbba0af8a716f85e1433f5}\label{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5a0a6e8b9a6abbba0af8a716f85e1433f5} 
+UI\+\_\+\+Graph\+\_\+\+ADD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Graph\_Change@{UI\_Graph\_Change}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Graph\_Change@{UI\_Graph\_Change}}}\Hypertarget{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5aff1d14377dea689b2b291a3b357c655e}\label{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5aff1d14377dea689b2b291a3b357c655e} 
+UI\+\_\+\+Graph\+\_\+\+Change&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Graph\_Del@{UI\_Graph\_Del}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Graph\_Del@{UI\_Graph\_Del}}}\Hypertarget{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5a10a88ba15e7fb1df1344653b11634337}\label{referee__protocol_8h_a6fbf82e3a08b8b56e6bd8c688ee384e5a10a88ba15e7fb1df1344653b11634337} 
+UI\+\_\+\+Graph\+\_\+\+Del&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Graph\_Type\_e@{UI\_Graph\_Type\_e}}
+\index{UI\_Graph\_Type\_e@{UI\_Graph\_Type\_e}!referee\_protocol.h@{referee\_protocol.h}}
+\doxysubsubsection{\texorpdfstring{UI\_Graph\_Type\_e}{UI\_Graph\_Type\_e}}
+{\footnotesize\ttfamily \label{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08} 
+enum \mbox{\hyperlink{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08}{UI\+\_\+\+Graph\+\_\+\+Type\+\_\+e}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Graph\_Line@{UI\_Graph\_Line}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Graph\_Line@{UI\_Graph\_Line}}}\Hypertarget{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a7783eb04a06d8cefa48342340f2a0ab0}\label{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a7783eb04a06d8cefa48342340f2a0ab0} 
+UI\+\_\+\+Graph\+\_\+\+Line&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Graph\_Rectangle@{UI\_Graph\_Rectangle}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Graph\_Rectangle@{UI\_Graph\_Rectangle}}}\Hypertarget{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a81b21ed08fbff53190d07b3a0d38cef5}\label{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a81b21ed08fbff53190d07b3a0d38cef5} 
+UI\+\_\+\+Graph\+\_\+\+Rectangle&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Graph\_Circle@{UI\_Graph\_Circle}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Graph\_Circle@{UI\_Graph\_Circle}}}\Hypertarget{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08aea6a4b3fecabd3d40c089673514659ab}\label{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08aea6a4b3fecabd3d40c089673514659ab} 
+UI\+\_\+\+Graph\+\_\+\+Circle&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Graph\_Ellipse@{UI\_Graph\_Ellipse}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Graph\_Ellipse@{UI\_Graph\_Ellipse}}}\Hypertarget{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a6be1051507322d8341aba99418a3922b}\label{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a6be1051507322d8341aba99418a3922b} 
+UI\+\_\+\+Graph\+\_\+\+Ellipse&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Graph\_Arc@{UI\_Graph\_Arc}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Graph\_Arc@{UI\_Graph\_Arc}}}\Hypertarget{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08aca8ad5c27793151298711a93a21d9c74}\label{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08aca8ad5c27793151298711a93a21d9c74} 
+UI\+\_\+\+Graph\+\_\+\+Arc&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Graph\_Float@{UI\_Graph\_Float}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Graph\_Float@{UI\_Graph\_Float}}}\Hypertarget{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08ad66a5a963d3b16eb9519424671b223db}\label{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08ad66a5a963d3b16eb9519424671b223db} 
+UI\+\_\+\+Graph\+\_\+\+Float&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Graph\_Int@{UI\_Graph\_Int}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Graph\_Int@{UI\_Graph\_Int}}}\Hypertarget{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08acb0af0edcaa555906fc5cde33fa3047b}\label{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08acb0af0edcaa555906fc5cde33fa3047b} 
+UI\+\_\+\+Graph\+\_\+\+Int&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UI\_Graph\_Char@{UI\_Graph\_Char}!referee\_protocol.h@{referee\_protocol.h}}\index{referee\_protocol.h@{referee\_protocol.h}!UI\_Graph\_Char@{UI\_Graph\_Char}}}\Hypertarget{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a1b69e466aae17678c58f390b0cc5e3e9}\label{referee__protocol_8h_ad2e98bc0eced878e29164187f1e64c08a1b69e466aae17678c58f390b0cc5e3e9} 
+UI\+\_\+\+Graph\+\_\+\+Char&\\
+\hline
+
+\end{DoxyEnumFields}

@@ -1,0 +1,182 @@
+\chapter{小电脑交互系统使用文档}
+\hypertarget{md_source_2module_2computer_2computer__sys}{}\label{md_source_2module_2computer_2computer__sys}\index{小电脑交互系统使用文档@{小电脑交互系统使用文档}}
+\label{md_source_2module_2computer_2computer__sys_autotoc_md22}%
+\Hypertarget{md_source_2module_2computer_2computer__sys_autotoc_md22}%
+\hypertarget{md_source_2module_2computer_2computer__sys_autotoc_md23}{}\doxysection{\texorpdfstring{概述}{概述}}\label{md_source_2module_2computer_2computer__sys_autotoc_md23}
+本系统实现开发板与小电脑间的数据交互，主要包含视觉数据处理、弹道解算、雷达数据接收和机器人状态反馈等功能。代码基于\+HAL库开发，支持多模式配置。
+
+\DoxyHorRuler{0}
+\hypertarget{md_source_2module_2computer_2computer__sys_autotoc_md25}{}\doxysection{\texorpdfstring{使用示例}{使用示例}}\label{md_source_2module_2computer_2computer__sys_autotoc_md25}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{初始化流程}
+\DoxyCodeLine{\mbox{\hyperlink{struct_send_packet_all_robot_h_p__t}{SendPacketAllRobotHP\_t}}\ hp;}
+\DoxyCodeLine{\mbox{\hyperlink{struct_send_packet_game_status__t}{SendPacketGameStatus\_t}}\ sendGameStatus;\ \ \ \textcolor{comment}{//\ 比赛状态数据包}}
+\DoxyCodeLine{\mbox{\hyperlink{struct_send_packet_robot_status__t}{SendPacketRobotStatus\_t}}\ sendRobotStatus;\ \textcolor{comment}{//\ 机器人状态数据包}}
+\DoxyCodeLine{\mbox{\hyperlink{computer__sys_8c_a9117542636e67ff3a7e031e10d1687c9}{computer\_uart\_init}}(\&huart3);\ \ \ \ \textcolor{comment}{//\ 初始化串口}}
+\DoxyCodeLine{\mbox{\hyperlink{send__robot__state_8c_a88e496cac10a79c7a79df6ff4c6dd4a4}{set\_robot\_angle}}(\&naw\_yaw,\ \&naw\_pitch);\ \textcolor{comment}{//\ 绑定角度}}
+\DoxyCodeLine{\mbox{\hyperlink{send__robot__state_8c_a82cbabb02ad140dbdb43581dcf538c7b}{set\_robot\_id}}(\textcolor{keywordtype}{id});\ \ \ \textcolor{comment}{//\ 设置机器人ID\ 依据裁判系统主要区分蓝黄}}
+\DoxyCodeLine{}
+\DoxyCodeLine{主循环处理}
+\DoxyCodeLine{\textcolor{keywordflow}{while}(1)\ \{}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{computer__sys_8c_a4bb630ab241372955b981526965c6f78}{computer\_receive\_solve}}();\ \ \ \ \ \ \ \textcolor{comment}{//\ 接收数据处理}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{vision__solution_8h_a2123644d01e0d4dbd1a1ce113508d0a4}{vision\_solution}}(\&target\_yaw,\ \&target\_pitch);\ \ \textcolor{comment}{//\ 弹道解算}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{send__robot__state_8c_af523661dfa1f732b5efb3aa36d5fb05a}{send\_robot\_state}}();\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 状态反馈}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ hp.red\_1\_robot\_hp\ =\ get\_red\_1\_hp();\ \textcolor{comment}{//\ 获取机器人血量(这个你们具体看裁判系统那边怎么写诸如子类的填满)}}
+\DoxyCodeLine{\ \ ...\textcolor{comment}{//\ 其他机器人血量}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{radar_tool_8c_a5de457b45d63ace4654ebb51135c180f}{sendAllRobotHPData}}(\&hp);\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 发送血量数据包}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ sendGameStatus.\mbox{\hyperlink{struct_send_packet_game_status__t_ac7c29bb602a6df3c4219919cc4cff551}{game\_progress}}\ =\ get\_game\_progress();\ \textcolor{comment}{//\ 获取比赛状态(这个也是)}}
+\DoxyCodeLine{\ \ ...\textcolor{comment}{//\ 其他比赛状态}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{radar_tool_8c_ad970dbdaac0eb52709ffebc0661aedb3}{sendGameStatusData}}(sendGameStatus);\ \textcolor{comment}{//\ 发送比赛状态数据包}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ sendRobotStatus.\mbox{\hyperlink{struct_send_packet_robot_status__t_a524267edfe3d399c8a91ca69fdcd7c42}{robot\_id}}\ =\ get\_robot\_id();\ \textcolor{comment}{//\ 获取机器人ID}}
+\DoxyCodeLine{\ \ ...\textcolor{comment}{//\ 其他机器人状态}}
+\DoxyCodeLine{\ \ \mbox{\hyperlink{radar_tool_8c_a6c0552a9ff98e1f3f066d6ab7463b81a}{sendRobotStatusData}}(sendRobotStatus);\ \textcolor{comment}{//\ 发送机器人状态数据包}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{vision__receive_8c_a67301d1ae0220d759837c8109c97fcb1}{ReceivedPacketVision}}.id\ !=\ what\_I\_want)\ \{\textcolor{comment}{//\ 判断是否捕获指定机器人的坐标}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{send__robot__state_8c_a9efdc6b03b03346b91735caa62ff151c}{change\_robot\_target}}();\textcolor{comment}{//尝试换一个目标（不一定成功，因为可能只看到一个机器人）}}
+\DoxyCodeLine{\ \ \}}
+\DoxyCodeLine{\ \ vTaskDelay(10);}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{相关参数在其他区域的调用方法：}
+\DoxyCodeLine{\textcolor{comment}{/*\ 视觉数据获取宏组\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ get\_vision\_id()\ (ReceivedPacketVision.id)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ is\_tracking()\ (ReceivedPacketVision.tracking)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*\ 雷达/云台目标运动状态获取宏组\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ get\_target\_x()\ (radarTwist.linear\_x)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ get\_target\_x()\ (radarTwist.linear\_x)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ get\_target\_z()\ (radarTwist.angular\_z)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*\ 雷达/云台自身角速度获取宏组\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ get\_angular\_x()\ (radarTwist.angular\_x)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ get\_angular\_y()\ (radarTwist.angular\_y)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ get\_angular\_z()\ (radarTwist.angular\_z)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{/*\ 机器人控制状态获取宏组\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ get\_gimbal\_stop()\ (robotControl.stop\_gimbal\_scan)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ get\_chassis\_spin()\ (robotControl.chassis\_spin\_vel)}}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_source_2module_2computer_2computer__sys_autotoc_md27}{}\doxysection{\texorpdfstring{模块说明}{模块说明}}\label{md_source_2module_2computer_2computer__sys_autotoc_md27}
+\hypertarget{md_source_2module_2computer_2computer__sys_autotoc_md28}{}\doxysubsection{\texorpdfstring{1. 数据接收模块}{1. 数据接收模块}}\label{md_source_2module_2computer_2computer__sys_autotoc_md28}
+文件：{\ttfamily computer\+\_\+receive.\+c}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ computer\_receive\_init(UART\_HandleTypeDef\ *huart);}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{computer__sys_8c_a4bb630ab241372955b981526965c6f78}{computer\_receive\_solve}}();}
+
+\end{DoxyCode}
+
+
+功能： 初始化串口接收缓冲区（\+COMPUTER\+\_\+\+BUFFER\+\_\+\+SIZE=100） 接收数据处理流程： 检查新数据到达 调用视觉解算vision\+\_\+receive\+\_\+solve() 雷达数据接收receive\+Radar\+Data()（需开启radar\+\_\+\+MOD）\hypertarget{md_source_2module_2computer_2computer__sys_autotoc_md29}{}\doxysubsection{\texorpdfstring{2. 弹道解算模块}{2. 弹道解算模块}}\label{md_source_2module_2computer_2computer__sys_autotoc_md29}
+文件：{\ttfamily \doxylink{vision__solution_8c}{vision\+\_\+solution.\+c}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ 弹道解算模式选择}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#if\ BALLISTIC\_SOLVER\ ==\ 1\ \ }\textcolor{comment}{//\ 二维弹道模型}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#elif\ BALLISTIC\_SOLVER\ ==\ 2\ }\textcolor{comment}{//\ 三维弹道模型}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
+
+
+核心功能： 装甲板运动预测 空气阻力补偿 迭代角度优化 弹道延迟补偿\hypertarget{md_source_2module_2computer_2computer__sys_autotoc_md30}{}\doxysubsection{\texorpdfstring{3. 状态发送模块}{3. 状态发送模块}}\label{md_source_2module_2computer_2computer__sys_autotoc_md30}
+文件：{\ttfamily \doxylink{send__robot__state_8c}{send\+\_\+robot\+\_\+state.\+c}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{send__robot__state_8c_af6aeb20f4987ae6418e20186c0569f18}{robot\_state\_msg\_init}}(UART\_HandleTypeDef\ *huart);}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{send__robot__state_8c_af523661dfa1f732b5efb3aa36d5fb05a}{send\_robot\_state}}();}
+
+\end{DoxyCode}
+
+
+功能： 初始化状态发送串口 发送机器人状态数据包\hypertarget{md_source_2module_2computer_2computer__sys_autotoc_md31}{}\doxysubsection{\texorpdfstring{4. 雷达数据接收模块}{4. 雷达数据接收模块}}\label{md_source_2module_2computer_2computer__sys_autotoc_md31}
+文件：{\ttfamily receive\+Radar\+Data.\+c}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void}\ \mbox{\hyperlink{radar_tool_8c_afb32475002e03848c95added742c8d9e}{receiveRadarData}}();}
+
+\end{DoxyCode}
+
+
+功能： 数据包格式：
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\ \ uint8\_t\ header;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0x5A}}
+\DoxyCodeLine{\ \ uint8\_t\ detect\_color;\ \ \textcolor{comment}{//\ 颜色识别}}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ yaw;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 当前偏航角}}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ aim\_x;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 目标X坐标}}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ ...\ 其他字段}}
+\DoxyCodeLine{\}\ \mbox{\hyperlink{struct_send_packet_vision__t}{SendPacketVision\_t}};}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{md_source_2module_2computer_2computer__sys_autotoc_md33}{}\doxysection{\texorpdfstring{配置指南}{配置指南}}\label{md_source_2module_2computer_2computer__sys_autotoc_md33}
+\doxylink{config_8h}{config.\+h} 关键配置项
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ radar\_MOD\ 1\ \ \ \ \ \ \ }\textcolor{comment}{//\ 雷达模块开关}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ BALLISTIC\_SOLVER\ 1}\textcolor{comment}{//\ 弹道解算器版本}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ BULLET\_TYPE\ 0\ \ \ \ \ }\textcolor{comment}{//\ 子弹类型(0-\/17mm/1-\/42mm)}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ BULLET\_SPEED\ 17\ \ \ }\textcolor{comment}{//\ 初速度(m/s)}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ TOLERANCE\ 0.005f\ \ }\textcolor{comment}{//\ 解算精度阈值(5mm)}}
+\DoxyCodeLine{等...}
+
+\end{DoxyCode}
+\hypertarget{md_source_2module_2computer_2computer__sys_autotoc_md34}{}\doxysection{\texorpdfstring{数据结构说明}{数据结构说明}}\label{md_source_2module_2computer_2computer__sys_autotoc_md34}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{视觉数据包结构}
+\DoxyCodeLine{c}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\ \ uint8\_t\ header;\ \ \ \ \ \textcolor{comment}{//\ 0xA5}}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{bool}\ tracking;\ \ \ \ \ \ \textcolor{comment}{//\ 目标锁定状态}}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ x,\ y,\ z;\ \ \ \ \ \ \textcolor{comment}{//\ 目标坐标}}
+\DoxyCodeLine{\ \ \textcolor{keywordtype}{float}\ vx,\ vy,\ vz;\ \ \ \textcolor{comment}{//\ 目标速度}}
+\DoxyCodeLine{\ \ \textcolor{comment}{//\ ...\ 其他字段}}
+\DoxyCodeLine{\}\ \mbox{\hyperlink{struct_received_packet_vision__t}{ReceivedPacketVision\_t}};}
+
+\end{DoxyCode}
+\hypertarget{md_source_2module_2computer_2computer__sys_autotoc_md35}{}\doxysection{\texorpdfstring{注意事项}{注意事项}}\label{md_source_2module_2computer_2computer__sys_autotoc_md35}
+CRC校验：所有数据包自动添加\+CRC16校验 实时性要求：主循环周期需≤10ms 坐标系约定： X轴：前进方向? Y轴：左侧方向? Z轴：垂直向上 调试支持：可通过aim\+\_\+x\+\_\+n等归一化坐标监控解算结果 版本兼容性
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 组件   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 版本   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 特性    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 组件   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 版本   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 特性    }\\\cline{1-3}
+\endhead
+\PBS\centering 弹道解算   &\PBS\centering v1.\+0   &\PBS\centering 二维模型/欧拉法    \\\cline{1-3}
+\PBS\centering 弹道解算   &\PBS\centering v2.\+0   &\PBS\centering 三维模型/改进迭代算法    \\\cline{1-3}
+\PBS\centering 雷达模块   &\PBS\centering v1.\+0   &\PBS\centering 支持毫米波雷达数据接入   \\\cline{1-3}
+\end{longtabu}

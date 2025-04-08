@@ -1,0 +1,154 @@
+\doxysection{source/module/referee\+Sys/referee\+\_\+api.c 文件参考}
+\hypertarget{referee__api_8c}{}\label{referee__api_8c}\index{source/module/refereeSys/referee\_api.c@{source/module/refereeSys/referee\_api.c}}
+{\ttfamily \#include "{}referee\+\_\+api.\+h"{}}\newline
+referee\+\_\+api.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{referee__api_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{referee__api_8c_ad699279a6acba86c8f04e05e0dbb442c}{referee\+\_\+init}} (UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}huart)
+\begin{DoxyCompactList}\small\item\em 初始化裁判模块的\+UART接收配置 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{referee__api_8c_ace5aafee38a85f0755a3cb0bab1f7308}{ctrller\+\_\+init}} (UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}huart)
+\begin{DoxyCompactList}\small\item\em 初始化控制器模块的\+UART接收配置 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{referee__api_8c_a9d96079c6c4156132361228e84d214ea}{Judge\+Read\+Data}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buff)
+\begin{DoxyCompactList}\small\item\em 解析裁判数据包，处理帧头校验和数据分发 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{referee__api_8c_abe2a73fa3598a227339c0f0341f43650}{Ctrller\+Read\+Data}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buff)
+\begin{DoxyCompactList}\small\item\em 解析控制器数据包，处理帧头校验和数据分发 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structreferee__info__t}{referee\+\_\+info\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{referee__api_8c_a2d2038fef235be5aefdb58e8184a322c}{get\+\_\+referee\+\_\+msg}} (void)
+\begin{DoxyCompactList}\small\item\em 获取解析后的裁判信息数据 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structcustom__controller__info__t}{custom\+\_\+controller\+\_\+info\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{referee__api_8c_a44afc451c49110e093c708e1c5f67887}{get\+\_\+custom\+\_\+controller\+\_\+msg}} (void)
+\begin{DoxyCompactList}\small\item\em 获取解析后的自定义控制器信息数据 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{referee__api_8c_a1d736a70557ee9ae3d5170790fff1a92}{referee\+\_\+data\+\_\+pack\+\_\+handle}} (uint8\+\_\+t sof, uint16\+\_\+t cmd\+\_\+id, uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+\_\+data, uint16\+\_\+t len)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{referee__api_8c_a3f47451edd2274525a52e40f4e26c399}{seq}} = 0
+\begin{DoxyCompactList}\small\item\em 将数据打包并通过\+UART发送到底层设备 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{referee__api_8c_ace5aafee38a85f0755a3cb0bab1f7308}\index{referee\_api.c@{referee\_api.c}!ctrller\_init@{ctrller\_init}}
+\index{ctrller\_init@{ctrller\_init}!referee\_api.c@{referee\_api.c}}
+\doxysubsubsection{\texorpdfstring{ctrller\_init()}{ctrller\_init()}}
+{\footnotesize\ttfamily \label{referee__api_8c_ace5aafee38a85f0755a3cb0bab1f7308} 
+void ctrller\+\_\+init (\begin{DoxyParamCaption}\item[{UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{huart}{}\end{DoxyParamCaption})}
+
+
+
+初始化控制器模块的\+UART接收配置 
+
+
+\begin{DoxyParams}{参数}
+{\em huart} & 指向\+UART句柄的指针 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{referee__api_8c_abe2a73fa3598a227339c0f0341f43650}\index{referee\_api.c@{referee\_api.c}!CtrllerReadData@{CtrllerReadData}}
+\index{CtrllerReadData@{CtrllerReadData}!referee\_api.c@{referee\_api.c}}
+\doxysubsubsection{\texorpdfstring{CtrllerReadData()}{CtrllerReadData()}}
+{\footnotesize\ttfamily \label{referee__api_8c_abe2a73fa3598a227339c0f0341f43650} 
+void Ctrller\+Read\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buff}{}\end{DoxyParamCaption})}
+
+
+
+解析控制器数据包，处理帧头校验和数据分发 
+
+
+\begin{DoxyParams}{参数}
+{\em buff} & 输入的数据缓冲区指针 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{referee__api_8c_a44afc451c49110e093c708e1c5f67887}\index{referee\_api.c@{referee\_api.c}!get\_custom\_controller\_msg@{get\_custom\_controller\_msg}}
+\index{get\_custom\_controller\_msg@{get\_custom\_controller\_msg}!referee\_api.c@{referee\_api.c}}
+\doxysubsubsection{\texorpdfstring{get\_custom\_controller\_msg()}{get\_custom\_controller\_msg()}}
+{\footnotesize\ttfamily \label{referee__api_8c_a44afc451c49110e093c708e1c5f67887} 
+\mbox{\hyperlink{structcustom__controller__info__t}{custom\+\_\+controller\+\_\+info\+\_\+t}} \texorpdfstring{$\ast$}{*} get\+\_\+custom\+\_\+controller\+\_\+msg (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+获取解析后的自定义控制器信息数据 
+
+\begin{DoxyReturn}{返回}
+当前自定义控制器数据结构体 
+\end{DoxyReturn}
+\Hypertarget{referee__api_8c_a2d2038fef235be5aefdb58e8184a322c}\index{referee\_api.c@{referee\_api.c}!get\_referee\_msg@{get\_referee\_msg}}
+\index{get\_referee\_msg@{get\_referee\_msg}!referee\_api.c@{referee\_api.c}}
+\doxysubsubsection{\texorpdfstring{get\_referee\_msg()}{get\_referee\_msg()}}
+{\footnotesize\ttfamily \label{referee__api_8c_a2d2038fef235be5aefdb58e8184a322c} 
+\mbox{\hyperlink{structreferee__info__t}{referee\+\_\+info\+\_\+t}} \texorpdfstring{$\ast$}{*} get\+\_\+referee\+\_\+msg (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+获取解析后的裁判信息数据 
+
+\begin{DoxyReturn}{返回}
+当前裁判数据结构体 
+\end{DoxyReturn}
+\Hypertarget{referee__api_8c_a9d96079c6c4156132361228e84d214ea}\index{referee\_api.c@{referee\_api.c}!JudgeReadData@{JudgeReadData}}
+\index{JudgeReadData@{JudgeReadData}!referee\_api.c@{referee\_api.c}}
+\doxysubsubsection{\texorpdfstring{JudgeReadData()}{JudgeReadData()}}
+{\footnotesize\ttfamily \label{referee__api_8c_a9d96079c6c4156132361228e84d214ea} 
+void Judge\+Read\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buff}{}\end{DoxyParamCaption})}
+
+
+
+解析裁判数据包，处理帧头校验和数据分发 
+
+
+\begin{DoxyParams}{参数}
+{\em buff} & 输入的数据缓冲区指针 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{referee__api_8c_a1d736a70557ee9ae3d5170790fff1a92}\index{referee\_api.c@{referee\_api.c}!referee\_data\_pack\_handle@{referee\_data\_pack\_handle}}
+\index{referee\_data\_pack\_handle@{referee\_data\_pack\_handle}!referee\_api.c@{referee\_api.c}}
+\doxysubsubsection{\texorpdfstring{referee\_data\_pack\_handle()}{referee\_data\_pack\_handle()}}
+{\footnotesize\ttfamily \label{referee__api_8c_a1d736a70557ee9ae3d5170790fff1a92} 
+void referee\+\_\+data\+\_\+pack\+\_\+handle (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sof}{, }\item[{uint16\+\_\+t}]{cmd\+\_\+id}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+\_\+data}{, }\item[{uint16\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+
+\Hypertarget{referee__api_8c_ad699279a6acba86c8f04e05e0dbb442c}\index{referee\_api.c@{referee\_api.c}!referee\_init@{referee\_init}}
+\index{referee\_init@{referee\_init}!referee\_api.c@{referee\_api.c}}
+\doxysubsubsection{\texorpdfstring{referee\_init()}{referee\_init()}}
+{\footnotesize\ttfamily \label{referee__api_8c_ad699279a6acba86c8f04e05e0dbb442c} 
+void referee\+\_\+init (\begin{DoxyParamCaption}\item[{UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{huart}{}\end{DoxyParamCaption})}
+
+
+
+初始化裁判模块的\+UART接收配置 
+
+
+\begin{DoxyParams}{参数}
+{\em huart} & 指向\+UART句柄的指针 \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{变量说明}
+\Hypertarget{referee__api_8c_a3f47451edd2274525a52e40f4e26c399}\index{referee\_api.c@{referee\_api.c}!seq@{seq}}
+\index{seq@{seq}!referee\_api.c@{referee\_api.c}}
+\doxysubsubsection{\texorpdfstring{seq}{seq}}
+{\footnotesize\ttfamily \label{referee__api_8c_a3f47451edd2274525a52e40f4e26c399} 
+uint8\+\_\+t seq = 0}
+
+
+
+将数据打包并通过\+UART发送到底层设备 
+
+
+\begin{DoxyParams}{参数}
+{\em sof} & 帧头标识符 \\
+\hline
+{\em cmd\+\_\+id} & 数据命令\+ID \\
+\hline
+{\em p\+\_\+data} & 待发送数据的指针 \\
+\hline
+{\em len} & 数据长度 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+uint8\+\_\+t 无意义返回值（函数未使用返回值） 
+\end{DoxyReturn}

@@ -1,0 +1,46 @@
+\doxysection{super\+\_\+str.\+h}
+\hypertarget{super__str_8h_source}{}\label{super__str_8h_source}\index{source/module/superCap/XidiNewise/super\_str.h@{source/module/superCap/XidiNewise/super\_str.h}}
+\mbox{\hyperlink{super__str_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_SUPER\_STR\_H\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_SUPER\_STR\_H\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}stdint.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{can__struct_8h}{can\_struct.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}stdbool.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{super__str_8h_a2c0b4b78b8462636866c730998a54c6ba834a463e0983e0115b16c3dbb59f974f}{Super\_C\_Tsg\_ID}}\ =\ 0x210,}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{super__str_8h_a2c0b4b78b8462636866c730998a54c6ba89f1c818c51e4fa8fcf6f33c17a22aa7}{Super\_C\_Msg\_ID}}\ =\ 0x200,}
+\DoxyCodeLine{00012\ \}\ \mbox{\hyperlink{super__str_8h_a2c0b4b78b8462636866c730998a54c6b}{can\_msg\_id\_e}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_super___c___msg_a5a2ba1712c556142fbfd1de15e87a081}{Voilt\_In}};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_super___c___msg_a44f55019d2538972036d7f79bbf38992}{Voilt\_C}};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_super___c___msg_a60b1b80b9b87451fdc6d3df839d774f2}{Current\_In}};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_super___c___msg_a40e1631f3a82c2ea5f081186d64b979e}{Target\_power}};}
+\DoxyCodeLine{00020\ \}\ \mbox{\hyperlink{struct_super___c___msg}{Super\_C\_Msg}};}
+\DoxyCodeLine{00021\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{structcan__msg__t}{can\_msg\_t}}\ \mbox{\hyperlink{struct_super___t_r__t_ade2412e5386f919a270b610150afbeba}{super\_can\_send}};\ \ \ \ \textcolor{comment}{//\ 发送的\ CAN\ 消息}}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{structcan__msg__t}{can\_msg\_t}}\ \mbox{\hyperlink{struct_super___t_r__t_acb8aa6ae062adfef7aa597bf224dfd5c}{super\_can\_receive}};\ \textcolor{comment}{//\ 接收到的\ CAN\ 消息}}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{struct_super___c___msg}{Super\_C\_Msg}}\ \mbox{\hyperlink{struct_super___t_r__t_a634b223da93c8a5115e16b70eb7550a1}{super\_can\_solve}};\ \textcolor{comment}{//\ 解析后的\ CAN\ 消息}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \}\ \mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{super__str_8h_a44ef9252e066853ee4c36f81c1dacea3}{Super\_TR\_Init}}(\mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ *super,\ uint32\_t\ can\_id,\ uint32\_t\ can\_send\_id,\ \mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282}{can\_port\_t}}\ can\_port);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{super__str_8h_a89dd682a7f87d41c712957a383255f90}{Super\_TR\_Send}}(\mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ *super,\ uint16\_t\ data);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{super__str_8h_a8e909b10ff38febd2e40627c6094b682}{Super\_TR\_Refresh}}(\mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ *super);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{super__str_8h_a7209995ee7c4a98e36ae64c62780e1b2}{get\_Voilt\_In}}(\mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ *super);}
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{super__str_8h_aaaf4a1acc2c7840865a39422180e8b37}{get\_Voilt\_C}}(\mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ *super);}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{super__str_8h_a55cb5720fc1d4aac0f4cea033b33f107}{get\_Current\_In}}(\mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ *super);}
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{super__str_8h_a1fd53c06405f1606bca17372bac2a816}{get\_Target\_power}}(\mbox{\hyperlink{struct_super___t_r__t}{Super\_TR\_t}}\ *super);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

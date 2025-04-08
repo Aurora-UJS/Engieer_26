@@ -1,0 +1,37 @@
+\doxysection{source/bsp/uart/uart\+\_\+bsp.c 文件参考}
+\hypertarget{uart__bsp_8c}{}\label{uart__bsp_8c}\index{source/bsp/uart/uart\_bsp.c@{source/bsp/uart/uart\_bsp.c}}
+{\ttfamily \#include "{}uart\+\_\+bsp.\+h"{}}\newline
+{\ttfamily \#include "{}uart\+\_\+api.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os.\+h"{}}\newline
+{\ttfamily \#include "{}dma.\+h"{}}\newline
+{\ttfamily \#include "{}usart.\+h"{}}\newline
+uart\+\_\+bsp.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{uart__bsp_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{uart__bsp_8c_a925534fb8bf7ca464fd05c982fe4bfa0}{HAL\+\_\+\+UARTEx\+\_\+\+Rx\+Event\+Callback}} (UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}huart, uint16\+\_\+t Size)
+\item 
+void \mbox{\hyperlink{uart__bsp_8c_a0e0456ea96d55db31de947fb3e954f18}{HAL\+\_\+\+UART\+\_\+\+Error\+Callback}} (UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}huart)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{uart__bsp_8c_a0e0456ea96d55db31de947fb3e954f18}\index{uart\_bsp.c@{uart\_bsp.c}!HAL\_UART\_ErrorCallback@{HAL\_UART\_ErrorCallback}}
+\index{HAL\_UART\_ErrorCallback@{HAL\_UART\_ErrorCallback}!uart\_bsp.c@{uart\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_UART\_ErrorCallback()}{HAL\_UART\_ErrorCallback()}}
+{\footnotesize\ttfamily \label{uart__bsp_8c_a0e0456ea96d55db31de947fb3e954f18} 
+void HAL\+\_\+\+UART\+\_\+\+Error\+Callback (\begin{DoxyParamCaption}\item[{UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{huart}{}\end{DoxyParamCaption})}
+
+\Hypertarget{uart__bsp_8c_a925534fb8bf7ca464fd05c982fe4bfa0}\index{uart\_bsp.c@{uart\_bsp.c}!HAL\_UARTEx\_RxEventCallback@{HAL\_UARTEx\_RxEventCallback}}
+\index{HAL\_UARTEx\_RxEventCallback@{HAL\_UARTEx\_RxEventCallback}!uart\_bsp.c@{uart\_bsp.c}}
+\doxysubsubsection{\texorpdfstring{HAL\_UARTEx\_RxEventCallback()}{HAL\_UARTEx\_RxEventCallback()}}
+{\footnotesize\ttfamily \label{uart__bsp_8c_a925534fb8bf7ca464fd05c982fe4bfa0} 
+void HAL\+\_\+\+UARTEx\+\_\+\+Rx\+Event\+Callback (\begin{DoxyParamCaption}\item[{UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{huart}{, }\item[{uint16\+\_\+t}]{Size}{}\end{DoxyParamCaption})}
+

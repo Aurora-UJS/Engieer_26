@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/motor/motor_DM/motor_DM.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_55275f164995bff569199267ebec3968.html">motor</a></li><li class="navelem"><a class="el" href="dir_78885f52dd5b4fbd7f457b2643935ed6.html">motor_DM</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">motor_DM.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="motor___d_m_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef __MOTOR_DM_H__</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define __MOTOR_DM_H__</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;main.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="motor__basic_8h.html">motor_basic.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#ac6fbf79005f87d50b33a9df719323ae9">    8</a></span><span class="preprocessor">#define MIT_MODE            0x000</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a9ec4444c65098be339d120d2dde7c557">    9</a></span><span class="preprocessor">#define POS_MODE            0x100</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a4a6dff487062359ea4eb4fa666b2d17e">   10</a></span><span class="preprocessor">#define SPD_MODE            0x200</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a3a47e65bb5d132e4f5ad167fa49d9893">   11</a></span><span class="preprocessor">#define PSI_MODE            0x300</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#ad3d01fc831262a9a98e0fd6268de7d88">   13</a></span><span class="preprocessor">#define KP_MIN 0.0f</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#aa9d52ab37f81101cc95a087f68c367ea">   14</a></span><span class="preprocessor">#define KP_MAX 500.0f</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a69ea995c7d9ec14d28344a5500902a18">   15</a></span><span class="preprocessor">#define KD_MIN 0.0f</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a51cfd12a9d9052706b607b2135868a1a">   16</a></span><span class="preprocessor">#define KD_MAX 5.0f</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a62508f17ca83466d0ba328584ee16340">   18</a></span><span class="preprocessor">#define hcan_t FDCAN_HandleTypeDef</span></div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structesc__inf__t.html">   19</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structesc__inf__t.html#aecae5172d6d7e14d57938fe0cd34c0ed">   22</a></span>    uint32_t <a class="code hl_variable" href="structesc__inf__t.html#aecae5172d6d7e14d57938fe0cd34c0ed">MST_ID</a>;  </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structesc__inf__t.html#a1195d5a6ea412cf1cf98879c61dabf56">   23</a></span>    <span class="keywordtype">float</span>    <a class="code hl_variable" href="structesc__inf__t.html#a1195d5a6ea412cf1cf98879c61dabf56">PMAX</a>;      </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structesc__inf__t.html#aa48fbb7799a8eeeb7a4d10cc9ac9d4fb">   24</a></span>    <span class="keywordtype">float</span>    <a class="code hl_variable" href="structesc__inf__t.html#aa48fbb7799a8eeeb7a4d10cc9ac9d4fb">VMAX</a>;      </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structesc__inf__t.html#a6f4a781d8c24a59bab3f651ae9c5acfc">   25</a></span>    <span class="keywordtype">float</span>    <a class="code hl_variable" href="structesc__inf__t.html#a6f4a781d8c24a59bab3f651ae9c5acfc">TMAX</a>;      </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>} <a class="code hl_struct" href="structesc__inf__t.html">esc_inf_t</a>;</div>
+</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="foldopen" id="foldopen00028" data-start="{" data-end="};">
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6a">   28</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa52248db5e3fa7ff2b2a53eb30ccfafd4">   30</a></span>    <a class="code hl_enumvalue" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa52248db5e3fa7ff2b2a53eb30ccfafd4">Motor_DM_DISABLE</a> = 0,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa9f662d0ae6e5f37b8a454d2f6b951506">   31</a></span>    <a class="code hl_enumvalue" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa9f662d0ae6e5f37b8a454d2f6b951506">MOTOR_DM_ENABLE</a> = 1,</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa5cf02d342be94ba03ffbb15b7819139f">   32</a></span>    <a class="code hl_enumvalue" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa5cf02d342be94ba03ffbb15b7819139f">MOTOR_DM_ERROR_OVER_VOLTAGE</a> = 8,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa476414a4c7d36d5d2062ca733285082c">   33</a></span>    <a class="code hl_enumvalue" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa476414a4c7d36d5d2062ca733285082c">MOTOR_DM_ERROR_LESS_VOLTAGE</a> = 9,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa0f97e4224424c30bba0bf303b33b7c4b">   34</a></span>    <a class="code hl_enumvalue" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa0f97e4224424c30bba0bf303b33b7c4b">MOTOR_DM_ERROR_OVER_CURRENT</a> = 0xA,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aad52f5d5a90c4e01b306b3998548bdbbe">   35</a></span>    <a class="code hl_enumvalue" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aad52f5d5a90c4e01b306b3998548bdbbe">MOTOR_DM_ERROR_OVER_TEMPERATURE_MOS</a> = 0xB,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa566fb28fd64a2367ea687bc9b0d14a04">   36</a></span>    <a class="code hl_enumvalue" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa566fb28fd64a2367ea687bc9b0d14a04">MOTOR_DM_ERROR_OVER_TEMPERATURE_MOTOR</a> = 0xC,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa7f2ad927e3fa4dbcfbdc8fc316e81651">   37</a></span>    <a class="code hl_enumvalue" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa7f2ad927e3fa4dbcfbdc8fc316e81651">MOTOR_DM_ERROR_LOSS_COMMUNICATION</a> = 0xD,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa08e3eb7265a7d2d8c2fd1dc712ef74ae">   38</a></span>    <a class="code hl_enumvalue" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa08e3eb7265a7d2d8c2fd1dc712ef74ae">MOTOR_DM_ERROR_OVER_LOAD</a> = 0xE,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}<a class="code hl_enumeration" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6a">DM_motor_error_t</a>;</div>
+</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="struct_d_m__motor__t.html">   41</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="struct_d_m__motor__t.html#ad023c6d987a2ea4cd1a7a60c0bf4b004">   43</a></span>    <a class="code hl_struct" href="structcan__motor__t.html">can_motor_t</a> <a class="code hl_variable" href="struct_d_m__motor__t.html#ad023c6d987a2ea4cd1a7a60c0bf4b004">motor_msg</a>;<span class="comment">//电机数据包</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="struct_d_m__motor__t.html#a14f42c85faa99e48d6974c25f369f8eb">   44</a></span>    <a class="code hl_struct" href="structcan__msg__t.html">can_msg_t</a> <a class="code hl_variable" href="struct_d_m__motor__t.html#a14f42c85faa99e48d6974c25f369f8eb">can_cfg</a>; <span class="comment">//CAN发送数据配置</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="struct_d_m__motor__t.html#a1506658f33a1a9e5c8695b12bf6b2583">   45</a></span>    <a class="code hl_enumeration" href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6a">DM_motor_error_t</a> <a class="code hl_variable" href="struct_d_m__motor__t.html#a1506658f33a1a9e5c8695b12bf6b2583">error_code</a>; <span class="comment">//电机错误码</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="struct_d_m__motor__t.html#a37e90f5e3bd99fac2021fb3a326607d4">   46</a></span>    uint8_t <a class="code hl_variable" href="struct_d_m__motor__t.html#a37e90f5e3bd99fac2021fb3a326607d4">mode</a>; <span class="comment">//电机模式</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="struct_d_m__motor__t.html#a3863d7a2f7256f100e3564984c44b0ac">   47</a></span>    <a class="code hl_struct" href="structesc__inf__t.html">esc_inf_t</a> <a class="code hl_variable" href="struct_d_m__motor__t.html#a3863d7a2f7256f100e3564984c44b0ac">tmp</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}<a class="code hl_struct" href="struct_d_m__motor__t.html">DM_motor_t</a>;</div>
+</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keywordtype">void</span> <a class="code hl_function" href="motor___d_m_8h.html#a65a366100839b300d25774b34fc1fa80">Motor_DM_Init</a>(<a class="code hl_struct" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keywordtype">void</span> <a class="code hl_function" href="motor___d_m_8h.html#a64b546c7ad05009cfede6bc962cff1b6">Motor_DM_Refresh</a>(<a class="code hl_struct" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keywordtype">void</span> <a class="code hl_function" href="motor___d_m_8h.html#ab3e894b32448d525e7c454682d24e0a1">Motor_DM_Enable</a>(<a class="code hl_struct" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keywordtype">void</span> <a class="code hl_function" href="motor___d_m_8h.html#a5fa285cb7fbf256fd9a2b47af6e3e549">Motor_DM_Disable</a>(<a class="code hl_struct" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keywordtype">void</span> <a class="code hl_function" href="motor___d_m_8h.html#a85fb575f9cd15c1e59a4ef9d5a6ee27d">Motor_DM_Save_Zero</a>(<a class="code hl_struct" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keywordtype">void</span> <a class="code hl_function" href="motor___d_m_8h.html#a114aa82c54f6ec167ee799de97d0455c">Motor_DM_Clear_Error</a>(<a class="code hl_struct" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keywordtype">void</span> <a class="code hl_function" href="motor___d_m_8h.html#a8998f183bc48af1f3e2884f0d281d7a6">Speed_CtrlMotorDM</a>(<a class="code hl_struct" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor, <span class="keywordtype">float</span> vel);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keywordtype">void</span> <a class="code hl_function" href="motor___d_m_8h.html#a2c8366551102091656e16022e7d9d9ff">PosSpeed_CtrlMotorDM</a>(<a class="code hl_struct" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor, <span class="keywordtype">float</span> _pos, <span class="keywordtype">float</span> _vel);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keywordtype">void</span> <a class="code hl_function" href="motor___d_m_8h.html#a4e5af5310ebc11b1939f30528159330d">MIT_CtrlMotorDM</a>( <a class="code hl_struct" href="struct_d_m__motor__t.html">DM_motor_t</a> *motor,  <span class="keywordtype">float</span> pos, <span class="keywordtype">float</span> vel,<span class="keywordtype">float</span> kp, <span class="keywordtype">float</span> kd, <span class="keywordtype">float</span> tor);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#endif </span><span class="comment">/* __MOTOR_DM_H__ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="amotor___d_m_8h_html_a114aa82c54f6ec167ee799de97d0455c"><div class="ttname"><a href="motor___d_m_8h.html#a114aa82c54f6ec167ee799de97d0455c">Motor_DM_Clear_Error</a></div><div class="ttdeci">void Motor_DM_Clear_Error(DM_motor_t *motor)</div><div class="ttdoc">: Motor_DM_Clear_Error: 电机清除错误函数</div><div class="ttdef"><b>定义</b> motor_DM.c:145</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a2c8366551102091656e16022e7d9d9ff"><div class="ttname"><a href="motor___d_m_8h.html#a2c8366551102091656e16022e7d9d9ff">PosSpeed_CtrlMotorDM</a></div><div class="ttdeci">void PosSpeed_CtrlMotorDM(DM_motor_t *motor, float _pos, float _vel)</div><div class="ttdoc">达妙电机位置速度模式控下控制帧</div><div class="ttdef"><b>定义</b> motor_DM.c:183</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a4e5af5310ebc11b1939f30528159330d"><div class="ttname"><a href="motor___d_m_8h.html#a4e5af5310ebc11b1939f30528159330d">MIT_CtrlMotorDM</a></div><div class="ttdeci">void MIT_CtrlMotorDM(DM_motor_t *motor, float pos, float vel, float kp, float kd, float tor)</div><div class="ttdoc">: mit_ctrl: MIT模式下的电机控制函数</div><div class="ttdef"><b>定义</b> motor_DM.c:212</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a5fa285cb7fbf256fd9a2b47af6e3e549"><div class="ttname"><a href="motor___d_m_8h.html#a5fa285cb7fbf256fd9a2b47af6e3e549">Motor_DM_Disable</a></div><div class="ttdeci">void Motor_DM_Disable(DM_motor_t *motor)</div><div class="ttdoc">: Motor_DM_Disable: 电机失能函数</div><div class="ttdef"><b>定义</b> motor_DM.c:111</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a64b546c7ad05009cfede6bc962cff1b6"><div class="ttname"><a href="motor___d_m_8h.html#a64b546c7ad05009cfede6bc962cff1b6">Motor_DM_Refresh</a></div><div class="ttdeci">void Motor_DM_Refresh(DM_motor_t *motor)</div><div class="ttdoc">: Motor_DM_Refresh: 电机刷新函数</div><div class="ttdef"><b>定义</b> motor_DM.c:68</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a65a366100839b300d25774b34fc1fa80"><div class="ttname"><a href="motor___d_m_8h.html#a65a366100839b300d25774b34fc1fa80">Motor_DM_Init</a></div><div class="ttdeci">void Motor_DM_Init(DM_motor_t *motor)</div><div class="ttdoc">: Motor_DM_Init: 电机初始化函数</div><div class="ttdef"><b>定义</b> motor_DM.c:53</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a84e72ad63bcd85d091c11bb56b0fac6a"><div class="ttname"><a href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6a">DM_motor_error_t</a></div><div class="ttdeci">DM_motor_error_t</div><div class="ttdef"><b>定义</b> motor_DM.h:29</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a84e72ad63bcd85d091c11bb56b0fac6aa08e3eb7265a7d2d8c2fd1dc712ef74ae"><div class="ttname"><a href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa08e3eb7265a7d2d8c2fd1dc712ef74ae">MOTOR_DM_ERROR_OVER_LOAD</a></div><div class="ttdeci">@ MOTOR_DM_ERROR_OVER_LOAD</div><div class="ttdef"><b>定义</b> motor_DM.h:38</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a84e72ad63bcd85d091c11bb56b0fac6aa0f97e4224424c30bba0bf303b33b7c4b"><div class="ttname"><a href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa0f97e4224424c30bba0bf303b33b7c4b">MOTOR_DM_ERROR_OVER_CURRENT</a></div><div class="ttdeci">@ MOTOR_DM_ERROR_OVER_CURRENT</div><div class="ttdef"><b>定义</b> motor_DM.h:34</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a84e72ad63bcd85d091c11bb56b0fac6aa476414a4c7d36d5d2062ca733285082c"><div class="ttname"><a href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa476414a4c7d36d5d2062ca733285082c">MOTOR_DM_ERROR_LESS_VOLTAGE</a></div><div class="ttdeci">@ MOTOR_DM_ERROR_LESS_VOLTAGE</div><div class="ttdef"><b>定义</b> motor_DM.h:33</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a84e72ad63bcd85d091c11bb56b0fac6aa52248db5e3fa7ff2b2a53eb30ccfafd4"><div class="ttname"><a href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa52248db5e3fa7ff2b2a53eb30ccfafd4">Motor_DM_DISABLE</a></div><div class="ttdeci">@ Motor_DM_DISABLE</div><div class="ttdef"><b>定义</b> motor_DM.h:30</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a84e72ad63bcd85d091c11bb56b0fac6aa566fb28fd64a2367ea687bc9b0d14a04"><div class="ttname"><a href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa566fb28fd64a2367ea687bc9b0d14a04">MOTOR_DM_ERROR_OVER_TEMPERATURE_MOTOR</a></div><div class="ttdeci">@ MOTOR_DM_ERROR_OVER_TEMPERATURE_MOTOR</div><div class="ttdef"><b>定义</b> motor_DM.h:36</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a84e72ad63bcd85d091c11bb56b0fac6aa5cf02d342be94ba03ffbb15b7819139f"><div class="ttname"><a href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa5cf02d342be94ba03ffbb15b7819139f">MOTOR_DM_ERROR_OVER_VOLTAGE</a></div><div class="ttdeci">@ MOTOR_DM_ERROR_OVER_VOLTAGE</div><div class="ttdef"><b>定义</b> motor_DM.h:32</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a84e72ad63bcd85d091c11bb56b0fac6aa7f2ad927e3fa4dbcfbdc8fc316e81651"><div class="ttname"><a href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa7f2ad927e3fa4dbcfbdc8fc316e81651">MOTOR_DM_ERROR_LOSS_COMMUNICATION</a></div><div class="ttdeci">@ MOTOR_DM_ERROR_LOSS_COMMUNICATION</div><div class="ttdef"><b>定义</b> motor_DM.h:37</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a84e72ad63bcd85d091c11bb56b0fac6aa9f662d0ae6e5f37b8a454d2f6b951506"><div class="ttname"><a href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aa9f662d0ae6e5f37b8a454d2f6b951506">MOTOR_DM_ENABLE</a></div><div class="ttdeci">@ MOTOR_DM_ENABLE</div><div class="ttdef"><b>定义</b> motor_DM.h:31</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a84e72ad63bcd85d091c11bb56b0fac6aad52f5d5a90c4e01b306b3998548bdbbe"><div class="ttname"><a href="motor___d_m_8h.html#a84e72ad63bcd85d091c11bb56b0fac6aad52f5d5a90c4e01b306b3998548bdbbe">MOTOR_DM_ERROR_OVER_TEMPERATURE_MOS</a></div><div class="ttdeci">@ MOTOR_DM_ERROR_OVER_TEMPERATURE_MOS</div><div class="ttdef"><b>定义</b> motor_DM.h:35</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a85fb575f9cd15c1e59a4ef9d5a6ee27d"><div class="ttname"><a href="motor___d_m_8h.html#a85fb575f9cd15c1e59a4ef9d5a6ee27d">Motor_DM_Save_Zero</a></div><div class="ttdeci">void Motor_DM_Save_Zero(DM_motor_t *motor)</div><div class="ttdoc">: Motor_DM_Save_Zero: 电机保存零点函数</div><div class="ttdef"><b>定义</b> motor_DM.c:128</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_a8998f183bc48af1f3e2884f0d281d7a6"><div class="ttname"><a href="motor___d_m_8h.html#a8998f183bc48af1f3e2884f0d281d7a6">Speed_CtrlMotorDM</a></div><div class="ttdeci">void Speed_CtrlMotorDM(DM_motor_t *motor, float vel)</div><div class="ttdoc">: speed_ctrl: 速度控制函数</div><div class="ttdef"><b>定义</b> motor_DM.c:163</div></div>
+<div class="ttc" id="amotor___d_m_8h_html_ab3e894b32448d525e7c454682d24e0a1"><div class="ttname"><a href="motor___d_m_8h.html#ab3e894b32448d525e7c454682d24e0a1">Motor_DM_Enable</a></div><div class="ttdeci">void Motor_DM_Enable(DM_motor_t *motor)</div><div class="ttdoc">: Motor_DM_Enable: 电机使能函数</div><div class="ttdef"><b>定义</b> motor_DM.c:93</div></div>
+<div class="ttc" id="amotor__basic_8h_html"><div class="ttname"><a href="motor__basic_8h.html">motor_basic.h</a></div></div>
+<div class="ttc" id="astruct_d_m__motor__t_html"><div class="ttname"><a href="struct_d_m__motor__t.html">DM_motor_t</a></div><div class="ttdef"><b>定义</b> motor_DM.h:42</div></div>
+<div class="ttc" id="astruct_d_m__motor__t_html_a14f42c85faa99e48d6974c25f369f8eb"><div class="ttname"><a href="struct_d_m__motor__t.html#a14f42c85faa99e48d6974c25f369f8eb">DM_motor_t::can_cfg</a></div><div class="ttdeci">can_msg_t can_cfg</div><div class="ttdef"><b>定义</b> motor_DM.h:44</div></div>
+<div class="ttc" id="astruct_d_m__motor__t_html_a1506658f33a1a9e5c8695b12bf6b2583"><div class="ttname"><a href="struct_d_m__motor__t.html#a1506658f33a1a9e5c8695b12bf6b2583">DM_motor_t::error_code</a></div><div class="ttdeci">DM_motor_error_t error_code</div><div class="ttdef"><b>定义</b> motor_DM.h:45</div></div>
+<div class="ttc" id="astruct_d_m__motor__t_html_a37e90f5e3bd99fac2021fb3a326607d4"><div class="ttname"><a href="struct_d_m__motor__t.html#a37e90f5e3bd99fac2021fb3a326607d4">DM_motor_t::mode</a></div><div class="ttdeci">uint8_t mode</div><div class="ttdef"><b>定义</b> motor_DM.h:46</div></div>
+<div class="ttc" id="astruct_d_m__motor__t_html_a3863d7a2f7256f100e3564984c44b0ac"><div class="ttname"><a href="struct_d_m__motor__t.html#a3863d7a2f7256f100e3564984c44b0ac">DM_motor_t::tmp</a></div><div class="ttdeci">esc_inf_t tmp</div><div class="ttdef"><b>定义</b> motor_DM.h:47</div></div>
+<div class="ttc" id="astruct_d_m__motor__t_html_ad023c6d987a2ea4cd1a7a60c0bf4b004"><div class="ttname"><a href="struct_d_m__motor__t.html#ad023c6d987a2ea4cd1a7a60c0bf4b004">DM_motor_t::motor_msg</a></div><div class="ttdeci">can_motor_t motor_msg</div><div class="ttdef"><b>定义</b> motor_DM.h:43</div></div>
+<div class="ttc" id="astructcan__motor__t_html"><div class="ttname"><a href="structcan__motor__t.html">can_motor_t</a></div><div class="ttdef"><b>定义</b> motor_basic.h:9</div></div>
+<div class="ttc" id="astructcan__msg__t_html"><div class="ttname"><a href="structcan__msg__t.html">can_msg_t</a></div><div class="ttdef"><b>定义</b> can_struct.h:19</div></div>
+<div class="ttc" id="astructesc__inf__t_html"><div class="ttname"><a href="structesc__inf__t.html">esc_inf_t</a></div><div class="ttdef"><b>定义</b> motor_DM.h:20</div></div>
+<div class="ttc" id="astructesc__inf__t_html_a1195d5a6ea412cf1cf98879c61dabf56"><div class="ttname"><a href="structesc__inf__t.html#a1195d5a6ea412cf1cf98879c61dabf56">esc_inf_t::PMAX</a></div><div class="ttdeci">float PMAX</div><div class="ttdef"><b>定义</b> motor_DM.h:23</div></div>
+<div class="ttc" id="astructesc__inf__t_html_a6f4a781d8c24a59bab3f651ae9c5acfc"><div class="ttname"><a href="structesc__inf__t.html#a6f4a781d8c24a59bab3f651ae9c5acfc">esc_inf_t::TMAX</a></div><div class="ttdeci">float TMAX</div><div class="ttdef"><b>定义</b> motor_DM.h:25</div></div>
+<div class="ttc" id="astructesc__inf__t_html_aa48fbb7799a8eeeb7a4d10cc9ac9d4fb"><div class="ttname"><a href="structesc__inf__t.html#aa48fbb7799a8eeeb7a4d10cc9ac9d4fb">esc_inf_t::VMAX</a></div><div class="ttdeci">float VMAX</div><div class="ttdef"><b>定义</b> motor_DM.h:24</div></div>
+<div class="ttc" id="astructesc__inf__t_html_aecae5172d6d7e14d57938fe0cd34c0ed"><div class="ttname"><a href="structesc__inf__t.html#aecae5172d6d7e14d57938fe0cd34c0ed">esc_inf_t::MST_ID</a></div><div class="ttdeci">uint32_t MST_ID</div><div class="ttdef"><b>定义</b> motor_DM.h:22</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

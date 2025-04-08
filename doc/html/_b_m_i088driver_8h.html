@@ -1,0 +1,746 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/imu/BMI088/inc/BMI088driver.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_fda1e2a789251a234642f8099e409c7b.html">imu</a></li><li class="navelem"><a class="el" href="dir_fbf0e0d886075f876aba2d5f4960db13.html">BMI088</a></li><li class="navelem"><a class="el" href="dir_1469d48cff88994044fdefd536ff4baa.html">inc</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#enum-members">枚举</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">BMI088driver.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;stdint.h&quot;</code><br />
+<code>#include &quot;main.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+BMI088driver.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="_b_m_i088driver_8h__incl.png" border="0" usemap="#asource_2bsp_2imu_2_b_m_i088_2inc_2_b_m_i088driver_8h" alt=""/></div>
+<map name="asource_2bsp_2imu_2_b_m_i088_2inc_2_b_m_i088driver_8h" id="asource_2bsp_2imu_2_b_m_i088_2inc_2_b_m_i088driver_8h">
+<area shape="rect" title=" " alt="" coords="5,5,165,48"/>
+<area shape="rect" title=" " alt="" coords="10,96,74,123"/>
+<area shape="poly" title=" " alt="" coords="76,50,59,83,54,81,72,47"/>
+<area shape="rect" title=" " alt="" coords="99,96,159,123"/>
+<area shape="poly" title=" " alt="" coords="99,47,117,81,112,83,94,50"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="_b_m_i088driver_8h__dep__incl.png" border="0" usemap="#asource_2bsp_2imu_2_b_m_i088_2inc_2_b_m_i088driver_8hdep" alt=""/></div>
+<map name="asource_2bsp_2imu_2_b_m_i088_2inc_2_b_m_i088driver_8hdep" id="asource_2bsp_2imu_2_b_m_i088_2inc_2_b_m_i088driver_8hdep">
+<area shape="rect" title=" " alt="" coords="207,5,366,48"/>
+<area shape="rect" href="_b_m_i088driver_8c.html" title=" " alt="" coords="5,96,165,139"/>
+<area shape="poly" title=" " alt="" coords="226,57,133,98,131,93,224,52"/>
+<area shape="rect" href="_i_m_utool_8c.html" title=" " alt="" coords="188,104,384,131"/>
+<area shape="poly" title=" " alt="" coords="289,64,289,104,284,104,284,64"/>
+<area shape="rect" href="imu_temp_ctrl_8c.html" title=" " alt="" coords="409,104,588,131"/>
+<area shape="poly" title=" " alt="" coords="351,52,469,101,467,106,349,57"/>
+</map>
+</div>
+</div>
+<p><a href="_b_m_i088driver_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_b_m_i088___r_a_w___d_a_t_a.html">BMI088_RAW_DATA</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_b_m_i088___r_e_a_l___d_a_t_a.html">BMI088_REAL_DATA</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a47713c19845a03f2d69bd76994909fff" id="r_a47713c19845a03f2d69bd76994909fff"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47713c19845a03f2d69bd76994909fff">BMI088_TEMP_FACTOR</a>&#160;&#160;&#160;0.125f</td></tr>
+<tr class="separator:a47713c19845a03f2d69bd76994909fff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0308ac8514dd1998a2156f13cb6ea04" id="r_aa0308ac8514dd1998a2156f13cb6ea04"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0308ac8514dd1998a2156f13cb6ea04">BMI088_TEMP_OFFSET</a>&#160;&#160;&#160;23.0f</td></tr>
+<tr class="separator:aa0308ac8514dd1998a2156f13cb6ea04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b56acf5e68b0f13bfe0cba695cd9a73" id="r_a0b56acf5e68b0f13bfe0cba695cd9a73"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b56acf5e68b0f13bfe0cba695cd9a73">BMI088_WRITE_ACCEL_REG_NUM</a>&#160;&#160;&#160;6</td></tr>
+<tr class="separator:a0b56acf5e68b0f13bfe0cba695cd9a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23fbfb8945cd4f99adc2511d33767ebb" id="r_a23fbfb8945cd4f99adc2511d33767ebb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23fbfb8945cd4f99adc2511d33767ebb">BMI088_WRITE_GYRO_REG_NUM</a>&#160;&#160;&#160;6</td></tr>
+<tr class="separator:a23fbfb8945cd4f99adc2511d33767ebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad72d96bc6a8d2bdff5099bb9ed031ba7" id="r_ad72d96bc6a8d2bdff5099bb9ed031ba7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad72d96bc6a8d2bdff5099bb9ed031ba7">BMI088_GYRO_DATA_READY_BIT</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:ad72d96bc6a8d2bdff5099bb9ed031ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a871760cd02b83b9eea39692a17dbf161" id="r_a871760cd02b83b9eea39692a17dbf161"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a871760cd02b83b9eea39692a17dbf161">BMI088_ACCEL_DATA_READY_BIT</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:a871760cd02b83b9eea39692a17dbf161"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ea4838f8e00a08ac928b71372230392" id="r_a8ea4838f8e00a08ac928b71372230392"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ea4838f8e00a08ac928b71372230392">BMI088_ACCEL_TEMP_DATA_READY_BIT</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a8ea4838f8e00a08ac928b71372230392"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7279372025dcde46893ad4b883beb650" id="r_a7279372025dcde46893ad4b883beb650"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7279372025dcde46893ad4b883beb650">BMI088_LONG_DELAY_TIME</a>&#160;&#160;&#160;80</td></tr>
+<tr class="separator:a7279372025dcde46893ad4b883beb650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb41e73d4db242e17c0ed7d08b851e00" id="r_adb41e73d4db242e17c0ed7d08b851e00"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb41e73d4db242e17c0ed7d08b851e00">BMI088_COM_WAIT_SENSOR_TIME</a>&#160;&#160;&#160;150</td></tr>
+<tr class="separator:adb41e73d4db242e17c0ed7d08b851e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cdc6aafe05de8d8db3a5f81411875b9" id="r_a1cdc6aafe05de8d8db3a5f81411875b9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1cdc6aafe05de8d8db3a5f81411875b9">BMI088_ACCEL_IIC_ADDRESSE</a>&#160;&#160;&#160;(0x18 &lt;&lt; 1)</td></tr>
+<tr class="separator:a1cdc6aafe05de8d8db3a5f81411875b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ffc2b7b702b9462b78d79e86034ec6d" id="r_a0ffc2b7b702b9462b78d79e86034ec6d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ffc2b7b702b9462b78d79e86034ec6d">BMI088_GYRO_IIC_ADDRESSE</a>&#160;&#160;&#160;(0x68 &lt;&lt; 1)</td></tr>
+<tr class="separator:a0ffc2b7b702b9462b78d79e86034ec6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac8db206a4f9f4e313ea5c99372bdb80" id="r_aac8db206a4f9f4e313ea5c99372bdb80"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac8db206a4f9f4e313ea5c99372bdb80">BMI088_ACCEL_RANGE_3G</a></td></tr>
+<tr class="separator:aac8db206a4f9f4e313ea5c99372bdb80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b722566570f32b4bca8066312dde180" id="r_a9b722566570f32b4bca8066312dde180"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b722566570f32b4bca8066312dde180">BMI088_GYRO_RANGE_2000</a></td></tr>
+<tr class="separator:a9b722566570f32b4bca8066312dde180"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2299b60d458dbfdc78b2feb682c0d24" id="r_ac2299b60d458dbfdc78b2feb682c0d24"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2299b60d458dbfdc78b2feb682c0d24">BMI088_ACCEL_3G_SEN</a>&#160;&#160;&#160;0.0008974358974f</td></tr>
+<tr class="separator:ac2299b60d458dbfdc78b2feb682c0d24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b81f04292ee0e0ed5e874289933fbef" id="r_a4b81f04292ee0e0ed5e874289933fbef"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b81f04292ee0e0ed5e874289933fbef">BMI088_ACCEL_6G_SEN</a>&#160;&#160;&#160;0.00179443359375f</td></tr>
+<tr class="separator:a4b81f04292ee0e0ed5e874289933fbef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b5a25b38c5fd3eb4df8ed8d4b970186" id="r_a4b5a25b38c5fd3eb4df8ed8d4b970186"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b5a25b38c5fd3eb4df8ed8d4b970186">BMI088_ACCEL_12G_SEN</a>&#160;&#160;&#160;0.0035888671875f</td></tr>
+<tr class="separator:a4b5a25b38c5fd3eb4df8ed8d4b970186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d31b5426fee9400bb3a0a3a6dc6384d" id="r_a3d31b5426fee9400bb3a0a3a6dc6384d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d31b5426fee9400bb3a0a3a6dc6384d">BMI088_ACCEL_24G_SEN</a>&#160;&#160;&#160;0.007177734375f</td></tr>
+<tr class="separator:a3d31b5426fee9400bb3a0a3a6dc6384d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a905328f0c551f2edf7b480005d876958" id="r_a905328f0c551f2edf7b480005d876958"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a905328f0c551f2edf7b480005d876958">BMI088_GYRO_2000_SEN</a>&#160;&#160;&#160;0.00106526443603169529841533860381f</td></tr>
+<tr class="separator:a905328f0c551f2edf7b480005d876958"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9cb7682a846f1e14703bebca104a9fd" id="r_ac9cb7682a846f1e14703bebca104a9fd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac9cb7682a846f1e14703bebca104a9fd">BMI088_GYRO_1000_SEN</a>&#160;&#160;&#160;0.00053263221801584764920766930190693f</td></tr>
+<tr class="separator:ac9cb7682a846f1e14703bebca104a9fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbd590b1ef42934d67585e4abd247900" id="r_adbd590b1ef42934d67585e4abd247900"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbd590b1ef42934d67585e4abd247900">BMI088_GYRO_500_SEN</a>&#160;&#160;&#160;0.00026631610900792382460383465095346f</td></tr>
+<tr class="separator:adbd590b1ef42934d67585e4abd247900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8832b06d8804c743c8485cf94e7ef75d" id="r_a8832b06d8804c743c8485cf94e7ef75d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8832b06d8804c743c8485cf94e7ef75d">BMI088_GYRO_250_SEN</a>&#160;&#160;&#160;0.00013315805450396191230191732547673f</td></tr>
+<tr class="separator:a8832b06d8804c743c8485cf94e7ef75d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7dd92fada4db937e2e98d92c943dc34" id="r_aa7dd92fada4db937e2e98d92c943dc34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa7dd92fada4db937e2e98d92c943dc34">BMI088_GYRO_125_SEN</a>&#160;&#160;&#160;0.000066579027251980956150958662738366f</td></tr>
+<tr class="separator:aa7dd92fada4db937e2e98d92c943dc34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:a46bf425627a44f25021d0d97ac339f91" id="r_a46bf425627a44f25021d0d97ac339f91"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_b_m_i088___r_a_w___d_a_t_a.html">BMI088_RAW_DATA</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46bf425627a44f25021d0d97ac339f91">bmi088_raw_data_t</a></td></tr>
+<tr class="separator:a46bf425627a44f25021d0d97ac339f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6465b8b9c6973506911e641c903b14da" id="r_a6465b8b9c6973506911e641c903b14da"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct_b_m_i088___r_e_a_l___d_a_t_a.html">BMI088_REAL_DATA</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6465b8b9c6973506911e641c903b14da">bmi088_real_data_t</a></td></tr>
+<tr class="separator:a6465b8b9c6973506911e641c903b14da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a707b382d49d3d2c8f1dcb96180884c5d" id="r_a707b382d49d3d2c8f1dcb96180884c5d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
+&#160;&#160;<a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da5fd5ba498c70644cf8cef4867bd025ea">BMI088_NO_ERROR</a> = 0x00
+, <a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da3216469654ba2c1a30ac3ed9149e3d70">BMI088_ACC_PWR_CTRL_ERROR</a> = 0x01
+, <a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da8192928caddfc86195549cb49fc9c58e">BMI088_ACC_PWR_CONF_ERROR</a> = 0x02
+, <a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da2e74e721c3a3a24dd69074d8bd304dcb">BMI088_ACC_CONF_ERROR</a> = 0x03
+, <br />
+&#160;&#160;<a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5dae8a9cf8c6ea8faf5c24e7aca8a44278a">BMI088_ACC_SELF_TEST_ERROR</a> = 0x04
+, <a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da93028133ab8c9f16423bbeab5acb9d6f">BMI088_ACC_RANGE_ERROR</a> = 0x05
+, <a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da509464245baaba38231f5812191b8615">BMI088_INT1_IO_CTRL_ERROR</a> = 0x06
+, <a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da59a2df3c6e64f86b675a134d9c587de8">BMI088_INT_MAP_DATA_ERROR</a> = 0x07
+, <br />
+&#160;&#160;<a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5dae521214e8de6578eeefdb265b41018ab">BMI088_GYRO_RANGE_ERROR</a> = 0x08
+, <a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da1b73b6a82209d5719bd435e106a184ba">BMI088_GYRO_BANDWIDTH_ERROR</a> = 0x09
+, <a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da62aecd72a5ef6848d6abf209c1618281">BMI088_GYRO_LPM1_ERROR</a> = 0x0A
+, <a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da7f47cb0199646c8e70148c3ca8206c79">BMI088_GYRO_CTRL_ERROR</a> = 0x0B
+, <br />
+&#160;&#160;<a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da356dbc28c3f851ced72bde2cc1961ca0">BMI088_GYRO_INT3_INT4_IO_CONF_ERROR</a> = 0x0C
+, <a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da30c050d236df6bd00b20a0b53e3fba1b">BMI088_GYRO_INT3_INT4_IO_MAP_ERROR</a> = 0x0D
+, <a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da1806b96243c0e87638ea1e40773ef789">BMI088_SELF_TEST_ACCEL_ERROR</a> = 0x80
+, <a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da678293a2f7c0e4f098c5b2c74327da24">BMI088_SELF_TEST_GYRO_ERROR</a> = 0x40
+, <br />
+&#160;&#160;<a class="el" href="#a707b382d49d3d2c8f1dcb96180884c5da4db3e8d2186072ced2186654c5b39e77">BMI088_NO_SENSOR</a> = 0xFF
+<br />
+ }</td></tr>
+<tr class="separator:a707b382d49d3d2c8f1dcb96180884c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ac422944f6aca6ca811deba6ffe560685" id="r_ac422944f6aca6ca811deba6ffe560685"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac422944f6aca6ca811deba6ffe560685">BMI088_init</a> (void)</td></tr>
+<tr class="memdesc:ac422944f6aca6ca811deba6ffe560685"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="_b_m_i088driver_8c.html#ac422944f6aca6ca811deba6ffe560685" title=": BMI088_init(void)">BMI088_init(void)</a>  <br /></td></tr>
+<tr class="separator:ac422944f6aca6ca811deba6ffe560685"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49267abbc985b9491be2af15723cd11b" id="r_a49267abbc985b9491be2af15723cd11b"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49267abbc985b9491be2af15723cd11b">bmi088_accel_init</a> (void)</td></tr>
+<tr class="memdesc:a49267abbc985b9491be2af15723cd11b"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="_b_m_i088driver_8c.html#a49267abbc985b9491be2af15723cd11b" title=": bmi088_accel_init(void)">bmi088_accel_init(void)</a>  <br /></td></tr>
+<tr class="separator:a49267abbc985b9491be2af15723cd11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4484a2505b5abf4bb508077e7215d6d" id="r_af4484a2505b5abf4bb508077e7215d6d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af4484a2505b5abf4bb508077e7215d6d">bmi088_gyro_init</a> (void)</td></tr>
+<tr class="memdesc:af4484a2505b5abf4bb508077e7215d6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="_b_m_i088driver_8c.html#af4484a2505b5abf4bb508077e7215d6d" title=": bmi088_gyro_init(void)">bmi088_gyro_init(void)</a>  <br /></td></tr>
+<tr class="separator:af4484a2505b5abf4bb508077e7215d6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01af5200f19b1639fe9c1a898b356bae" id="r_a01af5200f19b1639fe9c1a898b356bae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a01af5200f19b1639fe9c1a898b356bae">BMI088_read</a> (float <a class="el" href="_i_m_utool_8c.html#addac5578d412440de5e9c3760475dec7">gyro</a>[3], float <a class="el" href="_i_m_utool_8c.html#a579c1a74d7de6ed4e97b8a29d6d826cd">accel</a>[3], float *temperate)</td></tr>
+<tr class="memdesc:a01af5200f19b1639fe9c1a898b356bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">: <a class="el" href="_b_m_i088driver_8c.html#a01af5200f19b1639fe9c1a898b356bae" title=": BMI088_read(float gyro[3], float accel[3], float *temperate)">BMI088_read(float gyro[3], float accel[3], float *temperate)</a>  <br /></td></tr>
+<tr class="separator:a01af5200f19b1639fe9c1a898b356bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="a4b5a25b38c5fd3eb4df8ed8d4b970186" name="a4b5a25b38c5fd3eb4df8ed8d4b970186"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b5a25b38c5fd3eb4df8ed8d4b970186">&#9670;&#160;</a></span>BMI088_ACCEL_12G_SEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_ACCEL_12G_SEN&#160;&#160;&#160;0.0035888671875f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3d31b5426fee9400bb3a0a3a6dc6384d" name="a3d31b5426fee9400bb3a0a3a6dc6384d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d31b5426fee9400bb3a0a3a6dc6384d">&#9670;&#160;</a></span>BMI088_ACCEL_24G_SEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_ACCEL_24G_SEN&#160;&#160;&#160;0.007177734375f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac2299b60d458dbfdc78b2feb682c0d24" name="ac2299b60d458dbfdc78b2feb682c0d24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2299b60d458dbfdc78b2feb682c0d24">&#9670;&#160;</a></span>BMI088_ACCEL_3G_SEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_ACCEL_3G_SEN&#160;&#160;&#160;0.0008974358974f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4b81f04292ee0e0ed5e874289933fbef" name="a4b81f04292ee0e0ed5e874289933fbef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b81f04292ee0e0ed5e874289933fbef">&#9670;&#160;</a></span>BMI088_ACCEL_6G_SEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_ACCEL_6G_SEN&#160;&#160;&#160;0.00179443359375f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a871760cd02b83b9eea39692a17dbf161" name="a871760cd02b83b9eea39692a17dbf161"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a871760cd02b83b9eea39692a17dbf161">&#9670;&#160;</a></span>BMI088_ACCEL_DATA_READY_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_ACCEL_DATA_READY_BIT&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1cdc6aafe05de8d8db3a5f81411875b9" name="a1cdc6aafe05de8d8db3a5f81411875b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cdc6aafe05de8d8db3a5f81411875b9">&#9670;&#160;</a></span>BMI088_ACCEL_IIC_ADDRESSE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_ACCEL_IIC_ADDRESSE&#160;&#160;&#160;(0x18 &lt;&lt; 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac8db206a4f9f4e313ea5c99372bdb80" name="aac8db206a4f9f4e313ea5c99372bdb80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac8db206a4f9f4e313ea5c99372bdb80">&#9670;&#160;</a></span>BMI088_ACCEL_RANGE_3G</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_ACCEL_RANGE_3G</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8ea4838f8e00a08ac928b71372230392" name="a8ea4838f8e00a08ac928b71372230392"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ea4838f8e00a08ac928b71372230392">&#9670;&#160;</a></span>BMI088_ACCEL_TEMP_DATA_READY_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_ACCEL_TEMP_DATA_READY_BIT&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adb41e73d4db242e17c0ed7d08b851e00" name="adb41e73d4db242e17c0ed7d08b851e00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb41e73d4db242e17c0ed7d08b851e00">&#9670;&#160;</a></span>BMI088_COM_WAIT_SENSOR_TIME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_COM_WAIT_SENSOR_TIME&#160;&#160;&#160;150</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac9cb7682a846f1e14703bebca104a9fd" name="ac9cb7682a846f1e14703bebca104a9fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9cb7682a846f1e14703bebca104a9fd">&#9670;&#160;</a></span>BMI088_GYRO_1000_SEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_GYRO_1000_SEN&#160;&#160;&#160;0.00053263221801584764920766930190693f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa7dd92fada4db937e2e98d92c943dc34" name="aa7dd92fada4db937e2e98d92c943dc34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7dd92fada4db937e2e98d92c943dc34">&#9670;&#160;</a></span>BMI088_GYRO_125_SEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_GYRO_125_SEN&#160;&#160;&#160;0.000066579027251980956150958662738366f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a905328f0c551f2edf7b480005d876958" name="a905328f0c551f2edf7b480005d876958"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a905328f0c551f2edf7b480005d876958">&#9670;&#160;</a></span>BMI088_GYRO_2000_SEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_GYRO_2000_SEN&#160;&#160;&#160;0.00106526443603169529841533860381f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8832b06d8804c743c8485cf94e7ef75d" name="a8832b06d8804c743c8485cf94e7ef75d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8832b06d8804c743c8485cf94e7ef75d">&#9670;&#160;</a></span>BMI088_GYRO_250_SEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_GYRO_250_SEN&#160;&#160;&#160;0.00013315805450396191230191732547673f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adbd590b1ef42934d67585e4abd247900" name="adbd590b1ef42934d67585e4abd247900"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbd590b1ef42934d67585e4abd247900">&#9670;&#160;</a></span>BMI088_GYRO_500_SEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_GYRO_500_SEN&#160;&#160;&#160;0.00026631610900792382460383465095346f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad72d96bc6a8d2bdff5099bb9ed031ba7" name="ad72d96bc6a8d2bdff5099bb9ed031ba7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad72d96bc6a8d2bdff5099bb9ed031ba7">&#9670;&#160;</a></span>BMI088_GYRO_DATA_READY_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_GYRO_DATA_READY_BIT&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0ffc2b7b702b9462b78d79e86034ec6d" name="a0ffc2b7b702b9462b78d79e86034ec6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ffc2b7b702b9462b78d79e86034ec6d">&#9670;&#160;</a></span>BMI088_GYRO_IIC_ADDRESSE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_GYRO_IIC_ADDRESSE&#160;&#160;&#160;(0x68 &lt;&lt; 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9b722566570f32b4bca8066312dde180" name="a9b722566570f32b4bca8066312dde180"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b722566570f32b4bca8066312dde180">&#9670;&#160;</a></span>BMI088_GYRO_RANGE_2000</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_GYRO_RANGE_2000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7279372025dcde46893ad4b883beb650" name="a7279372025dcde46893ad4b883beb650"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7279372025dcde46893ad4b883beb650">&#9670;&#160;</a></span>BMI088_LONG_DELAY_TIME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_LONG_DELAY_TIME&#160;&#160;&#160;80</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a47713c19845a03f2d69bd76994909fff" name="a47713c19845a03f2d69bd76994909fff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47713c19845a03f2d69bd76994909fff">&#9670;&#160;</a></span>BMI088_TEMP_FACTOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_TEMP_FACTOR&#160;&#160;&#160;0.125f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa0308ac8514dd1998a2156f13cb6ea04" name="aa0308ac8514dd1998a2156f13cb6ea04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0308ac8514dd1998a2156f13cb6ea04">&#9670;&#160;</a></span>BMI088_TEMP_OFFSET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_TEMP_OFFSET&#160;&#160;&#160;23.0f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0b56acf5e68b0f13bfe0cba695cd9a73" name="a0b56acf5e68b0f13bfe0cba695cd9a73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b56acf5e68b0f13bfe0cba695cd9a73">&#9670;&#160;</a></span>BMI088_WRITE_ACCEL_REG_NUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_WRITE_ACCEL_REG_NUM&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a23fbfb8945cd4f99adc2511d33767ebb" name="a23fbfb8945cd4f99adc2511d33767ebb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23fbfb8945cd4f99adc2511d33767ebb">&#9670;&#160;</a></span>BMI088_WRITE_GYRO_REG_NUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BMI088_WRITE_GYRO_REG_NUM&#160;&#160;&#160;6</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">类型定义说明</h2>
+<a id="a46bf425627a44f25021d0d97ac339f91" name="a46bf425627a44f25021d0d97ac339f91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46bf425627a44f25021d0d97ac339f91">&#9670;&#160;</a></span>bmi088_raw_data_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="struct_b_m_i088___r_a_w___d_a_t_a.html">BMI088_RAW_DATA</a> <a class="el" href="#a46bf425627a44f25021d0d97ac339f91">bmi088_raw_data_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6465b8b9c6973506911e641c903b14da" name="a6465b8b9c6973506911e641c903b14da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6465b8b9c6973506911e641c903b14da">&#9670;&#160;</a></span>bmi088_real_data_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="struct_b_m_i088___r_e_a_l___d_a_t_a.html">BMI088_REAL_DATA</a> <a class="el" href="#a6465b8b9c6973506911e641c903b14da">bmi088_real_data_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">枚举类型说明</h2>
+<a id="a707b382d49d3d2c8f1dcb96180884c5d" name="a707b382d49d3d2c8f1dcb96180884c5d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a707b382d49d3d2c8f1dcb96180884c5d">&#9670;&#160;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da5fd5ba498c70644cf8cef4867bd025ea" name="a707b382d49d3d2c8f1dcb96180884c5da5fd5ba498c70644cf8cef4867bd025ea"></a>BMI088_NO_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da3216469654ba2c1a30ac3ed9149e3d70" name="a707b382d49d3d2c8f1dcb96180884c5da3216469654ba2c1a30ac3ed9149e3d70"></a>BMI088_ACC_PWR_CTRL_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da8192928caddfc86195549cb49fc9c58e" name="a707b382d49d3d2c8f1dcb96180884c5da8192928caddfc86195549cb49fc9c58e"></a>BMI088_ACC_PWR_CONF_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da2e74e721c3a3a24dd69074d8bd304dcb" name="a707b382d49d3d2c8f1dcb96180884c5da2e74e721c3a3a24dd69074d8bd304dcb"></a>BMI088_ACC_CONF_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5dae8a9cf8c6ea8faf5c24e7aca8a44278a" name="a707b382d49d3d2c8f1dcb96180884c5dae8a9cf8c6ea8faf5c24e7aca8a44278a"></a>BMI088_ACC_SELF_TEST_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da93028133ab8c9f16423bbeab5acb9d6f" name="a707b382d49d3d2c8f1dcb96180884c5da93028133ab8c9f16423bbeab5acb9d6f"></a>BMI088_ACC_RANGE_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da509464245baaba38231f5812191b8615" name="a707b382d49d3d2c8f1dcb96180884c5da509464245baaba38231f5812191b8615"></a>BMI088_INT1_IO_CTRL_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da59a2df3c6e64f86b675a134d9c587de8" name="a707b382d49d3d2c8f1dcb96180884c5da59a2df3c6e64f86b675a134d9c587de8"></a>BMI088_INT_MAP_DATA_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5dae521214e8de6578eeefdb265b41018ab" name="a707b382d49d3d2c8f1dcb96180884c5dae521214e8de6578eeefdb265b41018ab"></a>BMI088_GYRO_RANGE_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da1b73b6a82209d5719bd435e106a184ba" name="a707b382d49d3d2c8f1dcb96180884c5da1b73b6a82209d5719bd435e106a184ba"></a>BMI088_GYRO_BANDWIDTH_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da62aecd72a5ef6848d6abf209c1618281" name="a707b382d49d3d2c8f1dcb96180884c5da62aecd72a5ef6848d6abf209c1618281"></a>BMI088_GYRO_LPM1_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da7f47cb0199646c8e70148c3ca8206c79" name="a707b382d49d3d2c8f1dcb96180884c5da7f47cb0199646c8e70148c3ca8206c79"></a>BMI088_GYRO_CTRL_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da356dbc28c3f851ced72bde2cc1961ca0" name="a707b382d49d3d2c8f1dcb96180884c5da356dbc28c3f851ced72bde2cc1961ca0"></a>BMI088_GYRO_INT3_INT4_IO_CONF_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da30c050d236df6bd00b20a0b53e3fba1b" name="a707b382d49d3d2c8f1dcb96180884c5da30c050d236df6bd00b20a0b53e3fba1b"></a>BMI088_GYRO_INT3_INT4_IO_MAP_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da1806b96243c0e87638ea1e40773ef789" name="a707b382d49d3d2c8f1dcb96180884c5da1806b96243c0e87638ea1e40773ef789"></a>BMI088_SELF_TEST_ACCEL_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da678293a2f7c0e4f098c5b2c74327da24" name="a707b382d49d3d2c8f1dcb96180884c5da678293a2f7c0e4f098c5b2c74327da24"></a>BMI088_SELF_TEST_GYRO_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a707b382d49d3d2c8f1dcb96180884c5da4db3e8d2186072ced2186654c5b39e77" name="a707b382d49d3d2c8f1dcb96180884c5da4db3e8d2186072ced2186654c5b39e77"></a>BMI088_NO_SENSOR&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a49267abbc985b9491be2af15723cd11b" name="a49267abbc985b9491be2af15723cd11b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49267abbc985b9491be2af15723cd11b">&#9670;&#160;</a></span>bmi088_accel_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t bmi088_accel_init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="_b_m_i088driver_8c.html#a49267abbc985b9491be2af15723cd11b" title=": bmi088_accel_init(void)">bmi088_accel_init(void)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>void </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>uint8_t - 错误代码</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: BMI088加速度传感器初始化函数，包括通信检查、软件复位、配置寄存器写入及检查 </p>
+
+</div>
+</div>
+<a id="af4484a2505b5abf4bb508077e7215d6d" name="af4484a2505b5abf4bb508077e7215d6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4484a2505b5abf4bb508077e7215d6d">&#9670;&#160;</a></span>bmi088_gyro_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t bmi088_gyro_init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="_b_m_i088driver_8c.html#af4484a2505b5abf4bb508077e7215d6d" title=": bmi088_gyro_init(void)">bmi088_gyro_init(void)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>void </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>uint8_t - 错误代码</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: BMI088陀螺仪传感器初始化函数，包括通信检查、软件复位、配置寄存器写入及检查 </p>
+
+</div>
+</div>
+<a id="ac422944f6aca6ca811deba6ffe560685" name="ac422944f6aca6ca811deba6ffe560685"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac422944f6aca6ca811deba6ffe560685">&#9670;&#160;</a></span>BMI088_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t BMI088_init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="_b_m_i088driver_8c.html#ac422944f6aca6ca811deba6ffe560685" title=": BMI088_init(void)">BMI088_init(void)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>void </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>uint8_t - 错误代码</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: BMI088传感器初始化函数，包括GPIO和SPI初始化，以及加速度和陀螺仪的初始化 </p>
+
+</div>
+</div>
+<a id="a01af5200f19b1639fe9c1a898b356bae" name="a01af5200f19b1639fe9c1a898b356bae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01af5200f19b1639fe9c1a898b356bae">&#9670;&#160;</a></span>BMI088_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BMI088_read </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>gyro</em></span>[3], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>accel</em></span>[3], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>temperate</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>: <a class="el" href="_b_m_i088driver_8c.html#a01af5200f19b1639fe9c1a898b356bae" title=": BMI088_read(float gyro[3], float accel[3], float *temperate)">BMI088_read(float gyro[3], float accel[3], float *temperate)</a> </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname"></td><td>gyro - 陀螺仪数据数组 (x, y, z) </td></tr>
+    <tr><td class="paramname"></td><td>accel - 加速度计数据数组 (x, y, z) </td></tr>
+    <tr><td class="paramname"></td><td>temperate - 温度数据指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td>void</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>: 读取BMI088传感器数据，包括加速度、陀螺仪和温度 </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,96 @@
+\doxysection{source/module/control/tool\+Box/tool.c 文件参考}
+\hypertarget{tool_8c}{}\label{tool_8c}\index{source/module/control/toolBox/tool.c@{source/module/control/toolBox/tool.c}}
+{\ttfamily \#include "{}tool.\+h"{}}\newline
+{\ttfamily \#include "{}stdint.\+h"{}}\newline
+{\ttfamily \#include "{}string.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os2.\+h"{}}\newline
+tool.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{tool_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{tool_8c_a74211e712a5b343d1e35644209828942}{circule\+\_\+compensate}} (float target, float current, float circule\+\_\+num)
+\begin{DoxyCompactList}\small\item\em 辅助\+PID零点跨越计算函数 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{tool_8c_acd5555bf5602278a33dcbb7c0b27380c}{map}} (float value, float in\+\_\+min, float in\+\_\+max, float out\+\_\+min, float out\+\_\+max)
+\begin{DoxyCompactList}\small\item\em 线性映射函数 \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{tool_8c_a9d1c3f55d521ae55c7bc51946518d9e2}{limit}} (float value, float min, float max)
+\begin{DoxyCompactList}\small\item\em 限制函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{tool_8c_a74211e712a5b343d1e35644209828942}\index{tool.c@{tool.c}!circule\_compensate@{circule\_compensate}}
+\index{circule\_compensate@{circule\_compensate}!tool.c@{tool.c}}
+\doxysubsubsection{\texorpdfstring{circule\_compensate()}{circule\_compensate()}}
+{\footnotesize\ttfamily \label{tool_8c_a74211e712a5b343d1e35644209828942} 
+float circule\+\_\+compensate (\begin{DoxyParamCaption}\item[{float}]{target}{, }\item[{float}]{current}{, }\item[{float}]{circule\+\_\+num}{}\end{DoxyParamCaption})}
+
+
+
+辅助\+PID零点跨越计算函数 
+
+
+\begin{DoxyParams}{参数}
+{\em target} & 目标值 \\
+\hline
+{\em current} & 当前值 \\
+\hline
+{\em circule\+\_\+num} & 周期宽度（例如一圈周期宽度为2\+PI） \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+float 
+\end{DoxyReturn}
+\Hypertarget{tool_8c_a9d1c3f55d521ae55c7bc51946518d9e2}\index{tool.c@{tool.c}!limit@{limit}}
+\index{limit@{limit}!tool.c@{tool.c}}
+\doxysubsubsection{\texorpdfstring{limit()}{limit()}}
+{\footnotesize\ttfamily \label{tool_8c_a9d1c3f55d521ae55c7bc51946518d9e2} 
+float limit (\begin{DoxyParamCaption}\item[{float}]{value}{, }\item[{float}]{min}{, }\item[{float}]{max}{}\end{DoxyParamCaption})}
+
+
+
+限制函数 
+
+
+\begin{DoxyParams}{参数}
+{\em value} & 要限制的值 \\
+\hline
+{\em min} & 最小值 \\
+\hline
+{\em max} & 最大值 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+float 
+\end{DoxyReturn}
+\Hypertarget{tool_8c_acd5555bf5602278a33dcbb7c0b27380c}\index{tool.c@{tool.c}!map@{map}}
+\index{map@{map}!tool.c@{tool.c}}
+\doxysubsubsection{\texorpdfstring{map()}{map()}}
+{\footnotesize\ttfamily \label{tool_8c_acd5555bf5602278a33dcbb7c0b27380c} 
+float map (\begin{DoxyParamCaption}\item[{float}]{value}{, }\item[{float}]{in\+\_\+min}{, }\item[{float}]{in\+\_\+max}{, }\item[{float}]{out\+\_\+min}{, }\item[{float}]{out\+\_\+max}{}\end{DoxyParamCaption})}
+
+
+
+线性映射函数 
+
+
+\begin{DoxyParams}{参数}
+{\em value} & 要映射的值 \\
+\hline
+{\em in\+\_\+min} & 输入范围的最小值 \\
+\hline
+{\em in\+\_\+max} & 输入范围的最大值 \\
+\hline
+{\em out\+\_\+min} & 输出范围的最小值 \\
+\hline
+{\em out\+\_\+max} & 输出范围的最大值 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+映射后的值 
+\end{DoxyReturn}

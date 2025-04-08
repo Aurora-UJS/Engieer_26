@@ -11,7 +11,11 @@ List_t can1_rx_msg_list;
 List_t can2_rx_msg_list;
 List_t can3_rx_msg_list;
 
-// 初始化CAN系统，包括初始化三个CAN接收消息列表以及调用底层硬件初始化函数
+/**
+ * @brief CAN通讯初始化。
+ * 
+ * 初始化三个CAN端口（CAN1、CAN2、CAN3）的接收消息列表，并调用底层硬件初始化函数完成CAN模块的初始化。
+ */
 void can_sys_init(void)
 {
     vListInitialise(&can1_rx_msg_list);  // 初始化CAN1接收消息列表
@@ -20,7 +24,15 @@ void can_sys_init(void)
     can_bsp_init();                      // 调用底层硬件初始化函数
 }
 
-// 根据CAN端口返回对应的接收消息列表指针
+/**
+ * @brief 根据CAN端口返回对应的接收消息列表指针。
+ * 
+ * 根据指定的CAN端口（CAN1_PORT、CAN2_PORT、CAN3_PORT），返回对应的接收消息列表指针。
+ * 如果端口无效，默认返回CAN1的接收消息列表指针。
+ * 
+ * @param port 指定的CAN端口。
+ * @return List_t* 返回对应端口的接收消息列表指针。
+ */
 List_t *can_msg_find_list(can_port_t port)
 {
     switch (port)
@@ -36,7 +48,15 @@ List_t *can_msg_find_list(can_port_t port)
     }
 }
 
-// 在指定的CAN消息列表中查找具有特定ID的消息项
+/**
+ * @brief 在指定的CAN消息列表中查找具有特定ID的消息项。
+ * 
+ * 遍历指定的CAN消息列表，查找具有指定ID的消息项。如果找到匹配的消息项，则返回该消息项的指针；否则返回NULL。
+ * 
+ * @param can_msg_list 指定的CAN消息列表。
+ * @param id 要查找的消息ID。
+ * @return can_msg_t* 返回匹配的消息项指针，未找到则返回NULL。
+ */
 can_msg_t *can_msg_find_item(List_t *can_msg_list, uint32_t id)
 {
     ListItem_t *item = listGET_HEAD_ENTRY(can_msg_list);  // 获取列表头项
@@ -52,7 +72,15 @@ can_msg_t *can_msg_find_item(List_t *can_msg_list, uint32_t id)
     return NULL;  // 未找到匹配消息项，返回NULL
 }
 
-// 向CAN消息列表中添加一个新的消息项
+/**
+ * @brief 向CAN消息列表中添加一个新的消息项。
+ * 
+ * 检查消息是否已存在于对应的CAN消息列表中。如果不存在，则分配内存为新的消息项，并将其插入到对应的CAN消息列表中。
+ * 如果消息已存在或内存分配失败，则返回相应的错误状态。
+ * 
+ * @param msg 要添加的消息项。
+ * @return can_status_t 返回操作状态，成功返回CAN_OK，失败返回相应的错误码。
+ */
 can_status_t can_msg_add_item(can_msg_t *msg)
 {
     if (msg == NULL)
@@ -90,7 +118,16 @@ can_status_t can_msg_add_item(can_msg_t *msg)
     return CAN_OK;  // 成功添加消息项，返回OK状态
 }
 
-// 根据CAN端口和消息ID从接收消息列表中删除消息项
+/**
+ * @brief 根据CAN端口和消息ID从接收消息列表中删除消息项。
+ * 
+ * 遍历指定CAN端口的接收消息列表，查找具有指定ID的消息项。如果找到匹配的消息项，则从列表中移除并释放其占用的内存。
+ * 如果未找到匹配的消息项，则返回消息未找到状态。
+ * 
+ * @param port 指定的CAN端口。
+ * @param id 要删除的消息ID。
+ * @return can_status_t 返回操作状态，成功返回CAN_OK，失败返回相应的错误码。
+ */
 can_status_t can_msg_del_item(can_port_t port, uint32_t id)
 {
     ListItem_t *item = listGET_HEAD_ENTRY(can_msg_find_list(port));  // 获取对应端口的列表头项
@@ -109,7 +146,14 @@ can_status_t can_msg_del_item(can_port_t port, uint32_t id)
     return CAN_MSG_NOT_FOUND;  // 未找到匹配消息项，返回消息未找到状态
 }
 
-// 发送经典CAN格式的消息
+/**
+ * @brief 发送经典CAN格式的消息。
+ * 
+ * 根据指定的CAN端口，发送经典CAN格式的消息。如果端口无效或消息指针为空，则返回相应的错误状态。
+ * 
+ * @param msg 要发送的经典CAN格式消息。
+ * @return can_status_t 返回操作状态，成功返回CAN_OK，失败返回相应的错误码。
+ */
 can_status_t can_msg_send_classical(can_msg_t *msg)
 {
     if (msg == NULL)
@@ -132,7 +176,14 @@ can_status_t can_msg_send_classical(can_msg_t *msg)
     return CAN_OK;  // 成功发送消息，返回OK状态
 }
 
-// 发送扩展CAN格式的消息
+/**
+ * @brief 发送扩展CAN格式的消息。
+ * 
+ * 根据指定的CAN端口，发送扩展CAN格式的消息。如果端口无效或消息指针为空，则返回相应的错误状态。
+ * 
+ * @param msg 要发送的扩展CAN格式消息。
+ * @return can_status_t 返回操作状态，成功返回CAN_OK，失败返回相应的错误码。
+ */
 can_status_t can_msg_send_extended(can_msg_t *msg)
 {
     if (msg == NULL)
@@ -155,7 +206,14 @@ can_status_t can_msg_send_extended(can_msg_t *msg)
     return CAN_OK;  // 成功发送消息，返回OK状态
 }
 
-// 发送CAN FD格式的消息
+/**
+ * @brief 发送CAN FD格式的消息。
+ * 
+ * 根据指定的CAN端口，发送CAN FD格式的消息。如果端口无效或消息指针为空，则返回相应的错误状态。
+ * 
+ * @param msg 要发送的CAN FD格式消息。
+ * @return can_status_t 返回操作状态，成功返回CAN_OK，失败返回相应的错误码。
+ */
 can_status_t can_msg_send_fd(can_msg_t *msg)
 {
     if (msg == NULL)

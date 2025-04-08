@@ -1,0 +1,95 @@
+\doxysection{source/module/computer/vision/vision\+\_\+receive.h 文件参考}
+\hypertarget{vision__receive_8h}{}\label{vision__receive_8h}\index{source/module/computer/vision/vision\_receive.h@{source/module/computer/vision/vision\_receive.h}}
+{\ttfamily \#include "{}computer\+\_\+pack.\+h"{}}\newline
+vision\+\_\+receive.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{vision__receive_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vision__receive_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{vision__receive_8h_ad502f18d2b58a73e7cfa9910022718e5}{get\+\_\+vision\+\_\+id}}()
+\begin{DoxyCompactList}\small\item\em 获取视觉数据包的\+ID值 \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{vision__receive_8h_ab02de687bf2a48583b1871473f020323}{is\+\_\+tracking}}()
+\begin{DoxyCompactList}\small\item\em 检测视觉跟踪状态 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{vision__receive_8h_a277c81e2321db61ca47e3e7d570b4016}{vision\+\_\+receive\+\_\+solve}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}rx\+\_\+buf)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_received_packet_vision__t}{Received\+Packet\+Vision\+\_\+t}} \mbox{\hyperlink{vision__receive_8h_a67301d1ae0220d759837c8109c97fcb1}{Received\+Packet\+Vision}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{宏定义说明}
+\Hypertarget{vision__receive_8h_ad502f18d2b58a73e7cfa9910022718e5}\index{vision\_receive.h@{vision\_receive.h}!get\_vision\_id@{get\_vision\_id}}
+\index{get\_vision\_id@{get\_vision\_id}!vision\_receive.h@{vision\_receive.h}}
+\doxysubsubsection{\texorpdfstring{get\_vision\_id}{get\_vision\_id}}
+{\footnotesize\ttfamily \label{vision__receive_8h_ad502f18d2b58a73e7cfa9910022718e5} 
+\#define get\+\_\+vision\+\_\+id(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{vision__receive_8c_a67301d1ae0220d759837c8109c97fcb1}{ReceivedPacketVision}}.id)}
+
+\end{DoxyCode}
+
+
+获取视觉数据包的\+ID值 
+
+该宏用于快速访问\+Received\+Packet\+Vision结构体中的id字段，通常用于标识当前接收到的 视觉数据包编号或类型。宏展开后直接返回结构体的整型id成员值。
+
+\begin{DoxyReturn}{返回}
+int 视觉数据包标识符，具体取值范围由协议定义 
+\end{DoxyReturn}
+\Hypertarget{vision__receive_8h_ab02de687bf2a48583b1871473f020323}\index{vision\_receive.h@{vision\_receive.h}!is\_tracking@{is\_tracking}}
+\index{is\_tracking@{is\_tracking}!vision\_receive.h@{vision\_receive.h}}
+\doxysubsubsection{\texorpdfstring{is\_tracking}{is\_tracking}}
+{\footnotesize\ttfamily \label{vision__receive_8h_ab02de687bf2a48583b1871473f020323} 
+\#define is\+\_\+tracking(\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{(\mbox{\hyperlink{vision__receive_8c_a67301d1ae0220d759837c8109c97fcb1}{ReceivedPacketVision}}.tracking)}
+
+\end{DoxyCode}
+
+
+检测视觉跟踪状态 
+
+该宏用于快速获取目标跟踪状态，通过访问\+Received\+Packet\+Vision结构体的tracking字段 判断当前视觉系统是否处于有效跟踪状态。宏展开后返回结构体的布尔型tracking成员值。
+
+\begin{DoxyReturn}{返回}
+bool 跟踪状态标识，true表示正在跟踪，false表示丢失目标 
+\end{DoxyReturn}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{vision__receive_8h_a277c81e2321db61ca47e3e7d570b4016}\index{vision\_receive.h@{vision\_receive.h}!vision\_receive\_solve@{vision\_receive\_solve}}
+\index{vision\_receive\_solve@{vision\_receive\_solve}!vision\_receive.h@{vision\_receive.h}}
+\doxysubsubsection{\texorpdfstring{vision\_receive\_solve()}{vision\_receive\_solve()}}
+{\footnotesize\ttfamily \label{vision__receive_8h_a277c81e2321db61ca47e3e7d570b4016} 
+void vision\+\_\+receive\+\_\+solve (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{rx\+\_\+buf}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{变量说明}
+\Hypertarget{vision__receive_8h_a67301d1ae0220d759837c8109c97fcb1}\index{vision\_receive.h@{vision\_receive.h}!ReceivedPacketVision@{ReceivedPacketVision}}
+\index{ReceivedPacketVision@{ReceivedPacketVision}!vision\_receive.h@{vision\_receive.h}}
+\doxysubsubsection{\texorpdfstring{ReceivedPacketVision}{ReceivedPacketVision}}
+{\footnotesize\ttfamily \label{vision__receive_8h_a67301d1ae0220d759837c8109c97fcb1} 
+\mbox{\hyperlink{struct_received_packet_vision__t}{Received\+Packet\+Vision\+\_\+t}} Received\+Packet\+Vision\hspace{0.3cm}{\ttfamily [extern]}}
+

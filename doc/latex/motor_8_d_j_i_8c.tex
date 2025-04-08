@@ -1,0 +1,78 @@
+\doxysection{source/module/motor/motor\+\_\+\+Dji/motor.DJI.\+c 文件参考}
+\hypertarget{motor_8_d_j_i_8c}{}\label{motor_8_d_j_i_8c}\index{source/module/motor/motor\_Dji/motor.DJI.c@{source/module/motor/motor\_Dji/motor.DJI.c}}
+{\ttfamily \#include "{}Dbus\+Sys.\+h"{}}\newline
+{\ttfamily \#include "{}motor\+\_\+\+DJI.\+h"{}}\newline
+{\ttfamily \#include "{}stm32h7xx\+\_\+hal\+\_\+fdcan.\+h"{}}\newline
+{\ttfamily \#include "{}can\+\_\+api.\+h"{}}\newline
+motor.\+DJI.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{motor_8_d_j_i_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{motor_8_d_j_i_8c_a1b6f009cefceb070da8f11ef9d7c2f24}{set\+\_\+motor\+\_\+parameter}} (\mbox{\hyperlink{struct_d_j_i__motor__t}{DJI\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}msg, int16\+\_\+t v1, int16\+\_\+t v2, int16\+\_\+t v3, int16\+\_\+t v4)
+\begin{DoxyCompactList}\small\item\em 发送电机控制参数（电压或电流） \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor_8_d_j_i_8c_aa58303faf6213e5527880d02243c85c3}{Motor\+\_\+\+DJI\+\_\+\+Init}} (\mbox{\hyperlink{struct_d_j_i__motor__t}{DJI\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor)
+\begin{DoxyCompactList}\small\item\em 大疆电机初始化 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor_8_d_j_i_8c_abfe775d5de240e993f95bbce4c795b23}{Motor\+\_\+\+DJI\+\_\+\+Refresh}} (\mbox{\hyperlink{struct_d_j_i__motor__t}{DJI\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor)
+\begin{DoxyCompactList}\small\item\em 大疆电机参数刷新 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{motor_8_d_j_i_8c_aa58303faf6213e5527880d02243c85c3}\index{motor.DJI.c@{motor.DJI.c}!Motor\_DJI\_Init@{Motor\_DJI\_Init}}
+\index{Motor\_DJI\_Init@{Motor\_DJI\_Init}!motor.DJI.c@{motor.DJI.c}}
+\doxysubsubsection{\texorpdfstring{Motor\_DJI\_Init()}{Motor\_DJI\_Init()}}
+{\footnotesize\ttfamily \label{motor_8_d_j_i_8c_aa58303faf6213e5527880d02243c85c3} 
+void Motor\+\_\+\+DJI\+\_\+\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_j_i__motor__t}{DJI\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{}\end{DoxyParamCaption})}
+
+
+
+大疆电机初始化 
+
+
+\begin{DoxyParams}{参数}
+{\em motor} & 大疆电机控制参数结构体 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{motor_8_d_j_i_8c_abfe775d5de240e993f95bbce4c795b23}\index{motor.DJI.c@{motor.DJI.c}!Motor\_DJI\_Refresh@{Motor\_DJI\_Refresh}}
+\index{Motor\_DJI\_Refresh@{Motor\_DJI\_Refresh}!motor.DJI.c@{motor.DJI.c}}
+\doxysubsubsection{\texorpdfstring{Motor\_DJI\_Refresh()}{Motor\_DJI\_Refresh()}}
+{\footnotesize\ttfamily \label{motor_8_d_j_i_8c_abfe775d5de240e993f95bbce4c795b23} 
+void Motor\+\_\+\+DJI\+\_\+\+Refresh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_j_i__motor__t}{DJI\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{}\end{DoxyParamCaption})}
+
+
+
+大疆电机参数刷新 
+
+
+\begin{DoxyParams}{参数}
+{\em motor} & 大疆电机控制参数结构体 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{motor_8_d_j_i_8c_a1b6f009cefceb070da8f11ef9d7c2f24}\index{motor.DJI.c@{motor.DJI.c}!set\_motor\_parameter@{set\_motor\_parameter}}
+\index{set\_motor\_parameter@{set\_motor\_parameter}!motor.DJI.c@{motor.DJI.c}}
+\doxysubsubsection{\texorpdfstring{set\_motor\_parameter()}{set\_motor\_parameter()}}
+{\footnotesize\ttfamily \label{motor_8_d_j_i_8c_a1b6f009cefceb070da8f11ef9d7c2f24} 
+void set\+\_\+motor\+\_\+parameter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_j_i__motor__t}{DJI\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{msg}{, }\item[{int16\+\_\+t}]{v1}{, }\item[{int16\+\_\+t}]{v2}{, }\item[{int16\+\_\+t}]{v3}{, }\item[{int16\+\_\+t}]{v4}{}\end{DoxyParamCaption})}
+
+
+
+发送电机控制参数（电压或电流） 
+
+
+\begin{DoxyParams}{参数}
+{\em msg} & 大疆电机控制参数结构体 \\
+\hline
+{\em v1} & 1号电机电压或电流 \\
+\hline
+{\em v2} & 2号电机电压或电流 \\
+\hline
+{\em v3} & 3号电机电压或电流 \\
+\hline
+{\em v4} & 4号电机电压或电流 \\
+\hline
+\end{DoxyParams}

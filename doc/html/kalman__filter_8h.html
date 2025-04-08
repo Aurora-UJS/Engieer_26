@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/IMU/ekf/kalman_filter.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_8b711e810999a9fe1de9e9ddd8899d9f.html">IMU</a></li><li class="navelem"><a class="el" href="dir_3b8d80945d87372d4de6e5070e9e2fcb.html">ekf</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">kalman_filter.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;stdint.h&quot;</code><br />
+<code>#include &quot;stdlib.h&quot;</code><br />
+<code>#include &quot;arm_math.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+kalman_filter.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kalman__filter_8h__incl.png" border="0" usemap="#asource_2module_2_i_m_u_2ekf_2kalman__filter_8h" alt=""/></div>
+<map name="asource_2module_2_i_m_u_2ekf_2kalman__filter_8h" id="asource_2module_2_i_m_u_2ekf_2kalman__filter_8h">
+<area shape="rect" title=" " alt="" coords="47,5,204,48"/>
+<area shape="rect" title=" " alt="" coords="5,96,70,123"/>
+<area shape="poly" title=" " alt="" coords="105,51,64,87,61,83,101,47"/>
+<area shape="rect" title=" " alt="" coords="94,96,157,123"/>
+<area shape="poly" title=" " alt="" coords="128,49,128,80,123,80,123,49"/>
+<area shape="rect" title=" " alt="" coords="182,96,272,123"/>
+<area shape="poly" title=" " alt="" coords="153,47,201,84,197,88,150,51"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="kalman__filter_8h__dep__incl.png" border="0" usemap="#asource_2module_2_i_m_u_2ekf_2kalman__filter_8hdep" alt=""/></div>
+<map name="asource_2module_2_i_m_u_2ekf_2kalman__filter_8hdep" id="asource_2module_2_i_m_u_2ekf_2kalman__filter_8hdep">
+<area shape="rect" title=" " alt="" coords="96,5,253,48"/>
+<area shape="rect" href="_quaternion_e_k_f_8h.html" title="attitude update with gyro bias estimate and chi&#45;square test" alt="" coords="5,96,163,139"/>
+<area shape="poly" title=" " alt="" coords="145,61,107,98,103,94,141,57"/>
+<area shape="rect" href="kalman__filter_8c.html" title=" " alt="" coords="187,96,344,139"/>
+<area shape="poly" title=" " alt="" coords="209,57,246,94,243,98,205,61"/>
+<area shape="rect" href="_quaternion_e_k_f_8c.html" title="attitude update with gyro bias estimate and chi&#45;square test" alt="" coords="5,187,163,229"/>
+<area shape="poly" title=" " alt="" coords="87,154,87,186,81,186,81,154"/>
+</map>
+</div>
+</div>
+<p><a href="kalman__filter_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structkf__t.html">kf_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a25f351d8faacd808387ec773e0a8ede7" id="r_a25f351d8faacd808387ec773e0a8ede7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25f351d8faacd808387ec773e0a8ede7">mat</a>&#160;&#160;&#160;arm_matrix_instance_f32</td></tr>
+<tr class="separator:a25f351d8faacd808387ec773e0a8ede7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32417b1795d2896932c31ed94e49875d" id="r_a32417b1795d2896932c31ed94e49875d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32417b1795d2896932c31ed94e49875d">Matrix_Init</a>&#160;&#160;&#160;arm_mat_init_f32</td></tr>
+<tr class="separator:a32417b1795d2896932c31ed94e49875d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03b5dfe2e54f8cd6440d80a9048cc817" id="r_a03b5dfe2e54f8cd6440d80a9048cc817"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03b5dfe2e54f8cd6440d80a9048cc817">Matrix_Add</a>&#160;&#160;&#160;arm_mat_add_f32</td></tr>
+<tr class="separator:a03b5dfe2e54f8cd6440d80a9048cc817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af84e9d4095af7fc1f5970ae82946cbb8" id="r_af84e9d4095af7fc1f5970ae82946cbb8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af84e9d4095af7fc1f5970ae82946cbb8">Matrix_Subtract</a>&#160;&#160;&#160;arm_mat_sub_f32</td></tr>
+<tr class="separator:af84e9d4095af7fc1f5970ae82946cbb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a707a57d1a8da30e985c2d0c226cf11da" id="r_a707a57d1a8da30e985c2d0c226cf11da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a707a57d1a8da30e985c2d0c226cf11da">Matrix_Multiply</a>&#160;&#160;&#160;arm_mat_mult_f32</td></tr>
+<tr class="separator:a707a57d1a8da30e985c2d0c226cf11da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac07fbffffb51dff59dbc792de907585c" id="r_ac07fbffffb51dff59dbc792de907585c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac07fbffffb51dff59dbc792de907585c">Matrix_Transpose</a>&#160;&#160;&#160;arm_mat_trans_f32</td></tr>
+<tr class="separator:ac07fbffffb51dff59dbc792de907585c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2645a6a682e5ec8f4c4b481275b32add" id="r_a2645a6a682e5ec8f4c4b481275b32add"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2645a6a682e5ec8f4c4b481275b32add">Matrix_Inverse</a>&#160;&#160;&#160;arm_mat_inverse_f32</td></tr>
+<tr class="separator:a2645a6a682e5ec8f4c4b481275b32add"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:af02bc9b785abb47505f15cedcbad2ba5" id="r_af02bc9b785abb47505f15cedcbad2ba5"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structkf__t.html">kf_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a></td></tr>
+<tr class="separator:af02bc9b785abb47505f15cedcbad2ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a3e87008e6a41b2857bdfc64bd510b66a" id="r_a3e87008e6a41b2857bdfc64bd510b66a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e87008e6a41b2857bdfc64bd510b66a">Kalman_Filter_Init</a> (<a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *kf, uint8_t xhatSize, uint8_t uSize, uint8_t zSize)</td></tr>
+<tr class="memdesc:a3e87008e6a41b2857bdfc64bd510b66a"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化矩阵维度信息并为矩阵分配空间  <br /></td></tr>
+<tr class="separator:a3e87008e6a41b2857bdfc64bd510b66a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb3774ba4b09bc24b3c053536e3d5d2c" id="r_acb3774ba4b09bc24b3c053536e3d5d2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb3774ba4b09bc24b3c053536e3d5d2c">Kalman_Filter_Reset</a> (<a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *kf, uint8_t xhatSize, uint8_t uSize, uint8_t zSize)</td></tr>
+<tr class="memdesc:acb3774ba4b09bc24b3c053536e3d5d2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">重置卡尔曼数据  <br /></td></tr>
+<tr class="separator:acb3774ba4b09bc24b3c053536e3d5d2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a379830b0bea773473090e13eb4523d38" id="r_a379830b0bea773473090e13eb4523d38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a379830b0bea773473090e13eb4523d38">Kalman_Filter_Measure</a> (<a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *kf)</td></tr>
+<tr class="memdesc:a379830b0bea773473090e13eb4523d38"><td class="mdescLeft">&#160;</td><td class="mdescRight">根据量测情况更新卡尔曼滤波器的输入数据，并调整矩阵H、K、R。 如果启用了自动调整（UseAutoAdjustment），则调用H_K_R_Adjustment函数动态调整矩阵； 否则直接将MeasuredVector赋值给z_data，并清零MeasuredVector。 同时，将ControlVector赋值给u_data。  <br /></td></tr>
+<tr class="separator:a379830b0bea773473090e13eb4523d38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a573703c080ee84ef82f3f64e72240031" id="r_a573703c080ee84ef82f3f64e72240031"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a573703c080ee84ef82f3f64e72240031">Kalman_Filter_xhatMinusUpdate</a> (<a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *kf)</td></tr>
+<tr class="memdesc:a573703c080ee84ef82f3f64e72240031"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新先验状态估计值xhat'(k) = F·xhat(k-1) + B·u。 如果存在控制输入（uSize &gt; 0），则计算F·xhat(k-1)和B·u的和； 否则仅计算F·xhat(k-1)。  <br /></td></tr>
+<tr class="separator:a573703c080ee84ef82f3f64e72240031"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adefde0d796e0eb0bf528683675ee958b" id="r_adefde0d796e0eb0bf528683675ee958b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adefde0d796e0eb0bf528683675ee958b">Kalman_Filter_PminusUpdate</a> (<a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *kf)</td></tr>
+<tr class="memdesc:adefde0d796e0eb0bf528683675ee958b"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新先验协方差矩阵P'(k) = F·P(k-1)·FT + Q。  <br /></td></tr>
+<tr class="separator:adefde0d796e0eb0bf528683675ee958b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42fe5e97c8911e25bea663cce9c28147" id="r_a42fe5e97c8911e25bea663cce9c28147"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42fe5e97c8911e25bea663cce9c28147">Kalman_Filter_SetK</a> (<a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *kf)</td></tr>
+<tr class="memdesc:a42fe5e97c8911e25bea663cce9c28147"><td class="mdescLeft">&#160;</td><td class="mdescRight">计算卡尔曼增益K(k) = P'(k)·HT / (H·P'(k)·HT + R)。  <br /></td></tr>
+<tr class="separator:a42fe5e97c8911e25bea663cce9c28147"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae260165c66e4e9d275a6b4c149fb5084" id="r_ae260165c66e4e9d275a6b4c149fb5084"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae260165c66e4e9d275a6b4c149fb5084">Kalman_Filter_xhatUpdate</a> (<a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *kf)</td></tr>
+<tr class="memdesc:ae260165c66e4e9d275a6b4c149fb5084"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新后验状态估计值xhat(k) = xhat'(k) + K(k)·(z(k) - H·xhat'(k))。  <br /></td></tr>
+<tr class="separator:ae260165c66e4e9d275a6b4c149fb5084"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ca34138fbb07fe0befdfacf5d36336b" id="r_a2ca34138fbb07fe0befdfacf5d36336b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ca34138fbb07fe0befdfacf5d36336b">Kalman_Filter_P_Update</a> (<a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *kf)</td></tr>
+<tr class="memdesc:a2ca34138fbb07fe0befdfacf5d36336b"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新后验协方差矩阵P(k) = P'(k) - K(k)·H·P'(k)。  <br /></td></tr>
+<tr class="separator:a2ca34138fbb07fe0befdfacf5d36336b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae52e87083cda5ca6e918768312c424f7" id="r_ae52e87083cda5ca6e918768312c424f7"><td class="memItemLeft" align="right" valign="top">float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae52e87083cda5ca6e918768312c424f7">Kalman_Filter_Update</a> (<a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *kf)</td></tr>
+<tr class="memdesc:ae52e87083cda5ca6e918768312c424f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">执行卡尔曼滤波黄金五式,提供了用户定义函数,可以替代五个中的任意一个环节,方便自行扩展为EKF/UKF/ESKF/AUKF等  <br /></td></tr>
+<tr class="separator:ae52e87083cda5ca6e918768312c424f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:aa2f84b599d7e68d55c290d5b30025c62" id="r_aa2f84b599d7e68d55c290d5b30025c62"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2f84b599d7e68d55c290d5b30025c62">sizeof_float</a></td></tr>
+<tr class="separator:aa2f84b599d7e68d55c290d5b30025c62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ce754bf27dc96cbb3216b52e5cd56dd" id="r_a0ce754bf27dc96cbb3216b52e5cd56dd"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ce754bf27dc96cbb3216b52e5cd56dd">sizeof_double</a></td></tr>
+<tr class="separator:a0ce754bf27dc96cbb3216b52e5cd56dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="a25f351d8faacd808387ec773e0a8ede7" name="a25f351d8faacd808387ec773e0a8ede7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25f351d8faacd808387ec773e0a8ede7">&#9670;&#160;</a></span>mat</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define mat&#160;&#160;&#160;arm_matrix_instance_f32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a03b5dfe2e54f8cd6440d80a9048cc817" name="a03b5dfe2e54f8cd6440d80a9048cc817"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03b5dfe2e54f8cd6440d80a9048cc817">&#9670;&#160;</a></span>Matrix_Add</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Matrix_Add&#160;&#160;&#160;arm_mat_add_f32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example.html#a64">D:/OCCProject/stm32/RM/basic_DMH7/source/module/IMU/ekf/kalman_filter.c</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a32417b1795d2896932c31ed94e49875d" name="a32417b1795d2896932c31ed94e49875d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32417b1795d2896932c31ed94e49875d">&#9670;&#160;</a></span>Matrix_Init</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Matrix_Init&#160;&#160;&#160;arm_mat_init_f32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example.html#a15">D:/OCCProject/stm32/RM/basic_DMH7/source/module/IMU/ekf/kalman_filter.c</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a2645a6a682e5ec8f4c4b481275b32add" name="a2645a6a682e5ec8f4c4b481275b32add"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2645a6a682e5ec8f4c4b481275b32add">&#9670;&#160;</a></span>Matrix_Inverse</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Matrix_Inverse&#160;&#160;&#160;arm_mat_inverse_f32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example.html#a68">D:/OCCProject/stm32/RM/basic_DMH7/source/module/IMU/ekf/kalman_filter.c</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a707a57d1a8da30e985c2d0c226cf11da" name="a707a57d1a8da30e985c2d0c226cf11da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a707a57d1a8da30e985c2d0c226cf11da">&#9670;&#160;</a></span>Matrix_Multiply</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Matrix_Multiply&#160;&#160;&#160;arm_mat_mult_f32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example.html#a63">D:/OCCProject/stm32/RM/basic_DMH7/source/module/IMU/ekf/kalman_filter.c</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="af84e9d4095af7fc1f5970ae82946cbb8" name="af84e9d4095af7fc1f5970ae82946cbb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af84e9d4095af7fc1f5970ae82946cbb8">&#9670;&#160;</a></span>Matrix_Subtract</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Matrix_Subtract&#160;&#160;&#160;arm_mat_sub_f32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example.html#a70">D:/OCCProject/stm32/RM/basic_DMH7/source/module/IMU/ekf/kalman_filter.c</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="ac07fbffffb51dff59dbc792de907585c" name="ac07fbffffb51dff59dbc792de907585c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac07fbffffb51dff59dbc792de907585c">&#9670;&#160;</a></span>Matrix_Transpose</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Matrix_Transpose&#160;&#160;&#160;arm_mat_trans_f32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>示例</dt><dd><a class="el" href="_d_1_2_o_c_c_project_2stm32_2_r_m_2basic__d_m_h7_2source_2module_2_i_m_u_2ekf_2kalman_filter_8c-example.html#a66">D:/OCCProject/stm32/RM/basic_DMH7/source/module/IMU/ekf/kalman_filter.c</a>.</dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">类型定义说明</h2>
+<a id="af02bc9b785abb47505f15cedcbad2ba5" name="af02bc9b785abb47505f15cedcbad2ba5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af02bc9b785abb47505f15cedcbad2ba5">&#9670;&#160;</a></span>KalmanFilter_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef struct <a class="el" href="structkf__t.html">kf_t</a> <a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a3e87008e6a41b2857bdfc64bd510b66a" name="a3e87008e6a41b2857bdfc64bd510b66a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e87008e6a41b2857bdfc64bd510b66a">&#9670;&#160;</a></span>Kalman_Filter_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Kalman_Filter_Init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *</td>          <td class="paramname"><span class="paramname"><em>kf</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>xhatSize</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>uSize</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>zSize</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初始化矩阵维度信息并为矩阵分配空间 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kf</td><td>kf类型定义 </td></tr>
+    <tr><td class="paramname">xhatSize</td><td>状态变量维度 </td></tr>
+    <tr><td class="paramname">uSize</td><td>控制变量维度 </td></tr>
+    <tr><td class="paramname">zSize</td><td>观测量维度 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a379830b0bea773473090e13eb4523d38" name="a379830b0bea773473090e13eb4523d38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a379830b0bea773473090e13eb4523d38">&#9670;&#160;</a></span>Kalman_Filter_Measure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Kalman_Filter_Measure </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *</td>          <td class="paramname"><span class="paramname"><em>kf</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>根据量测情况更新卡尔曼滤波器的输入数据，并调整矩阵H、K、R。 如果启用了自动调整（UseAutoAdjustment），则调用H_K_R_Adjustment函数动态调整矩阵； 否则直接将MeasuredVector赋值给z_data，并清零MeasuredVector。 同时，将ControlVector赋值给u_data。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kf</td><td>指向KalmanFilter_t结构体的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2ca34138fbb07fe0befdfacf5d36336b" name="a2ca34138fbb07fe0befdfacf5d36336b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ca34138fbb07fe0befdfacf5d36336b">&#9670;&#160;</a></span>Kalman_Filter_P_Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Kalman_Filter_P_Update </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *</td>          <td class="paramname"><span class="paramname"><em>kf</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>更新后验协方差矩阵P(k) = P'(k) - K(k)·H·P'(k)。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kf</td><td>指向KalmanFilter_t结构体的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adefde0d796e0eb0bf528683675ee958b" name="adefde0d796e0eb0bf528683675ee958b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adefde0d796e0eb0bf528683675ee958b">&#9670;&#160;</a></span>Kalman_Filter_PminusUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Kalman_Filter_PminusUpdate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *</td>          <td class="paramname"><span class="paramname"><em>kf</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>更新先验协方差矩阵P'(k) = F·P(k-1)·FT + Q。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kf</td><td>指向KalmanFilter_t结构体的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acb3774ba4b09bc24b3c053536e3d5d2c" name="acb3774ba4b09bc24b3c053536e3d5d2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb3774ba4b09bc24b3c053536e3d5d2c">&#9670;&#160;</a></span>Kalman_Filter_Reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Kalman_Filter_Reset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *</td>          <td class="paramname"><span class="paramname"><em>kf</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>xhatSize</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>uSize</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>zSize</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>重置卡尔曼数据 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kf</td><td>Kalman Filter </td></tr>
+    <tr><td class="paramname">xhatSize</td><td>xhat size </td></tr>
+    <tr><td class="paramname">uSize</td><td>u size </td></tr>
+    <tr><td class="paramname">zSize</td><td>z size </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a42fe5e97c8911e25bea663cce9c28147" name="a42fe5e97c8911e25bea663cce9c28147"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42fe5e97c8911e25bea663cce9c28147">&#9670;&#160;</a></span>Kalman_Filter_SetK()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Kalman_Filter_SetK </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *</td>          <td class="paramname"><span class="paramname"><em>kf</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>计算卡尔曼增益K(k) = P'(k)·HT / (H·P'(k)·HT + R)。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kf</td><td>指向KalmanFilter_t结构体的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae52e87083cda5ca6e918768312c424f7" name="ae52e87083cda5ca6e918768312c424f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae52e87083cda5ca6e918768312c424f7">&#9670;&#160;</a></span>Kalman_Filter_Update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float * Kalman_Filter_Update </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *</td>          <td class="paramname"><span class="paramname"><em>kf</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>执行卡尔曼滤波黄金五式,提供了用户定义函数,可以替代五个中的任意一个环节,方便自行扩展为EKF/UKF/ESKF/AUKF等 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kf</td><td>kf类型定义 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>float* 返回滤波值 </dd></dl>
+
+</div>
+</div>
+<a id="a573703c080ee84ef82f3f64e72240031" name="a573703c080ee84ef82f3f64e72240031"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a573703c080ee84ef82f3f64e72240031">&#9670;&#160;</a></span>Kalman_Filter_xhatMinusUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Kalman_Filter_xhatMinusUpdate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *</td>          <td class="paramname"><span class="paramname"><em>kf</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>更新先验状态估计值xhat'(k) = F·xhat(k-1) + B·u。 如果存在控制输入（uSize &gt; 0），则计算F·xhat(k-1)和B·u的和； 否则仅计算F·xhat(k-1)。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kf</td><td>指向KalmanFilter_t结构体的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae260165c66e4e9d275a6b4c149fb5084" name="ae260165c66e4e9d275a6b4c149fb5084"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae260165c66e4e9d275a6b4c149fb5084">&#9670;&#160;</a></span>Kalman_Filter_xhatUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Kalman_Filter_xhatUpdate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> *</td>          <td class="paramname"><span class="paramname"><em>kf</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>更新后验状态估计值xhat(k) = xhat'(k) + K(k)·(z(k) - H·xhat'(k))。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kf</td><td>指向KalmanFilter_t结构体的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a0ce754bf27dc96cbb3216b52e5cd56dd" name="a0ce754bf27dc96cbb3216b52e5cd56dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ce754bf27dc96cbb3216b52e5cd56dd">&#9670;&#160;</a></span>sizeof_double</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t sizeof_double</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa2f84b599d7e68d55c290d5b30025c62" name="aa2f84b599d7e68d55c290d5b30025c62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2f84b599d7e68d55c290d5b30025c62">&#9670;&#160;</a></span>sizeof_float</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t sizeof_float</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

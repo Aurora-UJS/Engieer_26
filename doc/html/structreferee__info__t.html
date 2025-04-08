@@ -1,0 +1,367 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: referee_info_t结构体 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">成员变量</a>  </div>
+  <div class="headertitle"><div class="title">referee_info_t结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="referee__api_8h_source.html">referee_api.h</a>&gt;</code></p>
+<div class="dynheader">
+referee_info_t 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="structreferee__info__t__coll__graph.png" border="0" usemap="#areferee__info__t_coll__map" alt="Collaboration graph"/></div>
+<map name="areferee__info__t_coll__map" id="areferee__info__t_coll__map">
+<area shape="rect" title=" " alt="" coords="868,365,969,392"/>
+<area shape="rect" href="structx_frame_header.html" title=" " alt="" coords="534,20,641,47"/>
+<area shape="poly" title=" " alt="" coords="656,20,703,18,753,23,803,37,826,49,846,65,863,88,877,122,898,210,912,300,919,364,913,365,906,301,893,211,871,124,858,90,842,69,823,54,801,42,752,28,703,24,656,25"/>
+<area shape="rect" href="structext__game__state__t.html" title=" " alt="" coords="524,71,650,97"/>
+<area shape="poly" title=" " alt="" coords="666,83,770,92,815,102,846,117,860,135,873,163,894,235,918,364,913,365,889,236,868,165,856,138,843,121,814,107,769,97,665,88"/>
+<area shape="rect" href="structext__game__result__t.html" title=" " alt="" coords="523,121,651,148"/>
+<area shape="poly" title=" " alt="" coords="667,134,770,144,815,154,846,168,867,190,884,216,906,272,916,325,920,365,914,365,911,326,901,273,879,218,863,194,843,173,814,159,770,150,667,140"/>
+<area shape="rect" href="structext__game__robot___h_p__t.html" title=" " alt="" coords="512,172,663,199"/>
+<area shape="poly" title=" " alt="" coords="678,187,776,198,817,207,846,220,863,236,877,254,898,295,911,334,918,365,913,366,906,336,893,297,873,257,859,240,843,225,815,213,775,203,678,192"/>
+<area shape="rect" href="structext__event__data__t.html" title=" " alt="" coords="526,223,648,249"/>
+<area shape="poly" title=" " alt="" coords="663,235,707,240,754,249,801,264,846,286,868,303,887,324,912,363,908,366,883,328,864,307,843,290,799,269,753,255,706,245,663,240"/>
+<area shape="rect" href="structext__supply__projectile__action__t.html" title=" " alt="" coords="516,273,659,316"/>
+<area shape="poly" title=" " alt="" coords="675,301,758,316,845,339,895,362,893,367,843,344,757,321,674,307"/>
+<area shape="rect" href="structext__game__robot__state__t.html" title=" " alt="" coords="506,340,668,367"/>
+<area shape="poly" title=" " alt="" coords="684,358,868,372,868,378,683,363"/>
+<area shape="rect" href="structext__power__heat__data__t.html" title=" " alt="" coords="509,391,665,417"/>
+<area shape="poly" title=" " alt="" coords="680,401,760,398,844,391,868,387,868,392,845,396,760,403,680,406"/>
+<area shape="rect" href="structext__game__robot__pos__t.html" title=" " alt="" coords="510,441,664,468"/>
+<area shape="poly" title=" " alt="" coords="679,451,760,442,803,433,843,421,873,407,898,390,901,395,876,412,845,426,804,439,761,447,680,456"/>
+<area shape="rect" href="structext__buff__musk__t.html" title=" " alt="" coords="528,492,646,519"/>
+<area shape="poly" title=" " alt="" coords="661,507,705,506,752,500,799,489,843,470,865,453,884,432,908,391,913,394,888,435,869,457,846,474,801,494,753,506,705,511,661,513"/>
+<area shape="rect" href="structaerial__robot__energy__t.html" title=" " alt="" coords="514,543,660,569"/>
+<area shape="poly" title=" " alt="" coords="675,564,717,564,761,559,804,547,843,527,859,513,872,497,893,459,906,421,912,392,918,393,911,423,898,461,877,500,863,517,846,532,806,552,762,564,717,570,675,570"/>
+<area shape="rect" href="structext__robot__hurt__t.html" title=" " alt="" coords="530,593,645,620"/>
+<area shape="poly" title=" " alt="" coords="660,618,705,622,753,619,801,608,843,586,864,565,880,541,893,514,902,485,912,432,914,392,920,392,917,432,907,487,898,516,885,543,868,569,846,590,802,613,754,625,705,627,660,624"/>
+<area shape="rect" href="structext__shoot__data__t.html" title=" " alt="" coords="526,644,648,671"/>
+<area shape="poly" title=" " alt="" coords="656,671,702,677,751,676,800,666,822,657,843,643,857,626,869,598,890,525,905,448,913,392,918,393,910,449,895,526,874,600,861,628,846,647,825,661,801,671,752,682,701,682,655,677"/>
+<area shape="rect" href="struct_communicate___receive_data__t.html" title=" " alt="" coords="489,695,685,721"/>
+<area shape="poly" title=" " alt="" coords="649,723,696,731,747,732,798,723,821,713,843,699,859,677,873,643,895,552,908,459,914,392,919,393,913,459,900,553,878,645,864,680,846,703,824,718,800,728,748,737,696,736,648,728"/>
+<area shape="rect" href="structext__student__interactive__header__data__t.html" title=" " alt="" coords="226,651,382,693"/>
+<area shape="poly" title=" " alt="" coords="398,681,489,693,488,698,397,686"/>
+<area shape="rect" href="struct_graph___data__t.html" title=" " alt="" coords="5,659,108,685"/>
+<area shape="poly" title=" " alt="" coords="123,669,225,669,225,675,123,675"/>
+<area shape="rect" href="structrobot__interactive__data__t.html" title=" " alt="" coords="224,717,384,744"/>
+<area shape="poly" title=" " alt="" coords="399,725,465,721,489,719,489,724,465,727,399,731"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+成员变量</h2></td></tr>
+<tr class="memitem:a1b9527bf9c7d5162c76433c4f145b7fc" id="r_a1b9527bf9c7d5162c76433c4f145b7fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structx_frame_header.html">xFrameHeader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b9527bf9c7d5162c76433c4f145b7fc">FrameHeader</a></td></tr>
+<tr class="separator:a1b9527bf9c7d5162c76433c4f145b7fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c025c4c155e17501fedcd0240272b5f" id="r_a7c025c4c155e17501fedcd0240272b5f"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c025c4c155e17501fedcd0240272b5f">CmdID</a></td></tr>
+<tr class="separator:a7c025c4c155e17501fedcd0240272b5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a353beb605f76e91bc34566bc3a797184" id="r_a353beb605f76e91bc34566bc3a797184"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structext__game__state__t.html">ext_game_state_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a353beb605f76e91bc34566bc3a797184">GameState</a></td></tr>
+<tr class="separator:a353beb605f76e91bc34566bc3a797184"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4b776f6b4d2093d27fcc3094bf05940" id="r_ab4b776f6b4d2093d27fcc3094bf05940"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structext__game__result__t.html">ext_game_result_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4b776f6b4d2093d27fcc3094bf05940">GameResult</a></td></tr>
+<tr class="separator:ab4b776f6b4d2093d27fcc3094bf05940"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a626b0d3309d705db64263f3de24b0ff8" id="r_a626b0d3309d705db64263f3de24b0ff8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structext__game__robot___h_p__t.html">ext_game_robot_HP_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a626b0d3309d705db64263f3de24b0ff8">GameRobotHP</a></td></tr>
+<tr class="separator:a626b0d3309d705db64263f3de24b0ff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9db280301670f0d74ee04c876ec307c5" id="r_a9db280301670f0d74ee04c876ec307c5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structext__event__data__t.html">ext_event_data_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9db280301670f0d74ee04c876ec307c5">EventData</a></td></tr>
+<tr class="separator:a9db280301670f0d74ee04c876ec307c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae40ede9f30168a02b1c2f09112917c15" id="r_ae40ede9f30168a02b1c2f09112917c15"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structext__supply__projectile__action__t.html">ext_supply_projectile_action_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae40ede9f30168a02b1c2f09112917c15">SupplyProjectileAction</a></td></tr>
+<tr class="separator:ae40ede9f30168a02b1c2f09112917c15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b0cf651e4c83d4d6734d86cba7d770d" id="r_a0b0cf651e4c83d4d6734d86cba7d770d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structext__game__robot__state__t.html">ext_game_robot_state_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b0cf651e4c83d4d6734d86cba7d770d">GameRobotState</a></td></tr>
+<tr class="separator:a0b0cf651e4c83d4d6734d86cba7d770d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f4fcef791527cf685c73a55b8dc2bbb" id="r_a7f4fcef791527cf685c73a55b8dc2bbb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structext__power__heat__data__t.html">ext_power_heat_data_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f4fcef791527cf685c73a55b8dc2bbb">PowerHeatData</a></td></tr>
+<tr class="separator:a7f4fcef791527cf685c73a55b8dc2bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dd734280e4df266e5a5a5a6a066704f" id="r_a1dd734280e4df266e5a5a5a6a066704f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structext__game__robot__pos__t.html">ext_game_robot_pos_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1dd734280e4df266e5a5a5a6a066704f">GameRobotPos</a></td></tr>
+<tr class="separator:a1dd734280e4df266e5a5a5a6a066704f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a432eef89a886e82b3257465314c75e1e" id="r_a432eef89a886e82b3257465314c75e1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structext__buff__musk__t.html">ext_buff_musk_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a432eef89a886e82b3257465314c75e1e">BuffMusk</a></td></tr>
+<tr class="separator:a432eef89a886e82b3257465314c75e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51ba28e2e7bd12d4e6b80b43cdaa1c67" id="r_a51ba28e2e7bd12d4e6b80b43cdaa1c67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structaerial__robot__energy__t.html">aerial_robot_energy_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51ba28e2e7bd12d4e6b80b43cdaa1c67">AerialRobotEnergy</a></td></tr>
+<tr class="separator:a51ba28e2e7bd12d4e6b80b43cdaa1c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39c41bb776b00171bd5ec8ad5bc60bfc" id="r_a39c41bb776b00171bd5ec8ad5bc60bfc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structext__robot__hurt__t.html">ext_robot_hurt_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39c41bb776b00171bd5ec8ad5bc60bfc">RobotHurt</a></td></tr>
+<tr class="separator:a39c41bb776b00171bd5ec8ad5bc60bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5cc2f2987b6d252ac65b7cf98129c3a" id="r_af5cc2f2987b6d252ac65b7cf98129c3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structext__shoot__data__t.html">ext_shoot_data_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5cc2f2987b6d252ac65b7cf98129c3a">ShootData</a></td></tr>
+<tr class="separator:af5cc2f2987b6d252ac65b7cf98129c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af42e354716a63c8ad2dd4a92a1d0e979" id="r_af42e354716a63c8ad2dd4a92a1d0e979"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_communicate___receive_data__t.html">Communicate_ReceiveData_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af42e354716a63c8ad2dd4a92a1d0e979">ReceiveData</a></td></tr>
+<tr class="separator:af42e354716a63c8ad2dd4a92a1d0e979"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a210e06aa846736988dbee1b9f1bb4464" id="r_a210e06aa846736988dbee1b9f1bb4464"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a210e06aa846736988dbee1b9f1bb4464">init_flag</a></td></tr>
+<tr class="separator:a210e06aa846736988dbee1b9f1bb4464"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">结构体成员变量说明</h2>
+<a id="a51ba28e2e7bd12d4e6b80b43cdaa1c67" name="a51ba28e2e7bd12d4e6b80b43cdaa1c67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51ba28e2e7bd12d4e6b80b43cdaa1c67">&#9670;&#160;</a></span>AerialRobotEnergy</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structaerial__robot__energy__t.html">aerial_robot_energy_t</a> AerialRobotEnergy</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a432eef89a886e82b3257465314c75e1e" name="a432eef89a886e82b3257465314c75e1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a432eef89a886e82b3257465314c75e1e">&#9670;&#160;</a></span>BuffMusk</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structext__buff__musk__t.html">ext_buff_musk_t</a> BuffMusk</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c025c4c155e17501fedcd0240272b5f" name="a7c025c4c155e17501fedcd0240272b5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c025c4c155e17501fedcd0240272b5f">&#9670;&#160;</a></span>CmdID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t CmdID</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9db280301670f0d74ee04c876ec307c5" name="a9db280301670f0d74ee04c876ec307c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9db280301670f0d74ee04c876ec307c5">&#9670;&#160;</a></span>EventData</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structext__event__data__t.html">ext_event_data_t</a> EventData</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b9527bf9c7d5162c76433c4f145b7fc" name="a1b9527bf9c7d5162c76433c4f145b7fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b9527bf9c7d5162c76433c4f145b7fc">&#9670;&#160;</a></span>FrameHeader</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structx_frame_header.html">xFrameHeader</a> FrameHeader</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4b776f6b4d2093d27fcc3094bf05940" name="ab4b776f6b4d2093d27fcc3094bf05940"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4b776f6b4d2093d27fcc3094bf05940">&#9670;&#160;</a></span>GameResult</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structext__game__result__t.html">ext_game_result_t</a> GameResult</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a626b0d3309d705db64263f3de24b0ff8" name="a626b0d3309d705db64263f3de24b0ff8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a626b0d3309d705db64263f3de24b0ff8">&#9670;&#160;</a></span>GameRobotHP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structext__game__robot___h_p__t.html">ext_game_robot_HP_t</a> GameRobotHP</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1dd734280e4df266e5a5a5a6a066704f" name="a1dd734280e4df266e5a5a5a6a066704f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dd734280e4df266e5a5a5a6a066704f">&#9670;&#160;</a></span>GameRobotPos</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structext__game__robot__pos__t.html">ext_game_robot_pos_t</a> GameRobotPos</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0b0cf651e4c83d4d6734d86cba7d770d" name="a0b0cf651e4c83d4d6734d86cba7d770d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b0cf651e4c83d4d6734d86cba7d770d">&#9670;&#160;</a></span>GameRobotState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structext__game__robot__state__t.html">ext_game_robot_state_t</a> GameRobotState</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a353beb605f76e91bc34566bc3a797184" name="a353beb605f76e91bc34566bc3a797184"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a353beb605f76e91bc34566bc3a797184">&#9670;&#160;</a></span>GameState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structext__game__state__t.html">ext_game_state_t</a> GameState</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a210e06aa846736988dbee1b9f1bb4464" name="a210e06aa846736988dbee1b9f1bb4464"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a210e06aa846736988dbee1b9f1bb4464">&#9670;&#160;</a></span>init_flag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t init_flag</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7f4fcef791527cf685c73a55b8dc2bbb" name="a7f4fcef791527cf685c73a55b8dc2bbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f4fcef791527cf685c73a55b8dc2bbb">&#9670;&#160;</a></span>PowerHeatData</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structext__power__heat__data__t.html">ext_power_heat_data_t</a> PowerHeatData</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af42e354716a63c8ad2dd4a92a1d0e979" name="af42e354716a63c8ad2dd4a92a1d0e979"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af42e354716a63c8ad2dd4a92a1d0e979">&#9670;&#160;</a></span>ReceiveData</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_communicate___receive_data__t.html">Communicate_ReceiveData_t</a> ReceiveData</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a39c41bb776b00171bd5ec8ad5bc60bfc" name="a39c41bb776b00171bd5ec8ad5bc60bfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39c41bb776b00171bd5ec8ad5bc60bfc">&#9670;&#160;</a></span>RobotHurt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structext__robot__hurt__t.html">ext_robot_hurt_t</a> RobotHurt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af5cc2f2987b6d252ac65b7cf98129c3a" name="af5cc2f2987b6d252ac65b7cf98129c3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5cc2f2987b6d252ac65b7cf98129c3a">&#9670;&#160;</a></span>ShootData</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structext__shoot__data__t.html">ext_shoot_data_t</a> ShootData</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae40ede9f30168a02b1c2f09112917c15" name="ae40ede9f30168a02b1c2f09112917c15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae40ede9f30168a02b1c2f09112917c15">&#9670;&#160;</a></span>SupplyProjectileAction</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structext__supply__projectile__action__t.html">ext_supply_projectile_action_t</a> SupplyProjectileAction</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li>source/module/refereeSys/<a class="el" href="referee__api_8h_source.html">referee_api.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

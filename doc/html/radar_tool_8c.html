@@ -1,0 +1,278 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/computer/radar/radarTool.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_975f036152d1b8ba6403704f48098465.html">computer</a></li><li class="navelem"><a class="el" href="dir_b3a975b8bac8d92a2171c4d6724f9ffd.html">radar</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">radarTool.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="radar_tool_8h_source.html">radarTool.h</a>&quot;</code><br />
+<code>#include &quot;main.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="_i_m_utool_8h_source.html">IMUtool.h</a>&quot;</code><br />
+<code>#include &quot;string.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="uart__api_8h_source.html">uart_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="crc__api_8h_source.html">crc_api.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+radarTool.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="radar_tool_8c__incl.png" border="0" usemap="#asource_2module_2computer_2radar_2radar_tool_8c" alt=""/></div>
+<map name="asource_2module_2computer_2radar_2radar_tool_8c" id="asource_2module_2computer_2radar_2radar_tool_8c">
+<area shape="rect" title=" " alt="" coords="397,5,561,48"/>
+<area shape="rect" href="radar_tool_8h.html" title=" " alt="" coords="163,96,248,123"/>
+<area shape="poly" title=" " alt="" coords="409,51,264,94,262,89,408,46"/>
+<area shape="rect" title=" " alt="" coords="421,245,481,272"/>
+<area shape="poly" title=" " alt="" coords="433,51,404,71,382,97,371,124,368,146,372,169,383,196,397,217,417,234,413,238,393,221,378,199,367,171,363,146,366,122,378,95,401,67,430,46"/>
+<area shape="rect" href="_i_m_utool_8h.html" title=" " alt="" coords="392,96,470,123"/>
+<area shape="poly" title=" " alt="" coords="469,50,448,84,444,81,464,47"/>
+<area shape="rect" title=" " alt="" coords="495,96,559,123"/>
+<area shape="poly" title=" " alt="" coords="493,47,514,81,509,84,489,50"/>
+<area shape="rect" href="uart__api_8h.html" title=" " alt="" coords="584,96,662,123"/>
+<area shape="poly" title=" " alt="" coords="517,46,588,86,586,90,515,51"/>
+<area shape="rect" href="crc__api_8h.html" title=" " alt="" coords="662,171,736,197"/>
+<area shape="poly" title=" " alt="" coords="562,37,622,57,651,73,676,94,693,124,700,155,695,156,688,126,671,98,648,78,620,62,560,42"/>
+<area shape="poly" title=" " alt="" coords="249,93,267,97,275,109,272,118,265,123,262,118,268,114,270,110,264,101,248,98"/>
+<area shape="poly" title=" " alt="" coords="225,121,338,195,413,236,411,241,335,200,222,126"/>
+<area shape="rect" title=" " alt="" coords="5,171,70,197"/>
+<area shape="poly" title=" " alt="" coords="177,126,82,167,80,162,175,121"/>
+<area shape="rect" title=" " alt="" coords="119,245,193,272"/>
+<area shape="poly" title=" " alt="" coords="182,125,156,145,135,172,131,186,132,201,142,231,137,233,127,203,126,186,130,169,152,141,179,121"/>
+<area shape="rect" href="computer__pack_8h.html" title=" " alt="" coords="145,171,266,197"/>
+<area shape="poly" title=" " alt="" coords="208,123,208,155,203,155,203,123"/>
+<area shape="poly" title=" " alt="" coords="249,195,407,242,405,247,247,200"/>
+<area shape="poly" title=" " alt="" coords="199,199,175,234,171,231,195,196"/>
+<area shape="poly" title=" " alt="" coords="466,121,498,140,512,153,524,170,528,189,520,208,506,224,489,238,485,234,502,221,516,205,522,189,519,172,508,157,495,144,463,125"/>
+<area shape="rect" href="_mahony_a_h_r_s_8h.html" title=" " alt="" coords="393,171,509,197"/>
+<area shape="poly" title=" " alt="" coords="437,122,446,155,441,157,432,124"/>
+<area shape="poly" title=" " alt="" coords="615,125,584,160,543,199,487,239,484,235,540,195,580,156,611,122"/>
+<area shape="poly" title=" " alt="" coords="662,199,497,247,495,242,660,194"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a0c233fcb94ea9f05596b48427095806e" id="r_a0c233fcb94ea9f05596b48427095806e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c233fcb94ea9f05596b48427095806e">Pi</a>&#160;&#160;&#160;3.14159265358979323846f</td></tr>
+<tr class="separator:a0c233fcb94ea9f05596b48427095806e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a05668ae0c9dd6692724d3e7eb8140902" id="r_a05668ae0c9dd6692724d3e7eb8140902"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05668ae0c9dd6692724d3e7eb8140902">radar_msg_init</a> (UART_HandleTypeDef *huart)</td></tr>
+<tr class="separator:a05668ae0c9dd6692724d3e7eb8140902"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb32475002e03848c95added742c8d9e" id="r_afb32475002e03848c95added742c8d9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb32475002e03848c95added742c8d9e">receiveRadarData</a> (uint8_t *rx_buffer)</td></tr>
+<tr class="separator:afb32475002e03848c95added742c8d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5de457b45d63ace4654ebb51135c180f" id="r_a5de457b45d63ace4654ebb51135c180f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5de457b45d63ace4654ebb51135c180f">sendAllRobotHPData</a> (<a class="el" href="struct_send_packet_all_robot_h_p__t.html">SendPacketAllRobotHP_t</a> *sendAllRobotHP)</td></tr>
+<tr class="separator:a5de457b45d63ace4654ebb51135c180f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad970dbdaac0eb52709ffebc0661aedb3" id="r_ad970dbdaac0eb52709ffebc0661aedb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad970dbdaac0eb52709ffebc0661aedb3">sendGameStatusData</a> (<a class="el" href="struct_send_packet_game_status__t.html">SendPacketGameStatus_t</a> *sendGameStatus)</td></tr>
+<tr class="separator:ad970dbdaac0eb52709ffebc0661aedb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c0552a9ff98e1f3f066d6ab7463b81a" id="r_a6c0552a9ff98e1f3f066d6ab7463b81a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c0552a9ff98e1f3f066d6ab7463b81a">sendRobotStatusData</a> (<a class="el" href="struct_send_packet_robot_status__t.html">SendPacketRobotStatus_t</a> *sendRobotStatus)</td></tr>
+<tr class="separator:a6c0552a9ff98e1f3f066d6ab7463b81a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a5c5d0891ab44746fd8df239fc28f8e42" id="r_a5c5d0891ab44746fd8df239fc28f8e42"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_received_packet_twist__t.html">ReceivedPacketTwist_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c5d0891ab44746fd8df239fc28f8e42">radarTwist</a> = {0}</td></tr>
+<tr class="separator:a5c5d0891ab44746fd8df239fc28f8e42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a146582af8d382e43975069e75103c928" id="r_a146582af8d382e43975069e75103c928"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_received_packet_robot_control__t.html">ReceivedPacketRobotControl_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a146582af8d382e43975069e75103c928">robotControl</a> = {0}</td></tr>
+<tr class="separator:a146582af8d382e43975069e75103c928"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae965cb05b834fe821d9b938c7922601c" id="r_ae965cb05b834fe821d9b938c7922601c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae965cb05b834fe821d9b938c7922601c">rader_rx_buffer</a> [<a class="el" href="radar_tool_8h.html#a09dfa0928ba2c33381146287b2983368">RADAR_BUFFER_SIZE</a>] = {0}</td></tr>
+<tr class="separator:ae965cb05b834fe821d9b938c7922601c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="a0c233fcb94ea9f05596b48427095806e" name="a0c233fcb94ea9f05596b48427095806e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c233fcb94ea9f05596b48427095806e">&#9670;&#160;</a></span>Pi</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define Pi&#160;&#160;&#160;3.14159265358979323846f</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a05668ae0c9dd6692724d3e7eb8140902" name="a05668ae0c9dd6692724d3e7eb8140902"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05668ae0c9dd6692724d3e7eb8140902">&#9670;&#160;</a></span>radar_msg_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void radar_msg_init </td>
+          <td>(</td>
+          <td class="paramtype">UART_HandleTypeDef *</td>          <td class="paramname"><span class="paramname"><em>huart</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afb32475002e03848c95added742c8d9e" name="afb32475002e03848c95added742c8d9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb32475002e03848c95added742c8d9e">&#9670;&#160;</a></span>receiveRadarData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void receiveRadarData </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>rx_buffer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5de457b45d63ace4654ebb51135c180f" name="a5de457b45d63ace4654ebb51135c180f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5de457b45d63ace4654ebb51135c180f">&#9670;&#160;</a></span>sendAllRobotHPData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sendAllRobotHPData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_send_packet_all_robot_h_p__t.html">SendPacketAllRobotHP_t</a> *</td>          <td class="paramname"><span class="paramname"><em>sendAllRobotHP</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad970dbdaac0eb52709ffebc0661aedb3" name="ad970dbdaac0eb52709ffebc0661aedb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad970dbdaac0eb52709ffebc0661aedb3">&#9670;&#160;</a></span>sendGameStatusData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sendGameStatusData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_send_packet_game_status__t.html">SendPacketGameStatus_t</a> *</td>          <td class="paramname"><span class="paramname"><em>sendGameStatus</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c0552a9ff98e1f3f066d6ab7463b81a" name="a6c0552a9ff98e1f3f066d6ab7463b81a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c0552a9ff98e1f3f066d6ab7463b81a">&#9670;&#160;</a></span>sendRobotStatusData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sendRobotStatusData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_send_packet_robot_status__t.html">SendPacketRobotStatus_t</a> *</td>          <td class="paramname"><span class="paramname"><em>sendRobotStatus</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a5c5d0891ab44746fd8df239fc28f8e42" name="a5c5d0891ab44746fd8df239fc28f8e42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c5d0891ab44746fd8df239fc28f8e42">&#9670;&#160;</a></span>radarTwist</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_received_packet_twist__t.html">ReceivedPacketTwist_t</a> radarTwist = {0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae965cb05b834fe821d9b938c7922601c" name="ae965cb05b834fe821d9b938c7922601c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae965cb05b834fe821d9b938c7922601c">&#9670;&#160;</a></span>rader_rx_buffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t rader_rx_buffer[<a class="el" href="radar_tool_8h.html#a09dfa0928ba2c33381146287b2983368">RADAR_BUFFER_SIZE</a>] = {0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a146582af8d382e43975069e75103c928" name="a146582af8d382e43975069e75103c928"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a146582af8d382e43975069e75103c928">&#9670;&#160;</a></span>robotControl</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_received_packet_robot_control__t.html">ReceivedPacketRobotControl_t</a> robotControl = {0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

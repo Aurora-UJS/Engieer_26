@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/imu/BMI088/inc/BMI088Middleware.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_fda1e2a789251a234642f8099e409c7b.html">imu</a></li><li class="navelem"><a class="el" href="dir_fbf0e0d886075f876aba2d5f4960db13.html">BMI088</a></li><li class="navelem"><a class="el" href="dir_1469d48cff88994044fdefd536ff4baa.html">inc</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">BMI088Middleware.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_b_m_i088_middleware_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef BMI088MIDDLEWARE_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define BMI088MIDDLEWARE_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;stdint.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="_b_m_i088_middleware_8h.html#ab2bc48eb85d2267dbd6baba2a25d0b63">    6</a></span><span class="preprocessor">#define BMI088_USE_SPI</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//#define BMI088_USE_IIC</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="_b_m_i088_middleware_8h.html#a636f04ec1e5c391ec8785451446398c6">BMI088_GPIO_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="_b_m_i088_middleware_8h.html#a1478d5375f236499b2922025aa1e262b">BMI088_com_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="_b_m_i088_middleware_8h.html#a82933f82dafd6b23f5ee4fe6c8162857">BMI088_delay_ms</a>(uint16_t ms);</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="_b_m_i088_middleware_8h.html#ae5ffcbbf1b04d867ac7b2e897eecb515">BMI088_delay_us</a>(uint16_t us);</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#if defined(BMI088_USE_SPI)</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="_b_m_i088_middleware_8h.html#ad6798f0700771b94be54c7bc875ebec0">BMI088_ACCEL_NS_L</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="_b_m_i088_middleware_8h.html#a3d6b6610eb8fefbcaa59db81b89ffbb3">BMI088_ACCEL_NS_H</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="_b_m_i088_middleware_8h.html#a31f87b462165c98db7f957116e71512d">BMI088_GYRO_NS_L</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code hl_function" href="_b_m_i088_middleware_8h.html#a10ec41d7a428e9557fb82cdf289c634a">BMI088_GYRO_NS_H</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">extern</span> uint8_t <a class="code hl_function" href="_b_m_i088_middleware_8h.html#ae829c61f1662409cb5a4f72e74364a5a">BMI088_read_write_byte</a>(uint8_t reg);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#elif defined(BMI088_USE_IIC)</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="a_b_m_i088_middleware_8h_html_a10ec41d7a428e9557fb82cdf289c634a"><div class="ttname"><a href="_b_m_i088_middleware_8h.html#a10ec41d7a428e9557fb82cdf289c634a">BMI088_GYRO_NS_H</a></div><div class="ttdeci">void BMI088_GYRO_NS_H(void)</div><div class="ttdoc">: BMI088_GYRO_NS_H(void)</div><div class="ttdef"><b>定义</b> BMI088Middleware.c:132</div></div>
+<div class="ttc" id="a_b_m_i088_middleware_8h_html_a1478d5375f236499b2922025aa1e262b"><div class="ttname"><a href="_b_m_i088_middleware_8h.html#a1478d5375f236499b2922025aa1e262b">BMI088_com_init</a></div><div class="ttdeci">void BMI088_com_init(void)</div><div class="ttdoc">: BMI088_com_init(void)</div><div class="ttdef"><b>定义</b> BMI088Middleware.c:28</div></div>
+<div class="ttc" id="a_b_m_i088_middleware_8h_html_a31f87b462165c98db7f957116e71512d"><div class="ttname"><a href="_b_m_i088_middleware_8h.html#a31f87b462165c98db7f957116e71512d">BMI088_GYRO_NS_L</a></div><div class="ttdeci">void BMI088_GYRO_NS_L(void)</div><div class="ttdoc">: BMI088_GYRO_NS_L(void)</div><div class="ttdef"><b>定义</b> BMI088Middleware.c:120</div></div>
+<div class="ttc" id="a_b_m_i088_middleware_8h_html_a3d6b6610eb8fefbcaa59db81b89ffbb3"><div class="ttname"><a href="_b_m_i088_middleware_8h.html#a3d6b6610eb8fefbcaa59db81b89ffbb3">BMI088_ACCEL_NS_H</a></div><div class="ttdeci">void BMI088_ACCEL_NS_H(void)</div><div class="ttdoc">: BMI088_ACCEL_NS_H(void)</div><div class="ttdef"><b>定义</b> BMI088Middleware.c:108</div></div>
+<div class="ttc" id="a_b_m_i088_middleware_8h_html_a636f04ec1e5c391ec8785451446398c6"><div class="ttname"><a href="_b_m_i088_middleware_8h.html#a636f04ec1e5c391ec8785451446398c6">BMI088_GPIO_init</a></div><div class="ttdeci">void BMI088_GPIO_init(void)</div><div class="ttdoc">: BMI088_GPIO_init(void)</div><div class="ttdef"><b>定义</b> BMI088Middleware.c:16</div></div>
+<div class="ttc" id="a_b_m_i088_middleware_8h_html_a82933f82dafd6b23f5ee4fe6c8162857"><div class="ttname"><a href="_b_m_i088_middleware_8h.html#a82933f82dafd6b23f5ee4fe6c8162857">BMI088_delay_ms</a></div><div class="ttdeci">void BMI088_delay_ms(uint16_t ms)</div><div class="ttdoc">: BMI088_delay_ms(uint16_t ms)</div><div class="ttdef"><b>定义</b> BMI088Middleware.c:41</div></div>
+<div class="ttc" id="a_b_m_i088_middleware_8h_html_ad6798f0700771b94be54c7bc875ebec0"><div class="ttname"><a href="_b_m_i088_middleware_8h.html#ad6798f0700771b94be54c7bc875ebec0">BMI088_ACCEL_NS_L</a></div><div class="ttdeci">void BMI088_ACCEL_NS_L(void)</div><div class="ttdoc">: BMI088_ACCEL_NS_L(void)</div><div class="ttdef"><b>定义</b> BMI088Middleware.c:96</div></div>
+<div class="ttc" id="a_b_m_i088_middleware_8h_html_ae5ffcbbf1b04d867ac7b2e897eecb515"><div class="ttname"><a href="_b_m_i088_middleware_8h.html#ae5ffcbbf1b04d867ac7b2e897eecb515">BMI088_delay_us</a></div><div class="ttdeci">void BMI088_delay_us(uint16_t us)</div><div class="ttdoc">: BMI088_delay_us(uint16_t us)</div><div class="ttdef"><b>定义</b> BMI088Middleware.c:56</div></div>
+<div class="ttc" id="a_b_m_i088_middleware_8h_html_ae829c61f1662409cb5a4f72e74364a5a"><div class="ttname"><a href="_b_m_i088_middleware_8h.html#ae829c61f1662409cb5a4f72e74364a5a">BMI088_read_write_byte</a></div><div class="ttdeci">uint8_t BMI088_read_write_byte(uint8_t reg)</div><div class="ttdoc">: BMI088_read_write_byte(uint8_t txdata)</div><div class="ttdef"><b>定义</b> BMI088Middleware.c:144</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

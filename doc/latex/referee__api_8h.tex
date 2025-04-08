@@ -1,0 +1,169 @@
+\doxysection{source/module/referee\+Sys/referee\+\_\+api.h 文件参考}
+\hypertarget{referee__api_8h}{}\label{referee__api_8h}\index{source/module/refereeSys/referee\_api.h@{source/module/refereeSys/referee\_api.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}referee\+\_\+protocol.\+h"{}}\newline
+{\ttfamily \#include "{}crc\+\_\+api.\+h"{}}\newline
+{\ttfamily \#include "{}string.\+h"{}}\newline
+{\ttfamily \#include "{}uart\+\_\+api.\+h"{}}\newline
+{\ttfamily \#include "{}usart.\+h"{}}\newline
+referee\+\_\+api.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{referee__api_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{referee__api_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structreferee__info__t}{referee\+\_\+info\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structcustom__controller__info__t}{custom\+\_\+controller\+\_\+info\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{referee__api_8h_abf0ebe6053e367e42c9ec1ac6df12d08}{RE\+\_\+\+RX\+\_\+\+BUFFER\+\_\+\+SIZE}}~255u
+\item 
+\#define \mbox{\hyperlink{referee__api_8h_a2cd109632a6dcccaa80b43561b1ab700}{SCREEN\+\_\+\+WIDTH}}~1080
+\item 
+\#define \mbox{\hyperlink{referee__api_8h_a18140f6fa4b31c458a8b0cc246da3c7c}{SCREEN\+\_\+\+LENGTH}}~1920
+\item 
+\#define \mbox{\hyperlink{referee__api_8h_a0592dba56693fad79136250c11e5a7fe}{MAX\+\_\+\+SIZE}}~128
+\item 
+\#define \mbox{\hyperlink{referee__api_8h_a9b9a77d8cfc6e26a76ecd75819af497c}{frameheader\+\_\+len}}~5
+\item 
+\#define \mbox{\hyperlink{referee__api_8h_a815f4342a363ce10cc001bd1929c30ee}{cmd\+\_\+len}}~2
+\item 
+\#define \mbox{\hyperlink{referee__api_8h_ad76fad7fa554070a84190f3d996d639f}{crc\+\_\+len}}~2
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{referee__api_8h_a9d96079c6c4156132361228e84d214ea}{Judge\+Read\+Data}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buff)
+\begin{DoxyCompactList}\small\item\em 解析裁判数据包，处理帧头校验和数据分发 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{referee__api_8h_abe2a73fa3598a227339c0f0341f43650}{Ctrller\+Read\+Data}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buff)
+\begin{DoxyCompactList}\small\item\em 解析控制器数据包，处理帧头校验和数据分发 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structreferee__info__t}{referee\+\_\+info\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{referee__api_8h_a2d2038fef235be5aefdb58e8184a322c}{get\+\_\+referee\+\_\+msg}} (void)
+\begin{DoxyCompactList}\small\item\em 获取解析后的裁判信息数据 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structcustom__controller__info__t}{custom\+\_\+controller\+\_\+info\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{referee__api_8h_a44afc451c49110e093c708e1c5f67887}{get\+\_\+custom\+\_\+controller\+\_\+msg}} (void)
+\begin{DoxyCompactList}\small\item\em 获取解析后的自定义控制器信息数据 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{referee__api_8h_a1d736a70557ee9ae3d5170790fff1a92}{referee\+\_\+data\+\_\+pack\+\_\+handle}} (uint8\+\_\+t sof, uint16\+\_\+t cmd\+\_\+id, uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+\_\+data, uint16\+\_\+t len)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{宏定义说明}
+\Hypertarget{referee__api_8h_a815f4342a363ce10cc001bd1929c30ee}\index{referee\_api.h@{referee\_api.h}!cmd\_len@{cmd\_len}}
+\index{cmd\_len@{cmd\_len}!referee\_api.h@{referee\_api.h}}
+\doxysubsubsection{\texorpdfstring{cmd\_len}{cmd\_len}}
+{\footnotesize\ttfamily \label{referee__api_8h_a815f4342a363ce10cc001bd1929c30ee} 
+\#define cmd\+\_\+len~2}
+
+\Hypertarget{referee__api_8h_ad76fad7fa554070a84190f3d996d639f}\index{referee\_api.h@{referee\_api.h}!crc\_len@{crc\_len}}
+\index{crc\_len@{crc\_len}!referee\_api.h@{referee\_api.h}}
+\doxysubsubsection{\texorpdfstring{crc\_len}{crc\_len}}
+{\footnotesize\ttfamily \label{referee__api_8h_ad76fad7fa554070a84190f3d996d639f} 
+\#define crc\+\_\+len~2}
+
+\Hypertarget{referee__api_8h_a9b9a77d8cfc6e26a76ecd75819af497c}\index{referee\_api.h@{referee\_api.h}!frameheader\_len@{frameheader\_len}}
+\index{frameheader\_len@{frameheader\_len}!referee\_api.h@{referee\_api.h}}
+\doxysubsubsection{\texorpdfstring{frameheader\_len}{frameheader\_len}}
+{\footnotesize\ttfamily \label{referee__api_8h_a9b9a77d8cfc6e26a76ecd75819af497c} 
+\#define frameheader\+\_\+len~5}
+
+\Hypertarget{referee__api_8h_a0592dba56693fad79136250c11e5a7fe}\index{referee\_api.h@{referee\_api.h}!MAX\_SIZE@{MAX\_SIZE}}
+\index{MAX\_SIZE@{MAX\_SIZE}!referee\_api.h@{referee\_api.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_SIZE}{MAX\_SIZE}}
+{\footnotesize\ttfamily \label{referee__api_8h_a0592dba56693fad79136250c11e5a7fe} 
+\#define MAX\+\_\+\+SIZE~128}
+
+\Hypertarget{referee__api_8h_abf0ebe6053e367e42c9ec1ac6df12d08}\index{referee\_api.h@{referee\_api.h}!RE\_RX\_BUFFER\_SIZE@{RE\_RX\_BUFFER\_SIZE}}
+\index{RE\_RX\_BUFFER\_SIZE@{RE\_RX\_BUFFER\_SIZE}!referee\_api.h@{referee\_api.h}}
+\doxysubsubsection{\texorpdfstring{RE\_RX\_BUFFER\_SIZE}{RE\_RX\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \label{referee__api_8h_abf0ebe6053e367e42c9ec1ac6df12d08} 
+\#define RE\+\_\+\+RX\+\_\+\+BUFFER\+\_\+\+SIZE~255u}
+
+\Hypertarget{referee__api_8h_a18140f6fa4b31c458a8b0cc246da3c7c}\index{referee\_api.h@{referee\_api.h}!SCREEN\_LENGTH@{SCREEN\_LENGTH}}
+\index{SCREEN\_LENGTH@{SCREEN\_LENGTH}!referee\_api.h@{referee\_api.h}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_LENGTH}{SCREEN\_LENGTH}}
+{\footnotesize\ttfamily \label{referee__api_8h_a18140f6fa4b31c458a8b0cc246da3c7c} 
+\#define SCREEN\+\_\+\+LENGTH~1920}
+
+\Hypertarget{referee__api_8h_a2cd109632a6dcccaa80b43561b1ab700}\index{referee\_api.h@{referee\_api.h}!SCREEN\_WIDTH@{SCREEN\_WIDTH}}
+\index{SCREEN\_WIDTH@{SCREEN\_WIDTH}!referee\_api.h@{referee\_api.h}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_WIDTH}{SCREEN\_WIDTH}}
+{\footnotesize\ttfamily \label{referee__api_8h_a2cd109632a6dcccaa80b43561b1ab700} 
+\#define SCREEN\+\_\+\+WIDTH~1080}
+
+
+
+\doxysubsection{函数说明}
+\Hypertarget{referee__api_8h_abe2a73fa3598a227339c0f0341f43650}\index{referee\_api.h@{referee\_api.h}!CtrllerReadData@{CtrllerReadData}}
+\index{CtrllerReadData@{CtrllerReadData}!referee\_api.h@{referee\_api.h}}
+\doxysubsubsection{\texorpdfstring{CtrllerReadData()}{CtrllerReadData()}}
+{\footnotesize\ttfamily \label{referee__api_8h_abe2a73fa3598a227339c0f0341f43650} 
+void Ctrller\+Read\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buff}{}\end{DoxyParamCaption})}
+
+
+
+解析控制器数据包，处理帧头校验和数据分发 
+
+
+\begin{DoxyParams}{参数}
+{\em buff} & 输入的数据缓冲区指针 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{referee__api_8h_a44afc451c49110e093c708e1c5f67887}\index{referee\_api.h@{referee\_api.h}!get\_custom\_controller\_msg@{get\_custom\_controller\_msg}}
+\index{get\_custom\_controller\_msg@{get\_custom\_controller\_msg}!referee\_api.h@{referee\_api.h}}
+\doxysubsubsection{\texorpdfstring{get\_custom\_controller\_msg()}{get\_custom\_controller\_msg()}}
+{\footnotesize\ttfamily \label{referee__api_8h_a44afc451c49110e093c708e1c5f67887} 
+\mbox{\hyperlink{structcustom__controller__info__t}{custom\+\_\+controller\+\_\+info\+\_\+t}} \texorpdfstring{$\ast$}{*} get\+\_\+custom\+\_\+controller\+\_\+msg (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+获取解析后的自定义控制器信息数据 
+
+\begin{DoxyReturn}{返回}
+当前自定义控制器数据结构体 
+\end{DoxyReturn}
+\Hypertarget{referee__api_8h_a2d2038fef235be5aefdb58e8184a322c}\index{referee\_api.h@{referee\_api.h}!get\_referee\_msg@{get\_referee\_msg}}
+\index{get\_referee\_msg@{get\_referee\_msg}!referee\_api.h@{referee\_api.h}}
+\doxysubsubsection{\texorpdfstring{get\_referee\_msg()}{get\_referee\_msg()}}
+{\footnotesize\ttfamily \label{referee__api_8h_a2d2038fef235be5aefdb58e8184a322c} 
+\mbox{\hyperlink{structreferee__info__t}{referee\+\_\+info\+\_\+t}} \texorpdfstring{$\ast$}{*} get\+\_\+referee\+\_\+msg (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+获取解析后的裁判信息数据 
+
+\begin{DoxyReturn}{返回}
+当前裁判数据结构体 
+\end{DoxyReturn}
+\Hypertarget{referee__api_8h_a9d96079c6c4156132361228e84d214ea}\index{referee\_api.h@{referee\_api.h}!JudgeReadData@{JudgeReadData}}
+\index{JudgeReadData@{JudgeReadData}!referee\_api.h@{referee\_api.h}}
+\doxysubsubsection{\texorpdfstring{JudgeReadData()}{JudgeReadData()}}
+{\footnotesize\ttfamily \label{referee__api_8h_a9d96079c6c4156132361228e84d214ea} 
+void Judge\+Read\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buff}{}\end{DoxyParamCaption})}
+
+
+
+解析裁判数据包，处理帧头校验和数据分发 
+
+
+\begin{DoxyParams}{参数}
+{\em buff} & 输入的数据缓冲区指针 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{referee__api_8h_a1d736a70557ee9ae3d5170790fff1a92}\index{referee\_api.h@{referee\_api.h}!referee\_data\_pack\_handle@{referee\_data\_pack\_handle}}
+\index{referee\_data\_pack\_handle@{referee\_data\_pack\_handle}!referee\_api.h@{referee\_api.h}}
+\doxysubsubsection{\texorpdfstring{referee\_data\_pack\_handle()}{referee\_data\_pack\_handle()}}
+{\footnotesize\ttfamily \label{referee__api_8h_a1d736a70557ee9ae3d5170790fff1a92} 
+void referee\+\_\+data\+\_\+pack\+\_\+handle (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{sof}{, }\item[{uint16\+\_\+t}]{cmd\+\_\+id}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+\_\+data}{, }\item[{uint16\+\_\+t}]{len}{}\end{DoxyParamCaption})}
+

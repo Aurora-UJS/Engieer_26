@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/keyboard/keyBoard.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_7cee82fc977f898eaa263446eee2e7ba.html">keyboard</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">keyBoard.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="key_board_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef KeyBoard_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define KeyBoard_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;main.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="structkeyboard__t.html">    6</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#af31a1d563ee2613b5b30838bf58f012a">    8</a></span>    int16_t <a class="code hl_variable" href="structkeyboard__t.html#af31a1d563ee2613b5b30838bf58f012a">mouse_x</a>;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a780edb8ad65677d73615b4e40d06f5f1">    9</a></span>    int16_t <a class="code hl_variable" href="structkeyboard__t.html#a780edb8ad65677d73615b4e40d06f5f1">mouse_y</a>;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#ab6e02005aae5cefc62ed06ac051f86b6">   10</a></span>    int16_t <a class="code hl_variable" href="structkeyboard__t.html#ab6e02005aae5cefc62ed06ac051f86b6">mouse_z</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a42bbafc9234afd5a759270e7cca635b9">   11</a></span>    int8_t <a class="code hl_variable" href="structkeyboard__t.html#a42bbafc9234afd5a759270e7cca635b9">left_button_down</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a3b760d5bc9f111288a703f065696a09a">   12</a></span>    int8_t <a class="code hl_variable" href="structkeyboard__t.html#a3b760d5bc9f111288a703f065696a09a">right_button_down</a>;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">union </span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a0c10b14e393ad8a91578d2d6bd529890">   14</a></span>        uint16_t <a class="code hl_variable" href="structkeyboard__t.html#a0c10b14e393ad8a91578d2d6bd529890">key_code</a>;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="keyword">struct </span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        {</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#ad1193f0da05a941478b6bb1bfc364b4a">   17</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#ad1193f0da05a941478b6bb1bfc364b4a">W</a> : 1;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#ae89ba51d49f65d2f13bec9fcc0f12458">   18</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#ae89ba51d49f65d2f13bec9fcc0f12458">S</a> : 1;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a48f5a6b346491762f3f7a32882f31bed">   19</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#a48f5a6b346491762f3f7a32882f31bed">A</a> : 1;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a4cb75a149c87fed12732b82ba38992aa">   20</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#a4cb75a149c87fed12732b82ba38992aa">D</a> : 1;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a2ea97e84534c35b5c3a322d4e2f8b4ed">   21</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#a2ea97e84534c35b5c3a322d4e2f8b4ed">SHIFT</a> : 1;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a14832e9473d5b41d42a91be486383d7e">   22</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#a14832e9473d5b41d42a91be486383d7e">CTRL</a> : 1;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a7d960594ed7501ef7bb24d5a34a351b6">   23</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#a7d960594ed7501ef7bb24d5a34a351b6">Q</a> : 1;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#ab264bae2d92f317456e293e8d3c3d10f">   24</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#ab264bae2d92f317456e293e8d3c3d10f">E</a> : 1;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a588189ccf0d87c74b0e2a1d5972fe63c">   25</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#a588189ccf0d87c74b0e2a1d5972fe63c">R</a> : 1;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a5a3710e27da8ac2fe4677635bfc22ec8">   26</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#a5a3710e27da8ac2fe4677635bfc22ec8">F</a> : 1;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a876a5f8a01d13e2f0a427afae34875cc">   27</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#a876a5f8a01d13e2f0a427afae34875cc">G</a> : 1;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a5a8eb607e6c3f820a971b163abc936d5">   28</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#a5a8eb607e6c3f820a971b163abc936d5">Z</a> : 1;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a60eb5e8306eb4f0eaa95ff5d16651e35">   29</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#a60eb5e8306eb4f0eaa95ff5d16651e35">X</a> : 1;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a8e2c76aa83b8611dfee62ccee8384a34">   30</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#a8e2c76aa83b8611dfee62ccee8384a34">C</a> : 1;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a21fef1295ccb279efb5fb8dd723ed52d">   31</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#a21fef1295ccb279efb5fb8dd723ed52d">V</a> : 1;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#ae783bd90764c8455228772c025c064e4">   32</a></span>          uint16_t <a class="code hl_variable" href="structkeyboard__t.html#ae783bd90764c8455228772c025c064e4">B</a> : 1;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a68d50f6168818148372627fe09303d1d">   33</a></span>        } bit;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a31baa1e1c26f25ac604a2af0ec83314b">   34</a></span>    } key_code;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structkeyboard__t.html#a5a6ed8c04a3db86066924b1a1bf4dad3">   35</a></span>    uint16_t <a class="code hl_variable" href="structkeyboard__t.html#a5a6ed8c04a3db86066924b1a1bf4dad3">reserved</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}<a class="code hl_struct" href="structkeyboard__t.html">keyboard_t</a>;</div>
+</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="astructkeyboard__t_html"><div class="ttname"><a href="structkeyboard__t.html">keyboard_t</a></div><div class="ttdef"><b>定义</b> keyBoard.h:7</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a0c10b14e393ad8a91578d2d6bd529890"><div class="ttname"><a href="structkeyboard__t.html#a0c10b14e393ad8a91578d2d6bd529890">keyboard_t::key_code</a></div><div class="ttdeci">uint16_t key_code</div><div class="ttdef"><b>定义</b> keyBoard.h:14</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a14832e9473d5b41d42a91be486383d7e"><div class="ttname"><a href="structkeyboard__t.html#a14832e9473d5b41d42a91be486383d7e">keyboard_t::CTRL</a></div><div class="ttdeci">uint16_t CTRL</div><div class="ttdef"><b>定义</b> keyBoard.h:22</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a21fef1295ccb279efb5fb8dd723ed52d"><div class="ttname"><a href="structkeyboard__t.html#a21fef1295ccb279efb5fb8dd723ed52d">keyboard_t::V</a></div><div class="ttdeci">uint16_t V</div><div class="ttdef"><b>定义</b> keyBoard.h:31</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a2ea97e84534c35b5c3a322d4e2f8b4ed"><div class="ttname"><a href="structkeyboard__t.html#a2ea97e84534c35b5c3a322d4e2f8b4ed">keyboard_t::SHIFT</a></div><div class="ttdeci">uint16_t SHIFT</div><div class="ttdef"><b>定义</b> keyBoard.h:21</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a3b760d5bc9f111288a703f065696a09a"><div class="ttname"><a href="structkeyboard__t.html#a3b760d5bc9f111288a703f065696a09a">keyboard_t::right_button_down</a></div><div class="ttdeci">int8_t right_button_down</div><div class="ttdef"><b>定义</b> keyBoard.h:12</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a42bbafc9234afd5a759270e7cca635b9"><div class="ttname"><a href="structkeyboard__t.html#a42bbafc9234afd5a759270e7cca635b9">keyboard_t::left_button_down</a></div><div class="ttdeci">int8_t left_button_down</div><div class="ttdef"><b>定义</b> keyBoard.h:11</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a48f5a6b346491762f3f7a32882f31bed"><div class="ttname"><a href="structkeyboard__t.html#a48f5a6b346491762f3f7a32882f31bed">keyboard_t::A</a></div><div class="ttdeci">uint16_t A</div><div class="ttdef"><b>定义</b> keyBoard.h:19</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a4cb75a149c87fed12732b82ba38992aa"><div class="ttname"><a href="structkeyboard__t.html#a4cb75a149c87fed12732b82ba38992aa">keyboard_t::D</a></div><div class="ttdeci">uint16_t D</div><div class="ttdef"><b>定义</b> keyBoard.h:20</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a588189ccf0d87c74b0e2a1d5972fe63c"><div class="ttname"><a href="structkeyboard__t.html#a588189ccf0d87c74b0e2a1d5972fe63c">keyboard_t::R</a></div><div class="ttdeci">uint16_t R</div><div class="ttdef"><b>定义</b> keyBoard.h:25</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a5a3710e27da8ac2fe4677635bfc22ec8"><div class="ttname"><a href="structkeyboard__t.html#a5a3710e27da8ac2fe4677635bfc22ec8">keyboard_t::F</a></div><div class="ttdeci">uint16_t F</div><div class="ttdef"><b>定义</b> keyBoard.h:26</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a5a6ed8c04a3db86066924b1a1bf4dad3"><div class="ttname"><a href="structkeyboard__t.html#a5a6ed8c04a3db86066924b1a1bf4dad3">keyboard_t::reserved</a></div><div class="ttdeci">uint16_t reserved</div><div class="ttdef"><b>定义</b> keyBoard.h:35</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a5a8eb607e6c3f820a971b163abc936d5"><div class="ttname"><a href="structkeyboard__t.html#a5a8eb607e6c3f820a971b163abc936d5">keyboard_t::Z</a></div><div class="ttdeci">uint16_t Z</div><div class="ttdef"><b>定义</b> keyBoard.h:28</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a60eb5e8306eb4f0eaa95ff5d16651e35"><div class="ttname"><a href="structkeyboard__t.html#a60eb5e8306eb4f0eaa95ff5d16651e35">keyboard_t::X</a></div><div class="ttdeci">uint16_t X</div><div class="ttdef"><b>定义</b> keyBoard.h:29</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a780edb8ad65677d73615b4e40d06f5f1"><div class="ttname"><a href="structkeyboard__t.html#a780edb8ad65677d73615b4e40d06f5f1">keyboard_t::mouse_y</a></div><div class="ttdeci">int16_t mouse_y</div><div class="ttdef"><b>定义</b> keyBoard.h:9</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a7d960594ed7501ef7bb24d5a34a351b6"><div class="ttname"><a href="structkeyboard__t.html#a7d960594ed7501ef7bb24d5a34a351b6">keyboard_t::Q</a></div><div class="ttdeci">uint16_t Q</div><div class="ttdef"><b>定义</b> keyBoard.h:23</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a876a5f8a01d13e2f0a427afae34875cc"><div class="ttname"><a href="structkeyboard__t.html#a876a5f8a01d13e2f0a427afae34875cc">keyboard_t::G</a></div><div class="ttdeci">uint16_t G</div><div class="ttdef"><b>定义</b> keyBoard.h:27</div></div>
+<div class="ttc" id="astructkeyboard__t_html_a8e2c76aa83b8611dfee62ccee8384a34"><div class="ttname"><a href="structkeyboard__t.html#a8e2c76aa83b8611dfee62ccee8384a34">keyboard_t::C</a></div><div class="ttdeci">uint16_t C</div><div class="ttdef"><b>定义</b> keyBoard.h:30</div></div>
+<div class="ttc" id="astructkeyboard__t_html_ab264bae2d92f317456e293e8d3c3d10f"><div class="ttname"><a href="structkeyboard__t.html#ab264bae2d92f317456e293e8d3c3d10f">keyboard_t::E</a></div><div class="ttdeci">uint16_t E</div><div class="ttdef"><b>定义</b> keyBoard.h:24</div></div>
+<div class="ttc" id="astructkeyboard__t_html_ab6e02005aae5cefc62ed06ac051f86b6"><div class="ttname"><a href="structkeyboard__t.html#ab6e02005aae5cefc62ed06ac051f86b6">keyboard_t::mouse_z</a></div><div class="ttdeci">int16_t mouse_z</div><div class="ttdef"><b>定义</b> keyBoard.h:10</div></div>
+<div class="ttc" id="astructkeyboard__t_html_ad1193f0da05a941478b6bb1bfc364b4a"><div class="ttname"><a href="structkeyboard__t.html#ad1193f0da05a941478b6bb1bfc364b4a">keyboard_t::W</a></div><div class="ttdeci">uint16_t W</div><div class="ttdef"><b>定义</b> keyBoard.h:17</div></div>
+<div class="ttc" id="astructkeyboard__t_html_ae783bd90764c8455228772c025c064e4"><div class="ttname"><a href="structkeyboard__t.html#ae783bd90764c8455228772c025c064e4">keyboard_t::B</a></div><div class="ttdeci">uint16_t B</div><div class="ttdef"><b>定义</b> keyBoard.h:32</div></div>
+<div class="ttc" id="astructkeyboard__t_html_ae89ba51d49f65d2f13bec9fcc0f12458"><div class="ttname"><a href="structkeyboard__t.html#ae89ba51d49f65d2f13bec9fcc0f12458">keyboard_t::S</a></div><div class="ttdeci">uint16_t S</div><div class="ttdef"><b>定义</b> keyBoard.h:18</div></div>
+<div class="ttc" id="astructkeyboard__t_html_af31a1d563ee2613b5b30838bf58f012a"><div class="ttname"><a href="structkeyboard__t.html#af31a1d563ee2613b5b30838bf58f012a">keyboard_t::mouse_x</a></div><div class="ttdeci">int16_t mouse_x</div><div class="ttdef"><b>定义</b> keyBoard.h:8</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

@@ -1,0 +1,59 @@
+\doxysection{radar\+Tool.\+h}
+\hypertarget{radar_tool_8h_source}{}\label{radar_tool_8h_source}\index{source/module/computer/radar/radarTool.h@{source/module/computer/radar/radarTool.h}}
+\mbox{\hyperlink{radar_tool_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_RADARTOOL\_H\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_RADARTOOL\_H\_}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}stdint.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}stdbool.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{radar_tool_8h}{radarTool.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{computer__pack_8h}{computer\_pack.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ RADAR\_BUFFER\_SIZE\ 100}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ CRC\_Check\_False\ \ \ 0}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ CRC\_Check\_True\ \ \ \ 1}}
+\DoxyCodeLine{00015\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{radar_tool_8h_aed742c436da53c1080638ce6ef7d13de}{u8}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{radar_tool_8c_ae965cb05b834fe821d9b938c7922601c}{rader\_rx\_buffer}}[\mbox{\hyperlink{radar_tool_8h_a09dfa0928ba2c33381146287b2983368}{RADAR\_BUFFER\_SIZE}}];}
+\DoxyCodeLine{00018\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{struct_received_packet_twist__t}{ReceivedPacketTwist\_t}}\ \mbox{\hyperlink{radar_tool_8c_a5c5d0891ab44746fd8df239fc28f8e42}{radarTwist}};\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{struct_received_packet_robot_control__t}{ReceivedPacketRobotControl\_t}}\ \mbox{\hyperlink{radar_tool_8c_a146582af8d382e43975069e75103c928}{robotControl}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{/*\ 雷达/云台目标运动状态获取宏组\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ get\_target\_x()\ (radarTwist.linear\_x)}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ get\_target\_x()\ (radarTwist.linear\_x)}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ get\_target\_z()\ (radarTwist.angular\_z)}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{/*\ 雷达/云台自身角速度获取宏组\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ get\_angular\_x()\ (radarTwist.angular\_x)}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ get\_angular\_y()\ (radarTwist.angular\_y)}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ get\_angular\_z()\ (radarTwist.angular\_z)}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{/*\ 机器人控制状态获取宏组\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ get\_gimbal\_stop()\ (robotControl.stop\_gimbal\_scan)}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ get\_chassis\_spin()\ (robotControl.chassis\_spin\_vel)}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{radar_tool_8h_afb32475002e03848c95added742c8d9e}{receiveRadarData}}(uint8\_t\ *rx\_buffer);}
+\DoxyCodeLine{00077\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{radar_tool_8h_a05668ae0c9dd6692724d3e7eb8140902}{radar\_msg\_init}}(UART\_HandleTypeDef\ *huart);}
+\DoxyCodeLine{00078\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{radar_tool_8h_a5de457b45d63ace4654ebb51135c180f}{sendAllRobotHPData}}(\mbox{\hyperlink{struct_send_packet_all_robot_h_p__t}{SendPacketAllRobotHP\_t}}\ *sendAllRobotHP);}
+\DoxyCodeLine{00079\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{radar_tool_8h_ad970dbdaac0eb52709ffebc0661aedb3}{sendGameStatusData}}(\mbox{\hyperlink{struct_send_packet_game_status__t}{SendPacketGameStatus\_t}}\ *sendGameStatus);}
+\DoxyCodeLine{00080\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{radar_tool_8h_a6c0552a9ff98e1f3f066d6ab7463b81a}{sendRobotStatusData}}(\mbox{\hyperlink{struct_send_packet_robot_status__t}{SendPacketRobotStatus\_t}}\ *sendRobotStatus);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !\_RADARTOOL\_H\_}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ }
+
+\end{DoxyCode}

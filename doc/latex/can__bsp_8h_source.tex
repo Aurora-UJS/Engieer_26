@@ -1,0 +1,23 @@
+\doxysection{can\+\_\+bsp.\+h}
+\hypertarget{can__bsp_8h_source}{}\label{can__bsp_8h_source}\index{source/bsp/can/can\_bsp.h@{source/bsp/can/can\_bsp.h}}
+\mbox{\hyperlink{can__bsp_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CANTOOL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CANTOOL\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}fdcan.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can__bsp_8h_a2ebfa607b1b3eef0346b7d156fb12d68}{can\_bsp\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00008\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can__bsp_8h_a91b470cec2134692a415997c95dba833}{can\_filter\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00009\ uint8\_t\ \mbox{\hyperlink{can__bsp_8h_a0aaa310fbfd6b42a7b8080e978c5ac02}{fdcanx\_send\_data}}(FDCAN\_HandleTypeDef\ *hfdcan,\ uint16\_t\ \textcolor{keywordtype}{id},\ uint8\_t\ *data,\ uint32\_t\ len);}
+\DoxyCodeLine{00010\ uint8\_t\ \mbox{\hyperlink{can__bsp_8h_a33d13750f662e37eecb89d55afcd851f}{fdcanx\_send\_data\_ext}}(FDCAN\_HandleTypeDef\ *hfdcan,\ uint16\_t\ \textcolor{keywordtype}{id},\ uint8\_t\ *data,\ uint32\_t\ len);}
+\DoxyCodeLine{00011\ uint8\_t\ \mbox{\hyperlink{can__bsp_8h_a5bb22a6f7231728f60e6f149d1f10ae0}{fdcanx\_send\_data\_fd}}(FDCAN\_HandleTypeDef\ *hfdcan,\ uint16\_t\ \textcolor{keywordtype}{id},\ uint8\_t\ *data,\ uint32\_t\ len);}
+\DoxyCodeLine{00012\ FDCAN\_RxHeaderTypeDef*\ \mbox{\hyperlink{can__bsp_8h_a1de47675f355f641d54778d1a29a593f}{fdcanx\_receive}}(FDCAN\_HandleTypeDef\ *hfdcan,\ uint8\_t\ *buf);}
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can__bsp_8h_ac51de6cf6c580ddaad2b5061062f83da}{fdcan1\_rx\_callback}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can__bsp_8h_aaf28ae68f18643ff76e4ad5331e328c8}{fdcan2\_rx\_callback}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{can__bsp_8h_a8da3a7c741435db59143efb68873cc5e}{fdcan3\_rx\_callback}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !CANTOOL\_H}}
+
+\end{DoxyCode}

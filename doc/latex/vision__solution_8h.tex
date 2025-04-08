@@ -1,0 +1,152 @@
+\doxysection{source/module/computer/vision/vision\+\_\+solution.h 文件参考}
+\hypertarget{vision__solution_8h}{}\label{vision__solution_8h}\index{source/module/computer/vision/vision\_solution.h@{source/module/computer/vision/vision\_solution.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}computer\+\_\+pack.\+h"{}}\newline
+vision\+\_\+solution.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{vision__solution_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vision__solution_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_solve_trajectory_params__t}{Solve\+Trajectory\+Params\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structtar__pos}{tar\+\_\+pos}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{枚举}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075}{ARMOR\+\_\+\+ID}} \{ \newline
+\mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a33189c94b3cfa7ffcdd6bf4a7cb040e2}{ARMOR\+\_\+\+OUTPOST}} = 0
+, \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a49d5e7e1f60410a91d18cd9399334db8}{ARMOR\+\_\+\+HERO}} = 1
+, \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075acc2f6be8c4d5eb9b66dd99a87ee7bb2f}{ARMOR\+\_\+\+ENGINEER}} = 2
+, \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a90942078e0cad835d429bc742fe9d3e5}{ARMOR\+\_\+\+INFANTRY3}} = 3
+, \newline
+\mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a5a0517db0f060bad2003fb01a7d22cfe}{ARMOR\+\_\+\+INFANTRY4}} = 4
+, \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a8f405f62b8da04a1a71f4ba1d2bc578e}{ARMOR\+\_\+\+INFANTRY5}} = 5
+, \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a5a589a73749b598abfcc4ced92a619c4}{ARMOR\+\_\+\+GUARD}} = 6
+, \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075ad79f53083994e277dfb575531bcab911}{ARMOR\+\_\+\+BASE}} = 7
+ \}
+\item 
+enum \mbox{\hyperlink{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807}{ARMOR\+\_\+\+NUM}} \{ \mbox{\hyperlink{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807aad4f31931f376bedb7748f0dbc1b7c6e}{ARMOR\+\_\+\+NUM\+\_\+\+BALANCE}} = 2
+, \mbox{\hyperlink{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807af5cf39d6f09dae819873753761cdeb58}{ARMOR\+\_\+\+NUM\+\_\+\+OUTPOST}} = 3
+, \mbox{\hyperlink{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807a98e046a8baeb1dc6e74298e576409a02}{ARMOR\+\_\+\+NUM\+\_\+\+NORMAL}} = 4
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{vision__solution_8h_a2123644d01e0d4dbd1a1ce113508d0a4}{vision\+\_\+solution}} (float \texorpdfstring{$\ast$}{*}target\+\_\+yaw, float \texorpdfstring{$\ast$}{*}target\+\_\+pitch)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{vision__solution_8h_a728368a3f501c6e5e3b6631d894a670a}{aim\+\_\+x\+\_\+n}}
+\item 
+float \mbox{\hyperlink{vision__solution_8h_af69c8b370a6e8bdb6209d0f50664e3c3}{aim\+\_\+y\+\_\+n}}
+\item 
+float \mbox{\hyperlink{vision__solution_8h_afe721c914141cd48b15fb0b453f4c4ff}{aim\+\_\+z\+\_\+n}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{枚举类型说明}
+\Hypertarget{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075}\index{vision\_solution.h@{vision\_solution.h}!ARMOR\_ID@{ARMOR\_ID}}
+\index{ARMOR\_ID@{ARMOR\_ID}!vision\_solution.h@{vision\_solution.h}}
+\doxysubsubsection{\texorpdfstring{ARMOR\_ID}{ARMOR\_ID}}
+{\footnotesize\ttfamily \label{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075} 
+enum \mbox{\hyperlink{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075}{ARMOR\+\_\+\+ID}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARMOR\_OUTPOST@{ARMOR\_OUTPOST}!vision\_solution.h@{vision\_solution.h}}\index{vision\_solution.h@{vision\_solution.h}!ARMOR\_OUTPOST@{ARMOR\_OUTPOST}}}\Hypertarget{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a33189c94b3cfa7ffcdd6bf4a7cb040e2}\label{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a33189c94b3cfa7ffcdd6bf4a7cb040e2} 
+ARMOR\+\_\+\+OUTPOST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARMOR\_HERO@{ARMOR\_HERO}!vision\_solution.h@{vision\_solution.h}}\index{vision\_solution.h@{vision\_solution.h}!ARMOR\_HERO@{ARMOR\_HERO}}}\Hypertarget{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a49d5e7e1f60410a91d18cd9399334db8}\label{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a49d5e7e1f60410a91d18cd9399334db8} 
+ARMOR\+\_\+\+HERO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARMOR\_ENGINEER@{ARMOR\_ENGINEER}!vision\_solution.h@{vision\_solution.h}}\index{vision\_solution.h@{vision\_solution.h}!ARMOR\_ENGINEER@{ARMOR\_ENGINEER}}}\Hypertarget{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075acc2f6be8c4d5eb9b66dd99a87ee7bb2f}\label{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075acc2f6be8c4d5eb9b66dd99a87ee7bb2f} 
+ARMOR\+\_\+\+ENGINEER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARMOR\_INFANTRY3@{ARMOR\_INFANTRY3}!vision\_solution.h@{vision\_solution.h}}\index{vision\_solution.h@{vision\_solution.h}!ARMOR\_INFANTRY3@{ARMOR\_INFANTRY3}}}\Hypertarget{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a90942078e0cad835d429bc742fe9d3e5}\label{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a90942078e0cad835d429bc742fe9d3e5} 
+ARMOR\+\_\+\+INFANTRY3&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARMOR\_INFANTRY4@{ARMOR\_INFANTRY4}!vision\_solution.h@{vision\_solution.h}}\index{vision\_solution.h@{vision\_solution.h}!ARMOR\_INFANTRY4@{ARMOR\_INFANTRY4}}}\Hypertarget{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a5a0517db0f060bad2003fb01a7d22cfe}\label{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a5a0517db0f060bad2003fb01a7d22cfe} 
+ARMOR\+\_\+\+INFANTRY4&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARMOR\_INFANTRY5@{ARMOR\_INFANTRY5}!vision\_solution.h@{vision\_solution.h}}\index{vision\_solution.h@{vision\_solution.h}!ARMOR\_INFANTRY5@{ARMOR\_INFANTRY5}}}\Hypertarget{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a8f405f62b8da04a1a71f4ba1d2bc578e}\label{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a8f405f62b8da04a1a71f4ba1d2bc578e} 
+ARMOR\+\_\+\+INFANTRY5&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARMOR\_GUARD@{ARMOR\_GUARD}!vision\_solution.h@{vision\_solution.h}}\index{vision\_solution.h@{vision\_solution.h}!ARMOR\_GUARD@{ARMOR\_GUARD}}}\Hypertarget{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a5a589a73749b598abfcc4ced92a619c4}\label{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075a5a589a73749b598abfcc4ced92a619c4} 
+ARMOR\+\_\+\+GUARD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARMOR\_BASE@{ARMOR\_BASE}!vision\_solution.h@{vision\_solution.h}}\index{vision\_solution.h@{vision\_solution.h}!ARMOR\_BASE@{ARMOR\_BASE}}}\Hypertarget{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075ad79f53083994e277dfb575531bcab911}\label{vision__solution_8h_a9ed06453f8f564098389ebcae3bf7075ad79f53083994e277dfb575531bcab911} 
+ARMOR\+\_\+\+BASE&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807}\index{vision\_solution.h@{vision\_solution.h}!ARMOR\_NUM@{ARMOR\_NUM}}
+\index{ARMOR\_NUM@{ARMOR\_NUM}!vision\_solution.h@{vision\_solution.h}}
+\doxysubsubsection{\texorpdfstring{ARMOR\_NUM}{ARMOR\_NUM}}
+{\footnotesize\ttfamily \label{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807} 
+enum \mbox{\hyperlink{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807}{ARMOR\+\_\+\+NUM}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARMOR\_NUM\_BALANCE@{ARMOR\_NUM\_BALANCE}!vision\_solution.h@{vision\_solution.h}}\index{vision\_solution.h@{vision\_solution.h}!ARMOR\_NUM\_BALANCE@{ARMOR\_NUM\_BALANCE}}}\Hypertarget{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807aad4f31931f376bedb7748f0dbc1b7c6e}\label{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807aad4f31931f376bedb7748f0dbc1b7c6e} 
+ARMOR\+\_\+\+NUM\+\_\+\+BALANCE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARMOR\_NUM\_OUTPOST@{ARMOR\_NUM\_OUTPOST}!vision\_solution.h@{vision\_solution.h}}\index{vision\_solution.h@{vision\_solution.h}!ARMOR\_NUM\_OUTPOST@{ARMOR\_NUM\_OUTPOST}}}\Hypertarget{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807af5cf39d6f09dae819873753761cdeb58}\label{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807af5cf39d6f09dae819873753761cdeb58} 
+ARMOR\+\_\+\+NUM\+\_\+\+OUTPOST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ARMOR\_NUM\_NORMAL@{ARMOR\_NUM\_NORMAL}!vision\_solution.h@{vision\_solution.h}}\index{vision\_solution.h@{vision\_solution.h}!ARMOR\_NUM\_NORMAL@{ARMOR\_NUM\_NORMAL}}}\Hypertarget{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807a98e046a8baeb1dc6e74298e576409a02}\label{vision__solution_8h_a5abe1059b0977ca6e98e13f8852b2807a98e046a8baeb1dc6e74298e576409a02} 
+ARMOR\+\_\+\+NUM\+\_\+\+NORMAL&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{vision__solution_8h_a2123644d01e0d4dbd1a1ce113508d0a4}\index{vision\_solution.h@{vision\_solution.h}!vision\_solution@{vision\_solution}}
+\index{vision\_solution@{vision\_solution}!vision\_solution.h@{vision\_solution.h}}
+\doxysubsubsection{\texorpdfstring{vision\_solution()}{vision\_solution()}}
+{\footnotesize\ttfamily \label{vision__solution_8h_a2123644d01e0d4dbd1a1ce113508d0a4} 
+void vision\+\_\+solution (\begin{DoxyParamCaption}\item[{float \texorpdfstring{$\ast$}{*}}]{target\+\_\+yaw}{, }\item[{float \texorpdfstring{$\ast$}{*}}]{target\+\_\+pitch}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{变量说明}
+\Hypertarget{vision__solution_8h_a728368a3f501c6e5e3b6631d894a670a}\index{vision\_solution.h@{vision\_solution.h}!aim\_x\_n@{aim\_x\_n}}
+\index{aim\_x\_n@{aim\_x\_n}!vision\_solution.h@{vision\_solution.h}}
+\doxysubsubsection{\texorpdfstring{aim\_x\_n}{aim\_x\_n}}
+{\footnotesize\ttfamily \label{vision__solution_8h_a728368a3f501c6e5e3b6631d894a670a} 
+float aim\+\_\+x\+\_\+n\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{vision__solution_8h_af69c8b370a6e8bdb6209d0f50664e3c3}\index{vision\_solution.h@{vision\_solution.h}!aim\_y\_n@{aim\_y\_n}}
+\index{aim\_y\_n@{aim\_y\_n}!vision\_solution.h@{vision\_solution.h}}
+\doxysubsubsection{\texorpdfstring{aim\_y\_n}{aim\_y\_n}}
+{\footnotesize\ttfamily \label{vision__solution_8h_af69c8b370a6e8bdb6209d0f50664e3c3} 
+float aim\+\_\+y\+\_\+n}
+
+\Hypertarget{vision__solution_8h_afe721c914141cd48b15fb0b453f4c4ff}\index{vision\_solution.h@{vision\_solution.h}!aim\_z\_n@{aim\_z\_n}}
+\index{aim\_z\_n@{aim\_z\_n}!vision\_solution.h@{vision\_solution.h}}
+\doxysubsubsection{\texorpdfstring{aim\_z\_n}{aim\_z\_n}}
+{\footnotesize\ttfamily \label{vision__solution_8h_afe721c914141cd48b15fb0b453f4c4ff} 
+float aim\+\_\+z\+\_\+n}
+

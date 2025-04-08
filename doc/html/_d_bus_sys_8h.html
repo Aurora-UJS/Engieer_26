@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/Dbus/DBusSys.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_e5dddd478ca86593bed4cc3b1ca95723.html">Dbus</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">DBusSys.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;main.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="uart__api_8h_source.html">uart_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="key_board_8h_source.html">keyboard.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+DBusSys.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="_d_bus_sys_8h__incl.png" border="0" usemap="#asource_2module_2_dbus_2_d_bus_sys_8h" alt=""/></div>
+<map name="asource_2module_2_dbus_2_d_bus_sys_8h" id="asource_2module_2_dbus_2_d_bus_sys_8h">
+<area shape="rect" title=" " alt="" coords="5,5,147,48"/>
+<area shape="rect" title=" " alt="" coords="46,171,106,197"/>
+<area shape="poly" title=" " alt="" coords="57,50,41,72,28,97,25,109,28,122,38,141,52,158,48,161,34,144,23,124,20,109,23,95,36,69,53,47"/>
+<area shape="rect" href="uart__api_8h.html" title=" " alt="" coords="37,96,115,123"/>
+<area shape="poly" title=" " alt="" coords="79,49,79,80,73,80,73,49"/>
+<area shape="rect" href="key_board_8h.html" title=" " alt="" coords="139,96,224,123"/>
+<area shape="poly" title=" " alt="" coords="105,46,154,84,151,88,102,51"/>
+<area shape="poly" title=" " alt="" coords="79,123,79,155,73,155,73,123"/>
+<area shape="poly" title=" " alt="" coords="164,125,108,164,105,159,161,121"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="_d_bus_sys_8h__dep__incl.png" border="0" usemap="#asource_2module_2_dbus_2_d_bus_sys_8hdep" alt=""/></div>
+<map name="asource_2module_2_dbus_2_d_bus_sys_8hdep" id="asource_2module_2_dbus_2_d_bus_sys_8hdep">
+<area shape="rect" title=" " alt="" coords="177,5,319,48"/>
+<area shape="rect" href="_d_bus_sys_8c.html" title=" " alt="" coords="5,96,147,139"/>
+<area shape="poly" title=" " alt="" coords="195,58,117,98,115,93,193,53"/>
+<area shape="rect" href="motor_8_d_j_i_8c.html" title=" " alt="" coords="171,96,325,139"/>
+<area shape="poly" title=" " alt="" coords="251,64,251,96,245,96,245,64"/>
+<area shape="rect" href="_remoter_8c.html" title=" " alt="" coords="350,104,504,131"/>
+<area shape="poly" title=" " alt="" coords="305,53,402,101,400,106,302,58"/>
+</map>
+</div>
+</div>
+<p><a href="_d_bus_sys_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structrc__info__t.html">rc_info_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a448216d0d398b83a0e18955f06242eff" id="r_a448216d0d398b83a0e18955f06242eff"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a448216d0d398b83a0e18955f06242eff">DBUS_BUFF_SIZE</a>&#160;&#160;&#160;18</td></tr>
+<tr class="separator:a448216d0d398b83a0e18955f06242eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a8213ab13eadf18c6ed266fc5bf26685d" id="r_a8213ab13eadf18c6ed266fc5bf26685d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8213ab13eadf18c6ed266fc5bf26685d">get_dr16_data</a> (<a class="el" href="structrc__info__t.html">rc_info_t</a> *rc, uint8_t buff[])</td></tr>
+<tr class="memdesc:a8213ab13eadf18c6ed266fc5bf26685d"><td class="mdescLeft">&#160;</td><td class="mdescRight">解析DBus_msg的接收缓冲区数据，更新遥控器数据  <br /></td></tr>
+<tr class="separator:a8213ab13eadf18c6ed266fc5bf26685d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eca38fb6dbe1f9f2ce1d809be84852a" id="r_a4eca38fb6dbe1f9f2ce1d809be84852a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4eca38fb6dbe1f9f2ce1d809be84852a">DBus_Init</a> (void)</td></tr>
+<tr class="memdesc:a4eca38fb6dbe1f9f2ce1d809be84852a"><td class="mdescLeft">&#160;</td><td class="mdescRight">DBusSys初始化函数  <br /></td></tr>
+<tr class="separator:a4eca38fb6dbe1f9f2ce1d809be84852a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b0aa26b8c49f5b7903ca3775c135b1f" id="r_a0b0aa26b8c49f5b7903ca3775c135b1f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b0aa26b8c49f5b7903ca3775c135b1f">DBus_Refresh</a> (void)</td></tr>
+<tr class="memdesc:a0b0aa26b8c49f5b7903ca3775c135b1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">DBusSys刷新函数  <br /></td></tr>
+<tr class="separator:a0b0aa26b8c49f5b7903ca3775c135b1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a90f47c018e09385654ce6352c61fc8c9" id="r_a90f47c018e09385654ce6352c61fc8c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structrc__info__t.html">rc_info_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90f47c018e09385654ce6352c61fc8c9">remoter</a></td></tr>
+<tr class="separator:a90f47c018e09385654ce6352c61fc8c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="a448216d0d398b83a0e18955f06242eff" name="a448216d0d398b83a0e18955f06242eff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a448216d0d398b83a0e18955f06242eff">&#9670;&#160;</a></span>DBUS_BUFF_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DBUS_BUFF_SIZE&#160;&#160;&#160;18</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a4eca38fb6dbe1f9f2ce1d809be84852a" name="a4eca38fb6dbe1f9f2ce1d809be84852a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eca38fb6dbe1f9f2ce1d809be84852a">&#9670;&#160;</a></span>DBus_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DBus_Init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DBusSys初始化函数 </p>
+
+</div>
+</div>
+<a id="a0b0aa26b8c49f5b7903ca3775c135b1f" name="a0b0aa26b8c49f5b7903ca3775c135b1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b0aa26b8c49f5b7903ca3775c135b1f">&#9670;&#160;</a></span>DBus_Refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DBus_Refresh </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DBusSys刷新函数 </p>
+
+</div>
+</div>
+<a id="a8213ab13eadf18c6ed266fc5bf26685d" name="a8213ab13eadf18c6ed266fc5bf26685d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8213ab13eadf18c6ed266fc5bf26685d">&#9670;&#160;</a></span>get_dr16_data()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void get_dr16_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structrc__info__t.html">rc_info_t</a> *</td>          <td class="paramname"><span class="paramname"><em>rc</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>buff</em></span>[]&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>解析DBus_msg的接收缓冲区数据，更新遥控器数据 </p>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a90f47c018e09385654ce6352c61fc8c9" name="a90f47c018e09385654ce6352c61fc8c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90f47c018e09385654ce6352c61fc8c9">&#9670;&#160;</a></span>remoter</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structrc__info__t.html">rc_info_t</a> remoter</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

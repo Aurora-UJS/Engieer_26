@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/superCap/XidiNewise/super_str.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_d0e6f6bf5e8b10d01de37391c8fbecc6.html">superCap</a></li><li class="navelem"><a class="el" href="dir_1fddad4f769a4a1fea7b5abfd36f8dde.html">XidiNewise</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">super_str.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>超级电容模块相关功能实现。  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="can__api_8h_source.html">can_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="can__bsp_8h_source.html">can_bsp.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="super__str_8h_source.html">super_str.h</a>&quot;</code><br />
+<code>#include &quot;string.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+super_str.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="super__str_8c__incl.png" border="0" usemap="#asource_2module_2super_cap_2_xidi_newise_2super__str_8c" alt=""/></div>
+<map name="asource_2module_2super_cap_2_xidi_newise_2super__str_8c" id="asource_2module_2super_cap_2_xidi_newise_2super__str_8c">
+<area shape="rect" title="超级电容模块相关功能实现。" alt="" coords="319,5,485,48"/>
+<area shape="rect" href="can__api_8h.html" title=" " alt="" coords="138,96,215,123"/>
+<area shape="poly" title=" " alt="" coords="345,51,227,93,225,88,343,46"/>
+<area shape="rect" href="can__bsp_8h.html" title=" " alt="" coords="442,96,524,123"/>
+<area shape="poly" title=" " alt="" coords="425,47,462,83,458,87,421,51"/>
+<area shape="rect" href="super__str_8h.html" title=" " alt="" coords="305,96,392,123"/>
+<area shape="poly" title=" " alt="" coords="390,50,368,84,363,81,386,47"/>
+<area shape="rect" title=" " alt="" coords="548,96,613,123"/>
+<area shape="poly" title=" " alt="" coords="449,46,540,87,538,92,447,51"/>
+<area shape="rect" title=" " alt="" coords="230,245,291,272"/>
+<area shape="poly" title=" " alt="" coords="194,121,217,142,237,169,251,200,259,229,253,230,246,201,233,172,213,146,191,125"/>
+<area shape="rect" title=" " alt="" coords="5,245,100,272"/>
+<area shape="poly" title=" " alt="" coords="162,125,112,172,69,234,65,231,108,169,159,121"/>
+<area shape="rect" title=" " alt="" coords="133,245,182,272"/>
+<area shape="poly" title=" " alt="" coords="160,125,138,145,120,172,118,187,121,203,138,233,133,235,116,205,112,187,115,170,134,142,157,121"/>
+<area shape="rect" href="can__struct_8h.html" title=" " alt="" coords="130,171,223,197"/>
+<area shape="poly" title=" " alt="" coords="179,123,179,155,174,155,174,123"/>
+<area shape="poly" title=" " alt="" coords="193,196,236,233,233,237,189,200"/>
+<area shape="poly" title=" " alt="" coords="156,200,88,240,86,235,154,196"/>
+<area shape="poly" title=" " alt="" coords="176,199,167,231,162,229,171,197"/>
+<area shape="poly" title=" " alt="" coords="488,123,489,159,485,180,475,199,457,216,437,229,393,248,347,257,306,261,306,255,347,252,391,242,435,224,454,212,470,196,480,179,484,159,483,123"/>
+<area shape="rect" title=" " alt="" coords="535,171,599,197"/>
+<area shape="poly" title=" " alt="" coords="500,121,543,158,539,162,496,125"/>
+<area shape="poly" title=" " alt="" coords="320,126,222,167,219,162,318,121"/>
+<area shape="rect" title=" " alt="" coords="396,171,461,197"/>
+<area shape="poly" title=" " alt="" coords="364,121,405,158,402,162,361,125"/>
+<area shape="rect" title=" " alt="" coords="298,171,372,197"/>
+<area shape="poly" title=" " alt="" coords="349,124,343,156,338,155,344,123"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a44ef9252e066853ee4c36f81c1dacea3" id="r_a44ef9252e066853ee4c36f81c1dacea3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44ef9252e066853ee4c36f81c1dacea3">Super_TR_Init</a> (<a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> *super, uint32_t can_id, uint32_t can_send_id, <a class="el" href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a> can_port)</td></tr>
+<tr class="memdesc:a44ef9252e066853ee4c36f81c1dacea3"><td class="mdescLeft">&#160;</td><td class="mdescRight">超级电容模块初始化。  <br /></td></tr>
+<tr class="separator:a44ef9252e066853ee4c36f81c1dacea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89dd682a7f87d41c712957a383255f90" id="r_a89dd682a7f87d41c712957a383255f90"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89dd682a7f87d41c712957a383255f90">Super_TR_Send</a> (<a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> *super, uint16_t data)</td></tr>
+<tr class="memdesc:a89dd682a7f87d41c712957a383255f90"><td class="mdescLeft">&#160;</td><td class="mdescRight">超级电容模块发送数据。  <br /></td></tr>
+<tr class="separator:a89dd682a7f87d41c712957a383255f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e909b10ff38febd2e40627c6094b682" id="r_a8e909b10ff38febd2e40627c6094b682"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e909b10ff38febd2e40627c6094b682">Super_TR_Refresh</a> (<a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> *super)</td></tr>
+<tr class="memdesc:a8e909b10ff38febd2e40627c6094b682"><td class="mdescLeft">&#160;</td><td class="mdescRight">超级电容模块刷新数据。  <br /></td></tr>
+<tr class="separator:a8e909b10ff38febd2e40627c6094b682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7209995ee7c4a98e36ae64c62780e1b2" id="r_a7209995ee7c4a98e36ae64c62780e1b2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7209995ee7c4a98e36ae64c62780e1b2">get_Voilt_In</a> (<a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> *super)</td></tr>
+<tr class="memdesc:a7209995ee7c4a98e36ae64c62780e1b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取超级电容模块的输入电压。  <br /></td></tr>
+<tr class="separator:a7209995ee7c4a98e36ae64c62780e1b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaf4a1acc2c7840865a39422180e8b37" id="r_aaaf4a1acc2c7840865a39422180e8b37"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaaf4a1acc2c7840865a39422180e8b37">get_Voilt_C</a> (<a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> *super)</td></tr>
+<tr class="memdesc:aaaf4a1acc2c7840865a39422180e8b37"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取超级电容模块的电容电压。  <br /></td></tr>
+<tr class="separator:aaaf4a1acc2c7840865a39422180e8b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55cb5720fc1d4aac0f4cea033b33f107" id="r_a55cb5720fc1d4aac0f4cea033b33f107"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55cb5720fc1d4aac0f4cea033b33f107">get_Current_In</a> (<a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> *super)</td></tr>
+<tr class="memdesc:a55cb5720fc1d4aac0f4cea033b33f107"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取超级电容模块的输入电流。  <br /></td></tr>
+<tr class="separator:a55cb5720fc1d4aac0f4cea033b33f107"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fd53c06405f1606bca17372bac2a816" id="r_a1fd53c06405f1606bca17372bac2a816"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1fd53c06405f1606bca17372bac2a816">get_Target_power</a> (<a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> *super)</td></tr>
+<tr class="memdesc:a1fd53c06405f1606bca17372bac2a816"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取超级电容模块的目标功率。  <br /></td></tr>
+<tr class="separator:a1fd53c06405f1606bca17372bac2a816"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>超级电容模块相关功能实现。 </p>
+<p>本文件实现了超级电容模块的初始化、数据发送、数据刷新以及数据获取功能。 主要包括以下功能：</p><ul>
+<li>初始化超级电容模块的CAN通信参数。</li>
+<li>发送控制数据到超级电容模块。</li>
+<li>刷新并解析从超级电容模块接收到的数据。</li>
+<li>提供接口函数以获取超级电容模块的关键参数（如输入电压、电容电压、输入电流和目标功率）。 </li>
+</ul>
+</div><h2 class="groupheader">函数说明</h2>
+<a id="a55cb5720fc1d4aac0f4cea033b33f107" name="a55cb5720fc1d4aac0f4cea033b33f107"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55cb5720fc1d4aac0f4cea033b33f107">&#9670;&#160;</a></span>get_Current_In()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float get_Current_In </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> *</td>          <td class="paramname"><span class="paramname"><em>super</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取超级电容模块的输入电流。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">super</td><td>指向Super_TR_t结构体的指针，表示超级电容模块实例。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>float 输入电流值（单位：A）。 </dd></dl>
+
+</div>
+</div>
+<a id="a1fd53c06405f1606bca17372bac2a816" name="a1fd53c06405f1606bca17372bac2a816"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fd53c06405f1606bca17372bac2a816">&#9670;&#160;</a></span>get_Target_power()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float get_Target_power </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> *</td>          <td class="paramname"><span class="paramname"><em>super</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取超级电容模块的目标功率。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">super</td><td>指向Super_TR_t结构体的指针，表示超级电容模块实例。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>float 目标功率值（单位：W）。 </dd></dl>
+
+</div>
+</div>
+<a id="aaaf4a1acc2c7840865a39422180e8b37" name="aaaf4a1acc2c7840865a39422180e8b37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaf4a1acc2c7840865a39422180e8b37">&#9670;&#160;</a></span>get_Voilt_C()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float get_Voilt_C </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> *</td>          <td class="paramname"><span class="paramname"><em>super</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取超级电容模块的电容电压。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">super</td><td>指向Super_TR_t结构体的指针，表示超级电容模块实例。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>float 电容电压值（单位：V）。 </dd></dl>
+
+</div>
+</div>
+<a id="a7209995ee7c4a98e36ae64c62780e1b2" name="a7209995ee7c4a98e36ae64c62780e1b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7209995ee7c4a98e36ae64c62780e1b2">&#9670;&#160;</a></span>get_Voilt_In()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float get_Voilt_In </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> *</td>          <td class="paramname"><span class="paramname"><em>super</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取超级电容模块的输入电压。 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">super</td><td>指向Super_TR_t结构体的指针，表示超级电容模块实例。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>float 输入电压值（单位：V）。 </dd></dl>
+
+</div>
+</div>
+<a id="a44ef9252e066853ee4c36f81c1dacea3" name="a44ef9252e066853ee4c36f81c1dacea3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44ef9252e066853ee4c36f81c1dacea3">&#9670;&#160;</a></span>Super_TR_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Super_TR_Init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> *</td>          <td class="paramname"><span class="paramname"><em>super</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>can_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>can_send_id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="can__struct_8h.html#a99224aa31bc5a961c6643d5f0ec14282">can_port_t</a></td>          <td class="paramname"><span class="paramname"><em>can_port</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>超级电容模块初始化。 </p>
+<p>初始化超级电容模块的CAN接收和发送消息结构体，并将其添加到CAN消息队列中。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">super</td><td>指向Super_TR_t结构体的指针，表示超级电容模块实例。 </td></tr>
+    <tr><td class="paramname">can_id</td><td>接收CAN消息的ID。 </td></tr>
+    <tr><td class="paramname">can_send_id</td><td>发送CAN消息的ID。 </td></tr>
+    <tr><td class="paramname">can_port</td><td>CAN端口类型。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>true 初始化成功。 </dd>
+<dd>
+false 初始化失败（例如参数super为空）。 </dd></dl>
+
+</div>
+</div>
+<a id="a8e909b10ff38febd2e40627c6094b682" name="a8e909b10ff38febd2e40627c6094b682"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e909b10ff38febd2e40627c6094b682">&#9670;&#160;</a></span>Super_TR_Refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Super_TR_Refresh </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> *</td>          <td class="paramname"><span class="paramname"><em>super</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>超级电容模块刷新数据。 </p>
+<p>解析从CAN总线接收到的数据，并将其存储到super_can_solve结构体中。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">super</td><td>指向Super_TR_t结构体的指针，表示超级电容模块实例。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>true 刷新成功。 </dd>
+<dd>
+false 刷新失败（例如参数super为空）。 </dd></dl>
+
+</div>
+</div>
+<a id="a89dd682a7f87d41c712957a383255f90" name="a89dd682a7f87d41c712957a383255f90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89dd682a7f87d41c712957a383255f90">&#9670;&#160;</a></span>Super_TR_Send()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Super_TR_Send </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_super___t_r__t.html">Super_TR_t</a> *</td>          <td class="paramname"><span class="paramname"><em>super</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>data</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>超级电容模块发送数据。 </p>
+<p>将16位数据拆分为高字节和低字节，并通过CAN总线发送。</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">super</td><td>指向Super_TR_t结构体的指针，表示超级电容模块实例。 </td></tr>
+    <tr><td class="paramname">data</td><td>需要发送的16位数据。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>true 发送成功。 </dd>
+<dd>
+false 发送失败（例如参数super为空）。 </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

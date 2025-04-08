@@ -1,0 +1,112 @@
+\doxysection{computer\+\_\+pack.\+h}
+\hypertarget{computer__pack_8h_source}{}\label{computer__pack_8h_source}\index{source/module/computer/computer\_pack.h@{source/module/computer/computer\_pack.h}}
+\mbox{\hyperlink{computer__pack_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ COMPUTER\_PACK\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ COMPUTER\_PACK\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#pragma\ pack(1)}}
+\DoxyCodeLine{00008\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ uint8\_t\ \mbox{\hyperlink{struct_send_packet_vision__t_a3707517cb22eb26bf33bbb859fb010d2}{header}};\textcolor{comment}{//\ =\ 0x5A;}}
+\DoxyCodeLine{00011\ \ \ uint8\_t\ \mbox{\hyperlink{struct_send_packet_vision__t_a8bc75e4f4f90261ff8562154a86cfa12}{detect\_color}}\ :\ 1;\ \ \textcolor{comment}{//\ 0-\/red\ 1-\/blue}}
+\DoxyCodeLine{00012\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_send_packet_vision__t_a33a23af9f30e373d996bb54f9ee33cbc}{reset\_tracker}}\ :\ 1;}
+\DoxyCodeLine{00013\ \ \ uint8\_t\ \mbox{\hyperlink{struct_send_packet_vision__t_acb7bc06bed6f6408d719334fc41698c7}{reserved}}\ :\ 6;}
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_send_packet_vision__t_a26fd84d522945b6038221d9e38c7cc39}{roll}};}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_send_packet_vision__t_a282e7d4378d4a18a805b8980295ac86c}{pitch}};}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_send_packet_vision__t_a7efc219781df4a1e281cb5d348b7fbf9}{yaw}};}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_send_packet_vision__t_a3aee54e34a2684d58455ba952afd1253}{aim\_x}};}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_send_packet_vision__t_aada8ac619031151b75608b96d3c75332}{aim\_y}};}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_send_packet_vision__t_a870bdf05989ffabea96cd8c067c79d37}{aim\_z}};}
+\DoxyCodeLine{00020\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_vision__t_a6796c847bbd16253ce2538754c250bd6}{checksum}};}
+\DoxyCodeLine{00021\ \}\mbox{\hyperlink{struct_send_packet_vision__t}{SendPacketVision\_t}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \ \ uint8\_t\ \mbox{\hyperlink{struct_received_packet_vision__t_a3707517cb22eb26bf33bbb859fb010d2}{header}};\textcolor{comment}{//\ =\ 0xA5;}}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_received_packet_vision__t_af87abb04036c5df0e88b327a5f75a94a}{tracking}}\ :\ 1;}
+\DoxyCodeLine{00027\ \ \ uint8\_t\ \mbox{\hyperlink{struct_received_packet_vision__t_a1e6927fa1486224044e568f9c370519b}{id}}\ :\ 3;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0-\/outpost\ 6-\/guard\ 7-\/base}}
+\DoxyCodeLine{00028\ \ \ uint8\_t\ \mbox{\hyperlink{struct_received_packet_vision__t_a6af1725ff009b7a411f06969991def87}{armors\_num}}\ :\ 3;\ \ \textcolor{comment}{//\ 2-\/balance\ 3-\/outpost\ 4-\/normal}}
+\DoxyCodeLine{00029\ \ \ uint8\_t\ \mbox{\hyperlink{struct_received_packet_vision__t_acb7bc06bed6f6408d719334fc41698c7}{reserved}}\ :\ 1;}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_vision__t_ad0da36b2558901e21e7a30f6c227a45e}{x}};}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_vision__t_aa4f0d3eebc3c443f9be81bf48561a217}{y}};}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_vision__t_af73583b1e980b0aa03f9884812e9fd4d}{z}};}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_vision__t_a7efc219781df4a1e281cb5d348b7fbf9}{yaw}};}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_vision__t_a81574a53ca33ab2f60f6481c61e3da21}{vx}};}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_vision__t_a56ab444d63dfde57a24271cbe3097fdb}{vy}};}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_vision__t_a2dc1a0fcac235a430dd8c493502e09e1}{vz}};}
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_vision__t_a2fcafb9fc16c900e5ed21b0591961a87}{v\_yaw}};}
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_vision__t_a1f47f51cace576c94f6c1c9483d28a8f}{r1}};}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_vision__t_ab7a69dabaa7151dae4d7a3998167e2f3}{r2}};}
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_vision__t_a31755dd9c32708851ef90978cd814b35}{dz}};}
+\DoxyCodeLine{00041\ \ \ uint16\_t\ \mbox{\hyperlink{struct_received_packet_vision__t_a6796c847bbd16253ce2538754c250bd6}{checksum}};}
+\DoxyCodeLine{00042\ \}\mbox{\hyperlink{struct_received_packet_vision__t}{ReceivedPacketVision\_t}};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ uint8\_t\ \mbox{\hyperlink{struct_received_packet_twist__t_a3707517cb22eb26bf33bbb859fb010d2}{header}};\textcolor{comment}{//\ =\ 0xA4;}}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_twist__t_a6ef24e69b57370abcf35b40ec777f18f}{linear\_x}};}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_twist__t_a09c3bade8df1e1dfdb194454acdb6f5a}{linear\_y}};}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_twist__t_a4e128ba62c1a29c9694110c3463fcc36}{linear\_z}};}
+\DoxyCodeLine{00050\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_twist__t_a16e7aacd8c475225b702eb8d962b1b8f}{angular\_x}};}
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_twist__t_a2c135de9203674be4ca58f6b0f688965}{angular\_y}};}
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_twist__t_afa644bf33e0fb93ec0f706746816bbcd}{angular\_z}};}
+\DoxyCodeLine{00053\ \ \ uint16\_t\ \mbox{\hyperlink{struct_received_packet_twist__t_a6796c847bbd16253ce2538754c250bd6}{checksum}};}
+\DoxyCodeLine{00054\ \}\mbox{\hyperlink{struct_received_packet_twist__t}{ReceivedPacketTwist\_t}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ uint8\_t\ \mbox{\hyperlink{struct_received_packet_robot_control__t_a3707517cb22eb26bf33bbb859fb010d2}{header}};\textcolor{comment}{//\ =\ 0xA3;}}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_received_packet_robot_control__t_a1405112e8a7caa430517e62b0bc17863}{stop\_gimbal\_scan}};}
+\DoxyCodeLine{00060\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_received_packet_robot_control__t_a8939b7f522c73d3cda64585b691cce03}{chassis\_spin\_vel}};}
+\DoxyCodeLine{00061\ \ \ uint16\_t\ \mbox{\hyperlink{struct_received_packet_robot_control__t_a6796c847bbd16253ce2538754c250bd6}{checksum}};}
+\DoxyCodeLine{00062\ \}\mbox{\hyperlink{struct_received_packet_robot_control__t}{ReceivedPacketRobotControl\_t}};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \ \ uint8\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_a3707517cb22eb26bf33bbb859fb010d2}{header}};\textcolor{comment}{//\ =\ 0x5B;}}
+\DoxyCodeLine{00067\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_aec5295692b2daba58e0f8b8eb8c8a32b}{red\_1\_robot\_hp}};}
+\DoxyCodeLine{00068\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_a73ebaf2c82945e54ce3daf1ad273881a}{red\_2\_robot\_hp}};}
+\DoxyCodeLine{00069\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_a999bbc45ffbf7382292f77ddf4e49425}{red\_3\_robot\_hp}};}
+\DoxyCodeLine{00070\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_a72f611af3f3015769d899d025a6f8a68}{red\_4\_robot\_hp}};}
+\DoxyCodeLine{00071\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_af0830b19b90cb37ffb3bad9c5d14a7a2}{red\_5\_robot\_hp}};}
+\DoxyCodeLine{00072\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_a0ff429a55a842166ce858a3c223b39ec}{red\_7\_robot\_hp}};}
+\DoxyCodeLine{00073\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_a7927211c737bbc4a15c30696fc238d23}{red\_outpost\_hp}};}
+\DoxyCodeLine{00074\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_ab19d085b83074c3b61d907ee06da273c}{red\_base\_hp}};}
+\DoxyCodeLine{00075\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_a6324d9f13bc15e6b489186223d2dc72d}{blue\_1\_robot\_hp}};}
+\DoxyCodeLine{00076\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_a68efd80d39a43f340601a8cba2a60a7d}{blue\_2\_robot\_hp}};}
+\DoxyCodeLine{00077\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_a834ad93abe418c27addfdf29a36664b8}{blue\_3\_robot\_hp}};}
+\DoxyCodeLine{00078\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_a3e837459ff07d38a7f5cbd4731f4f83b}{blue\_4\_robot\_hp}};}
+\DoxyCodeLine{00079\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_ae9a1dbc6f0def909ac7fc38cc7fbdb94}{blue\_5\_robot\_hp}};}
+\DoxyCodeLine{00080\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_aaf8664e11504f49ac4c03b0a2451f685}{blue\_7\_robot\_hp}};}
+\DoxyCodeLine{00081\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_a29d81aff0b0ab3adf734556750d61e69}{blue\_outpost\_hp}};}
+\DoxyCodeLine{00082\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_a9baea35030364890b17b80e30f4e8dd4}{blue\_base\_hp}};}
+\DoxyCodeLine{00083\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_all_robot_h_p__t_a6796c847bbd16253ce2538754c250bd6}{checksum}};}
+\DoxyCodeLine{00084\ \}\mbox{\hyperlink{struct_send_packet_all_robot_h_p__t}{SendPacketAllRobotHP\_t}};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ uint8\_t\ \mbox{\hyperlink{struct_send_packet_game_status__t_a3707517cb22eb26bf33bbb859fb010d2}{header}};\textcolor{comment}{//\ =\ 0x5C;}}
+\DoxyCodeLine{00089\ \ \ uint8\_t\ \mbox{\hyperlink{struct_send_packet_game_status__t_ac7c29bb602a6df3c4219919cc4cff551}{game\_progress}};}
+\DoxyCodeLine{00090\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_game_status__t_aafbb23a8cdb3f72bab6d48f33bb2f2b7}{stage\_remain\_time}};}
+\DoxyCodeLine{00091\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_game_status__t_a6796c847bbd16253ce2538754c250bd6}{checksum}};}
+\DoxyCodeLine{00092\ \}\mbox{\hyperlink{struct_send_packet_game_status__t}{SendPacketGameStatus\_t}};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00095\ \{}
+\DoxyCodeLine{00096\ \ \ uint8\_t\ \mbox{\hyperlink{struct_send_packet_robot_status__t_a3707517cb22eb26bf33bbb859fb010d2}{header}};\textcolor{comment}{//\ =\ 0x5D;}}
+\DoxyCodeLine{00097\ \ \ uint8\_t\ \mbox{\hyperlink{struct_send_packet_robot_status__t_a524267edfe3d399c8a91ca69fdcd7c42}{robot\_id}};}
+\DoxyCodeLine{00098\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_robot_status__t_a21bf98c4eda43f985cad55c3203a9367}{current\_hp}};}
+\DoxyCodeLine{00099\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_robot_status__t_a57efd34c783a7d2e73b92dec209240d4}{shooter\_heat}};}
+\DoxyCodeLine{00100\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_send_packet_robot_status__t_a111f5d94a1745ffe131964cd09c47225}{team\_color}};}
+\DoxyCodeLine{00101\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_send_packet_robot_status__t_a92468286b2cdde1016f9a64d374d48ee}{is\_attacked}};}
+\DoxyCodeLine{00102\ \ \ uint16\_t\ \mbox{\hyperlink{struct_send_packet_robot_status__t_a6796c847bbd16253ce2538754c250bd6}{checksum}};}
+\DoxyCodeLine{00103\ \}\mbox{\hyperlink{struct_send_packet_robot_status__t}{SendPacketRobotStatus\_t}};}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#pragma\ pack()}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !}}
+
+\end{DoxyCode}

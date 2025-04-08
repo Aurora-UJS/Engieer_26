@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: uart_api</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">uart_api</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p>以下是格式化后的文档内容，使用了清晰的标题、列表和代码块标记，方便阅读和理解：</p>
+<h1><a class="anchor" id="autotoc_md8"></a>
+UART 通讯代码文档</h1>
+<h2><a class="anchor" id="autotoc_md9"></a>
+概述</h2>
+<p>本文档介绍了基于 STM32 的 UART 通讯代码，包括初始化、数据接收和发送等功能。代码主要分为两个文件：<code><a class="el" href="uart__bsp_8c.html">uart_bsp.c</a></code> 和 <code><a class="el" href="uart__api_8c.html">uart_api.c</a></code>。</p>
+<h2><a class="anchor" id="autotoc_md10"></a>
+文件结构</h2>
+<h3><a class="anchor" id="autotoc_md11"></a>
+<code>uart_bsp.c</code></h3>
+<p>包含 UART 的底层驱动回调函数：</p><ul>
+<li><code>HAL_UARTEx_RxEventCallback</code></li>
+<li><code>HAL_UART_ErrorCallback</code></li>
+</ul>
+<h3><a class="anchor" id="autotoc_md12"></a>
+<code>uart_api.c</code></h3>
+<p>提供 UART 的高级 API 接口，包括：</p><ul>
+<li>初始化</li>
+<li>数据接收</li>
+<li>数据发送</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md13"></a>
+接口函数说明</h2>
+<h3><a class="anchor" id="autotoc_md14"></a>
+1. <code>uart_rx_cheak</code></h3>
+<p>**功能**：检查 <code><a class="el" href="structuart__rx__t.html">uart_rx_t</a></code> 结构体的有效性。 <br  />
+ **参数**： <br  />
+</p><ul>
+<li><code><a class="el" href="structuart__rx__t.html">uart_rx_t</a> *uart_rx_msg</code>：指向 <code><a class="el" href="structuart__rx__t.html">uart_rx_t</a></code> 结构体的指针。 <br  />
+ **返回值**： <br  />
+</li>
+<li><code>UART_OK</code>：检查通过。 <br  />
+</li>
+<li><code>UART_ERROR</code>：检查失败。 <br  />
+</li>
+</ul>
+<p>**示例**： </p><div class="fragment"><div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="uart__api_8c.html#adae66f03eb4104357f0be2795e6ef9f8">uart_rx_cheak</a>(uart_rx_msg) == <a class="code hl_enumvalue" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46">UART_ERROR</a>) {</div>
+<div class="line">    <span class="comment">// 处理错误</span></div>
+<div class="line">}</div>
+<div class="ttc" id="auart__api_8c_html_adae66f03eb4104357f0be2795e6ef9f8"><div class="ttname"><a href="uart__api_8c.html#adae66f03eb4104357f0be2795e6ef9f8">uart_rx_cheak</a></div><div class="ttdeci">uart_status_t uart_rx_cheak(uart_rx_t *uart_rx_msg)</div><div class="ttdef"><b>定义</b> uart_api.c:22</div></div>
+<div class="ttc" id="auart__api_8h_html_af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46"><div class="ttname"><a href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46">UART_ERROR</a></div><div class="ttdeci">@ UART_ERROR</div><div class="ttdef"><b>定义</b> uart_api.h:23</div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md15"></a>
+2. <code>uart_msg_cheak</code></h3>
+<p>**功能**：检查 <code><a class="el" href="structuart__msg__t.html">uart_msg_t</a></code> 结构体的有效性。 <br  />
+ **参数**： <br  />
+</p><ul>
+<li><code><a class="el" href="structuart__msg__t.html">uart_msg_t</a> *rx_msg</code>：指向 <code><a class="el" href="structuart__msg__t.html">uart_msg_t</a></code> 结构体的指针。 <br  />
+ **返回值**： <br  />
+</li>
+<li><code>UART_OK</code>：检查通过。 <br  />
+</li>
+<li><code>UART_ERROR</code>：检查失败。 <br  />
+</li>
+</ul>
+<p>**示例**： </p><div class="fragment"><div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="uart__api_8c.html#ae120b89a070ed4e11d81345cb7619177">uart_msg_cheak</a>(rx_msg) == <a class="code hl_enumvalue" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46">UART_ERROR</a>) {</div>
+<div class="line">    <span class="comment">// 处理错误</span></div>
+<div class="line">}</div>
+<div class="ttc" id="auart__api_8c_html_ae120b89a070ed4e11d81345cb7619177"><div class="ttname"><a href="uart__api_8c.html#ae120b89a070ed4e11d81345cb7619177">uart_msg_cheak</a></div><div class="ttdeci">uart_status_t uart_msg_cheak(uart_msg_t *rx_msg)</div><div class="ttdef"><b>定义</b> uart_api.c:39</div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md16"></a>
+3. <code>uart_reg_cheak</code></h3>
+<p>**功能**：检查 UART 实例是否已被注册。 <br  />
+ **参数**： <br  />
+</p><ul>
+<li><code><a class="el" href="structuart__rx__t.html">uart_rx_t</a> *uart_rx_msg</code>：指向 <code><a class="el" href="structuart__rx__t.html">uart_rx_t</a></code> 结构体的指针。 <br  />
+ **返回值**： <br  />
+</li>
+<li><code>UART_OK</code>：未注册。 <br  />
+</li>
+<li><code>UART_ERROR</code>：已注册。 <br  />
+</li>
+</ul>
+<p>**示例**： </p><div class="fragment"><div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="uart__api_8c.html#a6946eb69318aeb754435f94e74d6bd80">uart_reg_cheak</a>(uart_rx_msg) == <a class="code hl_enumvalue" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46">UART_ERROR</a>) {</div>
+<div class="line">    <span class="comment">// 处理错误</span></div>
+<div class="line">}</div>
+<div class="ttc" id="auart__api_8c_html_a6946eb69318aeb754435f94e74d6bd80"><div class="ttname"><a href="uart__api_8c.html#a6946eb69318aeb754435f94e74d6bd80">uart_reg_cheak</a></div><div class="ttdeci">uart_status_t uart_reg_cheak(uart_rx_t *uart_rx_msg)</div><div class="ttdef"><b>定义</b> uart_api.c:56</div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md17"></a>
+4. <code>uart_rx_init</code></h3>
+<p>**功能**：初始化 UART 接收。 <br  />
+ **参数**： <br  />
+</p><ul>
+<li><code><a class="el" href="structuart__rx__t.html">uart_rx_t</a> *uart_rx_msg</code>：指向 <code><a class="el" href="structuart__rx__t.html">uart_rx_t</a></code> 结构体的指针。 <br  />
+ **返回值**： <br  />
+</li>
+<li><code>UART_OK</code>：初始化成功。 <br  />
+</li>
+<li><code>UART_ERROR</code>：初始化失败。 <br  />
+</li>
+</ul>
+<p>**示例**： </p><div class="fragment"><div class="line"><a class="code hl_struct" href="structuart__rx__t.html">uart_rx_t</a> uart5_rx_msg;</div>
+<div class="line"><span class="comment">// 初始化 uart5_rx_msg 结构体</span></div>
+<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="uart__api_8c.html#a059b78ea3cd2a68dabd8d3080e7b9927">uart_rx_init</a>(&amp;uart5_rx_msg) == <a class="code hl_enumvalue" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46">UART_ERROR</a>) {</div>
+<div class="line">    <span class="comment">// 处理错误</span></div>
+<div class="line">}</div>
+<div class="ttc" id="astructuart__rx__t_html"><div class="ttname"><a href="structuart__rx__t.html">uart_rx_t</a></div><div class="ttdef"><b>定义</b> uart_api.h:14</div></div>
+<div class="ttc" id="auart__api_8c_html_a059b78ea3cd2a68dabd8d3080e7b9927"><div class="ttname"><a href="uart__api_8c.html#a059b78ea3cd2a68dabd8d3080e7b9927">uart_rx_init</a></div><div class="ttdeci">uart_status_t uart_rx_init(uart_rx_t *uart_rx_msg)</div><div class="ttdef"><b>定义</b> uart_api.c:98</div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md18"></a>
+5. <code>uart_tx_send_IT</code></h3>
+<p>**功能**：通过中断发送数据。 <br  />
+ **参数**： <br  />
+</p><ul>
+<li><code><a class="el" href="structuart__msg__t.html">uart_msg_t</a> *uart_msg</code>：指向 <code><a class="el" href="structuart__msg__t.html">uart_msg_t</a></code> 结构体的指针。 <br  />
+ **返回值**： <br  />
+</li>
+<li><code>UART_OK</code>：发送成功。 <br  />
+</li>
+<li><code>UART_ERROR</code>：发送失败。 <br  />
+</li>
+</ul>
+<p>**示例**： </p><div class="fragment"><div class="line"><a class="code hl_struct" href="structuart__msg__t.html">uart_msg_t</a> uart_msg;</div>
+<div class="line"><span class="comment">// 初始化 uart_msg 结构体</span></div>
+<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="uart__api_8c.html#afe169a52ac52421b2761e11466db27af">uart_tx_send_IT</a>(&amp;uart_msg) == <a class="code hl_enumvalue" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46">UART_ERROR</a>) {</div>
+<div class="line">    <span class="comment">// 处理错误</span></div>
+<div class="line">}</div>
+<div class="ttc" id="astructuart__msg__t_html"><div class="ttname"><a href="structuart__msg__t.html">uart_msg_t</a></div><div class="ttdef"><b>定义</b> uart_api.h:7</div></div>
+<div class="ttc" id="auart__api_8c_html_afe169a52ac52421b2761e11466db27af"><div class="ttname"><a href="uart__api_8c.html#afe169a52ac52421b2761e11466db27af">uart_tx_send_IT</a></div><div class="ttdeci">uart_status_t uart_tx_send_IT(uart_msg_t *uart_msg)</div><div class="ttdef"><b>定义</b> uart_api.c:137</div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md19"></a>
+6. <code>uart_rx_hook_reg</code></h3>
+<p>**功能**：注册 UART 接收钩子函数。 <br  />
+ **参数**： <br  />
+</p><ul>
+<li><code><a class="el" href="structuart__rx__t.html">uart_rx_t</a> *uart_rx_msg</code>：指向 <code><a class="el" href="structuart__rx__t.html">uart_rx_t</a></code> 结构体的指针。 <br  />
+</li>
+<li><code>void (*hook)(uint8_t *pData, uint32_t size)</code>：钩子函数指针。 <br  />
+ **返回值**： <br  />
+</li>
+<li><code>UART_OK</code>：注册成功。 <br  />
+</li>
+<li><code>UART_ERROR</code>：注册失败。 <br  />
+</li>
+</ul>
+<p>**示例**： </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> my_uart5_rx_hook(uint8_t *pData, uint32_t size) {</div>
+<div class="line">    <span class="comment">// 处理接收到的数据</span></div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="uart__api_8c.html#ad913b7146321aec28a31cb67c5edb663">uart_rx_hook_reg</a>(&amp;uart5_rx_msg, my_uart5_rx_hook) == <a class="code hl_enumvalue" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46">UART_ERROR</a>) {</div>
+<div class="line">    <span class="comment">// 处理错误</span></div>
+<div class="line">}</div>
+<div class="ttc" id="auart__api_8c_html_ad913b7146321aec28a31cb67c5edb663"><div class="ttname"><a href="uart__api_8c.html#ad913b7146321aec28a31cb67c5edb663">uart_rx_hook_reg</a></div><div class="ttdeci">uart_status_t uart_rx_hook_reg(uart_rx_t *uart_rx_msg, void(*hook)(uint8_t *pData, uint32_t size))</div><div class="ttdef"><b>定义</b> uart_api.c:150</div></div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md20"></a>
+使用示例</h2>
+<p>以下是一个完整的使用示例，展示了如何初始化 UART、注册钩子函数以及发送数据：</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="uart__api_8h.html">uart_api.h</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;usart.h&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// 定义 UART 接收消息结构体</span></div>
+<div class="line"><a class="code hl_struct" href="structuart__rx__t.html">uart_rx_t</a> uart5_rx_msg;</div>
+<div class="line"><a class="code hl_struct" href="structuart__msg__t.html">uart_msg_t</a> <a class="code hl_variable" href="uart__api_8c.html#a58fccfc641bbc772491e1961e7b6eac8">uart5_msg</a>;</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// 定义 UART 接收消息数组</span></div>
+<div class="line">uint8_t uart5_rx_buffer[100];</div>
+<div class="line"><span class="comment">// 定义 UART 发送消息结构体</span></div>
+<div class="line"><a class="code hl_struct" href="structuart__msg__t.html">uart_msg_t</a> uart5_tx_msg;</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// 定义钩子函数</span></div>
+<div class="line"><span class="keywordtype">void</span> my_uart5_rx_hook(uint8_t *pData, uint32_t size) {</div>
+<div class="line">    <span class="comment">// 处理接收到的数据</span></div>
+<div class="line">    printf(<span class="stringliteral">&quot;Received data: %s\n&quot;</span>, pData);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">void</span>) {</div>
+<div class="line">    <span class="comment">// 初始化 HAL 库</span></div>
+<div class="line">    HAL_Init();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 初始化 UART5</span></div>
+<div class="line">    <a class="code hl_variable" href="uart__api_8c.html#a58fccfc641bbc772491e1961e7b6eac8">uart5_msg</a>.huart = &amp;huart5;</div>
+<div class="line">    <a class="code hl_variable" href="uart__api_8c.html#a58fccfc641bbc772491e1961e7b6eac8">uart5_msg</a>.pBuffer = uart5_rx_buffer; <span class="comment">// 分配缓冲区</span></div>
+<div class="line">    <a class="code hl_variable" href="uart__api_8c.html#a58fccfc641bbc772491e1961e7b6eac8">uart5_msg</a>.Len = 100;</div>
+<div class="line"> </div>
+<div class="line">    uart5_rx_msg.<a class="code hl_variable" href="structuart__rx__t.html#a98e534c6de95c3bc0f81bcf53734f651">rx_msg</a> = &amp;<a class="code hl_variable" href="uart__api_8c.html#a58fccfc641bbc772491e1961e7b6eac8">uart5_msg</a>;</div>
+<div class="line">    uart5_rx_msg.<a class="code hl_variable" href="structuart__rx__t.html#a86988a65e0d3ece7990c032c159786d6">count</a> = 0;</div>
+<div class="line">    uart5_rx_msg.<a class="code hl_variable" href="structuart__rx__t.html#a93658cf9f03a3303cdb292e655c657e7">time</a> = 0;</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 初始化 UART 接收</span></div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_function" href="uart__api_8c.html#a059b78ea3cd2a68dabd8d3080e7b9927">uart_rx_init</a>(&amp;uart5_rx_msg) == <a class="code hl_enumvalue" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46">UART_ERROR</a>) {</div>
+<div class="line">        <span class="comment">// 处理错误</span></div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 注册钩子函数</span></div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_function" href="uart__api_8c.html#ad913b7146321aec28a31cb67c5edb663">uart_rx_hook_reg</a>(&amp;uart5_rx_msg, my_uart5_rx_hook) == <a class="code hl_enumvalue" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46">UART_ERROR</a>) {</div>
+<div class="line">        <span class="comment">// 处理错误</span></div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 初始化 UART5 发送消息</span></div>
+<div class="line">    uart5_tx_msg.<a class="code hl_variable" href="structuart__msg__t.html#a1ed7dab212fde0a3a4600d33399c67b6">huart</a> = &amp;huart5;</div>
+<div class="line">    uart5_tx_msg.<a class="code hl_variable" href="structuart__msg__t.html#aa5faf55893cc19f5b15ba4a8a1ab3028">pBuffer</a> = (uint8_t *)<span class="stringliteral">&quot;Hello UART5&quot;</span>;</div>
+<div class="line">    uart5_tx_msg.<a class="code hl_variable" href="structuart__msg__t.html#acc14a7c0e6034b69c26f4004cc462d23">Len</a> = strlen((<span class="keywordtype">char</span> *)uart5_tx_msg.<a class="code hl_variable" href="structuart__msg__t.html#aa5faf55893cc19f5b15ba4a8a1ab3028">pBuffer</a>);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 发送数据</span></div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_function" href="uart__api_8c.html#afe169a52ac52421b2761e11466db27af">uart_tx_send_IT</a>(&amp;uart5_tx_msg) == <a class="code hl_enumvalue" href="uart__api_8h.html#af7d6a356f1601c95992ab6990320fd35a8d985e4627498f56f5ab06caa7405b46">UART_ERROR</a>) {</div>
+<div class="line">        <span class="comment">// 处理错误</span></div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 主循环</span></div>
+<div class="line">    <span class="keywordflow">while</span> (1) {</div>
+<div class="line">        <span class="comment">// 主程序逻辑</span></div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="ttc" id="astructuart__msg__t_html_a1ed7dab212fde0a3a4600d33399c67b6"><div class="ttname"><a href="structuart__msg__t.html#a1ed7dab212fde0a3a4600d33399c67b6">uart_msg_t::huart</a></div><div class="ttdeci">UART_HandleTypeDef * huart</div><div class="ttdef"><b>定义</b> uart_api.h:8</div></div>
+<div class="ttc" id="astructuart__msg__t_html_aa5faf55893cc19f5b15ba4a8a1ab3028"><div class="ttname"><a href="structuart__msg__t.html#aa5faf55893cc19f5b15ba4a8a1ab3028">uart_msg_t::pBuffer</a></div><div class="ttdeci">uint8_t * pBuffer</div><div class="ttdef"><b>定义</b> uart_api.h:9</div></div>
+<div class="ttc" id="astructuart__msg__t_html_acc14a7c0e6034b69c26f4004cc462d23"><div class="ttname"><a href="structuart__msg__t.html#acc14a7c0e6034b69c26f4004cc462d23">uart_msg_t::Len</a></div><div class="ttdeci">uint16_t Len</div><div class="ttdef"><b>定义</b> uart_api.h:10</div></div>
+<div class="ttc" id="astructuart__rx__t_html_a86988a65e0d3ece7990c032c159786d6"><div class="ttname"><a href="structuart__rx__t.html#a86988a65e0d3ece7990c032c159786d6">uart_rx_t::count</a></div><div class="ttdeci">uint32_t count</div><div class="ttdef"><b>定义</b> uart_api.h:16</div></div>
+<div class="ttc" id="astructuart__rx__t_html_a93658cf9f03a3303cdb292e655c657e7"><div class="ttname"><a href="structuart__rx__t.html#a93658cf9f03a3303cdb292e655c657e7">uart_rx_t::time</a></div><div class="ttdeci">uint16_t time</div><div class="ttdef"><b>定义</b> uart_api.h:17</div></div>
+<div class="ttc" id="astructuart__rx__t_html_a98e534c6de95c3bc0f81bcf53734f651"><div class="ttname"><a href="structuart__rx__t.html#a98e534c6de95c3bc0f81bcf53734f651">uart_rx_t::rx_msg</a></div><div class="ttdeci">uart_msg_t * rx_msg</div><div class="ttdef"><b>定义</b> uart_api.h:15</div></div>
+<div class="ttc" id="auart__api_8c_html_a58fccfc641bbc772491e1961e7b6eac8"><div class="ttname"><a href="uart__api_8c.html#a58fccfc641bbc772491e1961e7b6eac8">uart5_msg</a></div><div class="ttdeci">uart_rx_t * uart5_msg</div><div class="ttdef"><b>定义</b> uart_api.c:8</div></div>
+<div class="ttc" id="auart__api_8h_html"><div class="ttname"><a href="uart__api_8h.html">uart_api.h</a></div></div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md21"></a>
+注意事项</h2>
+<ol type="1">
+<li>**缓冲区管理**： <br  />
+<ul>
+<li>确保分配的缓冲区足够大。 <br  />
+</li>
+<li>在使用完毕后释放缓冲区。</li>
+</ul>
+</li>
+<li>**错误处理**： <br  />
+<ul>
+<li>在每个函数调用后检查返回值，确保操作成功。</li>
+</ul>
+</li>
+<li>**钩子函数**： <br  />
+<ul>
+<li>钩子函数应在初始化 UART 接收后注册，以确保接收到数据时能够正确处理。 </li>
+</ul>
+</li>
+</ol>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

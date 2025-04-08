@@ -1,0 +1,77 @@
+\doxysection{Quaternion\+EKF.\+h}
+\hypertarget{_quaternion_e_k_f_8h_source}{}\label{_quaternion_e_k_f_8h_source}\index{source/module/IMU/ekf/QuaternionEKF.h@{source/module/IMU/ekf/QuaternionEKF.h}}
+\mbox{\hyperlink{_quaternion_e_k_f_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ \_QUAT\_EKF\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ \_QUAT\_EKF\_H}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{kalman__filter_8h}{kalman\_filter.h}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{/*\ boolean\ type\ definitions\ */}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ TRUE}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ TRUE\ 1\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ FALSE}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ FALSE\ 0\ }\textcolor{preprocessor}{}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00030\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a885a68e632ab9a6189c31f5f8a648f35}{Initialized}};}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_aa31a9eb1b01a731007ea8eb4384b6206}{IMU\_QuaternionEKF}};}
+\DoxyCodeLine{00033\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a4a0b6e7c35e051f9c1bc256c63239148}{ConvergeFlag}};}
+\DoxyCodeLine{00034\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a751fa039ff4c73431bddbace2ce0412e}{StableFlag}};}
+\DoxyCodeLine{00035\ \ \ \ \ uint64\_t\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a783384fb59519cef9c964a8e3991383b}{ErrorCount}};}
+\DoxyCodeLine{00036\ \ \ \ \ uint64\_t\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_ad3aef96e4194e2a0d7c43aa520e152ee}{UpdateCount}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_acbffa34110f15b21994d3d087a0f4e7f}{q}}[4];\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 四元数估计值}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a284052175f76a36705a2d606ec608eaa}{GyroBias}}[3];\ \textcolor{comment}{//\ 陀螺仪零偏估计值}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_ad211be2646a6b9b8882f17c37537d5f0}{Gyro}}[3];}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_abc3945dea44b028a22a7cc6ae17bc016}{Accel}}[3];}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a104bd47b4718c296a8727bd064535ead}{OrientationCosine}}[3];}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a7ae8475a96adecbe94b886aa6afed70d}{accLPFcoef}};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_ab850d578c34c42ab0280b5d716cfdd22}{gyro\_norm}};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_abc0c91915001cea9d27455a3cac3c068}{accl\_norm}};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a0214ed6132d979c452d6c2b1219df109}{AdaptiveGainScale}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_ade9e1f9555516012861be1695fe4a9a0}{Roll}};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_aa412fb786d18d393b80ce4d2a00ba51c}{Pitch}};}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a86cd3708ed18a9bdfec5c43fc837f206}{Yaw}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a80a2a092ac905ae4883248304f7aadab}{YawTotalAngle}};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a6ea410e354f385041c3a7c62a7a3de2d}{Q1}};\ \textcolor{comment}{//\ 四元数更新过程噪声}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_af3cfae9022c0052ea7d66466f20e9b46}{Q2}};\ \textcolor{comment}{//\ 陀螺仪零偏过程噪声}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a4c4b08e61e92b3da1ed512f4e006f34a}{R}};\ \ \textcolor{comment}{//\ 加速度计量测噪声}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a778e38aa889751afffa2dea6b803e67a}{dt}};\ \textcolor{comment}{//\ 姿态更新周期}}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a32733f1840591bffbfce55eadd946c52}{ChiSquare}};}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a45c2c0b05b6dfdea57156433e191b33e}{ChiSquare\_Data}}[1];\ \ \ \ \ \ \textcolor{comment}{//\ 卡方检验检测函数}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a2ecd12f4d1bb02708ce10df387787007}{ChiSquareTestThreshold}};\ \textcolor{comment}{//\ 卡方检验阈值}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_acac4a565486bad0b88b62387d8a5d891}{lambda}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 渐消因子}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ int16\_t\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a7f5b31937cd8c34486c2d09bd618f560}{YawRoundCount}};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t_a331e1b45c28a0d0a7eb582b1711efea2}{YawAngleLast}};}
+\DoxyCodeLine{00070\ \}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t}{QEKF\_INS\_t}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{struct_q_e_k_f___i_n_s__t}{QEKF\_INS\_t}}\ \mbox{\hyperlink{_quaternion_e_k_f_8c_a2f6ee130c2912fa1106128c97aa54d69}{QEKF\_INS}};}
+\DoxyCodeLine{00073\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_quaternion_e_k_f_8h_a2e0e191413114f9d3d801199ae634c1f}{chiSquare}};}
+\DoxyCodeLine{00074\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_quaternion_e_k_f_8h_a2ecd12f4d1bb02708ce10df387787007}{ChiSquareTestThreshold}};}
+\DoxyCodeLine{00075\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_quaternion_e_k_f_8h_a5f6786be602a9b18cc716e3c6de14fc6}{IMU\_QuaternionEKF\_Init}}(\textcolor{keywordtype}{float}\ process\_noise1,\ \textcolor{keywordtype}{float}\ process\_noise2,\ \textcolor{keywordtype}{float}\ measure\_noise,\ \textcolor{keywordtype}{float}\ lambda,\ \textcolor{keywordtype}{float}\ dt,\ \textcolor{keywordtype}{float}\ lpf);}
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_quaternion_e_k_f_8h_ae323af11f1e78bd5438e27fb7cb494f1}{IMU\_QuaternionEKF\_Update}}(\textcolor{keywordtype}{float}\ gx,\ \textcolor{keywordtype}{float}\ gy,\ \textcolor{keywordtype}{float}\ gz,\ \textcolor{keywordtype}{float}\ ax,\ \textcolor{keywordtype}{float}\ ay,\ \textcolor{keywordtype}{float}\ az);}
+\DoxyCodeLine{00077\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_quaternion_e_k_f_8h_a3e96165d892e72c475ed2a4a99bc8a3a}{IMU\_QuaternionEKF\_Reset}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_quaternion_e_k_f_8h_a152babe74f10ee018f57c718c7740340}{Get\_Pitch}}(\textcolor{keywordtype}{void});\textcolor{comment}{//get\ pitch}}
+\DoxyCodeLine{00080\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_quaternion_e_k_f_8h_aa143fd0323b5b3e4a51d3540abe6cad1}{Get\_Roll}}(\textcolor{keywordtype}{void});\textcolor{comment}{//get\ roll}}
+\DoxyCodeLine{00081\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{_quaternion_e_k_f_8h_abb5539540e212717cad7c8bc7291043c}{Get\_Yaw}}(\textcolor{keywordtype}{void});\textcolor{comment}{//get\ yaw}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

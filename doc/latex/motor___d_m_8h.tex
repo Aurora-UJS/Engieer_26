@@ -1,0 +1,413 @@
+\doxysection{source/module/motor/motor\+\_\+\+DM/motor\+\_\+\+DM.h 文件参考}
+\hypertarget{motor___d_m_8h}{}\label{motor___d_m_8h}\index{source/module/motor/motor\_DM/motor\_DM.h@{source/module/motor/motor\_DM/motor\_DM.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}motor\+\_\+basic.\+h"{}}\newline
+motor\+\_\+\+DM.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{motor___d_m_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{motor___d_m_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structesc__inf__t}{esc\+\_\+inf\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{motor___d_m_8h_ac6fbf79005f87d50b33a9df719323ae9}{MIT\+\_\+\+MODE}}~0x000
+\item 
+\#define \mbox{\hyperlink{motor___d_m_8h_a9ec4444c65098be339d120d2dde7c557}{POS\+\_\+\+MODE}}~0x100
+\item 
+\#define \mbox{\hyperlink{motor___d_m_8h_a4a6dff487062359ea4eb4fa666b2d17e}{SPD\+\_\+\+MODE}}~0x200
+\item 
+\#define \mbox{\hyperlink{motor___d_m_8h_a3a47e65bb5d132e4f5ad167fa49d9893}{PSI\+\_\+\+MODE}}~0x300
+\item 
+\#define \mbox{\hyperlink{motor___d_m_8h_ad3d01fc831262a9a98e0fd6268de7d88}{KP\+\_\+\+MIN}}~0.\+0f
+\item 
+\#define \mbox{\hyperlink{motor___d_m_8h_aa9d52ab37f81101cc95a087f68c367ea}{KP\+\_\+\+MAX}}~500.\+0f
+\item 
+\#define \mbox{\hyperlink{motor___d_m_8h_a69ea995c7d9ec14d28344a5500902a18}{KD\+\_\+\+MIN}}~0.\+0f
+\item 
+\#define \mbox{\hyperlink{motor___d_m_8h_a51cfd12a9d9052706b607b2135868a1a}{KD\+\_\+\+MAX}}~5.\+0f
+\item 
+\#define \mbox{\hyperlink{motor___d_m_8h_a62508f17ca83466d0ba328584ee16340}{hcan\+\_\+t}}~FDCAN\+\_\+\+Handle\+Type\+Def
+\end{DoxyCompactItemize}
+\doxysubsubsection*{枚举}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6a}{DM\+\_\+motor\+\_\+error\+\_\+t}} \{ \newline
+\mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa52248db5e3fa7ff2b2a53eb30ccfafd4}{Motor\+\_\+\+DM\+\_\+\+DISABLE}} = 0
+, \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa9f662d0ae6e5f37b8a454d2f6b951506}{MOTOR\+\_\+\+DM\+\_\+\+ENABLE}} = 1
+, \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa5cf02d342be94ba03ffbb15b7819139f}{MOTOR\+\_\+\+DM\+\_\+\+ERROR\+\_\+\+OVER\+\_\+\+VOLTAGE}} = 8
+, \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa476414a4c7d36d5d2062ca733285082c}{MOTOR\+\_\+\+DM\+\_\+\+ERROR\+\_\+\+LESS\+\_\+\+VOLTAGE}} = 9
+, \newline
+\mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa0f97e4224424c30bba0bf303b33b7c4b}{MOTOR\+\_\+\+DM\+\_\+\+ERROR\+\_\+\+OVER\+\_\+\+CURRENT}} = 0xA
+, \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aad52f5d5a90c4e01b306b3998548bdbbe}{MOTOR\+\_\+\+DM\+\_\+\+ERROR\+\_\+\+OVER\+\_\+\+TEMPERATURE\+\_\+\+MOS}} = 0xB
+, \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa566fb28fd64a2367ea687bc9b0d14a04}{MOTOR\+\_\+\+DM\+\_\+\+ERROR\+\_\+\+OVER\+\_\+\+TEMPERATURE\+\_\+\+MOTOR}} = 0xC
+, \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa7f2ad927e3fa4dbcfbdc8fc316e81651}{MOTOR\+\_\+\+DM\+\_\+\+ERROR\+\_\+\+LOSS\+\_\+\+COMMUNICATION}} = 0xD
+, \newline
+\mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa08e3eb7265a7d2d8c2fd1dc712ef74ae}{MOTOR\+\_\+\+DM\+\_\+\+ERROR\+\_\+\+OVER\+\_\+\+LOAD}} = 0xE
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{motor___d_m_8h_a65a366100839b300d25774b34fc1fa80}{Motor\+\_\+\+DM\+\_\+\+Init}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor)
+\begin{DoxyCompactList}\small\item\em \+: Motor\+\_\+\+DM\+\_\+\+Init\+: 电机初始化函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8h_a64b546c7ad05009cfede6bc962cff1b6}{Motor\+\_\+\+DM\+\_\+\+Refresh}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor)
+\begin{DoxyCompactList}\small\item\em \+: Motor\+\_\+\+DM\+\_\+\+Refresh\+: 电机刷新函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8h_ab3e894b32448d525e7c454682d24e0a1}{Motor\+\_\+\+DM\+\_\+\+Enable}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor)
+\begin{DoxyCompactList}\small\item\em \+: Motor\+\_\+\+DM\+\_\+\+Enable\+: 电机使能函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8h_a5fa285cb7fbf256fd9a2b47af6e3e549}{Motor\+\_\+\+DM\+\_\+\+Disable}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor)
+\begin{DoxyCompactList}\small\item\em \+: Motor\+\_\+\+DM\+\_\+\+Disable\+: 电机失能函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8h_a85fb575f9cd15c1e59a4ef9d5a6ee27d}{Motor\+\_\+\+DM\+\_\+\+Save\+\_\+\+Zero}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor)
+\begin{DoxyCompactList}\small\item\em \+: Motor\+\_\+\+DM\+\_\+\+Save\+\_\+\+Zero\+: 电机保存零点函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8h_a114aa82c54f6ec167ee799de97d0455c}{Motor\+\_\+\+DM\+\_\+\+Clear\+\_\+\+Error}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor)
+\begin{DoxyCompactList}\small\item\em \+: Motor\+\_\+\+DM\+\_\+\+Clear\+\_\+\+Error\+: 电机清除错误函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8h_a8998f183bc48af1f3e2884f0d281d7a6}{Speed\+\_\+\+Ctrl\+Motor\+DM}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor, float vel)
+\begin{DoxyCompactList}\small\item\em \+: speed\+\_\+ctrl\+: 速度控制函数 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8h_a2c8366551102091656e16022e7d9d9ff}{Pos\+Speed\+\_\+\+Ctrl\+Motor\+DM}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor, float \+\_\+pos, float \+\_\+vel)
+\begin{DoxyCompactList}\small\item\em 达妙电机位置速度模式控下控制帧 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{motor___d_m_8h_a4e5af5310ebc11b1939f30528159330d}{MIT\+\_\+\+Ctrl\+Motor\+DM}} (\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}motor, float pos, float vel, float kp, float kd, float tor)
+\begin{DoxyCompactList}\small\item\em \+: mit\+\_\+ctrl\+: MIT模式下的电机控制函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{宏定义说明}
+\Hypertarget{motor___d_m_8h_a62508f17ca83466d0ba328584ee16340}\index{motor\_DM.h@{motor\_DM.h}!hcan\_t@{hcan\_t}}
+\index{hcan\_t@{hcan\_t}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{hcan\_t}{hcan\_t}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a62508f17ca83466d0ba328584ee16340} 
+\#define hcan\+\_\+t~FDCAN\+\_\+\+Handle\+Type\+Def}
+
+\Hypertarget{motor___d_m_8h_a51cfd12a9d9052706b607b2135868a1a}\index{motor\_DM.h@{motor\_DM.h}!KD\_MAX@{KD\_MAX}}
+\index{KD\_MAX@{KD\_MAX}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{KD\_MAX}{KD\_MAX}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a51cfd12a9d9052706b607b2135868a1a} 
+\#define KD\+\_\+\+MAX~5.\+0f}
+
+\Hypertarget{motor___d_m_8h_a69ea995c7d9ec14d28344a5500902a18}\index{motor\_DM.h@{motor\_DM.h}!KD\_MIN@{KD\_MIN}}
+\index{KD\_MIN@{KD\_MIN}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{KD\_MIN}{KD\_MIN}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a69ea995c7d9ec14d28344a5500902a18} 
+\#define KD\+\_\+\+MIN~0.\+0f}
+
+\Hypertarget{motor___d_m_8h_aa9d52ab37f81101cc95a087f68c367ea}\index{motor\_DM.h@{motor\_DM.h}!KP\_MAX@{KP\_MAX}}
+\index{KP\_MAX@{KP\_MAX}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{KP\_MAX}{KP\_MAX}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_aa9d52ab37f81101cc95a087f68c367ea} 
+\#define KP\+\_\+\+MAX~500.\+0f}
+
+\Hypertarget{motor___d_m_8h_ad3d01fc831262a9a98e0fd6268de7d88}\index{motor\_DM.h@{motor\_DM.h}!KP\_MIN@{KP\_MIN}}
+\index{KP\_MIN@{KP\_MIN}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{KP\_MIN}{KP\_MIN}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_ad3d01fc831262a9a98e0fd6268de7d88} 
+\#define KP\+\_\+\+MIN~0.\+0f}
+
+\Hypertarget{motor___d_m_8h_ac6fbf79005f87d50b33a9df719323ae9}\index{motor\_DM.h@{motor\_DM.h}!MIT\_MODE@{MIT\_MODE}}
+\index{MIT\_MODE@{MIT\_MODE}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{MIT\_MODE}{MIT\_MODE}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_ac6fbf79005f87d50b33a9df719323ae9} 
+\#define MIT\+\_\+\+MODE~0x000}
+
+\Hypertarget{motor___d_m_8h_a9ec4444c65098be339d120d2dde7c557}\index{motor\_DM.h@{motor\_DM.h}!POS\_MODE@{POS\_MODE}}
+\index{POS\_MODE@{POS\_MODE}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{POS\_MODE}{POS\_MODE}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a9ec4444c65098be339d120d2dde7c557} 
+\#define POS\+\_\+\+MODE~0x100}
+
+\Hypertarget{motor___d_m_8h_a3a47e65bb5d132e4f5ad167fa49d9893}\index{motor\_DM.h@{motor\_DM.h}!PSI\_MODE@{PSI\_MODE}}
+\index{PSI\_MODE@{PSI\_MODE}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{PSI\_MODE}{PSI\_MODE}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a3a47e65bb5d132e4f5ad167fa49d9893} 
+\#define PSI\+\_\+\+MODE~0x300}
+
+\Hypertarget{motor___d_m_8h_a4a6dff487062359ea4eb4fa666b2d17e}\index{motor\_DM.h@{motor\_DM.h}!SPD\_MODE@{SPD\_MODE}}
+\index{SPD\_MODE@{SPD\_MODE}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{SPD\_MODE}{SPD\_MODE}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a4a6dff487062359ea4eb4fa666b2d17e} 
+\#define SPD\+\_\+\+MODE~0x200}
+
+
+
+\doxysubsection{枚举类型说明}
+\Hypertarget{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6a}\index{motor\_DM.h@{motor\_DM.h}!DM\_motor\_error\_t@{DM\_motor\_error\_t}}
+\index{DM\_motor\_error\_t@{DM\_motor\_error\_t}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{DM\_motor\_error\_t}{DM\_motor\_error\_t}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6a} 
+enum \mbox{\hyperlink{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6a}{DM\+\_\+motor\+\_\+error\+\_\+t}}}
+
+\begin{DoxyEnumFields}[2]{枚举值}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Motor\_DM\_DISABLE@{Motor\_DM\_DISABLE}!motor\_DM.h@{motor\_DM.h}}\index{motor\_DM.h@{motor\_DM.h}!Motor\_DM\_DISABLE@{Motor\_DM\_DISABLE}}}\Hypertarget{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa52248db5e3fa7ff2b2a53eb30ccfafd4}\label{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa52248db5e3fa7ff2b2a53eb30ccfafd4} 
+Motor\+\_\+\+DM\+\_\+\+DISABLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOTOR\_DM\_ENABLE@{MOTOR\_DM\_ENABLE}!motor\_DM.h@{motor\_DM.h}}\index{motor\_DM.h@{motor\_DM.h}!MOTOR\_DM\_ENABLE@{MOTOR\_DM\_ENABLE}}}\Hypertarget{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa9f662d0ae6e5f37b8a454d2f6b951506}\label{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa9f662d0ae6e5f37b8a454d2f6b951506} 
+MOTOR\+\_\+\+DM\+\_\+\+ENABLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOTOR\_DM\_ERROR\_OVER\_VOLTAGE@{MOTOR\_DM\_ERROR\_OVER\_VOLTAGE}!motor\_DM.h@{motor\_DM.h}}\index{motor\_DM.h@{motor\_DM.h}!MOTOR\_DM\_ERROR\_OVER\_VOLTAGE@{MOTOR\_DM\_ERROR\_OVER\_VOLTAGE}}}\Hypertarget{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa5cf02d342be94ba03ffbb15b7819139f}\label{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa5cf02d342be94ba03ffbb15b7819139f} 
+MOTOR\+\_\+\+DM\+\_\+\+ERROR\+\_\+\+OVER\+\_\+\+VOLTAGE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOTOR\_DM\_ERROR\_LESS\_VOLTAGE@{MOTOR\_DM\_ERROR\_LESS\_VOLTAGE}!motor\_DM.h@{motor\_DM.h}}\index{motor\_DM.h@{motor\_DM.h}!MOTOR\_DM\_ERROR\_LESS\_VOLTAGE@{MOTOR\_DM\_ERROR\_LESS\_VOLTAGE}}}\Hypertarget{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa476414a4c7d36d5d2062ca733285082c}\label{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa476414a4c7d36d5d2062ca733285082c} 
+MOTOR\+\_\+\+DM\+\_\+\+ERROR\+\_\+\+LESS\+\_\+\+VOLTAGE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOTOR\_DM\_ERROR\_OVER\_CURRENT@{MOTOR\_DM\_ERROR\_OVER\_CURRENT}!motor\_DM.h@{motor\_DM.h}}\index{motor\_DM.h@{motor\_DM.h}!MOTOR\_DM\_ERROR\_OVER\_CURRENT@{MOTOR\_DM\_ERROR\_OVER\_CURRENT}}}\Hypertarget{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa0f97e4224424c30bba0bf303b33b7c4b}\label{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa0f97e4224424c30bba0bf303b33b7c4b} 
+MOTOR\+\_\+\+DM\+\_\+\+ERROR\+\_\+\+OVER\+\_\+\+CURRENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOTOR\_DM\_ERROR\_OVER\_TEMPERATURE\_MOS@{MOTOR\_DM\_ERROR\_OVER\_TEMPERATURE\_MOS}!motor\_DM.h@{motor\_DM.h}}\index{motor\_DM.h@{motor\_DM.h}!MOTOR\_DM\_ERROR\_OVER\_TEMPERATURE\_MOS@{MOTOR\_DM\_ERROR\_OVER\_TEMPERATURE\_MOS}}}\Hypertarget{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aad52f5d5a90c4e01b306b3998548bdbbe}\label{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aad52f5d5a90c4e01b306b3998548bdbbe} 
+MOTOR\+\_\+\+DM\+\_\+\+ERROR\+\_\+\+OVER\+\_\+\+TEMPERATURE\+\_\+\+MOS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOTOR\_DM\_ERROR\_OVER\_TEMPERATURE\_MOTOR@{MOTOR\_DM\_ERROR\_OVER\_TEMPERATURE\_MOTOR}!motor\_DM.h@{motor\_DM.h}}\index{motor\_DM.h@{motor\_DM.h}!MOTOR\_DM\_ERROR\_OVER\_TEMPERATURE\_MOTOR@{MOTOR\_DM\_ERROR\_OVER\_TEMPERATURE\_MOTOR}}}\Hypertarget{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa566fb28fd64a2367ea687bc9b0d14a04}\label{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa566fb28fd64a2367ea687bc9b0d14a04} 
+MOTOR\+\_\+\+DM\+\_\+\+ERROR\+\_\+\+OVER\+\_\+\+TEMPERATURE\+\_\+\+MOTOR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOTOR\_DM\_ERROR\_LOSS\_COMMUNICATION@{MOTOR\_DM\_ERROR\_LOSS\_COMMUNICATION}!motor\_DM.h@{motor\_DM.h}}\index{motor\_DM.h@{motor\_DM.h}!MOTOR\_DM\_ERROR\_LOSS\_COMMUNICATION@{MOTOR\_DM\_ERROR\_LOSS\_COMMUNICATION}}}\Hypertarget{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa7f2ad927e3fa4dbcfbdc8fc316e81651}\label{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa7f2ad927e3fa4dbcfbdc8fc316e81651} 
+MOTOR\+\_\+\+DM\+\_\+\+ERROR\+\_\+\+LOSS\+\_\+\+COMMUNICATION&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MOTOR\_DM\_ERROR\_OVER\_LOAD@{MOTOR\_DM\_ERROR\_OVER\_LOAD}!motor\_DM.h@{motor\_DM.h}}\index{motor\_DM.h@{motor\_DM.h}!MOTOR\_DM\_ERROR\_OVER\_LOAD@{MOTOR\_DM\_ERROR\_OVER\_LOAD}}}\Hypertarget{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa08e3eb7265a7d2d8c2fd1dc712ef74ae}\label{motor___d_m_8h_a84e72ad63bcd85d091c11bb56b0fac6aa08e3eb7265a7d2d8c2fd1dc712ef74ae} 
+MOTOR\+\_\+\+DM\+\_\+\+ERROR\+\_\+\+OVER\+\_\+\+LOAD&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{motor___d_m_8h_a4e5af5310ebc11b1939f30528159330d}\index{motor\_DM.h@{motor\_DM.h}!MIT\_CtrlMotorDM@{MIT\_CtrlMotorDM}}
+\index{MIT\_CtrlMotorDM@{MIT\_CtrlMotorDM}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{MIT\_CtrlMotorDM()}{MIT\_CtrlMotorDM()}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a4e5af5310ebc11b1939f30528159330d} 
+void MIT\+\_\+\+Ctrl\+Motor\+DM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{, }\item[{float}]{pos}{, }\item[{float}]{vel}{, }\item[{float}]{kp}{, }\item[{float}]{kd}{, }\item[{float}]{tor}{}\end{DoxyParamCaption})}
+
+
+
+\+: mit\+\_\+ctrl\+: MIT模式下的电机控制函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+hcan\+: 指向\+CAN\+\_\+\+Handle\+Type\+Def结构的指针，用于指定\+CAN总线 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+\_\+id\+: 电机\+ID，指定目标电机 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+pos\+: 位置给定值 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+vel\+: 速度给定值 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+kp\+: 位置比例系数 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+kd\+: 位置微分系数 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+torq\+: 转矩给定值 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+CAN总线向电机发送\+MIT模式下的控制帧。 \Hypertarget{motor___d_m_8h_a114aa82c54f6ec167ee799de97d0455c}\index{motor\_DM.h@{motor\_DM.h}!Motor\_DM\_Clear\_Error@{Motor\_DM\_Clear\_Error}}
+\index{Motor\_DM\_Clear\_Error@{Motor\_DM\_Clear\_Error}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{Motor\_DM\_Clear\_Error()}{Motor\_DM\_Clear\_Error()}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a114aa82c54f6ec167ee799de97d0455c} 
+void Motor\+\_\+\+DM\+\_\+\+Clear\+\_\+\+Error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{}\end{DoxyParamCaption})}
+
+
+
+\+: Motor\+\_\+\+DM\+\_\+\+Clear\+\_\+\+Error\+: 电机清除错误函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+: 指向\+DM\+\_\+motor\+\_\+t结构体的指针，用于指定电机 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+CAN总线向电机发送清除错误命令 \Hypertarget{motor___d_m_8h_a5fa285cb7fbf256fd9a2b47af6e3e549}\index{motor\_DM.h@{motor\_DM.h}!Motor\_DM\_Disable@{Motor\_DM\_Disable}}
+\index{Motor\_DM\_Disable@{Motor\_DM\_Disable}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{Motor\_DM\_Disable()}{Motor\_DM\_Disable()}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a5fa285cb7fbf256fd9a2b47af6e3e549} 
+void Motor\+\_\+\+DM\+\_\+\+Disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{}\end{DoxyParamCaption})}
+
+
+
+\+: Motor\+\_\+\+DM\+\_\+\+Disable\+: 电机失能函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+: 指向\+DM\+\_\+motor\+\_\+t结构体的指针，用于指定电机 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+CAN总线向电机发送失能命令 \Hypertarget{motor___d_m_8h_ab3e894b32448d525e7c454682d24e0a1}\index{motor\_DM.h@{motor\_DM.h}!Motor\_DM\_Enable@{Motor\_DM\_Enable}}
+\index{Motor\_DM\_Enable@{Motor\_DM\_Enable}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{Motor\_DM\_Enable()}{Motor\_DM\_Enable()}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_ab3e894b32448d525e7c454682d24e0a1} 
+void Motor\+\_\+\+DM\+\_\+\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{}\end{DoxyParamCaption})}
+
+
+
+\+: Motor\+\_\+\+DM\+\_\+\+Enable\+: 电机使能函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+: 指向\+DM\+\_\+motor\+\_\+t结构体的指针，用于指定电机 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+CAN总线向电机发送使能命令 \Hypertarget{motor___d_m_8h_a65a366100839b300d25774b34fc1fa80}\index{motor\_DM.h@{motor\_DM.h}!Motor\_DM\_Init@{Motor\_DM\_Init}}
+\index{Motor\_DM\_Init@{Motor\_DM\_Init}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{Motor\_DM\_Init()}{Motor\_DM\_Init()}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a65a366100839b300d25774b34fc1fa80} 
+void Motor\+\_\+\+DM\+\_\+\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{}\end{DoxyParamCaption})}
+
+
+
+\+: Motor\+\_\+\+DM\+\_\+\+Init\+: 电机初始化函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+: 指向\+DM\+\_\+motor\+\_\+t结构体的指针，用于指定电机 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 初始化电机参数 \Hypertarget{motor___d_m_8h_a64b546c7ad05009cfede6bc962cff1b6}\index{motor\_DM.h@{motor\_DM.h}!Motor\_DM\_Refresh@{Motor\_DM\_Refresh}}
+\index{Motor\_DM\_Refresh@{Motor\_DM\_Refresh}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{Motor\_DM\_Refresh()}{Motor\_DM\_Refresh()}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a64b546c7ad05009cfede6bc962cff1b6} 
+void Motor\+\_\+\+DM\+\_\+\+Refresh (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{}\end{DoxyParamCaption})}
+
+
+
+\+: Motor\+\_\+\+DM\+\_\+\+Refresh\+: 电机刷新函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+: 指向\+DM\+\_\+motor\+\_\+t结构体的指针，用于指定电机 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+CAN总线接收电机反馈数据 \Hypertarget{motor___d_m_8h_a85fb575f9cd15c1e59a4ef9d5a6ee27d}\index{motor\_DM.h@{motor\_DM.h}!Motor\_DM\_Save\_Zero@{Motor\_DM\_Save\_Zero}}
+\index{Motor\_DM\_Save\_Zero@{Motor\_DM\_Save\_Zero}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{Motor\_DM\_Save\_Zero()}{Motor\_DM\_Save\_Zero()}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a85fb575f9cd15c1e59a4ef9d5a6ee27d} 
+void Motor\+\_\+\+DM\+\_\+\+Save\+\_\+\+Zero (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{}\end{DoxyParamCaption})}
+
+
+
+\+: Motor\+\_\+\+DM\+\_\+\+Save\+\_\+\+Zero\+: 电机保存零点函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+: 指向\+DM\+\_\+motor\+\_\+t结构体的指针，用于指定电机 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+CAN总线向电机发送保存零点命令 \Hypertarget{motor___d_m_8h_a2c8366551102091656e16022e7d9d9ff}\index{motor\_DM.h@{motor\_DM.h}!PosSpeed\_CtrlMotorDM@{PosSpeed\_CtrlMotorDM}}
+\index{PosSpeed\_CtrlMotorDM@{PosSpeed\_CtrlMotorDM}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{PosSpeed\_CtrlMotorDM()}{PosSpeed\_CtrlMotorDM()}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a2c8366551102091656e16022e7d9d9ff} 
+void Pos\+Speed\+\_\+\+Ctrl\+Motor\+DM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{, }\item[{float}]{\+\_\+pos}{, }\item[{float}]{\+\_\+vel}{}\end{DoxyParamCaption})}
+
+
+
+达妙电机位置速度模式控下控制帧 
+
+
+\begin{DoxyParams}{参数}
+{\em hcan} & CAN的句柄 \\
+\hline
+{\em ID} & 数据帧的\+ID \\
+\hline
+{\em \+\_\+pos} & 位置给定 \\
+\hline
+{\em \+\_\+vel} & 速度给定 \\
+\hline
+\end{DoxyParams}
+\Hypertarget{motor___d_m_8h_a8998f183bc48af1f3e2884f0d281d7a6}\index{motor\_DM.h@{motor\_DM.h}!Speed\_CtrlMotorDM@{Speed\_CtrlMotorDM}}
+\index{Speed\_CtrlMotorDM@{Speed\_CtrlMotorDM}!motor\_DM.h@{motor\_DM.h}}
+\doxysubsubsection{\texorpdfstring{Speed\_CtrlMotorDM()}{Speed\_CtrlMotorDM()}}
+{\footnotesize\ttfamily \label{motor___d_m_8h_a8998f183bc48af1f3e2884f0d281d7a6} 
+void Speed\+\_\+\+Ctrl\+Motor\+DM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_d_m__motor__t}{DM\+\_\+motor\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{motor}{, }\item[{float}]{vel}{}\end{DoxyParamCaption})}
+
+
+
+\+: speed\+\_\+ctrl\+: 速度控制函数 
+
+
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+hcan\+: 指向\+CAN\+\_\+\+Handle\+Type\+Def结构的指针，用于指定\+CAN总线 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+motor\+\_\+id\+: 电机\+ID，指定目标电机 
+\begin{DoxyParams}[1]{参数}
+\mbox{\texttt{ in}}  & {\em } & \\
+\hline
+\end{DoxyParams}
+vel\+: 速度给定值 
+\begin{DoxyRetVals}{返回值}
+{\em } & void\\
+\hline
+\end{DoxyRetVals}
+\+: 通过\+CAN总线向电机发送速度控制命令 

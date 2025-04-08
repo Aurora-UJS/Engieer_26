@@ -1,0 +1,543 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: QEKF_INS_t结构体 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">成员变量</a>  </div>
+  <div class="headertitle"><div class="title">QEKF_INS_t结构体 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_quaternion_e_k_f_8h_source.html">QuaternionEKF.h</a>&gt;</code></p>
+<div class="dynheader">
+QEKF_INS_t 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="struct_q_e_k_f___i_n_s__t__coll__graph.png" border="0" usemap="#a_q_e_k_f___i_n_s__t_coll__map" alt="Collaboration graph"/></div>
+<map name="a_q_e_k_f___i_n_s__t_coll__map" id="a_q_e_k_f___i_n_s__t_coll__map">
+<area shape="rect" title=" " alt="" coords="5,96,104,123"/>
+<area shape="rect" href="structkf__t.html" title=" " alt="" coords="33,5,76,32"/>
+<area shape="poly" title=" " alt="" coords="57,48,57,95,52,95,52,48"/>
+</map>
+<center><span class="legend">[<a href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+成员变量</h2></td></tr>
+<tr class="memitem:a885a68e632ab9a6189c31f5f8a648f35" id="r_a885a68e632ab9a6189c31f5f8a648f35"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a885a68e632ab9a6189c31f5f8a648f35">Initialized</a></td></tr>
+<tr class="separator:a885a68e632ab9a6189c31f5f8a648f35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa31a9eb1b01a731007ea8eb4384b6206" id="r_aa31a9eb1b01a731007ea8eb4384b6206"><td class="memItemLeft" align="right" valign="top"><a class="el" href="kalman__filter_8h.html#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa31a9eb1b01a731007ea8eb4384b6206">IMU_QuaternionEKF</a></td></tr>
+<tr class="separator:aa31a9eb1b01a731007ea8eb4384b6206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a0b6e7c35e051f9c1bc256c63239148" id="r_a4a0b6e7c35e051f9c1bc256c63239148"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a0b6e7c35e051f9c1bc256c63239148">ConvergeFlag</a></td></tr>
+<tr class="separator:a4a0b6e7c35e051f9c1bc256c63239148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a751fa039ff4c73431bddbace2ce0412e" id="r_a751fa039ff4c73431bddbace2ce0412e"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a751fa039ff4c73431bddbace2ce0412e">StableFlag</a></td></tr>
+<tr class="separator:a751fa039ff4c73431bddbace2ce0412e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a783384fb59519cef9c964a8e3991383b" id="r_a783384fb59519cef9c964a8e3991383b"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a783384fb59519cef9c964a8e3991383b">ErrorCount</a></td></tr>
+<tr class="separator:a783384fb59519cef9c964a8e3991383b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3aef96e4194e2a0d7c43aa520e152ee" id="r_ad3aef96e4194e2a0d7c43aa520e152ee"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad3aef96e4194e2a0d7c43aa520e152ee">UpdateCount</a></td></tr>
+<tr class="separator:ad3aef96e4194e2a0d7c43aa520e152ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbffa34110f15b21994d3d087a0f4e7f" id="r_acbffa34110f15b21994d3d087a0f4e7f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbffa34110f15b21994d3d087a0f4e7f">q</a> [4]</td></tr>
+<tr class="separator:acbffa34110f15b21994d3d087a0f4e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a284052175f76a36705a2d606ec608eaa" id="r_a284052175f76a36705a2d606ec608eaa"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a284052175f76a36705a2d606ec608eaa">GyroBias</a> [3]</td></tr>
+<tr class="separator:a284052175f76a36705a2d606ec608eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad211be2646a6b9b8882f17c37537d5f0" id="r_ad211be2646a6b9b8882f17c37537d5f0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad211be2646a6b9b8882f17c37537d5f0">Gyro</a> [3]</td></tr>
+<tr class="separator:ad211be2646a6b9b8882f17c37537d5f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc3945dea44b028a22a7cc6ae17bc016" id="r_abc3945dea44b028a22a7cc6ae17bc016"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc3945dea44b028a22a7cc6ae17bc016">Accel</a> [3]</td></tr>
+<tr class="separator:abc3945dea44b028a22a7cc6ae17bc016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a104bd47b4718c296a8727bd064535ead" id="r_a104bd47b4718c296a8727bd064535ead"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a104bd47b4718c296a8727bd064535ead">OrientationCosine</a> [3]</td></tr>
+<tr class="separator:a104bd47b4718c296a8727bd064535ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ae8475a96adecbe94b886aa6afed70d" id="r_a7ae8475a96adecbe94b886aa6afed70d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7ae8475a96adecbe94b886aa6afed70d">accLPFcoef</a></td></tr>
+<tr class="separator:a7ae8475a96adecbe94b886aa6afed70d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab850d578c34c42ab0280b5d716cfdd22" id="r_ab850d578c34c42ab0280b5d716cfdd22"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab850d578c34c42ab0280b5d716cfdd22">gyro_norm</a></td></tr>
+<tr class="separator:ab850d578c34c42ab0280b5d716cfdd22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc0c91915001cea9d27455a3cac3c068" id="r_abc0c91915001cea9d27455a3cac3c068"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc0c91915001cea9d27455a3cac3c068">accl_norm</a></td></tr>
+<tr class="separator:abc0c91915001cea9d27455a3cac3c068"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0214ed6132d979c452d6c2b1219df109" id="r_a0214ed6132d979c452d6c2b1219df109"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0214ed6132d979c452d6c2b1219df109">AdaptiveGainScale</a></td></tr>
+<tr class="separator:a0214ed6132d979c452d6c2b1219df109"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade9e1f9555516012861be1695fe4a9a0" id="r_ade9e1f9555516012861be1695fe4a9a0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ade9e1f9555516012861be1695fe4a9a0">Roll</a></td></tr>
+<tr class="separator:ade9e1f9555516012861be1695fe4a9a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa412fb786d18d393b80ce4d2a00ba51c" id="r_aa412fb786d18d393b80ce4d2a00ba51c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa412fb786d18d393b80ce4d2a00ba51c">Pitch</a></td></tr>
+<tr class="separator:aa412fb786d18d393b80ce4d2a00ba51c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86cd3708ed18a9bdfec5c43fc837f206" id="r_a86cd3708ed18a9bdfec5c43fc837f206"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86cd3708ed18a9bdfec5c43fc837f206">Yaw</a></td></tr>
+<tr class="separator:a86cd3708ed18a9bdfec5c43fc837f206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80a2a092ac905ae4883248304f7aadab" id="r_a80a2a092ac905ae4883248304f7aadab"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80a2a092ac905ae4883248304f7aadab">YawTotalAngle</a></td></tr>
+<tr class="separator:a80a2a092ac905ae4883248304f7aadab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ea410e354f385041c3a7c62a7a3de2d" id="r_a6ea410e354f385041c3a7c62a7a3de2d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ea410e354f385041c3a7c62a7a3de2d">Q1</a></td></tr>
+<tr class="separator:a6ea410e354f385041c3a7c62a7a3de2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3cfae9022c0052ea7d66466f20e9b46" id="r_af3cfae9022c0052ea7d66466f20e9b46"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af3cfae9022c0052ea7d66466f20e9b46">Q2</a></td></tr>
+<tr class="separator:af3cfae9022c0052ea7d66466f20e9b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c4b08e61e92b3da1ed512f4e006f34a" id="r_a4c4b08e61e92b3da1ed512f4e006f34a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4c4b08e61e92b3da1ed512f4e006f34a">R</a></td></tr>
+<tr class="separator:a4c4b08e61e92b3da1ed512f4e006f34a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a778e38aa889751afffa2dea6b803e67a" id="r_a778e38aa889751afffa2dea6b803e67a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a778e38aa889751afffa2dea6b803e67a">dt</a></td></tr>
+<tr class="separator:a778e38aa889751afffa2dea6b803e67a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32733f1840591bffbfce55eadd946c52" id="r_a32733f1840591bffbfce55eadd946c52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="kalman__filter_8h.html#a25f351d8faacd808387ec773e0a8ede7">mat</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32733f1840591bffbfce55eadd946c52">ChiSquare</a></td></tr>
+<tr class="separator:a32733f1840591bffbfce55eadd946c52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45c2c0b05b6dfdea57156433e191b33e" id="r_a45c2c0b05b6dfdea57156433e191b33e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a45c2c0b05b6dfdea57156433e191b33e">ChiSquare_Data</a> [1]</td></tr>
+<tr class="separator:a45c2c0b05b6dfdea57156433e191b33e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ecd12f4d1bb02708ce10df387787007" id="r_a2ecd12f4d1bb02708ce10df387787007"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ecd12f4d1bb02708ce10df387787007">ChiSquareTestThreshold</a></td></tr>
+<tr class="separator:a2ecd12f4d1bb02708ce10df387787007"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acac4a565486bad0b88b62387d8a5d891" id="r_acac4a565486bad0b88b62387d8a5d891"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acac4a565486bad0b88b62387d8a5d891">lambda</a></td></tr>
+<tr class="separator:acac4a565486bad0b88b62387d8a5d891"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f5b31937cd8c34486c2d09bd618f560" id="r_a7f5b31937cd8c34486c2d09bd618f560"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f5b31937cd8c34486c2d09bd618f560">YawRoundCount</a></td></tr>
+<tr class="separator:a7f5b31937cd8c34486c2d09bd618f560"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a331e1b45c28a0d0a7eb582b1711efea2" id="r_a331e1b45c28a0d0a7eb582b1711efea2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a331e1b45c28a0d0a7eb582b1711efea2">YawAngleLast</a></td></tr>
+<tr class="separator:a331e1b45c28a0d0a7eb582b1711efea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">结构体成员变量说明</h2>
+<a id="abc3945dea44b028a22a7cc6ae17bc016" name="abc3945dea44b028a22a7cc6ae17bc016"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc3945dea44b028a22a7cc6ae17bc016">&#9670;&#160;</a></span>Accel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Accel[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abc0c91915001cea9d27455a3cac3c068" name="abc0c91915001cea9d27455a3cac3c068"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc0c91915001cea9d27455a3cac3c068">&#9670;&#160;</a></span>accl_norm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float accl_norm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ae8475a96adecbe94b886aa6afed70d" name="a7ae8475a96adecbe94b886aa6afed70d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ae8475a96adecbe94b886aa6afed70d">&#9670;&#160;</a></span>accLPFcoef</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float accLPFcoef</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0214ed6132d979c452d6c2b1219df109" name="a0214ed6132d979c452d6c2b1219df109"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0214ed6132d979c452d6c2b1219df109">&#9670;&#160;</a></span>AdaptiveGainScale</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float AdaptiveGainScale</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a32733f1840591bffbfce55eadd946c52" name="a32733f1840591bffbfce55eadd946c52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32733f1840591bffbfce55eadd946c52">&#9670;&#160;</a></span>ChiSquare</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="kalman__filter_8h.html#a25f351d8faacd808387ec773e0a8ede7">mat</a> ChiSquare</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a45c2c0b05b6dfdea57156433e191b33e" name="a45c2c0b05b6dfdea57156433e191b33e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45c2c0b05b6dfdea57156433e191b33e">&#9670;&#160;</a></span>ChiSquare_Data</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ChiSquare_Data[1]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2ecd12f4d1bb02708ce10df387787007" name="a2ecd12f4d1bb02708ce10df387787007"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ecd12f4d1bb02708ce10df387787007">&#9670;&#160;</a></span>ChiSquareTestThreshold</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ChiSquareTestThreshold</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a0b6e7c35e051f9c1bc256c63239148" name="a4a0b6e7c35e051f9c1bc256c63239148"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a0b6e7c35e051f9c1bc256c63239148">&#9670;&#160;</a></span>ConvergeFlag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t ConvergeFlag</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a778e38aa889751afffa2dea6b803e67a" name="a778e38aa889751afffa2dea6b803e67a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a778e38aa889751afffa2dea6b803e67a">&#9670;&#160;</a></span>dt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float dt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a783384fb59519cef9c964a8e3991383b" name="a783384fb59519cef9c964a8e3991383b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a783384fb59519cef9c964a8e3991383b">&#9670;&#160;</a></span>ErrorCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t ErrorCount</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad211be2646a6b9b8882f17c37537d5f0" name="ad211be2646a6b9b8882f17c37537d5f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad211be2646a6b9b8882f17c37537d5f0">&#9670;&#160;</a></span>Gyro</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Gyro[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab850d578c34c42ab0280b5d716cfdd22" name="ab850d578c34c42ab0280b5d716cfdd22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab850d578c34c42ab0280b5d716cfdd22">&#9670;&#160;</a></span>gyro_norm</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float gyro_norm</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a284052175f76a36705a2d606ec608eaa" name="a284052175f76a36705a2d606ec608eaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a284052175f76a36705a2d606ec608eaa">&#9670;&#160;</a></span>GyroBias</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float GyroBias[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa31a9eb1b01a731007ea8eb4384b6206" name="aa31a9eb1b01a731007ea8eb4384b6206"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa31a9eb1b01a731007ea8eb4384b6206">&#9670;&#160;</a></span>IMU_QuaternionEKF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="kalman__filter_8h.html#af02bc9b785abb47505f15cedcbad2ba5">KalmanFilter_t</a> IMU_QuaternionEKF</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a885a68e632ab9a6189c31f5f8a648f35" name="a885a68e632ab9a6189c31f5f8a648f35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a885a68e632ab9a6189c31f5f8a648f35">&#9670;&#160;</a></span>Initialized</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Initialized</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acac4a565486bad0b88b62387d8a5d891" name="acac4a565486bad0b88b62387d8a5d891"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acac4a565486bad0b88b62387d8a5d891">&#9670;&#160;</a></span>lambda</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float lambda</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a104bd47b4718c296a8727bd064535ead" name="a104bd47b4718c296a8727bd064535ead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a104bd47b4718c296a8727bd064535ead">&#9670;&#160;</a></span>OrientationCosine</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float OrientationCosine[3]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa412fb786d18d393b80ce4d2a00ba51c" name="aa412fb786d18d393b80ce4d2a00ba51c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa412fb786d18d393b80ce4d2a00ba51c">&#9670;&#160;</a></span>Pitch</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Pitch</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acbffa34110f15b21994d3d087a0f4e7f" name="acbffa34110f15b21994d3d087a0f4e7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbffa34110f15b21994d3d087a0f4e7f">&#9670;&#160;</a></span>q</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float q[4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ea410e354f385041c3a7c62a7a3de2d" name="a6ea410e354f385041c3a7c62a7a3de2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ea410e354f385041c3a7c62a7a3de2d">&#9670;&#160;</a></span>Q1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Q1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af3cfae9022c0052ea7d66466f20e9b46" name="af3cfae9022c0052ea7d66466f20e9b46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3cfae9022c0052ea7d66466f20e9b46">&#9670;&#160;</a></span>Q2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Q2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4c4b08e61e92b3da1ed512f4e006f34a" name="a4c4b08e61e92b3da1ed512f4e006f34a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c4b08e61e92b3da1ed512f4e006f34a">&#9670;&#160;</a></span>R</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float R</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ade9e1f9555516012861be1695fe4a9a0" name="ade9e1f9555516012861be1695fe4a9a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade9e1f9555516012861be1695fe4a9a0">&#9670;&#160;</a></span>Roll</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Roll</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a751fa039ff4c73431bddbace2ce0412e" name="a751fa039ff4c73431bddbace2ce0412e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a751fa039ff4c73431bddbace2ce0412e">&#9670;&#160;</a></span>StableFlag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t StableFlag</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad3aef96e4194e2a0d7c43aa520e152ee" name="ad3aef96e4194e2a0d7c43aa520e152ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3aef96e4194e2a0d7c43aa520e152ee">&#9670;&#160;</a></span>UpdateCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t UpdateCount</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a86cd3708ed18a9bdfec5c43fc837f206" name="a86cd3708ed18a9bdfec5c43fc837f206"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86cd3708ed18a9bdfec5c43fc837f206">&#9670;&#160;</a></span>Yaw</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Yaw</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a331e1b45c28a0d0a7eb582b1711efea2" name="a331e1b45c28a0d0a7eb582b1711efea2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a331e1b45c28a0d0a7eb582b1711efea2">&#9670;&#160;</a></span>YawAngleLast</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float YawAngleLast</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7f5b31937cd8c34486c2d09bd618f560" name="a7f5b31937cd8c34486c2d09bd618f560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f5b31937cd8c34486c2d09bd618f560">&#9670;&#160;</a></span>YawRoundCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t YawRoundCount</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a80a2a092ac905ae4883248304f7aadab" name="a80a2a092ac905ae4883248304f7aadab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80a2a092ac905ae4883248304f7aadab">&#9670;&#160;</a></span>YawTotalAngle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float YawTotalAngle</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li>source/module/IMU/ekf/<a class="el" href="_quaternion_e_k_f_8h_source.html">QuaternionEKF.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

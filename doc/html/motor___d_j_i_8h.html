@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/motor/motor_Dji/motor_DJI.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_55275f164995bff569199267ebec3968.html">motor</a></li><li class="navelem"><a class="el" href="dir_ada55d1c1c22082f724e811e04e7973a.html">motor_Dji</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">motor_DJI.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="motor__basic_8h_source.html">motor_basic.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="can__struct_8h_source.html">can_struct.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+motor_DJI.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="motor___d_j_i_8h__incl.png" border="0" usemap="#asource_2module_2motor_2motor___dji_2motor___d_j_i_8h" alt=""/></div>
+<map name="asource_2module_2motor_2motor___dji_2motor___d_j_i_8h" id="asource_2module_2motor_2motor___dji_2motor___d_j_i_8h">
+<area shape="rect" title=" " alt="" coords="306,5,463,48"/>
+<area shape="rect" href="motor__basic_8h.html" title=" " alt="" coords="282,96,386,123"/>
+<area shape="poly" title=" " alt="" coords="374,50,352,84,348,81,369,47"/>
+<area shape="rect" href="can__struct_8h.html" title=" " alt="" coords="430,320,523,347"/>
+<area shape="poly" title=" " alt="" coords="393,48,471,304,466,306,388,49"/>
+<area shape="rect" title=" " alt="" coords="261,395,321,421"/>
+<area shape="poly" title=" " alt="" coords="334,124,324,171,297,380,291,379,319,170,328,123"/>
+<area shape="rect" href="bsp_8h.html" title=" " alt="" coords="191,171,244,197"/>
+<area shape="poly" title=" " alt="" coords="315,125,253,164,250,160,312,121"/>
+<area shape="rect" title=" " alt="" coords="334,171,408,197"/>
+<area shape="poly" title=" " alt="" coords="343,122,360,156,355,158,338,124"/>
+<area shape="rect" href="can__api_8h.html" title=" " alt="" coords="354,245,431,272"/>
+<area shape="poly" title=" " alt="" coords="246,194,349,236,347,241,244,199"/>
+<area shape="rect" href="dwt__bsp_8h.html" title=" " alt="" coords="177,245,258,272"/>
+<area shape="poly" title=" " alt="" coords="220,198,220,230,215,230,215,198"/>
+<area shape="rect" href="uart__api_8h.html" title=" " alt="" coords="5,320,84,347"/>
+<area shape="poly" title=" " alt="" coords="191,188,156,192,115,201,75,218,58,231,44,247,38,260,35,275,38,305,33,305,30,275,33,258,40,244,55,227,73,214,113,196,155,186,191,183"/>
+<area shape="rect" href="buzzer__bsp_8h.html" title=" " alt="" coords="54,245,153,272"/>
+<area shape="poly" title=" " alt="" coords="199,200,138,239,135,234,196,196"/>
+<area shape="poly" title=" " alt="" coords="386,274,311,383,306,380,382,271"/>
+<area shape="rect" title=" " alt="" coords="495,395,589,421"/>
+<area shape="poly" title=" " alt="" coords="432,263,459,269,488,280,515,296,537,318,545,333,549,349,549,379,544,379,543,349,540,335,533,322,512,300,486,285,458,274,431,268"/>
+<area shape="rect" title=" " alt="" coords="385,395,434,421"/>
+<area shape="poly" title=" " alt="" coords="397,272,409,379,404,379,391,273"/>
+<area shape="poly" title=" " alt="" coords="409,271,452,308,449,312,405,275"/>
+<area shape="poly" title=" " alt="" coords="445,350,337,392,335,387,443,345"/>
+<area shape="poly" title=" " alt="" coords="490,345,523,381,519,385,486,349"/>
+<area shape="poly" title=" " alt="" coords="467,349,433,385,430,381,463,345"/>
+<area shape="rect" title=" " alt="" coords="186,320,250,347"/>
+<area shape="poly" title=" " alt="" coords="220,273,220,304,215,304,215,273"/>
+<area shape="poly" title=" " alt="" coords="85,344,247,391,245,396,83,349"/>
+<area shape="poly" title=" " alt="" coords="113,271,139,306,176,345,211,368,248,387,246,392,209,373,172,349,135,310,109,274"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="motor___d_j_i_8h__dep__incl.png" border="0" usemap="#asource_2module_2motor_2motor___dji_2motor___d_j_i_8hdep" alt=""/></div>
+<map name="asource_2module_2motor_2motor___dji_2motor___d_j_i_8hdep" id="asource_2module_2motor_2motor___dji_2motor___d_j_i_8hdep">
+<area shape="rect" title=" " alt="" coords="93,5,250,48"/>
+<area shape="rect" href="motor_8_d_j_i_8c.html" title=" " alt="" coords="5,96,160,139"/>
+<area shape="poly" title=" " alt="" coords="142,61,105,98,101,94,138,57"/>
+<area shape="rect" href="_remoter_8c.html" title=" " alt="" coords="184,104,338,131"/>
+<area shape="poly" title=" " alt="" coords="205,57,250,102,247,105,201,61"/>
+</map>
+</div>
+</div>
+<p><a href="motor___d_j_i_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_d_j_i__motor__t.html">DJI_motor_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a1b6f009cefceb070da8f11ef9d7c2f24" id="r_a1b6f009cefceb070da8f11ef9d7c2f24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b6f009cefceb070da8f11ef9d7c2f24">set_motor_parameter</a> (<a class="el" href="struct_d_j_i__motor__t.html">DJI_motor_t</a> *msg, int16_t v1, int16_t v2, int16_t v3, int16_t v4)</td></tr>
+<tr class="memdesc:a1b6f009cefceb070da8f11ef9d7c2f24"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送电机控制参数（电压或电流）  <br /></td></tr>
+<tr class="separator:a1b6f009cefceb070da8f11ef9d7c2f24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa58303faf6213e5527880d02243c85c3" id="r_aa58303faf6213e5527880d02243c85c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa58303faf6213e5527880d02243c85c3">Motor_DJI_Init</a> (<a class="el" href="struct_d_j_i__motor__t.html">DJI_motor_t</a> *motor)</td></tr>
+<tr class="memdesc:aa58303faf6213e5527880d02243c85c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">大疆电机初始化  <br /></td></tr>
+<tr class="separator:aa58303faf6213e5527880d02243c85c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfe775d5de240e993f95bbce4c795b23" id="r_abfe775d5de240e993f95bbce4c795b23"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfe775d5de240e993f95bbce4c795b23">Motor_DJI_Refresh</a> (<a class="el" href="struct_d_j_i__motor__t.html">DJI_motor_t</a> *motor)</td></tr>
+<tr class="memdesc:abfe775d5de240e993f95bbce4c795b23"><td class="mdescLeft">&#160;</td><td class="mdescRight">大疆电机参数刷新  <br /></td></tr>
+<tr class="separator:abfe775d5de240e993f95bbce4c795b23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a id="aa58303faf6213e5527880d02243c85c3" name="aa58303faf6213e5527880d02243c85c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa58303faf6213e5527880d02243c85c3">&#9670;&#160;</a></span>Motor_DJI_Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Motor_DJI_Init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_d_j_i__motor__t.html">DJI_motor_t</a> *</td>          <td class="paramname"><span class="paramname"><em>motor</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>大疆电机初始化 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">motor</td><td>大疆电机控制参数结构体 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abfe775d5de240e993f95bbce4c795b23" name="abfe775d5de240e993f95bbce4c795b23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfe775d5de240e993f95bbce4c795b23">&#9670;&#160;</a></span>Motor_DJI_Refresh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Motor_DJI_Refresh </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_d_j_i__motor__t.html">DJI_motor_t</a> *</td>          <td class="paramname"><span class="paramname"><em>motor</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>大疆电机参数刷新 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">motor</td><td>大疆电机控制参数结构体 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1b6f009cefceb070da8f11ef9d7c2f24" name="a1b6f009cefceb070da8f11ef9d7c2f24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b6f009cefceb070da8f11ef9d7c2f24">&#9670;&#160;</a></span>set_motor_parameter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void set_motor_parameter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_d_j_i__motor__t.html">DJI_motor_t</a> *</td>          <td class="paramname"><span class="paramname"><em>msg</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t</td>          <td class="paramname"><span class="paramname"><em>v1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t</td>          <td class="paramname"><span class="paramname"><em>v2</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t</td>          <td class="paramname"><span class="paramname"><em>v3</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t</td>          <td class="paramname"><span class="paramname"><em>v4</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>发送电机控制参数（电压或电流） </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td>大疆电机控制参数结构体 </td></tr>
+    <tr><td class="paramname">v1</td><td>1号电机电压或电流 </td></tr>
+    <tr><td class="paramname">v2</td><td>2号电机电压或电流 </td></tr>
+    <tr><td class="paramname">v3</td><td>3号电机电压或电流 </td></tr>
+    <tr><td class="paramname">v4</td><td>4号电机电压或电流 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

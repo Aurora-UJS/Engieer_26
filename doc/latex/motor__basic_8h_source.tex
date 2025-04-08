@@ -1,0 +1,24 @@
+\doxysection{motor\+\_\+basic.\+h}
+\hypertarget{motor__basic_8h_source}{}\label{motor__basic_8h_source}\index{source/module/motor/motor\_basic.h@{source/module/motor/motor\_basic.h}}
+\mbox{\hyperlink{motor__basic_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MOTOR\_BASIC\_H\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MOTOR\_BASIC\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{bsp_8h}{bsp.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structcan__motor__t_ac6278e0a008e8ca49300a5c2874ee776}{motor\_speed}};\ \ \ \ \textcolor{comment}{//\ 电机速度}}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structcan__motor__t_aeb6eff1024266c60ca158ff810e83511}{motor\_angle}};\ \ \ \ \textcolor{comment}{//\ 电机角度}}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structcan__motor__t_a2e73ee688b7d280dae2704aa5b930605}{torque\_current}};\ \textcolor{comment}{//\ 电机扭矩或电流}}
+\DoxyCodeLine{00013\ \ \ \ \ int8\_t\ \mbox{\hyperlink{structcan__motor__t_a029a87658f39852c58465c723e31eb29}{temp}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 电机温度}}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{structcan__msg__t}{can\_msg\_t}}\ \mbox{\hyperlink{structcan__motor__t_af7783107481632d59624f7bb8e6274ed}{can\_msg}};\ \ \ \ \textcolor{comment}{//\ can消息指针}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \}\ \mbox{\hyperlink{structcan__motor__t}{can\_motor\_t}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_MOTOR\_COM\_H\_\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

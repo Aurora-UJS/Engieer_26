@@ -1,0 +1,105 @@
+\doxysection{source/module/computer/radar/radar\+Tool.c 文件参考}
+\hypertarget{radar_tool_8c}{}\label{radar_tool_8c}\index{source/module/computer/radar/radarTool.c@{source/module/computer/radar/radarTool.c}}
+{\ttfamily \#include "{}radar\+Tool.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}IMUtool.\+h"{}}\newline
+{\ttfamily \#include "{}string.\+h"{}}\newline
+{\ttfamily \#include "{}uart\+\_\+api.\+h"{}}\newline
+{\ttfamily \#include "{}crc\+\_\+api.\+h"{}}\newline
+radar\+Tool.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{radar_tool_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{radar_tool_8c_a0c233fcb94ea9f05596b48427095806e}{Pi}}~3.\+14159265358979323846f
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{radar_tool_8c_a05668ae0c9dd6692724d3e7eb8140902}{radar\+\_\+msg\+\_\+init}} (UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}huart)
+\item 
+void \mbox{\hyperlink{radar_tool_8c_afb32475002e03848c95added742c8d9e}{receive\+Radar\+Data}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}rx\+\_\+buffer)
+\item 
+void \mbox{\hyperlink{radar_tool_8c_a5de457b45d63ace4654ebb51135c180f}{send\+All\+Robot\+HPData}} (\mbox{\hyperlink{struct_send_packet_all_robot_h_p__t}{Send\+Packet\+All\+Robot\+HP\+\_\+t}} \texorpdfstring{$\ast$}{*}send\+All\+Robot\+HP)
+\item 
+void \mbox{\hyperlink{radar_tool_8c_ad970dbdaac0eb52709ffebc0661aedb3}{send\+Game\+Status\+Data}} (\mbox{\hyperlink{struct_send_packet_game_status__t}{Send\+Packet\+Game\+Status\+\_\+t}} \texorpdfstring{$\ast$}{*}send\+Game\+Status)
+\item 
+void \mbox{\hyperlink{radar_tool_8c_a6c0552a9ff98e1f3f066d6ab7463b81a}{send\+Robot\+Status\+Data}} (\mbox{\hyperlink{struct_send_packet_robot_status__t}{Send\+Packet\+Robot\+Status\+\_\+t}} \texorpdfstring{$\ast$}{*}send\+Robot\+Status)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_received_packet_twist__t}{Received\+Packet\+Twist\+\_\+t}} \mbox{\hyperlink{radar_tool_8c_a5c5d0891ab44746fd8df239fc28f8e42}{radar\+Twist}} = \{0\}
+\item 
+\mbox{\hyperlink{struct_received_packet_robot_control__t}{Received\+Packet\+Robot\+Control\+\_\+t}} \mbox{\hyperlink{radar_tool_8c_a146582af8d382e43975069e75103c928}{robot\+Control}} = \{0\}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{radar_tool_8c_ae965cb05b834fe821d9b938c7922601c}{rader\+\_\+rx\+\_\+buffer}} \mbox{[}\mbox{\hyperlink{radar_tool_8h_a09dfa0928ba2c33381146287b2983368}{RADAR\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]} = \{0\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{宏定义说明}
+\Hypertarget{radar_tool_8c_a0c233fcb94ea9f05596b48427095806e}\index{radarTool.c@{radarTool.c}!Pi@{Pi}}
+\index{Pi@{Pi}!radarTool.c@{radarTool.c}}
+\doxysubsubsection{\texorpdfstring{Pi}{Pi}}
+{\footnotesize\ttfamily \label{radar_tool_8c_a0c233fcb94ea9f05596b48427095806e} 
+\#define Pi~3.\+14159265358979323846f}
+
+
+
+\doxysubsection{函数说明}
+\Hypertarget{radar_tool_8c_a05668ae0c9dd6692724d3e7eb8140902}\index{radarTool.c@{radarTool.c}!radar\_msg\_init@{radar\_msg\_init}}
+\index{radar\_msg\_init@{radar\_msg\_init}!radarTool.c@{radarTool.c}}
+\doxysubsubsection{\texorpdfstring{radar\_msg\_init()}{radar\_msg\_init()}}
+{\footnotesize\ttfamily \label{radar_tool_8c_a05668ae0c9dd6692724d3e7eb8140902} 
+void radar\+\_\+msg\+\_\+init (\begin{DoxyParamCaption}\item[{UART\+\_\+\+Handle\+Type\+Def \texorpdfstring{$\ast$}{*}}]{huart}{}\end{DoxyParamCaption})}
+
+\Hypertarget{radar_tool_8c_afb32475002e03848c95added742c8d9e}\index{radarTool.c@{radarTool.c}!receiveRadarData@{receiveRadarData}}
+\index{receiveRadarData@{receiveRadarData}!radarTool.c@{radarTool.c}}
+\doxysubsubsection{\texorpdfstring{receiveRadarData()}{receiveRadarData()}}
+{\footnotesize\ttfamily \label{radar_tool_8c_afb32475002e03848c95added742c8d9e} 
+void receive\+Radar\+Data (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{rx\+\_\+buffer}{}\end{DoxyParamCaption})}
+
+\Hypertarget{radar_tool_8c_a5de457b45d63ace4654ebb51135c180f}\index{radarTool.c@{radarTool.c}!sendAllRobotHPData@{sendAllRobotHPData}}
+\index{sendAllRobotHPData@{sendAllRobotHPData}!radarTool.c@{radarTool.c}}
+\doxysubsubsection{\texorpdfstring{sendAllRobotHPData()}{sendAllRobotHPData()}}
+{\footnotesize\ttfamily \label{radar_tool_8c_a5de457b45d63ace4654ebb51135c180f} 
+void send\+All\+Robot\+HPData (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_send_packet_all_robot_h_p__t}{Send\+Packet\+All\+Robot\+HP\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{send\+All\+Robot\+HP}{}\end{DoxyParamCaption})}
+
+\Hypertarget{radar_tool_8c_ad970dbdaac0eb52709ffebc0661aedb3}\index{radarTool.c@{radarTool.c}!sendGameStatusData@{sendGameStatusData}}
+\index{sendGameStatusData@{sendGameStatusData}!radarTool.c@{radarTool.c}}
+\doxysubsubsection{\texorpdfstring{sendGameStatusData()}{sendGameStatusData()}}
+{\footnotesize\ttfamily \label{radar_tool_8c_ad970dbdaac0eb52709ffebc0661aedb3} 
+void send\+Game\+Status\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_send_packet_game_status__t}{Send\+Packet\+Game\+Status\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{send\+Game\+Status}{}\end{DoxyParamCaption})}
+
+\Hypertarget{radar_tool_8c_a6c0552a9ff98e1f3f066d6ab7463b81a}\index{radarTool.c@{radarTool.c}!sendRobotStatusData@{sendRobotStatusData}}
+\index{sendRobotStatusData@{sendRobotStatusData}!radarTool.c@{radarTool.c}}
+\doxysubsubsection{\texorpdfstring{sendRobotStatusData()}{sendRobotStatusData()}}
+{\footnotesize\ttfamily \label{radar_tool_8c_a6c0552a9ff98e1f3f066d6ab7463b81a} 
+void send\+Robot\+Status\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_send_packet_robot_status__t}{Send\+Packet\+Robot\+Status\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{send\+Robot\+Status}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{变量说明}
+\Hypertarget{radar_tool_8c_a5c5d0891ab44746fd8df239fc28f8e42}\index{radarTool.c@{radarTool.c}!radarTwist@{radarTwist}}
+\index{radarTwist@{radarTwist}!radarTool.c@{radarTool.c}}
+\doxysubsubsection{\texorpdfstring{radarTwist}{radarTwist}}
+{\footnotesize\ttfamily \label{radar_tool_8c_a5c5d0891ab44746fd8df239fc28f8e42} 
+\mbox{\hyperlink{struct_received_packet_twist__t}{Received\+Packet\+Twist\+\_\+t}} radar\+Twist = \{0\}}
+
+\Hypertarget{radar_tool_8c_ae965cb05b834fe821d9b938c7922601c}\index{radarTool.c@{radarTool.c}!rader\_rx\_buffer@{rader\_rx\_buffer}}
+\index{rader\_rx\_buffer@{rader\_rx\_buffer}!radarTool.c@{radarTool.c}}
+\doxysubsubsection{\texorpdfstring{rader\_rx\_buffer}{rader\_rx\_buffer}}
+{\footnotesize\ttfamily \label{radar_tool_8c_ae965cb05b834fe821d9b938c7922601c} 
+uint8\+\_\+t rader\+\_\+rx\+\_\+buffer\mbox{[}\mbox{\hyperlink{radar_tool_8h_a09dfa0928ba2c33381146287b2983368}{RADAR\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]} = \{0\}}
+
+\Hypertarget{radar_tool_8c_a146582af8d382e43975069e75103c928}\index{radarTool.c@{radarTool.c}!robotControl@{robotControl}}
+\index{robotControl@{robotControl}!radarTool.c@{radarTool.c}}
+\doxysubsubsection{\texorpdfstring{robotControl}{robotControl}}
+{\footnotesize\ttfamily \label{radar_tool_8c_a146582af8d382e43975069e75103c928} 
+\mbox{\hyperlink{struct_received_packet_robot_control__t}{Received\+Packet\+Robot\+Control\+\_\+t}} robot\+Control = \{0\}}
+

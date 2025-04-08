@@ -1,0 +1,103 @@
+\doxysection{source/module/\+IMU/\+Mahony/\+Mahony\+AHRS.h 文件参考}
+\hypertarget{_mahony_a_h_r_s_8h}{}\label{_mahony_a_h_r_s_8h}\index{source/module/IMU/Mahony/MahonyAHRS.h@{source/module/IMU/Mahony/MahonyAHRS.h}}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_mahony_a_h_r_s_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_mahony_a_h_r_s_8h_aead7f9df2a4b30d84d265f635396c72a}{Mahony\+\_\+update}} (float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz)
+\item 
+void \mbox{\hyperlink{_mahony_a_h_r_s_8h_ad9092ebf599265321a7181226153614b}{Mahony\+\_\+\+Init}} (float sample\+Frequency)
+\item 
+void \mbox{\hyperlink{_mahony_a_h_r_s_8h_afdf6a9a2d75608aea12fbc247368b471}{Mahony\+AHRSupdate\+IMU}} (float gx, float gy, float gz, float ax, float ay, float az)
+\item 
+void \mbox{\hyperlink{_mahony_a_h_r_s_8h_a7a4f0d1726aebef6727aa87d15d27a1b}{Mahony\+\_\+compute\+Angles}} (void)
+\item 
+void \mbox{\hyperlink{_mahony_a_h_r_s_8h_aa2baab5c4d30b4ecda7b7acf2c238337}{Mahony\+AHRSinit}} (float ax, float ay, float az, float mx, float my, float mz)
+\item 
+float \mbox{\hyperlink{_mahony_a_h_r_s_8h_a0938ab0e194cfe5b545faad5cd87fde6}{get\+Roll}} (void)
+\item 
+float \mbox{\hyperlink{_mahony_a_h_r_s_8h_a49b5381b2cdad4ec80141c0e17b98bc2}{get\+Pitch}} (void)
+\item 
+float \mbox{\hyperlink{_mahony_a_h_r_s_8h_a71fe28c45866e4f04c57bf829f3f6f6b}{get\+Yaw}} (void)
+\item 
+float \mbox{\hyperlink{_mahony_a_h_r_s_8h_a091516897d23b902e95d37823b67870d}{get\+Roll\+Radians}} (void)
+\item 
+float \mbox{\hyperlink{_mahony_a_h_r_s_8h_a206dbc44f4666404565384ae96722573}{get\+Pitch\+Radians}} (void)
+\item 
+float \mbox{\hyperlink{_mahony_a_h_r_s_8h_ad1421dfe94e8dda902ccdaec1399c323}{get\+Yaw\+Radians}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{_mahony_a_h_r_s_8h_a49b5381b2cdad4ec80141c0e17b98bc2}\index{MahonyAHRS.h@{MahonyAHRS.h}!getPitch@{getPitch}}
+\index{getPitch@{getPitch}!MahonyAHRS.h@{MahonyAHRS.h}}
+\doxysubsubsection{\texorpdfstring{getPitch()}{getPitch()}}
+{\footnotesize\ttfamily \label{_mahony_a_h_r_s_8h_a49b5381b2cdad4ec80141c0e17b98bc2} 
+float get\+Pitch (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_mahony_a_h_r_s_8h_a206dbc44f4666404565384ae96722573}\index{MahonyAHRS.h@{MahonyAHRS.h}!getPitchRadians@{getPitchRadians}}
+\index{getPitchRadians@{getPitchRadians}!MahonyAHRS.h@{MahonyAHRS.h}}
+\doxysubsubsection{\texorpdfstring{getPitchRadians()}{getPitchRadians()}}
+{\footnotesize\ttfamily \label{_mahony_a_h_r_s_8h_a206dbc44f4666404565384ae96722573} 
+float get\+Pitch\+Radians (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_mahony_a_h_r_s_8h_a0938ab0e194cfe5b545faad5cd87fde6}\index{MahonyAHRS.h@{MahonyAHRS.h}!getRoll@{getRoll}}
+\index{getRoll@{getRoll}!MahonyAHRS.h@{MahonyAHRS.h}}
+\doxysubsubsection{\texorpdfstring{getRoll()}{getRoll()}}
+{\footnotesize\ttfamily \label{_mahony_a_h_r_s_8h_a0938ab0e194cfe5b545faad5cd87fde6} 
+float get\+Roll (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_mahony_a_h_r_s_8h_a091516897d23b902e95d37823b67870d}\index{MahonyAHRS.h@{MahonyAHRS.h}!getRollRadians@{getRollRadians}}
+\index{getRollRadians@{getRollRadians}!MahonyAHRS.h@{MahonyAHRS.h}}
+\doxysubsubsection{\texorpdfstring{getRollRadians()}{getRollRadians()}}
+{\footnotesize\ttfamily \label{_mahony_a_h_r_s_8h_a091516897d23b902e95d37823b67870d} 
+float get\+Roll\+Radians (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_mahony_a_h_r_s_8h_a71fe28c45866e4f04c57bf829f3f6f6b}\index{MahonyAHRS.h@{MahonyAHRS.h}!getYaw@{getYaw}}
+\index{getYaw@{getYaw}!MahonyAHRS.h@{MahonyAHRS.h}}
+\doxysubsubsection{\texorpdfstring{getYaw()}{getYaw()}}
+{\footnotesize\ttfamily \label{_mahony_a_h_r_s_8h_a71fe28c45866e4f04c57bf829f3f6f6b} 
+float get\+Yaw (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_mahony_a_h_r_s_8h_ad1421dfe94e8dda902ccdaec1399c323}\index{MahonyAHRS.h@{MahonyAHRS.h}!getYawRadians@{getYawRadians}}
+\index{getYawRadians@{getYawRadians}!MahonyAHRS.h@{MahonyAHRS.h}}
+\doxysubsubsection{\texorpdfstring{getYawRadians()}{getYawRadians()}}
+{\footnotesize\ttfamily \label{_mahony_a_h_r_s_8h_ad1421dfe94e8dda902ccdaec1399c323} 
+float get\+Yaw\+Radians (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_mahony_a_h_r_s_8h_a7a4f0d1726aebef6727aa87d15d27a1b}\index{MahonyAHRS.h@{MahonyAHRS.h}!Mahony\_computeAngles@{Mahony\_computeAngles}}
+\index{Mahony\_computeAngles@{Mahony\_computeAngles}!MahonyAHRS.h@{MahonyAHRS.h}}
+\doxysubsubsection{\texorpdfstring{Mahony\_computeAngles()}{Mahony\_computeAngles()}}
+{\footnotesize\ttfamily \label{_mahony_a_h_r_s_8h_a7a4f0d1726aebef6727aa87d15d27a1b} 
+void Mahony\+\_\+compute\+Angles (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_mahony_a_h_r_s_8h_ad9092ebf599265321a7181226153614b}\index{MahonyAHRS.h@{MahonyAHRS.h}!Mahony\_Init@{Mahony\_Init}}
+\index{Mahony\_Init@{Mahony\_Init}!MahonyAHRS.h@{MahonyAHRS.h}}
+\doxysubsubsection{\texorpdfstring{Mahony\_Init()}{Mahony\_Init()}}
+{\footnotesize\ttfamily \label{_mahony_a_h_r_s_8h_ad9092ebf599265321a7181226153614b} 
+void Mahony\+\_\+\+Init (\begin{DoxyParamCaption}\item[{float}]{sample\+Frequency}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_mahony_a_h_r_s_8h_aead7f9df2a4b30d84d265f635396c72a}\index{MahonyAHRS.h@{MahonyAHRS.h}!Mahony\_update@{Mahony\_update}}
+\index{Mahony\_update@{Mahony\_update}!MahonyAHRS.h@{MahonyAHRS.h}}
+\doxysubsubsection{\texorpdfstring{Mahony\_update()}{Mahony\_update()}}
+{\footnotesize\ttfamily \label{_mahony_a_h_r_s_8h_aead7f9df2a4b30d84d265f635396c72a} 
+void Mahony\+\_\+update (\begin{DoxyParamCaption}\item[{float}]{gx}{, }\item[{float}]{gy}{, }\item[{float}]{gz}{, }\item[{float}]{ax}{, }\item[{float}]{ay}{, }\item[{float}]{az}{, }\item[{float}]{mx}{, }\item[{float}]{my}{, }\item[{float}]{mz}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_mahony_a_h_r_s_8h_aa2baab5c4d30b4ecda7b7acf2c238337}\index{MahonyAHRS.h@{MahonyAHRS.h}!MahonyAHRSinit@{MahonyAHRSinit}}
+\index{MahonyAHRSinit@{MahonyAHRSinit}!MahonyAHRS.h@{MahonyAHRS.h}}
+\doxysubsubsection{\texorpdfstring{MahonyAHRSinit()}{MahonyAHRSinit()}}
+{\footnotesize\ttfamily \label{_mahony_a_h_r_s_8h_aa2baab5c4d30b4ecda7b7acf2c238337} 
+void Mahony\+AHRSinit (\begin{DoxyParamCaption}\item[{float}]{ax}{, }\item[{float}]{ay}{, }\item[{float}]{az}{, }\item[{float}]{mx}{, }\item[{float}]{my}{, }\item[{float}]{mz}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_mahony_a_h_r_s_8h_afdf6a9a2d75608aea12fbc247368b471}\index{MahonyAHRS.h@{MahonyAHRS.h}!MahonyAHRSupdateIMU@{MahonyAHRSupdateIMU}}
+\index{MahonyAHRSupdateIMU@{MahonyAHRSupdateIMU}!MahonyAHRS.h@{MahonyAHRS.h}}
+\doxysubsubsection{\texorpdfstring{MahonyAHRSupdateIMU()}{MahonyAHRSupdateIMU()}}
+{\footnotesize\ttfamily \label{_mahony_a_h_r_s_8h_afdf6a9a2d75608aea12fbc247368b471} 
+void Mahony\+AHRSupdate\+IMU (\begin{DoxyParamCaption}\item[{float}]{gx}{, }\item[{float}]{gy}{, }\item[{float}]{gz}{, }\item[{float}]{ax}{, }\item[{float}]{ay}{, }\item[{float}]{az}{}\end{DoxyParamCaption})}
+

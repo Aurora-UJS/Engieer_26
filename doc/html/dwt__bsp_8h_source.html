@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/dwt/dwt_bsp.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_bf6d39339d803a7820afb99974c9a795.html">dwt</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">dwt_bsp.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="dwt__bsp_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef _BSP_DWT_H</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define _BSP_DWT_H</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;stdint.h&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="struct_d_w_t___time__t.html">   19</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="struct_d_w_t___time__t.html#a2dee666f0c1fe072c549ff86b1d0a8ab">   21</a></span>    uint32_t <a class="code hl_variable" href="struct_d_w_t___time__t.html#a2dee666f0c1fe072c549ff86b1d0a8ab">s</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="struct_d_w_t___time__t.html#a8d03256977e8f265177523adc9bab6c0">   22</a></span>    uint16_t <a class="code hl_variable" href="struct_d_w_t___time__t.html#a8d03256977e8f265177523adc9bab6c0">ms</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="struct_d_w_t___time__t.html#a8fc303618c54ef2935ee6b880f77bae4">   23</a></span>    uint16_t <a class="code hl_variable" href="struct_d_w_t___time__t.html#a8fc303618c54ef2935ee6b880f77bae4">us</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>} <a class="code hl_struct" href="struct_d_w_t___time__t.html">DWT_Time_t</a>;</div>
+</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keywordtype">void</span> <a class="code hl_function" href="dwt__bsp_8h.html#a80bda377ca5cef73b03e7211b1fa18b9">DWT_Init</a>(uint32_t CPU_Freq_mHz);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keywordtype">float</span> <a class="code hl_function" href="dwt__bsp_8h.html#af3972f1a5023286afdabf8e79abc5ed7">DWT_GetDeltaT</a>(uint32_t *cnt_last);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keywordtype">double</span> <a class="code hl_function" href="dwt__bsp_8h.html#ae3519a5f8a00524b8ced263a18fbc37e">DWT_GetDeltaT64</a>(uint32_t *cnt_last);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keywordtype">float</span> <a class="code hl_function" href="dwt__bsp_8h.html#ab100be84fd91e5f606bd34b2cd62ecef">DWT_GetTimeline_s</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keywordtype">float</span> <a class="code hl_function" href="dwt__bsp_8h.html#aff20f0eb6b9b6e4df5c8e509b0ca06dd">DWT_GetTimeline_ms</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>uint64_t <a class="code hl_function" href="dwt__bsp_8h.html#abf89a827c23ac1dcbb5639369d658081">DWT_GetTimeline_us</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keywordtype">void</span> <a class="code hl_function" href="dwt__bsp_8h.html#a88912548ae8934bfc08e9c340974cab9">DWT_Delay</a>(<span class="keywordtype">float</span> Delay);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keywordtype">void</span> <a class="code hl_function" href="dwt__bsp_8h.html#a0f591d032752c63e190dc3d55ea959c7">DWT_SysTimeUpdate</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">extern</span> <a class="code hl_struct" href="struct_d_w_t___time__t.html">DWT_Time_t</a> <a class="code hl_variable" href="dwt__bsp_8c.html#a27df2b0b1db5d3b21e183aa82229ccfe">SysTime</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#endif </span><span class="comment">/* BSP_DWT_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="adwt__bsp_8c_html_a27df2b0b1db5d3b21e183aa82229ccfe"><div class="ttname"><a href="dwt__bsp_8c.html#a27df2b0b1db5d3b21e183aa82229ccfe">SysTime</a></div><div class="ttdeci">DWT_Time_t SysTime</div><div class="ttdef"><b>定义</b> dwt_bsp.c:15</div></div>
+<div class="ttc" id="adwt__bsp_8h_html_a0f591d032752c63e190dc3d55ea959c7"><div class="ttname"><a href="dwt__bsp_8h.html#a0f591d032752c63e190dc3d55ea959c7">DWT_SysTimeUpdate</a></div><div class="ttdeci">void DWT_SysTimeUpdate(void)</div><div class="ttdoc">刷新定时器参数</div><div class="ttdef"><b>定义</b> dwt_bsp.c:81</div></div>
+<div class="ttc" id="adwt__bsp_8h_html_a80bda377ca5cef73b03e7211b1fa18b9"><div class="ttname"><a href="dwt__bsp_8h.html#a80bda377ca5cef73b03e7211b1fa18b9">DWT_Init</a></div><div class="ttdeci">void DWT_Init(uint32_t CPU_Freq_mHz)</div><div class="ttdoc">DWT初始化</div><div class="ttdef"><b>定义</b> dwt_bsp.c:27</div></div>
+<div class="ttc" id="adwt__bsp_8h_html_a88912548ae8934bfc08e9c340974cab9"><div class="ttname"><a href="dwt__bsp_8h.html#a88912548ae8934bfc08e9c340974cab9">DWT_Delay</a></div><div class="ttdeci">void DWT_Delay(float Delay)</div><div class="ttdoc">dwt延时函数（秒）</div><div class="ttdef"><b>定义</b> dwt_bsp.c:159</div></div>
+<div class="ttc" id="adwt__bsp_8h_html_ab100be84fd91e5f606bd34b2cd62ecef"><div class="ttname"><a href="dwt__bsp_8h.html#ab100be84fd91e5f606bd34b2cd62ecef">DWT_GetTimeline_s</a></div><div class="ttdeci">float DWT_GetTimeline_s(void)</div><div class="ttdoc">获取系统时间（秒）</div><div class="ttdef"><b>定义</b> dwt_bsp.c:102</div></div>
+<div class="ttc" id="adwt__bsp_8h_html_abf89a827c23ac1dcbb5639369d658081"><div class="ttname"><a href="dwt__bsp_8h.html#abf89a827c23ac1dcbb5639369d658081">DWT_GetTimeline_us</a></div><div class="ttdeci">uint64_t DWT_GetTimeline_us(void)</div><div class="ttdoc">获取系统时间（微秒）</div><div class="ttdef"><b>定义</b> dwt_bsp.c:130</div></div>
+<div class="ttc" id="adwt__bsp_8h_html_ae3519a5f8a00524b8ced263a18fbc37e"><div class="ttname"><a href="dwt__bsp_8h.html#ae3519a5f8a00524b8ced263a18fbc37e">DWT_GetDeltaT64</a></div><div class="ttdeci">double DWT_GetDeltaT64(uint32_t *cnt_last)</div><div class="ttdoc">获取时间差</div><div class="ttdef"><b>定义</b> dwt_bsp.c:65</div></div>
+<div class="ttc" id="adwt__bsp_8h_html_af3972f1a5023286afdabf8e79abc5ed7"><div class="ttname"><a href="dwt__bsp_8h.html#af3972f1a5023286afdabf8e79abc5ed7">DWT_GetDeltaT</a></div><div class="ttdeci">float DWT_GetDeltaT(uint32_t *cnt_last)</div><div class="ttdoc">获取时间差</div><div class="ttdef"><b>定义</b> dwt_bsp.c:49</div></div>
+<div class="ttc" id="adwt__bsp_8h_html_aff20f0eb6b9b6e4df5c8e509b0ca06dd"><div class="ttname"><a href="dwt__bsp_8h.html#aff20f0eb6b9b6e4df5c8e509b0ca06dd">DWT_GetTimeline_ms</a></div><div class="ttdeci">float DWT_GetTimeline_ms(void)</div><div class="ttdoc">获取系统时间（毫秒）</div><div class="ttdef"><b>定义</b> dwt_bsp.c:116</div></div>
+<div class="ttc" id="astruct_d_w_t___time__t_html"><div class="ttname"><a href="struct_d_w_t___time__t.html">DWT_Time_t</a></div><div class="ttdef"><b>定义</b> dwt_bsp.h:20</div></div>
+<div class="ttc" id="astruct_d_w_t___time__t_html_a2dee666f0c1fe072c549ff86b1d0a8ab"><div class="ttname"><a href="struct_d_w_t___time__t.html#a2dee666f0c1fe072c549ff86b1d0a8ab">DWT_Time_t::s</a></div><div class="ttdeci">uint32_t s</div><div class="ttdef"><b>定义</b> dwt_bsp.h:21</div></div>
+<div class="ttc" id="astruct_d_w_t___time__t_html_a8d03256977e8f265177523adc9bab6c0"><div class="ttname"><a href="struct_d_w_t___time__t.html#a8d03256977e8f265177523adc9bab6c0">DWT_Time_t::ms</a></div><div class="ttdeci">uint16_t ms</div><div class="ttdef"><b>定义</b> dwt_bsp.h:22</div></div>
+<div class="ttc" id="astruct_d_w_t___time__t_html_a8fc303618c54ef2935ee6b880f77bae4"><div class="ttname"><a href="struct_d_w_t___time__t.html#a8fc303618c54ef2935ee6b880f77bae4">DWT_Time_t::us</a></div><div class="ttdeci">uint16_t us</div><div class="ttdef"><b>定义</b> dwt_bsp.h:23</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

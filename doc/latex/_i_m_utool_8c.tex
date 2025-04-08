@@ -1,0 +1,178 @@
+\doxysection{source/module/\+IMU/\+IMUtool.c 文件参考}
+\hypertarget{_i_m_utool_8c}{}\label{_i_m_utool_8c}\index{source/module/IMU/IMUtool.c@{source/module/IMU/IMUtool.c}}
+{\ttfamily \#include "{}IMUtool.\+h"{}}\newline
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os.\+h"{}}\newline
+{\ttfamily \#include "{}BMI088driver.\+h"{}}\newline
+{\ttfamily \#include "{}gpio.\+h"{}}\newline
+{\ttfamily \#include "{}tim.\+h"{}}\newline
+{\ttfamily \#include "{}string.\+h"{}}\newline
+IMUtool.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_i_m_utool_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_i_m_utool_8c_a7b69c8d1cd40b16364a3dec85ba1fd9b}{temple}} (void)
+\begin{DoxyCompactList}\small\item\em PID温度控制函数。 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_i_m_utool_8c_ad29f96bd5db7d3a66c38856f36d4f8e7}{IMUsys}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{_i_m_utool_8c_af5a45dbcaa926b186e6f71d08212acc3}{out}} = 0
+\item 
+float \mbox{\hyperlink{_i_m_utool_8c_a5bc58d43105d723b774621219125aeb1}{err}} = 0
+\item 
+float \mbox{\hyperlink{_i_m_utool_8c_adad8380dabbf4bc5798967c1591bd489}{err\+\_\+l}} = 0
+\item 
+float \mbox{\hyperlink{_i_m_utool_8c_adb9424d10fa1a722cb082ede21bbfef6}{err\+\_\+ll}} = 0
+\item 
+float \mbox{\hyperlink{_i_m_utool_8c_addac5578d412440de5e9c3760475dec7}{gyro}} \mbox{[}3\mbox{]}
+\item 
+float \mbox{\hyperlink{_i_m_utool_8c_a579c1a74d7de6ed4e97b8a29d6d826cd}{accel}} \mbox{[}3\mbox{]}
+\item 
+float \mbox{\hyperlink{_i_m_utool_8c_ad0c59db08914a05cbe9adc574ecf3eaf}{angles}} \mbox{[}3\mbox{]}
+\item 
+float \mbox{\hyperlink{_i_m_utool_8c_a24d61a35b72d7299eb6b5f48e71a571b}{temp}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_i_m_utool_8c_a9f0b74e5aa63c31cec57d7ef5b2f8377}{force\+Stop}} = 0
+\item 
+os\+Semaphore\+Id \mbox{\hyperlink{_i_m_utool_8c_a04a8e4cdb23bf7b076261f71c9b4fe9f}{imu\+Binary\+Sem01\+Handle}}
+\item 
+\mbox{\hyperlink{structbmi088__data__t}{bmi088\+\_\+data\+\_\+t}} \mbox{\hyperlink{_i_m_utool_8c_a4054c62cd1b930c2a79a62483f21dc2b}{bmi088\+\_\+data}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{_i_m_utool_8c_a846e0d042b9b9619bee27d868f8d8314}{temp\+\_\+\+Ticks}} = 0
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_i_m_utool_8c_a981c11f5314644cebf6c9a9715810f68}{attitude\+\_\+flag}} = 0
+\item 
+uint32\+\_\+t \mbox{\hyperlink{_i_m_utool_8c_aecc64bef1905754b85be266bbd4426e5}{correct\+\_\+times}} = 0
+\item 
+float \mbox{\hyperlink{_i_m_utool_8c_a5778c527415e355b3fbd4505779afb65}{gyro\+\_\+correct}} \mbox{[}3\mbox{]} = \{0\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{_i_m_utool_8c_ad29f96bd5db7d3a66c38856f36d4f8e7}\index{IMUtool.c@{IMUtool.c}!IMUsys@{IMUsys}}
+\index{IMUsys@{IMUsys}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{IMUsys()}{IMUsys()}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_ad29f96bd5db7d3a66c38856f36d4f8e7} 
+void IMUsys (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{_i_m_utool_8c_a7b69c8d1cd40b16364a3dec85ba1fd9b}\index{IMUtool.c@{IMUtool.c}!temple@{temple}}
+\index{temple@{temple}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{temple()}{temple()}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_a7b69c8d1cd40b16364a3dec85ba1fd9b} 
+void temple (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+PID温度控制函数。 
+
+该函数实现了一个简单的\+PID控制器，用于调节\+IMU模块的温度至目标值（\+DES\+\_\+\+TEMP）。 控制器通过计算当前温度与目标温度之间的误差，调整\+PWM输出以控制加热功率。
+
+控制公式为： out = KP \texorpdfstring{$\ast$}{*} err + KI \texorpdfstring{$\ast$}{*} (err + err\+\_\+l + err\+\_\+ll) + KD \texorpdfstring{$\ast$}{*} (err -\/ err\+\_\+l) 其中：
+\begin{DoxyItemize}
+\item err\+: 当前温度误差。
+\item err\+\_\+l\+: 上一次温度误差。
+\item err\+\_\+ll\+: 上上次温度误差。
+\item KP, KI, KD\+: PID控制器的比例、积分、微分系数。
+\end{DoxyItemize}
+
+输出值被限制在 \mbox{[}0, MAX\+\_\+\+OUT\mbox{]} 范围内，并通过定时器通道（htim3.\+Instance-\/\texorpdfstring{$>$}{>}CCR4）设置\+PWM占空比。 
+
+\doxysubsection{变量说明}
+\Hypertarget{_i_m_utool_8c_a579c1a74d7de6ed4e97b8a29d6d826cd}\index{IMUtool.c@{IMUtool.c}!accel@{accel}}
+\index{accel@{accel}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{accel}{accel}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_a579c1a74d7de6ed4e97b8a29d6d826cd} 
+float accel\mbox{[}3\mbox{]}}
+
+\Hypertarget{_i_m_utool_8c_ad0c59db08914a05cbe9adc574ecf3eaf}\index{IMUtool.c@{IMUtool.c}!angles@{angles}}
+\index{angles@{angles}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{angles}{angles}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_ad0c59db08914a05cbe9adc574ecf3eaf} 
+float angles\mbox{[}3\mbox{]}}
+
+\Hypertarget{_i_m_utool_8c_a981c11f5314644cebf6c9a9715810f68}\index{IMUtool.c@{IMUtool.c}!attitude\_flag@{attitude\_flag}}
+\index{attitude\_flag@{attitude\_flag}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{attitude\_flag}{attitude\_flag}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_a981c11f5314644cebf6c9a9715810f68} 
+uint8\+\_\+t attitude\+\_\+flag = 0}
+
+\Hypertarget{_i_m_utool_8c_a4054c62cd1b930c2a79a62483f21dc2b}\index{IMUtool.c@{IMUtool.c}!bmi088\_data@{bmi088\_data}}
+\index{bmi088\_data@{bmi088\_data}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{bmi088\_data}{bmi088\_data}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_a4054c62cd1b930c2a79a62483f21dc2b} 
+\mbox{\hyperlink{structbmi088__data__t}{bmi088\+\_\+data\+\_\+t}} bmi088\+\_\+data}
+
+\Hypertarget{_i_m_utool_8c_aecc64bef1905754b85be266bbd4426e5}\index{IMUtool.c@{IMUtool.c}!correct\_times@{correct\_times}}
+\index{correct\_times@{correct\_times}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{correct\_times}{correct\_times}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_aecc64bef1905754b85be266bbd4426e5} 
+uint32\+\_\+t correct\+\_\+times = 0}
+
+\Hypertarget{_i_m_utool_8c_a5bc58d43105d723b774621219125aeb1}\index{IMUtool.c@{IMUtool.c}!err@{err}}
+\index{err@{err}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{err}{err}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_a5bc58d43105d723b774621219125aeb1} 
+float err = 0}
+
+\Hypertarget{_i_m_utool_8c_adad8380dabbf4bc5798967c1591bd489}\index{IMUtool.c@{IMUtool.c}!err\_l@{err\_l}}
+\index{err\_l@{err\_l}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{err\_l}{err\_l}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_adad8380dabbf4bc5798967c1591bd489} 
+float err\+\_\+l = 0}
+
+\Hypertarget{_i_m_utool_8c_adb9424d10fa1a722cb082ede21bbfef6}\index{IMUtool.c@{IMUtool.c}!err\_ll@{err\_ll}}
+\index{err\_ll@{err\_ll}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{err\_ll}{err\_ll}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_adb9424d10fa1a722cb082ede21bbfef6} 
+float err\+\_\+ll = 0}
+
+\Hypertarget{_i_m_utool_8c_a9f0b74e5aa63c31cec57d7ef5b2f8377}\index{IMUtool.c@{IMUtool.c}!forceStop@{forceStop}}
+\index{forceStop@{forceStop}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{forceStop}{forceStop}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_a9f0b74e5aa63c31cec57d7ef5b2f8377} 
+uint8\+\_\+t force\+Stop = 0}
+
+\Hypertarget{_i_m_utool_8c_addac5578d412440de5e9c3760475dec7}\index{IMUtool.c@{IMUtool.c}!gyro@{gyro}}
+\index{gyro@{gyro}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{gyro}{gyro}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_addac5578d412440de5e9c3760475dec7} 
+float gyro\mbox{[}3\mbox{]}}
+
+\Hypertarget{_i_m_utool_8c_a5778c527415e355b3fbd4505779afb65}\index{IMUtool.c@{IMUtool.c}!gyro\_correct@{gyro\_correct}}
+\index{gyro\_correct@{gyro\_correct}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{gyro\_correct}{gyro\_correct}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_a5778c527415e355b3fbd4505779afb65} 
+float gyro\+\_\+correct\mbox{[}3\mbox{]} = \{0\}}
+
+\Hypertarget{_i_m_utool_8c_a04a8e4cdb23bf7b076261f71c9b4fe9f}\index{IMUtool.c@{IMUtool.c}!imuBinarySem01Handle@{imuBinarySem01Handle}}
+\index{imuBinarySem01Handle@{imuBinarySem01Handle}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{imuBinarySem01Handle}{imuBinarySem01Handle}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_a04a8e4cdb23bf7b076261f71c9b4fe9f} 
+os\+Semaphore\+Id imu\+Binary\+Sem01\+Handle\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{_i_m_utool_8c_af5a45dbcaa926b186e6f71d08212acc3}\index{IMUtool.c@{IMUtool.c}!out@{out}}
+\index{out@{out}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{out}{out}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_af5a45dbcaa926b186e6f71d08212acc3} 
+float out = 0}
+
+\Hypertarget{_i_m_utool_8c_a24d61a35b72d7299eb6b5f48e71a571b}\index{IMUtool.c@{IMUtool.c}!temp@{temp}}
+\index{temp@{temp}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{temp}{temp}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_a24d61a35b72d7299eb6b5f48e71a571b} 
+float temp}
+
+\Hypertarget{_i_m_utool_8c_a846e0d042b9b9619bee27d868f8d8314}\index{IMUtool.c@{IMUtool.c}!temp\_Ticks@{temp\_Ticks}}
+\index{temp\_Ticks@{temp\_Ticks}!IMUtool.c@{IMUtool.c}}
+\doxysubsubsection{\texorpdfstring{temp\_Ticks}{temp\_Ticks}}
+{\footnotesize\ttfamily \label{_i_m_utool_8c_a846e0d042b9b9619bee27d868f8d8314} 
+uint32\+\_\+t temp\+\_\+\+Ticks = 0}
+

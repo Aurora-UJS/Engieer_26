@@ -1,0 +1,113 @@
+\doxysection{kalman\+\_\+filter.\+h}
+\hypertarget{kalman__filter_8h_source}{}\label{kalman__filter_8h_source}\index{source/module/IMU/ekf/kalman\_filter.h@{source/module/IMU/ekf/kalman\_filter.h}}
+\mbox{\hyperlink{kalman__filter_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ \_\_KALMAN\_FILTER\_H}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ \_\_KALMAN\_FILTER\_H}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ cortex-\/m4\ DSP\ lib}}
+\DoxyCodeLine{00017\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\#define\ \_\_CC\_ARM\ \ \ \ //\ Keil}}
+\DoxyCodeLine{00019\ \textcolor{comment}{\#define\ ARM\_MATH\_CM4}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\#define\ ARM\_MATH\_MATRIX\_CHECK}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\#define\ ARM\_MATH\_ROUNDING}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\#define\ ARM\_MATH\_DSP\ \ \ \ //\ define\ in\ arm\_math.h}}
+\DoxyCodeLine{00023\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\#include\ "{}dsp/matrix\_functions.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\#include\ "{}math.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}stdint.h"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}stdlib.h"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}arm\_math.h"{}}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \#include\ "{}dsp/matrix\_functions.h"{}}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ \#include\ "{}dsp/fast\_math\_functions.h"{}\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ mat\ arm\_matrix\_instance\_f32}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ Matrix\_Init\ arm\_mat\_init\_f32}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ Matrix\_Add\ arm\_mat\_add\_f32}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ Matrix\_Subtract\ arm\_mat\_sub\_f32}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ Matrix\_Multiply\ arm\_mat\_mult\_f32}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ Matrix\_Transpose\ arm\_mat\_trans\_f32}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ Matrix\_Inverse\ arm\_mat\_inverse\_f32}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structkf__t}{kf\_t}}}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_a3948ec43c6a2d50c0b10c311a8eaec64}{FilteredValue}};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_ae926683324c8cc749f3063a5f0541540}{MeasuredVector}};}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_a0caba10ed8328180a21b25ac1b9aa781}{ControlVector}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}};}
+\DoxyCodeLine{00051\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structkf__t_a4eea576fc145dfc1bfbd353a2261b882}{uSize}};}
+\DoxyCodeLine{00052\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structkf__t_aacae7fb78e2d0a65c7a35a5f5c5bc347}{UseAutoAdjustment}};}
+\DoxyCodeLine{00055\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structkf__t_a82b0cdc0dc31c3cab7bf81165d9a4e57}{MeasurementValidNum}};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ uint8\_t\ *\mbox{\hyperlink{structkf__t_af940b115d8ac7b7a0d5f7bc3921b0bd6}{MeasurementMap}};\ \ \ \ \ \ \textcolor{comment}{//\ 量测与状态的关系\ how\ measurement\ relates\ to\ the\ state}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_a2726464065cd9a1c8b8922b40ea0082a}{MeasurementDegree}};\ \ \ \ \ \textcolor{comment}{//\ 测量值对应H矩阵元素值\ elements\ of\ each\ measurement\ in\ H}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_a715fe71f2f0e3fa895ff673812874ec1}{MatR\_DiagonalElements}};\ \textcolor{comment}{//\ 量测方差\ variance\ for\ each\ measurement}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_a24d081f2d09f585a02df31eccd31d007}{StateMinVariance}};\ \ \ \ \ \ \textcolor{comment}{//\ 最小方差\ 避免方差过度收敛\ suppress\ filter\ excessive\ convergence}}
+\DoxyCodeLine{00061\ \ \ \ \ uint8\_t\ *\mbox{\hyperlink{structkf__t_ac96c84c5cc037c8f88826bb70cbb2e9a}{temp}};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ 配合用户定义函数使用,作为标志位用于判断是否要跳过标准KF中五个环节中的任意一个}}
+\DoxyCodeLine{00064\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structkf__t_a8801f3c64ef77ce3edf0c39f9c9c96ff}{SkipEq1}},\ \mbox{\hyperlink{structkf__t_a086713b96a564f9efff36c0471ea51b1}{SkipEq2}},\ \mbox{\hyperlink{structkf__t_ac267f143c409ce2cf47c988318d51d87}{SkipEq3}},\ \mbox{\hyperlink{structkf__t_a7032e682dc35d0b29c91e4cf20a47a99}{SkipEq4}},\ \mbox{\hyperlink{structkf__t_a04d0a55db3c5a6235796f2a78136bac1}{SkipEq5}};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ definiion\ of\ struct\ mat:\ rows\ \&\ cols\ \&\ pointer\ to\ vars}}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}}\ \mbox{\hyperlink{structkf__t_aa2ea7f9462b9bf18c77df16cac99a963}{xhat}};\ \ \ \ \ \ \textcolor{comment}{//\ x(k|k)}}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}}\ \mbox{\hyperlink{structkf__t_a7b9a97f2268c0a144d338ae7464c0cbe}{xhatminus}};\ \textcolor{comment}{//\ x(k|k-\/1)}}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}}\ \mbox{\hyperlink{structkf__t_a53328044559538e63098d8a520b867d2}{u}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ control\ vector\ u}}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}}\ \mbox{\hyperlink{structkf__t_af647100e10ba6b34799788969278185f}{z}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ measurement\ vector\ z}}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}}\ \mbox{\hyperlink{structkf__t_a74f039cccf9631a5a800b8f9b2cb546c}{P}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ covariance\ matrix\ P(k|k)}}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}}\ \mbox{\hyperlink{structkf__t_a1c9b63a5355477be3f9517ef8fcf02fa}{Pminus}};\ \ \ \ \textcolor{comment}{//\ covariance\ matrix\ P(k|k-\/1)}}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}}\ \mbox{\hyperlink{structkf__t_a78b76cf2c1f11cdd33f5c898830bdf19}{F}},\ \mbox{\hyperlink{structkf__t_a30e94b3adedeb098cb75521b098f447e}{FT}};\ \ \ \ \ \textcolor{comment}{//\ state\ transition\ matrix\ F\ FT}}
+\DoxyCodeLine{00074\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}}\ \mbox{\hyperlink{structkf__t_a07e09a5590d01942d9b4fb77a7d17203}{B}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ control\ matrix\ B}}
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}}\ \mbox{\hyperlink{structkf__t_af2cc26ee60d8d5a12bbe8621cdd06938}{H}},\ \mbox{\hyperlink{structkf__t_ae9a9e6636a02dfd087a9a4e885960288}{HT}};\ \ \ \ \ \textcolor{comment}{//\ measurement\ matrix\ H}}
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}}\ \mbox{\hyperlink{structkf__t_a0f89d5950ba972e53e8e2f3347e2f09a}{Q}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ process\ noise\ covariance\ matrix\ Q}}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}}\ \mbox{\hyperlink{structkf__t_a017fe162c9ab70cf786ce699165a57ee}{R}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ measurement\ noise\ covariance\ matrix\ R}}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}}\ \mbox{\hyperlink{structkf__t_a0ff1854028d19427556c5a3b59c31aaf}{K}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ kalman\ gain\ \ K}}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{kalman__filter_8h_a25f351d8faacd808387ec773e0a8ede7}{mat}}\ \mbox{\hyperlink{structkf__t_a7b4eb503b3b4a66148c45a4e262e3bd2}{S}},\ \mbox{\hyperlink{structkf__t_ad22152797979fc9e1cbab7f7d7fb7bb4}{temp\_matrix}},\ \mbox{\hyperlink{structkf__t_aef6a05cedd50597617652c8a5a5efe12}{temp\_matrix1}},\ \mbox{\hyperlink{structkf__t_ad98000ce5de18243f796c14cf9e24ba8}{temp\_vector}},\ \mbox{\hyperlink{structkf__t_abed56537f3563836ffc5386507477553}{temp\_vector1}};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ int8\_t\ \mbox{\hyperlink{structkf__t_adfe1b12d79b7a713794bba689d7c926a}{MatStatus}};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ 用户定义函数,可以替换或扩展基准KF的功能}}
+\DoxyCodeLine{00084\ \ \ \ \ void\ (*\mbox{\hyperlink{structkf__t_a16137a074af0e04ba4173b5dbf96632c}{User\_Func0\_f}})(\textcolor{keyword}{struct\ }\mbox{\hyperlink{structkf__t}{kf\_t}}\ *kf);}
+\DoxyCodeLine{00085\ \ \ \ \ void\ (*\mbox{\hyperlink{structkf__t_a979e3a04bc4f5880cb01ec2040164165}{User\_Func1\_f}})(\textcolor{keyword}{struct\ }\mbox{\hyperlink{structkf__t}{kf\_t}}\ *kf);}
+\DoxyCodeLine{00086\ \ \ \ \ void\ (*\mbox{\hyperlink{structkf__t_abfff389f90ceb75b1817c22bb09e5b63}{User\_Func2\_f}})(\textcolor{keyword}{struct\ }\mbox{\hyperlink{structkf__t}{kf\_t}}\ *kf);}
+\DoxyCodeLine{00087\ \ \ \ \ void\ (*\mbox{\hyperlink{structkf__t_a39f829c803f81367d2a14f5058187060}{User\_Func3\_f}})(\textcolor{keyword}{struct\ }\mbox{\hyperlink{structkf__t}{kf\_t}}\ *kf);}
+\DoxyCodeLine{00088\ \ \ \ \ void\ (*\mbox{\hyperlink{structkf__t_afca9666e3890621c10e1522d2f9542cc}{User\_Func4\_f}})(\textcolor{keyword}{struct\ }\mbox{\hyperlink{structkf__t}{kf\_t}}\ *kf);}
+\DoxyCodeLine{00089\ \ \ \ \ void\ (*\mbox{\hyperlink{structkf__t_a9d035506cd3876706946c46311888c3e}{User\_Func5\_f}})(\textcolor{keyword}{struct\ }\mbox{\hyperlink{structkf__t}{kf\_t}}\ *kf);}
+\DoxyCodeLine{00090\ \ \ \ \ void\ (*\mbox{\hyperlink{structkf__t_a7e8c79839600aa92c54d851ab61566f3}{User\_Func6\_f}})(\textcolor{keyword}{struct\ }\mbox{\hyperlink{structkf__t}{kf\_t}}\ *kf);}
+\DoxyCodeLine{00091\ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ 矩阵存储空间指针}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_aa1927108c8d1b9382ee4c19cbb32ebde}{xhat\_data}},\ *\mbox{\hyperlink{structkf__t_a5806d9109aa4a640002f99a9c84f079d}{xhatminus\_data}};}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_a659d3d824f9be8b87f7dbcf0d2293cfb}{u\_data}};}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_a2b97541cb865d4d3aa4f55dc5804ea0a}{z\_data}};}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_a1d9fe52e628416690d5277170f631aa1}{P\_data}},\ *\mbox{\hyperlink{structkf__t_aecec674d774ea09e4debaa3ca68a10e2}{Pminus\_data}};}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_ace9b92329f3952dee83c749800b0ee58}{F\_data}},\ *\mbox{\hyperlink{structkf__t_a10831f99ef4b98f2645bb981189ec948}{FT\_data}};}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_ab1137cae538dc1edb47061d4ce46ebae}{B\_data}};}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_aa91dda3d8c36d494b971571a29c9e322}{H\_data}},\ *\mbox{\hyperlink{structkf__t_af6a73a3099b313b119b2cb4d02c6914f}{HT\_data}};}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_a642d2d6dbb9ee0d62c3c0140ce4d083d}{Q\_data}};}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_a648c9b7f0a344e7b6ddadedf992780f6}{R\_data}};}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_a98bda99cade2685e09f2e18cfc4372b5}{K\_data}};}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{structkf__t_a26cc7fa9d573b5230982cef470796fe2}{S\_data}},\ *\mbox{\hyperlink{structkf__t_a26c0d7c51a9eb12c543fe5bb6a956e2b}{temp\_matrix\_data}},\ *\mbox{\hyperlink{structkf__t_a287297bc1a2ef239f2e6f49513e5f3ca}{temp\_matrix\_data1}},\ *\mbox{\hyperlink{structkf__t_abed1de6b5b2e796b336e20fb71c62a65}{temp\_vector\_data}},\ *\mbox{\hyperlink{structkf__t_a45c8d93789ff6bba5910897c3386c221}{temp\_vector\_data1}};}
+\DoxyCodeLine{00104\ \}\ \mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{extern}\ uint16\_t\ \mbox{\hyperlink{kalman__filter_8c_aa2f84b599d7e68d55c290d5b30025c62}{sizeof\_float}},\ \mbox{\hyperlink{kalman__filter_8c_a0ce754bf27dc96cbb3216b52e5cd56dd}{sizeof\_double}};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8h_a3e87008e6a41b2857bdfc64bd510b66a}{Kalman\_Filter\_Init}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf,\ uint8\_t\ \mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ uint8\_t\ \mbox{\hyperlink{structkf__t_a4eea576fc145dfc1bfbd353a2261b882}{uSize}},\ uint8\_t\ \mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}});}
+\DoxyCodeLine{00109\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8h_acb3774ba4b09bc24b3c053536e3d5d2c}{Kalman\_Filter\_Reset}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf,\ uint8\_t\ \mbox{\hyperlink{structkf__t_a250cdf961d95ebc129455c915d63bc56}{xhatSize}},\ uint8\_t\ \mbox{\hyperlink{structkf__t_a4eea576fc145dfc1bfbd353a2261b882}{uSize}},\ uint8\_t\ \mbox{\hyperlink{structkf__t_a7cedb3e4f4bd0d42a2bda8bc37add5f5}{zSize}});}
+\DoxyCodeLine{00110\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8h_a379830b0bea773473090e13eb4523d38}{Kalman\_Filter\_Measure}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf);}
+\DoxyCodeLine{00111\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8h_a573703c080ee84ef82f3f64e72240031}{Kalman\_Filter\_xhatMinusUpdate}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf);}
+\DoxyCodeLine{00112\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8h_adefde0d796e0eb0bf528683675ee958b}{Kalman\_Filter\_PminusUpdate}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf);}
+\DoxyCodeLine{00113\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8h_a42fe5e97c8911e25bea663cce9c28147}{Kalman\_Filter\_SetK}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf);}
+\DoxyCodeLine{00114\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8h_ae260165c66e4e9d275a6b4c149fb5084}{Kalman\_Filter\_xhatUpdate}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf);}
+\DoxyCodeLine{00115\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{kalman__filter_8h_a2ca34138fbb07fe0befdfacf5d36336b}{Kalman\_Filter\_P\_Update}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf);}
+\DoxyCodeLine{00116\ \textcolor{keywordtype}{float}\ *\mbox{\hyperlink{kalman__filter_8h_ae52e87083cda5ca6e918768312c424f7}{Kalman\_Filter\_Update}}(\mbox{\hyperlink{kalman__filter_8h_af02bc9b785abb47505f15cedcbad2ba5}{KalmanFilter\_t}}\ *kf);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\_\_KALMAN\_FILTER\_H}}
+
+\end{DoxyCode}

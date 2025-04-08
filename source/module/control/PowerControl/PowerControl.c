@@ -10,7 +10,7 @@ static total_power_control_t total_power;
 static float *cap_power = NULL;
 
 /* 用户可注册的钩子函数 */
-static void (*user_power_assign_hook)(float total_power, float pid_output) = NULL;
+static void (*user_power_assign_hook)(float total_power) = NULL;
 
 /**************************************
  * 注册用户功率分配钩子函数
@@ -18,7 +18,7 @@ static void (*user_power_assign_hook)(float total_power, float pid_output) = NUL
  *   - hook: 用户自定义的功率分配函数
  *           原型：void func(float total_power, float motor_powers[4])
  **************************************/
-void Register_PowerAssignHook(void (*hook)(float, float))
+void Register_PowerAssignHook(void (*hook)(float))
 {
     user_power_assign_hook = hook;
 }
@@ -35,7 +35,7 @@ void Register_PowerAssignHook(void (*hook)(float, float))
 void PowerControl_Init(uint16_t *buffer_ptr,
                        float *cap_ptr,
                        float *max_power,
-                       pid_type_def *pid_params, void (*hook)(float, float))
+                       pid_type_def *pid_params, void (*hook)(float))
 {
     /* 参数有效性检查 */
     if (!buffer_ptr || !cap_ptr || !pid_params || !hook)
@@ -98,7 +98,7 @@ void PowerControl_Update(void)
     /* 阶段3：调用用户功率分配策略 */
     if (user_power_assign_hook)
     {
-        user_power_assign_hook(alloc_power, total_power.chassis_power_pid.out);
+        user_power_assign_hook(alloc_power);
     }
 }
 
@@ -115,13 +115,13 @@ void Set_PowerControlMode(power_control_state_t mode)
 
 /**
  * @brief 计算单个电机的理论功率消耗
- * @param pid_output     电机速度环PID输出值
+ * @param torque_nm     电机速度环PID输出值
  * @param speed_rad      电机当前转速 (rad/s)
  * @param params         功率计算参数结构体指针
  * @return float         计算得到的功率值 (W)
  */
 float MotorPower_CalculateSingle(
-    float pid_output,
+    float torque_nm,
     float speed_rad,
     const MotorPowerParams_t *params)
 {
@@ -132,41 +132,11 @@ float MotorPower_CalculateSingle(
     }
 
     // 计算各分量
-    const float torque = pid_output * params->torque_coeff;
-    const float active_power = torque * speed_rad;                // 有效功率
-    const float resistive_loss = params->k1 * powf(speed_rad, 2); // 机械损耗
-    const float copper_loss = params->k2 * powf(torque, 2);       // 铜损
+    const float torque = torque_nm * params->torque_coeff;
+    const float active_power = torque * speed_rad;                
+    const float resistive_loss = params->k1 * powf(speed_rad, 2); 
+    const float copper_loss = params->k2 * powf(torque, 2);       
 
     // 总功率 = 有效功率 + 损耗
     return active_power + resistive_loss + copper_loss + params->k3;
-}
-
-/**
- * @brief 计算二次方程判别式，用于判断电机功率控制方程的根情况
- * @details 根据输入的电机速度、功率参数及缩放功率值，计算二次方程判别式
- *          判别式结果用于判断方程是否有实数解，进而决定后续控制逻辑
- * @param motor_speed 电机当前转速（单位：rad/s）
- * @param params 包含功率计算系数的结构体（k1:机械损耗系数，k2:铜损系数，k3:固定偏移量）
- * @param scaled_power 经过缩放处理的目标功率值
- * @return float 判别式计算结果（b² - 4*k1*c），正数表示存在实数解，负数表示无解
- */
-float calculate_Torque_dis(float motor_speed, MotorPowerParams_t params, float scaled_power)
-{
-    // 定义变量b，值为电机速度
-    float b = motor_speed;
-    // 定义变量c，值为参数k2乘以电机速度的平方减去缩放功率加上参数k3
-    float c = params.k2 * motor_speed * motor_speed - scaled_power + params.k3;
-    // 返回b的平方减去4乘以参数k1乘以c
-    return (b * b) - (4 * params.k1 * c);
-}
-
-float calculate_speed_dis(float torque, MotorPowerParams_t params, float max_power)
-{
-
-    // 计算二次方程的系数
-    float b_coeff = torque;                                              // 系数 b 对应 τ / 9.55
-    float c_coeff = params.k1 * torque * torque + params.k3 - max_power; // 系数 c 对应 k1τ² + k3 - P_max
-
-    // 计算判别式
-    return b_coeff * b_coeff - 4 * params.k2 * c_coeff;
 }

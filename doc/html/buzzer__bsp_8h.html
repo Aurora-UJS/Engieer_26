@@ -1,0 +1,540 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/bsp/buzzer/buzzer_bsp.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_824b7a7162d05236d319a01b7e9d4a47.html">bsp</a></li><li class="navelem"><a class="el" href="dir_1fc50e0e41aabfa60341f10a6f21fe21.html">buzzer</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">buzzer_bsp.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;main.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+buzzer_bsp.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="buzzer__bsp_8h__incl.png" border="0" usemap="#asource_2bsp_2buzzer_2buzzer__bsp_8h" alt=""/></div>
+<map name="asource_2bsp_2buzzer_2buzzer__bsp_8h" id="asource_2bsp_2buzzer_2buzzer__bsp_8h">
+<area shape="rect" title=" " alt="" coords="5,5,177,48"/>
+<area shape="rect" title=" " alt="" coords="61,96,121,123"/>
+<area shape="poly" title=" " alt="" coords="94,49,94,80,88,80,88,49"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件被哪些文件直接或间接地引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="buzzer__bsp_8h__dep__incl.png" border="0" usemap="#asource_2bsp_2buzzer_2buzzer__bsp_8hdep" alt=""/></div>
+<map name="asource_2bsp_2buzzer_2buzzer__bsp_8hdep" id="asource_2bsp_2buzzer_2buzzer__bsp_8hdep">
+<area shape="rect" title=" " alt="" coords="266,5,438,48"/>
+<area shape="rect" href="bsp_8h.html" title=" " alt="" coords="206,104,327,131"/>
+<area shape="poly" title=" " alt="" coords="324,61,280,105,277,102,320,57"/>
+<area shape="rect" href="buzzer__bsp_8c.html" title=" " alt="" coords="352,96,523,139"/>
+<area shape="poly" title=" " alt="" coords="384,58,419,94,416,98,380,61"/>
+<area shape="rect" href="motor__basic_8h.html" title=" " alt="" coords="195,187,338,229"/>
+<area shape="poly" title=" " alt="" coords="269,147,269,186,264,186,264,147"/>
+<area shape="rect" href="motor___d_m_8h.html" title=" " alt="" coords="93,277,256,320"/>
+<area shape="poly" title=" " alt="" coords="236,242,198,279,194,275,233,238"/>
+<area shape="rect" href="motor___d_j_i_8h.html" title=" " alt="" coords="280,277,437,320"/>
+<area shape="poly" title=" " alt="" coords="300,238,339,275,335,279,297,242"/>
+<area shape="rect" href="motor___d_m_8c.html" title=" " alt="" coords="5,368,168,411"/>
+<area shape="poly" title=" " alt="" coords="145,333,109,370,105,366,142,329"/>
+<area shape="rect" href="_remoter_8c.html" title=" " alt="" coords="192,376,346,403"/>
+<area shape="poly" title=" " alt="" coords="209,329,258,374,254,378,206,333"/>
+<area shape="poly" title=" " alt="" coords="329,333,284,377,280,374,325,329"/>
+<area shape="rect" href="motor_8_d_j_i_8c.html" title=" " alt="" coords="371,368,525,411"/>
+<area shape="poly" title=" " alt="" coords="392,329,429,366,425,370,388,333"/>
+</map>
+</div>
+</div>
+<p><a href="buzzer__bsp_8h_source.html">浏览该文件的源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a8b20ad9302b6360a021efcc2faf31dac" id="r_a8b20ad9302b6360a021efcc2faf31dac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b20ad9302b6360a021efcc2faf31dac">SOUND_L1</a>&#160;&#160;&#160;262-1</td></tr>
+<tr class="separator:a8b20ad9302b6360a021efcc2faf31dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c868f07c76337a44f609813a34841c5" id="r_a7c868f07c76337a44f609813a34841c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c868f07c76337a44f609813a34841c5">SOUND_L2</a>&#160;&#160;&#160;294-1</td></tr>
+<tr class="separator:a7c868f07c76337a44f609813a34841c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbe4f9fd1f08e0727a46ba5c0b2c6ed5" id="r_acbe4f9fd1f08e0727a46ba5c0b2c6ed5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbe4f9fd1f08e0727a46ba5c0b2c6ed5">SOUND_L3</a>&#160;&#160;&#160;330-1</td></tr>
+<tr class="separator:acbe4f9fd1f08e0727a46ba5c0b2c6ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e1775d8443b171c23bb35e47a2039e6" id="r_a3e1775d8443b171c23bb35e47a2039e6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e1775d8443b171c23bb35e47a2039e6">SOUND_L4</a>&#160;&#160;&#160;350-1</td></tr>
+<tr class="separator:a3e1775d8443b171c23bb35e47a2039e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af61571f969ebd8a3a7c776ac415daa5a" id="r_af61571f969ebd8a3a7c776ac415daa5a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af61571f969ebd8a3a7c776ac415daa5a">SOUND_L5</a>&#160;&#160;&#160;392-1</td></tr>
+<tr class="separator:af61571f969ebd8a3a7c776ac415daa5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9b33cfcf27733906a998bf3096e882d" id="r_ae9b33cfcf27733906a998bf3096e882d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae9b33cfcf27733906a998bf3096e882d">SOUND_L6</a>&#160;&#160;&#160;440-1</td></tr>
+<tr class="separator:ae9b33cfcf27733906a998bf3096e882d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7be9325791b8dfd39e53bf6daba0b31" id="r_af7be9325791b8dfd39e53bf6daba0b31"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7be9325791b8dfd39e53bf6daba0b31">SOUND_L7</a>&#160;&#160;&#160;494-1</td></tr>
+<tr class="separator:af7be9325791b8dfd39e53bf6daba0b31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac548f0547b3779527fddb842b03bed67" id="r_ac548f0547b3779527fddb842b03bed67"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac548f0547b3779527fddb842b03bed67">SOUND_M1</a>&#160;&#160;&#160;524-1</td></tr>
+<tr class="separator:ac548f0547b3779527fddb842b03bed67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa71994f3bf433a708de329f7e1cf4dae" id="r_aa71994f3bf433a708de329f7e1cf4dae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa71994f3bf433a708de329f7e1cf4dae">SOUND_M2</a>&#160;&#160;&#160;588-1</td></tr>
+<tr class="separator:aa71994f3bf433a708de329f7e1cf4dae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbfc6e8f453542a88358298e12fb6e0d" id="r_acbfc6e8f453542a88358298e12fb6e0d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acbfc6e8f453542a88358298e12fb6e0d">SOUND_M3</a>&#160;&#160;&#160;660-1</td></tr>
+<tr class="separator:acbfc6e8f453542a88358298e12fb6e0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a841b6f9f3a0a520addb9308263170ad9" id="r_a841b6f9f3a0a520addb9308263170ad9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a841b6f9f3a0a520addb9308263170ad9">SOUND_M4</a>&#160;&#160;&#160;700-1</td></tr>
+<tr class="separator:a841b6f9f3a0a520addb9308263170ad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bbb021b725c6ca0253816e7d0f7437b" id="r_a1bbb021b725c6ca0253816e7d0f7437b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1bbb021b725c6ca0253816e7d0f7437b">SOUND_M5</a>&#160;&#160;&#160;784-1</td></tr>
+<tr class="separator:a1bbb021b725c6ca0253816e7d0f7437b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13f176baac661c48a1e96bf318f40f18" id="r_a13f176baac661c48a1e96bf318f40f18"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a13f176baac661c48a1e96bf318f40f18">SOUND_M6</a>&#160;&#160;&#160;880-1</td></tr>
+<tr class="separator:a13f176baac661c48a1e96bf318f40f18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a684f216ac62a24a0624253355d9bc3b9" id="r_a684f216ac62a24a0624253355d9bc3b9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a684f216ac62a24a0624253355d9bc3b9">SOUND_M7</a>&#160;&#160;&#160;988-1</td></tr>
+<tr class="separator:a684f216ac62a24a0624253355d9bc3b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a779cc45580fd31304c432b2582e94953" id="r_a779cc45580fd31304c432b2582e94953"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a779cc45580fd31304c432b2582e94953">SOUND_H1</a>&#160;&#160;&#160;1048-1</td></tr>
+<tr class="separator:a779cc45580fd31304c432b2582e94953"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8aeeeb1a420c4f8b23fe5c7960045a06" id="r_a8aeeeb1a420c4f8b23fe5c7960045a06"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8aeeeb1a420c4f8b23fe5c7960045a06">SOUND_H2</a>&#160;&#160;&#160;1176-1</td></tr>
+<tr class="separator:a8aeeeb1a420c4f8b23fe5c7960045a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a931824d8aaced5b4db469aa58517d993" id="r_a931824d8aaced5b4db469aa58517d993"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a931824d8aaced5b4db469aa58517d993">SOUND_H3</a>&#160;&#160;&#160;1320-1</td></tr>
+<tr class="separator:a931824d8aaced5b4db469aa58517d993"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76ecb025d0e813c14ca974f033a77ddd" id="r_a76ecb025d0e813c14ca974f033a77ddd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76ecb025d0e813c14ca974f033a77ddd">SOUND_H4</a>&#160;&#160;&#160;1480-1</td></tr>
+<tr class="separator:a76ecb025d0e813c14ca974f033a77ddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a693f3ef42e8258e5d8a5d7e81844f3bd" id="r_a693f3ef42e8258e5d8a5d7e81844f3bd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a693f3ef42e8258e5d8a5d7e81844f3bd">SOUND_H5</a>&#160;&#160;&#160;1640-1</td></tr>
+<tr class="separator:a693f3ef42e8258e5d8a5d7e81844f3bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af95d18574b5493548eefe4b8a31aee00" id="r_af95d18574b5493548eefe4b8a31aee00"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af95d18574b5493548eefe4b8a31aee00">SOUND_H6</a>&#160;&#160;&#160;1760-1</td></tr>
+<tr class="separator:af95d18574b5493548eefe4b8a31aee00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16e2916fb5f8c622a97519914f37f364" id="r_a16e2916fb5f8c622a97519914f37f364"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16e2916fb5f8c622a97519914f37f364">SOUND_H7</a>&#160;&#160;&#160;1976-1</td></tr>
+<tr class="separator:a16e2916fb5f8c622a97519914f37f364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3094a7839a22e506d6c433f0580bb775" id="r_a3094a7839a22e506d6c433f0580bb775"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3094a7839a22e506d6c433f0580bb775">SOUND_S</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a3094a7839a22e506d6c433f0580bb775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a0cead532fdd0c0de5fa1c1de0f6556bd" id="r_a0cead532fdd0c0de5fa1c1de0f6556bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0cead532fdd0c0de5fa1c1de0f6556bd">buzzer_init</a> (void)</td></tr>
+<tr class="memdesc:a0cead532fdd0c0de5fa1c1de0f6556bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">蜂鸣器初始化  <br /></td></tr>
+<tr class="separator:a0cead532fdd0c0de5fa1c1de0f6556bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa29f83d7661765eaae19f2b93b32cfa1" id="r_aa29f83d7661765eaae19f2b93b32cfa1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa29f83d7661765eaae19f2b93b32cfa1">buzzer_on</a> (uint32_t frequency, float duty_cycle)</td></tr>
+<tr class="memdesc:aa29f83d7661765eaae19f2b93b32cfa1"><td class="mdescLeft">&#160;</td><td class="mdescRight">蜂鸣器开关  <br /></td></tr>
+<tr class="separator:aa29f83d7661765eaae19f2b93b32cfa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93d07c81691fec7a85ea85117d6eca4f" id="r_a93d07c81691fec7a85ea85117d6eca4f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93d07c81691fec7a85ea85117d6eca4f">buzzer_off</a> (void)</td></tr>
+<tr class="memdesc:a93d07c81691fec7a85ea85117d6eca4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">蜂鸣器关闭  <br /></td></tr>
+<tr class="separator:a93d07c81691fec7a85ea85117d6eca4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="a779cc45580fd31304c432b2582e94953" name="a779cc45580fd31304c432b2582e94953"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a779cc45580fd31304c432b2582e94953">&#9670;&#160;</a></span>SOUND_H1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_H1&#160;&#160;&#160;1048-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8aeeeb1a420c4f8b23fe5c7960045a06" name="a8aeeeb1a420c4f8b23fe5c7960045a06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8aeeeb1a420c4f8b23fe5c7960045a06">&#9670;&#160;</a></span>SOUND_H2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_H2&#160;&#160;&#160;1176-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a931824d8aaced5b4db469aa58517d993" name="a931824d8aaced5b4db469aa58517d993"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a931824d8aaced5b4db469aa58517d993">&#9670;&#160;</a></span>SOUND_H3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_H3&#160;&#160;&#160;1320-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a76ecb025d0e813c14ca974f033a77ddd" name="a76ecb025d0e813c14ca974f033a77ddd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76ecb025d0e813c14ca974f033a77ddd">&#9670;&#160;</a></span>SOUND_H4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_H4&#160;&#160;&#160;1480-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a693f3ef42e8258e5d8a5d7e81844f3bd" name="a693f3ef42e8258e5d8a5d7e81844f3bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a693f3ef42e8258e5d8a5d7e81844f3bd">&#9670;&#160;</a></span>SOUND_H5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_H5&#160;&#160;&#160;1640-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af95d18574b5493548eefe4b8a31aee00" name="af95d18574b5493548eefe4b8a31aee00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af95d18574b5493548eefe4b8a31aee00">&#9670;&#160;</a></span>SOUND_H6</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_H6&#160;&#160;&#160;1760-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a16e2916fb5f8c622a97519914f37f364" name="a16e2916fb5f8c622a97519914f37f364"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16e2916fb5f8c622a97519914f37f364">&#9670;&#160;</a></span>SOUND_H7</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_H7&#160;&#160;&#160;1976-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8b20ad9302b6360a021efcc2faf31dac" name="a8b20ad9302b6360a021efcc2faf31dac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b20ad9302b6360a021efcc2faf31dac">&#9670;&#160;</a></span>SOUND_L1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_L1&#160;&#160;&#160;262-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c868f07c76337a44f609813a34841c5" name="a7c868f07c76337a44f609813a34841c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c868f07c76337a44f609813a34841c5">&#9670;&#160;</a></span>SOUND_L2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_L2&#160;&#160;&#160;294-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acbe4f9fd1f08e0727a46ba5c0b2c6ed5" name="acbe4f9fd1f08e0727a46ba5c0b2c6ed5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbe4f9fd1f08e0727a46ba5c0b2c6ed5">&#9670;&#160;</a></span>SOUND_L3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_L3&#160;&#160;&#160;330-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e1775d8443b171c23bb35e47a2039e6" name="a3e1775d8443b171c23bb35e47a2039e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e1775d8443b171c23bb35e47a2039e6">&#9670;&#160;</a></span>SOUND_L4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_L4&#160;&#160;&#160;350-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af61571f969ebd8a3a7c776ac415daa5a" name="af61571f969ebd8a3a7c776ac415daa5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af61571f969ebd8a3a7c776ac415daa5a">&#9670;&#160;</a></span>SOUND_L5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_L5&#160;&#160;&#160;392-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae9b33cfcf27733906a998bf3096e882d" name="ae9b33cfcf27733906a998bf3096e882d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9b33cfcf27733906a998bf3096e882d">&#9670;&#160;</a></span>SOUND_L6</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_L6&#160;&#160;&#160;440-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af7be9325791b8dfd39e53bf6daba0b31" name="af7be9325791b8dfd39e53bf6daba0b31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7be9325791b8dfd39e53bf6daba0b31">&#9670;&#160;</a></span>SOUND_L7</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_L7&#160;&#160;&#160;494-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac548f0547b3779527fddb842b03bed67" name="ac548f0547b3779527fddb842b03bed67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac548f0547b3779527fddb842b03bed67">&#9670;&#160;</a></span>SOUND_M1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_M1&#160;&#160;&#160;524-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa71994f3bf433a708de329f7e1cf4dae" name="aa71994f3bf433a708de329f7e1cf4dae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa71994f3bf433a708de329f7e1cf4dae">&#9670;&#160;</a></span>SOUND_M2</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_M2&#160;&#160;&#160;588-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acbfc6e8f453542a88358298e12fb6e0d" name="acbfc6e8f453542a88358298e12fb6e0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbfc6e8f453542a88358298e12fb6e0d">&#9670;&#160;</a></span>SOUND_M3</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_M3&#160;&#160;&#160;660-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a841b6f9f3a0a520addb9308263170ad9" name="a841b6f9f3a0a520addb9308263170ad9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a841b6f9f3a0a520addb9308263170ad9">&#9670;&#160;</a></span>SOUND_M4</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_M4&#160;&#160;&#160;700-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1bbb021b725c6ca0253816e7d0f7437b" name="a1bbb021b725c6ca0253816e7d0f7437b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bbb021b725c6ca0253816e7d0f7437b">&#9670;&#160;</a></span>SOUND_M5</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_M5&#160;&#160;&#160;784-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a13f176baac661c48a1e96bf318f40f18" name="a13f176baac661c48a1e96bf318f40f18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13f176baac661c48a1e96bf318f40f18">&#9670;&#160;</a></span>SOUND_M6</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_M6&#160;&#160;&#160;880-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a684f216ac62a24a0624253355d9bc3b9" name="a684f216ac62a24a0624253355d9bc3b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a684f216ac62a24a0624253355d9bc3b9">&#9670;&#160;</a></span>SOUND_M7</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_M7&#160;&#160;&#160;988-1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3094a7839a22e506d6c433f0580bb775" name="a3094a7839a22e506d6c433f0580bb775"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3094a7839a22e506d6c433f0580bb775">&#9670;&#160;</a></span>SOUND_S</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SOUND_S&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a0cead532fdd0c0de5fa1c1de0f6556bd" name="a0cead532fdd0c0de5fa1c1de0f6556bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0cead532fdd0c0de5fa1c1de0f6556bd">&#9670;&#160;</a></span>buzzer_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void buzzer_init </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>蜂鸣器初始化 </p>
+
+</div>
+</div>
+<a id="a93d07c81691fec7a85ea85117d6eca4f" name="a93d07c81691fec7a85ea85117d6eca4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93d07c81691fec7a85ea85117d6eca4f">&#9670;&#160;</a></span>buzzer_off()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void buzzer_off </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>蜂鸣器关闭 </p>
+
+</div>
+</div>
+<a id="aa29f83d7661765eaae19f2b93b32cfa1" name="aa29f83d7661765eaae19f2b93b32cfa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa29f83d7661765eaae19f2b93b32cfa1">&#9670;&#160;</a></span>buzzer_on()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void buzzer_on </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>frequency</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>duty_cycle</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>蜂鸣器开关 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">frequency</td><td>频率 </td></tr>
+    <tr><td class="paramname">duty_cycle</td><td>占空比 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

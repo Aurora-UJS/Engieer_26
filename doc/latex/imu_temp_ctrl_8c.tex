@@ -1,0 +1,74 @@
+\doxysection{source/task/imu\+Temp\+Ctrl.c 文件参考}
+\hypertarget{imu_temp_ctrl_8c}{}\label{imu_temp_ctrl_8c}\index{source/task/imuTempCtrl.c@{source/task/imuTempCtrl.c}}
+{\ttfamily \#include "{}usart.\+h"{}}\newline
+{\ttfamily \#include "{}tim.\+h"{}}\newline
+{\ttfamily \#include "{}IMUtool.\+h"{}}\newline
+{\ttfamily \#include "{}cmsis\+\_\+os2.\+h"{}}\newline
+{\ttfamily \#include "{}BMI088driver.\+h"{}}\newline
+imu\+Temp\+Ctrl.\+c 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{imu_temp_ctrl_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{imu_temp_ctrl_8c_a39b51811c747331d4f89e02c9de19f1b}{IMU\+\_\+\+Temp\+Ctrl\+Task}} (void const \texorpdfstring{$\ast$}{*}argument)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{imu_temp_ctrl_8c_a97993132b43bcbd8d52fb0f7325664f4}{angle}} \mbox{[}4\mbox{]}
+\item 
+float \mbox{\hyperlink{imu_temp_ctrl_8c_a5db90e4025b4304597db65cee3bb5c44}{yaw\+\_\+update}}
+\item 
+float \mbox{\hyperlink{imu_temp_ctrl_8c_a4aec1a5be9d9a4a394a2e49e9744286e}{a}}
+\item 
+float \mbox{\hyperlink{imu_temp_ctrl_8c_a83fc1af92e29717b4513d121b0c72c7d}{b}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{imu_temp_ctrl_8c_a20302e2c99a60d3f612dba57e3f6333b}{count}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{imu_temp_ctrl_8c_a39b51811c747331d4f89e02c9de19f1b}\index{imuTempCtrl.c@{imuTempCtrl.c}!IMU\_TempCtrlTask@{IMU\_TempCtrlTask}}
+\index{IMU\_TempCtrlTask@{IMU\_TempCtrlTask}!imuTempCtrl.c@{imuTempCtrl.c}}
+\doxysubsubsection{\texorpdfstring{IMU\_TempCtrlTask()}{IMU\_TempCtrlTask()}}
+{\footnotesize\ttfamily \label{imu_temp_ctrl_8c_a39b51811c747331d4f89e02c9de19f1b} 
+void IMU\+\_\+\+Temp\+Ctrl\+Task (\begin{DoxyParamCaption}\item[{void const \texorpdfstring{$\ast$}{*}}]{argument}{}\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{变量说明}
+\Hypertarget{imu_temp_ctrl_8c_a4aec1a5be9d9a4a394a2e49e9744286e}\index{imuTempCtrl.c@{imuTempCtrl.c}!a@{a}}
+\index{a@{a}!imuTempCtrl.c@{imuTempCtrl.c}}
+\doxysubsubsection{\texorpdfstring{a}{a}}
+{\footnotesize\ttfamily \label{imu_temp_ctrl_8c_a4aec1a5be9d9a4a394a2e49e9744286e} 
+float a}
+
+\Hypertarget{imu_temp_ctrl_8c_a97993132b43bcbd8d52fb0f7325664f4}\index{imuTempCtrl.c@{imuTempCtrl.c}!angle@{angle}}
+\index{angle@{angle}!imuTempCtrl.c@{imuTempCtrl.c}}
+\doxysubsubsection{\texorpdfstring{angle}{angle}}
+{\footnotesize\ttfamily \label{imu_temp_ctrl_8c_a97993132b43bcbd8d52fb0f7325664f4} 
+float angle\mbox{[}4\mbox{]}}
+
+\Hypertarget{imu_temp_ctrl_8c_a83fc1af92e29717b4513d121b0c72c7d}\index{imuTempCtrl.c@{imuTempCtrl.c}!b@{b}}
+\index{b@{b}!imuTempCtrl.c@{imuTempCtrl.c}}
+\doxysubsubsection{\texorpdfstring{b}{b}}
+{\footnotesize\ttfamily \label{imu_temp_ctrl_8c_a83fc1af92e29717b4513d121b0c72c7d} 
+float b}
+
+\Hypertarget{imu_temp_ctrl_8c_a20302e2c99a60d3f612dba57e3f6333b}\index{imuTempCtrl.c@{imuTempCtrl.c}!count@{count}}
+\index{count@{count}!imuTempCtrl.c@{imuTempCtrl.c}}
+\doxysubsubsection{\texorpdfstring{count}{count}}
+{\footnotesize\ttfamily \label{imu_temp_ctrl_8c_a20302e2c99a60d3f612dba57e3f6333b} 
+uint8\+\_\+t count}
+
+\Hypertarget{imu_temp_ctrl_8c_a5db90e4025b4304597db65cee3bb5c44}\index{imuTempCtrl.c@{imuTempCtrl.c}!yaw\_update@{yaw\_update}}
+\index{yaw\_update@{yaw\_update}!imuTempCtrl.c@{imuTempCtrl.c}}
+\doxysubsubsection{\texorpdfstring{yaw\_update}{yaw\_update}}
+{\footnotesize\ttfamily \label{imu_temp_ctrl_8c_a5db90e4025b4304597db65cee3bb5c44} 
+float yaw\+\_\+update}
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: source/module/IMU/IMUtool.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><a class="el" href="dir_2b991cb504035b2be365129063e243b4.html">module</a></li><li class="navelem"><a class="el" href="dir_8b711e810999a9fe1de9e9ddd8899d9f.html">IMU</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">IMUtool.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_i_m_utool_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef IMUTOOL_H</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define IMUTOOL_H</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;main.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="_mahony_a_h_r_s_8h.html">MahonyAHRS.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="foldopen" id="foldopen00006" data-start="{" data-end="};">
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="structbmi088__data__t.html">    6</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="keyword">struct </span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="structbmi088__data__t.html#ad0da36b2558901e21e7a30f6c227a45e">   10</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="structbmi088__data__t.html#ad0da36b2558901e21e7a30f6c227a45e">x</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="structbmi088__data__t.html#aa4f0d3eebc3c443f9be81bf48561a217">   11</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="structbmi088__data__t.html#aa4f0d3eebc3c443f9be81bf48561a217">y</a>;</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="structbmi088__data__t.html#af73583b1e980b0aa03f9884812e9fd4d">   12</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="structbmi088__data__t.html#af73583b1e980b0aa03f9884812e9fd4d">z</a>;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="structbmi088__data__t.html#aae07db633bf948ae704bd659274c805c">   13</a></span>    }<a class="code hl_variable" href="_i_m_utool_8c.html#a579c1a74d7de6ed4e97b8a29d6d826cd">accel</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keyword">struct </span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        <span class="keywordtype">float</span> x;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        <span class="keywordtype">float</span> y;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keywordtype">float</span> z;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structbmi088__data__t.html#af516bbf93617ae1fb2f91cc64d8920d8">   19</a></span>    }<a class="code hl_variable" href="_i_m_utool_8c.html#addac5578d412440de5e9c3760475dec7">gyro</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">struct </span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structbmi088__data__t.html#a282e7d4378d4a18a805b8980295ac86c">   22</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="structbmi088__data__t.html#a282e7d4378d4a18a805b8980295ac86c">pitch</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structbmi088__data__t.html#a26fd84d522945b6038221d9e38c7cc39">   23</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="structbmi088__data__t.html#a26fd84d522945b6038221d9e38c7cc39">roll</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structbmi088__data__t.html#a7efc219781df4a1e281cb5d348b7fbf9">   24</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="structbmi088__data__t.html#a7efc219781df4a1e281cb5d348b7fbf9">yaw</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structbmi088__data__t.html#a75a875b9e02c9891820dc80be10400f8">   25</a></span>    }<a class="code hl_variable" href="_i_m_utool_8c.html#ad0c59db08914a05cbe9adc574ecf3eaf">angles</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structbmi088__data__t.html#a24d61a35b72d7299eb6b5f48e71a571b">   26</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structbmi088__data__t.html#a24d61a35b72d7299eb6b5f48e71a571b">temp</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}<a class="code hl_struct" href="structbmi088__data__t.html">bmi088_data_t</a>;</div>
+</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">extern</span> <a class="code hl_struct" href="structbmi088__data__t.html">bmi088_data_t</a> <a class="code hl_variable" href="_i_m_utool_8c.html#a4054c62cd1b930c2a79a62483f21dc2b">bmi088_data</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">extern</span> uint8_t <a class="code hl_variable" href="_i_m_utool_8c.html#a981c11f5314644cebf6c9a9715810f68">attitude_flag</a>; <span class="comment">/*姿态数据标志位*/</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keywordtype">void</span> <a class="code hl_function" href="_i_m_utool_8h.html#a7b69c8d1cd40b16364a3dec85ba1fd9b">temple</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keywordtype">void</span> <a class="code hl_function" href="_i_m_utool_8h.html#ad29f96bd5db7d3a66c38856f36d4f8e7">IMUsys</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#endif </span><span class="comment">// !IMUTOOL_H</span></div>
+<div class="ttc" id="a_i_m_utool_8c_html_a4054c62cd1b930c2a79a62483f21dc2b"><div class="ttname"><a href="_i_m_utool_8c.html#a4054c62cd1b930c2a79a62483f21dc2b">bmi088_data</a></div><div class="ttdeci">bmi088_data_t bmi088_data</div><div class="ttdef"><b>定义</b> IMUtool.c:26</div></div>
+<div class="ttc" id="a_i_m_utool_8c_html_a579c1a74d7de6ed4e97b8a29d6d826cd"><div class="ttname"><a href="_i_m_utool_8c.html#a579c1a74d7de6ed4e97b8a29d6d826cd">accel</a></div><div class="ttdeci">float accel[3]</div><div class="ttdef"><b>定义</b> IMUtool.c:23</div></div>
+<div class="ttc" id="a_i_m_utool_8c_html_a981c11f5314644cebf6c9a9715810f68"><div class="ttname"><a href="_i_m_utool_8c.html#a981c11f5314644cebf6c9a9715810f68">attitude_flag</a></div><div class="ttdeci">uint8_t attitude_flag</div><div class="ttdef"><b>定义</b> IMUtool.c:28</div></div>
+<div class="ttc" id="a_i_m_utool_8c_html_ad0c59db08914a05cbe9adc574ecf3eaf"><div class="ttname"><a href="_i_m_utool_8c.html#ad0c59db08914a05cbe9adc574ecf3eaf">angles</a></div><div class="ttdeci">float angles[3]</div><div class="ttdef"><b>定义</b> IMUtool.c:23</div></div>
+<div class="ttc" id="a_i_m_utool_8c_html_addac5578d412440de5e9c3760475dec7"><div class="ttname"><a href="_i_m_utool_8c.html#addac5578d412440de5e9c3760475dec7">gyro</a></div><div class="ttdeci">float gyro[3]</div><div class="ttdef"><b>定义</b> IMUtool.c:23</div></div>
+<div class="ttc" id="a_i_m_utool_8h_html_a7b69c8d1cd40b16364a3dec85ba1fd9b"><div class="ttname"><a href="_i_m_utool_8h.html#a7b69c8d1cd40b16364a3dec85ba1fd9b">temple</a></div><div class="ttdeci">void temple(void)</div><div class="ttdoc">PID温度控制函数。</div><div class="ttdef"><b>定义</b> IMUtool.c:48</div></div>
+<div class="ttc" id="a_i_m_utool_8h_html_ad29f96bd5db7d3a66c38856f36d4f8e7"><div class="ttname"><a href="_i_m_utool_8h.html#ad29f96bd5db7d3a66c38856f36d4f8e7">IMUsys</a></div><div class="ttdeci">void IMUsys(void)</div><div class="ttdef"><b>定义</b> IMUtool.c:62</div></div>
+<div class="ttc" id="a_mahony_a_h_r_s_8h_html"><div class="ttname"><a href="_mahony_a_h_r_s_8h.html">MahonyAHRS.h</a></div></div>
+<div class="ttc" id="astructbmi088__data__t_html"><div class="ttname"><a href="structbmi088__data__t.html">bmi088_data_t</a></div><div class="ttdef"><b>定义</b> IMUtool.h:7</div></div>
+<div class="ttc" id="astructbmi088__data__t_html_a24d61a35b72d7299eb6b5f48e71a571b"><div class="ttname"><a href="structbmi088__data__t.html#a24d61a35b72d7299eb6b5f48e71a571b">bmi088_data_t::temp</a></div><div class="ttdeci">float temp</div><div class="ttdef"><b>定义</b> IMUtool.h:26</div></div>
+<div class="ttc" id="astructbmi088__data__t_html_a26fd84d522945b6038221d9e38c7cc39"><div class="ttname"><a href="structbmi088__data__t.html#a26fd84d522945b6038221d9e38c7cc39">bmi088_data_t::roll</a></div><div class="ttdeci">float roll</div><div class="ttdef"><b>定义</b> IMUtool.h:23</div></div>
+<div class="ttc" id="astructbmi088__data__t_html_a282e7d4378d4a18a805b8980295ac86c"><div class="ttname"><a href="structbmi088__data__t.html#a282e7d4378d4a18a805b8980295ac86c">bmi088_data_t::pitch</a></div><div class="ttdeci">float pitch</div><div class="ttdef"><b>定义</b> IMUtool.h:22</div></div>
+<div class="ttc" id="astructbmi088__data__t_html_a7efc219781df4a1e281cb5d348b7fbf9"><div class="ttname"><a href="structbmi088__data__t.html#a7efc219781df4a1e281cb5d348b7fbf9">bmi088_data_t::yaw</a></div><div class="ttdeci">float yaw</div><div class="ttdef"><b>定义</b> IMUtool.h:24</div></div>
+<div class="ttc" id="astructbmi088__data__t_html_aa4f0d3eebc3c443f9be81bf48561a217"><div class="ttname"><a href="structbmi088__data__t.html#aa4f0d3eebc3c443f9be81bf48561a217">bmi088_data_t::y</a></div><div class="ttdeci">float y</div><div class="ttdef"><b>定义</b> IMUtool.h:11</div></div>
+<div class="ttc" id="astructbmi088__data__t_html_ad0da36b2558901e21e7a30f6c227a45e"><div class="ttname"><a href="structbmi088__data__t.html#ad0da36b2558901e21e7a30f6c227a45e">bmi088_data_t::x</a></div><div class="ttdeci">float x</div><div class="ttdef"><b>定义</b> IMUtool.h:10</div></div>
+<div class="ttc" id="astructbmi088__data__t_html_af73583b1e980b0aa03f9884812e9fd4d"><div class="ttname"><a href="structbmi088__data__t.html#af73583b1e980b0aa03f9884812e9fd4d">bmi088_data_t::z</a></div><div class="ttdeci">float z</div><div class="ttdef"><b>定义</b> IMUtool.h:12</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

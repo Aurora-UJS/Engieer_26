@@ -1,0 +1,268 @@
+\doxysection{source/bsp/can/can\+\_\+api.h 文件参考}
+\hypertarget{can__api_8h}{}\label{can__api_8h}\index{source/bsp/can/can\_api.h@{source/bsp/can/can\_api.h}}
+{\ttfamily \#include "{}main.\+h"{}}\newline
+{\ttfamily \#include "{}Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}list.\+h"{}}\newline
+{\ttfamily \#include "{}can\+\_\+struct.\+h"{}}\newline
+can\+\_\+api.\+h 的引用(Include)关系图\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{can__api_8h__incl}
+\end{center}
+\end{figure}
+此图展示该文件被哪些文件直接或间接地引用了\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{can__api_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{can__api_8h_a965da6337fbdc9a47ebb46340474bc27}{CAN\+\_\+\+MSG\+\_\+\+Get\+\_\+\+PORT}}(msg)
+\item 
+\#define \mbox{\hyperlink{can__api_8h_aad550039ea41a894604130553450d92e}{CAN\+\_\+\+MSG\+\_\+\+Get\+\_\+\+ID}}(msg)
+\item 
+\#define \mbox{\hyperlink{can__api_8h_ab612a56a915d6059027860940b2ee745}{CAN\+\_\+\+MSG\+\_\+\+Get\+\_\+\+DATA}}(msg)
+\item 
+\#define \mbox{\hyperlink{can__api_8h_a19c488e9a006ad9a690890213c88d7f8}{CAN\+\_\+\+MSG\+\_\+\+Get\+\_\+\+LEN}}(msg)
+\item 
+\#define \mbox{\hyperlink{can__api_8h_a9d953f588a903c8f5e8832847ff7b41b}{CAN\+\_\+\+MSG\+\_\+\+Get\+\_\+\+RTR}}(msg)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{can__api_8h_ad85c1f6d431113ab42f44d8a4c8be620}{can\+\_\+sys\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em CAN通讯初始化。 \end{DoxyCompactList}\item 
+List\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{can__api_8h_aaba60a80fb460a91d76b3a01fc64d94c}{can\+\_\+msg\+\_\+find\+\_\+list}} (\mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282}{can\+\_\+port\+\_\+t}} port)
+\begin{DoxyCompactList}\small\item\em 根据\+CAN端口返回对应的接收消息列表指针。 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structcan__msg__t}{can\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{can__api_8h_ad0b2c94cd218077eb973a1686ce71df5}{can\+\_\+msg\+\_\+find\+\_\+item}} (List\+\_\+t \texorpdfstring{$\ast$}{*}can\+\_\+msg\+\_\+list, uint32\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em 在指定的\+CAN消息列表中查找具有特定\+ID的消息项。 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t}} \mbox{\hyperlink{can__api_8h_a71472eadef63e28b066402c06d687016}{can\+\_\+msg\+\_\+add\+\_\+item}} (\mbox{\hyperlink{structcan__msg__t}{can\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em 向\+CAN消息列表中添加一个新的消息项。 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t}} \mbox{\hyperlink{can__api_8h_aa4214c6ce3fe8b2ac16048962377e13b}{can\+\_\+msg\+\_\+del\+\_\+item}} (\mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282}{can\+\_\+port\+\_\+t}} port, uint32\+\_\+t id)
+\begin{DoxyCompactList}\small\item\em 根据\+CAN端口和消息\+ID从接收消息列表中删除消息项。 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t}} \mbox{\hyperlink{can__api_8h_a4a59a0ba7c9a33b2784b7b0f09199511}{can\+\_\+msg\+\_\+send\+\_\+classical}} (\mbox{\hyperlink{structcan__msg__t}{can\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em 发送经典\+CAN格式的消息。 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t}} \mbox{\hyperlink{can__api_8h_ab5365a19d706f489876a2e537995dc0f}{can\+\_\+msg\+\_\+send\+\_\+extended}} (\mbox{\hyperlink{structcan__msg__t}{can\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em 发送扩展\+CAN格式的消息。 \end{DoxyCompactList}\item 
+\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t}} \mbox{\hyperlink{can__api_8h_a1747af7a6d5b3b39b302cb507c00c4e7}{can\+\_\+msg\+\_\+send\+\_\+fd}} (\mbox{\hyperlink{structcan__msg__t}{can\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*}msg)
+\begin{DoxyCompactList}\small\item\em 发送\+CAN FD格式的消息。 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{宏定义说明}
+\Hypertarget{can__api_8h_ab612a56a915d6059027860940b2ee745}\index{can\_api.h@{can\_api.h}!CAN\_MSG\_Get\_DATA@{CAN\_MSG\_Get\_DATA}}
+\index{CAN\_MSG\_Get\_DATA@{CAN\_MSG\_Get\_DATA}!can\_api.h@{can\_api.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_MSG\_Get\_DATA}{CAN\_MSG\_Get\_DATA}}
+{\footnotesize\ttfamily \label{can__api_8h_ab612a56a915d6059027860940b2ee745} 
+\#define CAN\+\_\+\+MSG\+\_\+\+Get\+\_\+\+DATA(\begin{DoxyParamCaption}\item[{}]{msg}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((msg)-\/>*data)}
+
+\end{DoxyCode}
+\Hypertarget{can__api_8h_aad550039ea41a894604130553450d92e}\index{can\_api.h@{can\_api.h}!CAN\_MSG\_Get\_ID@{CAN\_MSG\_Get\_ID}}
+\index{CAN\_MSG\_Get\_ID@{CAN\_MSG\_Get\_ID}!can\_api.h@{can\_api.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_MSG\_Get\_ID}{CAN\_MSG\_Get\_ID}}
+{\footnotesize\ttfamily \label{can__api_8h_aad550039ea41a894604130553450d92e} 
+\#define CAN\+\_\+\+MSG\+\_\+\+Get\+\_\+\+ID(\begin{DoxyParamCaption}\item[{}]{msg}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((msg)-\/>id)}
+
+\end{DoxyCode}
+\Hypertarget{can__api_8h_a19c488e9a006ad9a690890213c88d7f8}\index{can\_api.h@{can\_api.h}!CAN\_MSG\_Get\_LEN@{CAN\_MSG\_Get\_LEN}}
+\index{CAN\_MSG\_Get\_LEN@{CAN\_MSG\_Get\_LEN}!can\_api.h@{can\_api.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_MSG\_Get\_LEN}{CAN\_MSG\_Get\_LEN}}
+{\footnotesize\ttfamily \label{can__api_8h_a19c488e9a006ad9a690890213c88d7f8} 
+\#define CAN\+\_\+\+MSG\+\_\+\+Get\+\_\+\+LEN(\begin{DoxyParamCaption}\item[{}]{msg}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((msg)-\/>len)}
+
+\end{DoxyCode}
+\Hypertarget{can__api_8h_a965da6337fbdc9a47ebb46340474bc27}\index{can\_api.h@{can\_api.h}!CAN\_MSG\_Get\_PORT@{CAN\_MSG\_Get\_PORT}}
+\index{CAN\_MSG\_Get\_PORT@{CAN\_MSG\_Get\_PORT}!can\_api.h@{can\_api.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_MSG\_Get\_PORT}{CAN\_MSG\_Get\_PORT}}
+{\footnotesize\ttfamily \label{can__api_8h_a965da6337fbdc9a47ebb46340474bc27} 
+\#define CAN\+\_\+\+MSG\+\_\+\+Get\+\_\+\+PORT(\begin{DoxyParamCaption}\item[{}]{msg}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((msg)-\/>port)}
+
+\end{DoxyCode}
+\Hypertarget{can__api_8h_a9d953f588a903c8f5e8832847ff7b41b}\index{can\_api.h@{can\_api.h}!CAN\_MSG\_Get\_RTR@{CAN\_MSG\_Get\_RTR}}
+\index{CAN\_MSG\_Get\_RTR@{CAN\_MSG\_Get\_RTR}!can\_api.h@{can\_api.h}}
+\doxysubsubsection{\texorpdfstring{CAN\_MSG\_Get\_RTR}{CAN\_MSG\_Get\_RTR}}
+{\footnotesize\ttfamily \label{can__api_8h_a9d953f588a903c8f5e8832847ff7b41b} 
+\#define CAN\+\_\+\+MSG\+\_\+\+Get\+\_\+\+RTR(\begin{DoxyParamCaption}\item[{}]{msg}{}\end{DoxyParamCaption})}
+
+{\bfseries 值\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{((msg)-\/>rtr)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{函数说明}
+\Hypertarget{can__api_8h_a71472eadef63e28b066402c06d687016}\index{can\_api.h@{can\_api.h}!can\_msg\_add\_item@{can\_msg\_add\_item}}
+\index{can\_msg\_add\_item@{can\_msg\_add\_item}!can\_api.h@{can\_api.h}}
+\doxysubsubsection{\texorpdfstring{can\_msg\_add\_item()}{can\_msg\_add\_item()}}
+{\footnotesize\ttfamily \label{can__api_8h_a71472eadef63e28b066402c06d687016} 
+\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t}} can\+\_\+msg\+\_\+add\+\_\+item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcan__msg__t}{can\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+向\+CAN消息列表中添加一个新的消息项。 
+
+检查消息是否已存在于对应的\+CAN消息列表中。如果不存在，则分配内存为新的消息项，并将其插入到对应的\+CAN消息列表中。 如果消息已存在或内存分配失败，则返回相应的错误状态。
+
+
+\begin{DoxyParams}{参数}
+{\em msg} & 要添加的消息项。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+\doxylink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t} 返回操作状态，成功返回\+CAN\+\_\+\+OK，失败返回相应的错误码。 
+\end{DoxyReturn}
+\Hypertarget{can__api_8h_aa4214c6ce3fe8b2ac16048962377e13b}\index{can\_api.h@{can\_api.h}!can\_msg\_del\_item@{can\_msg\_del\_item}}
+\index{can\_msg\_del\_item@{can\_msg\_del\_item}!can\_api.h@{can\_api.h}}
+\doxysubsubsection{\texorpdfstring{can\_msg\_del\_item()}{can\_msg\_del\_item()}}
+{\footnotesize\ttfamily \label{can__api_8h_aa4214c6ce3fe8b2ac16048962377e13b} 
+\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t}} can\+\_\+msg\+\_\+del\+\_\+item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282}{can\+\_\+port\+\_\+t}}}]{port}{, }\item[{uint32\+\_\+t}]{id}{}\end{DoxyParamCaption})}
+
+
+
+根据\+CAN端口和消息\+ID从接收消息列表中删除消息项。 
+
+遍历指定\+CAN端口的接收消息列表，查找具有指定\+ID的消息项。如果找到匹配的消息项，则从列表中移除并释放其占用的内存。 如果未找到匹配的消息项，则返回消息未找到状态。
+
+
+\begin{DoxyParams}{参数}
+{\em port} & 指定的\+CAN端口。 \\
+\hline
+{\em id} & 要删除的消息\+ID。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+\doxylink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t} 返回操作状态，成功返回\+CAN\+\_\+\+OK，失败返回相应的错误码。 
+\end{DoxyReturn}
+\Hypertarget{can__api_8h_ad0b2c94cd218077eb973a1686ce71df5}\index{can\_api.h@{can\_api.h}!can\_msg\_find\_item@{can\_msg\_find\_item}}
+\index{can\_msg\_find\_item@{can\_msg\_find\_item}!can\_api.h@{can\_api.h}}
+\doxysubsubsection{\texorpdfstring{can\_msg\_find\_item()}{can\_msg\_find\_item()}}
+{\footnotesize\ttfamily \label{can__api_8h_ad0b2c94cd218077eb973a1686ce71df5} 
+\mbox{\hyperlink{structcan__msg__t}{can\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*} can\+\_\+msg\+\_\+find\+\_\+item (\begin{DoxyParamCaption}\item[{List\+\_\+t \texorpdfstring{$\ast$}{*}}]{can\+\_\+msg\+\_\+list}{, }\item[{uint32\+\_\+t}]{id}{}\end{DoxyParamCaption})}
+
+
+
+在指定的\+CAN消息列表中查找具有特定\+ID的消息项。 
+
+遍历指定的\+CAN消息列表，查找具有指定\+ID的消息项。如果找到匹配的消息项，则返回该消息项的指针；否则返回\+NULL。
+
+
+\begin{DoxyParams}{参数}
+{\em can\+\_\+msg\+\_\+list} & 指定的\+CAN消息列表。 \\
+\hline
+{\em id} & 要查找的消息\+ID。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+can\+\_\+msg\+\_\+t\texorpdfstring{$\ast$}{*} 返回匹配的消息项指针，未找到则返回\+NULL。 
+\end{DoxyReturn}
+\Hypertarget{can__api_8h_aaba60a80fb460a91d76b3a01fc64d94c}\index{can\_api.h@{can\_api.h}!can\_msg\_find\_list@{can\_msg\_find\_list}}
+\index{can\_msg\_find\_list@{can\_msg\_find\_list}!can\_api.h@{can\_api.h}}
+\doxysubsubsection{\texorpdfstring{can\_msg\_find\_list()}{can\_msg\_find\_list()}}
+{\footnotesize\ttfamily \label{can__api_8h_aaba60a80fb460a91d76b3a01fc64d94c} 
+List\+\_\+t \texorpdfstring{$\ast$}{*} can\+\_\+msg\+\_\+find\+\_\+list (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{can__struct_8h_a99224aa31bc5a961c6643d5f0ec14282}{can\+\_\+port\+\_\+t}}}]{port}{}\end{DoxyParamCaption})}
+
+
+
+根据\+CAN端口返回对应的接收消息列表指针。 
+
+根据指定的\+CAN端口（\+CAN1\+\_\+\+PORT、\+CAN2\+\_\+\+PORT、\+CAN3\+\_\+\+PORT），返回对应的接收消息列表指针。 如果端口无效，默认返回\+CAN1的接收消息列表指针。
+
+
+\begin{DoxyParams}{参数}
+{\em port} & 指定的\+CAN端口。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+List\+\_\+t\texorpdfstring{$\ast$}{*} 返回对应端口的接收消息列表指针。 
+\end{DoxyReturn}
+\Hypertarget{can__api_8h_a4a59a0ba7c9a33b2784b7b0f09199511}\index{can\_api.h@{can\_api.h}!can\_msg\_send\_classical@{can\_msg\_send\_classical}}
+\index{can\_msg\_send\_classical@{can\_msg\_send\_classical}!can\_api.h@{can\_api.h}}
+\doxysubsubsection{\texorpdfstring{can\_msg\_send\_classical()}{can\_msg\_send\_classical()}}
+{\footnotesize\ttfamily \label{can__api_8h_a4a59a0ba7c9a33b2784b7b0f09199511} 
+\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t}} can\+\_\+msg\+\_\+send\+\_\+classical (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcan__msg__t}{can\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+发送经典\+CAN格式的消息。 
+
+根据指定的\+CAN端口，发送经典\+CAN格式的消息。如果端口无效或消息指针为空，则返回相应的错误状态。
+
+
+\begin{DoxyParams}{参数}
+{\em msg} & 要发送的经典\+CAN格式消息。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+\doxylink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t} 返回操作状态，成功返回\+CAN\+\_\+\+OK，失败返回相应的错误码。 
+\end{DoxyReturn}
+\Hypertarget{can__api_8h_ab5365a19d706f489876a2e537995dc0f}\index{can\_api.h@{can\_api.h}!can\_msg\_send\_extended@{can\_msg\_send\_extended}}
+\index{can\_msg\_send\_extended@{can\_msg\_send\_extended}!can\_api.h@{can\_api.h}}
+\doxysubsubsection{\texorpdfstring{can\_msg\_send\_extended()}{can\_msg\_send\_extended()}}
+{\footnotesize\ttfamily \label{can__api_8h_ab5365a19d706f489876a2e537995dc0f} 
+\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t}} can\+\_\+msg\+\_\+send\+\_\+extended (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcan__msg__t}{can\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+发送扩展\+CAN格式的消息。 
+
+根据指定的\+CAN端口，发送扩展\+CAN格式的消息。如果端口无效或消息指针为空，则返回相应的错误状态。
+
+
+\begin{DoxyParams}{参数}
+{\em msg} & 要发送的扩展\+CAN格式消息。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+\doxylink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t} 返回操作状态，成功返回\+CAN\+\_\+\+OK，失败返回相应的错误码。 
+\end{DoxyReturn}
+\Hypertarget{can__api_8h_a1747af7a6d5b3b39b302cb507c00c4e7}\index{can\_api.h@{can\_api.h}!can\_msg\_send\_fd@{can\_msg\_send\_fd}}
+\index{can\_msg\_send\_fd@{can\_msg\_send\_fd}!can\_api.h@{can\_api.h}}
+\doxysubsubsection{\texorpdfstring{can\_msg\_send\_fd()}{can\_msg\_send\_fd()}}
+{\footnotesize\ttfamily \label{can__api_8h_a1747af7a6d5b3b39b302cb507c00c4e7} 
+\mbox{\hyperlink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t}} can\+\_\+msg\+\_\+send\+\_\+fd (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structcan__msg__t}{can\+\_\+msg\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+发送\+CAN FD格式的消息。 
+
+根据指定的\+CAN端口，发送\+CAN FD格式的消息。如果端口无效或消息指针为空，则返回相应的错误状态。
+
+
+\begin{DoxyParams}{参数}
+{\em msg} & 要发送的\+CAN FD格式消息。 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+\doxylink{can__struct_8h_a507b4ed3fc531e0c40aa8812174e3e1d}{can\+\_\+status\+\_\+t} 返回操作状态，成功返回\+CAN\+\_\+\+OK，失败返回相应的错误码。 
+\end{DoxyReturn}
+\Hypertarget{can__api_8h_ad85c1f6d431113ab42f44d8a4c8be620}\index{can\_api.h@{can\_api.h}!can\_sys\_init@{can\_sys\_init}}
+\index{can\_sys\_init@{can\_sys\_init}!can\_api.h@{can\_api.h}}
+\doxysubsubsection{\texorpdfstring{can\_sys\_init()}{can\_sys\_init()}}
+{\footnotesize\ttfamily \label{can__api_8h_ad85c1f6d431113ab42f44d8a4c8be620} 
+void can\+\_\+sys\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+CAN通讯初始化。 
+
+初始化三个\+CAN端口（\+CAN1、\+CAN2、\+CAN3）的接收消息列表，并调用底层硬件初始化函数完成\+CAN模块的初始化。 

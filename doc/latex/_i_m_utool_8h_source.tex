@@ -1,0 +1,43 @@
+\doxysection{IMUtool.\+h}
+\hypertarget{_i_m_utool_8h_source}{}\label{_i_m_utool_8h_source}\index{source/module/IMU/IMUtool.h@{source/module/IMU/IMUtool.h}}
+\mbox{\hyperlink{_i_m_utool_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ IMUTOOL\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ IMUTOOL\_H}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_mahony_a_h_r_s_8h}{MahonyAHRS.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00009\ \ \ \ \ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structbmi088__data__t_ad0da36b2558901e21e7a30f6c227a45e}{x}};}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structbmi088__data__t_aa4f0d3eebc3c443f9be81bf48561a217}{y}};}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structbmi088__data__t_af73583b1e980b0aa03f9884812e9fd4d}{z}};}
+\DoxyCodeLine{00013\ \ \ \ \ \}\mbox{\hyperlink{_i_m_utool_8c_a579c1a74d7de6ed4e97b8a29d6d826cd}{accel}};}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00015\ \ \ \ \ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ z;}
+\DoxyCodeLine{00019\ \ \ \ \ \}\mbox{\hyperlink{_i_m_utool_8c_addac5578d412440de5e9c3760475dec7}{gyro}};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{struct\ }}
+\DoxyCodeLine{00021\ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structbmi088__data__t_a282e7d4378d4a18a805b8980295ac86c}{pitch}};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structbmi088__data__t_a26fd84d522945b6038221d9e38c7cc39}{roll}};}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structbmi088__data__t_a7efc219781df4a1e281cb5d348b7fbf9}{yaw}};}
+\DoxyCodeLine{00025\ \ \ \ \ \}\mbox{\hyperlink{_i_m_utool_8c_ad0c59db08914a05cbe9adc574ecf3eaf}{angles}};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structbmi088__data__t_a24d61a35b72d7299eb6b5f48e71a571b}{temp}};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \}\mbox{\hyperlink{structbmi088__data__t}{bmi088\_data\_t}};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structbmi088__data__t}{bmi088\_data\_t}}\ \mbox{\hyperlink{_i_m_utool_8c_a4054c62cd1b930c2a79a62483f21dc2b}{bmi088\_data}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{extern}\ uint8\_t\ \mbox{\hyperlink{_i_m_utool_8c_a981c11f5314644cebf6c9a9715810f68}{attitude\_flag}};\ \textcolor{comment}{/*姿态数据标志位*/}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_i_m_utool_8h_a7b69c8d1cd40b16364a3dec85ba1fd9b}{temple}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00035\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{_i_m_utool_8h_ad29f96bd5db7d3a66c38856f36d4f8e7}{IMUsys}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !IMUTOOL\_H}}
+
+\end{DoxyCode}

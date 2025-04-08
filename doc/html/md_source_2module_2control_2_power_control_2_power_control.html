@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>basic_DMH7: 功率控制模块使用说明</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="logo.jpg"/></td>
+  <td id="projectalign">
+   <div id="projectname">basic_DMH7<span id="projectnumber">&#160;1.0.1</span>
+   </div>
+   <div id="projectbrief">河南科技大学鼎行双创战队基础电控组基础开发库</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">功率控制模块使用说明</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md36"></a></p>
+<h1><a class="anchor" id="autotoc_md37"></a>
+1. 概述</h1>
+<p>功率控制模块用于控制设备的功率输出，包括设备的率调节操作。该模块提供了一系列的API接口，用户可以通过调用这些接口来实现对设备的控制。但当前主要是进行电机的功率控制。</p>
+<h1><a class="anchor" id="autotoc_md38"></a>
+2. 接口说明</h1>
+<h2><a class="anchor" id="autotoc_md39"></a>
+2.1. 初始化函数</h2>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="_power_control_8c.html#afb47d084f93e87da21a629fb9f8fdfc8">PowerControl_Init</a>(<span class="keywordtype">float</span> *buffer_ptr,</div>
+<div class="line">                       <span class="keywordtype">float</span> *cap_ptr,</div>
+<div class="line">                       <span class="keywordtype">float</span> max_power,</div>
+<div class="line">                       <a class="code hl_struct" href="structpid__type__def.html">pid_type_def</a> *pid_params, <span class="keywordtype">void</span> (*hook)(<span class="keywordtype">float</span>));</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="_power_control_8c.html#a09970f532849b821a660c63928955607">PowerControl_Update</a>(<span class="keywordtype">void</span>); <span class="comment">// 更新功率控制状态</span></div>
+<div class="ttc" id="a_power_control_8c_html_a09970f532849b821a660c63928955607"><div class="ttname"><a href="_power_control_8c.html#a09970f532849b821a660c63928955607">PowerControl_Update</a></div><div class="ttdeci">void PowerControl_Update(void)</div><div class="ttdef"><b>定义</b> PowerControl.c:63</div></div>
+<div class="ttc" id="a_power_control_8c_html_afb47d084f93e87da21a629fb9f8fdfc8"><div class="ttname"><a href="_power_control_8c.html#afb47d084f93e87da21a629fb9f8fdfc8">PowerControl_Init</a></div><div class="ttdeci">void PowerControl_Init(uint16_t *buffer_ptr, float *cap_ptr, float *max_power, pid_type_def *pid_params, void(*hook)(float))</div><div class="ttdef"><b>定义</b> PowerControl.c:35</div></div>
+<div class="ttc" id="astructpid__type__def_html"><div class="ttname"><a href="structpid__type__def.html">pid_type_def</a></div><div class="ttdef"><b>定义</b> PIDtool.h:5</div></div>
+</div><!-- fragment --><p>函数功能：初始化功率控制模块，设置功率控制参数。</p>
+<p>参数说明：</p>
+<ul>
+<li><code>buffer_ptr</code>：功率控制缓冲区指针，用于存储功率控制数据。</li>
+<li><code>cap_ptr</code>：功率控制电容指针，用于存储功率控制电容数据。</li>
+<li><code>max_power</code>：功率控制最大功率，用于限制功率控制的最大输出功率。</li>
+<li><code>pid_params</code>：PID参数结构体指针，用于设置功率控制的PID参数。</li>
+<li><code>hook</code>：回调函数指针，用于在功率控制过程中调用主要设备参数。</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md40"></a>
+2.2. 更新函数</h2>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="_power_control_8c.html#a09970f532849b821a660c63928955607">PowerControl_Update</a>(<span class="keywordtype">void</span>); <span class="comment">// 更新功率控制状态</span></div>
+</div><!-- fragment --><p>函数功能：更新功率控制状态。</p>
+<h2><a class="anchor" id="autotoc_md41"></a>
+2.3. 其他函数</h2>
+<h3><a class="anchor" id="autotoc_md42"></a>
+2.3.1. 电机功率计算函数</h3>
+<div class="fragment"><div class="line"><span class="keywordtype">float</span> <a class="code hl_function" href="_power_control_8c.html#aaeba10002e9e1f2c4bd09bd7f3190666">MotorPower_CalculateSingle</a>(</div>
+<div class="line">    <span class="keywordtype">float</span> pid_output, </div>
+<div class="line">    <span class="keywordtype">float</span> speed_rpm, </div>
+<div class="line">    <span class="keyword">const</span> <a class="code hl_struct" href="struct_motor_power_params__t.html">MotorPowerParams_t</a> *params);</div>
+<div class="ttc" id="a_power_control_8c_html_aaeba10002e9e1f2c4bd09bd7f3190666"><div class="ttname"><a href="_power_control_8c.html#aaeba10002e9e1f2c4bd09bd7f3190666">MotorPower_CalculateSingle</a></div><div class="ttdeci">float MotorPower_CalculateSingle(float torque_nm, float speed_rad, const MotorPowerParams_t *params)</div><div class="ttdoc">计算单个电机的理论功率消耗</div><div class="ttdef"><b>定义</b> PowerControl.c:123</div></div>
+<div class="ttc" id="astruct_motor_power_params__t_html"><div class="ttname"><a href="struct_motor_power_params__t.html">MotorPowerParams_t</a></div><div class="ttdef"><b>定义</b> PowerControl.h:24</div></div>
+</div><!-- fragment --><p>函数功能：计算单个电机的理论功率消耗。</p>
+<p>参数说明：</p>
+<ul>
+<li><code>pid_output</code>：PID输出值，用于计算功率消耗。</li>
+<li><code>speed_rpm</code>：电机转速，用于计算功率消耗。</li>
+<li><code>params</code>：电机功率参数结构体指针，用于设置电机功率参数。</li>
+</ul>
+<p>返回值：</p>
+<ul>
+<li>返回计算得到的电机功率消耗值。</li>
+<li>如果输入参数有NULL，则返回0。</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md43"></a>
+3. 使用示例</h1>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="_power_control_8h.html">PowerControl.h</a>&quot;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> hook(<span class="keywordtype">float</span> power)</div>
+<div class="line">{</div>
+<div class="line">    <span class="comment">// 在这里调用主要设备参数</span></div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordtype">float</span> buffer;</div>
+<div class="line">    <span class="keywordtype">float</span> cap;</div>
+<div class="line">    <span class="keywordtype">float</span> max_power = 100.0;</div>
+<div class="line">    <a class="code hl_struct" href="structpid__type__def.html">pid_type_def</a> pid_params;</div>
+<div class="line">    pid_init(&amp;pid_params, 1, 0, 0, 16000,16000);  </div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="_power_control_8c.html#afb47d084f93e87da21a629fb9f8fdfc8">PowerControl_Init</a>(&amp;buffer, &amp;cap, &amp;max_power, &amp;pid_params, hook);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">while</span> (1)</div>
+<div class="line">    {</div>
+<div class="line">        <a class="code hl_function" href="_power_control_8c.html#a09970f532849b821a660c63928955607">PowerControl_Update</a>();</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">return</span> 0;</div>
+<div class="line">}</div>
+<div class="ttc" id="a_power_control_8h_html"><div class="ttname"><a href="_power_control_8h.html">PowerControl.h</a></div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md44"></a>
+4. 注意事项</h1>
+<ul>
+<li>在使用功率控制模块之前，需要先初始化功率控制模块。</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md45"></a>
+5. 附录</h1>
+<p>一些功率控制模块的实现示例代码。</p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> hook(<span class="keywordtype">float</span> power)</div>
+<div class="line">{</div>
+<div class="line"><span class="comment">//以下是只针对于底盘的功率控制</span></div>
+<div class="line">    <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; 4; i++) <span class="comment">//计算初始底盘电机功率和总电机功率,此处最重要的是机械功率——即为第一项</span></div>
+<div class="line">    {</div>
+<div class="line">        initial_chassis_give_power[i] = pid_3508_speed_chassis[i]-&gt;Pout * power_control-&gt;toque_coefficient * chassis_Rx1[i]-&gt;motor_speed  +</div>
+<div class="line">                                k2 * chassis_Rx1[i]-&gt;motor_speed * chassis_Rx1[i]-&gt;motor_speed +</div>
+<div class="line">                                <a class="code hl_variable" href="imu_temp_ctrl_8c.html#a4aec1a5be9d9a4a394a2e49e9744286e">a</a> * pid_3508_speed_chassis[i]-&gt;Pout * pid_3508_speed_chassis[i]-&gt;Pout + power_control-&gt;nomal_power;</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordflow">if</span> (initial_chassis_give_power[i] &lt; 0) <span class="comment">//负功率不包含（过渡）</span></div>
+<div class="line">            <span class="keywordflow">continue</span>;</div>
+<div class="line">        initial_chassis_total_power += initial_chassis_give_power[i];<span class="comment">//此处为总功率</span></div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span> (initial_chassis_total_power &gt; power_control-&gt;chassis_max_power) <span class="comment">//功率判断，确定是否大于最大功率</span></div>
+<div class="line">    {</div>
+<div class="line">        <span class="keywordtype">float</span> power_scale = power_control-&gt;chassis_max_power / initial_chassis_total_power;<span class="comment">//功率缩放比例</span></div>
+<div class="line">        <span class="keywordflow">for</span> (uint8_t i = 0; i &lt; 4; i++)</div>
+<div class="line">        {</div>
+<div class="line">            scaled_chassis_give_power[i] = initial_chassis_give_power[i] * power_scale; <span class="comment">//缩放的功率</span></div>
+<div class="line">            <span class="keywordflow">if</span> (scaled_chassis_give_power[i] &lt; 0)</div>
+<div class="line">            {</div>
+<div class="line">                <span class="keywordflow">continue</span>;</div>
+<div class="line">            }</div>
+<div class="line">            <span class="comment">//此后的内容为力矩的逆解，但此处是以逆解的电流值输出的</span></div>
+<div class="line">            <span class="keywordtype">float</span> <a class="code hl_variable" href="imu_temp_ctrl_8c.html#a83fc1af92e29717b4513d121b0c72c7d">b</a> = power_control-&gt;toque_coefficient * chassis_Rx1[i]-&gt;motor_speed;</div>
+<div class="line">            <span class="keywordtype">float</span> c = k2 * chassis_Rx1[i]-&gt;motor_speed * chassis_Rx1[i]-&gt;motor_speed - scaled_chassis_give_power[i] + power_control-&gt;nomal_power;</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">if</span> (pid_3508_speed_chassis[i]-&gt;Pout &gt; 0) <span class="comment">// Selection of the calculation formula according to the direction of the original moment</span></div>
+<div class="line">            {</div>
+<div class="line">                <span class="keywordtype">float</span> <a class="code hl_variable" href="_i_m_utool_8c.html#a24d61a35b72d7299eb6b5f48e71a571b">temp</a> = (-<a class="code hl_variable" href="imu_temp_ctrl_8c.html#a83fc1af92e29717b4513d121b0c72c7d">b</a> + sqrt(<a class="code hl_variable" href="imu_temp_ctrl_8c.html#a83fc1af92e29717b4513d121b0c72c7d">b</a> * <a class="code hl_variable" href="imu_temp_ctrl_8c.html#a83fc1af92e29717b4513d121b0c72c7d">b</a> - 4 * <a class="code hl_variable" href="imu_temp_ctrl_8c.html#a4aec1a5be9d9a4a394a2e49e9744286e">a</a> * c)) / (2 * <a class="code hl_variable" href="imu_temp_ctrl_8c.html#a4aec1a5be9d9a4a394a2e49e9744286e">a</a>);</div>
+<div class="line">                <span class="keywordflow">if</span> (<a class="code hl_variable" href="_i_m_utool_8c.html#a24d61a35b72d7299eb6b5f48e71a571b">temp</a> &gt; 16000)</div>
+<div class="line">                {</div>
+<div class="line">                    pid_3508_speed_chassis[i]-&gt;Pout = 16000;</div>
+<div class="line">                }</div>
+<div class="line">                <span class="keywordflow">else</span></div>
+<div class="line">                    pid_3508_speed_chassis[i]-&gt;Pout = <a class="code hl_variable" href="_i_m_utool_8c.html#a24d61a35b72d7299eb6b5f48e71a571b">temp</a>;</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">else</span></div>
+<div class="line">            {</div>
+<div class="line">                <span class="keywordtype">float</span> <a class="code hl_variable" href="_i_m_utool_8c.html#a24d61a35b72d7299eb6b5f48e71a571b">temp</a> = (-<a class="code hl_variable" href="imu_temp_ctrl_8c.html#a83fc1af92e29717b4513d121b0c72c7d">b</a> - sqrt(<a class="code hl_variable" href="imu_temp_ctrl_8c.html#a83fc1af92e29717b4513d121b0c72c7d">b</a> * <a class="code hl_variable" href="imu_temp_ctrl_8c.html#a83fc1af92e29717b4513d121b0c72c7d">b</a> - 4 * <a class="code hl_variable" href="imu_temp_ctrl_8c.html#a4aec1a5be9d9a4a394a2e49e9744286e">a</a> * c)) / (2 * <a class="code hl_variable" href="imu_temp_ctrl_8c.html#a4aec1a5be9d9a4a394a2e49e9744286e">a</a>);</div>
+<div class="line">                <span class="keywordflow">if</span> (<a class="code hl_variable" href="_i_m_utool_8c.html#a24d61a35b72d7299eb6b5f48e71a571b">temp</a> &lt; -16000)</div>
+<div class="line">                {</div>
+<div class="line">                    pid_3508_speed_chassis[i]-&gt;Pout = -16000;</div>
+<div class="line">                }</div>
+<div class="line">                <span class="keywordflow">else</span></div>
+<div class="line">                    pid_3508_speed_chassis[i]-&gt;Pout = <a class="code hl_variable" href="_i_m_utool_8c.html#a24d61a35b72d7299eb6b5f48e71a571b">temp</a>;</div>
+<div class="line">            }</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="ttc" id="a_i_m_utool_8c_html_a24d61a35b72d7299eb6b5f48e71a571b"><div class="ttname"><a href="_i_m_utool_8c.html#a24d61a35b72d7299eb6b5f48e71a571b">temp</a></div><div class="ttdeci">float temp</div><div class="ttdef"><b>定义</b> IMUtool.c:23</div></div>
+<div class="ttc" id="aimu_temp_ctrl_8c_html_a4aec1a5be9d9a4a394a2e49e9744286e"><div class="ttname"><a href="imu_temp_ctrl_8c.html#a4aec1a5be9d9a4a394a2e49e9744286e">a</a></div><div class="ttdeci">float a</div><div class="ttdef"><b>定义</b> imuTempCtrl.c:9</div></div>
+<div class="ttc" id="aimu_temp_ctrl_8c_html_a83fc1af92e29717b4513d121b0c72c7d"><div class="ttname"><a href="imu_temp_ctrl_8c.html#a83fc1af92e29717b4513d121b0c72c7d">b</a></div><div class="ttdeci">float b</div><div class="ttdef"><b>定义</b> imuTempCtrl.c:9</div></div>
+</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

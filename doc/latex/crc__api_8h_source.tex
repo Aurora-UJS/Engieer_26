@@ -1,0 +1,23 @@
+\doxysection{crc\+\_\+api.\+h}
+\hypertarget{crc__api_8h_source}{}\label{crc__api_8h_source}\index{source/bsp/crc/crc\_api.h@{source/bsp/crc/crc\_api.h}}
+\mbox{\hyperlink{crc__api_8h}{浏览该文件的文档.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ CRC\_API\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ CRC\_API\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}main.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ CRC\_Check\_False\ \ \ 0}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ CRC\_Check\_True\ \ \ \ 1}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{crc__api_8h_ad08438585d98c13e70fc0fa50d811607}{Get\_CRC8\_Check\_Sum}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *pchMessage,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ dwLength,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ ucCRC8);}
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{crc__api_8h_a59cbf0c4fa053609ab2a37129f644751}{Verify\_CRC8\_Check\_Sum}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *pchMessage,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ dwLength);}
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{crc__api_8h_a6597501f13b4c73b399ef72ad9db8b24}{Append\_CRC8\_Check\_Sum}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *pchMessage,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ dwLength);}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ uint16\_t\ \mbox{\hyperlink{crc__api_8h_a928a76d69162e1145e02cd538250fe91}{Get\_CRC16\_Check\_Sum}}(uint8\_t\ *pchMessage,\ uint32\_t\ dwLength,\ uint16\_t\ wCRC);}
+\DoxyCodeLine{00014\ uint32\_t\ \mbox{\hyperlink{crc__api_8h_ad713b5a9da8d5c59d5e067ae6ecd25ac}{Verify\_CRC16\_Check\_Sum}}(uint8\_t\ *pchMessage,\ uint32\_t\ dwLength);}
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{crc__api_8h_ab64afc0e5dec0d04dee81fb98c274894}{Append\_CRC16\_Check\_Sum}}(uint8\_t\ *pchMessage,\ uint32\_t\ dwLength);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ CRC\_API\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}
