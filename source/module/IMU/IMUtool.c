@@ -5,6 +5,7 @@
 #include "gpio.h"
 #include "tim.h"
 #include "string.h"
+#include "config.h"
 
 static const float DES_TEMP = 40.0f;
 static const float KP = 100.0f;
@@ -104,13 +105,13 @@ void IMUsys(void)
         //=================================================================================
         // mahony姿态解算部分
         // HAL_GPIO_WritePin(GPIOE,GPIO_PIN_13,GPIO_PIN_SET);
-        Mahony_update(gyro[0], gyro[1], gyro[2] * 360.0f / 292.0f, accel[0], accel[1], accel[2], 0, 0, 0);
+        Mahony_update(gyro[0], gyro[1], gyro[2] * (IMU_YAW_OFFSET_CORRECTION), accel[0], accel[1], accel[2], 0, 0, 0);
         Mahony_computeAngles(); // 角度计算
         //=============================================================================
         // 获取姿态角度函数
-        getPitch(); // 获得pitch
-        getRoll();  // 获得roll
-        getYaw();   // 获得yaw
+        // getPitch(); // 获得pitch
+        // getRoll();  // 获得roll
+        // getYaw();   // 获得yaw
         //==============================================================================
     }
     else if (attitude_flag == 1) // 状态1 开始1000次的陀螺仪0飘初始化

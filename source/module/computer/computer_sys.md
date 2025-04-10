@@ -14,7 +14,7 @@ SendPacketAllRobotHP_t hp;
 SendPacketGameStatus_t sendGameStatus;   // 比赛状态数据包
 SendPacketRobotStatus_t sendRobotStatus; // 机器人状态数据包
 computer_uart_init(&huart3);    // 初始化串口
-set_robot_angle(&naw_yaw, &naw_pitch); // 绑定角度
+set_robot_angle(&now_yaw, &now_pitch); // 绑定角度
 set_robot_id(id);   // 设置机器人ID 依据裁判系统主要区分蓝黄
 
 主循环处理
@@ -147,7 +147,7 @@ void computer_receive_solve();
 ```c
 // 弹道解算模式选择
 #if BALLISTIC_SOLVER == 1  // 二维弹道模型
-#elif BALLISTIC_SOLVER == 2 // 三维弹道模型
+#elif BALLISTIC_SOLVER == 2 //二维弹道模型
 #endif
 ```
 
@@ -223,16 +223,18 @@ typedef struct {
 ## 注意事项
 
 CRC校验：所有数据包自动添加CRC16校验
-实时性要求：主循环周期需≤10ms
+实时性要求：主循环周期需约等于10ms
 坐标系约定：
-X轴：前进方向?
-Y轴：左侧方向?
-Z轴：垂直向上
+- X轴：前进方向?
+- Y轴：左侧方向?
+- Z轴：垂直向上
+
 调试支持：可通过aim_x_n等归一化坐标监控解算结果
-版本兼容性
+
+## 版本：
 
 |   组件   | 版本  |          特性          |
-| :------: | :---: | :--------------------: |
-| 弹道解算 | v1.0  |    二维模型/欧拉法     |
-| 弹道解算 | v2.0  | 三维模型/改进迭代算法  |
-| 雷达模块 | v1.0  | 支持毫米波雷达数据接入 |
+|------------|------|-----------------------|
+| 弹道解算   | v1.0 | 二维模型/欧拉法（有问题）       |
+| 弹道解算   | v2.0 | 二维模型/解析法（没那么有问题） |
+| 雷达模块   | v1.0 | 激光雷达数据接入    |

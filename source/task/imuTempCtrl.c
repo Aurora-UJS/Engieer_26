@@ -13,7 +13,6 @@ void IMU_TempCtrlTask(void const *argument)
 {
   UNUSED(argument);
   osDelay(500);
-  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
   Mahony_Init(1000);
   BMI088_init();
   while (1)

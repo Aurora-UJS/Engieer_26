@@ -1,5 +1,6 @@
 #include "BMI088Middleware.h"
 #include "main.h"
+#include "tim.h"
 
 #define BMI088_USING_SPI_UNIT   hspi2
 
@@ -15,7 +16,7 @@ extern SPI_HandleTypeDef BMI088_USING_SPI_UNIT;
 **/
 void BMI088_GPIO_init(void)
 {
-
+    HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);
 }
 /**
 ************************************************************************
