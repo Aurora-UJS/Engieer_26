@@ -9,18 +9,18 @@
 ## 使用示例
 
 ```c
-初始化流程
+//初始化流程
 SendPacketAllRobotHP_t hp;
 SendPacketGameStatus_t sendGameStatus;   // 比赛状态数据包
 SendPacketRobotStatus_t sendRobotStatus; // 机器人状态数据包
 computer_uart_init(&huart3);    // 初始化串口
-set_robot_angle(&now_yaw, &now_pitch); // 绑定角度
+set_robot_angle(&now_yaw, &now_pitch); // 绑定当前角度
 set_robot_id(id);   // 设置机器人ID 依据裁判系统主要区分蓝黄
 
-主循环处理
+//主循环处理
 while(1) {
   computer_receive_solve();       // 接收数据处理
-  vision_solution(&target_yaw, &target_pitch);  // 弹道解算
+  vision_solution(&target_yaw, &target_pitch);  // 弹道解算发目标角度
   send_robot_state();             // 状态反馈
 
   hp.red_1_robot_hp = get_red_1_hp(); // 获取机器人血量(这个你们具体看裁判系统那边怎么写诸如子类的填满)
@@ -41,7 +41,6 @@ while(1) {
   vTaskDelay(10);
 }
 
-相关参数在其他区域的调用方法：
 /* 视觉数据获取宏组 --------------------------------------------------------------*/
 
 /**
@@ -134,11 +133,11 @@ void computer_receive_solve();
 ```
 
 功能：
-    初始化串口接收缓冲区（COMPUTER_BUFFER_SIZE=100）
-    接收数据处理流程：
-    检查新数据到达
-    调用视觉解算vision_receive_solve()
-    雷达数据接收receiveRadarData()（需开启radar_MOD）
+-    初始化串口接收缓冲区
+-    接收数据处理流程：
+-    检查新数据到达
+-    调用视觉解算vision_receive_solve()
+-    雷达数据接收receiveRadarData()（需开启radar_MOD）
 
 ### 2. 弹道解算模块
 
@@ -152,10 +151,10 @@ void computer_receive_solve();
 ```
 
 核心功能：
-    装甲板运动预测
-    空气阻力补偿
-    迭代角度优化
-    弹道延迟补偿
+-    装甲板运动预测
+-    空气阻力补偿
+-    迭代角度优化
+-    弹道延迟补偿
 
 ### 3. 状态发送模块
 
@@ -167,8 +166,8 @@ void send_robot_state();
 ```
 
 功能：
-    初始化状态发送串口
-    发送机器人状态数据包
+-    初始化状态发送串口
+-    发送机器人状态数据包
 
 ### 4. 雷达数据接收模块
 
@@ -223,10 +222,11 @@ typedef struct {
 ## 注意事项
 
 CRC校验：所有数据包自动添加CRC16校验
+
 实时性要求：主循环周期需约等于10ms
 坐标系约定：
-- X轴：前进方向?
-- Y轴：左侧方向?
+- X轴：初式正方向（可能是）
+- Y轴：初式左侧方向（可能是）
 - Z轴：垂直向上
 
 调试支持：可通过aim_x_n等归一化坐标监控解算结果
