@@ -34,3 +34,7 @@
 - [滤波器](source/module/filter/filter_module.md)
 - [裁判系统](source/module/refereeSys/refereeSys_module.md)
 - [超级电容](source/module/superCap/XidiNewise/super_str.md)
+
+## 有关代码规范
+
+见[代码规范](code_style.md)
