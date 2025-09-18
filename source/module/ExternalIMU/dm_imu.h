@@ -43,7 +43,7 @@ typedef struct
 	} Angles;
 	struct 
 	{
-	    can_msg_t can_msg;    // can消息指针
+	    can_msg_t can_msg;    
 	} imu_msg;
 	can_msg_t can_cfg;
 

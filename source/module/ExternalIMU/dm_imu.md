@@ -14,7 +14,7 @@
 
 	 imu->can_cfg.port=CAN3_PORT;
 
-	 imu->imu_msg.can_msg.id=0x11;
+	 imu->imu_msg.can_msg.id=0x11; //这个取决于上位机设置的msgid
 
 
     DM_IMU_Init(imu);
@@ -25,7 +25,7 @@
 			
 			if(tick_ms%3==0)
 			{
-				IMU_RequestData(imu,0x01,3) ;   //请求加速度数据
+				IMU_RequestData(imu,0x01,1) ;   //请求加速度数据
 			}
 			else if(tick_ms%2==0)
 			{
@@ -33,7 +33,7 @@
 			}
 			else if(tick_ms%1==0)
 			{
-				IMU_RequestData(imu,0x01,1)    //请求欧拉角数据
+				IMU_RequestData(imu,0x01,3)    //请求欧拉角数据
 			}
 			//！！！！这三种请求依据情况来选用
 			if(tick_ms>1000)
