@@ -6,7 +6,11 @@
 
 DM_imu_t *imu;
 
-
+/**
+ * @brief 初始化imu的can消息结构体
+ * @param imu 大疆电机控制参数结构体
+ * @return 空
+ */
 void DM_IMU_Init(DM_imu_t *imu)
 {
 	 imu->imu_msg.can_msg.port=imu->can_cfg.port;
@@ -32,7 +36,12 @@ void IMU_RequestData(DM_imu_t *imu,uint16_t can_id,uint8_t reg)
 
 }
 
-
+/**
+ * @brief 更新imu的数据。
+ * 
+ * @param pData can数据指针
+ * @return 空
+ */
 void IMU_UpdateAccel(uint8_t* pData)
 {
 	uint16_t accel[3];
@@ -47,6 +56,12 @@ void IMU_UpdateAccel(uint8_t* pData)
 	
 }
 
+/**
+ * @brief 更新陀螺仪数据。
+ * 
+ * @param pData can数据指针
+ * @return 空
+ */
 void IMU_UpdateGyro(uint8_t* pData)
 {
 	uint16_t gyro[3];
@@ -58,7 +73,12 @@ void IMU_UpdateGyro(uint8_t* pData)
 	imu->GyroscopeDataPacket.gyro[1]=uint_to_float(gyro[1],GYRO_CAN_MIN,GYRO_CAN_MAX,16);
 	imu->GyroscopeDataPacket.gyro[2]=uint_to_float(gyro[2],GYRO_CAN_MIN,GYRO_CAN_MAX,16);
 }
-
+/**
+ * @brief 更新欧拉角数据。
+ * 
+ * @param pData can数据指针
+ * @return 空
+ */
 
 void IMU_UpdateEuler(uint8_t* pData)
 {
@@ -73,13 +93,23 @@ void IMU_UpdateEuler(uint8_t* pData)
 	imu->Angles.roll=uint_to_float(euler[2],ROLL_CAN_MIN,ROLL_CAN_MAX,16);
 
 }
-
+/**
+ * @brief 获取imu的数据。
+ * 
+ * @param pData can数据指针
+ * @return 空
+ */
 void IMU_UpdateDataPacket(uint8_t* pData)
 {
 	IMU_UpdateData(pData);
 }
 
-
+/**
+ * @brief 获取四元数数据。
+ * 
+ * @param pData can数据指针
+ * @return 空
+ */
 void IMU_UpdateQuaternion(uint8_t* pData)
 {
 	int w = pData[1]<<6| ((pData[2]&0xF8)>>2);
@@ -94,7 +124,12 @@ void IMU_UpdateQuaternion(uint8_t* pData)
 }
 
 
-
+/**
+ * @brief 刷新imu数据。
+ * 
+ * @param imu imu结构体指针
+ * @return 空
+ */
 void IMU_Refresh(DM_imu_t *imu)
 {
 	switch(imu->imu_msg.can_msg.data[0])
