@@ -4,7 +4,7 @@
 
 ```C
 {
-   	 imu = pvPortMalloc(sizeof(imu));
+   	 imu = pvPortMalloc(sizeof(DM_imu_t));
 
      imu->can_cfg.port = CAN3_PORT;
 
