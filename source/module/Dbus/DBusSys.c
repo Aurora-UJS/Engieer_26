@@ -1,8 +1,8 @@
 #include "DBusSys.h"
 #include "usart.h"
 #include "FreeRTOS.h"
-#include "DbusSys.h"
-#include "String.h"
+// #include "DbusSys.h"
+#include "string.h"
 #include "stdlib.h"
 
 rc_info_t remoter;

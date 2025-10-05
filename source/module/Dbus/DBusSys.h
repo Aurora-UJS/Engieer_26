@@ -4,7 +4,7 @@
 
 #include "main.h"
 #include "uart_api.h"
-#include "keyboard.h"
+#include "keyBoard.h"
 
 #define DBUS_BUFF_SIZE	18
 

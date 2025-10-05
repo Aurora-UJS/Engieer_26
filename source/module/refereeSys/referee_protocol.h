@@ -12,7 +12,7 @@
 #define referee_protocol_H
 
 #include "stdint.h"
-#include "keyboard.h"
+#include "keyBoard.h"
 
 /****************************宏定义部分****************************/
 
