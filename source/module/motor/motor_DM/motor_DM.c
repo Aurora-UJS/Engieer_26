@@ -128,7 +128,7 @@ void Motor_DM_Clear_Error(DM_motor_t *motor)
 **/
 void Speed_CtrlMotorDM(DM_motor_t *motor, float vel)
 {
-
+    motor->can_cfg.id += SPD_MODE;
     uint8_t *vbuf;
     vbuf = (uint8_t *)&vel;
     motor->can_cfg.id = motor->can_cfg.id;
@@ -148,14 +148,13 @@ void Speed_CtrlMotorDM(DM_motor_t *motor, float vel)
  */
 void PosSpeed_CtrlMotorDM(DM_motor_t *motor, float _pos, float _vel)
 {
-
+    motor->can_cfg.id += POS_MODE;
     uint8_t *pbuf, *vbuf;
     pbuf = (uint8_t *)&_pos;
     vbuf = (uint8_t *)&_vel;
 
     memcpy(motor->can_cfg.data, pbuf, 4);
     memcpy(motor->can_cfg.data + 4, vbuf, 4);
-
     motor->can_cfg.len = FDCAN_DLC_BYTES_8;
 
     can_msg_send_classical(&motor->can_cfg);
@@ -177,6 +176,7 @@ void PosSpeed_CtrlMotorDM(DM_motor_t *motor, float _pos, float _vel)
 **/
 void MIT_CtrlMotorDM(DM_motor_t *motor, float pos, float vel, float kp, float kd, float tor)
 {
+    motor->can_cfg.id += MIT_MODE;
     uint16_t pos_tmp, vel_tmp, kp_tmp, kd_tmp, tor_tmp;
 
     pos_tmp = float_to_uint(pos, -motor->tmp.PMAX, motor->tmp.PMAX, 16);
