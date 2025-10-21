@@ -52,7 +52,7 @@ build
 ./idea
 .vscode/.cortex-debug.peripherals.state.json
 .vscode/.cortex-debug.registers.state.json
-.vscode/setting.json
+.vscode/settings.json
 .vscode/c_cpp_properties.json
 .mxproject
 *.jdebug*
