@@ -85,6 +85,19 @@ const osThreadAttr_t Remoter_attributes = {
   .stack_size = sizeof(RemoterBuffer),
   .priority = (osPriority_t) osPriorityLow,
 };
+/* Definitions for uartTest */
+osThreadId_t uartTestHandle;
+uint32_t uartTestBuffer[256];
+osStaticThreadDef_t uartTestControlBlock;
+const osThreadAttr_t uartTest_attributes = {
+    .name       = "uartTest",
+    .cb_mem     = &uartTestControlBlock,
+    .cb_size    = sizeof(uartTestControlBlock),
+    .stack_mem  = &uartTestBuffer[0],
+    .stack_size = sizeof(uartTestBuffer),
+    .priority   = (osPriority_t)osPriorityNormal,
+};
+
 /* Definitions for imuBinarySem01 */
 osSemaphoreId_t imuBinarySem01Handle;
 osStaticSemaphoreDef_t imuBinarySemControlBlock;
@@ -104,7 +117,7 @@ const osSemaphoreAttr_t controlBinaryIMU_attributes = {
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-
+void uart_test(void *argument);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
@@ -156,6 +169,8 @@ void MX_FREERTOS_Init(void) {
   /* creation of Remoter */
   RemoterHandle = osThreadNew(Remoter_Task, NULL, &Remoter_attributes);
 
+  
+  uartTestHandle = osThreadNew(uart_test, NULL, &uartTest_attributes);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -226,5 +241,12 @@ __weak void Remoter_Task(void *argument)
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
 
+__weak void uart_test(void *argument)
+{
+  UNUSED(argument);
+  for (;;) {
+    osDelay(1);
+  }
+}
 /* USER CODE END Application */
 
