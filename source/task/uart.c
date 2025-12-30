@@ -1,40 +1,52 @@
 #include "cmsis_os2.h"
-#include "stm32h7xx_hal.h"
+#include "uart_api.h"
 #include "usart.h"
+#include <string.h>
 
+uart_rx_t testUart_msg;
+uart_msg_t testUart_rx_msg;
+uart_msg_t testUart_tx_msg;
+uint8_t testUartBuffer[18];
+uint32_t lastCount;
 
-uint8_t uart7_rx_byte;
-void uart_test(void *argument)
+extern void (*uart7_rx_hook)(uint8_t *pData, uint32_t size);
+
+void uart7_test_hook(uint8_t *buf, uint32_t len)
 {
-    UNUSED(argument);
-
-    const uint8_t msg[] = "Hello UART7\r\n";
-
-    osDelay(100);
-
-    HAL_UART_Receive_IT(&huart7, &uart7_rx_byte, 1);
-
-    for (;;)
-    {
-        HAL_UART_Transmit(&huart7,
-                          (uint8_t *)msg,
-                          sizeof(msg) - 1,
-                          100);
-
-        osDelay(5000);
-    }
+    HAL_UART_Transmit(&huart7, buf, len, 100);
 }
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+void testUart_rx_init(void){
+    testUart_msg.rx_msg =  &testUart_rx_msg;
+    testUart_msg.rx_msg-> pBuffer  = testUartBuffer;
+    testUart_msg.rx_msg->huart = &huart7; 
+    testUart_msg.rx_msg->Len = 18;
+    uart7_rx_hook = uart7_test_hook;
+    uart_rx_init(&testUart_msg);
+}
+void testUart_tx_init(void){
+    testUart_tx_msg.huart= &huart7;
+    testUart_tx_msg.pBuffer = (uint8_t *)"hello\r\n";
+    testUart_tx_msg.Len = strlen((char *) testUart_tx_msg.pBuffer);
+}
+
+
+void uart_Refresh(void)
 {
-    if (huart == &huart7)
+    if (testUart_msg.count != lastCount)
     {
-        const uint8_t rx_msg[] = "receive\r\n";
 
-        HAL_UART_Transmit_IT(&huart7,
-                             (uint8_t *)rx_msg,
-                             sizeof(rx_msg) - 1);
-
-        HAL_UART_Receive_IT(&huart7, &uart7_rx_byte, 1);
+        lastCount = testUart_msg.count;
+    }
+}
+void uart_test(void *arguments)
+{
+    UNUSED(arguments);
+    osDelay(10);
+    testUart_rx_init();
+    testUart_tx_init();
+    while (1) {
+        uart_tx_send_IT(&testUart_tx_msg);
+        osDelay(500);
     }
 }

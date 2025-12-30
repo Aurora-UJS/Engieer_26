@@ -5,7 +5,7 @@
 #include "dma.h"
 #include "usart.h"
 
-/* void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
 	switch ((unsigned long)huart->Instance)
 	{
@@ -29,7 +29,7 @@
 		uart7_msg->time = 0;
 		if (uart7_rx_hook != NULL)
 		{
-			uart7_rx_hook(uart5_msg->rx_msg->pBuffer, Size);
+			uart7_rx_hook(uart7_msg->rx_msg->pBuffer, Size);
 		}
 		break;
 	case (unsigned long)USART1_BASE:
@@ -80,7 +80,7 @@
 		break;
 	}
 }
- */
+
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
 

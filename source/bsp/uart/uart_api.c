@@ -130,7 +130,7 @@ uart_status_t uart_rx_init(uart_rx_t *uart_rx_msg)
         return UART_ERROR;
     }
 
-    HAL_UARTEx_ReceiveToIdle_IT(uart_rx_msg->rx_msg->huart, uart_rx_msg->rx_msg->pBuffer, uart_rx_msg->rx_msg->Len * 2);
+    HAL_UARTEx_ReceiveToIdle_IT(uart_rx_msg->rx_msg->huart, uart_rx_msg->rx_msg->pBuffer, uart_rx_msg->rx_msg->Len);
     return UART_OK;
 }
 
