@@ -87,7 +87,7 @@ const osThreadAttr_t Remoter_attributes = {
 };
 /* Definitions for uartTest */
 osThreadId_t uartTestHandle;
-uint32_t uartTestBuffer[256];
+uint32_t uartTestBuffer[512];
 osStaticThreadDef_t uartTestControlBlock;
 const osThreadAttr_t uartTest_attributes = {
     .name       = "uartTest",

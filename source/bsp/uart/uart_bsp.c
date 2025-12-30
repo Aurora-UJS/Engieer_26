@@ -5,7 +5,7 @@
 #include "dma.h"
 #include "usart.h"
 
-void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
+/* void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
 	switch ((unsigned long)huart->Instance)
 	{
@@ -80,7 +80,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 		break;
 	}
 }
-
+ */
 void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 {
 
