@@ -19,6 +19,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "FreeRTOS.h"
+#include "cmsis_os2.h"
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
@@ -97,6 +98,20 @@ const osThreadAttr_t uartTest_attributes = {
     .stack_size = sizeof(uartTestBuffer),
     .priority   = (osPriority_t)osPriorityNormal,
 };
+/* Definitions for motor_test */
+osThreadId_t motorTestHandle;
+uint32_t motorTestBuffer[512];
+osStaticThreadDef_t motorTestControlBlock;
+
+const osThreadAttr_t motorTest_attributes = {
+    .name       = "motorTest",
+    .cb_mem     = &motorTestControlBlock,
+    .cb_size    = sizeof(motorTestControlBlock),
+    .stack_mem  = &motorTestBuffer[0],
+    .stack_size = sizeof(motorTestBuffer),
+    .priority   = (osPriority_t)osPriorityNormal,
+};
+
 
 /* Definitions for imuBinarySem01 */
 osSemaphoreId_t imuBinarySem01Handle;
@@ -118,6 +133,7 @@ const osSemaphoreAttr_t controlBinaryIMU_attributes = {
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 void uart_test(void *argument);
+void motor_test(void *arguments);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
@@ -171,6 +187,7 @@ void MX_FREERTOS_Init(void) {
 
   
   uartTestHandle = osThreadNew(uart_test, NULL, &uartTest_attributes);
+  motorTestHandle = osThreadNew(motor_test, NULL,&motorTest_attributes);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -242,6 +259,13 @@ __weak void Remoter_Task(void *argument)
 /* USER CODE BEGIN Application */
 
 __weak void uart_test(void *argument)
+{
+  UNUSED(argument);
+  for (;;) {
+    osDelay(1);
+  }
+}
+__weak void motor_test(void *argument)
 {
   UNUSED(argument);
   for (;;) {
