@@ -129,7 +129,7 @@ const osThreadAttr_t jointFollowAngle_attributes = {
 
 /* Definitions for uart_Transmit_Angle */
 osThreadId_t uart_Transmit_AngleHandle;
-uint32_t uart_Transmit_AngleBuffer[512];
+uint32_t uart_Transmit_AngleBuffer[1024];
 osStaticThreadDef_t uart_Transmit_AngleControlBlock;
 const osThreadAttr_t uart_Transmit_Angle_attributes = {
     .name       = "uart_Transmit_Angle",
