@@ -112,7 +112,33 @@ const osThreadAttr_t motorTest_attributes = {
     .priority   = (osPriority_t)osPriorityNormal,
 };
 
+/* Definitions for jointFollowAngle */
 
+osThreadId_t jointFollowAngleHandle;
+uint32_t jointFollowAngleBuffer[512];
+osStaticThreadDef_t jointFollowAngleControlBlock;
+
+const osThreadAttr_t jointFollowAngle_attributes = {
+    .name       = "jointFollowAngle",
+    .cb_mem     = &jointFollowAngleControlBlock,
+    .cb_size    = sizeof(jointFollowAngleControlBlock),
+    .stack_mem  = &jointFollowAngleBuffer[0],
+    .stack_size = sizeof(jointFollowAngleBuffer),
+    .priority   = (osPriority_t)osPriorityNormal,
+};
+
+/* Definitions for uart_Transmit_Angle */
+osThreadId_t uart_Transmit_AngleHandle;
+uint32_t uart_Transmit_AngleBuffer[512];
+osStaticThreadDef_t uart_Transmit_AngleControlBlock;
+const osThreadAttr_t uart_Transmit_Angle_attributes = {
+    .name       = "uart_Transmit_Angle",
+    .cb_mem     = &uart_Transmit_AngleControlBlock,
+    .cb_size    = sizeof(uart_Transmit_AngleControlBlock),
+    .stack_mem  = &uart_Transmit_AngleBuffer[0],
+    .stack_size = sizeof(uart_Transmit_AngleBuffer),
+    .priority   = (osPriority_t)osPriorityNormal,
+};
 /* Definitions for imuBinarySem01 */
 osSemaphoreId_t imuBinarySem01Handle;
 osStaticSemaphoreDef_t imuBinarySemControlBlock;
@@ -134,6 +160,8 @@ const osSemaphoreAttr_t controlBinaryIMU_attributes = {
 /* USER CODE BEGIN FunctionPrototypes */
 void uart_test(void *argument);
 void motor_test(void *arguments);
+void jointFollowAngle(void *arguments);
+void uart_Transmit_Angle(void *arguments);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
@@ -186,8 +214,10 @@ void MX_FREERTOS_Init(void) {
   RemoterHandle = osThreadNew(Remoter_Task, NULL, &Remoter_attributes);
 
   
-  uartTestHandle = osThreadNew(uart_test, NULL, &uartTest_attributes);
-  motorTestHandle = osThreadNew(motor_test, NULL,&motorTest_attributes);
+  // uartTestHandle = osThreadNew(uart_test, NULL, &uartTest_attributes);
+  // motorTestHandle = osThreadNew(motor_test, NULL,&motorTest_attributes);
+  jointFollowAngleHandle = osThreadNew(jointFollowAngle,NULL, &jointFollowAngle_attributes);
+  uart_Transmit_AngleHandle = osThreadNew(uart_Transmit_Angle, NULL, &uart_Transmit_Angle_attributes);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -266,6 +296,20 @@ __weak void uart_test(void *argument)
   }
 }
 __weak void motor_test(void *argument)
+{
+  UNUSED(argument);
+  for (;;) {
+    osDelay(1);
+  }
+}
+__weak void jointFollowAngle(void *argument)
+{
+  UNUSED(argument);
+  for (;;) {
+    osDelay(1);
+  }
+}
+__weak void uart_Transmit_Angle(void *argument)
 {
   UNUSED(argument);
   for (;;) {

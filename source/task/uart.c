@@ -11,7 +11,7 @@
 
 uart_rx_t  testUart_msg;
 uart_msg_t testUart_rx_msg;
-uart_msg_t testUart_tx_msg;
+// uart_msg_t testUart_tx_msg;
 uart_msg_t feedbackData_msg;
 uint8_t    testUartBuffer[18];
 uint32_t   lastCount;
@@ -35,11 +35,11 @@ void testUart_rx_init(void){
     uart7_rx_hook                 = uart7_test_hook;
     uart_rx_init(&testUart_msg);
 }
-void testUart_tx_init(void){
-    testUart_tx_msg.huart= &huart7;
-    testUart_tx_msg.pBuffer = (uint8_t *)"hello\r\n";
-    testUart_tx_msg.Len = strlen((char *) testUart_tx_msg.pBuffer);
-}
+// void testUart_tx_init(void){
+//     testUart_tx_msg.huart= &huart7;
+//     testUart_tx_msg.pBuffer = (uint8_t *)"hello\r\n";
+//     testUart_tx_msg.Len = strlen((char *) testUart_tx_msg.pBuffer);
+// }
 
 
 void uart_Refresh(void)
@@ -74,7 +74,7 @@ void uart_test(void *arguments)
     UNUSED(arguments);
     osDelay(10);
     testUart_rx_init();
-    testUart_tx_init();
+    // testUart_tx_init();
     feedbackData_init();
     osDelay(10);
     uart_tx_send_IT(&feedbackData_msg);
