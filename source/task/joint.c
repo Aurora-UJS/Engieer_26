@@ -1,4 +1,3 @@
-#include "dsp/fast_math_functions.h"
 #include "main.h"
 #include "usart.h"
 #include "uart_api.h"
@@ -11,14 +10,22 @@
 #include "tool.h"
 #define JOINT_NUM 6
 
+// uart_msg_t Angle_tx_msg; 测试
+// uint8_t testBuf[50] = {0};
+uint8_t Angle_rx_msg_Buffer[256];
 DM_motor_t *joint_motor[JOINT_NUM];
 uart_rx_t Angle_msg; // 
 uart_msg_t Angle_rx_msg;
-// uart_msg_t Angle_tx_msg; 测试
-uint8_t Angle_rx_msg_Buffer[256];
-// uint8_t testBuf[50] = {0};
 float joint_radian[6] = {0};
 uint8_t firstEnableFlag = 0;
+
+
+/**
+ * @brief 角度接收回调
+ * 
+ * @param buf 接收缓冲数组
+ * @param len 数组长度
+ */
 void Angle_Receive_Callback(uint8_t *buf, uint32_t len)
 {
     // HAL_UART_Transmit(&huart7, buf, len, 100);  // 回传显示 测试
@@ -36,6 +43,11 @@ void Angle_Receive_Callback(uint8_t *buf, uint32_t len)
         }
     }
 }
+
+/**
+ * @brief 串口角度接收初始化
+ * 
+ */
 void angle_msg_rx_init(void)
 {
     Angle_msg.rx_msg = &Angle_rx_msg;
@@ -52,17 +64,10 @@ void angle_msg_rx_init(void)
 //     testUart_tx_msg.Len = strlen((char *) testUart_tx_msg.pBuffer);
 // }
 
-void uart_Transmit_Angle(void *argment)
-{
-    UNUSED(argment);
-    osDelay(10);
-    angle_msg_rx_init();
-    // testUart_tx_init();
-    while (1) {
-        // uart_tx_send_IT(&testUart_tx_msg);
-        osDelay(10);
-    }
-}
+/**
+ * @brief 电机初始化
+ * 
+ */
 void joint_motor_init(void)
 {
     for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
@@ -78,19 +83,42 @@ void joint_motor_init(void)
         Motor_DM_Init(joint_motor[joint_index]);
     }
 }
+
+/**
+ * @brief 电机数据更新
+ * 
+ */
 void Joint_Motor_Refresh(void)
 {
     for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
         Motor_DM_Refresh(joint_motor[joint_index]);
     }
 }
+
+/**
+ * @brief 电机使能
+ * 
+ */
 void Joint_Motor_Enable(void)
 {
     for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
         Motor_DM_Enable(joint_motor[joint_index]);
     }
 }
-float dm_angle_test = 0;
+
+// 任务函数
+void uart_Transmit_Angle(void *argment)
+{
+    UNUSED(argment);
+    osDelay(10);
+    angle_msg_rx_init();
+    // testUart_tx_init();
+    while (1) {
+        // uart_tx_send_IT(&testUart_tx_msg);
+        osDelay(10);
+    }
+}
+// float dm_angle_test = 0; 测试
 void jointFollowAngle(void *argument)
 {
     UNUSED(argument);
@@ -103,7 +131,7 @@ void jointFollowAngle(void *argument)
         PosSpeed_CtrlMotorDM(joint_motor[0],joint_radian[0], 1);
         PosSpeed_CtrlMotorDM(joint_motor[1],joint_radian[1], 1);
         PosSpeed_CtrlMotorDM(joint_motor[2],joint_radian[2], 1);
-        PosSpeed_CtrlMotorDM(joint_motor[3],joint_radian[0], 1);
+        PosSpeed_CtrlMotorDM(joint_motor[3],joint_radian[3], 1);
         PosSpeed_CtrlMotorDM(joint_motor[4],joint_radian[4], 1);
         PosSpeed_CtrlMotorDM(joint_motor[5],joint_radian[5], 1);
         osDelay(1);
