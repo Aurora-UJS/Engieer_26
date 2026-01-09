@@ -102,6 +102,7 @@ void Joint_Motor_Refresh(void)
 void Joint_Motor_Enable(void)
 {
     for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
+        // osDelay(100);
         Motor_DM_Enable(joint_motor[joint_index]);
     }
 }
@@ -118,22 +119,25 @@ void uart_Transmit_Angle(void *argment)
         osDelay(10);
     }
 }
-// float dm_angle_test = 0; 测试
+float dm_angle_test[6] = {0}; 
+
 void jointFollowAngle(void *argument)
 {
     UNUSED(argument);
     joint_motor_init();
+    // Motor_DM_Save_Zero(joint_motor[3]);
+    // Motor_DM_Save_Zero(joint_motor[5]);
+    osDelay(100);
     Joint_Motor_Enable(); // 使能所有电机
     while (1) {
-        // dm_angle_test = joint_motor[3]->motor_msg.motor_angle; 测试
         Joint_Motor_Refresh();
 
-        PosSpeed_CtrlMotorDM(joint_motor[0],joint_radian[0], 1);
-        PosSpeed_CtrlMotorDM(joint_motor[1],joint_radian[1], 1);
-        PosSpeed_CtrlMotorDM(joint_motor[2],joint_radian[2], 1);
-        PosSpeed_CtrlMotorDM(joint_motor[3],joint_radian[3], 1);
-        PosSpeed_CtrlMotorDM(joint_motor[4],joint_radian[4], 1);
-        PosSpeed_CtrlMotorDM(joint_motor[5],joint_radian[5], 1);
-        osDelay(1);
+        // PosSpeed_CtrlMotorDM(joint_motor[0],joint_radian[0], 1);
+        PosSpeed_CtrlMotorDM(joint_motor[1],joint_radian[1], 0.5);
+        PosSpeed_CtrlMotorDM(joint_motor[2],-joint_radian[2], 0.5);
+        PosSpeed_CtrlMotorDM(joint_motor[3],-joint_radian[3], 0.5);
+        PosSpeed_CtrlMotorDM(joint_motor[4],-joint_radian[4], 0.5);
+        PosSpeed_CtrlMotorDM(joint_motor[5],joint_radian[5], 0.5);
+        osDelay(2);
     }
 }
