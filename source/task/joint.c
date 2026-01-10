@@ -1,4 +1,6 @@
+#include "can_struct.h"
 #include "main.h"
+#include "stm32_hal_legacy.h"
 #include "usart.h"
 #include "uart_api.h"
 #include "motor_DM.h"
@@ -73,7 +75,7 @@ void joint_motor_init(void)
     for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
         joint_motor[joint_index] = pvPortMalloc(sizeof(DM_motor_t));
         //配置 can1
-        joint_motor[joint_index]->can_cfg.port = CAN1_PORT;
+        joint_motor[joint_index]->can_cfg.port = CAN2_PORT;
         joint_motor[joint_index]->tmp.PMAX = 12.5f;
         joint_motor[joint_index]->tmp.VMAX = 3.0f;
         joint_motor[joint_index]->tmp.TMAX = 1.0f;
@@ -121,6 +123,13 @@ void uart_Transmit_Angle(void *argment)
 }
 float dm_angle_test[6] = {0}; 
 
+float LimitPos(float joint_radian)
+{
+    if (joint_radian < 0) {
+        return joint_radian*(-1);
+    }
+}
+
 void jointFollowAngle(void *argument)
 {
     UNUSED(argument);
@@ -133,11 +142,12 @@ void jointFollowAngle(void *argument)
         Joint_Motor_Refresh();
 
         // PosSpeed_CtrlMotorDM(joint_motor[0],joint_radian[0], 1);
-        PosSpeed_CtrlMotorDM(joint_motor[1],joint_radian[1], 0.5);
-        PosSpeed_CtrlMotorDM(joint_motor[2],-joint_radian[2], 0.5);
-        PosSpeed_CtrlMotorDM(joint_motor[3],-joint_radian[3], 0.5);
-        PosSpeed_CtrlMotorDM(joint_motor[4],-joint_radian[4], 0.5);
-        PosSpeed_CtrlMotorDM(joint_motor[5],joint_radian[5], 0.5);
-        osDelay(2);
+        PosSpeed_CtrlMotorDM(joint_motor[1],limit(joint_radian[1], 0, 1), 0.5); // pitch轴控制
+        PosSpeed_CtrlMotorDM(joint_motor[2],-joint_radian[2], 0.5); // pitch轴控制
+        PosSpeed_CtrlMotorDM(joint_motor[3],-joint_radian[3],  0.5); // roll轴控制
+        osDelay(1);
+        PosSpeed_CtrlMotorDM(joint_motor[4],-joint_radian[4], 0.5); // pitch轴控制
+        PosSpeed_CtrlMotorDM(joint_motor[5],joint_radian[5], 0.5); // roll轴控制
+        osDelay(1);
     }
 }
