@@ -3,6 +3,7 @@
 #include "stm32_hal_legacy.h"
 #include "usart.h"
 #include "uart_api.h"
+#include <stdlib.h>
 #include "motor_DM.h"
 #include "cmsis_os2.h"
 #include <stdint.h>
@@ -12,6 +13,12 @@
 #include "tool.h"
 #define JOINT_NUM 6
 
+#define FRAME_HEADER_LENGTH 5 // 帧头数据长度
+#define CMD_ID_LENGTH 2       // 命令码ID数据长度
+#define DATA_LENGTH 24        // 数据段长度
+#define FRAME_TAIL_LENGTH 2   // 帧尾数据长度
+#define DATA_FRAME_LENGTH  (FRAME_HEADER_LENGTH + DATA_LENGTH + CMD_ID_LENGTH + FRAME_TAIL_LENGTH)
+
 // uart_msg_t Angle_tx_msg; 测试
 // uint8_t testBuf[50] = {0};
 uint8_t Angle_rx_msg_Buffer[256];
@@ -20,8 +27,8 @@ uart_rx_t Angle_msg; //
 uart_msg_t Angle_rx_msg;
 float joint_radian[6] = {0};
 uint8_t firstEnableFlag = 0;
-
-
+uint8_t data[24];
+// uint8_t testBuf[] = {0};
 /**
  * @brief 角度接收回调
  * 
@@ -31,15 +38,16 @@ uint8_t firstEnableFlag = 0;
 void Angle_Receive_Callback(uint8_t *buf, uint32_t len)
 {
     // HAL_UART_Transmit(&huart7, buf, len, 100);  // 回传显示 测试
-    // memcpy(testBuf, buf, sizeof(buf)); 测试
+    // memcpy(testBuf, buf, sizeof(buf)); 
     if (firstEnableFlag == 0) {
         firstEnableFlag = 1;
     }
-    else {
+    else { 
+        memcpy(data, &buf[7], 24);
         for (int i = 0; i < 6; i++) {
             int tmp = 0;
             // 每个弧度占 4 个字符
-            sscanf((const char*)&buf[i * 4], "%04d", &tmp);
+            sscanf((const char*)&data[i * 4], "%04d", &tmp);
             joint_radian[i] = tmp / 1000.0f;
             joint_radian[i] = joint_radian[i] - PI;
         }
@@ -74,7 +82,7 @@ void joint_motor_init(void)
 {
     for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
         joint_motor[joint_index] = pvPortMalloc(sizeof(DM_motor_t));
-        //配置 can1
+        //配置 can2
         joint_motor[joint_index]->can_cfg.port = CAN2_PORT;
         joint_motor[joint_index]->tmp.PMAX = 12.5f;
         joint_motor[joint_index]->tmp.VMAX = 3.0f;
@@ -142,7 +150,7 @@ void jointFollowAngle(void *argument)
         Joint_Motor_Refresh();
 
         // PosSpeed_CtrlMotorDM(joint_motor[0],joint_radian[0], 1);
-        PosSpeed_CtrlMotorDM(joint_motor[1],limit(joint_radian[1], 0, 1), 0.5); // pitch轴控制
+        PosSpeed_CtrlMotorDM(joint_motor[1],limit(-joint_radian[1], 0, 1), 0.5); // pitch轴控制
         PosSpeed_CtrlMotorDM(joint_motor[2],-joint_radian[2], 0.5); // pitch轴控制
         PosSpeed_CtrlMotorDM(joint_motor[3],-joint_radian[3],  0.5); // roll轴控制
         osDelay(1);
