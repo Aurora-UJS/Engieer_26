@@ -1,3 +1,6 @@
+#ifndef CHASSIS_TASK_H
+#define CHASSIS_TASK_H
+
 #include "usart.h"
 #include "tim.h"
 #include "IMUtool.h"
@@ -67,3 +70,5 @@ void Rising_Motor_SendControl_DJI(DJI_motor_t *DJMotor,int16_t output[]);
 void Rising_Motor_TargetVelocity(float32_t Target_Velocity[],rc_info_t remoter);
 void Rising_3508_PID_Init(pid_type_def pid[]);
 void Rising_3508_PID_Calculate(pid_type_def pid[],float32_t target_speed[],DJI_motor_t *motor,int16_t output[]);
+
+#endif // !CHASSIS_TASK_H

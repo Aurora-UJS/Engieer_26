@@ -11,6 +11,7 @@
 #include <string.h>
 #include "arm_math.h"
 #include "tool.h"
+#include "DbusSys.h"
 #define JOINT_NUM 7
 
 #define FRAME_HEADER_LENGTH 5 // 帧头数据长度
@@ -28,6 +29,14 @@ uart_msg_t Angle_rx_msg;
 float joint_radian[6] = {0};
 uint8_t firstEnableFlag = 0;
 uint8_t data[24];
+extern rc_info_t remoter;
+
+// ch1 右摇杆 左右 左-右+
+// ch2 右摇杆 前后 前+后-
+// ch3 左摇杆 左右 左-右+
+// ch4 左摇杆 前后 前+后-
+// sw1 左拨码开关 前1 中3 后2
+// sw2 右拨码开关 前1 中3 后2
 
 // uint8_t testBuf[] = {0};
 /**
@@ -132,13 +141,6 @@ void uart_Transmit_Angle(void *argment)
 }
 float dm_angle_test[6] = {0}; 
 
-float LimitPos(float joint_radian)
-{
-    if (joint_radian < 0) {
-        return joint_radian*(-1);
-    }
-}
-
 void jointFollowAngle(void *argument)
 {
     UNUSED(argument);
@@ -161,5 +163,20 @@ void jointFollowAngle(void *argument)
         osDelay(1);
         PosSpeed_CtrlMotorDM(joint_motor[5],joint_radian[5], 0.5); // roll轴控制
         osDelay(1);
+
+        switch(remoter.sw1)
+        {
+            case 1:
+                PosSpeed_CtrlMotorDM(joint_motor[6],joint_radian[6], 0.5); // 夹爪控制
+                osDelay(1);
+            break;
+            //1是前，夹爪张开
+            case 2:
+                PosSpeed_CtrlMotorDM(joint_motor[6],joint_radian[6], 0.5); // 夹爪控制
+                osDelay(1);
+            break;
+            //2是后，夹爪合拢
+
+        }
     }
 }

@@ -1,5 +1,3 @@
-#ifndef CHASSIS_TASK_H
-#define CHASSIS_TASK_H
 
 #include "Chassis_Task.h"
 #include "DbusSys.h"
@@ -250,4 +248,3 @@ void Rising_3508_PID_Calculate(pid_type_def pid[], float32_t target_speed[],DJI_
   }
 }
 
-#endif // !CHASSIS_TASK_H
