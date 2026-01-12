@@ -11,11 +11,11 @@
 #include <string.h>
 #include "arm_math.h"
 #include "tool.h"
-#define JOINT_NUM 6
+#define JOINT_NUM 7
 
 #define FRAME_HEADER_LENGTH 5 // 帧头数据长度
 #define CMD_ID_LENGTH 2       // 命令码ID数据长度
-#define DATA_LENGTH 24        // 数据段长度
+#define DATA_LENGTH 26        // 数据段长度
 #define FRAME_TAIL_LENGTH 2   // 帧尾数据长度
 #define DATA_FRAME_LENGTH  (FRAME_HEADER_LENGTH + DATA_LENGTH + CMD_ID_LENGTH + FRAME_TAIL_LENGTH)
 
@@ -28,6 +28,7 @@ uart_msg_t Angle_rx_msg;
 float joint_radian[6] = {0};
 uint8_t firstEnableFlag = 0;
 uint8_t data[24];
+
 // uint8_t testBuf[] = {0};
 /**
  * @brief 角度接收回调
@@ -150,11 +151,14 @@ void jointFollowAngle(void *argument)
         Joint_Motor_Refresh();
 
         // PosSpeed_CtrlMotorDM(joint_motor[0],joint_radian[0], 1);
-        PosSpeed_CtrlMotorDM(joint_motor[1],limit(-joint_radian[1], 0, 1), 0.5); // pitch轴控制
-        PosSpeed_CtrlMotorDM(joint_motor[2],-joint_radian[2], 0.5); // pitch轴控制
+        PosSpeed_CtrlMotorDM(joint_motor[1],limit(joint_radian[1], 0, 1.5), 0.5); // pitch轴控制
+        osDelay(1);
+        PosSpeed_CtrlMotorDM(joint_motor[2],limit(-joint_radian[2], 0, 1.5), 0.5); // pitch轴控制
+        osDelay(1);
         PosSpeed_CtrlMotorDM(joint_motor[3],-joint_radian[3],  0.5); // roll轴控制
         osDelay(1);
-        PosSpeed_CtrlMotorDM(joint_motor[4],-joint_radian[4], 0.5); // pitch轴控制
+        PosSpeed_CtrlMotorDM(joint_motor[4],limit(-joint_radian[4],-1.5, 1.5), 0.5); // pitch轴控制
+        osDelay(1);
         PosSpeed_CtrlMotorDM(joint_motor[5],joint_radian[5], 0.5); // roll轴控制
         osDelay(1);
     }

@@ -7,7 +7,7 @@
 #include "keyBoard.h"
 
 #define DBUS_BUFF_SIZE	18
-
+#define Remoter_CHMAX 660
 
 typedef struct 
 {

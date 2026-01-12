@@ -67,3 +67,7 @@ source\task
 .clangd
 .settings
 .vscode/
+
+# .cache\
+.cache
+run.sh
