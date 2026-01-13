@@ -8,17 +8,14 @@
 #include "cmsis_os2.h"
 #include <stdint.h>
 #include <stdio.h>
+#include <ctype.h>
 #include <string.h>
 #include "arm_math.h"
 #include "tool.h"
 #include "DbusSys.h"
 #define JOINT_NUM 7
 
-#define FRAME_HEADER_LENGTH 5 // 帧头数据长度
-#define CMD_ID_LENGTH 2       // 命令码ID数据长度
-#define DATA_LENGTH 26        // 数据段长度
-#define FRAME_TAIL_LENGTH 2   // 帧尾数据长度
-#define DATA_FRAME_LENGTH  (FRAME_HEADER_LENGTH + DATA_LENGTH + CMD_ID_LENGTH + FRAME_TAIL_LENGTH)
+#define ANGLE_DATA_LENGTH 24  // 实际角度数据长度（6个角度 × 4字符）
 
 // uart_msg_t Angle_tx_msg; 测试
 // uint8_t testBuf[50] = {0};
@@ -28,8 +25,11 @@ uart_rx_t Angle_msg; //
 uart_msg_t Angle_rx_msg;
 float joint_radian[6] = {0};
 uint8_t firstEnableFlag = 0;
-uint8_t data[24];
+uint8_t angle_data[ANGLE_DATA_LENGTH] = {0};
 extern rc_info_t remoter;
+
+static uint8_t angle_digits[ANGLE_DATA_LENGTH];
+static uint8_t angle_digits_len = 0;
 
 // ch1 右摇杆 左右 左-右+
 // ch2 右摇杆 前后 前+后-
@@ -39,29 +39,43 @@ extern rc_info_t remoter;
 // sw2 右拨码开关 前1 中3 后2
 
 // uint8_t testBuf[] = {0};
-/**
- * @brief 角度接收回调
- * 
- * @param buf 接收缓冲数组
- * @param len 数组长度
- */
+
+static void Parse_Angle_24Digits(const uint8_t digits[ANGLE_DATA_LENGTH])
+{
+    memcpy(angle_data, digits, ANGLE_DATA_LENGTH);
+
+    for (int i = 0; i < 6; i++) {
+        char four_digit[5];
+        memcpy(four_digit, &angle_data[i * 4], 4);
+        four_digit[4] = '\0';
+
+        int tmp = 0;
+        (void)sscanf(four_digit, "%d", &tmp);
+        joint_radian[i] = tmp / 1000.0f;
+        joint_radian[i] = joint_radian[i] - PI;
+    }
+}
+
 void Angle_Receive_Callback(uint8_t *buf, uint32_t len)
 {
-    // HAL_UART_Transmit(&huart7, buf, len, 100);  // 回传显示 测试
-    // memcpy(testBuf, buf, sizeof(buf)); 
-    if (firstEnableFlag == 0) {
-        firstEnableFlag = 1;
-    }
-    else { 
-        memcpy(data, &buf[7], 24);
-        for (int i = 0; i < 6; i++) {
-            int tmp = 0;
-            // 每个弧度占 4 个字符
-            sscanf((const char*)&data[i * 4], "%04d", &tmp);
-            joint_radian[i] = tmp / 1000.0f;
-            joint_radian[i] = joint_radian[i] - PI;
+    if(remoter.sw1 == 2||remoter.sw1 == 3)
+    {
+    for (uint32_t i = 0; i < len; i++) {
+        uint8_t c = buf[i];
+        if (isdigit((int)c)) {
+            if (angle_digits_len < ANGLE_DATA_LENGTH) {
+                angle_digits[angle_digits_len++] = c;
+            }
+
+            if (angle_digits_len == ANGLE_DATA_LENGTH) {
+                Parse_Angle_24Digits(angle_digits);
+                angle_digits_len = 0;
+                firstEnableFlag = 1;
+            }
         }
     }
+    }
+    else return;
 }
 
 /**
@@ -77,12 +91,6 @@ void angle_msg_rx_init(void)
     uart7_rx_hook = Angle_Receive_Callback;
     uart_rx_init(&Angle_msg);
 }
-// uart_msg_t testUart_tx_msg;
-// void testUart_tx_init(void){
-//     testUart_tx_msg.huart= &huart7;
-//     testUart_tx_msg.pBuffer = (uint8_t *)"hello\r\n";
-//     testUart_tx_msg.Len = strlen((char *) testUart_tx_msg.pBuffer);
-// }
 
 /**
  * @brief 电机初始化
@@ -155,24 +163,24 @@ void jointFollowAngle(void *argument)
         // PosSpeed_CtrlMotorDM(joint_motor[0],joint_radian[0], 1);
         PosSpeed_CtrlMotorDM(joint_motor[1],limit(joint_radian[1], 0, 1.5), 0.5); // pitch轴控制
         osDelay(1);
-        PosSpeed_CtrlMotorDM(joint_motor[2],limit(-joint_radian[2], 0, 1.5), 0.5); // pitch轴控制
+        PosSpeed_CtrlMotorDM(joint_motor[2],limit(-joint_radian[2], 0, 3), 0.5); // pitch轴控制
         osDelay(1);
         PosSpeed_CtrlMotorDM(joint_motor[3],-joint_radian[3],  0.5); // roll轴控制
         osDelay(1);
         PosSpeed_CtrlMotorDM(joint_motor[4],limit(-joint_radian[4],-1.5, 1.5), 0.5); // pitch轴控制
         osDelay(1);
-        PosSpeed_CtrlMotorDM(joint_motor[5],joint_radian[5], 0.5); // roll轴控制
+        PosSpeed_CtrlMotorDM(joint_motor[5],-joint_radian[5], 0.5); // roll轴控制
         osDelay(1);
 
         switch(remoter.sw1)
         {
-            case 1:
-                PosSpeed_CtrlMotorDM(joint_motor[6],joint_radian[6], 0.5); // 夹爪控制
+            case 3:
+                PosSpeed_CtrlMotorDM(joint_motor[6],0, 0.5); // 夹爪控制
                 osDelay(1);
             break;
             //1是前，夹爪张开
             case 2:
-                PosSpeed_CtrlMotorDM(joint_motor[6],joint_radian[6], 0.5); // 夹爪控制
+                PosSpeed_CtrlMotorDM(joint_motor[6],1.2, 0.5); // 夹爪控制
                 osDelay(1);
             break;
             //2是后，夹爪合拢

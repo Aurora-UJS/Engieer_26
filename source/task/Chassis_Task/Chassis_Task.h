@@ -19,7 +19,7 @@
 #define Steel_R 0.15
 #define Reduction_Ratio 3519/187
 #define Motor_Wheel_Trans 6.677 * 0.0001
-#define Turning_Forward_Feedback -3
+#define Turning_Forward_Feedback -2
 
 #define Chassis_PowerOff 0
 #define Chassis_Normal 1
