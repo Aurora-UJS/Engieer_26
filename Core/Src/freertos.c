@@ -139,6 +139,17 @@ const osThreadAttr_t Chassis_Task_attributes = {
   .priority = (osPriority_t)osPriorityNormal,  // 优先级（与默认任务相同）
 };
 
+uint32_t Referee_TaskBuffer[512];  // 栈大小：128 * 4字节 = 512字节
+osStaticThreadDef_t Referee_TaskControlBlock;  // 静态任务控制块
+osThreadId_t Referee_TaskHandle;  // 任务句柄
+const osThreadAttr_t Referee_Task_attributes = {
+  .name = "Referee_Task",        // 任务名称（调试用）
+  .cb_mem = &Referee_TaskControlBlock,  // 控制块地址（静态创建）
+  .cb_size = sizeof(Referee_TaskControlBlock),  // 控制块大小
+  .stack_mem = &Referee_TaskBuffer[0],  // 栈空间地址
+  .stack_size = sizeof(Referee_TaskBuffer),  // 栈大小
+  .priority = (osPriority_t)osPriorityNormal,  // 优先级（与默认任务相同）
+};
 /* Definitions for uart_Transmit_Angle */
 osThreadId_t uart_Transmit_AngleHandle;
 uint32_t uart_Transmit_AngleBuffer[1024];
@@ -175,6 +186,7 @@ void motor_test(void *arguments);
 void jointFollowAngle(void *arguments);
 void uart_Transmit_Angle(void *arguments);
 void Chassis_Task(void *arguments);
+void Referee_Task(void *arguments);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
@@ -232,6 +244,7 @@ void MX_FREERTOS_Init(void) {
   jointFollowAngleHandle = osThreadNew(jointFollowAngle,NULL, &jointFollowAngle_attributes);
   uart_Transmit_AngleHandle = osThreadNew(uart_Transmit_Angle, NULL, &uart_Transmit_Angle_attributes);
   Chassis_TaskHandle = osThreadNew(Chassis_Task, NULL, &Chassis_Task_attributes);
+  Referee_TaskHandle = osThreadNew(Referee_Task, NULL, &Referee_Task_attributes);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -342,6 +355,16 @@ __weak void Chassis_Task(void *argument)
     osDelay(2);
   }
   /* USER CODE END Chassis_Task */
+}
+
+__weak void Referee_Task(void *argument)
+{
+  UNUSED(argument);
+  for(;;)
+  {
+    
+    osDelay(1);
+  }
 }
 /* USER CODE END Application */
 

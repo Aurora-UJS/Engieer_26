@@ -10,16 +10,17 @@
 #include <stdint.h>
 #include "DbusSys.h"
 #include "motor_DJI.h"
+#include "motor_DM.h"
 #include "PIDtool.h"
 
 #define Max_Velocity 2
-#define Max_Rising_Motor_Velocity 2
+#define Max_Rising_Motor_Velocity 4
 
 #define Track_R 0.05
 #define Steel_R 0.15
 #define Reduction_Ratio 3519/187
 #define Motor_Wheel_Trans 6.677 * 0.0001
-#define Turning_Forward_Feedback -2
+#define Turning_Forward_Feedback -1
 
 #define Chassis_PowerOff 0
 #define Chassis_Normal 1
@@ -50,11 +51,21 @@
 #define Chassis_3508_PID_Maxout 16384
 #define Chassis_3508_PID_Maxiout 8192
 
-#define Rising_3508_PID_kp 1000
+#define Rising_3508_PID_kp 7000
 #define Rising_3508_PID_ki 0
 #define Rising_3508_PID_kd 0
 #define Rising_3508_PID_Maxout 16384
 #define Rising_3508_PID_Maxiout 8192
+
+#define DM_MITMode_ID 0x000
+#define DM_PosVelMode_ID 0x100
+#define DM_VelMode_ID 0x200
+#define DM_EMITMode_ID 0x300
+
+#define DM_l0010l_Master_ID_Left 0x11
+#define DM_l0010l_Master_ID_Right 0x12
+#define DM_l0010l_CAN_ID_Left 0x01
+#define DM_l0010l_CAN_ID_Right 0x02
 
 void Chassis_Task(void *argument);
 
@@ -70,5 +81,6 @@ void Rising_Motor_SendControl_DJI(DJI_motor_t *DJMotor,int16_t output[]);
 void Rising_Motor_TargetVelocity(float32_t Target_Velocity[],rc_info_t remoter);
 void Rising_3508_PID_Init(pid_type_def pid[]);
 void Rising_3508_PID_Calculate(pid_type_def pid[],float32_t target_speed[],DJI_motor_t *motor,int16_t output[]);
+void Motor_Init_DM(DM_motor_t **Rising_Motor_L,DM_motor_t **Rising_Motor_R);
 
 #endif // !CHASSIS_TASK_H

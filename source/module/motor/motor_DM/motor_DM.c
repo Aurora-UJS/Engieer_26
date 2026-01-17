@@ -164,7 +164,7 @@ void PosSpeed_CtrlMotorDM(DM_motor_t *motor, float _pos, float _vel)
 ************************************************************************
 * @brief:      	mit_ctrl: MIT模式下的电机控制函数
 * @param[in]:   hcan:			指向CAN_HandleTypeDef结构的指针，用于指定CAN总线
-* @param[in]:   motor_id:	电机ID，指定目标电机
+* @param[in]:   motor_id:	    电机ID，指定目标电机
 * @param[in]:   pos:			位置给定值
 * @param[in]:   vel:			速度给定值
 * @param[in]:   kp:				位置比例系数

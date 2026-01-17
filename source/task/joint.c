@@ -40,6 +40,23 @@ static uint8_t angle_digits_len = 0;
 
 // uint8_t testBuf[] = {0};
 
+/**
+ * @brief 将 24 个数字字符解析为 6 个关节角度值
+ *
+ * @param digits 24字节的 ASCII 数字字符数组（每4字节表示一个0~9999的数）
+ *
+ * @details
+ * - digits[0..3]   -> joint_radian[0]
+ * - digits[4..7]   -> joint_radian[1]
+ * - ...
+ * - digits[20..23] -> joint_radian[5]
+ *
+ * 转换规则：
+ * - tmp = atoi(4位字符)
+ * - rad = tmp / 1000.0f
+ * - joint_radian[i] = rad - PI
+ */
+
 static void Parse_Angle_24Digits(const uint8_t digits[ANGLE_DATA_LENGTH])
 {
     memcpy(angle_data, digits, ANGLE_DATA_LENGTH);
@@ -55,6 +72,21 @@ static void Parse_Angle_24Digits(const uint8_t digits[ANGLE_DATA_LENGTH])
         joint_radian[i] = joint_radian[i] - PI;
     }
 }
+
+/**
+ * @brief UART7 接收回调：从串口字节流中提取并解析 24 位角度数据
+ *
+ * @param buf UART驱动回调提供的接收数据缓冲区指针
+ * @param len 本次回调收到的数据长度（字节数）
+ *
+ * @details
+ * - 本函数不依赖帧头/帧尾/CRC，仅扫描 buf 中的 ASCII 数字字符 '0'~'9'
+ * - 连续收集到 24 个数字字符后，按 6 组 × 4 字符转换为 6 个关节角度
+ * - 解析完成后更新 joint_radian[0..5]
+ *
+ * @warning
+ * 若串口字节流中混入其它数字字符（例如打印日志），可能导致误拼接与误解析。
+ */
 
 void Angle_Receive_Callback(uint8_t *buf, uint32_t len)
 {
@@ -80,7 +112,15 @@ void Angle_Receive_Callback(uint8_t *buf, uint32_t len)
 
 /**
  * @brief 串口角度接收初始化
- * 
+ *
+ * @details
+ * 1) 配置 UART7 的接收消息结构体（句柄/缓冲区/长度）
+ * 2) 注册 UART7 接收回调钩子函数 uart7_rx_hook
+ * 3) 启动 UART7 的空闲中断接收（ReceiveToIdle）
+ *
+ * @note
+ * - 接收缓冲区为 Angle_rx_msg_Buffer
+ * - 实际解析逻辑在 Angle_Receive_Callback() 中完成
  */
 void angle_msg_rx_init(void)
 {
