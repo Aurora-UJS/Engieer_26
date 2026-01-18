@@ -151,7 +151,6 @@ void joint_motor_init(void)
         Motor_DM_Init(joint_motor[joint_index]);
     }
 }
-
 /**
  * @brief 电机数据更新
  * 
@@ -180,7 +179,7 @@ void uart_Transmit_Angle(void *argment)
 {
     UNUSED(argment);
     osDelay(10);
-    angle_msg_rx_init();
+    // angle_msg_rx_init();  // 注释掉：UART7 已被 Referee_Task 使用
     // testUart_tx_init();
     while (1) {
         // uart_tx_send_IT(&testUart_tx_msg);

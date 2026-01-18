@@ -23,8 +23,8 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 		break;
 	case (unsigned long)UART7_BASE:
 		uart_rx_cheak(uart7_msg);
-		uart7_msg->rx_msg->Len = Size;
-		HAL_UARTEx_ReceiveToIdle_IT(uart7_msg->rx_msg->huart, uart7_msg->rx_msg->pBuffer, uart7_msg->rx_msg->Len * 2);
+		// 不修改 Len，保持缓冲区容量不变；用 Size 表示本次实际收到的长度
+		HAL_UARTEx_ReceiveToIdle_IT(uart7_msg->rx_msg->huart, uart7_msg->rx_msg->pBuffer, uart7_msg->rx_msg->Len);
 		uart7_msg->count++;
 		uart7_msg->time = 0;
 		if (uart7_rx_hook != NULL)
@@ -92,7 +92,7 @@ void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
 		break;
 	case (unsigned long)UART7_BASE:
 		uart_rx_cheak(uart7_msg);
-		HAL_UARTEx_ReceiveToIdle_IT(uart7_msg->rx_msg->huart, uart7_msg->rx_msg->pBuffer, uart7_msg->rx_msg->Len * 2);
+		HAL_UARTEx_ReceiveToIdle_IT(uart7_msg->rx_msg->huart, uart7_msg->rx_msg->pBuffer, uart7_msg->rx_msg->Len);
 		break;
 	case (unsigned long)USART1_BASE:
 		uart_rx_cheak(uart1_msg);

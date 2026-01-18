@@ -14,6 +14,6 @@ void Referee_Task(void *argument)
     {
         Controller_Msg = get_custom_controller_msg();
 
-        osDelay(10);
+        osDelay(2);
     }
 }

@@ -73,7 +73,7 @@ void uart_test(void *arguments)
 {
     UNUSED(arguments);
     osDelay(10);
-    testUart_rx_init();
+    // testUart_rx_init();  // UART7 已被 Referee_Task 使用
     // testUart_tx_init();
     feedbackData_init();
     osDelay(10);
