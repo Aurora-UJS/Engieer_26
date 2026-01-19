@@ -48,7 +48,7 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 )
 
 # 查找source目录下的所有*.cpp,*.c源文件,并将文件列表保存到 DIR_LIB_SRCS 变量
-file(GLOB_RECURSE SRC_DIR_LIST "source/*.cpp" "source/*.c")	#遍历获取source/路径下所有的*.cpp和*.c文件列表
+file(GLOB_RECURSE SRC_DIR_LIST CONFIGURE_DEPENDS "source/*.cpp" "source/*.c")	#遍历获取source/路径下所有的*.cpp和*.c文件列表
 #打印SRC_DIR_LIST中列表信息
 message(STATUS "SRC_DIR_LIST = ${SRC_DIR_LIST}")	
 

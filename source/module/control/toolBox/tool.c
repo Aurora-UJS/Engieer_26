@@ -3,6 +3,8 @@
 #include "string.h"
 #include "main.h"
 #include "cmsis_os2.h"
+#include "arm_math_types.h"
+#include "arm_math.h"
 
 
 /**
@@ -82,4 +84,59 @@ float limit(float value, float min, float max)
     {
         return value;
     }
+}
+
+/**
+ * @brief  通用版浮点数取模函数（兼容所有CMSIS-DSP版本）
+ * @param  x: 被取模的浮点数（支持负数、小数）
+ * @param  y: 取模的整数（非0）
+ * @retval 浮点数取模结果，范围 [0, y)
+ */
+float arm_float_mod(float x, int32_t y) 
+{
+    // 异常处理：除数不能为0
+    if (y == 0) {
+        return NAN;
+    }
+    
+    // 步骤1：计算x/y的商（单精度浮点数）
+    float quotient = x / (float)y;
+    
+    // 步骤2：用标准C的floorf()向下取整（替代arm_floor_f32，兼容所有版本）
+    float floor_quotient = floorf(quotient);  // floorf是单精度版floor，更适配float
+    
+    // 步骤3：计算浮点数取模结果
+    float result = x - (float)y * floor_quotient;
+    
+    return result;
+}
+
+/**
+ * @brief  浮点数取模并归化到 ±(period/2) 范围
+ * @param  x: 被取模的浮点数（支持负数）
+ * @param  period: 周期宽度（例如25）
+ * @retval 归化后的结果，范围 [-period/2, +period/2)
+ * @example angle_normalize(30, 25) = 5
+ *          angle_normalize(-5, 25) = -5
+ *          angle_normalize(15, 25) = -10
+ */
+float angle_normalize(float x, float period)
+{
+    if (period == 0.0f) {
+        return NAN;
+    }
+    
+    // 步骤1：取模到 [0, period) 范围
+    float result = fmodf(x, period);
+    if (result < 0.0f) {
+        result += period;  // 保证结果为正
+    }
+    
+    // 步骤2：归化到 [-period/2, +period/2)
+    float half_period = period / 2.0f;
+    if (result >= half_period) {
+        result -= period;
+    }
+    
+    return result;
 }
