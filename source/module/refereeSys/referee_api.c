@@ -109,9 +109,9 @@ uint8_t test_buffffer[256];
 
 static void ctrller_rx_callback(uint8_t *pData, uint32_t size)
 {
-	if (size > 0) {
-		ring_write(&ctrller_ring, pData, size);
-	}
+		if (size > 0) {
+			ring_write(&ctrller_ring, pData, size);
+			}
 }
 
 /** 
@@ -256,6 +256,15 @@ void JudgeReadData(uint8_t *buff)
 
 static custom_controller_info_t custom_controller_info;
 
+uint8_t CtrllerData[24] = {
+    '3','1','4','1',
+    '3','1','4','1',
+    '3','1','4','1',
+    '3','1','4','1',
+    '3','1','4','1',
+    '3','1','4','1'
+};
+
 /**
  * @brief 解析单帧控制器数据（内部使用）
  * @param buff 完整的帧数据
@@ -265,7 +274,7 @@ static void ctrller_parse_frame(uint8_t *buff, uint16_t len)
 {
 	// 调试用：复制帧数据
 	memcpy(test_buffffer, buff, len < 256 ? len : 256);
-	
+	memcpy(CtrllerData, test_buffffer + 7, 24);
 	// 写入帧头数据
 	memcpy(&custom_controller_info.FrameHeader, buff, LEN_HEADER);
 	

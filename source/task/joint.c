@@ -1,6 +1,7 @@
 #include "can_struct.h"
 #include "main.h"
 #include "stm32_hal_legacy.h"
+#include "stm32h7xx_hal_def.h"
 #include "usart.h"
 #include "uart_api.h"
 #include <stdlib.h>
@@ -38,41 +39,6 @@ static uint8_t angle_digits_len = 0;
 // sw1 左拨码开关 前1 中3 后2
 // sw2 右拨码开关 前1 中3 后2
 
-// uint8_t testBuf[] = {0};
-
-/**
- * @brief 将 24 个数字字符解析为 6 个关节角度值
- *
- * @param digits 24字节的 ASCII 数字字符数组（每4字节表示一个0~9999的数）
- *
- * @details
- * - digits[0..3]   -> joint_radian[0]
- * - digits[4..7]   -> joint_radian[1]
- * - ...
- * - digits[20..23] -> joint_radian[5]
- *
- * 转换规则：
- * - tmp = atoi(4位字符)
- * - rad = tmp / 1000.0f
- * - joint_radian[i] = rad - PI
- */
-
-static void Parse_Angle_24Digits(const uint8_t digits[ANGLE_DATA_LENGTH])
-{
-    memcpy(angle_data, digits, ANGLE_DATA_LENGTH);
-
-    for (int i = 0; i < 6; i++) {
-        char four_digit[5];
-        memcpy(four_digit, &angle_data[i * 4], 4);
-        four_digit[4] = '\0';
-
-        int tmp = 0;
-        (void)sscanf(four_digit, "%d", &tmp);
-        joint_radian[i] = tmp / 1000.0f;
-        joint_radian[i] = joint_radian[i] - PI;
-    }
-}
-
 /**
  * @brief UART7 接收回调：从串口字节流中提取并解析 24 位角度数据
  *
@@ -90,24 +56,9 @@ static void Parse_Angle_24Digits(const uint8_t digits[ANGLE_DATA_LENGTH])
 
 void Angle_Receive_Callback(uint8_t *buf, uint32_t len)
 {
-    if(remoter.sw1 == 2||remoter.sw1 == 3)
-    {
-    for (uint32_t i = 0; i < len; i++) {
-        uint8_t c = buf[i];
-        if (isdigit((int)c)) {
-            if (angle_digits_len < ANGLE_DATA_LENGTH) {
-                angle_digits[angle_digits_len++] = c;
-            }
-
-            if (angle_digits_len == ANGLE_DATA_LENGTH) {
-                Parse_Angle_24Digits(angle_digits);
-                angle_digits_len = 0;
-                firstEnableFlag = 1;
-            }
-        }
-    }
-    }
-    else return;
+    UNUSED(buf);
+    UNUSED(len);
+    return;
 }
 
 /**
@@ -187,7 +138,7 @@ void uart_Transmit_Angle(void *argment)
     }
 }
 float dm_angle_test[6] = {0}; 
-
+extern uint8_t CtrllerData[24];
 void jointFollowAngle(void *argument)
 {
     UNUSED(argument);
