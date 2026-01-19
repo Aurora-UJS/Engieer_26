@@ -125,12 +125,14 @@ uart_status_t uart_rx_init(uart_rx_t *uart_rx_msg)
         break;
     case (unsigned long)UART7_BASE:
         uart7_msg = uart_rx_msg;
+    case (unsigned long)USART10_BASE:
+        uart10_msg = uart_rx_msg;
         break;
     default:
         return UART_ERROR;
     }
 
-    HAL_UARTEx_ReceiveToIdle_IT(uart_rx_msg->rx_msg->huart, uart_rx_msg->rx_msg->pBuffer, uart_rx_msg->rx_msg->Len * 2);
+    HAL_UARTEx_ReceiveToIdle_IT(uart_rx_msg->rx_msg->huart, uart_rx_msg->rx_msg->pBuffer, uart_rx_msg->rx_msg->Len);
     return UART_OK;
 }
 

@@ -29,7 +29,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 		uart7_msg->time = 0;
 		if (uart7_rx_hook != NULL)
 		{
-			uart7_rx_hook(uart5_msg->rx_msg->pBuffer, Size);
+			uart7_rx_hook(uart7_msg->rx_msg->pBuffer, Size);
 		}
 		break;
 	case (unsigned long)USART1_BASE:
@@ -73,7 +73,7 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 		uart10_msg->time = 0;
 		if (uart10_rx_hook != NULL)
 		{
-			uart10_rx_hook(uart5_msg->rx_msg->pBuffer, Size);
+			uart10_rx_hook(uart10_msg->rx_msg->pBuffer, Size);
 		}
 		break;
 	default:
