@@ -149,6 +149,13 @@ void jointFollowAngle(void *argument)
     Joint_Motor_Enable(); // 使能所有电机
     while (1) {
         Joint_Motor_Refresh();
+        for (int i = 0; i < 6; i++) {
+            int tmp = 0;
+            // 每个弧度占 4 个字符
+            sscanf((const char*)&CtrllerData[i * 4], "%04d", &tmp);
+            joint_radian[i] = tmp / 1000.0f;
+            joint_radian[i] = joint_radian[i] - PI;
+        }
 
         // PosSpeed_CtrlMotorDM(joint_motor[0],joint_radian[0], 1);
         PosSpeed_CtrlMotorDM(joint_motor[1],limit(joint_radian[1], 0, 1.5), 0.5); // pitch轴控制
