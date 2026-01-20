@@ -6,6 +6,13 @@ extern float joint_radian[6];
 extern DM_motor_t *Joint_Motor[JOINT_NUM];
 extern float joint_radian[6];
 
+// ch1 右摇杆 左右 左-右+
+// ch2 右摇杆 前后 前+后-
+// ch3 左摇杆 左右 左-右+
+// ch4 左摇杆 前后 前+后-
+// sw1 左拨码开关 前1 中3 后2
+// sw2 右拨码开关 前1 中3 后2
+
 void jointFollowAngle(void *argument)
 {
     UNUSED(argument);
