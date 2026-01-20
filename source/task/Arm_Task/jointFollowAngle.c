@@ -1,5 +1,6 @@
 // jointFollowAngle.c 关节跟随角度运动处理函数
 
+#include "ee_control_drv.h"
 #include "joint_control_drv.h"
 
 extern float joint_radian[6];
@@ -15,7 +16,7 @@ extern DM_motor_t *Joint_Motor[JOINT_NUM];
 void jointFollowAngle(void *argument)
 {
     Joint_t Joint[JOINT_NUM];
-    Joint_t EndEffector;
+    endEffector_t EndEffector;
 
     
     UNUSED(argument);
@@ -52,12 +53,12 @@ void jointFollowAngle(void *argument)
         switch(remoter.sw1)
         {
             case 3:
-                PosSpeed_CtrlMotorDM(EndEffector.joint_motor,0, 0.5); // 夹爪控制
+                PosSpeed_CtrlMotorDM(EndEffector.endEffector_motor,0, 0.5); // 夹爪控制
                 osDelay(1);
             break;
             //1是前，夹爪张开
             case 2:
-                PosSpeed_CtrlMotorDM(EndEffector.joint_motor,1.2, 0.5); // 夹爪控制
+                PosSpeed_CtrlMotorDM(EndEffector.endEffector_motor,1.2, 0.5); // 夹爪控制
                 osDelay(1);
             break;
             //2是后，夹爪合拢

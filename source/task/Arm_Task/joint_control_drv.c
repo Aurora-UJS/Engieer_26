@@ -1,6 +1,7 @@
 // joint_control_drv.c: 关节控制驱动
 
 #include "joint_control_drv.h"
+#include "ee_control_drv.h"
 #include "can_struct.h"
 #include "motor_DM.h"
 #include "portable.h"
@@ -9,9 +10,11 @@
 float joint_radian[6] = {0}; 
 DM_motor_t *Joint_Motor[JOINT_NUM];
 
+
 /**
- * @brief 电机数据更新
+ * @brief 关节电机信息更新
  * 
+ * @param Joint 关节
  */
 void Joint_Motor_Refresh(Joint_t *Joint)
 {
@@ -21,43 +24,15 @@ void Joint_Motor_Refresh(Joint_t *Joint)
 }
 
 /**
- * @brief 末端执行器信息更新
+ * @brief 关节电机使能模块
  * 
- */
-void EndEffector_Motor_Refresh(Joint_t *endeffector){
-    Motor_DM_Refresh(endeffector->joint_motor);
-}
-
-/**
- * @brief 电机使能
- * 
+ * @param Joint 关节
  */
 void Joint_Motor_Enable(Joint_t *Joint)
 {
     for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
         Motor_DM_Enable(Joint[joint_index].joint_motor);
     }
-}
-/**
- * @brief 末端执行使能
- * 
- */
-
-void EndEffector_Motor_Enable(Joint_t *endeffector){
-    Motor_DM_Enable(endeffector->joint_motor);
-}
-
-void endeffector_init(Joint_t *endeffector)
-{
-    endeffector_motor_init(endeffector);
-}
-void endeffector_motor_init(Joint_t *endeffector){
-    endeffector->joint_motor = pvPortMalloc(sizeof(DM_motor_t)) ;
-    endeffector->joint_motor->can_cfg.id = 0x07;
-    endeffector->joint_motor->motor_msg.can_msg.id= 0x07;
-    endeffector->joint_motor->can_cfg.port = CAN2_PORT;
-
-    Motor_DM_Init(endeffector->joint_motor);
 }
 void joint_motor_init(Joint_t *Joint){
     for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {

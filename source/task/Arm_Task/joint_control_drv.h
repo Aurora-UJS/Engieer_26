@@ -47,17 +47,9 @@ extern rc_info_t remoter;
 /** @brief 关节初始化*/
 void joint_init(Joint_t *Joint);
 
-/** @brief 末端执行器初始化*/
-void endeffector_init(Joint_t *endeffector);
-
-/** @brief 末端执行器电机初始化*/
-void endeffector_motor_init(Joint_t *endeffector);
 
 /** @brief 关节自由度信息初始化 */
 void joint_dof_init(Joint_t *Joint);
-
-/** @brief 末端执行器信息更新 */
-void EndEffector_Motor_Refresh(Joint_t *endeffector);
 
 /** @brief 电机初始化*/
 void joint_motor_init(Joint_t *Joint);
@@ -67,6 +59,4 @@ void Joint_Motor_Refresh(Joint_t *Joint);
 
 /** @brief 电机使能 */
 void Joint_Motor_Enable(Joint_t *Joint);
-/** @brief 末端执行使能 */
-void EndEffector_Motor_Enable(Joint_t *Joint);
 #endif
