@@ -16,7 +16,8 @@
 
 #define Max_Velocity 2
 #define Max_Rising_Motor_Velocity 4
-#define Max_Rising_DM_angle (3.1415f/4)
+#define Max_Rising_DM_angle 0.75f
+#define Rising_DM_Velocity 1.0f
 
 #define Track_R 0.05
 #define Steel_R 0.15
@@ -60,7 +61,7 @@
 #define Rising_3508_PID_Maxout 16384
 #define Rising_3508_PID_Maxiout 8192
 
-#define Rising_DM_PID_kp 1.2f
+#define Rising_DM_PID_kp 5.2f
 #define Rising_DM_PID_ki 0.0005f
 #define Rising_DM_PID_kd 0.5f
 #define Rising_DM_PID_Maxout 50
@@ -86,9 +87,7 @@ void Rising_Motor_TargetVelocity(float32_t Target_Velocity[],rc_info_t remoter);
 void Rising_3508_PID_Init(pid_type_def pid[]);
 void Rising_3508_PID_Calculate(pid_type_def pid[],float32_t target_speed[],DJI_motor_t *motor,int16_t output[]);
 void Motor_Init_DM(DM_motor_t **Rising_Motor_L,DM_motor_t **Rising_Motor_R);
-void Rising_DM_PID_Init(pid_type_def *pid_L,pid_type_def *pid_R);
-void Rising_Motor_SendControl_DM(DM_motor_t *DMMotor_L,DM_motor_t *DMMotor_R, int16_t output_L ,int16_t output_R);
+void Rising_Motor_SendControl_DM(DM_motor_t *DMMotor_L,DM_motor_t *DMMotor_R, float32_t output_L ,float32_t output_R);
 void Rising_Motor_TargetAngle(float32_t *Target_Angle_L,float32_t *Target_Angle_R,rc_info_t remoter);
-void Rising_DM_PID_Calculate(pid_type_def *pid_L,pid_type_def *pid_R, float32_t target_angle_L,float32_t target_angle_R,DM_motor_t *motor_L,DM_motor_t *motor_R, float32_t *output_L,float32_t *output_R);
 
 #endif // !CHASSIS_TASK_H
