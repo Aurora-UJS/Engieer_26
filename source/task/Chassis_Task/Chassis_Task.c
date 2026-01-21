@@ -72,8 +72,8 @@ void Chassis_Task(void *argument)
                                     Chassis_3508_Ctrl_Output);
         Rising_Motor_SendControl_DM(Rising_Motor_10010l_L,
                                   Rising_Motor_10010l_R,
-                                  0,
-                                  0);
+                                  Rising_DM_ZeroPoint,
+                                  Rising_DM_ZeroPoint);
       break;
 
       case Chassis_Normal:
@@ -86,8 +86,8 @@ void Chassis_Task(void *argument)
                                     Chassis_3508_Ctrl_Output);
         Rising_Motor_SendControl_DM(Rising_Motor_10010l_L,
                                   Rising_Motor_10010l_R,
-                                  0,
-                                  0);
+                                  Rising_DM_ZeroPoint,
+                                  Rising_DM_ZeroPoint);
       break;
 
       case Chassis_Upstairs:
@@ -286,9 +286,9 @@ void Rising_Motor_TargetAngle(float32_t *Target_Angle_L,float32_t *Target_Angle_
 
   float32_t Angle =
       map(ch4,
-        0.0f,
+        Rising_DM_ZeroPoint,
         Remoter_CHMAX,
-        0.0f,
+        Rising_DM_ZeroPoint,
         Max_Rising_DM_angle);
   *Target_Angle_L = Angle;
   *Target_Angle_R = -Angle;
