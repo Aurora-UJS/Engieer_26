@@ -1,6 +1,7 @@
 // jointFollowAngle.c 关节跟随角度运动处理函数
 
 #include "jointFollowAngle.h"
+#include "DBusSys.h"
 #include "arm_control_drv.h"
 #include "joint_control_drv.h"
 #include "motor_DM.h"
@@ -47,31 +48,47 @@ void jointFollowAngle(void *argument)
 
         // PosSpeed_CtrlMotorDM(Joint_Motor[0],joint_radian[0], 1);
         // PosSpeed_CtrlMotorDM(Joint[1].joint_motor,limit(joint_radian[1], 0, 1.5), 0.5); // pitch轴控制
-        PosSpeed_CtrlMotorDM(Joint[1].joint_motor, 1.6, 0.1); //test
-        osDelay(1);
-        // PosSpeed_CtrlMotorDM(Joint[2].joint_motor,limit(-joint_radian[2], 0, 3), 0.5); // pitch轴控制
-        PosSpeed_CtrlMotorDM(Joint[2].joint_motor, 1.5, 0.4);
-        osDelay(1);
-        PosSpeed_CtrlMotorDM(Joint[3].joint_motor,-joint_radian[3],  0.5); // roll轴控制
-        osDelay(1);
-        PosSpeed_CtrlMotorDM(Joint[4].joint_motor,limit(-joint_radian[4],-1.5, 1.5), 0.5); // pitch轴控制
-        osDelay(1);
-        PosSpeed_CtrlMotorDM(Joint[5].joint_motor,-joint_radian[5], 0.5); // roll轴控制
-        osDelay(1);
+        switch (remoter.sw1) {
+            case 1:
+            PosSpeed_CtrlMotorDM(Joint[1].joint_motor, 1.6, 0.2); //test
+            osDelay(1);
+            // PosSpeed_CtrlMotorDM(Joint[2].joint_motor,limit(-joint_radian[2], 0, 3), 0.5); // pitch轴控制
+            PosSpeed_CtrlMotorDM(Joint[2].joint_motor, 1.5, 0.4);
+            osDelay(1);
+            PosSpeed_CtrlMotorDM(Joint[3].joint_motor,-joint_radian[3],  0.5); // roll轴控制
+            osDelay(1);
+            PosSpeed_CtrlMotorDM(Joint[4].joint_motor,limit(-joint_radian[4],-1.5, 1.5), 0.5); // pitch轴控制
+            osDelay(1);
+            PosSpeed_CtrlMotorDM(Joint[5].joint_motor,-joint_radian[5], 0.5); // roll轴控制
+            osDelay(1);
+            break;
+            default:
+            PosSpeed_CtrlMotorDM(Joint[1].joint_motor,limit(joint_radian[1], 0, 1.5), 0.5); // pitch轴控制
+            osDelay(1);
+            PosSpeed_CtrlMotorDM(Joint[2].joint_motor,limit(-joint_radian[2], 0, 3), 0.5); // pitch轴控制
+            // PosSpeed_CtrlMotorDM(Joint[2].joint_motor, 1.5, 0.4);
+            osDelay(1);
+            PosSpeed_CtrlMotorDM(Joint[3].joint_motor,-joint_radian[3],  0.5); // roll轴控制
+            osDelay(1);
+            PosSpeed_CtrlMotorDM(Joint[4].joint_motor,limit(-joint_radian[4],-1.5, 1.5), 0.5); // pitch轴控制
+            osDelay(1);
+            PosSpeed_CtrlMotorDM(Joint[5].joint_motor,-joint_radian[5], 0.5); // roll轴控制
+            osDelay(1);
+        }
 
-        switch(remoter.sw1)
-        {
-            case 3:
-                PosSpeed_CtrlMotorDM(EndEffector.endEffector_motor,0, 0.5); // 夹爪控制
-                osDelay(1);
-            break;
-            //1是前，夹爪张开
-            case 2:
-                PosSpeed_CtrlMotorDM(EndEffector.endEffector_motor,1.2, 0.5); // 夹爪控制
-                osDelay(1);
-            break;
+        // switch(remoter.sw1)
+        // {
+        //     case 3:
+        //         PosSpeed_CtrlMotorDM(EndEffector.endEffector_motor,0, 0.5); // 夹爪控制
+        //         osDelay(1);
+        //     break;
+        //     //1是前，夹爪张开
+        //     case 2:
+        //         PosSpeed_CtrlMotorDM(EndEffector.endEffector_motor,1.2, 0.5); // 夹爪控制
+        //         osDelay(1);
+        //     break;
             //2是后，夹爪合拢
 
-        }
+        // }
     }
 }
