@@ -10,6 +10,7 @@
 #include "can_struct.h"
 
 #define JOINT_NUM 6
+#define JOINT_DEFAULT_VELOCITY 0.5f
 
 typedef enum{
    JOINT_DOF_ROLL,
@@ -44,6 +45,8 @@ typedef struct Joint_t{
 extern uint8_t CtrllerData[24];
 extern rc_info_t remoter;
 
+void Joint_Motor_PosSpeed_Ctrl(Joint_t *Joint,float target_radian,float velocity);
+void Joint_Pos_Ctrl(Joint_t *Joint,float target_radian);
 /** @brief 关节初始化*/
 void joint_init(Joint_t *Joint);
 
