@@ -1,0 +1,4 @@
+Arm_State(Standby_State, Standby_State_Task)
+Arm_State(Hold_Position_State, Hold_Position_Task)
+Arm_State(Custom_Control_State, Custom_Control_Task)
+Arm_State(Auto_Motion_State, Auto_Motion_Task)
