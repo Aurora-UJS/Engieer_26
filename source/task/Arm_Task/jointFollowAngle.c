@@ -1,10 +1,13 @@
 // jointFollowAngle.c 关节跟随角度运动处理函数
 
-#include "ee_control_drv.h"
+#include "jointFollowAngle.h"
+#include "arm_control_drv.h"
 #include "joint_control_drv.h"
+#include "motor_DM.h"
 
+float CurrentRadian[JOINT_NUM];
 extern float joint_radian[6];
-extern DM_motor_t *Joint_Motor[JOINT_NUM];
+// extern DM_motor_t *Joint_Motor[JOINT_NUM];
 
 // ch1 右摇杆 左右 左-右+
 // ch2 右摇杆 前后 前+后-
@@ -12,6 +15,7 @@ extern DM_motor_t *Joint_Motor[JOINT_NUM];
 // ch4 左摇杆 前后 前+后-
 // sw1 左拨码开关 前1 中3 后2
 // sw2 右拨码开关 前1 中3 后2
+
 
 void jointFollowAngle(void *argument)
 {
@@ -29,19 +33,24 @@ void jointFollowAngle(void *argument)
 
     while (1) {
         Joint_Motor_Refresh(Joint);
-        EndEffector_Motor_Refresh(&EndEffector);
-        for (int i = 0; i < 6; i++) {
-            int tmp = 0;
-            // 每个弧度占 4 个字符
-            sscanf((const char*)&CtrllerData[i * 4], "%04d", &tmp);
-            joint_radian[i] = tmp / 1000.0f;
-            joint_radian[i] = joint_radian[i] - PI;
+        for (int joint_index = 0; joint_index<JOINT_NUM; joint_index++) {
+            CurrentRadian[joint_index] = Motor_Get_Radian(Joint[joint_index].joint_motor);
         }
+        EndEffector_Motor_Refresh(&EndEffector);
+        // for (int i = 0; i < 6; i++) {
+        //     int tmp = 0;
+        //     // 每个弧度占 4 个字符
+        //     sscanf((const char*)&CtrllerData[i * 4], "%04d", &tmp);
+        //     joint_radian[i] = tmp / 1000.0f;
+        //     joint_radian[i] = joint_radian[i] - PI;
+        // }
 
         // PosSpeed_CtrlMotorDM(Joint_Motor[0],joint_radian[0], 1);
-        PosSpeed_CtrlMotorDM(Joint[1].joint_motor,limit(joint_radian[1], 0, 1.5), 0.5); // pitch轴控制
+        // PosSpeed_CtrlMotorDM(Joint[1].joint_motor,limit(joint_radian[1], 0, 1.5), 0.5); // pitch轴控制
+        PosSpeed_CtrlMotorDM(Joint[1].joint_motor, 1.6, 0.1); //test
         osDelay(1);
-        PosSpeed_CtrlMotorDM(Joint[2].joint_motor,limit(-joint_radian[2], 0, 3), 0.5); // pitch轴控制
+        // PosSpeed_CtrlMotorDM(Joint[2].joint_motor,limit(-joint_radian[2], 0, 3), 0.5); // pitch轴控制
+        PosSpeed_CtrlMotorDM(Joint[2].joint_motor, 1.5, 0.4);
         osDelay(1);
         PosSpeed_CtrlMotorDM(Joint[3].joint_motor,-joint_radian[3],  0.5); // roll轴控制
         osDelay(1);
