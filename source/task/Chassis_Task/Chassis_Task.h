@@ -17,7 +17,8 @@
 #define Max_Velocity 2
 #define Max_Rising_Motor_Velocity 4
 #define Max_Rising_DM_angle 0.75f
-#define Rising_DM_Velocity 1.0f
+#define Rising_DM_Velocity 2.0f
+#define Rising_DM_ZeroPoint 0.05f
 
 #define Track_R 0.05
 #define Steel_R 0.15
