@@ -26,6 +26,9 @@
 extern rc_info_t remoter;
 float32_t test[4];
 
+// 函数前向声明
+float32_t Double_Encoder_Tool(float32_t motor_angle);
+
 void Chassis_Task(void *argument) 
 {
   /* USER CODE Chassis_Task */
@@ -43,17 +46,18 @@ void Chassis_Task(void *argument)
   DJI_motor_t *Rising_Motor_3508;
   Rising_Motor_3508 = pvPortMalloc(sizeof(DJI_motor_t));
 
+  float32_t DM10010l_Target_Angle_L = 0;
+  float32_t DM10010l_Target_Angle_R = 0;
   DM_motor_t *Rising_Motor_10010l_L;
   DM_motor_t *Rising_Motor_10010l_R;
   Rising_Motor_10010l_L = pvPortMalloc(sizeof(DM_motor_t));
   Rising_Motor_10010l_R = pvPortMalloc(sizeof(DM_motor_t));
 
+  osDelay(200);
   Motor_Init_DJI(&Chassis_Motor_3508, &Rising_Motor_3508);
   Motor_Init_DM(&Rising_Motor_10010l_L,&Rising_Motor_10010l_R);
   Chassis_3508_PID_Init(Chassis_Motor_3508_PID);
-  Rising_3508_PID_Init(Rising_Motor_3508_PID);
-  Motor_DM_Enable(Rising_Motor_10010l_L);
-  Motor_DM_Enable(Rising_Motor_10010l_R);
+  Rising_3508_PID_Init(Rising_Motor_3508_PID); 
   /* Infinite loop */
   for (;;) 
   {
@@ -66,6 +70,10 @@ void Chassis_Task(void *argument)
         }
         Chassis_Motor_SendControl_DJI(Chassis_Motor_3508,
                                     Chassis_3508_Ctrl_Output);
+        Rising_Motor_SendControl_DM(Rising_Motor_10010l_L,
+                                  Rising_Motor_10010l_R,
+                                  0,
+                                  0);
       break;
 
       case Chassis_Normal:
@@ -76,12 +84,17 @@ void Chassis_Task(void *argument)
                                  Chassis_3508_Ctrl_Output);
         Chassis_Motor_SendControl_DJI(Chassis_Motor_3508,
                                     Chassis_3508_Ctrl_Output);
+        Rising_Motor_SendControl_DM(Rising_Motor_10010l_L,
+                                  Rising_Motor_10010l_R,
+                                  0,
+                                  0);
       break;
 
       case Chassis_Upstairs:
         remoter.ch3 = 0;
         Chassis_Motor_TargetVelocity(Chassis_3508_Target_Velocity, remoter);
         Rising_Motor_TargetVelocity(Rising_3508_Target_Velocity, remoter);
+        Rising_Motor_TargetAngle(&DM10010l_Target_Angle_L, &DM10010l_Target_Angle_R, remoter);
         Chassis_3508_PID_Calculate(Chassis_Motor_3508_PID,
                                  Chassis_3508_Target_Velocity,
                                  Chassis_Motor_3508, 
@@ -89,13 +102,16 @@ void Chassis_Task(void *argument)
         Rising_3508_PID_Calculate(Rising_Motor_3508_PID,
                                 Rising_3508_Target_Velocity, 
                                 Rising_Motor_3508,
-                                Rising_3508_Ctrl_Output);
-
+                                Rising_3508_Ctrl_Output); 
         Chassis_Motor_SendControl_DJI(Chassis_Motor_3508,
                                     Chassis_3508_Ctrl_Output);
         Rising_Motor_SendControl_DJI(Rising_Motor_3508, 
                                   Rising_3508_Ctrl_Output);
-      break;
+        Rising_Motor_SendControl_DM(Rising_Motor_10010l_L,
+                                  Rising_Motor_10010l_R,
+                                  DM10010l_Target_Angle_L,
+                                  DM10010l_Target_Angle_R);
+      break;    
 
       default:
 
@@ -167,26 +183,28 @@ void Motor_Init_DM(DM_motor_t **Rising_Motor_L,DM_motor_t **Rising_Motor_R)
     return;
   }
   memset(*Rising_Motor_L, 0, sizeof(DM_motor_t)); 
-  (*Rising_Motor_L)->can_cfg.id = DM_l0010l_CAN_ID_Left + DM_MITMode_ID;
+  (*Rising_Motor_L)->can_cfg.id = DM_l0010l_CAN_ID_Left;
   (*Rising_Motor_L)->motor_msg.can_msg.id = DM_l0010l_Master_ID_Left;
   (*Rising_Motor_L)->can_cfg.port = CAN3_PORT;
-  (*Rising_Motor_L)->tmp.PMAX = 12.56637;
+  (*Rising_Motor_L)->tmp.PMAX = 12.5;
   (*Rising_Motor_L)->tmp.VMAX = 3;
-  (*Rising_Motor_L)->tmp.TMAX = 1;
+  (*Rising_Motor_L)->tmp.TMAX = 100;
   Motor_DM_Init(*Rising_Motor_L);
-
+  Motor_DM_Enable(*Rising_Motor_L);
   if (*Rising_Motor_R == NULL) 
   {
     return;
   }
   memset(*Rising_Motor_R, 0, sizeof(DM_motor_t)); 
-  (*Rising_Motor_R)->can_cfg.id = DM_l0010l_CAN_ID_Right + DM_MITMode_ID;
+  (*Rising_Motor_R)->can_cfg.id = DM_l0010l_CAN_ID_Right;
   (*Rising_Motor_R)->motor_msg.can_msg.id = DM_l0010l_Master_ID_Right;
   (*Rising_Motor_R)->can_cfg.port = CAN3_PORT;
-  (*Rising_Motor_R)->tmp.PMAX = 12.56637;
+  (*Rising_Motor_R)->tmp.PMAX = 12.5;
   (*Rising_Motor_R)->tmp.VMAX = 3;
-  (*Rising_Motor_R)->tmp.TMAX = 1;
+  (*Rising_Motor_R)->tmp.TMAX = 100;
   Motor_DM_Init(*Rising_Motor_R);  
+  Motor_DM_Enable(*Rising_Motor_R);
+  osDelay(200);
 }
 
 void Chassis_Motor_SendControl_DJI(DJI_motor_t *DJMotor, int16_t output[]) 
@@ -208,6 +226,15 @@ void Rising_Motor_SendControl_DJI(DJI_motor_t *DJMotor, int16_t output[])
     output[Rising_Motor_3508_Left],
     output[Rising_Motor_3508_Right], 
     0, 0);
+}
+
+void Rising_Motor_SendControl_DM(DM_motor_t *DMMotor_L,DM_motor_t *DMMotor_R, float32_t output_L ,float32_t output_R)
+{
+  Motor_DM_Refresh(DMMotor_L);
+  Motor_DM_Refresh(DMMotor_R);
+  PosSpeed_CtrlMotorDM(DMMotor_L, output_L, Rising_DM_Velocity);
+  osDelay(1);
+  PosSpeed_CtrlMotorDM(DMMotor_R, output_R, Rising_DM_Velocity);
 }
 
 void Chassis_Motor_TargetVelocity(float32_t Target_Velocity[],rc_info_t remoter) 
@@ -235,7 +262,7 @@ void Chassis_Motor_TargetVelocity(float32_t Target_Velocity[],rc_info_t remoter)
 void Rising_Motor_TargetVelocity(float32_t Target_Velocity[],rc_info_t remoter) 
 {
   float32_t Velocity =
-      map(remoter.ch4, 
+      map(remoter.ch2, 
         -Remoter_CHMAX, 
         Remoter_CHMAX,
         -Max_Rising_Motor_Velocity, 
@@ -243,6 +270,28 @@ void Rising_Motor_TargetVelocity(float32_t Target_Velocity[],rc_info_t remoter)
 
   Target_Velocity[Rising_Motor_3508_Left] = Velocity;
   Target_Velocity[Rising_Motor_3508_Right] = -Velocity;
+}
+
+void Rising_Motor_TargetAngle(float32_t *Target_Angle_L,float32_t *Target_Angle_R,rc_info_t remoter) 
+{
+  float32_t ch4 = (float32_t)remoter.ch4;
+  if (ch4 < 0.0f) 
+  {
+    ch4 = 0.0f;
+  }
+  if (ch4 > 660.0f) 
+  {
+    ch4 = 660.0f;
+  }
+
+  float32_t Angle =
+      map(ch4,
+        0.0f,
+        Remoter_CHMAX,
+        0.0f,
+        Max_Rising_DM_angle);
+  *Target_Angle_L = Angle;
+  *Target_Angle_R = -Angle;
 }
 
 void Chassis_3508_PID_Init(pid_type_def pid[]) 
@@ -278,6 +327,7 @@ void Chassis_3508_PID_Calculate(pid_type_def pid[], float32_t target_speed[],
     output[i] = (int16_t)(PID_Calc_Add(pid + i, curren_wheel_speed[i],*(target_speed + i)));
   }
 }
+
 void Rising_3508_PID_Calculate(pid_type_def pid[], float32_t target_speed[],DJI_motor_t *motor, int16_t output[]) 
 {
   float32_t curren_wheel_speed[2];
@@ -287,4 +337,3 @@ void Rising_3508_PID_Calculate(pid_type_def pid[], float32_t target_speed[],DJI_
     output[i] = (int16_t)(PID_Calc_Add(pid + i,curren_wheel_speed[i],*(target_speed + i)));
   }
 }
-

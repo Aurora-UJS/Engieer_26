@@ -1,5 +1,6 @@
 #ifndef TOOL
 #define TOOL
+#include "arm_math_types.h"
 
 #define LimitMax(input, max)   \
     {                          \
@@ -18,5 +19,7 @@
 float circule_compensate(float target, float current, float circule_num);
 float map(float value, float in_min, float in_max, float out_min, float out_max);
 float limit(float value, float min, float max);
+float arm_float_mod(float x, int32_t y);
+float angle_normalize(float x, float period);
 #endif // !TOOL
 

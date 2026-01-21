@@ -139,7 +139,7 @@ const osThreadAttr_t Chassis_Task_attributes = {
   .priority = (osPriority_t)osPriorityNormal,  // 优先级（与默认任务相同）
 };
 
-uint32_t Referee_TaskBuffer[512];  // 栈大小：128 * 4字节 = 512字节
+uint32_t Referee_TaskBuffer[1024];  // 栈大小：1024 * 4字节 = 4096字节
 osStaticThreadDef_t Referee_TaskControlBlock;  // 静态任务控制块
 osThreadId_t Referee_TaskHandle;  // 任务句柄
 const osThreadAttr_t Referee_Task_attributes = {
@@ -150,6 +150,7 @@ const osThreadAttr_t Referee_Task_attributes = {
   .stack_size = sizeof(Referee_TaskBuffer),  // 栈大小
   .priority = (osPriority_t)osPriorityNormal,  // 优先级（与默认任务相同）
 };
+
 /* Definitions for uart_Transmit_Angle */
 osThreadId_t uart_Transmit_AngleHandle;
 uint32_t uart_Transmit_AngleBuffer[1024];
@@ -366,5 +367,6 @@ __weak void Referee_Task(void *argument)
     osDelay(1);
   }
 }
+
 /* USER CODE END Application */
 
