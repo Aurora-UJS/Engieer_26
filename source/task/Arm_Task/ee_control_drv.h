@@ -8,15 +8,16 @@ typedef struct endEffector_t{
 } endEffector_t;
 
 typedef enum{
-    GPIPER_STATE_IDLE = 0,
+    GRIPPER_STATE_IDLE = 0,
     GRIPPER_STATE_OPEN,
-    GPIPER_STATE_CLOSE
-}GPIPER_STATE ;
+    GRIPPER_STATE_CLOSE
+}gripper_state_t ;
+
 /** @brief 末端执行器初始化*/
-void endeffector_init(endEffector_t *endeffector);
+void endEffector_init(endEffector_t *endeffector);
 
 /** @brief 末端执行器电机初始化*/
-void endeffector_motor_init(endEffector_t *endeffector);
+void endEffector_motor_init(endEffector_t *endeffector);
 
 /** @brief 末端执行器信息更新 */
 void EndEffector_Motor_Refresh(endEffector_t *endeffector);

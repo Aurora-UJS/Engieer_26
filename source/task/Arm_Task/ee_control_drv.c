@@ -21,15 +21,15 @@ void EndEffector_Motor_Enable(endEffector_t *endeffector){
 }
 
 /**
- * @brief 电机参数
+ * @brief 末端执行器参数
  * 
  * @param endeffector 
  */
-void endeffector_init(endEffector_t *endeffector)
+void endEffector_init(endEffector_t *endeffector)
 {
-    endeffector_motor_init(endeffector);
+    endEffector_motor_init(endeffector);
 }
-void endeffector_motor_init(endEffector_t *endeffector){
+void endEffector_motor_init(endEffector_t *endeffector){
     endeffector->endEffector_motor = pvPortMalloc(sizeof(DM_motor_t)) ;
     endeffector->endEffector_motor->can_cfg.id = 0x07;
     endeffector->endEffector_motor->motor_msg.can_msg.id= 0x07;
