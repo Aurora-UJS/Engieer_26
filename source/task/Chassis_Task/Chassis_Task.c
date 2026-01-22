@@ -73,7 +73,7 @@ void Chassis_Task(void *argument)
         Rising_Motor_SendControl_DM(Rising_Motor_10010l_L,
                                   Rising_Motor_10010l_R,
                                   Rising_DM_ZeroPoint,
-                                  Rising_DM_ZeroPoint);
+                                  -Rising_DM_ZeroPoint);
       break;
 
       case Chassis_Normal:
@@ -87,7 +87,7 @@ void Chassis_Task(void *argument)
         Rising_Motor_SendControl_DM(Rising_Motor_10010l_L,
                                   Rising_Motor_10010l_R,
                                   Rising_DM_ZeroPoint,
-                                  Rising_DM_ZeroPoint);
+                                  -Rising_DM_ZeroPoint);
       break;
 
       case Chassis_Upstairs:
