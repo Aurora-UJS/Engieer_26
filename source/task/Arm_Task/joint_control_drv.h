@@ -14,16 +14,16 @@
 
 #define JOINT_POS_MAX 3.2f
 #define JOINT_POS_MIN -3.2f
-
+#define  NEGAVTIVE  (-1.0f)
+#define  PROSITIVE  (1.0f)
 typedef enum { JOINT_DOF_ROLL = 0, JOINT_DOF_YAW, JOINT_DOF_PITCH } joint_dof_t;
-typedef enum { NEGAVTIVE = 0, PROSITIVE } joint_polarity_t;
 
 static const float joint_pos_limit_max_map[JOINT_NUM] = {
     2.0f, 1.5f, 3.0f, JOINT_POS_MAX, 1.5f, JOINT_POS_MAX,
 };
 static const float joint_pos_limit_min_map[JOINT_NUM] = {
-    -2.0f, 0, 0, JOINT_POS_MIN, -1.5f, JOINT_POS_MAX};
-static const joint_polarity_t joint_polarity_map[JOINT_NUM] = {
+    -2.0f, 0, 0, JOINT_POS_MIN, -1.5f, JOINT_POS_MIN};
+static const float joint_polarity_map[JOINT_NUM] = {
     PROSITIVE, PROSITIVE, NEGAVTIVE, NEGAVTIVE, NEGAVTIVE, NEGAVTIVE};
 static const can_port_t can_port_map[JOINT_NUM] = {
     CAN3_PORT, CAN2_PORT, CAN2_PORT, CAN2_PORT, CAN2_PORT, CAN2_PORT,
