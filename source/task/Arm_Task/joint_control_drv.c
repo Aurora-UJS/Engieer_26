@@ -1,6 +1,7 @@
 // joint_control_drv.c: 关节控制驱动
 
 #include "joint_control_drv.h"
+#include "cmsis_os2.h"
 #include "motor_DM.h"
 #include "stm32h7xx_hal_def.h"
 #include "tool.h"
@@ -117,6 +118,7 @@ void joint_init(Joint_t *Joint) {
 */
 void Joint_Custom_State_Motor_Ctrl(Joint_t *Joint, const float *input_radian) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
+    osDelay(1);
     PosSpeed_CtrlMotorDM(
         Joint[joint_index].joint_motor,
         Joint_Pos_Limit(Joint_Apply_Polarity(input_radian[joint_index], joint_index),
