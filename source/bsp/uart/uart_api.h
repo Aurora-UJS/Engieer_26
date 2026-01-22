@@ -44,5 +44,6 @@ uart_status_t uart_rx_init(uart_rx_t* uart_rx_msg);
 
 uart_status_t uart_reg_cheak(uart_rx_t *uart_rx_msg);
 uart_status_t uart_tx_send_IT(uart_msg_t *uart_msg);
+uart_status_t  uart_tx_send(uart_msg_t* uart_msg,uint32_t timeout);
 uart_status_t uart_rx_hook_reg(uart_rx_t *uart_rx_msg, void (*hook)(uint8_t *pData, uint32_t size));
 #endif /* __UART_API_H__ */

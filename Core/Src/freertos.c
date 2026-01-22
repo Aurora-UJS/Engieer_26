@@ -23,6 +23,7 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
+#include <string.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -96,6 +97,18 @@ const osThreadAttr_t uartTest_attributes = {
     .cb_size    = sizeof(uartTestControlBlock),
     .stack_mem  = &uartTestBuffer[0],
     .stack_size = sizeof(uartTestBuffer),
+    .priority   = (osPriority_t)osPriorityNormal,
+};
+/* Definitions for SerialPlot */
+osThreadId_t SerialPlotHandle;
+uint32_t SerialPlotBuffer[512];
+osStaticThreadDef_t SerialPlotControlBlock;
+const osThreadAttr_t SerialPlot_attributes = {
+    .name       = "SerialPlot",
+    .cb_mem     = &SerialPlotControlBlock,
+    .cb_size    = sizeof(SerialPlotControlBlock),
+    .stack_mem  = &SerialPlotBuffer[0],
+    .stack_size = sizeof(SerialPlotBuffer),
     .priority   = (osPriority_t)osPriorityNormal,
 };
 /* Definitions for motor_test */
@@ -187,6 +200,7 @@ void jointFollowAngle(void *arguments);
 void uart_Transmit_Angle(void *arguments);
 void Chassis_Task(void *arguments);
 void Referee_Task(void *arguments);
+void SerialPlot(void *argument);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
@@ -245,6 +259,7 @@ void MX_FREERTOS_Init(void) {
   //uart_Transmit_AngleHandle = osThreadNew(uart_Transmit_Angle, NULL, &uart_Transmit_Angle_attributes);
   Chassis_TaskHandle = osThreadNew(Chassis_Task, NULL, &Chassis_Task_attributes);
   Referee_TaskHandle = osThreadNew(Referee_Task, NULL, &Referee_Task_attributes);
+  SerialPlotHandle = osThreadNew(SerialPlot, NULL, &SerialPlot_attributes);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -368,3 +383,13 @@ __weak void Referee_Task(void *argument)
 }
 /* USER CODE END Application */
 
+
+__weak void SerialPlot(void *argument)
+{
+  UNUSED(argument);
+  for(;;)
+  {
+    
+    osDelay(1);
+  }
+}

@@ -136,6 +136,12 @@ uart_status_t uart_rx_init(uart_rx_t *uart_rx_msg)
     return UART_OK;
 }
 
+uart_status_t  uart_tx_send(uart_msg_t* uart_msg,uint32_t timeout)
+{
+    HAL_UART_Transmit(uart_msg->huart, uart_msg->pBuffer, uart_msg->Len, timeout);
+    return UART_OK;
+}
+
 uart_status_t uart_tx_send_IT(uart_msg_t *uart_msg)
 {
     // 安全效验
