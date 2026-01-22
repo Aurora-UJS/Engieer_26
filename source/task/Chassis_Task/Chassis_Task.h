@@ -13,6 +13,7 @@
 #include "motor_DJI.h"
 #include "motor_DM.h"
 #include "PIDtool.h"
+#include "LPF.h"
 
 #define Max_Velocity 2
 #define Max_Rising_Motor_Velocity 6
@@ -51,8 +52,8 @@
 #define Rising_Motor_ALL_id 0x1FF
 
 #define Chassis_3508_PID_kp 7000
-#define Chassis_3508_PID_ki 0.0000f
-#define Chassis_3508_PID_kd 0
+#define Chassis_3508_PID_ki 0.0f
+#define Chassis_3508_PID_kd 0.0f
 #define Chassis_3508_PID_Maxout 16384
 #define Chassis_3508_PID_Maxiout 8192
 
@@ -81,7 +82,7 @@ uint8_t Chassis_Mode_Get(rc_info_t *backdata);
 void Chassis_Motor_SendControl_DJI(DJI_motor_t *DJMotor,int16_t output[]);
 void Chassis_Motor_TargetVelocity(float32_t Target_Velocity[],rc_info_t remoter);
 void Chassis_3508_PID_Init(pid_type_def pid[]);
-void Chassis_3508_PID_Calculate(pid_type_def pid[],float32_t target_speed[],DJI_motor_t *motor,int16_t output[]);
+void Chassis_3508_PID_Calculate(pid_type_def pid[],float32_t target_speed[],DJI_motor_t *motor,int16_t output[], LowPassFilter lpf[]);
 
 void Rising_Motor_SendControl_DJI(DJI_motor_t *DJMotor,int16_t output[]);
 void Rising_Motor_TargetVelocity(float32_t Target_Velocity[],rc_info_t remoter);

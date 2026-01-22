@@ -14,6 +14,7 @@
 #include "usart.h"
 #include <stdint.h>
 #include <string.h>
+#include "LPF.h"
 
 
 // ch1 右摇杆 左右 左-右+
@@ -24,16 +25,16 @@
 // sw2 右拨码开关 前1 中3 后2
 
 extern rc_info_t remoter;
-float32_t test[4];
-
-// 函数前向声明
-float32_t Double_Encoder_Tool(float32_t motor_angle);
+float32_t target_speed_test[4];
+float32_t current_speed_test[4];
 
 void Chassis_Task(void *argument) 
 {
   /* USER CODE Chassis_Task */
   UNUSED(argument);
   osDelay(200);
+  LowPassFilter lpf_Chassis_Vel[4];
+
   int16_t Chassis_3508_Ctrl_Output[4];
   float32_t Chassis_3508_Target_Velocity[4];
   pid_type_def Chassis_Motor_3508_PID[4];
@@ -54,6 +55,10 @@ void Chassis_Task(void *argument)
   Rising_Motor_10010l_R = pvPortMalloc(sizeof(DM_motor_t));
 
   osDelay(200);
+  for(int i = 0; i < 4; i++)
+  {
+    lizeFilter_init(&lpf_Chassis_Vel[i], 0.8f);
+  }
   Motor_Init_DJI(&Chassis_Motor_3508, &Rising_Motor_3508);
   Motor_Init_DM(&Rising_Motor_10010l_L,&Rising_Motor_10010l_R);
   Chassis_3508_PID_Init(Chassis_Motor_3508_PID);
@@ -81,13 +86,19 @@ void Chassis_Task(void *argument)
         Chassis_3508_PID_Calculate(Chassis_Motor_3508_PID,
                                  Chassis_3508_Target_Velocity,
                                  Chassis_Motor_3508, 
-                                 Chassis_3508_Ctrl_Output);
+                                 Chassis_3508_Ctrl_Output,
+                                 lpf_Chassis_Vel);
         Chassis_Motor_SendControl_DJI(Chassis_Motor_3508,
                                     Chassis_3508_Ctrl_Output);
         Rising_Motor_SendControl_DM(Rising_Motor_10010l_L,
                                   Rising_Motor_10010l_R,
                                   Rising_DM_ZeroPoint,
                                   -Rising_DM_ZeroPoint);
+        for(int i = 0; i < 4; i++)
+        {
+            target_speed_test[i] = Chassis_3508_Target_Velocity[i];
+            current_speed_test[i] = Chassis_Motor_3508->motor_msg[i].motor_speed * (Motor_Wheel_Trans);
+        }
       break;
 
       case Chassis_Upstairs:
@@ -98,7 +109,8 @@ void Chassis_Task(void *argument)
         Chassis_3508_PID_Calculate(Chassis_Motor_3508_PID,
                                  Chassis_3508_Target_Velocity,
                                  Chassis_Motor_3508, 
-                                 Chassis_3508_Ctrl_Output);
+                                 Chassis_3508_Ctrl_Output,
+                                 lpf_Chassis_Vel);
         Rising_3508_PID_Calculate(Rising_Motor_3508_PID,
                                 Rising_3508_Target_Velocity, 
                                 Rising_Motor_3508,
@@ -319,12 +331,14 @@ void Rising_3508_PID_Init(pid_type_def pid[])
 }
 
 void Chassis_3508_PID_Calculate(pid_type_def pid[], float32_t target_speed[],
-                                DJI_motor_t *motor, int16_t output[]) {
+                                DJI_motor_t *motor, int16_t output[], LowPassFilter lpf[]) 
+{
   float32_t curren_wheel_speed[4];
   for (int i = 0; i < 4; i++) 
   {
     curren_wheel_speed[i] = motor->motor_msg[i].motor_speed * (Motor_Wheel_Trans);
     output[i] = (int16_t)(PID_Calc_Add(pid + i, curren_wheel_speed[i],*(target_speed + i)));
+    output[i] = (int16_t)filterValue(&lpf[i], output[i]);
   }
 }
 
