@@ -95,10 +95,6 @@ uart_status_t uart_reg_cheak(uart_rx_t *uart_rx_msg)
     return UART_OK;
 }
 
-uart_status_t  uart_tx_send(uart_msg_t* uart_msg,uint32_t timeout)
-{
-    HAL_UART_Transmit(uart_msg->huart, uart_msg->pBuffer, uart_msg->Len, timeout);
-}
 uart_status_t uart_rx_init(uart_rx_t *uart_rx_msg)
 {
     // 安全效验
@@ -137,6 +133,12 @@ uart_status_t uart_rx_init(uart_rx_t *uart_rx_msg)
     }
 
     HAL_UARTEx_ReceiveToIdle_IT(uart_rx_msg->rx_msg->huart, uart_rx_msg->rx_msg->pBuffer, uart_rx_msg->rx_msg->Len);
+    return UART_OK;
+}
+
+uart_status_t  uart_tx_send(uart_msg_t* uart_msg,uint32_t timeout)
+{
+    HAL_UART_Transmit(uart_msg->huart, uart_msg->pBuffer, uart_msg->Len, timeout);
     return UART_OK;
 }
 
