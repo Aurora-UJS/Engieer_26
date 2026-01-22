@@ -13,6 +13,10 @@ typedef enum{
     GRIPPER_STATE_CLOSE
 }gripper_state_t ;
 
+#define GRIPPER_OPEN_RADIAN 1.2f
+#define GRIPPER_CLOSE_RADION 0.0f
+#define GRIPPER_VEL 0.5f
+
 /** @brief 末端执行器初始化*/
 void endEffector_init(endEffector_t *endeffector);
 
@@ -25,4 +29,6 @@ void EndEffector_Motor_Refresh(endEffector_t *endeffector);
 /** @brief 末端执行器电机使能 */
 void EndEffector_Motor_Enable(endEffector_t *endeffector);
 
+void Gripper_Open(endEffector_t *endeffector);
+void Gripper_Close(endEffector_t *endEffector);
 #endif

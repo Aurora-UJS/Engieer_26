@@ -37,16 +37,14 @@ void jointFollowAngle(void *argument) {
     Joint_Custom_State_Motor_Ctrl(Joint, joint_radian);
 
     switch (GRIPPER_STATE) {
-
     case GRIPPER_STATE_IDLE:
-
+      GRIPPER_STATE = GRIPPER_STATE_OPEN;
+      break;
     case GRIPPER_STATE_OPEN:
-      PosSpeed_CtrlMotorDM(EndEffector.endEffector_motor, 0, 0.5); // 夹爪控制
-      osDelay(1);
+      Gripper_Open(&EndEffector);
       break;
     case GRIPPER_STATE_CLOSE:
-      PosSpeed_CtrlMotorDM(EndEffector.endEffector_motor, 1.2, 0.5); // 夹爪控制
-      osDelay(1);
+      Gripper_Close(&EndEffector);
       break;
     }
   }
