@@ -8,13 +8,13 @@ typedef struct endEffector_t{
 } endEffector_t;
 
 typedef enum{
-    GRIPPER_STATE_IDLE = 0,
-    GRIPPER_STATE_OPEN,
-    GRIPPER_STATE_CLOSE
-}gripper_state_t ;
+    GRIPPER_IDLE_MODE = 0,
+    GRIPPER_OPEN_MODE,
+    GRIPPER_CLOSE_MODE
+}gripper_control_mode_t ;
 
-#define GRIPPER_OPEN_RADIAN 1.2f
-#define GRIPPER_CLOSE_RADION 0.0f
+#define GRIPPER_OPEN_RADIAN 0.0f
+#define GRIPPER_CLOSE_RADION 1.2f
 #define GRIPPER_VEL 0.5f
 
 /** @brief 末端执行器初始化*/
