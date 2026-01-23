@@ -2,6 +2,7 @@
 #define ARM_STATE_MACHINE_TASK_H
 
 #include "DBusSys.h"
+#include "ee_control_drv.h"
 #include "cmsis_os2.h"
 #include "stm32h7xx_hal_def.h"
 #include <stdint.h>
@@ -20,5 +21,6 @@ typedef enum {
   Arm_IDLE_Mode = 0,
   Arm_Custom_Controller_Follow_Mode,
   Arm_Frozen_Mode,
+  Arm_Set_Radian
 } arm_control_mode_t;
 #endif

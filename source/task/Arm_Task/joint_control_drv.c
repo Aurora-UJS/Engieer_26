@@ -6,8 +6,7 @@
 #include "stm32h7xx_hal_def.h"
 #include "tool.h"
 
-float joint_radian[6] = {0};
-
+float Ctrller_Joint_Radian[6] = {0};
 DM_motor_t *Joint_Motor[JOINT_NUM];
 
 void Parse_ControllerData_To_JointRadian(const uint8_t *CtrllerData,
@@ -120,7 +119,7 @@ void Joint_Custom_State_Motor_Ctrl(Joint_t *Joint, float *input_radian) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
     osDelay(1);
     Joint_Motor_PosSpeed_Ctrl(
-        Joint,
+        &Joint[joint_index],
         Joint_Pos_Limit(
             Joint_Apply_Polarity(input_radian[joint_index], joint_index),
             joint_index),
@@ -130,13 +129,13 @@ void Joint_Custom_State_Motor_Ctrl(Joint_t *Joint, float *input_radian) {
 
 static inline float Joint_Apply_Mannal_polarity(float input_radian,
                                                 int joint_index) {
-  return joint_custom_polarity_map[joint_index] * input_radian;
+  return joint_mannal_polarity_map[joint_index] * input_radian;
 }
 void Joint_Mannal_State_Motor_Ctrl(Joint_t *Joint, float *input_radian) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
     osDelay(1);
     Joint_Motor_PosSpeed_Ctrl(
-        Joint,
+        &Joint[joint_index],
         Joint_Pos_Limit(
             Joint_Apply_Mannal_polarity(input_radian[joint_index], joint_index),
             joint_index),
