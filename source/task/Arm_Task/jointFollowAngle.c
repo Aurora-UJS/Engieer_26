@@ -30,7 +30,7 @@ void Gripper_Control_Mode_Mangner(endEffector_t *EndEffector) {
 void Joint_Control_Mode_Mangner(Joint_t *Joint) {
   switch (Arm_Current_Control_Mode) {
   case Arm_IDLE_Mode:
-    Arm_Current_Control_Mode = Arm_Set_Radian;
+    Arm_Current_Control_Mode = Arm_Custom_Controller_Follow_Mode;
     break;
   case Arm_Custom_Controller_Follow_Mode:
     Parse_ControllerData_To_JointRadian(CtrllerData, Ctrller_Joint_Radian);
