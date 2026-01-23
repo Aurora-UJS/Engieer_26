@@ -127,6 +127,19 @@ const osThreadAttr_t jointFollowAngle_attributes = {
     .priority   = (osPriority_t)osPriorityNormal,
 };
 
+ /* Definitions for Arm_State_Machine_Task */
+ osThreadId_t Arm_State_Machine_TaskHandle;
+ uint32_t Arm_State_Machine_TaskBuffer[512];
+ osStaticThreadDef_t Arm_State_Machine_TaskControlBlock;
+ const osThreadAttr_t Arm_State_Machine_Task_attributes = {
+     .name = "Arm_State_Machine_Task",
+     .cb_mem = &Arm_State_Machine_TaskControlBlock,
+     .cb_size = sizeof(Arm_State_Machine_TaskControlBlock),
+     .stack_mem = &Arm_State_Machine_TaskBuffer[0],
+     .stack_size = sizeof(Arm_State_Machine_TaskBuffer),
+     .priority = (osPriority_t) osPriorityNormal,
+ };
+
 uint32_t Chassis_TaskBuffer[512];  // 栈大小：128 * 4字节 = 512字节
 osStaticThreadDef_t Chassis_TaskControlBlock;  // 静态任务控制块
 osThreadId_t Chassis_TaskHandle;  // 任务句柄
