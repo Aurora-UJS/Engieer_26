@@ -104,8 +104,7 @@ static uint8_t ctrller_rx_data[RE_RX_BUFFER_SIZE]; // DMA接收缓冲区
 static ring_buffer_t ctrller_ring;                  // 环形缓冲区
 static uint8_t ctrller_frame_buf[RE_RX_BUFFER_SIZE]; // 帧解析缓冲区
 
-// 调试用
-uint8_t test_buffffer[256];
+uint8_t Ctrller_Receive_Buffer[256];
 
 static void ctrller_rx_callback(uint8_t *pData, uint32_t size)
 {
@@ -273,8 +272,8 @@ uint8_t CtrllerData[24] = {
 static void ctrller_parse_frame(uint8_t *buff, uint16_t len)
 {
 	// 调试用：复制帧数据
-	memcpy(test_buffffer, buff, len < 256 ? len : 256);
-	memcpy(CtrllerData, test_buffffer + 7, 24);
+	memcpy(Ctrller_Receive_Buffer, buff, len < 256 ? len : 256);
+	memcpy(CtrllerData, Ctrller_Receive_Buffer + 7, 24);
 	// 写入帧头数据
 	memcpy(&custom_controller_info.FrameHeader, buff, LEN_HEADER);
 	
