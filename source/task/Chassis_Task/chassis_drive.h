@@ -31,7 +31,7 @@ void Chassis_Stop(void);
 void Chassis_Normal_Mode(const rc_info_t *remoter);
 
 /**
- * @brief 底盘上楼模式控制
+ * @brief 底盘上台阶模式控制
  *
  * @param remoter 遥控器数据指针
  */

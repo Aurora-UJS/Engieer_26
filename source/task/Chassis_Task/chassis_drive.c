@@ -1,9 +1,8 @@
-#include "chassis_drive.h"
-
-#include "omni_mecanum_kinematics.h"
-#include "tool.h"
-
-#include <string.h>
+ #include "chassis_drive.h"
+ #include "chassis_debug.h"
+ #include "omni_mecanum_kinematics.h"
+ #include "tool.h"
+ #include <string.h>
 
 static DJI_motor_t s_chassis_motor_obj;
 static DJI_motor_t *s_chassis_motor = &s_chassis_motor_obj;
@@ -32,10 +31,15 @@ void Chassis_Stop(void)
 {
     for (int i = 0; i < 4; i++) {
         s_chassis_ctrl_output[i] = 0;
+        g_chassis_debug.chassis_target_speed_3508[i] = 0.0f;
     }
 
     if (s_chassis_motor != NULL) {
         Chassis_Motor_SendControl_DJI(s_chassis_motor, s_chassis_ctrl_output);
+
+        for (int i = 0; i < 4; i++) {
+            g_chassis_debug.chassis_actual_speed_3508[i] = s_chassis_motor->motor_msg[i].motor_speed * (Motor_Wheel_Trans);
+        }
     }
 }
 
@@ -51,16 +55,25 @@ void Chassis_Normal_Mode(const rc_info_t *remoter)
     }
 
     Chassis_Motor_TargetVelocity(s_chassis_target_velocity, *remoter);
+
+    for (int i = 0; i < 4; i++) {
+        g_chassis_debug.chassis_target_speed_3508[i] = s_chassis_target_velocity[i];
+    }
+
     Chassis_3508_PID_Calculate(s_chassis_pid,
                               s_chassis_target_velocity,
                               s_chassis_motor,
                               s_chassis_ctrl_output,
                               s_chassis_lpf);
     Chassis_Motor_SendControl_DJI(s_chassis_motor, s_chassis_ctrl_output);
+
+    for (int i = 0; i < 4; i++) {
+        g_chassis_debug.chassis_actual_speed_3508[i] = s_chassis_motor->motor_msg[i].motor_speed * (Motor_Wheel_Trans);
+    }
 }
 
 /**
- * @brief 底盘上楼模式控制
+ * @brief 底盘上岛模式控制
  *
  * @param remoter 遥控器数据指针
  */
@@ -74,12 +87,21 @@ void Chassis_Upstairs_Mode(const rc_info_t *remoter)
     tmp.ch3 = 0;
 
     Chassis_Motor_TargetVelocity(s_chassis_target_velocity, tmp);
+
+    for (int i = 0; i < 4; i++) {
+        g_chassis_debug.chassis_target_speed_3508[i] = s_chassis_target_velocity[i];
+    }
+
     Chassis_3508_PID_Calculate(s_chassis_pid,
                               s_chassis_target_velocity,
                               s_chassis_motor,
                               s_chassis_ctrl_output,
                               s_chassis_lpf);
     Chassis_Motor_SendControl_DJI(s_chassis_motor, s_chassis_ctrl_output);
+
+    for (int i = 0; i < 4; i++) {
+        g_chassis_debug.chassis_actual_speed_3508[i] = s_chassis_motor->motor_msg[i].motor_speed * (Motor_Wheel_Trans);
+    }
 }
 
 void Chassis_Wheel_LPF_Init(LowPassFilter lpf[4], float alpha)

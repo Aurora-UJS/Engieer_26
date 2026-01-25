@@ -1,7 +1,6 @@
 #include "rising_ctrl.h"
-
+#include "chassis_debug.h"
 #include "tool.h"
-
 #include <string.h>
 
 static DJI_motor_t s_rising_dji_obj;
@@ -19,6 +18,7 @@ static DM_motor_t *s_rising_dm_r = &s_rising_dm_r_obj;
 static float32_t s_dm_target_angle_l = 0.0f;
 static float32_t s_dm_target_angle_r = 0.0f;
 
+
 /**
  * @brief 初始化抬升控制模块
  */
@@ -28,6 +28,15 @@ void Rising_Ctrl_Init(void)
     Motor_Init_DM(&s_rising_dm_l, &s_rising_dm_r);
     Rising_3508_PID_Init(s_rising_pid);
     Rising_Stop();
+
+    g_chassis_debug.rising_target_speed_3508[Rising_Motor_3508_Left] = 0.0f;
+    g_chassis_debug.rising_target_speed_3508[Rising_Motor_3508_Right] = 0.0f;
+    g_chassis_debug.rising_actual_speed_3508[Rising_Motor_3508_Left] = 0.0f;
+    g_chassis_debug.rising_actual_speed_3508[Rising_Motor_3508_Right] = 0.0f;
+    g_chassis_debug.rising_target_angle_dm_l = 0.0f;
+    g_chassis_debug.rising_target_angle_dm_r = 0.0f;
+    g_chassis_debug.rising_actual_angle_dm_l = 0.0f;
+    g_chassis_debug.rising_actual_angle_dm_r = 0.0f;
 }
 
 /**
@@ -38,15 +47,24 @@ void Rising_Stop(void)
     s_rising_ctrl_output[Rising_Motor_3508_Left] = 0;
     s_rising_ctrl_output[Rising_Motor_3508_Right] = 0;
 
+    g_chassis_debug.rising_target_speed_3508[Rising_Motor_3508_Left] = 0.0f;
+    g_chassis_debug.rising_target_speed_3508[Rising_Motor_3508_Right] = 0.0f;
+
     if (s_rising_dji != NULL) {
         Rising_Motor_SendControl_DJI(s_rising_dji, s_rising_ctrl_output);
+
+        g_chassis_debug.rising_actual_speed_3508[Rising_Motor_3508_Left] = s_rising_dji->motor_msg[Rising_Motor_3508_Left].motor_speed * (Motor_Wheel_Trans);
+        g_chassis_debug.rising_actual_speed_3508[Rising_Motor_3508_Right] = s_rising_dji->motor_msg[Rising_Motor_3508_Right].motor_speed * (Motor_Wheel_Trans);
     }
 
     if (s_rising_dm_l != NULL && s_rising_dm_r != NULL) {
-        Rising_Motor_SendControl_DM(s_rising_dm_l,
-                                   s_rising_dm_r,
-                                   Rising_DM_ZeroPoint,
-                                   -Rising_DM_ZeroPoint);
+        g_chassis_debug.rising_target_angle_dm_l = Rising_DM_ZeroPoint;
+        g_chassis_debug.rising_target_angle_dm_r = -Rising_DM_ZeroPoint;
+
+        Rising_Motor_SendControl_DM(s_rising_dm_l, s_rising_dm_r, Rising_DM_ZeroPoint, -Rising_DM_ZeroPoint);
+
+        g_chassis_debug.rising_actual_angle_dm_l = s_rising_dm_l->motor_msg.motor_angle;
+        g_chassis_debug.rising_actual_angle_dm_r = s_rising_dm_r->motor_msg.motor_angle;
     }
 }
 
@@ -73,14 +91,27 @@ void Rising_Upstairs_Mode(const rc_info_t *remoter)
     }
 
     Rising_Motor_TargetVelocity(s_rising_target_velocity, *remoter);
+
+    g_chassis_debug.rising_target_speed_3508[Rising_Motor_3508_Left] = s_rising_target_velocity[Rising_Motor_3508_Left];
+    g_chassis_debug.rising_target_speed_3508[Rising_Motor_3508_Right] = s_rising_target_velocity[Rising_Motor_3508_Right];
+
     Rising_3508_PID_Calculate(s_rising_pid,
                              s_rising_target_velocity,
                              s_rising_dji,
                              s_rising_ctrl_output);
     Rising_Motor_SendControl_DJI(s_rising_dji, s_rising_ctrl_output);
 
+    g_chassis_debug.rising_actual_speed_3508[Rising_Motor_3508_Left] = s_rising_dji->motor_msg[Rising_Motor_3508_Left].motor_speed * (Motor_Wheel_Trans);
+    g_chassis_debug.rising_actual_speed_3508[Rising_Motor_3508_Right] = s_rising_dji->motor_msg[Rising_Motor_3508_Right].motor_speed * (Motor_Wheel_Trans);
+
     Rising_Motor_TargetAngle(&s_dm_target_angle_l, &s_dm_target_angle_r, *remoter);
+
+    g_chassis_debug.rising_target_angle_dm_l = s_dm_target_angle_l;
+    g_chassis_debug.rising_target_angle_dm_r = s_dm_target_angle_r;
     Rising_Motor_SendControl_DM(s_rising_dm_l, s_rising_dm_r, s_dm_target_angle_l, s_dm_target_angle_r);
+
+    g_chassis_debug.rising_actual_angle_dm_l = s_rising_dm_l->motor_msg.motor_angle;
+    g_chassis_debug.rising_actual_angle_dm_r = s_rising_dm_r->motor_msg.motor_angle;
 }
 
 void Rising_Init_DJI(DJI_motor_t **Rising_Motor)

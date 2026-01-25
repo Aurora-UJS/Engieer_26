@@ -2,15 +2,14 @@
 #define RISING_CTRL_H
 
 #include "chassis_config.h"
-
 #include <stdint.h>
-
 #include "DbusSys.h"
 #include "PIDtool.h"
 #include "arm_math_types.h"
 #include "cmsis_os2.h"
 #include "motor_DJI.h"
 #include "motor_DM.h"
+#include "chassis_debug.h"
 
 /**
  * @brief 初始化抬升控制模块
