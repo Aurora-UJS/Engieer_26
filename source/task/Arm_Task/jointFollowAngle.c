@@ -4,10 +4,12 @@
 #include "cmsis_os2.h"
 #include "ee_control_drv.h"
 #include "joint_control_drv.h"
+#include <string.h>
 
 extern float Ctrller_Joint_Radian[6];
 extern DM_motor_t *Joint_Motor[JOINT_NUM];
 float Mannal_Joint_Radian[6] = {0};
+float Target_Joint_Radian[6] = {0};
 
 
 extern arm_control_mode_t Arm_Current_Control_Mode;
@@ -17,7 +19,7 @@ extern gripper_control_mode_t Gripper_Current_Control_Mode;
 void Gripper_Control_Mode_Mangner(endEffector_t *EndEffector) {
   switch (Gripper_Current_Control_Mode) {
   case GRIPPER_IDLE_MODE:
-    Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+    Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
     break;
   case GRIPPER_OPEN_MODE:
     Gripper_Open(EndEffector);
@@ -27,6 +29,7 @@ void Gripper_Control_Mode_Mangner(endEffector_t *EndEffector) {
     break;
   }
 }
+
 void Joint_Control_Mode_Mangner(Joint_t *Joint) {
   switch (Arm_Current_Control_Mode) {
   case Arm_IDLE_Mode:
@@ -38,8 +41,8 @@ void Joint_Control_Mode_Mangner(Joint_t *Joint) {
 
     CtrllerData_To_InputRadian_Converter(Ctrller_Joint_Radian);
 
+    memcpy(Target_Joint_Radian, Ctrller_Joint_Radian, sizeof(Ctrller_Joint_Radian));
     // Joint_Custom_State_Motor_Ctrl(Joint, Ctrller_Joint_Radian);
-    Joint_Move(Joint,  Ctrller_Joint_Radian);
 
     break;
   case Arm_Frozen_Mode:
@@ -72,6 +75,7 @@ void jointFollowAngle(void *argument) {
 
     Joint_Control_Mode_Mangner(Joint);
 
+    Joint_Move(Joint,  Target_Joint_Radian);
     osDelay(1);
   }
 }
