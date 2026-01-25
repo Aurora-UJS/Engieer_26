@@ -33,7 +33,8 @@ void Joint_Control_Mode_Mangner(Joint_t *Joint) {
     Arm_Current_Control_Mode = Arm_Custom_Controller_Follow_Mode;
     break;
   case Arm_Custom_Controller_Follow_Mode:
-    Parse_ControllerData_To_JointRadian(CtrllerData, Ctrller_Joint_Radian);
+    Parse_ControllerData_To_CtrllerRadian(CtrllerData, Ctrller_Joint_Radian);
+    
     Joint_Custom_State_Motor_Ctrl(Joint, Ctrller_Joint_Radian);
     break;
   case Arm_Frozen_Mode:
@@ -56,7 +57,6 @@ void jointFollowAngle(void *argument) {
   osDelay(100);
   Joint_Motor_Enable(Joint); // 使能所有关节电机
   EndEffector_Motor_Enable(&EndEffector);
-  Mannal_Joint_Radian[2] = 0.5f;
   while (1) {
 
     Joint_Motor_Refresh(Joint);
