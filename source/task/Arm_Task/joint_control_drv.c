@@ -149,3 +149,11 @@ void Joint_Motor_Ctrl(Joint_t *Joint, float input_radian) {
                               JOINT_DEFAULT_VELOCITY);
   }
 }
+
+void Joint_Move(Joint_t *Joint, float *target_radian) {
+  for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
+    osDelay(1);
+    Joint_Motor_PosSpeed_Ctrl(&Joint[joint_index], Radian_Input_To_Target(target_radian[joint_index], joint_index),
+                              JOINT_DEFAULT_VELOCITY);
+  }
+}
