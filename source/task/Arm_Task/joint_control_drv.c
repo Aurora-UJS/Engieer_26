@@ -84,32 +84,6 @@ void joint_dof_init(Joint_t *Joint) {
     Joint[joint_index].dof = joint_dof_map[joint_index];
   }
 }
-static inline void Joint_Motor_PosSpeed_Ctrl(Joint_t *Joint, float target_radian,
-                               float velocity) {
-  PosSpeed_CtrlMotorDM(Joint->joint_motor, target_radian, velocity);
-}
-
-/**
- * @brief 关节电机极性调整
- *
- * @param input_radian
- * @param joint_index
- * @return float
- */
-static inline float Joint_Apply_Polarity(float input_radian, int joint_index) {
-  return joint_custom_polarity_map[joint_index] * input_radian;
-}
-/**
- * @brief 关节限位
- *
- * @param input_radian
- * @param joint_index
- * @return float
- */
-static inline float Joint_Pos_Limit(float input_radian, int joint_index) {
-  return limit(input_radian, joint_pos_limit_min_map[joint_index],
-               joint_pos_limit_max_map[joint_index]);
-}
 
 /**
  * @brief 关节初始化设置
@@ -143,10 +117,6 @@ void Joint_Custom_State_Motor_Ctrl(Joint_t *Joint, float *input_radian) {
   }
 }
 
-static inline float Joint_Apply_Mannal_polarity(float input_radian,
-                                                int joint_index) {
-  return joint_mannal_polarity_map[joint_index] * input_radian;
-}
 void Joint_Mannal_State_Motor_Ctrl(Joint_t *Joint, float *input_radian) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
     osDelay(1);
