@@ -33,9 +33,14 @@ void Joint_Control_Mode_Mangner(Joint_t *Joint) {
     Arm_Current_Control_Mode = Arm_Custom_Controller_Follow_Mode;
     break;
   case Arm_Custom_Controller_Follow_Mode:
+
     Parse_ControllerData_To_CtrllerRadian(CtrllerData, Ctrller_Joint_Radian);
-    
-    Joint_Custom_State_Motor_Ctrl(Joint, Ctrller_Joint_Radian);
+
+    CtrllerData_To_InputRadian_Converter(Ctrller_Joint_Radian);
+
+    // Joint_Custom_State_Motor_Ctrl(Joint, Ctrller_Joint_Radian);
+    Joint_Move(Joint,  Ctrller_Joint_Radian);
+
     break;
   case Arm_Frozen_Mode:
     Joint_Custom_State_Motor_Ctrl(Joint, Ctrller_Joint_Radian);
