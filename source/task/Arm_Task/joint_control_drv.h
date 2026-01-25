@@ -48,10 +48,56 @@ extern uint8_t CtrllerData[24];
 extern rc_info_t remoter;
 
 void Joint_Mannal_State_Motor_Ctrl(Joint_t *Joint, float *input_radian);
-void Parse_ControllerData_To_JointRadian(const uint8_t *CtrllerData,
+void Parse_ControllerData_To_CtrllerRadian(const uint8_t *CtrllerData,
                                          float *joint_radian);
 
 void Joint_Custom_State_Motor_Ctrl(Joint_t *Joint, float *input_radian);
+
+/**
+ * @brief 关节电机位置速度模式控制
+ * 
+ * @param Joint 关节
+ * @param target_radian 目标弧度 
+ * @param velocity 速度
+ */
+static inline void Joint_Motor_PosSpeed_Ctrl(Joint_t *Joint, float target_radian,
+                               float velocity) {
+  PosSpeed_CtrlMotorDM(Joint->joint_motor, target_radian, velocity);
+}
+
+/**
+ * @brief 常规极性调整
+ * 
+ * @param input_radian 
+ * @param joint_index 
+ * @return float 
+ */
+static inline float Joint_Apply_Mannal_polarity(float input_radian,
+                                                int joint_index) {
+  return joint_mannal_polarity_map[joint_index] * input_radian;
+}
+/**
+ * @brief 自定义控制器关节电机极性调整
+ *
+ * @param input_radian
+ * @param joint_index
+ * @return float
+ */
+static inline float Joint_Apply_Polarity(float input_radian, int joint_index) {
+  return joint_custom_polarity_map[joint_index] * input_radian;
+}
+
+/**
+ * @brief 关节限位
+ *
+ * @param input_radian
+ * @param joint_index
+ * @return float
+ */
+static inline float Joint_Pos_Limit(float input_radian, int joint_index) {
+  return limit(input_radian, joint_pos_limit_min_map[joint_index],
+               joint_pos_limit_max_map[joint_index]);
+}
 
 /** @brief 关节初始化*/
 void joint_init(Joint_t *Joint);

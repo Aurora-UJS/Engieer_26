@@ -9,8 +9,14 @@
 float Ctrller_Joint_Radian[6] = {0};
 DM_motor_t *Joint_Motor[JOINT_NUM];
 
-void Parse_ControllerData_To_JointRadian(const uint8_t *CtrllerData,
-                                         float *joint_radian) {
+/**
+ * @brief 关节角度解算
+ *
+ * @param CtrllerData 控制器数据
+ * @param joint_radian 弧度数组
+ */
+void Parse_ControllerData_To_CtrllerRadian(const uint8_t *CtrllerData,
+                                           float *joint_radian) {
   for (int i = 0; i < 6; i++) {
     int tmp = 0;
     // 每个关节弧度占 4 个字符
@@ -40,6 +46,11 @@ void Joint_Motor_Enable(Joint_t *Joint) {
     Motor_DM_Enable(Joint[joint_index].joint_motor);
   }
 }
+/**
+ * @brief 电机模块初始化
+ *
+ * @param Joint
+ */
 void joint_motor_init(Joint_t *Joint) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
 
@@ -63,6 +74,11 @@ void joint_motor_init(Joint_t *Joint) {
     Motor_DM_Init(Joint[joint_index].joint_motor);
   }
 }
+/**
+ * @brief 关节自由度初始化
+ *
+ * @param Joint
+ */
 void joint_dof_init(Joint_t *Joint) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
     Joint[joint_index].dof = joint_dof_map[joint_index];
@@ -140,5 +156,26 @@ void Joint_Mannal_State_Motor_Ctrl(Joint_t *Joint, float *input_radian) {
             Joint_Apply_Mannal_polarity(input_radian[joint_index], joint_index),
             joint_index),
         JOINT_DEFAULT_VELOCITY);
+  }
+}
+
+static inline float Radian_Input_To_Target(float input_radian,
+                                           int joint_index) {
+  return Joint_Pos_Limit(input_radian, joint_index);
+}
+
+void CtrllerData_To_InputRadian_Converter(float *joint_radian) {
+  for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
+    joint_radian[joint_index] =
+        joint_radian[joint_index] * joint_custom_polarity_map[joint_index];
+  }
+}
+
+void Joint_Motor_Ctrl(Joint_t *Joint, float input_radian) {
+  for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
+    osDelay(1);
+    Joint_Motor_PosSpeed_Ctrl(&Joint[joint_index],
+                              Radian_Input_To_Target(input_radian, joint_index),
+                              JOINT_DEFAULT_VELOCITY);
   }
 }
