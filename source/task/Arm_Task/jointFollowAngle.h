@@ -6,6 +6,7 @@
 #include "ee_control_drv.h"
 #include "joint_control_drv.h"
 #include <string.h>
+#include <stdbool.h>
 
 
 /** @brief 任务jointFollowAngle */
