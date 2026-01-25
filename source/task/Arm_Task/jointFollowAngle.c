@@ -1,21 +1,22 @@
 // jointFollowAngle.c 关节跟随角度运动处理函数
 
-#include "arm_state_machine_task.h"
-#include "cmsis_os2.h"
-#include "ee_control_drv.h"
-#include "joint_control_drv.h"
-#include <string.h>
+#include "jointFollowAngle.h"
 
 extern float Ctrller_Joint_Radian[6];
 extern DM_motor_t *Joint_Motor[JOINT_NUM];
 float Mannal_Joint_Radian[6] = {0};
 float Target_Joint_Radian[6] = {0};
 
-
+// 夹爪和臂状态引用
 extern arm_control_mode_t Arm_Current_Control_Mode;
 
 extern gripper_control_mode_t Gripper_Current_Control_Mode;
 
+/**
+ * @brief 夹爪状态机
+ *
+ * @param EndEffector
+ */
 void Gripper_Control_Mode_Mangner(endEffector_t *EndEffector) {
   switch (Gripper_Current_Control_Mode) {
   case GRIPPER_IDLE_MODE:
@@ -30,6 +31,11 @@ void Gripper_Control_Mode_Mangner(endEffector_t *EndEffector) {
   }
 }
 
+/**
+ * @brief 关节状态机
+ *
+ * @param Joint
+ */
 void Joint_Control_Mode_Mangner(Joint_t *Joint) {
   switch (Arm_Current_Control_Mode) {
   case Arm_IDLE_Mode:
@@ -41,7 +47,8 @@ void Joint_Control_Mode_Mangner(Joint_t *Joint) {
 
     CtrllerData_To_InputRadian_Converter(Ctrller_Joint_Radian);
 
-    memcpy(Target_Joint_Radian, Ctrller_Joint_Radian, sizeof(Ctrller_Joint_Radian));
+    memcpy(Target_Joint_Radian, Ctrller_Joint_Radian,
+           sizeof(Ctrller_Joint_Radian));
     // Joint_Custom_State_Motor_Ctrl(Joint, Ctrller_Joint_Radian);
 
     break;
@@ -75,7 +82,7 @@ void jointFollowAngle(void *argument) {
 
     Joint_Control_Mode_Mangner(Joint);
 
-    Joint_Move(Joint,  Target_Joint_Radian);
+    Joint_Move(Joint, Target_Joint_Radian);
     osDelay(1);
   }
 }
