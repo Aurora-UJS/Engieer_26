@@ -21,6 +21,7 @@ typedef enum {
   Arm_IDLE_Mode = 0,
   Arm_Custom_Controller_Follow_Mode,
   Arm_Frozen_Mode,
-  Arm_Set_Radian
+  Arm_Set_Radian,
+  Arm_TRANSITION_Mode
 } arm_control_mode_t;
 #endif
