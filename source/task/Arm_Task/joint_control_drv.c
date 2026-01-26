@@ -9,7 +9,7 @@
 float Ctrller_Joint_Radian[6] = {0};
 DM_motor_t *Joint_Motor[JOINT_NUM];
 
-void Point_Generator(target_point_t *Target_Point, const float *joint_radian,
+void Point_Publisher(target_point_t *Target_Point, const float *joint_radian,
                      const float *velocity) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
     Target_Point[joint_index].target_joint_radian = joint_radian[joint_index];

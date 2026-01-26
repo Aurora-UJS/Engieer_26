@@ -139,7 +139,7 @@ static inline bool Arm_At_Target(Joint_t *Joint,
   return true;
 }
 
-void Point_Generator(target_point_t *Target_Point, const float *joint_radian,
+void Point_Publisher(target_point_t *Target_Point, const float *joint_radian,
                      const float *velocity);
 
 void Joint_Move_byPoint(Joint_t *Joint, target_point_t *target_point);
