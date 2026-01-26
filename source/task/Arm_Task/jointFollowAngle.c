@@ -8,10 +8,6 @@ float Mannal_Joint_Radian[6] = {0};
 target_point_t Target_Point[6];
 float Target_Joint_Radian[6] = {0};
 
-const float Default_Velcoity[6] = {
-    JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY,
-    JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY,
-};
 
 void target_point_init(target_point_t *Target_Point) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
