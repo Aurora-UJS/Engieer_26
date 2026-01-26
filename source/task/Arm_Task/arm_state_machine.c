@@ -20,6 +20,10 @@ const float Default_Velcoity[6] = {
 gripper_control_mode_t Gripper_Current_Control_Mode = GRIPPER_IDLE_MODE;
 arm_control_mode_t Arm_Current_Control_Mode = Arm_IDLE_Mode;
 
+target_point_t traj_test[256];
+void Arm_Traj_Handle(void){
+   
+}
 void Arm_Transition_Handle(Joint_t *Joint, const float *transition_radian) {
   if (true == Arm_At_Target(Joint, transition_radian)) {
     // Arm_Current_Control_Mode = Arm_IDLE_Mode;
@@ -57,7 +61,7 @@ void Joint_Control_Mode_Mangner(Joint_t *Joint) {
     Arm_Current_Control_Mode = Arm_Custom_Controller_Follow_Mode;
     break;
 
-  case Arm_TRANSITION_Mode:
+  case Arm_Transition_Mode:
 
     Arm_Transition_Handle(Joint, Mannal_Joint_Radian);
     break;
@@ -81,5 +85,7 @@ void Joint_Control_Mode_Mangner(Joint_t *Joint) {
   case Arm_Set_Radian:
     Joint_Mannal_State_Motor_Ctrl(Joint, Mannal_Joint_Radian);
     break;
+  case Arm_Traj_Mode:
+    Arm_Traj_Handle(); 
   }
 }

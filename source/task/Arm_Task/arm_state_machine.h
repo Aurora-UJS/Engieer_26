@@ -9,7 +9,8 @@ typedef enum {
   Arm_Custom_Controller_Follow_Mode,
   Arm_Frozen_Mode,
   Arm_Set_Radian,
-  Arm_TRANSITION_Mode
+  Arm_Transition_Mode,
+  Arm_Traj_Mode
 } arm_control_mode_t;
 
 void Gripper_Control_Mode_Mangner(endEffector_t *EndEffector);
