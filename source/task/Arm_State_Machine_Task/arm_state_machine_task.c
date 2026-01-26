@@ -15,8 +15,6 @@ extern rc_info_t remoter;
 
 uint8_t rc_map_table[MAX_INPUTS];
 
-gripper_control_mode_t Gripper_Current_Control_Mode = GRIPPER_IDLE_MODE;
-arm_control_mode_t Arm_Current_Control_Mode = Arm_IDLE_Mode;
 
 void Remoter_Input_To_Control_Mode_Register(rc_input_id_t input,
                                             uint8_t control_mode) {
@@ -51,15 +49,15 @@ static inline rc_input_id_t RC_Get_Input_ID(rc_info_t *rc) {
   return SW_DEFAULT;
 }
 
-void Remoter_Dispatcher(rc_info_t *remoter) {
-  rc_input_id_t input_id = RC_Get_Input_ID(remoter);
-  Arm_Current_Control_Mode = (arm_control_mode_t)rc_map_table[input_id];
-}
+// void Remoter_Dispatcher(rc_info_t *remoter) {
+//   rc_input_id_t input_id = RC_Get_Input_ID(remoter);
+//   Arm_Current_Control_Mode = (arm_control_mode_t)rc_map_table[input_id];
+// }
 void remoter_map_init(void) {}
 
 void Arm_State_Machine_Task(void *argument) {
   UNUSED(argument);
-  Remoter_Dispatcher(&remoter);
+  // Remoter_Dispatcher(&remoter);
 
   while (1) {
     osDelay(10);

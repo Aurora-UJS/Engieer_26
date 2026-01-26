@@ -16,6 +16,8 @@
 #define JOINT_POS_MIN -3.2f
 #define NEGAVTIVE (-1.0f)
 #define PROSITIVE (1.0f)
+#define Angle_Epsilon 0.005f
+
 typedef enum { JOINT_DOF_ROLL = 0, JOINT_DOF_YAW, JOINT_DOF_PITCH } joint_dof_t;
 
 static const float joint_pos_limit_max_map[JOINT_NUM] = {
@@ -40,9 +42,12 @@ static const joint_dof_t joint_dof_map[JOINT_NUM] = {
 typedef struct Joint_t {
   DM_motor_t *joint_motor;
   joint_dof_t dof;
-  float target_radian;
-  float current_radian;
 } Joint_t;
+
+typedef struct target_point_t {
+  float target_joint_radian;
+  float velocity;
+} target_point_t;
 
 extern uint8_t CtrllerData[24];
 extern rc_info_t remoter;
@@ -99,9 +104,49 @@ static inline float Joint_Pos_Limit(float input_radian, int joint_index) {
                joint_pos_limit_max_map[joint_index]);
 }
 
+static inline float Float_Abs(float num) { return (num >= 0.0f) ? num : -num; }
+
+static inline float Delta(float current, float target) {
+  return current - target;
+}
+
+static inline float Error_Calc(float current, float target) {
+  return Float_Abs(Delta(current, target));
+}
+
+// float at_angle_test;
+static inline bool Joint_At_Target(Joint_t *Joint, float target_radian,
+                                   float epsilon) {
+  // at_angle_test = Error_Calc(Joint->joint_motor->motor_msg.motor_angle,
+  // target_radian);
+  if (Error_Calc(Joint->joint_motor->motor_msg.motor_angle, target_radian) <=
+      epsilon) {
+    return true;
+  }
+  return false;
+}
+
+static inline bool Arm_At_Target(Joint_t *Joint,
+                                 const float *transition_radian) {
+  for (int joint_index = 1; joint_index < JOINT_NUM; joint_index++) {
+
+    if (false == Joint_At_Target(&Joint[joint_index],
+                                 transition_radian[joint_index],
+                                 Angle_Epsilon)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+void Point_Generator(target_point_t *Target_Point, const float *joint_radian,
+                     const float *velocity);
+
+void Joint_Move_byPoint(Joint_t *Joint, target_point_t *target_point);
+
 void CtrllerData_To_InputRadian_Converter(float *joint_radian);
 
-void Joint_Move(Joint_t *Joint, float *target_radian);
+void Joint_Move_defaultyVel(Joint_t *Joint, float *target_radian);
 
 /** @brief 关节初始化*/
 void joint_init(Joint_t *Joint);
@@ -109,7 +154,7 @@ void joint_init(Joint_t *Joint);
 /** @brief 关节自由度信息初始化 */
 void joint_dof_init(Joint_t *Joint);
 
-/** @brief 电机初始化*/
+/** @brief 电机初始化 */
 void joint_motor_init(Joint_t *Joint);
 
 /** @brief 电机信息更新 */

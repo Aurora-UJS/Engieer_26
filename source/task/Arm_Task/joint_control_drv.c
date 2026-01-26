@@ -9,6 +9,13 @@
 float Ctrller_Joint_Radian[6] = {0};
 DM_motor_t *Joint_Motor[JOINT_NUM];
 
+void Point_Generator(target_point_t *Target_Point, const float *joint_radian,
+                     const float *velocity) {
+  for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
+    Target_Point[joint_index].target_joint_radian = joint_radian[joint_index];
+    Target_Point[joint_index].velocity = velocity[joint_index];
+  }
+}
 /**
  * @brief 关节角度解算
  *
@@ -133,7 +140,11 @@ static inline float Radian_Input_To_Target(float input_radian,
                                            int joint_index) {
   return Joint_Pos_Limit(input_radian, joint_index);
 }
-
+/**
+ * @brief 将CtrllerData 转换成输入弧度组，主要功能是调整极性
+ *
+ * @param joint_radian 关节数组
+ */
 void CtrllerData_To_InputRadian_Converter(float *joint_radian) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
     joint_radian[joint_index] =
@@ -141,19 +152,36 @@ void CtrllerData_To_InputRadian_Converter(float *joint_radian) {
   }
 }
 
-void Joint_Motor_Ctrl(Joint_t *Joint, float input_radian) {
+// /**
+//  * @brief 关节电机控制
+//  *
+//  * @param Joint 关节数组
+//  * @param input_radian 输入弧度
+//  */
+// void Joint_Motor_Ctrl(Joint_t *Joint, float input_radian) {
+//   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
+//     osDelay(1);
+//     Joint_Motor_PosSpeed_Ctrl(&Joint[joint_index],
+//                               Radian_Input_To_Target(input_radian,
+//                               joint_index), JOINT_DEFAULT_VELOCITY);
+//   }
+// }
+
+void Joint_Move_defaultyVel(Joint_t *Joint, float *target_radian) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
     osDelay(1);
-    Joint_Motor_PosSpeed_Ctrl(&Joint[joint_index],
-                              Radian_Input_To_Target(input_radian, joint_index),
-                              JOINT_DEFAULT_VELOCITY);
+    Joint_Motor_PosSpeed_Ctrl(
+        &Joint[joint_index],
+        Radian_Input_To_Target(target_radian[joint_index], joint_index),
+        JOINT_DEFAULT_VELOCITY);
   }
 }
 
-void Joint_Move(Joint_t *Joint, float *target_radian) {
+void Joint_Move_byPoint(Joint_t *Joint, target_point_t *target_point) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
     osDelay(1);
-    Joint_Motor_PosSpeed_Ctrl(&Joint[joint_index], Radian_Input_To_Target(target_radian[joint_index], joint_index),
-                              JOINT_DEFAULT_VELOCITY);
+    Joint_Motor_PosSpeed_Ctrl(&Joint[joint_index],
+                              target_point[joint_index].target_joint_radian,
+                              target_point[joint_index].velocity);
   }
 }
