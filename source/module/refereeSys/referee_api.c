@@ -255,7 +255,7 @@ void JudgeReadData(uint8_t *buff)
 
 static custom_controller_info_t custom_controller_info;
 
-uint8_t CtrllerData[26] = {
+uint8_t CtrllerData[CtrllerData_Length] = {
     '3','1','4','1',
     '3','1','4','1',
     '3','1','4','1',

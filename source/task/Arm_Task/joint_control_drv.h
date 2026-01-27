@@ -8,6 +8,7 @@
 #include "motor_DM.h"
 #include "tool.h"
 #include <stdio.h>
+#include "referee_api.h"
 
 #define JOINT_NUM 6
 #define JOINT_DEFAULT_VELOCITY 0.5f
@@ -49,7 +50,7 @@ typedef struct target_point_t {
   float velocity;
 } target_point_t;
 
-extern uint8_t CtrllerData[26];
+extern uint8_t CtrllerData[CtrllerData_Length];
 extern rc_info_t remoter;
 
 void Joint_Mannal_State_Motor_Ctrl(Joint_t *Joint, float *input_radian);
