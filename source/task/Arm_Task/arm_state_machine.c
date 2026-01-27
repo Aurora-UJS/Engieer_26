@@ -1,15 +1,9 @@
 #include "arm_state_machine.h"
-#include "joint_control_drv.h"
 
 extern arm_control_mode_t Arm_Current_Control_Mode;
 
 extern gripper_control_mode_t Gripper_Current_Control_Mode;
 
-extern float Ctrller_Joint_Radian[6];
-extern DM_motor_t *Joint_Motor[JOINT_NUM];
-extern float Mannal_Joint_Radian[6];
-extern target_point_t Target_Point[6];
-extern float Target_Joint_Radian[6];
 
 const float Zero_Velcoity[6] = {0, 0, 0, 0, 0, 0};
 const float Default_Velcoity[6] = {
@@ -83,7 +77,6 @@ void Joint_Control_Mode_Mangner(Joint_t *Joint) {
     break;
 
   case Arm_Set_Radian:
-    Joint_Mannal_State_Motor_Ctrl(Joint, Mannal_Joint_Radian);
     break;
   case Arm_Traj_Mode:
     Arm_Traj_Handle(); 
