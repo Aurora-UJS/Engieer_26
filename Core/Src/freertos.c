@@ -139,7 +139,18 @@ const osThreadAttr_t jointFollowAngle_attributes = {
      .stack_size = sizeof(Arm_State_Machine_TaskBuffer),
      .priority = (osPriority_t) osPriorityNormal,
  };
-
+ /* Definitions for SerialPort */
+ osThreadId_t SerialPortHandle;
+ uint32_t SerialPortBuffer[256];
+ osStaticThreadDef_t SerialPortControlBlock;
+ const osThreadAttr_t SerialPort_attributes = {
+     .name = "SerialPort",
+     .cb_mem = &SerialPortControlBlock,
+     .cb_size = sizeof(SerialPortControlBlock),
+     .stack_mem = &SerialPortBuffer[0],
+     .stack_size = sizeof(SerialPortBuffer),
+     .priority = (osPriority_t) osPriorityNormal,
+ };
 uint32_t Chassis_TaskBuffer[512];  // 栈大小：128 * 4字节 = 512字节
 osStaticThreadDef_t Chassis_TaskControlBlock;  // 静态任务控制块
 osThreadId_t Chassis_TaskHandle;  // 任务句柄
@@ -200,6 +211,7 @@ void jointFollowAngle(void *arguments);
 void uart_Transmit_Angle(void *arguments);
 void Chassis_Task(void *arguments);
 void Referee_Task(void *arguments);
+void SerialPlot(void *argument);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
@@ -257,6 +269,7 @@ void MX_FREERTOS_Init(void) {
   jointFollowAngleHandle = osThreadNew(jointFollowAngle,NULL, &jointFollowAngle_attributes);
   //uart_Transmit_AngleHandle = osThreadNew(uart_Transmit_Angle, NULL, &uart_Transmit_Angle_attributes);
   Chassis_TaskHandle = osThreadNew(Chassis_Task, NULL, &Chassis_Task_attributes);
+  // SerialPortHandle = osThreadNew(SerialPlot, NULL, &SerialPort_attributes);
   Referee_TaskHandle = osThreadNew(Referee_Task, NULL, &Referee_Task_attributes);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -371,6 +384,15 @@ __weak void Chassis_Task(void *argument)
 }
 
 __weak void Referee_Task(void *argument)
+{
+  UNUSED(argument);
+  for(;;)
+  {
+    
+    osDelay(1);
+  }
+}
+__weak void SerialPort(void *argument)
 {
   UNUSED(argument);
   for(;;)
