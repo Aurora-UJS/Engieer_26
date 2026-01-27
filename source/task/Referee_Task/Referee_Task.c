@@ -8,7 +8,6 @@
 
 custom_controller_info_t *Controller_Msg;
 
-extern uint8_t CtrllerData[24];
 void Referee_Task(void *argument)
 {
     UNUSED(argument);
