@@ -29,6 +29,9 @@ void EndEffector_Motor_Refresh(endEffector_t *endeffector);
 /** @brief 末端执行器电机使能 */
 void EndEffector_Motor_Enable(endEffector_t *endeffector);
 
+/** @brief 夹爪打开 */
 void Gripper_Open(endEffector_t *endeffector);
+
+/** @brief 夹爪关闭 */
 void Gripper_Close(endEffector_t *endEffector);
 #endif
