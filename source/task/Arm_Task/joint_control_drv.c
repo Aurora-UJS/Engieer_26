@@ -2,12 +2,14 @@
 
 #include "joint_control_drv.h"
 #include "cmsis_os2.h"
+#include "ee_control_drv.h"
 #include "motor_DM.h"
 #include "stm32h7xx_hal_def.h"
 #include "tool.h"
 
 float Ctrller_Joint_Radian[6] = {0};
 DM_motor_t *Joint_Motor[JOINT_NUM];
+extern gripper_control_mode_t Gripper_Current_Control_Mode;
 
 void Point_Publisher(target_point_t *Target_Point, const float *joint_radian,
                      const float *velocity) {
@@ -30,6 +32,12 @@ void Parse_ControllerData_To_CtrllerRadian(const uint8_t *CtrllerData,
     sscanf((const char *)&CtrllerData[i * 4], "%04d", &tmp);
     joint_radian[i] = tmp / 1000.0f;
     joint_radian[i] -= PI; // 偏移 PI
+  }
+  switch (CtrllerData[25]-'0') {
+    case 0: Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
+            break;
+    case 1: Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+            break;
   }
 }
 /**

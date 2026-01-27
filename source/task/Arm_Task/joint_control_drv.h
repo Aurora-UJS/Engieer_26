@@ -49,7 +49,7 @@ typedef struct target_point_t {
   float velocity;
 } target_point_t;
 
-extern uint8_t CtrllerData[24];
+extern uint8_t CtrllerData[26];
 extern rc_info_t remoter;
 
 void Joint_Mannal_State_Motor_Ctrl(Joint_t *Joint, float *input_radian);
