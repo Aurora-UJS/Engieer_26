@@ -53,7 +53,9 @@ typedef struct target_point_t {
 extern uint8_t CtrllerData[CtrllerData_Length];
 extern rc_info_t remoter;
 
+/** @brief 关节电机常规控制（未使用） */
 void Joint_Mannal_State_Motor_Ctrl(Joint_t *Joint, float *input_radian);
+
 void Parse_ControllerData_To_CtrllerRadian(const uint8_t *CtrllerData,
                                            float *joint_radian);
 
@@ -140,13 +142,17 @@ static inline bool Arm_At_Target(Joint_t *Joint,
   return true;
 }
 
+/** @brief 发布点数据 */
 void Point_Publisher(target_point_t *Target_Point, const float *joint_radian,
                      const float *velocity);
 
+/** @brief 关节根据点移动函数 */
 void Joint_Move_byPoint(Joint_t *Joint, target_point_t *target_point);
 
+/** @brief 关节数据转换输入弧度 */
 void CtrllerData_To_InputRadian_Converter(float *joint_radian);
 
+/** @brief 关节默认速度移动（未使用） */
 void Joint_Move_defaultyVel(Joint_t *Joint, float *target_radian);
 
 /** @brief 关节初始化*/
