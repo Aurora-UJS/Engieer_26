@@ -8,7 +8,7 @@ const float Default_Velcoity[6] = {
 };
 
 gripper_control_mode_t Gripper_Current_Control_Mode = GRIPPER_IDLE_MODE;
-arm_control_mode_t Arm_Current_Control_Mode = Arm_Traj_Mode;
+arm_control_mode_t Arm_Current_Control_Mode = Arm_IDLE_Mode;
 
 target_point_t traj_test[256];
 
