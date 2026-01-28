@@ -186,6 +186,16 @@ void Rising_Motor_SendControl_DM(DM_motor_t *DMMotor_L, DM_motor_t *DMMotor_R, f
     PosSpeed_CtrlMotorDM(DMMotor_R, output_R, Rising_DM_Velocity);
 }
 
+DM_motor_t *Rising_Get_DmMotor_L(void)
+{
+    return s_rising_dm_l;
+}
+
+DM_motor_t *Rising_Get_DmMotor_R(void)
+{
+    return s_rising_dm_r;
+}
+
 void Rising_Motor_TargetVelocity(float32_t Target_Velocity[], rc_info_t remoter)
 {
     float32_t Velocity = map(remoter.ch2,

@@ -151,6 +151,18 @@ const osThreadAttr_t Referee_Task_attributes = {
   .priority = (osPriority_t)osPriorityNormal,  // 优先级（与默认任务相同）
 };
 
+uint32_t Watchdog_TaskBuffer[512];
+osStaticThreadDef_t Watchdog_TaskControlBlock;
+osThreadId_t Watchdog_TaskHandle;
+const osThreadAttr_t Watchdog_Task_attributes = {
+  .name = "Watchdog_Task",
+  .cb_mem = &Watchdog_TaskControlBlock,
+  .cb_size = sizeof(Watchdog_TaskControlBlock),
+  .stack_mem = &Watchdog_TaskBuffer[0],
+  .stack_size = sizeof(Watchdog_TaskBuffer),
+  .priority = (osPriority_t)osPriorityLow,
+};
+
 /* Definitions for uart_Transmit_Angle */
 osThreadId_t uart_Transmit_AngleHandle;
 uint32_t uart_Transmit_AngleBuffer[1024];
@@ -188,6 +200,7 @@ void jointFollowAngle(void *arguments);
 void uart_Transmit_Angle(void *arguments);
 void Chassis_Task(void *arguments);
 void Referee_Task(void *arguments);
+void Watchdog_Task(void *arguments);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
@@ -248,6 +261,7 @@ void MX_FREERTOS_Init(void) {
   Referee_TaskHandle = osThreadNew(Referee_Task, NULL, &Referee_Task_attributes);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
+  Watchdog_TaskHandle = osThreadNew(Watchdog_Task, NULL, &Watchdog_Task_attributes);
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */

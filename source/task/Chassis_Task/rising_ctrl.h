@@ -104,4 +104,7 @@ void Rising_Motor_SendControl_DM(DM_motor_t *DMMotor_L, DM_motor_t *DMMotor_R, f
  */
 void Rising_Motor_TargetAngle(float32_t *Target_Angle_L, float32_t *Target_Angle_R, rc_info_t remoter);
 
+DM_motor_t *Rising_Get_DmMotor_L(void);
+DM_motor_t *Rising_Get_DmMotor_R(void);
+
 #endif /* RISING_CTRL_H */

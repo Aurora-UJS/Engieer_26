@@ -18,6 +18,18 @@ extern rc_info_t remoter;
 float32_t target_speed_test[4];
 float32_t current_speed_test[4];
 
+static volatile uint8_t s_chassis_force_poweroff = 0;
+
+void Chassis_ForcePowerOff(uint8_t enable)
+{
+  s_chassis_force_poweroff = (enable != 0U) ? 1U : 0U;
+}
+
+uint8_t Chassis_IsForcePowerOff(void)
+{
+  return s_chassis_force_poweroff;
+}
+
 /**
  * @brief 根据遥控器拨码开关获取底盘模式
  *
@@ -26,6 +38,10 @@ float32_t current_speed_test[4];
  */
 static uint8_t Chassis_Mode_Get(rc_info_t *backdata)
 {
+  if (Chassis_IsForcePowerOff() != 0U) {
+    return Chassis_PowerOff;
+  }
+
   uint8_t Chassis_Mode;
   switch (backdata->sw2)
   {
