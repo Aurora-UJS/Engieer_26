@@ -2,8 +2,10 @@
 
 #include "joint_control_drv.h"
 #include "cmsis_os2.h"
+#include "dsp/basic_math_functions.h"
 #include "ee_control_drv.h"
 #include "motor_DM.h"
+#include "stm32h7xx.h"
 #include "stm32h7xx_hal_def.h"
 #include "tool.h"
 
@@ -159,7 +161,6 @@ void CtrllerData_To_InputRadian_Converter(float *joint_radian) {
         joint_radian[joint_index] * joint_custom_polarity_map[joint_index];
   }
 }
-
 // /**
 //  * @brief 关节电机控制
 //  *
