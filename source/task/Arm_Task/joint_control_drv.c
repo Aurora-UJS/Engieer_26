@@ -48,6 +48,16 @@ void Joint_Motor_Refresh(Joint_t *Joint) {
  *
  * @param Joint 关节
  */
+void Joint_Motor_Disable(Joint_t *Joint) {
+  for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
+    Motor_DM_Disable(Joint[joint_index].joint_motor);
+  }
+}
+/**
+ * @brief 关节电机使能模块
+ *
+ * @param Joint 关节
+ */
 void Joint_Motor_Enable(Joint_t *Joint) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
     Motor_DM_Enable(Joint[joint_index].joint_motor);

@@ -1,6 +1,8 @@
 // jointFollowAngle.c 关节跟随角度运动处理函数
 
 #include "jointFollowAngle.h"
+#include "joint_control_drv.h"
+#include "arm_control_drv.h"
 
 extern float Ctrller_Joint_Radian[6];
 extern DM_motor_t *Joint_Motor[JOINT_NUM];
@@ -16,6 +18,12 @@ void target_point_init(target_point_t *Target_Point) {
   }
 }
 
+float Current_Radian[6] = {0};
+void Joint_Get_Radian(Joint_t *Joint){
+  for (int joint_index=0; joint_index<JOINT_NUM; joint_index++) {
+    Current_Radian[joint_index]=Motor_Get_Radian(Joint[joint_index].joint_motor);
+  }
+}
 void jointFollowAngle(void *argument) {
   Joint_t Joint[JOINT_NUM];
   endEffector_t EndEffector;
@@ -39,12 +47,11 @@ void jointFollowAngle(void *argument) {
     Joint_Motor_Refresh(Joint);
 
     EndEffector_Motor_Refresh(&EndEffector);
-
-    Gripper_Control_Mode_Mangner(&EndEffector);
-
-    Joint_Control_Mode_Mangner(Joint);
-
-    Joint_Move_byPoint(Joint, Target_Point);
+    // Gripper_Control_Mode_Mangner(&EndEffector);
+    Joint_Motor_Disable(Joint);
+    // Joint_Control_Mode_Mangner(Joint);
+    Joint_Get_Radian(Joint);
+    // Joint_Move_byPoint(Joint, Target_Point);
 
     osDelay(1);
   }
