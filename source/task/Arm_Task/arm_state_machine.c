@@ -1,5 +1,9 @@
 #include "arm_state_machine.h"
+#include "cmsis_os2.h"
+#include "joint_control_drv.h"
+#include "motor_DM.h"
 
+float Rising_Joint_Radian[6] = {0,1.6,1.5,0,0,0};
 extern osThreadId_t Trajectory_PublisherHandle;
 const float Zero_Velcoity[6] = {0, 0, 0, 0, 0, 0};
 const float Default_Velcoity[6] = {
@@ -51,7 +55,18 @@ void Gripper_Control_Mode_Mangner(endEffector_t *EndEffector) {
  * @param Joint
  */
 void Joint_Control_Mode_Mangner(Joint_t *Joint) {
+    switch(remoter.sw1){
+      case 1:
+        Arm_Current_Control_Mode =   Arm_Rising_Mode;
+      break;
+      default:
+       Arm_Current_Control_Mode = Arm_Custom_Controller_Follow_Mode;
+      break;
+    }
   switch (Arm_Current_Control_Mode) {
+  case Arm_Rising_Mode:
+        Point_Publisher(Target_Point, Rising_Joint_Radian, Default_Velcoity);
+    break;
   case Arm_IDLE_Mode:
 
     Arm_Current_Control_Mode = Arm_Custom_Controller_Follow_Mode;

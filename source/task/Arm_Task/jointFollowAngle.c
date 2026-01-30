@@ -1,13 +1,14 @@
 // jointFollowAngle.c 关节跟随角度运动处理函数
 
 #include "jointFollowAngle.h"
+#include "DBusSys.h"
+#include "arm_state_machine.h"
 
 extern float Ctrller_Joint_Radian[6];
 extern DM_motor_t *Joint_Motor[JOINT_NUM];
 float Mannal_Joint_Radian[6] = {0};
 target_point_t Target_Point[6];
 float Target_Joint_Radian[6] = {0};
-
 
 void target_point_init(target_point_t *Target_Point) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
