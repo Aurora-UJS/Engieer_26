@@ -10,6 +10,9 @@ const float Default_Velcoity[6] = {
     JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY,
     JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY,
 };
+const float Rising_Velcoity[6] = {
+  0,0.2,0.3,0,0,0
+};
 
 gripper_control_mode_t Gripper_Current_Control_Mode = GRIPPER_IDLE_MODE;
 arm_control_mode_t Arm_Current_Control_Mode = Arm_IDLE_Mode;
@@ -65,7 +68,7 @@ void Joint_Control_Mode_Mangner(Joint_t *Joint) {
     }
   switch (Arm_Current_Control_Mode) {
   case Arm_Rising_Mode:
-        Point_Publisher(Target_Point, Rising_Joint_Radian, Default_Velcoity);
+        Point_Publisher(Target_Point, Rising_Joint_Radian, Rising_Velcoity);
     break;
   case Arm_IDLE_Mode:
 
