@@ -3,7 +3,7 @@
 #include "joint_control_drv.h"
 #include "motor_DM.h"
 
-float Rising_Joint_Radian[6] = {0,1.6,1.5,0,0,0};
+float Rising_Joint_Radian[6] = {0,1.5,1.5,0,0,0};
 extern osThreadId_t Trajectory_PublisherHandle;
 const float Zero_Velcoity[6] = {0, 0, 0, 0, 0, 0};
 const float Default_Velcoity[6] = {
