@@ -8,6 +8,7 @@
 #include "motor_DM.h"
 #include "tool.h"
 #include <stdio.h>
+#include "referee_api.h"
 
 #define JOINT_NUM 6
 #define JOINT_DEFAULT_VELOCITY 0.5f
@@ -21,10 +22,10 @@
 typedef enum { JOINT_DOF_ROLL = 0, JOINT_DOF_YAW, JOINT_DOF_PITCH } joint_dof_t;
 
 static const float joint_pos_limit_max_map[JOINT_NUM] = {
-    2.0f, 1.5f, 3.0f, JOINT_POS_MAX, 1.5f, JOINT_POS_MAX,
+    2.0f, 1.5f, 3.0f, JOINT_POS_MAX, 1.5f, 1.5f,
 };
 static const float joint_pos_limit_min_map[JOINT_NUM] = {
-    -2.0f, 0, 0, JOINT_POS_MIN, -1.5f, JOINT_POS_MIN};
+    -2.0f, 0, 0, JOINT_POS_MIN, -1.5f, -1.5f};
 
 static const float joint_custom_polarity_map[JOINT_NUM] = {
     PROSITIVE, PROSITIVE, NEGAVTIVE, NEGAVTIVE, NEGAVTIVE, NEGAVTIVE};
@@ -33,7 +34,7 @@ static const float joint_mannal_polarity_map[JOINT_NUM] = {
     PROSITIVE, PROSITIVE, PROSITIVE, PROSITIVE, PROSITIVE, PROSITIVE};
 
 static const can_port_t can_port_map[JOINT_NUM] = {
-    CAN3_PORT, CAN2_PORT, CAN2_PORT, CAN2_PORT, CAN2_PORT, CAN2_PORT,
+    CAN3_PORT, CAN3_PORT, CAN2_PORT, CAN2_PORT, CAN2_PORT, CAN2_PORT,
 };
 static const joint_dof_t joint_dof_map[JOINT_NUM] = {
     JOINT_DOF_YAW,  JOINT_DOF_PITCH, JOINT_DOF_PITCH,
@@ -49,10 +50,12 @@ typedef struct target_point_t {
   float velocity;
 } target_point_t;
 
-extern uint8_t CtrllerData[24];
+extern uint8_t CtrllerData[CtrllerData_Length];
 extern rc_info_t remoter;
 
+/** @brief 关节电机常规控制（未使用） */
 void Joint_Mannal_State_Motor_Ctrl(Joint_t *Joint, float *input_radian);
+
 void Parse_ControllerData_To_CtrllerRadian(const uint8_t *CtrllerData,
                                            float *joint_radian);
 
@@ -139,13 +142,17 @@ static inline bool Arm_At_Target(Joint_t *Joint,
   return true;
 }
 
+/** @brief 发布点数据 */
 void Point_Publisher(target_point_t *Target_Point, const float *joint_radian,
                      const float *velocity);
 
+/** @brief 关节根据点移动函数 */
 void Joint_Move_byPoint(Joint_t *Joint, target_point_t *target_point);
 
+/** @brief 关节数据转换输入弧度 */
 void CtrllerData_To_InputRadian_Converter(float *joint_radian);
 
+/** @brief 关节默认速度移动（未使用） */
 void Joint_Move_defaultyVel(Joint_t *Joint, float *target_radian);
 
 /** @brief 关节初始化*/

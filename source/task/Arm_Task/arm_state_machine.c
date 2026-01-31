@@ -1,16 +1,6 @@
 #include "arm_state_machine.h"
-#include "joint_control_drv.h"
 
-extern arm_control_mode_t Arm_Current_Control_Mode;
-
-extern gripper_control_mode_t Gripper_Current_Control_Mode;
-
-extern float Ctrller_Joint_Radian[6];
-extern DM_motor_t *Joint_Motor[JOINT_NUM];
-extern float Mannal_Joint_Radian[6];
-extern target_point_t Target_Point[6];
-extern float Target_Joint_Radian[6];
-
+extern osThreadId_t Trajectory_PublisherHandle;
 const float Zero_Velcoity[6] = {0, 0, 0, 0, 0, 0};
 const float Default_Velcoity[6] = {
     JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY,
@@ -18,11 +8,17 @@ const float Default_Velcoity[6] = {
 };
 
 gripper_control_mode_t Gripper_Current_Control_Mode = GRIPPER_IDLE_MODE;
-arm_control_mode_t Arm_Current_Control_Mode = Arm_IDLE_Mode;
+arm_control_mode_t Arm_Current_Control_Mode = Arm_Traj_Mode;
 
 target_point_t traj_test[256];
-void Arm_Traj_Handle(void){
-   
+
+void Arm_Traj_Handle(void) {
+
+  static uint8_t traj_started = 0;
+  if (0 == traj_started) {
+    osThreadFlagsSet(Trajectory_PublisherHandle, TRAJ_START_FLAG);
+    traj_started = 1;
+  }
 }
 void Arm_Transition_Handle(Joint_t *Joint, const float *transition_radian) {
   if (true == Arm_At_Target(Joint, transition_radian)) {
@@ -83,9 +79,8 @@ void Joint_Control_Mode_Mangner(Joint_t *Joint) {
     break;
 
   case Arm_Set_Radian:
-    Joint_Mannal_State_Motor_Ctrl(Joint, Mannal_Joint_Radian);
     break;
   case Arm_Traj_Mode:
-    Arm_Traj_Handle(); 
+    Arm_Traj_Handle();
   }
 }

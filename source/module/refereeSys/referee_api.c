@@ -255,13 +255,14 @@ void JudgeReadData(uint8_t *buff)
 
 static custom_controller_info_t custom_controller_info;
 
-uint8_t CtrllerData[24] = {
+uint8_t CtrllerData[CtrllerData_Length] = {
     '3','1','4','1',
     '3','1','4','1',
     '3','1','4','1',
     '3','1','4','1',
     '3','1','4','1',
-    '3','1','4','1'
+    '3','1','4','1',
+	'0','0'
 };
 
 /**
@@ -273,7 +274,7 @@ static void ctrller_parse_frame(uint8_t *buff, uint16_t len)
 {
 	// 调试用：复制帧数据
 	memcpy(Ctrller_Receive_Buffer, buff, len < 256 ? len : 256);
-	memcpy(CtrllerData, Ctrller_Receive_Buffer + 7, 24);
+	memcpy(CtrllerData, Ctrller_Receive_Buffer + 7, 26);
 	// 写入帧头数据
 	memcpy(&custom_controller_info.FrameHeader, buff, LEN_HEADER);
 	

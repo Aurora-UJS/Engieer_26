@@ -23,6 +23,7 @@
 #include "task.h"
 #include "main.h"
 #include "cmsis_os.h"
+#include <string.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -203,6 +204,19 @@ const osSemaphoreAttr_t controlBinaryIMU_attributes = {
   .cb_size = sizeof(controlBinaryIMUControlBlock),
 };
 
+ /* Definitions for Trajectory_Publisher */
+ osThreadId_t Trajectory_PublisherHandle;
+ uint32_t Trajectory_PublisherBuffer[128];
+ osStaticThreadDef_t Trajectory_PublisherControlBlock;
+ const osThreadAttr_t Trajectory_Publisher_attributes = {
+     .name = "Trajectory_Publisher",
+     .cb_mem = &Trajectory_PublisherControlBlock,
+     .cb_size = sizeof(Trajectory_PublisherControlBlock),
+     .stack_mem = &Trajectory_PublisherBuffer[0],
+     .stack_size = sizeof(Trajectory_PublisherBuffer),
+     .priority = (osPriority_t) osPriorityNormal,
+ };
+
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 void uart_test(void *argument);
@@ -217,6 +231,7 @@ void SerialPlot(void *argument);
 void StartDefaultTask(void *argument);
 void IMU_TempCtrlTask(void *argument);
 void Remoter_Task(void *argument);
+void Trajectory_Publisher_Task(void *argument) ;
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -271,6 +286,8 @@ void MX_FREERTOS_Init(void) {
   Chassis_TaskHandle = osThreadNew(Chassis_Task, NULL, &Chassis_Task_attributes);
   SerialPortHandle = osThreadNew(SerialPlot, NULL, &SerialPort_attributes);
   Referee_TaskHandle = osThreadNew(Referee_Task, NULL, &Referee_Task_attributes);
+
+  Trajectory_PublisherHandle = osThreadNew(Trajectory_Publisher_Task, NULL, &Trajectory_Publisher_attributes);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
