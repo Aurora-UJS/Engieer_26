@@ -4,8 +4,8 @@
 #define Max_Velocity 2
 #define Max_Rising_Motor_Velocity 6
 #define Max_Rising_DM_angle 0.75f
-#define Rising_DM_Velocity 2.0f
 #define Rising_DM_ZeroPoint 0.08f
+#define Rising_DM_Velocity 3.0f
 
 #define Track_R 0.05
 #define Steel_R 0.15
@@ -48,11 +48,11 @@
 #define Rising_3508_PID_Maxout 16384
 #define Rising_3508_PID_Maxiout 8192
 
-#define Rising_DM_PID_kp 5.2f
-#define Rising_DM_PID_ki 0.0005f
-#define Rising_DM_PID_kd 0.5f
-#define Rising_DM_PID_Maxout 50
-#define Rising_DM_PID_Maxiout 25
+#define Rising_DM_PID_kp 0.02f
+#define Rising_DM_PID_ki 0
+#define Rising_DM_PID_kd 0
+#define Rising_DM_PID_Maxout 0.75f
+#define Rising_DM_PID_Maxiout 0.375f
 
 #define DM_l0010l_Master_ID_Left 0x13
 #define DM_l0010l_Master_ID_Right 0x14

@@ -11,6 +11,16 @@
 #include "motor_DM.h"
 #include "chassis_debug.h"
 
+#ifndef RISING_DM_IMU_TEST
+#define RISING_DM_IMU_TEST (0)
+#endif
+//imu测试的开关，1为开启，0为关闭
+
+#ifndef RISING_IMU_PITCH_SIGN
+#define RISING_IMU_PITCH_SIGN (1.0f)
+#endif
+//imu测试的pitch方向的符号
+
 /**
  * @brief 初始化抬升控制模块
  *

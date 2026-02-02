@@ -364,7 +364,7 @@ void Watchdog_Task(void *argument)
     memset(&st, 0, sizeof(st));
     st.last_rc_change_ms = Watchdog_GetTickMs();
 
-    buzzer_init();
+    //buzzer_init();
 
     for (;;) {
         const uint32_t now_ms = Watchdog_GetTickMs();

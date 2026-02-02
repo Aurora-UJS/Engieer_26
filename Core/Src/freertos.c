@@ -188,6 +188,18 @@ const osThreadAttr_t Watchdog_Task_attributes = {
   .priority = (osPriority_t)osPriorityLow,
 };
 
+uint32_t IMU_TaskBuffer[512];
+osStaticThreadDef_t IMU_TaskControlBlock;
+osThreadId_t IMU_TaskHandle;
+const osThreadAttr_t IMU_Task_attributes = {
+  .name = "IMU_Task",
+  .cb_mem = &IMU_TaskControlBlock,
+  .cb_size = sizeof(IMU_TaskControlBlock),
+  .stack_mem = &IMU_TaskBuffer[0],
+  .stack_size = sizeof(IMU_TaskBuffer),
+  .priority = (osPriority_t)osPriorityLow,
+};
+
 /* Definitions for uart_Transmit_Angle */
 osThreadId_t uart_Transmit_AngleHandle;
 uint32_t uart_Transmit_AngleBuffer[1024];
@@ -240,6 +252,7 @@ void Chassis_Task(void *arguments);
 void Referee_Task(void *arguments);
 void Watchdog_Task(void *arguments);
 void SerialPlot(void *argument);
+void IMU_Task(void *argument);
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
@@ -300,7 +313,7 @@ void MX_FREERTOS_Init(void) {
   Chassis_TaskHandle = osThreadNew(Chassis_Task, NULL, &Chassis_Task_attributes);
   // SerialPortHandle = osThreadNew(SerialPlot, NULL, &SerialPort_attributes);
   Referee_TaskHandle = osThreadNew(Referee_Task, NULL, &Referee_Task_attributes);
-
+  IMU_TaskHandle = osThreadNew(IMU_Task, NULL, &IMU_Task_attributes);
   Trajectory_PublisherHandle = osThreadNew(Trajectory_Publisher_Task, NULL, &Trajectory_Publisher_attributes);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -434,7 +447,16 @@ __weak void SerialPort(void *argument)
     osDelay(1);
   }
 }
+
 __weak void Trajectory_Publisher_Task (void *argument){
+  UNUSED(argument);
+  for(;;){
+    osDelay(1);
+  }
+}
+
+__weak void IMU_Task(void *argument)
+{
   UNUSED(argument);
   for(;;){
     osDelay(1);
