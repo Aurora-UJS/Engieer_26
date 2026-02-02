@@ -178,7 +178,6 @@ void CtrllerData_To_InputRadian_Converter(float *joint_radian) {
 
 void Joint_Move_defaultyVel(Joint_t *Joint, float *target_radian) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
-    osDelay(1);
     Joint_Motor_PosSpeed_Ctrl(
         &Joint[joint_index],
         Radian_Input_To_Target(target_radian[joint_index], joint_index),
@@ -188,8 +187,7 @@ void Joint_Move_defaultyVel(Joint_t *Joint, float *target_radian) {
 }
 
 void Joint_Move_byPoint(Joint_t *Joint, target_point_t *target_point) {
-  for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
-    osDelay(1);
+  for (int joint_index = 2;joint_index<JOINT_NUM;joint_index++) {
     Joint_Motor_PosSpeed_Ctrl(&Joint[joint_index],
                               target_point[joint_index].target_joint_radian,
                               target_point[joint_index].velocity);

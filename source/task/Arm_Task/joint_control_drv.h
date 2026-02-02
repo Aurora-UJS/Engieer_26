@@ -22,10 +22,10 @@
 typedef enum { JOINT_DOF_ROLL = 0, JOINT_DOF_YAW, JOINT_DOF_PITCH } joint_dof_t;
 
 static const float joint_pos_limit_max_map[JOINT_NUM] = {
-    2.0f, 1.5f, 3.0f, JOINT_POS_MAX, 1.5f, 1.5f,
+    2.0f, 2.5f, 3.0f, JOINT_POS_MAX, 2.5f, 1.5f,
 };
 static const float joint_pos_limit_min_map[JOINT_NUM] = {
-    -2.0f, 0, 0, JOINT_POS_MIN, -1.5f, -1.5f};
+    -2.0f, -2.5, 3.0f, JOINT_POS_MIN, -2.5f, -1.5f};
 
 static const float joint_custom_polarity_map[JOINT_NUM] = {
     PROSITIVE, PROSITIVE, NEGAVTIVE, NEGAVTIVE, NEGAVTIVE, NEGAVTIVE};

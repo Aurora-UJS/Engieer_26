@@ -54,7 +54,6 @@ typedef StaticSemaphore_t osStaticSemaphoreDef_t;
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
@@ -216,6 +215,18 @@ const osSemaphoreAttr_t controlBinaryIMU_attributes = {
      .stack_size = sizeof(Trajectory_PublisherBuffer),
      .priority = (osPriority_t) osPriorityNormal,
  };
+ /* Definitions for test_CAN3_ARM */
+ osThreadId_t test_CAN3_ARMHandle;
+ uint32_t test_CAN3_ARMBuffer[256];
+ osStaticThreadDef_t test_CAN3_ARMControlBlock;
+ const osThreadAttr_t test_CAN3_ARM_attributes = {
+     .name = "test_CAN3_ARM",
+     .cb_mem = &test_CAN3_ARMControlBlock,
+     .cb_size = sizeof(test_CAN3_ARMControlBlock),
+     .stack_mem = &test_CAN3_ARMBuffer[0],
+     .stack_size = sizeof(test_CAN3_ARMBuffer),
+     .priority = (osPriority_t) osPriorityNormal,
+ };
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -226,8 +237,9 @@ void uart_Transmit_Angle(void *arguments);
 void Chassis_Task(void *arguments);
 void Referee_Task(void *arguments);
 void SerialPlot(void *argument);
+void test_CAN3_ARM(void *argument);
 /* USER CODE END FunctionPrototypes */
-
+void Trajectory_Timer_Init(void);
 void StartDefaultTask(void *argument);
 void IMU_TempCtrlTask(void *argument);
 void Remoter_Task(void *argument);
@@ -242,7 +254,7 @@ void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
   */
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
-
+  Trajectory_Timer_Init();
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -284,8 +296,9 @@ void MX_FREERTOS_Init(void) {
   jointFollowAngleHandle = osThreadNew(jointFollowAngle,NULL, &jointFollowAngle_attributes);
   //uart_Transmit_AngleHandle = osThreadNew(uart_Transmit_Angle, NULL, &uart_Transmit_Angle_attributes);
   Chassis_TaskHandle = osThreadNew(Chassis_Task, NULL, &Chassis_Task_attributes);
-  // SerialPortHandle = osThreadNew(SerialPlot, NULL, &SerialPort_attributes);
+  SerialPortHandle = osThreadNew(SerialPlot, NULL, &SerialPort_attributes);
   Referee_TaskHandle = osThreadNew(Referee_Task, NULL, &Referee_Task_attributes);
+  test_CAN3_ARMHandle = osThreadNew(test_CAN3_ARM, NULL, &test_CAN3_ARM_attributes);
 
   Trajectory_PublisherHandle = osThreadNew(Trajectory_Publisher_Task, NULL, &Trajectory_Publisher_attributes);
   /* USER CODE BEGIN RTOS_THREADS */
