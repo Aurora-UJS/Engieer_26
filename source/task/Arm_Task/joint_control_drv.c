@@ -184,6 +184,7 @@ void Joint_Move_defaultyVel(Joint_t *Joint, float *target_radian) {
         Radian_Input_To_Target(target_radian[joint_index], joint_index),
         JOINT_DEFAULT_VELOCITY);
   }
+  osDelay(1);
 }
 
 void Joint_Move_byPoint(Joint_t *Joint, target_point_t *target_point) {
@@ -193,4 +194,5 @@ void Joint_Move_byPoint(Joint_t *Joint, target_point_t *target_point) {
                               target_point[joint_index].target_joint_radian,
                               target_point[joint_index].velocity);
   }
+  osDelay(1);
 }
