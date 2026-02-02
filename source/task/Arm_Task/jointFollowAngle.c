@@ -40,7 +40,7 @@ void jointFollowAngle(void *argument) {
 
   osDelay(100);
 
-  Joint_Motor_Enable(Joint); // 使能所有关节电机
+  // Joint_Motor_Enable(Joint); // 使能所有关节电机
 
   EndEffector_Motor_Enable(&EndEffector);
 
@@ -55,8 +55,6 @@ void jointFollowAngle(void *argument) {
     Gripper_Control_Mode_Mangner(&EndEffector);
 
     Joint_Control_Mode_Mangner(Joint);
-
-    Joint_Move_byPoint(Joint, Target_Point);
 
     osDelay(1);
   }
