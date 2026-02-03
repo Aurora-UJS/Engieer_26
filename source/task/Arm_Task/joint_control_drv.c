@@ -2,7 +2,6 @@
 
 #include "joint_control_drv.h"
 #include "cmsis_os2.h"
-#include "dsp/basic_math_functions.h"
 #include "ee_control_drv.h"
 #include "motor_DM.h"
 #include "stm32h7xx.h"
