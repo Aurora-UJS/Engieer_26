@@ -3,6 +3,6 @@
 
 #include "joint_control_drv.h"
 
-#define  Traj_Num 6581
+#define  Traj_Num 3192
 
 #endif
