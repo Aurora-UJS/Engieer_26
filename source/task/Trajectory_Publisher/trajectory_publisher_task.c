@@ -25,7 +25,7 @@ extern const target_point_t Left_Rotation_Point[6];
 #define ARM_TOTOAL_TRAJECTORY_TIME_TICKS                                       \
   (ARM_PREPARE_TIME_TICKS + ARM_PICK_TIME_TICKS + ARM_RETURN_TIME_TICKS)
 
-#define ENDEFFECTOR_CLOSE_TIME_TICKS (1050)
+#define ENDEFFECTOR_CLOSE_TIME_TICKS (1550)
 #define ENDEFFECTOR_TOTOAL_TIME_TICKS                                          \
   (ARM_PREPARE_TIME_TICKS + ENDEFFECTOR_CLOSE_TIME_TICKS)
 
@@ -90,11 +90,98 @@ void getRight(void) {
   }
   traj_point_index++;
 }
+void Debug_set_pos(void){
+  Target_Point[0].target_joint_radian = -0.79;
+  Target_Point[1].target_joint_radian = 0.46139;
+  // Target_Point[2].target_joint_radian = 0.2790;
+  Target_Point[2].target_joint_radian = 0.40;
+  Target_Point[3].target_joint_radian = 0.0;
+  Target_Point[4].target_joint_radian = 0.004;
+  Target_Point[5].target_joint_radian = 0.000;
+  Target_Point[0].velocity = 0.2;
+  for (int joint_index= 1; joint_index < JOINT_NUM; joint_index++) {
+    Target_Point[joint_index].velocity = JOINT_DEFAULT_VELOCITY;
+  }
+}
+void placeLeft(void){
+if (traj_point_index >= 500 && traj_point_index <= 2500) {
+  Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+}
+else {
+  Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
+}
+if (traj_point_index >=1000 && traj_point_index <=2000) {
+  Target_Point[0].target_joint_radian = -0.79;
+  Target_Point[1].target_joint_radian = 0.46139;
+  // Target_Point[2].target_joint_radian = 0.2790;
+  Target_Point[2].target_joint_radian = 0.45;
+  Target_Point[3].target_joint_radian = 0.0;
+  Target_Point[4].target_joint_radian = 0.2;
+  Target_Point[5].target_joint_radian = 0.00;
+  Target_Point[0].velocity = 0.2;
+  for (int joint_index= 1; joint_index < JOINT_NUM; joint_index++) {
+    Target_Point[joint_index].velocity = JOINT_DEFAULT_VELOCITY;
+  }
+}
+else if (traj_point_index > 2000 && traj_point_index <2800) {
+  Target_Point[2].velocity = 0.2;
+  Target_Point[2].target_joint_radian = 0.26;
+}
+else if (traj_point_index >= 2800 && traj_point_index <=3300) {
+
+  Target_Point[1].velocity = 0.2;
+  Target_Point[1].target_joint_radian = 0;
+}
+else if (traj_point_index > 3300) {
+  Target_Point[0].target_joint_radian = 0;
+  Target_Point[0].velocity = 0.3;
+}
+traj_point_index ++;
+}
+
+void placeRight(void){
+if (traj_point_index >= 500 && traj_point_index <= 2500) {
+  Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+}
+else {
+  Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
+}
+if (traj_point_index >=1000 && traj_point_index <=2000) {
+  Target_Point[0].target_joint_radian = 0.79;
+  Target_Point[1].target_joint_radian = 0.46139;
+  // Target_Point[2].target_joint_radian = 0.2790;
+  Target_Point[2].target_joint_radian = 0.45;
+  Target_Point[3].target_joint_radian = 0.0;
+  Target_Point[4].target_joint_radian = 0.2;
+  Target_Point[5].target_joint_radian = 0.00;
+  Target_Point[0].velocity = 0.2;
+  for (int joint_index= 1; joint_index < JOINT_NUM; joint_index++) {
+    Target_Point[joint_index].velocity = JOINT_DEFAULT_VELOCITY;
+  }
+}
+else if (traj_point_index > 2000 && traj_point_index <2800) {
+  Target_Point[2].velocity = 0.2;
+  Target_Point[2].target_joint_radian = 0.26;
+}
+else if (traj_point_index >= 2800 && traj_point_index <=3300) {
+
+  Target_Point[1].velocity = 0.2;
+  Target_Point[1].target_joint_radian = 0;
+}
+else if (traj_point_index > 3300) {
+  Target_Point[0].target_joint_radian = 0;
+  Target_Point[0].velocity = 0.3;
+}
+traj_point_index ++;
+}
 void Trajectory_Timer_Callback(void *argument) {
   UNUSED(argument);
-  // getRight();
-  getLeft();
-  if (traj_point_index >= (ARM_TOTOAL_TRAJECTORY_TIME_TICKS)) {
+  getRight();
+  // getLeft();
+  // Debug_set_pos();
+  // placeRight();
+  // if (traj_point_index >= (ARM_TOTOAL_TRAJECTORY_TIME_TICKS)) {
+  if (traj_point_index >= 5000) {
     osTimerStop(traj_timer_id); // 停定时器
     traj_point_index = 0;
     Arm_Current_Control_Mode = Arm_Frozen_Mode;
