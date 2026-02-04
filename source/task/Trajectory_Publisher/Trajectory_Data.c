@@ -1,14 +1,6 @@
 #include "Trajectory_Data.h"
 #include "joint_control_drv.h"
 
-const target_point_t Left_Rotation_Point[6] = {
-    {-0.797475, 0.5},
-    {-0.000954, JOINT_DEFAULT_VELOCITY},
-    {-0.060383, JOINT_DEFAULT_VELOCITY},
-    {0.080300, JOINT_DEFAULT_VELOCITY},
-    {-0.0, JOINT_DEFAULT_VELOCITY},
-    {-0.011635, JOINT_DEFAULT_VELOCITY}};
-
 const float Trajectory[Traj_Num][JOINT_NUM] = {
 //    {-0.797475, -0.000954, -0.060383, 0.080300, -0.126841, -0.011635},
 //     {-0.797475, -0.000954, -0.060383, 0.080300, -0.126841, -0.011635},

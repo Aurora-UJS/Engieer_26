@@ -17,8 +17,6 @@ extern const float Trajectory[Traj_Num][JOINT_NUM];
 
 extern const float Traj_Vel[Traj_Num][JOINT_NUM];
 
-extern const target_point_t Left_Rotation_Point[6];
-
 #define ARM_PREPARE_TIME_TICKS (500)
 #define ARM_PICK_TIME_TICKS (Traj_Num)
 #define ARM_RETURN_TIME_TICKS (1000)
