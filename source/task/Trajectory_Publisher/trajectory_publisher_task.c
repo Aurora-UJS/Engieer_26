@@ -13,12 +13,12 @@ extern arm_control_mode_t Arm_Current_Control_Mode;
 extern gripper_control_mode_t Gripper_Current_Control_Mode;
 static int traj_point_index = 0;
 
-extern const float Trajectory[Traj_Num][JOINT_NUM];
+extern const float Trajectory[TRAJECTORY_NUM][JOINT_NUM];
 
-extern const float Traj_Vel[Traj_Num][JOINT_NUM];
+extern const float Traj_Vel[TRAJECTORY_NUM][JOINT_NUM];
 
 #define ARM_PREPARE_TIME_TICKS (500)
-#define ARM_PICK_TIME_TICKS (Traj_Num)
+#define ARM_PICK_TIME_TICKS (TRAJECTORY_NUM)
 #define ARM_RETURN_TIME_TICKS (1000)
 #define ARM_TOTOAL_TRAJECTORY_TIME_TICKS                                       \
   (ARM_PREPARE_TIME_TICKS + ARM_PICK_TIME_TICKS + ARM_RETURN_TIME_TICKS)
@@ -34,7 +34,7 @@ void Trajectory_Publisher_right(const float Trajectory[][JOINT_NUM],
       Target_Point[joint_index].target_joint_radian =
           (-1.0f) * Trajectory[point_index][joint_index];
     } else {
-      if (point_index >= 1780 && joint_index == 4) {
+      if (point_index >= 1500 && joint_index == 4) {
         Target_Point[joint_index].target_joint_radian =
             Trajectory[point_index][4] + 0.2f;
       } else {
@@ -102,7 +102,14 @@ void Debug_set_pos(void){
   }
 }
 void placeLeft(void){
-if (traj_point_index >= 500 && traj_point_index <= 2500) {
+// if (traj_point_index >= 500 && traj_point_index <= 2500) {
+//   Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+// }
+// else {
+//   Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
+// }
+
+if (traj_point_index <=2500) {
   Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
 }
 else {
@@ -138,12 +145,18 @@ traj_point_index ++;
 }
 
 void placeRight(void){
-if (traj_point_index >= 500 && traj_point_index <= 2500) {
+if (traj_point_index <=2500) {
   Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
 }
 else {
   Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
 }
+// if (traj_point_index >= 500 && traj_point_index <= 2500) {
+//   Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+// }
+// else {
+//   Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
+// }
 if (traj_point_index >=1000 && traj_point_index <=2000) {
   Target_Point[0].target_joint_radian = 0.79;
   Target_Point[1].target_joint_radian = 0.46139;
@@ -174,7 +187,8 @@ traj_point_index ++;
 }
 void Trajectory_Timer_Callback(void *argument) {
   UNUSED(argument);
-  getRight();
+  // placeRight();
+  getLeft();
   // getLeft();
   // Debug_set_pos();
   // placeRight();
