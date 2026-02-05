@@ -29,33 +29,34 @@ extern const float Traj_Vel[TRAJECTORY_NUM][JOINT_NUM];
 
 void Trajectory_Publisher_right(const float Trajectory[][JOINT_NUM],
                                 int point_index) {
-  for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
-    if (joint_index == 0) {
-      Target_Point[joint_index].target_joint_radian =
-          (-1.0f) * Trajectory[point_index][joint_index];
+  Target_Point[0].velocity = Traj_Vel[point_index][0];
+  Target_Point[0].target_joint_radian = (-1.0f)*Trajectory[point_index][0];
+  for (int joint_index = 1; joint_index < JOINT_NUM; joint_index++) {
+    if (point_index >= 1200) {
+      Target_Point[2].target_joint_radian = Trajectory[point_index][2] + 0.35f;
+      Target_Point[4].target_joint_radian = Trajectory[point_index][4] + 0.35f;
+      Target_Point[1].target_joint_radian = Trajectory[point_index][1];
+      Target_Point[3].target_joint_radian = Trajectory[point_index][3];
+      Target_Point[5].target_joint_radian = Trajectory[point_index][5];
     } else {
-      if (point_index >= 1500) {
-        Target_Point[joint_index].target_joint_radian =
-            Trajectory[point_index][4] + 0.25f;
-        Target_Point[joint_index].target_joint_radian =
-            Trajectory[point_index][2] + 0.25f;
-      } else {
-        Target_Point[joint_index].target_joint_radian =
-            Trajectory[point_index][joint_index];
-      }
+      Target_Point[joint_index].target_joint_radian =
+          Trajectory[point_index][joint_index];
     }
     Target_Point[joint_index].velocity =
         Traj_Vel[point_index][joint_index] * (-2.0f);
   }
+
 }
 void Trajectory_Publisher(const float Trajectory[][JOINT_NUM],
                           int point_index) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
-    if (point_index >= 1200) {
-      Target_Point[joint_index].target_joint_radian =
-          Trajectory[point_index][4] + 0.25f;
-      Target_Point[joint_index].target_joint_radian =
-          Trajectory[point_index][2] + 0.25f;
+    if (point_index >= 1300) {
+      Target_Point[2].target_joint_radian = Trajectory[point_index][2] + 0.25f;
+      Target_Point[4].target_joint_radian = Trajectory[point_index][4] + 0.25f;
+      Target_Point[0].target_joint_radian = Trajectory[point_index][0];
+      Target_Point[1].target_joint_radian = Trajectory[point_index][1];
+      Target_Point[3].target_joint_radian = Trajectory[point_index][3];
+      Target_Point[5].target_joint_radian = Trajectory[point_index][5];
     } else {
       Target_Point[joint_index].target_joint_radian =
           Trajectory[point_index][joint_index];
@@ -70,7 +71,7 @@ void getLeft(void) {
     Target_Point[0].velocity = 0.5f;
     Target_Point[4].target_joint_radian = 0.0f;
     Target_Point[4].velocity = 0.5f;
-  } else if (traj_point_index >= 2742) {
+  } else if (traj_point_index >= (ARM_PREPARE_TIME_TICKS + TRAJECTORY_NUM)) {
     target_point_init(Target_Point);
   } else {
     Trajectory_Publisher(Trajectory, traj_point_index - ARM_PREPARE_TIME_TICKS);
@@ -78,6 +79,7 @@ void getLeft(void) {
   if (traj_point_index == ENDEFFECTOR_CLOSE_TIME_TICKS) {
     Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
   }
+
   traj_point_index++;
 }
 void getRight(void) {
@@ -190,12 +192,12 @@ void placeRight(void) {
 void Trajectory_Timer_Callback(void *argument) {
   UNUSED(argument);
   // placeLeft();
-  // placeRight();
-  getLeft();
+  placeRight();
+  // getLeft();
   // Debug_set_pos();
   // getRight();
   // if (traj_point_index >= (ARM_TOTOAL_TRAJECTORY_TIME_TICKS)) {
-  if (traj_point_index >= 5000) {
+  if (traj_point_index >= ARM_TOTOAL_TRAJECTORY_TIME_TICKS) {
     osTimerStop(traj_timer_id); // 停定时器
     traj_point_index = 0;
     Arm_Current_Control_Mode = Arm_Frozen_Mode;
