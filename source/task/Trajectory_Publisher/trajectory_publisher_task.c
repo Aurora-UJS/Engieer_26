@@ -6,8 +6,8 @@ int traj_point_index = 0;
 void Trajectory_Timer_Callback(void *argument) {
   UNUSED(argument);
   // placeLeft();
-  placeRight();
-  // getLeft();
+  // placeRight();
+  getLeft();
   // Debug_set_pos();
   // getRight();
   // if (traj_point_index >= (ARM_TOTOAL_TRAJECTORY_TIME_TICKS)) {

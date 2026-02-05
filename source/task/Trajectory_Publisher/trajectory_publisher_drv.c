@@ -1,4 +1,5 @@
 #include "trajectory_publisher_drv.h"
+#include "arm_state_machine.h"
 extern int traj_point_index;
 void Trajectory_Publisher_right(const float Trajectory[][JOINT_NUM],
                                 int point_index) {
@@ -24,8 +25,8 @@ void Trajectory_Publisher(const float Trajectory[][JOINT_NUM],
                           int point_index) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
     if (point_index >= 1300) {
-      Target_Point[2].target_joint_radian = Trajectory[point_index][2] + 0.25f;
-      Target_Point[4].target_joint_radian = Trajectory[point_index][4] + 0.25f;
+      Target_Point[2].target_joint_radian = Trajectory[point_index][2] + 0.35f;
+      Target_Point[4].target_joint_radian = Trajectory[point_index][4] + 0.35f;
       Target_Point[0].target_joint_radian = Trajectory[point_index][0];
       Target_Point[1].target_joint_radian = Trajectory[point_index][1];
       Target_Point[3].target_joint_radian = Trajectory[point_index][3];
@@ -77,7 +78,7 @@ void Debug_set_pos(void) {
   Target_Point[0].target_joint_radian = -0.79;
   Target_Point[1].target_joint_radian = 0.46139;
   // Target_Point[2].target_joint_radian = 0.2790;
-  Target_Point[2].target_joint_radian = 0.40;
+  Target_Point[2].target_joint_radian = 0.42;
   Target_Point[3].target_joint_radian = 0.0;
   Target_Point[4].target_joint_radian = 0.004;
   Target_Point[5].target_joint_radian = 0.000;
@@ -101,9 +102,9 @@ void placeLeft(void) {
   }
   if (traj_point_index >= 1000 && traj_point_index <= 2000) {
     Target_Point[0].target_joint_radian = -0.79;
-    Target_Point[1].target_joint_radian = 0.46139;
+    Target_Point[1].target_joint_radian = 0.49139;
     // Target_Point[2].target_joint_radian = 0.2790;
-    Target_Point[2].target_joint_radian = 0.45;
+    Target_Point[2].target_joint_radian = 0.46;
     Target_Point[3].target_joint_radian = 0.0;
     Target_Point[4].target_joint_radian = 0.2;
     Target_Point[5].target_joint_radian = 0.00;
@@ -115,12 +116,14 @@ void placeLeft(void) {
     Target_Point[2].velocity = 0.2;
     Target_Point[2].target_joint_radian = 0.26;
   } else if (traj_point_index >= 2800 && traj_point_index <= 3300) {
-
     Target_Point[1].velocity = 0.2;
     Target_Point[1].target_joint_radian = 0;
+
+    Target_Point[2].target_joint_radian = -0.05;
+    Target_Point[2].velocity = 0.6;
   } else if (traj_point_index > 3300) {
     Target_Point[0].target_joint_radian = 0;
-    Target_Point[0].velocity = 0.3;
+    Target_Point[0].velocity = 0.8;
   }
   traj_point_index++;
 }
@@ -139,9 +142,9 @@ void placeRight(void) {
   // }
   if (traj_point_index >= 1000 && traj_point_index <= 2000) {
     Target_Point[0].target_joint_radian = 0.79;
-    Target_Point[1].target_joint_radian = 0.46139;
+    Target_Point[1].target_joint_radian = 0.48139;
     // Target_Point[2].target_joint_radian = 0.2790;
-    Target_Point[2].target_joint_radian = 0.45;
+    Target_Point[2].target_joint_radian = 0.46;
     Target_Point[3].target_joint_radian = 0.0;
     Target_Point[4].target_joint_radian = 0.2;
     Target_Point[5].target_joint_radian = 0.00;
@@ -151,11 +154,14 @@ void placeRight(void) {
     }
   } else if (traj_point_index > 2000 && traj_point_index < 2800) {
     Target_Point[2].velocity = 0.2;
-    Target_Point[2].target_joint_radian = 0.26;
+    Target_Point[2].target_joint_radian = 0.2;
   } else if (traj_point_index >= 2800 && traj_point_index <= 3300) {
 
     Target_Point[1].velocity = 0.2;
     Target_Point[1].target_joint_radian = 0;
+
+    Target_Point[2].target_joint_radian = -0.05;
+    Target_Point[2].velocity = 0.6;
   } else if (traj_point_index > 3300) {
     Target_Point[0].target_joint_radian = 0;
     Target_Point[0].velocity = 0.3;
