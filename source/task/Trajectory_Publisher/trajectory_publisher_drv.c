@@ -129,7 +129,7 @@ void placeLeft(void) {
 }
 
 void placeRight(void) {
-  if (traj_point_index <= 2500) {
+  if (traj_point_index <= 2000) {
     Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
   } else {
     Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
@@ -140,9 +140,9 @@ void placeRight(void) {
   // else {
   //   Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
   // }
-  if (traj_point_index >= 1000 && traj_point_index <= 2000) {
+  if (traj_point_index >= 500 && traj_point_index <= 1500) {
     Target_Point[0].target_joint_radian = 0.79;
-    Target_Point[1].target_joint_radian = 0.48139;
+    Target_Point[1].target_joint_radian = 0.49139;
     // Target_Point[2].target_joint_radian = 0.2790;
     Target_Point[2].target_joint_radian = 0.46;
     Target_Point[3].target_joint_radian = 0.0;
@@ -152,17 +152,17 @@ void placeRight(void) {
     for (int joint_index = 1; joint_index < JOINT_NUM; joint_index++) {
       Target_Point[joint_index].velocity = JOINT_DEFAULT_VELOCITY;
     }
-  } else if (traj_point_index > 2000 && traj_point_index < 2800) {
+  } else if (traj_point_index > 1500 && traj_point_index < 2300) {
     Target_Point[2].velocity = 0.2;
     Target_Point[2].target_joint_radian = 0.2;
-  } else if (traj_point_index >= 2800 && traj_point_index <= 3300) {
+  } else if (traj_point_index >= 2300 && traj_point_index <= 2800) {
 
     Target_Point[1].velocity = 0.2;
     Target_Point[1].target_joint_radian = 0;
 
     Target_Point[2].target_joint_radian = -0.05;
     Target_Point[2].velocity = 0.6;
-  } else if (traj_point_index > 3300) {
+  } else if (traj_point_index > 2800) {
     Target_Point[0].target_joint_radian = 0;
     Target_Point[0].velocity = 0.3;
   }
