@@ -3,7 +3,6 @@
 
 #include "joint_control_drv.h"
 #include "ee_control_drv.h"
-#include "trajectory_publisher_task.h"
 
 typedef enum {
   Arm_IDLE_Mode = 0,
