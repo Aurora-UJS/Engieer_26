@@ -1,12 +1,15 @@
 #include "trajectory_publisher_task.h"
+#include "cmsis_os2.h"
+#include "trajectory_publisher_drv.h"
+#include <string.h>
 
 static osTimerId_t traj_timer_id;
 int traj_point_index = 0;
 
 void Trajectory_Timer_Callback(void *argument) {
   UNUSED(argument);
-  placeLeft();
-  // placeRight();
+  // placeLeft();
+  placeRight();
   // getLeft();
   // Debug_set_pos();
   // getRight();
@@ -18,11 +21,55 @@ void Trajectory_Timer_Callback(void *argument) {
   }
 }
 
+static int demo_index = 0;
+void Trajectory_demo_Timer_Callback(void *argument) {
+  UNUSED(argument);
+
+  if (demo_index == 0) {
+    getRight();
+    if (traj_point_index >= 3000) {
+      traj_point_index = 0;
+      demo_index++;
+    }
+  }
+
+  else if (demo_index == 1) {
+    placeLeft();
+    if (traj_point_index >= 4000) {
+      traj_point_index = 0;
+      demo_index++;
+    }
+  }
+
+  else if (demo_index == 2) {
+    getLeft();
+    if (traj_point_index >= 3000) {
+      traj_point_index = 0;
+      demo_index++;
+    }
+  }
+
+  else if (demo_index == 3) {
+    placeRight();
+    if (traj_point_index >= 4000) {
+      traj_point_index = 0;
+      demo_index++;
+    }
+  }
+
+  else {
+    osTimerStop(traj_timer_id);
+    demo_index = 0;
+    traj_point_index = 0;
+    Arm_Current_Control_Mode = Arm_Frozen_Mode;
+  }
+}
 void Trajectory_Timer_Init(void) {
   osTimerAttr_t timer_attr = {0};
   timer_attr.name = "traj_timer";
   traj_timer_id =
-      osTimerNew(Trajectory_Timer_Callback, osTimerPeriodic, NULL, &timer_attr);
+      // osTimerNew(Trajectory_Timer_Callback, osTimerPeriodic, NULL, &timer_attr);
+    osTimerNew(Trajectory_demo_Timer_Callback, osTimerPeriodic, NULL, &timer_attr);
 }
 
 void Trajectory_Publisher_Task(void *argument) {
@@ -32,9 +79,4 @@ void Trajectory_Publisher_Task(void *argument) {
   for (;;) {
     osDelay(100);
   }
-  // for (int point_index = 0; point_index < 1598; point_index++) {
-  //   Trajectory_Publisher(Trajectory,  point_index);
-  //   osDelay(10);
-  // }
-  // Arm_Current_Control_Mode = Arm_Frozen_Mode;
 }
