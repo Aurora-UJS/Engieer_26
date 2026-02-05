@@ -24,7 +24,7 @@ void Trajectory_Publisher_right(const float Trajectory[][JOINT_NUM],
 void Trajectory_Publisher(const float Trajectory[][JOINT_NUM],
                           int point_index) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
-    if (point_index >= 1300) {
+    if (point_index >= 1250) {
       Target_Point[2].target_joint_radian = Trajectory[point_index][2] + 0.35f;
       Target_Point[4].target_joint_radian = Trajectory[point_index][4] + 0.35f;
       Target_Point[0].target_joint_radian = Trajectory[point_index][0];
@@ -95,12 +95,12 @@ void placeLeft(void) {
   //   Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
   // }
 
-  if (traj_point_index <= 2500) {
+  if (traj_point_index <= 2000) {
     Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
   } else {
     Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
   }
-  if (traj_point_index >= 1000 && traj_point_index <= 2000) {
+  if (traj_point_index >= 500 && traj_point_index <= 1500) {
     Target_Point[0].target_joint_radian = -0.79;
     Target_Point[1].target_joint_radian = 0.49139;
     // Target_Point[2].target_joint_radian = 0.2790;
@@ -110,18 +110,18 @@ void placeLeft(void) {
     Target_Point[5].target_joint_radian = 0.00;
     Target_Point[0].velocity = 0.2;
     for (int joint_index = 1; joint_index < JOINT_NUM; joint_index++) {
-      Target_Point[joint_index].velocity = JOINT_DEFAULT_VELOCITY;
+      Target_Point[joint_index].velocity = 1.0f;
     }
-  } else if (traj_point_index > 2000 && traj_point_index < 2800) {
+  } else if (traj_point_index > 1500 && traj_point_index < 2300) {
     Target_Point[2].velocity = 0.2;
     Target_Point[2].target_joint_radian = 0.26;
-  } else if (traj_point_index >= 2800 && traj_point_index <= 3300) {
+  } else if (traj_point_index >= 2300 && traj_point_index <= 2800) {
     Target_Point[1].velocity = 0.2;
     Target_Point[1].target_joint_radian = 0;
 
     Target_Point[2].target_joint_radian = -0.05;
     Target_Point[2].velocity = 0.6;
-  } else if (traj_point_index > 3300) {
+  } else if (traj_point_index > 2800) {
     Target_Point[0].target_joint_radian = 0;
     Target_Point[0].velocity = 0.8;
   }

@@ -5,13 +5,13 @@ int traj_point_index = 0;
 
 void Trajectory_Timer_Callback(void *argument) {
   UNUSED(argument);
-  // placeLeft();
+  placeLeft();
   // placeRight();
-  getLeft();
+  // getLeft();
   // Debug_set_pos();
   // getRight();
   // if (traj_point_index >= (ARM_TOTOAL_TRAJECTORY_TIME_TICKS)) {
-  if (traj_point_index >= ARM_TOTOAL_TRAJECTORY_TIME_TICKS) {
+  if (traj_point_index >= 4000) {
     osTimerStop(traj_timer_id); // 停定时器
     traj_point_index = 0;
     Arm_Current_Control_Mode = Arm_Frozen_Mode;
