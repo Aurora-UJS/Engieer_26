@@ -13,6 +13,23 @@
 
 #include <string.h>
 
+// 看门狗任务运行时开关：
+// - 1：启用 Watchdog_Task 的检测/报警/强制掉电逻辑
+// - 0：禁用 Watchdog_Task 的检测逻辑（任务仍运行，但只做最小延时并解除强制掉电）
+static volatile uint8_t s_watchdog_enabled = WATCHDOG_ENABLE_DEFAULT;
+
+// 设置看门狗任务是否启用（运行时开关）
+void Watchdog_SetEnabled(uint8_t enabled)
+{
+    s_watchdog_enabled = (enabled != 0U) ? 1U : 0U;
+}
+
+// 获取看门狗任务是否启用（运行时开关）
+uint8_t Watchdog_IsEnabled(void)
+{
+    return (s_watchdog_enabled != 0U) ? 1U : 0U;
+}
+
 #ifndef __weak
 #if defined(__GNUC__)
 #define __weak __attribute__((weak))
@@ -88,55 +105,6 @@ static uint8_t Watchdog_IsOnlineByCnt(const can_msg_t *msg,
     return 0U;
 }
 
-typedef enum
-{
-    WD_3508_CHASSIS_ZQ = 0,
-    WD_3508_CHASSIS_ZH,
-    WD_3508_CHASSIS_YH,
-    WD_3508_CHASSIS_YQ,
-    WD_3508_RISING_L,
-    WD_3508_RISING_R,
-    WD_3508_COUNT
-} watchdog_3508_index_t;
-
-typedef enum
-{
-    WD_DM_L = 0,
-    WD_DM_R,
-    WD_DM_COUNT
-} watchdog_dm_index_t;
-
-/**
- * @brief 看门狗运行时状态
- */
-typedef struct
-{
-    uint8_t last_cnt_3508[WD_3508_COUNT];
-    uint32_t last_rx_ms_3508[WD_3508_COUNT];
-    uint8_t online_3508[WD_3508_COUNT];
-
-    uint8_t last_cnt_dm[WD_DM_COUNT];
-    uint32_t last_rx_ms_dm[WD_DM_COUNT];
-    uint8_t online_dm[WD_DM_COUNT];
-    uint32_t dm_enable_last_ms[WD_DM_COUNT];
-
-    rc_info_t last_rc;
-    uint32_t last_rc_change_ms;
-    uint8_t rc_offline;
-
-    uint8_t alarm_active;
-    uint8_t alarm_type;
-    uint8_t alarm_motor_offline_cnt;
-    uint32_t alarm_start_ms;
-} Watchdog_State_t;
-
-typedef enum
-{
-    WD_ALARM_NONE = 0,
-    WD_ALARM_MOTOR_OFFLINE,
-    WD_ALARM_RC_OFFLINE,
-} watchdog_alarm_type_t;
-
 static const uint16_t s_3508_ids[WD_3508_COUNT] = {
     Chassis_Motor_3508_ZQ_id,
     Chassis_Motor_3508_ZH_id,
@@ -191,6 +159,41 @@ static void Watchdog_Check3508(Watchdog_State_t *st, uint32_t now_ms)
     }
 }
 
+// DM 自动使能：无论看门狗开关是否开启，都周期性检查 DM 是否处于 disable 状态并尝试发送使能
+static void Watchdog_DmAutoEnable(Watchdog_State_t *st, uint32_t now_ms)
+{
+    if (st == NULL) {
+        return;
+    }
+
+    DM_motor_t *dm_l = Rising_Get_DmMotor_L();
+    DM_motor_t *dm_r = Rising_Get_DmMotor_R();
+    DM_motor_t *dm_list[WD_DM_COUNT] = {dm_l, dm_r};
+
+    for (uint8_t i = 0; i < (uint8_t)WD_DM_COUNT; i++) {
+        if (dm_list[i] == NULL) {
+            continue;
+        }
+        Motor_DM_Refresh(dm_list[i]);
+
+        can_msg_t *msg = can_msg_find_item(can_msg_find_list(s_dm_ports[i]), s_dm_master_ids[i]);
+        const uint8_t is_online = Watchdog_IsOnlineByCnt(msg, &st->last_cnt_dm[i], &st->last_rx_ms_dm[i], now_ms);
+
+        if (is_online != 0U) {
+            Motor_DM_Refresh(dm_list[i]);
+
+            if ((dm_list[i]->error_code == Motor_DM_DISABLE) && ((now_ms - st->dm_enable_last_ms[i]) > WATCHDOG_DM_REENABLE_PERIOD_MS)) {
+                // 确保使能帧使用“基础 ID”（防止 can_cfg.id 被控制模式叠加导致 ID 错误）
+                const uint32_t saved_id = dm_list[i]->can_cfg.id;
+                dm_list[i]->can_cfg.id = (saved_id & 0xFFU);
+                Motor_DM_Enable(dm_list[i]);
+                dm_list[i]->can_cfg.id = saved_id;
+                st->dm_enable_last_ms[i] = now_ms;
+            }
+        }
+    }
+}
+
 static void Watchdog_CheckDm(Watchdog_State_t *st, uint32_t now_ms)
 {
     if (st == NULL) {
@@ -218,11 +221,6 @@ static void Watchdog_CheckDm(Watchdog_State_t *st, uint32_t now_ms)
         if (is_online && dm_list[i] != NULL) {
             const uint32_t code = (uint32_t)dm_list[i]->error_code;
             Watchdog_OnDmError(i, code);
-
-            if ((dm_list[i]->error_code == Motor_DM_DISABLE) && ((now_ms - st->dm_enable_last_ms[i]) > 200U)) {
-                Motor_DM_Enable(dm_list[i]);
-                st->dm_enable_last_ms[i] = now_ms;
-            }
         }
     }
 }
@@ -329,7 +327,7 @@ static void Watchdog_AlarmUpdate(Watchdog_State_t *st, uint32_t now_ms, uint8_t 
         return;
     }
 
-    if ((now_ms - st->alarm_start_ms) >= 2000U) {
+    if ((now_ms - st->alarm_start_ms) >= WATCHDOG_ALARM_DURATION_MS) {
         st->alarm_active = 0U;
         st->alarm_type = (uint8_t)WD_ALARM_NONE;
         Watchdog_Buzzer_Off();
@@ -338,16 +336,16 @@ static void Watchdog_AlarmUpdate(Watchdog_State_t *st, uint32_t now_ms, uint8_t 
 
     if (st->alarm_type == (uint8_t)WD_ALARM_MOTOR_OFFLINE) {
         const uint32_t t = now_ms - st->alarm_start_ms;
-        const uint32_t step = t / 200U;
+        const uint32_t step = t / WATCHDOG_ALARM_MOTOR_STEP_MS;
         if (step < (uint32_t)st->alarm_motor_offline_cnt) {
-            const uint32_t freq = 800U + (step * 200U);
+            const uint32_t freq = WATCHDOG_BUZZER_MOTOR_BASE_FREQ_HZ + (step * WATCHDOG_BUZZER_MOTOR_STEP_FREQ_HZ);
             Watchdog_Buzzer_On(freq);
         } else {
             Watchdog_Buzzer_Off();
         }
     } else if (st->alarm_type == (uint8_t)WD_ALARM_RC_OFFLINE) {
         const uint32_t t = now_ms - st->alarm_start_ms;
-        const uint32_t freq = 400U + ((t * 1600U) / 2000U);
+        const uint32_t freq = WATCHDOG_BUZZER_RC_BASE_FREQ_HZ + ((t * WATCHDOG_BUZZER_RC_RAMP_FREQ_HZ) / WATCHDOG_ALARM_DURATION_MS);
         Watchdog_Buzzer_On(freq);
     } else {
         Watchdog_Buzzer_Off();
@@ -358,19 +356,39 @@ void Watchdog_Task(void *argument)
 {
     (void)argument;
 
-    osDelay(500);
+    osDelay(WATCHDOG_TASK_START_DELAY_MS);
 
     Watchdog_State_t st;
     memset(&st, 0, sizeof(st));
     st.last_rc_change_ms = Watchdog_GetTickMs();
 
+    uint8_t last_enabled = Watchdog_IsEnabled();
+
     //buzzer_init();
 
     for (;;) {
+        const uint8_t enabled = Watchdog_IsEnabled();
+        if (enabled == 0U) {
+            // 即使关闭看门狗，也要继续尝试使能 DM 电机（不影响底盘掉电/报警逻辑）
+            const uint32_t now_ms = Watchdog_GetTickMs();
+            Watchdog_DmAutoEnable(&st, now_ms);
+            Chassis_ForcePowerOff(0U);
+            osDelay(WATCHDOG_TASK_DISABLED_DELAY_MS);
+            last_enabled = 0U;
+            continue;
+        }
+
+        if (last_enabled == 0U) {
+            memset(&st, 0, sizeof(st));
+            st.last_rc_change_ms = Watchdog_GetTickMs();
+            last_enabled = 1U;
+        }
+
         const uint32_t now_ms = Watchdog_GetTickMs();
 
         Watchdog_Check3508(&st, now_ms);
         Watchdog_CheckDm(&st, now_ms);
+        Watchdog_DmAutoEnable(&st, now_ms);
         Watchdog_CheckRc(&st, now_ms);
 
         const uint8_t motor_offline_cnt = Watchdog_CountMotorOffline(&st);
@@ -382,6 +400,6 @@ void Watchdog_Task(void *argument)
 
         Watchdog_AlarmUpdate(&st, now_ms, motor_offline_cnt);
 
-        osDelay(1);
+        osDelay(WATCHDOG_TASK_LOOP_DELAY_MS);
     }
 }

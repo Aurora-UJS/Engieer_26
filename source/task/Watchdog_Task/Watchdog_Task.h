@@ -3,8 +3,78 @@
 
 #include <stdint.h>
 
-#define WATCHDOG_MOTOR_OFFLINE_TIMEOUT_MS 500U
-#define WATCHDOG_RC_NOCHANGE_TIMEOUT_MS   20000U
+#include "watchdog_config.h"
+
+#include "DBusSys.h"
+
+// 3508 电机索引：用于回调与内部数组下标
+typedef enum
+{
+    WD_3508_CHASSIS_ZQ = 0,
+    WD_3508_CHASSIS_ZH,
+    WD_3508_CHASSIS_YH,
+    WD_3508_CHASSIS_YQ,
+    WD_3508_RISING_L,
+    WD_3508_RISING_R,
+    WD_3508_COUNT
+} watchdog_3508_index_t;
+
+// DM 电机索引：用于回调与内部数组下标
+typedef enum
+{
+    WD_DM_L = 0,
+    WD_DM_R,
+    WD_DM_COUNT
+} watchdog_dm_index_t;
+
+// 报警类型：用于蜂鸣器报警逻辑与状态机
+typedef enum
+{
+    WD_ALARM_NONE = 0,
+    WD_ALARM_MOTOR_OFFLINE,
+    WD_ALARM_RC_OFFLINE,
+} watchdog_alarm_type_t;
+
+/**
+ * @brief 看门狗运行时状态
+ */
+typedef struct
+{
+    // 3508 在线检测（通过 CAN cnt 判断）
+    uint8_t last_cnt_3508[WD_3508_COUNT];
+    uint32_t last_rx_ms_3508[WD_3508_COUNT];
+    uint8_t online_3508[WD_3508_COUNT];
+
+    // DM 在线检测 + 自动重使能
+    uint8_t last_cnt_dm[WD_DM_COUNT];
+    uint32_t last_rx_ms_dm[WD_DM_COUNT];
+    uint8_t online_dm[WD_DM_COUNT];
+    uint32_t dm_enable_last_ms[WD_DM_COUNT];
+
+    // 遥控器变化检测（长时间无变化/无输入则判定异常）
+    rc_info_t last_rc;
+    uint32_t last_rc_change_ms;
+    uint8_t rc_offline;
+
+    // 报警状态（蜂鸣器）
+    uint8_t alarm_active;
+    uint8_t alarm_type;
+    uint8_t alarm_motor_offline_cnt;
+    uint32_t alarm_start_ms;
+} Watchdog_State_t;
+
+// 运行时开关：用于在代码层面启用/禁用 Watchdog_Task 逻辑
+void Watchdog_SetEnabled(uint8_t enabled);
+uint8_t Watchdog_IsEnabled(void);
+
+// 弱函数回调声明：你可以在任意 .c 文件中实现同名函数来覆盖 Watchdog_Task.c 内的 __weak 空实现
+void Watchdog_OnChassis3508_Online(uint8_t index);
+void Watchdog_OnChassis3508_Offline(uint8_t index);
+void Watchdog_OnDm_Online(uint8_t index);
+void Watchdog_OnDm_Offline(uint8_t index);
+void Watchdog_OnDmError(uint8_t index, uint32_t code);
+void Watchdog_OnRc_Changed(void);
+void Watchdog_OnRc_NoChangeTimeout(void);
 
 /**
  * @brief 看门狗任务

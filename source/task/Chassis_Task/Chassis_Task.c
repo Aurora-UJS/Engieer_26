@@ -74,10 +74,18 @@ void Chassis_Task(void *argument)
   Chassis_Drive_Init();
   Rising_Ctrl_Init();
 
+  uint8_t last_mode = Chassis_Mode_Get(&remoter);
+
   /* Infinite loop */
   for (;;) 
   {
-    switch (Chassis_Mode_Get(&remoter)) 
+    const uint8_t mode = Chassis_Mode_Get(&remoter);
+    if (mode != last_mode) {
+      Rising_Reset_DmImuPid();
+      last_mode = mode;
+    }
+
+    switch (mode) 
     {
       case Chassis_PowerOff:
         Chassis_Stop();

@@ -21,9 +21,9 @@ void IMU_Task(void *argument)
     for(;;)
     {
 		IMU_RequestData(imu,0x21,3);    //请求欧拉角数据
-        IMU_data.Pitch = imu->Angles.pitch;
-        IMU_data.Yaw = imu->Angles.yaw;
-        IMU_data.Roll = imu->Angles.roll;
+        IMU_data.Pitch = imu->Angles.pitch * 3.1415 /180;
+        IMU_data.Yaw = imu->Angles.yaw * 3.1415 /180;
+        IMU_data.Roll = imu->Angles.roll * 3.1415 /180;
 		IMU_Refresh(imu);
         IMU_data_time++;
         osDelay(10);

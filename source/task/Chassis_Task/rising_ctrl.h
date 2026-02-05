@@ -12,12 +12,12 @@
 #include "chassis_debug.h"
 
 #ifndef RISING_DM_IMU_TEST
-#define RISING_DM_IMU_TEST (0)
+#define RISING_DM_IMU_TEST (1)
 #endif
 //imu测试的开关，1为开启，0为关闭
 
 #ifndef RISING_IMU_PITCH_SIGN
-#define RISING_IMU_PITCH_SIGN (1.0f)
+#define RISING_IMU_PITCH_SIGN (-1.0f)
 #endif
 //imu测试的pitch方向的符号
 
@@ -113,6 +113,8 @@ void Rising_Motor_SendControl_DM(DM_motor_t *DMMotor_L, DM_motor_t *DMMotor_R, f
  * @param remoter 遥控器数据
  */
 void Rising_Motor_TargetAngle(float32_t *Target_Angle_L, float32_t *Target_Angle_R, rc_info_t remoter);
+
+void Rising_Reset_DmImuPid(void);
 
 DM_motor_t *Rising_Get_DmMotor_L(void);
 DM_motor_t *Rising_Get_DmMotor_R(void);

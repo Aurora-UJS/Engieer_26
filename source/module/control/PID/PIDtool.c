@@ -89,7 +89,10 @@ float PID_Calc_Pos(pid_type_def *pid, float now, float target)
     pid->Iout += pid->Ki * pid->error[0];
     LimitMax(pid->Iout, pid->max_iout);
 
-    pid->Dout = pid->Kd * (pid->error[0] - pid->error[1]);
+    pid->Dbuf[2] = pid->Dbuf[1];
+    pid->Dbuf[1] = pid->Dbuf[0];
+    pid->Dbuf[0] = target;
+    pid->Dout = pid->Kd * (pid->Dbuf[0] - pid->Dbuf[1]);
 
     // 计算最终输出并限制在最大输出范围内
     pid->out = pid->Pout + pid->Iout + pid->Dout;

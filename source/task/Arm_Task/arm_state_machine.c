@@ -3,7 +3,7 @@
 #include "joint_control_drv.h"
 #include "motor_DM.h"
 
-float Rising_Joint_Radian[6] = {0,1.6,1.5,0,0,0};
+float Rising_Joint_Radian[6] = {0,1.4,1.3,0,0.4,0};
 extern osThreadId_t Trajectory_PublisherHandle;
 const float Zero_Velcoity[6] = {0, 0, 0, 0, 0, 0};
 const float Default_Velcoity[6] = {
@@ -11,7 +11,7 @@ const float Default_Velcoity[6] = {
     JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY,
 };
 const float Rising_Velcoity[6] = {
-  0,0.2,0.3,0,0,0
+  0,0.4,0.5,0,0.4,0
 };
 
 gripper_control_mode_t Gripper_Current_Control_Mode = GRIPPER_IDLE_MODE;

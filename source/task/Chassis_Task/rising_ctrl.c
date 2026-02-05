@@ -61,6 +61,8 @@ void Rising_Stop(void)
     g_chassis_debug.rising_target_speed_3508[Rising_Motor_3508_Right] = 0.0f;
     g_chassis_debug.rising_output_3508[Rising_Motor_3508_Left] = 0.0f;
     g_chassis_debug.rising_output_3508[Rising_Motor_3508_Right] = 0.0f;
+    g_chassis_debug.rising_dm_pid_output[0] = 0.0f;
+    g_chassis_debug.rising_dm_pid_output[1] = 0.0f;
 
     if (s_rising_dji != NULL) {
         Rising_Motor_SendControl_DJI(s_rising_dji, s_rising_ctrl_output);
@@ -89,6 +91,21 @@ void Rising_Normal_Mode(const rc_info_t *remoter)
 {
     (void)remoter;
     Rising_Stop();
+}
+
+void Rising_Reset_DmImuPid(void)
+{
+    for (int i = 0; i < 2; i++) {
+        const float kp = s_rising_dm_pid[i].Kp;
+        const float ki = s_rising_dm_pid[i].Ki;
+        const float kd = s_rising_dm_pid[i].Kd;
+        const float max_out = s_rising_dm_pid[i].max_out;
+        const float max_iout = s_rising_dm_pid[i].max_iout;
+        PID_Init(&s_rising_dm_pid[i], kp, ki, kd, max_out, max_iout);
+    }
+
+    g_chassis_debug.rising_dm_pid_output[0] = 0.0f;
+    g_chassis_debug.rising_dm_pid_output[1] = 0.0f;
 }
 
 /**
@@ -305,6 +322,8 @@ static void test_pid_IMU(IMU_data_t IMU_data,float32_t target_angle[],float32_t 
 
     float32_t pitch = IMU_data.Pitch * RISING_IMU_PITCH_SIGN;
     float32_t delta_angle = PID_Calc_Pos(&s_rising_dm_pid[0], pitch, 0.0f);
+    g_chassis_debug.rising_dm_pid_output[0] = delta_angle;
+    g_chassis_debug.rising_dm_pid_output[1] = -delta_angle;
     /* Map PID output to angle command and clamp between mechanical limits (0-point and max-point). */
     float32_t angle_cmd = limit(Rising_DM_ZeroPoint + delta_angle, Rising_DM_ZeroPoint, Max_Rising_DM_angle);
 

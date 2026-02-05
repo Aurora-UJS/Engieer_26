@@ -12,6 +12,7 @@ typedef struct
     float32_t rising_target_speed_3508[2];
     float32_t rising_actual_speed_3508[2];
     float32_t rising_output_3508[2];
+    float32_t rising_dm_pid_output[2];
 
     float32_t rising_target_angle_dm_l;
     float32_t rising_target_angle_dm_r;
