@@ -8,25 +8,9 @@
 #include "jointFollowAngle.h"
 #include "joint_control_drv.h"
 #include "stm32h7xx_hal_def.h"
+#include "trajectory_publisher_drv.h"
 
-#define TRAJECTORY_LEN 3000
-#define TRAJ_START_FLAG (1U << 0)
-
-#define ARM_PREPARE_TIME_TICKS (500)
-#define ARM_PICK_TIME_TICKS (TRAJECTORY_NUM)
-#define ARM_RETURN_TIME_TICKS (1000)
-#define ARM_TOTOAL_TRAJECTORY_TIME_TICKS                                       \
-  (ARM_PREPARE_TIME_TICKS + ARM_PICK_TIME_TICKS + ARM_RETURN_TIME_TICKS)
-
-#define ENDEFFECTOR_CLOSE_TIME_TICKS (1550)
-#define ENDEFFECTOR_TOTOAL_TIME_TICKS                                          \
-  (ARM_PREPARE_TIME_TICKS + ENDEFFECTOR_CLOSE_TIME_TICKS)
 void Trajectory_Timer_Init(void);
 
-extern const float Trajectory[TRAJECTORY_NUM][JOINT_NUM];
-extern const float Traj_Vel[TRAJECTORY_NUM][JOINT_NUM];
-extern target_point_t Target_Point[JOINT_NUM];
-extern arm_control_mode_t Arm_Current_Control_Mode;
-extern gripper_control_mode_t Gripper_Current_Control_Mode;
 
 #endif

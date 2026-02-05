@@ -1,5 +1,5 @@
 #include "arm_state_machine.h"
-
+#include "trajectory_publisher_drv.h"
 extern osThreadId_t Trajectory_PublisherHandle;
 const float Zero_Velcoity[6] = {0, 0, 0, 0, 0, 0};
 const float Default_Velcoity[6] = {
