@@ -1,6 +1,12 @@
 #include "trajectory_publisher_drv.h"
-#include "arm_state_machine.h"
 extern int traj_point_index;
+
+/**
+ * @brief 右轨迹发布函数
+ * 
+ * @param Trajectory 
+ * @param point_index 
+ */
 void Trajectory_Publisher_right(const float Trajectory[][JOINT_NUM],
                                 int point_index) {
   Target_Point[0].velocity = Traj_Vel[point_index][0];
@@ -21,6 +27,13 @@ void Trajectory_Publisher_right(const float Trajectory[][JOINT_NUM],
   }
 
 }
+
+/**
+ * @brief 左轨迹发布函数
+ * 
+ * @param Trajectory 
+ * @param point_index 
+ */
 void Trajectory_Publisher(const float Trajectory[][JOINT_NUM],
                           int point_index) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
@@ -39,6 +52,11 @@ void Trajectory_Publisher(const float Trajectory[][JOINT_NUM],
         Traj_Vel[point_index][joint_index] * 2.0f;
   }
 }
+
+/**
+ * @brief 取左矿函数
+ * 
+ */
 void getLeft(void) {
   if (traj_point_index <= ARM_PREPARE_TIME_TICKS) {
     Target_Point[0].target_joint_radian = -0.79f;
@@ -53,9 +71,13 @@ void getLeft(void) {
   if (traj_point_index == ENDEFFECTOR_CLOSE_TIME_TICKS) {
     Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
   }
-
   traj_point_index++;
 }
+
+/**
+ * @brief 取右矿函数
+ * 
+ */
 void getRight(void) {
   if (traj_point_index <= ARM_PREPARE_TIME_TICKS) {
     Target_Point[0].target_joint_radian = 0.79f;
@@ -74,6 +96,7 @@ void getRight(void) {
   }
   traj_point_index++;
 }
+
 void Debug_set_pos(void) {
   Target_Point[0].target_joint_radian = -0.79;
   Target_Point[1].target_joint_radian = 0.46139;
@@ -87,14 +110,12 @@ void Debug_set_pos(void) {
     Target_Point[joint_index].velocity = JOINT_DEFAULT_VELOCITY;
   }
 }
-void placeLeft(void) {
-  // if (traj_point_index >= 500 && traj_point_index <= 2500) {
-  //   Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
-  // }
-  // else {
-  //   Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
-  // }
 
+/**
+ * @brief 左放置函数
+ * 
+ */
+void placeLeft(void) {
   if (traj_point_index <= 2000) {
     Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
   } else {
@@ -103,7 +124,6 @@ void placeLeft(void) {
   if (traj_point_index >= 500 && traj_point_index <= 1500) {
     Target_Point[0].target_joint_radian = -0.79;
     Target_Point[1].target_joint_radian = 0.49139;
-    // Target_Point[2].target_joint_radian = 0.2790;
     Target_Point[2].target_joint_radian = 0.46;
     Target_Point[3].target_joint_radian = 0.0;
     Target_Point[4].target_joint_radian = 0.2;
@@ -128,22 +148,19 @@ void placeLeft(void) {
   traj_point_index++;
 }
 
+/**
+ * @brief 右放置函数
+ * 
+ */
 void placeRight(void) {
   if (traj_point_index <= 2000) {
     Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
   } else {
     Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
   }
-  // if (traj_point_index >= 500 && traj_point_index <= 2500) {
-  //   Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
-  // }
-  // else {
-  //   Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
-  // }
   if (traj_point_index >= 500 && traj_point_index <= 1500) {
     Target_Point[0].target_joint_radian = 0.79;
     Target_Point[1].target_joint_radian = 0.49139;
-    // Target_Point[2].target_joint_radian = 0.2790;
     Target_Point[2].target_joint_radian = 0.46;
     Target_Point[3].target_joint_radian = 0.0;
     Target_Point[4].target_joint_radian = 0.2;

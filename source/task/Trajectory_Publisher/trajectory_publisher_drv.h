@@ -22,12 +22,23 @@
 #define ENDEFFECTOR_TOTOAL_TIME_TICKS                                          \
   (ARM_PREPARE_TIME_TICKS + ENDEFFECTOR_CLOSE_TIME_TICKS)
 
+/** @brief 左取矿轨迹发布*/
 void Trajectory_Publisher_right(const float Trajectory[][JOINT_NUM],
                                 int point_index);
+
+/** @brief 右取矿轨迹发布 */
 void Trajectory_Publisher(const float Trajectory[][JOINT_NUM], int point_index);
+
+/** @brief 左取矿函数 */
 void getLeft(void);
+
+/** @brief 右取矿函数 */
 void getRight(void);
+
+/** @brief 左放矿 */
 void placeLeft(void);
+
+/** @brief 右放矿 */
 void placeRight(void);
 
 extern const float Trajectory[TRAJECTORY_NUM][JOINT_NUM];
