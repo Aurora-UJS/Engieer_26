@@ -1,4 +1,5 @@
  #include "chassis_drive.h"
+#include "PIDtool.h"
  #include "chassis_debug.h"
  #include "omni_mecanum_kinematics.h"
  #include "tool.h"
@@ -32,6 +33,7 @@ void Chassis_Stop(void)
     for (int i = 0; i < 4; i++) {
         s_chassis_ctrl_output[i] = 0;
         g_chassis_debug.chassis_target_speed_3508[i] = 0.0f;
+        g_chassis_debug.chassis_output_3508[i] = 0.0f;
     }
 
     if (s_chassis_motor != NULL) {
@@ -65,6 +67,10 @@ void Chassis_Normal_Mode(const rc_info_t *remoter)
                               s_chassis_motor,
                               s_chassis_ctrl_output,
                               s_chassis_lpf);
+
+    for (int i = 0; i < 4; i++) {
+        g_chassis_debug.chassis_output_3508[i] = (float32_t)s_chassis_ctrl_output[i];
+    }
     Chassis_Motor_SendControl_DJI(s_chassis_motor, s_chassis_ctrl_output);
 
     for (int i = 0; i < 4; i++) {
@@ -97,6 +103,10 @@ void Chassis_Upstairs_Mode(const rc_info_t *remoter)
                               s_chassis_motor,
                               s_chassis_ctrl_output,
                               s_chassis_lpf);
+
+    for (int i = 0; i < 4; i++) {
+        g_chassis_debug.chassis_output_3508[i] = (float32_t)s_chassis_ctrl_output[i];
+    }
     Chassis_Motor_SendControl_DJI(s_chassis_motor, s_chassis_ctrl_output);
 
     for (int i = 0; i < 4; i++) {
@@ -184,7 +194,7 @@ void Chassis_3508_PID_Calculate(pid_type_def pid[], float32_t target_speed[],
 
     for (int i = 0; i < 4; i++) {
         curren_wheel_speed[i] = motor->motor_msg[i].motor_speed * (Motor_Wheel_Trans);
-        output[i] = (int16_t)(PID_Calc_Add(pid + i, curren_wheel_speed[i], *(target_speed + i)));
+        output[i] = (int16_t)(PID_Calc_Pos(pid + i, curren_wheel_speed[i], *(target_speed + i)));
         output[i] = (int16_t)filterValue(&lpf[i], output[i]);
     }
 }

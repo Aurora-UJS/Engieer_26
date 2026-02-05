@@ -1,9 +1,9 @@
 #ifndef CHASSIS_CONFIG_H
 #define CHASSIS_CONFIG_H
 
-#define Max_Velocity 2
-#define Max_Rising_Motor_Velocity 6
-#define Max_Rising_DM_angle 0.75f
+#define Max_Velocity 3
+#define Max_Rising_Motor_Velocity 1.5f
+#define Max_Rising_DM_angle 0.83f
 #define Rising_DM_ZeroPoint 0.08f
 #define Rising_DM_Velocity 3.0f
 
@@ -36,15 +36,15 @@
 #define Chassis_Motor_ALL_id 0x200
 #define Rising_Motor_ALL_id 0x1FF
 
-#define Chassis_3508_PID_kp 7000
+#define Chassis_3508_PID_kp 5000
 #define Chassis_3508_PID_ki 0.0f
 #define Chassis_3508_PID_kd 0.0f
 #define Chassis_3508_PID_Maxout 16384
 #define Chassis_3508_PID_Maxiout 8192
 
-#define Rising_3508_PID_kp 7000
-#define Rising_3508_PID_ki 0
-#define Rising_3508_PID_kd 0
+#define Rising_3508_PID_kp 9000
+#define Rising_3508_PID_ki 0.0001f
+#define Rising_3508_PID_kd 0.0f
 #define Rising_3508_PID_Maxout 16384
 #define Rising_3508_PID_Maxiout 8192
 

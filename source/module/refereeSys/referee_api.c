@@ -264,6 +264,7 @@ uint8_t CtrllerData[CtrllerData_Length] = {
     '3','1','4','1',
 	'0','0'
 };
+keyboard_t kb_info;
 
 /**
  * @brief 解析单帧控制器数据（内部使用）
@@ -289,6 +290,7 @@ static void ctrller_parse_frame(uint8_t *buff, uint16_t len)
 		break;
 	case 0x0304:  // 键鼠数据
 		memcpy(&custom_controller_info.keyboard, (buff + DATA_Offset), LEN_keyboard);
+		kb_info = custom_controller_info.keyboard;
 		break;
 	default:
 		break;

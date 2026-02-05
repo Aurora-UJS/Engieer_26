@@ -1,4 +1,6 @@
 #include "rising_ctrl.h"
+#include "PIDtool.h"
+#include "chassis_config.h"
 #include "chassis_debug.h"
 #include "tool.h"
 #include "../IMU_Task/IMU_Task.h"
@@ -57,6 +59,8 @@ void Rising_Stop(void)
 
     g_chassis_debug.rising_target_speed_3508[Rising_Motor_3508_Left] = 0.0f;
     g_chassis_debug.rising_target_speed_3508[Rising_Motor_3508_Right] = 0.0f;
+    g_chassis_debug.rising_output_3508[Rising_Motor_3508_Left] = 0.0f;
+    g_chassis_debug.rising_output_3508[Rising_Motor_3508_Right] = 0.0f;
 
     if (s_rising_dji != NULL) {
         Rising_Motor_SendControl_DJI(s_rising_dji, s_rising_ctrl_output);
@@ -107,6 +111,9 @@ void Rising_Upstairs_Mode(const rc_info_t *remoter)
                              s_rising_target_velocity,
                              s_rising_dji,
                              s_rising_ctrl_output);
+
+    g_chassis_debug.rising_output_3508[Rising_Motor_3508_Left] = (float32_t)s_rising_ctrl_output[Rising_Motor_3508_Left];
+    g_chassis_debug.rising_output_3508[Rising_Motor_3508_Right] = (float32_t)s_rising_ctrl_output[Rising_Motor_3508_Right];
     Rising_Motor_SendControl_DJI(s_rising_dji, s_rising_ctrl_output);
 
     g_chassis_debug.rising_actual_speed_3508[Rising_Motor_3508_Left] = s_rising_dji->motor_msg[Rising_Motor_3508_Left].motor_speed * (Motor_Wheel_Trans);
@@ -215,12 +222,20 @@ DM_motor_t *Rising_Get_DmMotor_R(void)
 
 void Rising_Motor_TargetVelocity(float32_t Target_Velocity[], rc_info_t remoter)
 {
+    // float32_t Velocity = map(remoter.ch2,
+    //                          -Remoter_CHMAX,
+    //                          Remoter_CHMAX,
+    //                          -Max_Rising_Motor_Velocity,
+    //                          Max_Rising_Motor_Velocity);
     float32_t Velocity = map(remoter.ch2,
                              -Remoter_CHMAX,
                              Remoter_CHMAX,
                              -Max_Rising_Motor_Velocity,
                              Max_Rising_Motor_Velocity);
-
+    if(remoter.ch2 > 100)
+    {
+        Velocity = Max_Rising_Motor_Velocity;
+    }
     Target_Velocity[Rising_Motor_3508_Left] = Velocity;
     Target_Velocity[Rising_Motor_3508_Right] = -Velocity;
 }
@@ -265,7 +280,7 @@ void Rising_3508_PID_Calculate(pid_type_def pid[], float32_t target_speed[], DJI
 
     for (int i = 0; i < 2; i++) {
         curren_wheel_speed[i] = motor->motor_msg[i].motor_speed * (Motor_Wheel_Trans);
-        output[i] = (int16_t)(PID_Calc_Add(pid + i, curren_wheel_speed[i], *(target_speed + i)));
+        output[i] = (int16_t)(PID_Calc_Pos(pid + i, curren_wheel_speed[i], *(target_speed + i)));
     }
 }
 
@@ -300,3 +315,4 @@ static void test_pid_IMU(IMU_data_t IMU_data,float32_t target_angle[],float32_t 
     output[1] = -angle_cmd;
 }
 #endif
+
