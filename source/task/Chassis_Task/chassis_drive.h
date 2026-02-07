@@ -38,6 +38,14 @@ void Chassis_Normal_Mode(const rc_info_t *remoter);
 void Chassis_Upstairs_Mode(const rc_info_t *remoter);
 
 /**
+ * @brief 键盘控制底盘（WASD 平移 + mouse_x 控制 yaw）
+ *
+ * @param kb 键盘/鼠标数据
+ * @param disable_yaw 为 1 时禁用 yaw（wz=0），用于抬升(Rising)模式
+ */
+void Chassis_Keyboard_Mode(const keyboard_t *kb, uint8_t disable_yaw);
+
+/**
  * @brief 初始化底盘轮电机（DJI 3508）
  *
  * 配置CAN相关参数并启动电机收发。

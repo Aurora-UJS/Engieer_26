@@ -114,6 +114,76 @@ void Chassis_Upstairs_Mode(const rc_info_t *remoter)
     }
 }
 
+void Chassis_Keyboard_Mode(const keyboard_t *kb, uint8_t disable_yaw)
+{
+    if (kb == NULL || s_chassis_motor == NULL) {
+        return;
+    }
+
+    basic_vector_t motion;
+    motion.x = 0.0f;
+    motion.y = 0.0f;
+    motion.wz = 0.0f;
+
+    /* 键盘平移：长按直接给最大速度（不做跳变检测） */
+
+    if (kb->key_code.bit.W != 0U) {
+        motion.y = (float32_t)Max_Velocity;
+    } else if (kb->key_code.bit.S != 0U) {
+        motion.y = -(float32_t)Max_Velocity;
+    }
+
+    if (kb->key_code.bit.A != 0U) {
+        motion.x = -(float32_t)Max_Velocity;
+    } else if (kb->key_code.bit.D != 0U) {
+        motion.x = (float32_t)Max_Velocity;
+    }
+
+    /* 鼠标左右：映射为 yaw 角速度（wz），带限幅和死区 */
+    if (disable_yaw == 0U) {
+        int16_t mx = kb->mouse_x;
+
+        /* 100 的死区 */
+        int16_t abs_mx = (mx >= 0) ? mx : (int16_t)(-mx);
+        if (abs_mx <= 100) {
+            motion.wz = 0.0f;
+        } else {
+            /* 限幅到 [-660, 660] */
+            if (mx > Remoter_CHMAX) {
+                mx = Remoter_CHMAX;
+            } else if (mx < -Remoter_CHMAX) {
+                mx = -Remoter_CHMAX;
+            }
+            motion.wz = (float32_t)Turning_Forward_Feedback * map((float32_t)mx,
+                                                                 -(float32_t)Remoter_CHMAX,
+                                                                 (float32_t)Remoter_CHMAX,
+                                                                 -(float32_t)Max_Velocity,
+                                                                 (float32_t)Max_Velocity);
+        }
+    }
+
+    omni_mecanum_kinematics(&motion, s_chassis_target_velocity);
+
+    for (int i = 0; i < 4; i++) {
+        g_chassis_debug.chassis_target_speed_3508[i] = s_chassis_target_velocity[i];
+    }
+
+    Chassis_3508_PID_Calculate(s_chassis_pid,
+                              s_chassis_target_velocity,
+                              s_chassis_motor,
+                              s_chassis_ctrl_output,
+                              s_chassis_lpf);
+
+    for (int i = 0; i < 4; i++) {
+        g_chassis_debug.chassis_output_3508[i] = (float32_t)s_chassis_ctrl_output[i];
+    }
+    Chassis_Motor_SendControl_DJI(s_chassis_motor, s_chassis_ctrl_output);
+
+    for (int i = 0; i < 4; i++) {
+        g_chassis_debug.chassis_actual_speed_3508[i] = s_chassis_motor->motor_msg[i].motor_speed * (Motor_Wheel_Trans);
+    }
+}
+
 void Chassis_Wheel_LPF_Init(LowPassFilter lpf[4], float alpha)
 {
     for (int i = 0; i < 4; i++) {
