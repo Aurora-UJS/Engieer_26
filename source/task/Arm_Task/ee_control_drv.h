@@ -1,6 +1,7 @@
 #ifndef EE_CONTROL_DRVH
 #define EE_CONTROL_DRVH
 
+#include "cmsis_os2.h"
 #include "motor_DM.h"
 
 typedef struct endEffector_t{
