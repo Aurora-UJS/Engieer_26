@@ -32,7 +32,7 @@ void jointFollowAngle(void *argument) {
 
   UNUSED(argument);
 
-  joint_init(Joint);
+  // joint_init(Joint);
 
   target_point_init(Target_Point);
 
