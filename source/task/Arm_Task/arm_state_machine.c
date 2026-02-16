@@ -1,31 +1,15 @@
 #include "arm_state_machine.h"
-#include "trajectory_publisher_drv.h"
-extern osThreadId_t Trajectory_PublisherHandle;
+#include "arm_handle.h"
+
+gripper_control_mode_t Gripper_Current_Control_Mode = GRIPPER_IDLE_MODE;
+arm_control_mode_t Arm_Current_Control_Mode = Arm_Traj_Mode;
+
 const float Zero_Velcoity[6] = {0, 0, 0, 0, 0, 0};
 const float Default_Velcoity[6] = {
     JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY,
     JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY,
 };
 
-gripper_control_mode_t Gripper_Current_Control_Mode = GRIPPER_IDLE_MODE;
-arm_control_mode_t Arm_Current_Control_Mode = Arm_Traj_Mode;
-
-target_point_t traj_test[256];
-
-void Arm_Traj_Handle(void) {
-
-  static uint8_t traj_started = 0;
-  if (0 == traj_started) {
-    osThreadFlagsSet(Trajectory_PublisherHandle, TRAJ_START_FLAG);
-    traj_started = 1;
-  }
-}
-void Arm_Transition_Handle(Joint_t *Joint, const float *transition_radian) {
-  if (true == Arm_At_Target(Joint, transition_radian)) {
-    // Arm_Current_Control_Mode = Arm_IDLE_Mode;
-  } else {
-  }
-}
 /**
  * @brief 夹爪状态机
  *

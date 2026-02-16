@@ -44,6 +44,5 @@ void placeRight(void);
 extern const float Trajectory[TRAJECTORY_NUM][JOINT_NUM];
 extern const float Traj_Vel[TRAJECTORY_NUM][JOINT_NUM];
 extern target_point_t Target_Point[JOINT_NUM];
-extern arm_control_mode_t Arm_Current_Control_Mode;
-extern gripper_control_mode_t Gripper_Current_Control_Mode;
+extern int traj_point_index;
 #endif

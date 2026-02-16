@@ -1,5 +1,4 @@
 #include "trajectory_publisher_drv.h"
-extern int traj_point_index;
 
 /**
  * @brief 右轨迹发布函数

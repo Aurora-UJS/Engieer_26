@@ -1,7 +1,6 @@
 // jointFollowAngle.c 关节跟随角度运动处理函数
 
 #include "jointFollowAngle.h"
-#include "motor_DM.h"
 
 extern float Ctrller_Joint_Radian[6];
 // extern DM_motor_t *Joint_Motor[JOINT_NUM];

@@ -1,7 +1,4 @@
 #include "trajectory_publisher_task.h"
-#include "cmsis_os2.h"
-#include "trajectory_publisher_drv.h"
-#include <string.h>
 
 static osTimerId_t traj_timer_id;
 int traj_point_index = 0;
