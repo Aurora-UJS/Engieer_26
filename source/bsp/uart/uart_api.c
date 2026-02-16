@@ -125,6 +125,7 @@ uart_status_t uart_rx_init(uart_rx_t *uart_rx_msg)
         break;
     case (unsigned long)UART7_BASE:
         uart7_msg = uart_rx_msg;
+        break;
     case (unsigned long)USART10_BASE:
         uart10_msg = uart_rx_msg;
         break;
