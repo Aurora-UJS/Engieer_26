@@ -5,6 +5,7 @@
 
 static osTimerId_t traj_timer_id;
 int traj_point_index = 0;
+static int demo_index = 0;
 
 void Trajectory_Timer_Callback(void *argument) {
   UNUSED(argument);
@@ -21,7 +22,6 @@ void Trajectory_Timer_Callback(void *argument) {
   }
 }
 
-static int demo_index = 0;
 void Trajectory_demo_Timer_Callback(void *argument) {
   UNUSED(argument);
 
