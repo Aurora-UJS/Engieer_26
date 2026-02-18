@@ -8,11 +8,6 @@ typedef struct endEffector_t{
     DM_motor_t *endEffector_motor;
 } endEffector_t;
 
-typedef enum{
-    GRIPPER_IDLE_MODE = 0,
-    GRIPPER_OPEN_MODE,
-    GRIPPER_CLOSE_MODE
-}gripper_control_mode_t ;
 
 #define GRIPPER_OPEN_RADIAN (0.0f)
 #define GRIPPER_CLOSE_RADION (1.2f)

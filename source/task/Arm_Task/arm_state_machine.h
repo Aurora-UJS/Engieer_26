@@ -13,6 +13,12 @@ typedef enum {
   Arm_Traj_Mode
 } arm_control_mode_t;
 
+typedef enum{
+    GRIPPER_IDLE_MODE = 0,
+    GRIPPER_OPEN_MODE,
+    GRIPPER_CLOSE_MODE
+}gripper_control_mode_t ;
+
 extern float Ctrller_Joint_Radian[6];
 extern DM_motor_t *Joint_Motor[JOINT_NUM];
 extern float Mannal_Joint_Radian[6];
