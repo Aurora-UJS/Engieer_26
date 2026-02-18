@@ -9,7 +9,7 @@
 #include "joint_control_drv.h"
 #include "stm32h7xx_hal_def.h"
 
-#define TRAJECTORY_LEN 3000
+#define TRAJECTORY_LEN (3000)
 #define TRAJ_START_FLAG (1U << 0)
 
 #define ARM_PREPARE_TIME_TICKS (500)

@@ -14,9 +14,9 @@ typedef enum{
     GRIPPER_CLOSE_MODE
 }gripper_control_mode_t ;
 
-#define GRIPPER_OPEN_RADIAN 0.0f
-#define GRIPPER_CLOSE_RADION 1.2f
-#define GRIPPER_VEL 1.5f
+#define GRIPPER_OPEN_RADIAN (0.0f)
+#define GRIPPER_CLOSE_RADION (1.2f)
+#define GRIPPER_VEL (1.5f)
 
 /** @brief 末端执行器初始化*/
 void endEffector_init(endEffector_t *endeffector);

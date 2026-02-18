@@ -3,6 +3,6 @@
 
 #include "joint_control_drv.h"
 
-#define TRAJECTORY_NUM 1788
+#define TRAJECTORY_NUM (1788)
 
 #endif
