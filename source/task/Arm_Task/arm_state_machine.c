@@ -4,8 +4,8 @@
 gripper_control_mode_t Gripper_Current_Control_Mode = GRIPPER_IDLE_MODE;
 arm_control_mode_t Arm_Current_Control_Mode = Arm_Traj_Mode;
 
-const float Zero_Velcoity[6] = {0, 0, 0, 0, 0, 0};
-const float Default_Velcoity[6] = {
+const float Zero_Velocity[6] = {0, 0, 0, 0, 0, 0};
+const float Default_Velocity[6] = {
     JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY,
     JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY,
 };
@@ -54,12 +54,12 @@ void Joint_Control_Mode_Manager(Joint_t *Joint) {
     memcpy(Target_Joint_Radian, Ctrller_Joint_Radian,
            sizeof(Ctrller_Joint_Radian));
 
-    Point_Publisher(Target_Point, Target_Joint_Radian, Default_Velcoity);
+    Point_Publisher(Target_Point, Target_Joint_Radian, Default_Velocity);
 
     break;
 
   case Arm_Frozen_Mode:
-    Point_Publisher(Target_Point, Target_Joint_Radian, Zero_Velcoity);
+    Point_Publisher(Target_Point, Target_Joint_Radian, Zero_Velocity);
     break;
 
   case Arm_Set_Radian:
