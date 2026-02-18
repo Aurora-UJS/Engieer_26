@@ -1,5 +1,5 @@
-#ifndef JOINT_CONTROL_DRV
-#define JOINT_CONTROL_DRV
+#ifndef JOINT_CONTROL_DRV_H
+#define JOINT_CONTROL_DRV_H
 
 #include "DBusSys.h"
 #include "arm_math.h"
@@ -14,8 +14,8 @@
 #define JOINT_DEFAULT_VELOCITY (0.5f)
 #define JOINT_POS_MAX (3.2f)
 #define JOINT_POS_MIN (-3.2f)
-#define NEGAVTIVE (-1.0f)
-#define PROSITIVE (1.0f)
+#define NEGATIVE (-1.0f)
+#define POSITIVE (1.0f)
 #define Angle_Epsilon 0.005f
 
 typedef enum { JOINT_DOF_ROLL = 0, JOINT_DOF_YAW, JOINT_DOF_PITCH } joint_dof_t;
@@ -27,10 +27,10 @@ static const float joint_pos_limit_min_map[JOINT_NUM] = {
     -2.0f, -2.5, 3.0f, JOINT_POS_MIN, -2.5f, -1.5f};
 
 static const float joint_custom_polarity_map[JOINT_NUM] = {
-    PROSITIVE, PROSITIVE, NEGAVTIVE, NEGAVTIVE, NEGAVTIVE, NEGAVTIVE};
+    POSITIVE, POSITIVE, NEGATIVE, NEGATIVE, NEGATIVE, NEGATIVE};
 
 static const float joint_mannal_polarity_map[JOINT_NUM] = {
-    PROSITIVE, PROSITIVE, PROSITIVE, PROSITIVE, PROSITIVE, PROSITIVE};
+    POSITIVE, POSITIVE, POSITIVE, POSITIVE, POSITIVE, POSITIVE};
 
 static const can_port_t can_port_map[JOINT_NUM] = {
     CAN3_PORT, CAN3_PORT, CAN2_PORT, CAN2_PORT, CAN2_PORT, CAN2_PORT,
