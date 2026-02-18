@@ -1,5 +1,11 @@
 #include "arm_handle.h"
+#include "joint_control_drv.h"
 
+static const float Zero_Velocity[6] = {0, 0, 0, 0, 0, 0};
+static const float Default_Velocity[6] = {
+    JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY,
+    JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY,
+};
 /**
  * @brief 关节角度解算
  *
@@ -15,11 +21,13 @@ void Parse_ControllerData_To_CtrllerRadian(const uint8_t *CtrllerData,
     joint_radian[i] = tmp / 1000.0f;
     joint_radian[i] -= PI; // 偏移 PI
   }
-  switch (CtrllerData[25]-'0') {
-    case 0: Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
-            break;
-    case 1: Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
-            break;
+  switch (CtrllerData[25] - '0') {
+  case 0:
+    Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
+    break;
+  case 1:
+    Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+    break;
   }
 }
 
@@ -36,4 +44,18 @@ void Arm_Transition_Handle(Joint_t *Joint, const float *transition_radian) {
     // Arm_Current_Control_Mode = Arm_IDLE_Mode;
   } else {
   }
+}
+
+void Arm_Custom_Controller_Follow_Handle(void) {
+  Parse_ControllerData_To_CtrllerRadian(CtrllerData, Ctrller_Joint_Radian);
+
+  CtrllerData_To_InputRadian_Converter(Ctrller_Joint_Radian);
+
+  memcpy(Target_Joint_Radian, Ctrller_Joint_Radian,
+         sizeof(Ctrller_Joint_Radian));
+
+  Point_Publisher(Target_Point, Target_Joint_Radian, Default_Velocity);
+}
+void Arm_Frozen_Handle(void) {
+  Point_Publisher(Target_Point, Target_Joint_Radian, Zero_Velocity);
 }
