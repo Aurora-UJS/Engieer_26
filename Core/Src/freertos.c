@@ -98,6 +98,18 @@ const osThreadAttr_t uartTest_attributes = {
     .stack_size = sizeof(uartTestBuffer),
     .priority   = (osPriority_t)osPriorityNormal,
 };
+/* Definitions for SerialPlot */
+osThreadId_t SerialPlotHandle;
+uint32_t SerialPlotBuffer[512];
+osStaticThreadDef_t SerialPlotControlBlock;
+const osThreadAttr_t SerialPlot_attributes = {
+    .name       = "SerialPlot",
+    .cb_mem     = &SerialPlotControlBlock,
+    .cb_size    = sizeof(SerialPlotControlBlock),
+    .stack_mem  = &SerialPlotBuffer[0],
+    .stack_size = sizeof(SerialPlotBuffer),
+    .priority   = (osPriority_t)osPriorityNormal,
+};
 /* Definitions for motor_test */
 osThreadId_t motorTestHandle;
 uint32_t motorTestBuffer[512];
@@ -316,6 +328,7 @@ void Joint3_Move_Task(void *argument);
 void Joint4_Move_Task(void *argument);
 void Joint5_Move_Task(void *argument);
 void Joint6_Move_Task(void *argument);
+/* USER CODE END FunctionPrototypes */
 
 /* USER CODE END FunctionPrototypes */
 void Trajectory_Timer_Init(void);
@@ -387,6 +400,7 @@ void MX_FREERTOS_Init(void) {
   Joint6_Move_TaskHandle = osThreadNew(Joint6_Move_Task, NULL, &Joint6_Move_Task_attributes);
 
   Trajectory_PublisherHandle = osThreadNew(Trajectory_Publisher_Task, NULL, &Trajectory_Publisher_attributes);
+  SerialPlotHandle = osThreadNew(SerialPlot, NULL, &SerialPlot_attributes);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -525,3 +539,13 @@ __weak void Trajectory_Publisher_Task (void *argument){
 }
 /* USER CODE END Application */
 
+
+__weak void SerialPlot(void *argument)
+{
+  UNUSED(argument);
+  for(;;)
+  {
+    
+    osDelay(1);
+  }
+}
