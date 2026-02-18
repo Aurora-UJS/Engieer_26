@@ -1,13 +1,41 @@
 #include "trajectory_publisher_task.h"
+#include "arm_state_machine.h"
+#include "trajectory_publisher_drv.h"
 
 static osTimerId_t traj_timer_id;
 int traj_point_index = 0;
 static int demo_index = 0;
 
+typedef enum Command_Place_And_Get {
+  Command_placeRight,
+  Command_placeLeft,
+  Command_getRight,
+  Command_getLeft
+} Command_Place_And_Get_t;
+Command_Place_And_Get_t cmd_place_get;
+
+void Command_Place_And_Get_Manager(Command_Place_And_Get_t cmd) {
+  switch (cmd) {
+  case Command_placeLeft:
+    placeLeft();
+    break;
+  case Command_placeRight:
+    placeLeft();
+    break;
+  case Command_getLeft:
+    getLeft();
+    break;
+  case Command_getRight:
+    getRight();
+    break;
+  default:
+    getRight();
+  }
+}
 void Trajectory_Timer_Callback(void *argument) {
   UNUSED(argument);
+  Command_Place_And_Get_Manager(cmd_place_get);
   // placeLeft();
-  placeRight();
   // getLeft();
   // Debug_set_pos();
   // getRight();
@@ -15,13 +43,11 @@ void Trajectory_Timer_Callback(void *argument) {
   if (traj_point_index >= 4000) {
     osTimerStop(traj_timer_id); // 停定时器
     traj_point_index = 0;
-    Arm_Current_Control_Mode = Arm_Frozen_Mode;
+    Arm_Current_Control_Mode = Arm_Custom_Controller_Follow_Mode;
   }
 }
 
-void Trajectory_demo_Timer_Callback(void *argument) {
-  UNUSED(argument);
-
+void demo(void) {
   if (demo_index == 0) {
     getRight();
     if (traj_point_index >= 3000) {
@@ -61,12 +87,15 @@ void Trajectory_demo_Timer_Callback(void *argument) {
     Arm_Current_Control_Mode = Arm_Frozen_Mode;
   }
 }
+void Trajectory_demo_Timer_Callback(void *argument) {
+  UNUSED(argument);
+  demo();
+}
 void Trajectory_Timer_Init(void) {
   osTimerAttr_t timer_attr = {0};
   timer_attr.name = "traj_timer";
   traj_timer_id =
-      // osTimerNew(Trajectory_Timer_Callback, osTimerPeriodic, NULL, &timer_attr);
-    osTimerNew(Trajectory_demo_Timer_Callback, osTimerPeriodic, NULL, &timer_attr);
+      osTimerNew(Trajectory_Timer_Callback, osTimerPeriodic, NULL, &timer_attr);
 }
 
 void Trajectory_Publisher_Task(void *argument) {
