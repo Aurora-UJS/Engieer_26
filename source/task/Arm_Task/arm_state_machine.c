@@ -15,7 +15,7 @@ const float Default_Velcoity[6] = {
  *
  * @param EndEffector
  */
-void Gripper_Control_Mode_Mangner(endEffector_t *EndEffector) {
+void Gripper_Control_Mode_Manager(endEffector_t *EndEffector) {
   switch (Gripper_Current_Control_Mode) {
   case GRIPPER_IDLE_MODE:
     Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
@@ -34,7 +34,7 @@ void Gripper_Control_Mode_Mangner(endEffector_t *EndEffector) {
  *
  * @param Joint
  */
-void Joint_Control_Mode_Mangner(Joint_t *Joint) {
+void Joint_Control_Mode_Manager(Joint_t *Joint) {
   switch (Arm_Current_Control_Mode) {
   case Arm_IDLE_Mode:
 

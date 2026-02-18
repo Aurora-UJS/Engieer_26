@@ -27,7 +27,7 @@ extern float Target_Joint_Radian[6];
 extern gripper_control_mode_t Gripper_Current_Control_Mode;
 extern arm_control_mode_t Arm_Current_Control_Mode;
 /** @brief 夹爪状态机管理器 */
-void Gripper_Control_Mode_Mangner(endEffector_t *EndEffector);
+void Gripper_Control_Mode_Manager(endEffector_t *EndEffector);
 /** @brief 关节状态机管理器 */
-void Joint_Control_Mode_Mangner(Joint_t *Joint);
+void Joint_Control_Mode_Manager(Joint_t *Joint);
 #endif
