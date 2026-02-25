@@ -217,7 +217,7 @@ const osSemaphoreAttr_t controlBinaryIMU_attributes = {
 
  /* Definitions for Trajectory_Publisher */
  osThreadId_t Trajectory_PublisherHandle;
- uint32_t Trajectory_PublisherBuffer[128];
+ uint32_t Trajectory_PublisherBuffer[256];
  osStaticThreadDef_t Trajectory_PublisherControlBlock;
  const osThreadAttr_t Trajectory_Publisher_attributes = {
      .name = "Trajectory_Publisher",
