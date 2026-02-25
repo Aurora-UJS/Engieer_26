@@ -79,7 +79,7 @@ void getLeft(void) {
  */
 void getRight(void) {
   if (traj_point_index <= ARM_PREPARE_TIME_TICKS) {
-    Target_Point[0].target_joint_radian = 0.79f;
+    Target_Point[0].target_joint_radian = 0.76f;
     Target_Point[0].velocity = 0.5f;
     Target_Point[4].target_joint_radian = 0.0f;
     Target_Point[4].velocity = 0.5f;
