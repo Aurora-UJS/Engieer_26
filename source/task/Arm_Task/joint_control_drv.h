@@ -42,6 +42,13 @@ static const float joint_mannal_polarity_map[JOINT_NUM] = {
 static const can_port_t can_port_map[JOINT_NUM] = {
     CAN3_PORT, CAN3_PORT, CAN2_PORT, CAN2_PORT, CAN2_PORT, CAN2_PORT,
 };
+static const uint32_t can_id[JOINT_NUM] = { 
+  0x01,0x02,0x03,0x04,0x05,0x06
+};
+
+static const uint32_t can_msg_id[JOINT_NUM] = {
+  0x11,0x12,0x13,0x14,0x15,0x16
+};
 static const joint_dof_t joint_dof_map[JOINT_NUM] = {
     JOINT_DOF_YAW,  JOINT_DOF_PITCH, JOINT_DOF_PITCH,
     JOINT_DOF_ROLL, JOINT_DOF_PITCH, JOINT_DOF_ROLL};
