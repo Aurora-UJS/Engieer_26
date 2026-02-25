@@ -82,8 +82,8 @@ void Joint_Custom_State_Motor_Ctrl(Joint_t *Joint, float *input_radian);
  * @param velocity 速度
  */
 static inline void
-Joint_Motor_PosSpeed_Ctrl(Joint_t *Joint, float target_radian, float velocity) {
-  PosSpeed_CtrlMotorDM(Joint->joint_motor, target_radian, velocity);
+Joint_Motor_PosSpeed_Ctrl(Joint_t *Joint,target_point_t Target_Point) {
+  PosSpeed_CtrlMotorDM(Joint->joint_motor, Target_Point.target_joint_radian, Target_Point.velocity);
 }
 
 /**
