@@ -31,7 +31,7 @@ void jointFollowAngle(void *argument) {
 
   UNUSED(argument);
 
-  // joint_init(Joint);
+  joint_init(Joint);
 
   target_point_init(Target_Point);
 
@@ -39,7 +39,7 @@ void jointFollowAngle(void *argument) {
 
   osDelay(100);
 
-  // Joint_Motor_Enable(Joint); // 使能所有关节电机
+  Joint_Motor_Enable(Joint); // 使能所有关节电机
 
   EndEffector_Motor_Enable(&EndEffector);
 
