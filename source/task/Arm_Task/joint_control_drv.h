@@ -18,6 +18,13 @@
 #define POSITIVE (1.0f)
 #define Angle_Epsilon 0.005f
 
+#define J1 Joint[0]
+#define J2 Joint[1]
+#define J3 Joint[2]
+#define J4 Joint[3]
+#define J5 Joint[4]
+#define J6 Joint[5]
+
 typedef enum { JOINT_DOF_ROLL = 0, JOINT_DOF_YAW, JOINT_DOF_PITCH } joint_dof_t;
 
 static const float joint_pos_limit_max_map[JOINT_NUM] = {
