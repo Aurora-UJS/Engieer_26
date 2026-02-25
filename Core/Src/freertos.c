@@ -392,12 +392,12 @@ void MX_FREERTOS_Init(void) {
   Referee_TaskHandle = osThreadNew(Referee_Task, NULL, &Referee_Task_attributes);
   // test_CAN3_ARMHandle = osThreadNew(test_CAN3_ARM, NULL, &test_CAN3_ARM_attributes);
 
-  Joint1_Move_TaskHandle = osThreadNew(Joint1_Move_Task, NULL, &Joint1_Move_Task_attributes);
+/*   Joint1_Move_TaskHandle = osThreadNew(Joint1_Move_Task, NULL, &Joint1_Move_Task_attributes);
   Joint2_Move_TaskHandle = osThreadNew(Joint2_Move_Task, NULL, &Joint2_Move_Task_attributes);
   Joint3_Move_TaskHandle = osThreadNew(Joint3_Move_Task, NULL, &Joint3_Move_Task_attributes);
   Joint4_Move_TaskHandle = osThreadNew(Joint4_Move_Task, NULL, &Joint4_Move_Task_attributes);
   Joint5_Move_TaskHandle = osThreadNew(Joint5_Move_Task, NULL, &Joint5_Move_Task_attributes);
-  Joint6_Move_TaskHandle = osThreadNew(Joint6_Move_Task, NULL, &Joint6_Move_Task_attributes);
+  Joint6_Move_TaskHandle = osThreadNew(Joint6_Move_Task, NULL, &Joint6_Move_Task_attributes); */
 
   Trajectory_PublisherHandle = osThreadNew(Trajectory_Publisher_Task, NULL, &Trajectory_Publisher_attributes);
   SerialPlotHandle = osThreadNew(SerialPlot, NULL, &SerialPlot_attributes);
