@@ -20,9 +20,9 @@ static inline float Motor_Get_Radian(const DM_motor_t *motor) {
   return motor->motor_msg.motor_angle;
 }
 float Current_Radian[6] = {0};
-void Joint_Get_Radian(Joint_t *Joint){
+void Joint_Get_Radian(Joint_t Joint[],float rad[]){
   for (int joint_index=0; joint_index<JOINT_NUM; joint_index++) {
-    Current_Radian[joint_index]=Motor_Get_Radian(Joint[joint_index].joint_motor);
+    rad[joint_index]=Motor_Get_Radian(Joint[joint_index].joint_motor);
   }
 }
 Joint_t Joint[JOINT_NUM];
@@ -45,7 +45,9 @@ void jointFollowAngle(void *argument) {
 
   while (1) {
 
-    Joint_Get_Radian(Joint);
+    Joint_Move(Joint, Target_Point);
+
+    Joint_Get_Radian(Joint,Current_Radian);
 
     Joint_Motor_Refresh(Joint);
 

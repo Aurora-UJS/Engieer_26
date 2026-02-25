@@ -182,4 +182,6 @@ void Joint_Motor_Refresh(Joint_t *Joint);
 
 /** @brief 电机使能 */
 void Joint_Motor_Enable(Joint_t *Joint);
+
+void Joint_Move(Joint_t Joint[],target_point_t Target_Point[]);
 #endif
