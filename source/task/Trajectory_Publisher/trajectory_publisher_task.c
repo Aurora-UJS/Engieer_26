@@ -10,6 +10,9 @@ Command_Place_And_Get_t cmd_place_get = Command_getRight;
 
 void Command_Place_And_Get_Manager(Command_Place_And_Get_t cmd) {
   switch (cmd) {
+  case Command_Error:
+    Arm_Current_Control_Mode = Arm_Frozen_Mode;
+    break;
   case Command_placeLeft:
     newPlaceLeft();
     break;
@@ -33,7 +36,7 @@ void Trajectory_Timer_Callback(void *argument) {
   if (traj_point_index >= 4000) {
     osTimerStop(traj_timer_id); // 停定时器
     traj_point_index = 0;
-    Arm_Current_Control_Mode = Arm_Frozen_Mode;
+    Arm_Current_Control_Mode = Arm_IDLE_Mode;
   }
 }
 void demo(void) {

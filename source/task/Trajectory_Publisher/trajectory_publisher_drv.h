@@ -27,7 +27,8 @@ typedef enum Command_Place_And_Get {
   Command_placeRight,
   Command_placeLeft,
   Command_getRight,
-  Command_getLeft
+  Command_getLeft,
+  Command_Error
 } Command_Place_And_Get_t;
 
 /** @brief 左取矿轨迹发布*/
@@ -55,6 +56,7 @@ void newPlaceRigth(void);
 
 void newPlaceLeft(void);
 
+extern Command_Place_And_Get_t cmd_place_get;
 extern const float Trajectory[TRAJECTORY_NUM][JOINT_NUM];
 extern const float Traj_Vel[TRAJECTORY_NUM][JOINT_NUM];
 extern target_point_t Target_Point[JOINT_NUM];
