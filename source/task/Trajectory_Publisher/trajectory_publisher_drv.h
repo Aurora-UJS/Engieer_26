@@ -22,6 +22,14 @@
 #define ENDEFFECTOR_TOTOAL_TIME_TICKS                                          \
   (ARM_PREPARE_TIME_TICKS + ENDEFFECTOR_CLOSE_TIME_TICKS)
 
+  
+typedef enum Command_Place_And_Get {
+  Command_placeRight,
+  Command_placeLeft,
+  Command_getRight,
+  Command_getLeft
+} Command_Place_And_Get_t;
+
 /** @brief 左取矿轨迹发布*/
 void Trajectory_Publisher_right(const float Trajectory[][JOINT_NUM],
                                 int point_index);
@@ -40,6 +48,12 @@ void placeLeft(void);
 
 /** @brief 右放矿 */
 void placeRight(void);
+
+void Get(Command_Place_And_Get_t cmd_get);
+
+void newPlaceRigth(void);
+
+void newPlaceLeft(void);
 
 extern const float Trajectory[TRAJECTORY_NUM][JOINT_NUM];
 extern const float Traj_Vel[TRAJECTORY_NUM][JOINT_NUM];

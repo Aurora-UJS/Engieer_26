@@ -9,7 +9,7 @@ typedef struct endEffector_t{
 } endEffector_t;
 
 
-#define GRIPPER_OPEN_RADIAN (0.0f)
+#define GRIPPER_OPEN_RADIAN (0.2f)
 #define GRIPPER_CLOSE_RADION (1.2f)
 #define GRIPPER_VEL (1.5f)
 
