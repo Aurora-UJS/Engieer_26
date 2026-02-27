@@ -6,6 +6,7 @@
 #include "arm_math.h"
 #include "DBusSys.h"
 #include <stdint.h>
+#include "arm_referee.h"
 
 custom_controller_info_t *Controller_Msg;
 
@@ -52,6 +53,9 @@ void Referee_OnKeyboardKeyPressed(uint8_t key)
         //这里写你要执行的操作（C 从 0->1 的瞬间触发）
         Engineer_Mode.Chassis_Ctrl_Mode = (Engineer_Mode.Chassis_Ctrl_Mode == CHASSIS_CTRL_MODE_Normal) ? CHASSIS_CTRL_MODE_Rising : CHASSIS_CTRL_MODE_Normal;
     }
+
+    Arm_Keyboard_Manager(key);
+
 }
 
 void Referee_KeyboardEdgeDetect(const keyboard_t *kb)
