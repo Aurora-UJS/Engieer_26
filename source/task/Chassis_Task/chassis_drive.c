@@ -114,46 +114,82 @@ void Chassis_Upstairs_Mode(const rc_info_t *remoter)
     }
 }
 
+/**
+ * @brief 键盘模式底盘控制
+ *
+ * 功能说明：
+ * - WASD键控制底盘平移（前后左右）
+ * - 鼠标X轴控制底盘旋转（yaw角速度）
+ * - 支持禁用旋转功能（用于抬升模式）
+ *
+ * 控制映射：
+ * - W键：前进（motion.y = +Max_Velocity）
+ * - S键：后退（motion.y = -Max_Velocity）
+ * - A键：左移（motion.x = -Max_Velocity）
+ * - D键：右移（motion.x = +Max_Velocity）
+ * - 鼠标X轴：旋转（motion.wz，带死区100和限幅±660）
+ *
+ * @param kb 键盘/鼠标数据指针（可来自裁判系统或遥控器DBUS）
+ * @param disable_yaw 为1时禁用yaw旋转（wz=0），用于抬升Rising模式
+ */
+/* 调试变量：在debugger中观察这些值来定位键盘模式问题 */
+volatile uint16_t dbg_kb_keycode = 0;      // 读到的键盘码（非0=有按键）
+volatile float    dbg_kb_motion_x = 0.0f;  // 运动学输入x
+volatile float    dbg_kb_motion_y = 0.0f;  // 运动学输入y
+volatile uint8_t  dbg_kb_entered = 0;      // 函数是否被进入（每次+1）
+
 void Chassis_Keyboard_Mode(const keyboard_t *kb, uint8_t disable_yaw)
 {
     if (kb == NULL || s_chassis_motor == NULL) {
         return;
     }
 
+    dbg_kb_entered++;
+    dbg_kb_keycode = kb->key_code.key_code;
+
     basic_vector_t motion;
     motion.x = 0.0f;
     motion.y = 0.0f;
     motion.wz = 0.0f;
 
-    /* 键盘平移：长按直接给最大速度（不做跳变检测） */
-
+    /* ===== WASD键盘平移控制 =====
+     * 长按直接给最大速度（不做跳变检测）
+     * W/S控制前后（y轴），A/D控制左右（x轴）
+     */
     if (kb->key_code.bit.W != 0U) {
-        motion.y = (float32_t)Max_Velocity;
+        motion.x = (float32_t)Max_Velocity;  // 前进
     } else if (kb->key_code.bit.S != 0U) {
-        motion.y = -(float32_t)Max_Velocity;
+        motion.x = -(float32_t)Max_Velocity;  // 后退
     }
 
     if (kb->key_code.bit.A != 0U) {
-        motion.x = -(float32_t)Max_Velocity;
+        motion.y = -(float32_t)Max_Velocity;  // 左移
     } else if (kb->key_code.bit.D != 0U) {
-        motion.x = (float32_t)Max_Velocity;
+        motion.y = (float32_t)Max_Velocity;  // 右移
     }
 
-    /* 鼠标左右：映射为 yaw 角速度（wz），带限幅和死区 */
+    dbg_kb_motion_x = motion.x;
+    dbg_kb_motion_y = motion.y;
+
+    /* ===== 鼠标X轴旋转控制 =====
+     * 映射为yaw角速度（wz），带死区和限幅
+     * 仅在disable_yaw=0时生效
+     */
     if (disable_yaw == 0U) {
         int16_t mx = kb->mouse_x;
 
-        /* 100 的死区 */
+        /* 死区处理：±100范围内不响应，避免微小抖动 */
         int16_t abs_mx = (mx >= 0) ? mx : (int16_t)(-mx);
         if (abs_mx <= 100) {
             motion.wz = 0.0f;
         } else {
-            /* 限幅到 [-660, 660] */
+            /* 限幅到[-660, 660]，防止过大输入 */
             if (mx > Remoter_CHMAX) {
                 mx = Remoter_CHMAX;
             } else if (mx < -Remoter_CHMAX) {
                 mx = -Remoter_CHMAX;
             }
+            /* 映射到角速度：mouse_x → wz */
             motion.wz = (float32_t)Turning_Forward_Feedback * map((float32_t)mx,
                                                                  -(float32_t)Remoter_CHMAX,
                                                                  (float32_t)Remoter_CHMAX,

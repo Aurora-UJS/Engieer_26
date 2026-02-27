@@ -8,6 +8,26 @@
 #include "tool.h"
 #include <stdint.h>
 
+/* 抬升测试历程开关：
+ * 0：关闭（保持原有底盘/抬升控制逻辑）
+ * 1：开启（拨码切到抬升后：先固定底盘速度一段时间，随后恢复遥控器全权控制；抬升 3508 可固定最大；DM 逻辑保持不变）
+ */
+#define CHASSIS_RISING_TEST_TRAJECTORY_ENABLE 1
+
+/* 抬升测试历程参数（仅在 CHASSIS_RISING_TEST_TRAJECTORY_ENABLE=1 时生效） */
+/* 抬升阶段持续时间（单位：ms）：只执行抬升动作（3508 固定最大、DM 逻辑不变），底盘不动 */
+#define CHASSIS_RISING_TEST_LIFT_DURATION_MS 1600U
+/* 抬升阶段底盘固定速度比例：最大速度的 (NUM/DEN)，默认 2/3 */
+#define CHASSIS_RISING_TEST_LIFT_CHASSIS_SPEED_RATIO_NUM 2
+#define CHASSIS_RISING_TEST_LIFT_CHASSIS_SPEED_RATIO_DEN 3
+/* 抬升阶段抬升3508速度：通过固定 remoter.ch2 实现，默认 Remoter_CHMAX（速度最大） */
+#define CHASSIS_RISING_TEST_LIFT_RISING_RC_CH2 Remoter_CHMAX
+/* 抬升完成后的“底盘驱动阶段”持续时间（单位：ms）：底盘固定速度驱动 */
+#define CHASSIS_RISING_TEST_DRIVE_DURATION_MS 800U
+/* 底盘驱动阶段固定速度比例：最大速度的 (NUM/DEN)，默认 1/3 */
+#define CHASSIS_RISING_TEST_DRIVE_SPEED_RATIO_NUM 3
+#define CHASSIS_RISING_TEST_DRIVE_SPEED_RATIO_DEN 4
+
 // ch1 右摇杆 左右 左-右+
 // ch2 右摇杆 前后 前+后-
 // ch3 左摇杆 左右 左-右+
@@ -65,7 +85,13 @@ static uint8_t Chassis_Mode_Get(rc_info_t *backdata)
 /**
  * @brief 底盘任务入口函数
  *
- * 负责：读取遥控器、切换模式、调用底盘/抬升控制模块下发电机指令。
+ * 功能说明：
+ * 1. DBUS模式：通过遥控器摇杆控制底盘运动（ch1/ch2/ch3）
+ * 2. Keyboard模式：通过键盘WASD控制底盘平移，鼠标X轴控制旋转
+ * 3. 支持Normal和Upstairs两种底盘模式
+ * 4. 支持抬升测试历程（需sw1==1触发）
+ *
+ * @param argument FreeRTOS任务参数（未使用）
  */
 void Chassis_Task(void *argument) 
 {
@@ -76,7 +102,29 @@ void Chassis_Task(void *argument)
   Chassis_Drive_Init();
   Rising_Ctrl_Init();
 
+  /* 说明：这里的“raw_chassis_mode”来自拨码开关；
+   * 当开启测试历程时，会在切到抬升后自动按“抬升阶段 -> 底盘驱动阶段 -> 遥控器全权控制”执行。
+   */
+#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE != 0)
+  typedef enum {
+    RISING_TEST_STATE_IDLE = 0,
+    RISING_TEST_STATE_LIFTING,
+    RISING_TEST_STATE_DRIVING,
+    RISING_TEST_STATE_PASSTHROUGH,
+  } Rising_Test_State_t;
+
+  Rising_Test_State_t rising_test_state = RISING_TEST_STATE_IDLE;
+  uint32_t rising_test_start_tick = 0U;
+  const uint32_t rising_test_lift_duration_ticks =
+      (uint32_t)((CHASSIS_RISING_TEST_LIFT_DURATION_MS * osKernelGetTickFreq()) / 1000U);
+  const uint32_t rising_test_drive_duration_ticks =
+      (uint32_t)((CHASSIS_RISING_TEST_DRIVE_DURATION_MS * osKernelGetTickFreq()) / 1000U);
+
+  uint8_t last_raw_chassis_mode = Chassis_Mode_Get(&remoter);
+  uint8_t last_effective_chassis_mode = last_raw_chassis_mode;
+#else
   uint8_t last_chassis_mode = Chassis_Mode_Get(&remoter);
+#endif
   uint8_t last_ctrl_logic_mode = Engineer_Mode.Ctrl_Logic_Mode;
   uint8_t last_keyboard_chassis_ctrl_mode = Engineer_Mode.Chassis_Ctrl_Mode;
   uint8_t arm_ctrl_mode_saved = Engineer_Mode.Arm_Ctrl_Mode;
@@ -86,13 +134,66 @@ void Chassis_Task(void *argument)
   for (;;) 
   {
     const uint8_t chassis_mode = Chassis_Mode_Get(&remoter);
+
+#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE != 0)
+    /* 抬升测试历程：
+     * 触发条件：拨码从非抬升切到抬升（上升沿）且 sw1 == 1
+     * 行为：
+     * 1) 抬升阶段：抬升 3508 固定最大、DM 逻辑保持不变，底盘不动，持续一段时间
+     * 2) 抬升结束后：底盘模式强制切回 Normal；先固定速度驱动一段时间，再恢复遥控器全权控制
+     * 注意：如果 sw1 != 1，则不会触发测试历程，按照测试历程关闭的逻辑执行
+     */
+    const uint8_t raw_chassis_mode = chassis_mode;
+
+    if (Engineer_Mode.Ctrl_Logic_Mode == CTRL_LOGIC_MODE_DBUS) {
+      /* 只有当 sw1 == 1 时才允许触发测试历程 */
+      if ((remoter.sw1 == 1) && (raw_chassis_mode == Chassis_Upstairs) && (last_raw_chassis_mode != Chassis_Upstairs)) {
+        rising_test_state = RISING_TEST_STATE_LIFTING;
+        rising_test_start_tick = osKernelGetTickCount();
+      }
+
+      /* 如果 sw1 != 1 或者拨码不在抬升位置，则退出测试历程 */
+      if ((remoter.sw1 != 1) || (raw_chassis_mode != Chassis_Upstairs)) {
+        rising_test_state = RISING_TEST_STATE_IDLE;
+      } else {
+        const uint32_t now = osKernelGetTickCount();
+        if (rising_test_state == RISING_TEST_STATE_LIFTING) {
+          if ((uint32_t)(now - rising_test_start_tick) >= rising_test_lift_duration_ticks) {
+            rising_test_state = RISING_TEST_STATE_DRIVING;
+            rising_test_start_tick = now;
+          }
+        } else if (rising_test_state == RISING_TEST_STATE_DRIVING) {
+          if ((uint32_t)(now - rising_test_start_tick) >= rising_test_drive_duration_ticks) {
+            rising_test_state = RISING_TEST_STATE_PASSTHROUGH;
+          }
+        }
+      }
+    }
+    last_raw_chassis_mode = raw_chassis_mode;
+
+    /* 抬升结束后（进入 DRIVING 或 PASSTHROUGH），即使拨码仍处于抬升，也强制切回 Normal */
+    uint8_t effective_chassis_mode = raw_chassis_mode;
+    if ((raw_chassis_mode == Chassis_Upstairs) &&
+        ((rising_test_state == RISING_TEST_STATE_DRIVING) || (rising_test_state == RISING_TEST_STATE_PASSTHROUGH))) {
+      effective_chassis_mode = Chassis_Normal;
+    }
+
+    if (effective_chassis_mode != last_effective_chassis_mode) {
+      /* 底盘模式切换瞬间：清零抬升 DM（IMU 闭环）PID，防止切换冲击 */
+      Rising_Reset_DmImuPid();
+      last_effective_chassis_mode = effective_chassis_mode;
+    }
+#else
     if (chassis_mode != last_chassis_mode) {
       /* 底盘模式切换瞬间：清零抬升 DM（IMU 闭环）PID，防止切换冲击 */
       Rising_Reset_DmImuPid();
       last_chassis_mode = chassis_mode;
     }
+#endif
 
-    /* 断电模式：底盘与抬升全部停转 */
+    /* 断电模式：底盘与抬升全部停转
+     * 注意：无论DBUS还是Keyboard模式，PowerOff都会立即停止所有电机
+     */
     if (chassis_mode == Chassis_PowerOff) {
       Chassis_Stop();
       Rising_Stop();
@@ -100,7 +201,10 @@ void Chassis_Task(void *argument)
       continue;
     }
 
-    /* 从键盘逻辑切回遥控器逻辑时，如果曾经强制切到 ARM_CTRL_MODE_Rising，需要恢复旧的 arm 模式 */
+    /* 控制逻辑模式切换处理：
+     * 从Keyboard模式切回DBUS模式时，如果之前强制切换了机械臂模式，需要恢复
+     * 这是为了保证模式切换不会影响机械臂的控制状态
+     */
     if ((last_ctrl_logic_mode == CTRL_LOGIC_MODE_Keyboard) &&
         (Engineer_Mode.Ctrl_Logic_Mode == CTRL_LOGIC_MODE_DBUS) &&
         (arm_ctrl_mode_saved_valid != 0U)) {
@@ -109,49 +213,113 @@ void Chassis_Task(void *argument)
     }
     last_ctrl_logic_mode = Engineer_Mode.Ctrl_Logic_Mode;
 
-    /* 一级状态机：选择遥控器（DBUS）控制 or 键盘（Keyboard）控制 */
+    /* ========== 一级状态机：控制源选择 ==========
+     * CTRL_LOGIC_MODE_DBUS: 使用遥控器摇杆控制（remoter.ch1/ch2/ch3）
+     * CTRL_LOGIC_MODE_Keyboard: 使用键盘鼠标控制（WASD + 鼠标）
+     */
     if (Engineer_Mode.Ctrl_Logic_Mode == CTRL_LOGIC_MODE_DBUS) {
-      /* DBUS 模式：保持现有控制逻辑不变 */
-      switch (chassis_mode) 
+      /* ===== DBUS模式：遥控器摇杆控制 ===== */
+      /* 底盘运动由remoter的ch1(左右)/ch2(前后)/ch3(旋转)控制 */
+      switch (
+#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE != 0)
+              effective_chassis_mode
+#else
+              chassis_mode
+#endif
+      ) 
       {
         case Chassis_Normal:
-          Chassis_Normal_Mode(&remoter);
+          /* Normal模式：底盘四轮全向移动，抬升机构停转 */
+          if ((chassis_mode == Chassis_Upstairs) && (rising_test_state == RISING_TEST_STATE_DRIVING)) {
+            /* 测试历程-驱动阶段：底盘固定速度前进 */
+            rc_info_t chassis_rc = remoter;
+            chassis_rc.ch1 = 0;
+            chassis_rc.ch2 = (int16_t)((Remoter_CHMAX * CHASSIS_RISING_TEST_DRIVE_SPEED_RATIO_NUM) /
+                                       CHASSIS_RISING_TEST_DRIVE_SPEED_RATIO_DEN);
+            Chassis_Normal_Mode(&chassis_rc);
+          } else {
+            /* 正常情况：直接使用遥控器数据控制底盘 */
+            Chassis_Normal_Mode(&remoter);
+          }
+          /* 抬升机构保持停转状态 */
           Rising_Normal_Mode(&remoter);
           break;
 
         case Chassis_Upstairs:
+          /* Upstairs模式：底盘前后移动，抬升机构联动，DM电机IMU闭环 */
+#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE != 0)
+          if (rising_test_state == RISING_TEST_STATE_LIFTING) {
+            /* 测试历程-抬升阶段：底盘固定速度，抬升3508最大速度 */
+            rc_info_t chassis_rc = remoter;
+            chassis_rc.ch1 = 0;
+            chassis_rc.ch2 = (int16_t)((Remoter_CHMAX * CHASSIS_RISING_TEST_LIFT_CHASSIS_SPEED_RATIO_NUM) /
+                                       CHASSIS_RISING_TEST_LIFT_CHASSIS_SPEED_RATIO_DEN);
+            Chassis_Upstairs_Mode(&chassis_rc);
+
+            /* 抬升 3508 固定最大值；DM 抬升电机逻辑保持 Rising_Upstairs_Mode 内部不变 */
+            rc_info_t rising_rc = remoter;
+            rising_rc.ch2 = (int16_t)(CHASSIS_RISING_TEST_LIFT_RISING_RC_CH2);
+            Rising_Upstairs_Mode(&rising_rc);
+          } else {
+            /* 非测试历程或测试历程结束：正常Upstairs控制 */
+            Chassis_Upstairs_Mode(&remoter);
+            Rising_Upstairs_Mode(&remoter);
+          }
+#else
           Chassis_Upstairs_Mode(&remoter);
           Rising_Upstairs_Mode(&remoter);
+#endif
           break;
 
         default:
           break;
       }
     } else {
-      /* Keyboard 模式：二级状态机 - 根据 Engineer_Mode.Chassis_Ctrl_Mode 决定 Normal/Rising */
+      /* ===== Keyboard模式：键盘鼠标控制 =====
+       * 底盘运动由WASD键控制平移，鼠标X轴控制旋转
+       * 二级状态机：根据Engineer_Mode.Chassis_Ctrl_Mode决定Normal/Rising
+       */
+      /* 键盘模式下的底盘控制模式切换处理 */
       if (Engineer_Mode.Chassis_Ctrl_Mode != last_keyboard_chassis_ctrl_mode) {
         if (Engineer_Mode.Chassis_Ctrl_Mode == CHASSIS_CTRL_MODE_Rising) {
-          /* 进入 Rising 底盘控制：记录当前 Arm 模式，并强制切换到 Rising */
+          /* 进入Rising模式：保存当前机械臂模式，并强制切换到Rising状态 */
           arm_ctrl_mode_saved = Engineer_Mode.Arm_Ctrl_Mode;
           arm_ctrl_mode_saved_valid = 1U;
           Engineer_Mode.Arm_Ctrl_Mode = ARM_CTRL_MODE_Rising;
         } else if ((last_keyboard_chassis_ctrl_mode == CHASSIS_CTRL_MODE_Rising) && (arm_ctrl_mode_saved_valid != 0U)) {
-          /* 退出 Rising 底盘控制：恢复进入前记录的 Arm 模式 */
+          /* 退出Rising模式：恢复之前保存的机械臂模式 */
           Engineer_Mode.Arm_Ctrl_Mode = arm_ctrl_mode_saved;
           arm_ctrl_mode_saved_valid = 0U;
         }
         last_keyboard_chassis_ctrl_mode = Engineer_Mode.Chassis_Ctrl_Mode;
       }
 
+      /* 获取当前激活的键盘数据源
+       * 通过修改 Referee_Task.h 中的 USE_REMOTER_KEYBOARD 宏切换：
+       * - USE_REMOTER_KEYBOARD = 0: 使用裁判系统的键盘数据(kb_info)
+       * - USE_REMOTER_KEYBOARD = 1: 使用遥控器DBUS协议的键盘数据(remoter.keyboard)
+       */
+#if (USE_REMOTER_KEYBOARD != 0)
+      const keyboard_t *active_kb = &remoter.keyboard;
+#else
+      const keyboard_t *active_kb = &kb_info;
+#endif
+
       if (Engineer_Mode.Chassis_Ctrl_Mode == CHASSIS_CTRL_MODE_Normal) {
-        /* Normal：底盘由 WASD + 鼠标控制，抬升保持关闭 */
-        Chassis_Keyboard_Mode(&kb_info, 0U);
+        /* Normal模式：
+         * - 底盘：WASD控制平移，鼠标X轴控制旋转（允许yaw）
+         * - 抬升：保持停转状态
+         */
+        Chassis_Keyboard_Mode(active_kb, 0U);  // disable_yaw = 0，允许旋转
         Rising_Normal_Mode(&remoter);
       } else {
-        /* Rising：底盘由 WASD 控制，禁止 yaw（wz），抬升动作保持原有 Rising_Upstairs_Mode 逻辑 */
-        Chassis_Keyboard_Mode(&kb_info, 1U);
+        /* Rising模式：
+         * - 底盘：WASD控制平移，禁止旋转（disable_yaw = 1）
+         * - 抬升：启动抬升机构，ch2=200提供固定速度
+         */
+        Chassis_Keyboard_Mode(active_kb, 1U);  // disable_yaw = 1，禁止旋转
         rc_info_t rising_rc = remoter;
-        rising_rc.ch2 = 200;
+        rising_rc.ch2 = 200;  // 抬升固定速度
         Rising_Upstairs_Mode(&rising_rc);
       }
     }

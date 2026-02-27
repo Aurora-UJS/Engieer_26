@@ -6,10 +6,8 @@
 #include "../IMU_Task/IMU_Task.h"
 #include <string.h>
 
-static void test_Rising_DM_PID_Init(pid_type_def pid[]);
-#if RISING_DM_IMU_TEST
-static void test_pid_IMU(IMU_data_t IMU_data, float32_t target_angle[], float32_t output[]);
-#endif
+static void Rising_DmImuPid_Init(pid_type_def pid[]);
+static void Rising_DmImuAngleClosedLoop(IMU_data_t imu, float32_t output_angle[2]);
 
 static DJI_motor_t s_rising_dji_obj;
 static DJI_motor_t *s_rising_dji = &s_rising_dji_obj;
@@ -36,7 +34,7 @@ void Rising_Ctrl_Init(void)
     Rising_Init_DJI(&s_rising_dji);
     Motor_Init_DM(&s_rising_dm_l, &s_rising_dm_r);
     Rising_3508_PID_Init(s_rising_pid);
-    test_Rising_DM_PID_Init(s_rising_dm_pid);
+    Rising_DmImuPid_Init(s_rising_dm_pid);
     Rising_Stop();
 
     g_chassis_debug.rising_target_speed_3508[Rising_Motor_3508_Left] = 0.0f;
@@ -136,16 +134,10 @@ void Rising_Upstairs_Mode(const rc_info_t *remoter)
     g_chassis_debug.rising_actual_speed_3508[Rising_Motor_3508_Left] = s_rising_dji->motor_msg[Rising_Motor_3508_Left].motor_speed * (Motor_Wheel_Trans);
     g_chassis_debug.rising_actual_speed_3508[Rising_Motor_3508_Right] = s_rising_dji->motor_msg[Rising_Motor_3508_Right].motor_speed * (Motor_Wheel_Trans);
 
-#if RISING_DM_IMU_TEST
-    /* IMU Pitch -> DM angle closed-loop test: target pitch is 0, output is DM target angle command (clamped). */
-    float32_t target_angle[2];
     float32_t output_angle[2];
-    test_pid_IMU(IMU_data, target_angle, output_angle);
+    Rising_DmImuAngleClosedLoop(IMU_data, output_angle);
     s_dm_target_angle_l = output_angle[0];
     s_dm_target_angle_r = output_angle[1];
-#else
-    Rising_Motor_TargetAngle(&s_dm_target_angle_l, &s_dm_target_angle_r, *remoter);
-#endif
 
     g_chassis_debug.rising_target_angle_dm_l = s_dm_target_angle_l;
     g_chassis_debug.rising_target_angle_dm_r = s_dm_target_angle_r;
@@ -222,6 +214,7 @@ void Rising_Motor_SendControl_DM(DM_motor_t *DMMotor_L, DM_motor_t *DMMotor_R, f
     Motor_DM_Refresh(DMMotor_L);
     Motor_DM_Refresh(DMMotor_R);
 
+    osDelay(1);
     PosSpeed_CtrlMotorDM(DMMotor_L, output_L, Rising_DM_Velocity);
     osDelay(1);
     PosSpeed_CtrlMotorDM(DMMotor_R, output_R, Rising_DM_Velocity);
@@ -239,11 +232,6 @@ DM_motor_t *Rising_Get_DmMotor_R(void)
 
 void Rising_Motor_TargetVelocity(float32_t Target_Velocity[], rc_info_t remoter)
 {
-    // float32_t Velocity = map(remoter.ch2,
-    //                          -Remoter_CHMAX,
-    //                          Remoter_CHMAX,
-    //                          -Max_Rising_Motor_Velocity,
-    //                          Max_Rising_Motor_Velocity);
     float32_t Velocity = map(remoter.ch2,
                              -Remoter_CHMAX,
                              Remoter_CHMAX,
@@ -255,28 +243,6 @@ void Rising_Motor_TargetVelocity(float32_t Target_Velocity[], rc_info_t remoter)
     }
     Target_Velocity[Rising_Motor_3508_Left] = Velocity;
     Target_Velocity[Rising_Motor_3508_Right] = -Velocity;
-}
-
-void Rising_Motor_TargetAngle(float32_t *Target_Angle_L, float32_t *Target_Angle_R, rc_info_t remoter)
-{
-    float32_t ch4 = (float32_t)remoter.ch4;
-
-    if (ch4 < 0.0f) {
-        ch4 = 0.0f;
-    }
-
-    if (ch4 > 660.0f) {
-        ch4 = 660.0f;
-    }
-
-    float32_t Angle = map(ch4,
-                          Rising_DM_ZeroPoint,
-                          Remoter_CHMAX,
-                          Rising_DM_ZeroPoint,
-                          Max_Rising_DM_angle);
-
-    *Target_Angle_L = Angle;
-    *Target_Angle_R = -Angle;
 }
 
 void Rising_3508_PID_Init(pid_type_def pid[])
@@ -301,7 +267,7 @@ void Rising_3508_PID_Calculate(pid_type_def pid[], float32_t target_speed[], DJI
     }
 }
 
-void test_Rising_DM_PID_Init(pid_type_def pid[])
+static void Rising_DmImuPid_Init(pid_type_def pid[])
 {
     for (int i = 0; i < 2; i++) {
         PID_Init(pid + i,
@@ -313,25 +279,19 @@ void test_Rising_DM_PID_Init(pid_type_def pid[])
     }
 }
 
-#if RISING_DM_IMU_TEST
-static void test_pid_IMU(IMU_data_t IMU_data,float32_t target_angle[],float32_t output[])
+static void Rising_DmImuAngleClosedLoop(IMU_data_t imu, float32_t output_angle[2])
 {
-    if (target_angle == NULL || output == NULL) {
+    if (output_angle == NULL) {
         return;
     }
 
-    float32_t pitch = IMU_data.Pitch * RISING_IMU_PITCH_SIGN;
+    float32_t pitch = imu.Pitch * RISING_IMU_PITCH_SIGN;
     float32_t delta_angle = PID_Calc_Pos(&s_rising_dm_pid[0], pitch, 0.0f);
     g_chassis_debug.rising_dm_pid_output[0] = delta_angle;
     g_chassis_debug.rising_dm_pid_output[1] = -delta_angle;
-    /* Map PID output to angle command and clamp between mechanical limits (0-point and max-point). */
     float32_t angle_cmd = limit(Rising_DM_ZeroPoint + delta_angle, Rising_DM_ZeroPoint, Max_Rising_DM_angle);
 
-    target_angle[0] = Rising_DM_ZeroPoint;
-    target_angle[1] = -Rising_DM_ZeroPoint;
-
-    output[0] = angle_cmd;
-    output[1] = -angle_cmd;
+    output_angle[0] = angle_cmd;
+    output_angle[1] = -angle_cmd;
 }
-#endif
 

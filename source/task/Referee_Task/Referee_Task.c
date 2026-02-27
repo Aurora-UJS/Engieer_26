@@ -4,11 +4,41 @@
 #include "cmsis_os2.h"
 #include "referee_protocol.h"
 #include "arm_math.h"
+#include "DBusSys.h"
 #include <stdint.h>
 
 custom_controller_info_t *Controller_Msg;
-Engineer_Mode_t Engineer_Mode;
-extern keyboard_t kb_info;
+
+/**
+ * @brief 工程机器人模式全局变量
+ * @note 初始化为DBUS模式，Normal底盘控制，CustomCtrl机械臂控制
+ *       可通过按键B切换Ctrl_Logic_Mode（DBUS ↔ Keyboard）
+ */
+Engineer_Mode_t Engineer_Mode = {
+    .Chassis_Ctrl_Mode = CHASSIS_CTRL_MODE_Normal,  // 底盘Normal模式
+    .Arm_Ctrl_Mode = ARM_CTRL_MODE_CustomCtrl,      // 机械臂自定义控制
+    .Ctrl_Logic_Mode = CTRL_LOGIC_MODE_DBUS         // 默认DBUS模式
+};
+
+extern rc_info_t remoter;  // 遥控器数据，定义在 DBusSys.c
+extern keyboard_t kb_info;  // 裁判系统键盘数据
+
+
+/**
+ * @brief 获取当前激活的键盘数据指针
+ * @return 指向当前激活键盘数据的指针 (根据 USE_REMOTER_KEYBOARD 宏自动选择)
+ * @note 该函数根据 Referee_Task.h 中的 USE_REMOTER_KEYBOARD 宏返回对应的键盘数据
+ *       - USE_REMOTER_KEYBOARD = 0: 返回裁判系统的 kb_info
+ *       - USE_REMOTER_KEYBOARD = 1: 返回遥控器的 remoter.keyboard
+ */
+const keyboard_t* Referee_GetActiveKeyboard(void)
+{
+#if (USE_REMOTER_KEYBOARD != 0)
+    return &remoter.keyboard;
+#else
+    return &kb_info;
+#endif
+}
 
 void Referee_OnKeyboardKeyPressed(uint8_t key)
 {
@@ -53,17 +83,22 @@ void Referee_KeyboardEdgeDetect(const keyboard_t *kb)
     last_kb = *kb;
 }
 
+/**
+ * @brief 裁判系统任务
+ * @note 执行键盘边沿检测，键盘数据源由 USE_REMOTER_KEYBOARD 宏控制
+ */
 void Referee_Task(void *argument)
 {
     UNUSED(argument);
     ctrller_init(&huart7);
-    keyboard_t kb_info_temp = kb_info;
+    
     for(;;)
     {
-        
         Controller_Msg = get_custom_controller_msg();
-        kb_info_temp = kb_info;
-        Referee_KeyboardEdgeDetect(&kb_info_temp);
+        
+        // 获取键盘数据并进行边沿检测
+        Referee_KeyboardEdgeDetect(Referee_GetActiveKeyboard());
+        
         osDelay(2);
     }
 }

@@ -11,15 +11,10 @@
 #include "motor_DM.h"
 #include "chassis_debug.h"
 
-#ifndef RISING_DM_IMU_TEST
-#define RISING_DM_IMU_TEST (1)
-#endif
-//imu测试的开关，1为开启，0为关闭
-
 #ifndef RISING_IMU_PITCH_SIGN
 #define RISING_IMU_PITCH_SIGN (-1.0f)
 #endif
-//imu测试的pitch方向的符号
+//IMU Pitch 方向符号（用于抬升 DM 姿态闭环）
 
 /**
  * @brief 初始化抬升控制模块
@@ -104,15 +99,6 @@ void Rising_Motor_SendControl_DJI(DJI_motor_t *DJMotor, int16_t output[]);
  * @param output_R 右侧电机目标位置
  */
 void Rising_Motor_SendControl_DM(DM_motor_t *DMMotor_L, DM_motor_t *DMMotor_R, float32_t output_L, float32_t output_R);
-
-/**
- * @brief 遥控器通道映射为抬升DM目标角度
- *
- * @param Target_Angle_L 左侧目标角度
- * @param Target_Angle_R 右侧目标角度
- * @param remoter 遥控器数据
- */
-void Rising_Motor_TargetAngle(float32_t *Target_Angle_L, float32_t *Target_Angle_R, rc_info_t remoter);
 
 void Rising_Reset_DmImuPid(void);
 
