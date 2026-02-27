@@ -5,6 +5,64 @@
 #include "chassis_config.h"
 
 #include <stdint.h>
+#include "DBusSys.h"
+#include "motor_DJI.h"
+#include "motor_DM.h"
+#include "PIDtool.h"
+
+#define Max_Velocity 2
+#define Max_Rising_Motor_Velocity 4
+
+#define Track_R 0.05
+#define Steel_R 0.15
+#define Reduction_Ratio 3519/187
+#define Motor_Wheel_Trans 6.677 * 0.0001
+#define Turning_Forward_Feedback -1
+
+#define Chassis_PowerOff 0
+#define Chassis_Normal 1
+#define Chassis_Upstairs 2
+
+#define Chassis_Motor_3508_ZQ  0   
+#define Chassis_Motor_3508_ZH  1           
+#define Chassis_Motor_3508_YH  2
+#define Chassis_Motor_3508_YQ  3 
+
+#define Rising_Motor_3508_Left  0
+#define Rising_Motor_3508_Right  1 
+
+#define Chassis_Motor_3508_ZQ_id  0x201   
+#define Chassis_Motor_3508_ZH_id  0x202           
+#define Chassis_Motor_3508_YH_id  0x203
+#define Chassis_Motor_3508_YQ_id  0x204 
+
+#define Rising_Motor_3508_Left_id  0x205
+#define Rising_Motor_3508_Right_id   0x206     
+
+#define Chassis_Motor_ALL_id 0x200
+#define Rising_Motor_ALL_id 0x1FF
+
+#define Chassis_3508_PID_kp 7000
+#define Chassis_3508_PID_ki 0.0000f
+#define Chassis_3508_PID_kd 0
+#define Chassis_3508_PID_Maxout 16384
+#define Chassis_3508_PID_Maxiout 8192
+
+#define Rising_3508_PID_kp 7000
+#define Rising_3508_PID_ki 0
+#define Rising_3508_PID_kd 0
+#define Rising_3508_PID_Maxout 16384
+#define Rising_3508_PID_Maxiout 8192
+
+#define DM_MITMode_ID 0x000
+#define DM_PosVelMode_ID 0x100
+#define DM_VelMode_ID 0x200
+#define DM_EMITMode_ID 0x300
+
+#define DM_l0010l_Master_ID_Left 0x11
+#define DM_l0010l_Master_ID_Right 0x12
+#define DM_l0010l_CAN_ID_Left 0x01
+#define DM_l0010l_CAN_ID_Right 0x02
 
 void Chassis_Task(void *argument);
 

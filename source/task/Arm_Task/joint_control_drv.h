@@ -1,40 +1,53 @@
-#ifndef JOINT_CONTROL_DRV
-#define JOINT_CONTROL_DRV
+#ifndef JOINT_CONTROL_DRV_H
+#define JOINT_CONTROL_DRV_H
 
 #include "DBusSys.h"
 #include "arm_math.h"
 #include "can_struct.h"
 #include "cmsis_os2.h"
 #include "motor_DM.h"
+#include "referee_api.h"
 #include "tool.h"
 #include <stdio.h>
-#include "referee_api.h"
 
-#define JOINT_NUM 6
-#define JOINT_DEFAULT_VELOCITY 0.5f
-
-#define JOINT_POS_MAX 3.2f
-#define JOINT_POS_MIN -3.2f
-#define NEGAVTIVE (-1.0f)
-#define PROSITIVE (1.0f)
+#define JOINT_NUM (6)
+#define JOINT_DEFAULT_VELOCITY (0.5f)
+#define JOINT_POS_MAX (3.2f)
+#define JOINT_POS_MIN (-3.2f)
+#define NEGATIVE (-1.0f)
+#define POSITIVE (1.0f)
 #define Angle_Epsilon 0.005f
+
+#define J1 Joint[0]
+#define J2 Joint[1]
+#define J3 Joint[2]
+#define J4 Joint[3]
+#define J5 Joint[4]
+#define J6 Joint[5]
 
 typedef enum { JOINT_DOF_ROLL = 0, JOINT_DOF_YAW, JOINT_DOF_PITCH } joint_dof_t;
 
 static const float joint_pos_limit_max_map[JOINT_NUM] = {
-    2.0f, 1.5f, 3.0f, JOINT_POS_MAX, 1.5f, 1.5f,
+    2.0f, 2.5f, 3.0f, JOINT_POS_MAX, 2.5f, 1.5f,
 };
 static const float joint_pos_limit_min_map[JOINT_NUM] = {
-    -2.0f, 0, 0, JOINT_POS_MIN, -1.5f, -1.5f};
+    -2.0f, -2.5, 3.0f, JOINT_POS_MIN, -2.5f, -1.5f};
 
 static const float joint_custom_polarity_map[JOINT_NUM] = {
-    PROSITIVE, PROSITIVE, NEGAVTIVE, NEGAVTIVE, NEGAVTIVE, NEGAVTIVE};
+    POSITIVE, POSITIVE, NEGATIVE, NEGATIVE, NEGATIVE, NEGATIVE};
 
 static const float joint_mannal_polarity_map[JOINT_NUM] = {
-    PROSITIVE, PROSITIVE, PROSITIVE, PROSITIVE, PROSITIVE, PROSITIVE};
+    POSITIVE, POSITIVE, POSITIVE, POSITIVE, POSITIVE, POSITIVE};
 
 static const can_port_t can_port_map[JOINT_NUM] = {
     CAN3_PORT, CAN3_PORT, CAN2_PORT, CAN2_PORT, CAN2_PORT, CAN2_PORT,
+};
+static const uint32_t can_id[JOINT_NUM] = { 
+  0x01,0x02,0x03,0x04,0x05,0x06
+};
+
+static const uint32_t can_msg_id[JOINT_NUM] = {
+  0x11,0x12,0x13,0x14,0x15,0x16
 };
 static const joint_dof_t joint_dof_map[JOINT_NUM] = {
     JOINT_DOF_YAW,  JOINT_DOF_PITCH, JOINT_DOF_PITCH,
@@ -69,8 +82,8 @@ void Joint_Custom_State_Motor_Ctrl(Joint_t *Joint, float *input_radian);
  * @param velocity 速度
  */
 static inline void
-Joint_Motor_PosSpeed_Ctrl(Joint_t *Joint, float target_radian, float velocity) {
-  PosSpeed_CtrlMotorDM(Joint->joint_motor, target_radian, velocity);
+Joint_Motor_PosSpeed_Ctrl(Joint_t *Joint,target_point_t Target_Point) {
+  PosSpeed_CtrlMotorDM(Joint->joint_motor, Target_Point.target_joint_radian, Target_Point.velocity);
 }
 
 /**
@@ -169,4 +182,6 @@ void Joint_Motor_Refresh(Joint_t *Joint);
 
 /** @brief 电机使能 */
 void Joint_Motor_Enable(Joint_t *Joint);
+
+void Joint_Move(Joint_t Joint[],target_point_t Target_Point[]);
 #endif

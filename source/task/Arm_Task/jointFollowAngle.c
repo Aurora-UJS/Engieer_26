@@ -5,7 +5,7 @@
 #include "arm_state_machine.h"
 
 extern float Ctrller_Joint_Radian[6];
-extern DM_motor_t *Joint_Motor[JOINT_NUM];
+// extern DM_motor_t *Joint_Motor[JOINT_NUM];
 float Mannal_Joint_Radian[6] = {0};
 target_point_t Target_Point[6];
 float Target_Joint_Radian[6] = {0};
@@ -17,8 +17,17 @@ void target_point_init(target_point_t *Target_Point) {
   }
 }
 
+static inline float Motor_Get_Radian(const DM_motor_t *motor) {
+  return motor->motor_msg.motor_angle;
+}
+float Current_Radian[6] = {0};
+void Joint_Get_Radian(Joint_t Joint[],float rad[]){
+  for (int joint_index=0; joint_index<JOINT_NUM; joint_index++) {
+    rad[joint_index]=Motor_Get_Radian(Joint[joint_index].joint_motor);
+  }
+}
+Joint_t Joint[JOINT_NUM];
 void jointFollowAngle(void *argument) {
-  Joint_t Joint[JOINT_NUM];
   endEffector_t EndEffector;
 
   UNUSED(argument);
@@ -37,15 +46,17 @@ void jointFollowAngle(void *argument) {
 
   while (1) {
 
+    Joint_Move(Joint, Target_Point);
+
+    Joint_Get_Radian(Joint,Current_Radian);
+
     Joint_Motor_Refresh(Joint);
 
     EndEffector_Motor_Refresh(&EndEffector);
 
-    Gripper_Control_Mode_Mangner(&EndEffector);
+    Gripper_Control_Mode_Manager(&EndEffector);
 
-    Joint_Control_Mode_Mangner(Joint);
-
-    Joint_Move_byPoint(Joint, Target_Point);
+    Joint_Control_Mode_Manager(Joint);
 
     osDelay(1);
   }

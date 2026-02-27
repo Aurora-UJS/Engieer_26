@@ -2,17 +2,16 @@
 #include "usart.h"
 #include <stdint.h>
 #include <string.h>
-#include "jointFollowAngle.h"
 #include "uart_api.h"
+
 
 uart_msg_t SerialPlot_tx_msg;
 extern float joint_radian[6];
-float CurrentRadian = 3.0f; // 测试代码记得删
-
-
+extern float Current_Radian[6];
+#define SerialPlotLen 25
 void SerialPlot_tx_msg_init(void)
 {
-    static uint8_t temp_zero_buffer[9] = {0};
+    static uint8_t temp_zero_buffer[SerialPlotLen] = {0};
     SerialPlot_tx_msg.huart = &huart10;
     SerialPlot_tx_msg.pBuffer = temp_zero_buffer;
     SerialPlot_tx_msg.Len = strlen((char*) SerialPlot_tx_msg.pBuffer);
@@ -25,16 +24,19 @@ void SerialPlot(void *argument)
     osDelay(10);
     SerialPlot_tx_msg_init();
 
-    uint8_t frame[9];
+    uint8_t frame[SerialPlotLen];
     memset(frame, 0, sizeof(frame)); 
     frame[0] = 0xAB;
-    float target_radian = 0.5f;
     while (1) {
-        osDelay(500);
-        memcpy(&frame[1], &CurrentRadian, sizeof(float));
-        memcpy(&frame[5], &target_radian, sizeof(float));
+        osDelay(10);
+        memcpy(&frame[1], &Current_Radian[0], sizeof(float));
+        memcpy(&frame[5], &Current_Radian[1], sizeof(float));
+        memcpy(&frame[9], &Current_Radian[2], sizeof(float));
+        memcpy(&frame[13], &Current_Radian[3], sizeof(float));
+        memcpy(&frame[17], &Current_Radian[4], sizeof(float));
+        memcpy(&frame[21], &Current_Radian[5], sizeof(float));
         SerialPlot_tx_msg.pBuffer = frame;
-        SerialPlot_tx_msg.Len = 9;
+        SerialPlot_tx_msg.Len = SerialPlotLen;
         uart_tx_send(&SerialPlot_tx_msg, HAL_MAX_DELAY);
     }
 }

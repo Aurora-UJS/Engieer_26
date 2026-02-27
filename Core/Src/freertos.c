@@ -54,7 +54,6 @@ typedef StaticSemaphore_t osStaticSemaphoreDef_t;
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
@@ -97,6 +96,18 @@ const osThreadAttr_t uartTest_attributes = {
     .cb_size    = sizeof(uartTestControlBlock),
     .stack_mem  = &uartTestBuffer[0],
     .stack_size = sizeof(uartTestBuffer),
+    .priority   = (osPriority_t)osPriorityNormal,
+};
+/* Definitions for SerialPlot */
+osThreadId_t SerialPlotHandle;
+uint32_t SerialPlotBuffer[512];
+osStaticThreadDef_t SerialPlotControlBlock;
+const osThreadAttr_t SerialPlot_attributes = {
+    .name       = "SerialPlot",
+    .cb_mem     = &SerialPlotControlBlock,
+    .cb_size    = sizeof(SerialPlotControlBlock),
+    .stack_mem  = &SerialPlotBuffer[0],
+    .stack_size = sizeof(SerialPlotBuffer),
     .priority   = (osPriority_t)osPriorityNormal,
 };
 /* Definitions for motor_test */
@@ -231,7 +242,7 @@ const osSemaphoreAttr_t controlBinaryIMU_attributes = {
 
  /* Definitions for Trajectory_Publisher */
  osThreadId_t Trajectory_PublisherHandle;
- uint32_t Trajectory_PublisherBuffer[128];
+ uint32_t Trajectory_PublisherBuffer[256];
  osStaticThreadDef_t Trajectory_PublisherControlBlock;
  const osThreadAttr_t Trajectory_Publisher_attributes = {
      .name = "Trajectory_Publisher",
@@ -241,7 +252,91 @@ const osSemaphoreAttr_t controlBinaryIMU_attributes = {
      .stack_size = sizeof(Trajectory_PublisherBuffer),
      .priority = (osPriority_t) osPriorityNormal,
  };
+//  /* Definitions for test_CAN3_ARM */
+//  osThreadId_t test_CAN3_ARMHandle;
+//  uint32_t test_CAN3_ARMBuffer[256];
+//  osStaticThreadDef_t test_CAN3_ARMControlBlock;
+//  const osThreadAttr_t test_CAN3_ARM_attributes = {
+//      .name = "test_CAN3_ARM",
+//      .cb_mem = &test_CAN3_ARMControlBlock,
+//      .cb_size = sizeof(test_CAN3_ARMControlBlock),
+//      .stack_mem = &test_CAN3_ARMBuffer[0],
+//      .stack_size = sizeof(test_CAN3_ARMBuffer),
+//      .priority = (osPriority_t) osPriorityNormal,
+//  };
 
+ /* Definitions for Joint1_Move_Task */
+ osThreadId_t Joint1_Move_TaskHandle;
+ uint32_t Joint1_Move_TaskBuffer[128];
+ osStaticThreadDef_t Joint1_Move_TaskControlBlock;
+ const osThreadAttr_t Joint1_Move_Task_attributes = {
+     .name = "Joint1_Move_Task",
+     .cb_mem = &Joint1_Move_TaskControlBlock,
+     .cb_size = sizeof(Joint1_Move_TaskControlBlock),
+     .stack_mem = &Joint1_Move_TaskBuffer[0],
+     .stack_size = sizeof(Joint1_Move_TaskBuffer),
+     .priority = (osPriority_t) osPriorityNormal,
+ };
+ /* Definitions for Joint2_Move_Task  */
+ osThreadId_t Joint2_Move_TaskHandle;
+ uint32_t Joint2_Move_TaskBuffer[128];
+ osStaticThreadDef_t Joint2_Move_TaskControlBlock;
+ const osThreadAttr_t Joint2_Move_Task_attributes = {
+     .name = "Joint2_Move_Task ",
+     .cb_mem = &Joint2_Move_TaskControlBlock,
+     .cb_size = sizeof(Joint2_Move_TaskControlBlock),
+     .stack_mem = &Joint2_Move_TaskBuffer[0],
+     .stack_size = sizeof(Joint2_Move_TaskBuffer),
+     .priority = (osPriority_t) osPriorityNormal,
+ };
+ /* Definitions for Joint3_Move_Task */
+ osThreadId_t Joint3_Move_TaskHandle;
+ uint32_t Joint3_Move_TaskBuffer[128];
+ osStaticThreadDef_t Joint3_Move_TaskControlBlock;
+ const osThreadAttr_t Joint3_Move_Task_attributes = {
+     .name = "Joint3_Move_Task",
+     .cb_mem = &Joint3_Move_TaskControlBlock,
+     .cb_size = sizeof(Joint3_Move_TaskControlBlock),
+     .stack_mem = &Joint3_Move_TaskBuffer[0],
+     .stack_size = sizeof(Joint3_Move_TaskBuffer),
+     .priority = (osPriority_t) osPriorityNormal,
+ };
+ /* Definitions for Joint4_Move_Task */
+ osThreadId_t Joint4_Move_TaskHandle;
+ uint32_t Joint4_Move_TaskBuffer[128];
+ osStaticThreadDef_t Joint4_Move_TaskControlBlock;
+ const osThreadAttr_t Joint4_Move_Task_attributes = {
+     .name = "Joint4_Move_Task",
+     .cb_mem = &Joint4_Move_TaskControlBlock,
+     .cb_size = sizeof(Joint4_Move_TaskControlBlock),
+     .stack_mem = &Joint4_Move_TaskBuffer[0],
+     .stack_size = sizeof(Joint4_Move_TaskBuffer),
+     .priority = (osPriority_t) osPriorityNormal,
+ };
+ /* Definitions for Joint5_Move_Task */
+ osThreadId_t Joint5_Move_TaskHandle;
+ uint32_t Joint5_Move_TaskBuffer[128];
+ osStaticThreadDef_t Joint5_Move_TaskControlBlock;
+ const osThreadAttr_t Joint5_Move_Task_attributes = {
+     .name = "Joint5_Move_Task",
+     .cb_mem = &Joint5_Move_TaskControlBlock,
+     .cb_size = sizeof(Joint5_Move_TaskControlBlock),
+     .stack_mem = &Joint5_Move_TaskBuffer[0],
+     .stack_size = sizeof(Joint5_Move_TaskBuffer),
+     .priority = (osPriority_t) osPriorityNormal,
+ };
+ /* Definitions for Joint6_Move_Task */
+ osThreadId_t Joint6_Move_TaskHandle;
+ uint32_t Joint6_Move_TaskBuffer[128];
+ osStaticThreadDef_t Joint6_Move_TaskControlBlock;
+ const osThreadAttr_t Joint6_Move_Task_attributes = {
+     .name = "Joint6_Move_Task",
+     .cb_mem = &Joint6_Move_TaskControlBlock,
+     .cb_size = sizeof(Joint6_Move_TaskControlBlock),
+     .stack_mem = &Joint6_Move_TaskBuffer[0],
+     .stack_size = sizeof(Joint6_Move_TaskBuffer),
+     .priority = (osPriority_t) osPriorityNormal,
+ };
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 void uart_test(void *argument);
@@ -253,8 +348,17 @@ void Referee_Task(void *arguments);
 void Watchdog_Task(void *arguments);
 void SerialPlot(void *argument);
 void IMU_Task(void *argument);
+// void test_CAN3_ARM(void *argument);
+void Joint1_Move_Task(void *argument);
+void Joint2_Move_Task(void *argument);
+void Joint3_Move_Task(void *argument);
+void Joint4_Move_Task(void *argument);
+void Joint5_Move_Task(void *argument);
+void Joint6_Move_Task(void *argument);
 /* USER CODE END FunctionPrototypes */
 
+/* USER CODE END FunctionPrototypes */
+void Trajectory_Timer_Init(void);
 void StartDefaultTask(void *argument);
 void IMU_TempCtrlTask(void *argument);
 void Remoter_Task(void *argument);
@@ -269,7 +373,7 @@ void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
   */
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
-
+  Trajectory_Timer_Init();
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -311,10 +415,11 @@ void MX_FREERTOS_Init(void) {
   jointFollowAngleHandle = osThreadNew(jointFollowAngle,NULL, &jointFollowAngle_attributes);
   //uart_Transmit_AngleHandle = osThreadNew(uart_Transmit_Angle, NULL, &uart_Transmit_Angle_attributes);
   Chassis_TaskHandle = osThreadNew(Chassis_Task, NULL, &Chassis_Task_attributes);
-  // SerialPortHandle = osThreadNew(SerialPlot, NULL, &SerialPort_attributes);
+  SerialPortHandle = osThreadNew(SerialPlot, NULL, &SerialPort_attributes);
   Referee_TaskHandle = osThreadNew(Referee_Task, NULL, &Referee_Task_attributes);
   IMU_TaskHandle = osThreadNew(IMU_Task, NULL, &IMU_Task_attributes);
   Trajectory_PublisherHandle = osThreadNew(Trajectory_Publisher_Task, NULL, &Trajectory_Publisher_attributes);
+  SerialPlotHandle = osThreadNew(SerialPlot, NULL, &SerialPlot_attributes);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   Watchdog_TaskHandle = osThreadNew(Watchdog_Task, NULL, &Watchdog_Task_attributes);
@@ -464,3 +569,13 @@ __weak void IMU_Task(void *argument)
 }
 /* USER CODE END Application */
 
+
+__weak void SerialPlot(void *argument)
+{
+  UNUSED(argument);
+  for(;;)
+  {
+    
+    osDelay(1);
+  }
+}

@@ -1,21 +1,17 @@
 #ifndef EE_CONTROL_DRVH
 #define EE_CONTROL_DRVH
 
+#include "cmsis_os2.h"
 #include "motor_DM.h"
 
 typedef struct endEffector_t{
     DM_motor_t *endEffector_motor;
 } endEffector_t;
 
-typedef enum{
-    GRIPPER_IDLE_MODE = 0,
-    GRIPPER_OPEN_MODE,
-    GRIPPER_CLOSE_MODE
-}gripper_control_mode_t ;
 
-#define GRIPPER_OPEN_RADIAN 0.0f
-#define GRIPPER_CLOSE_RADION 1.2f
-#define GRIPPER_VEL 0.5f
+#define GRIPPER_OPEN_RADIAN (0.2f)
+#define GRIPPER_CLOSE_RADION (1.2f)
+#define GRIPPER_VEL (1.5f)
 
 /** @brief 末端执行器初始化*/
 void endEffector_init(endEffector_t *endeffector);
