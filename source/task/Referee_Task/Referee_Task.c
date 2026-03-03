@@ -5,6 +5,8 @@
 #include "referee_protocol.h"
 #include "arm_math.h"
 #include "DBusSys.h"
+#include "Chassis_Task.h"
+#include "arm_state_machine.h"
 #include <stdint.h>
 #include "arm_referee.h"
 
@@ -50,8 +52,16 @@ void Referee_OnKeyboardKeyPressed(uint8_t key)
     }
     if (key == (uint8_t)'C') 
     {
-        //这里写你要执行的操作（C 从 0->1 的瞬间触发）
-        Engineer_Mode.Chassis_Ctrl_Mode = (Engineer_Mode.Chassis_Ctrl_Mode == CHASSIS_CTRL_MODE_Normal) ? CHASSIS_CTRL_MODE_Rising : CHASSIS_CTRL_MODE_Normal;
+        Chassis_ForcePowerOff((Chassis_IsForcePowerOff() != 0U) ? 0U : 1U);
+    }
+
+    if (key == (uint8_t)'V')
+    {
+        if ((remoter.sw1 == 1) && (Arm_Current_Control_Mode == Arm_Rising_Mode)) {
+            Chassis_ForceUpstairs((Chassis_IsForceUpstairs() != 0U) ? 0U : 1U);
+        } else {
+            Chassis_ForceUpstairs(0U);
+        }
     }
 
     Arm_Keyboard_Manager(key);

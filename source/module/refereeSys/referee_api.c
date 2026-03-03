@@ -278,6 +278,7 @@ static void ctrller_parse_frame(uint8_t *buff, uint16_t len)
 	memcpy(CtrllerData, Ctrller_Receive_Buffer + 7, 26);
 	// 写入帧头数据
 	memcpy(&custom_controller_info.FrameHeader, buff, LEN_HEADER);
+	uint16_t data_length = (uint16_t)(buff[2] << 8) | buff[1];
 	
 	// 提取 CmdID (小端序)
 	custom_controller_info.CmdID = (uint16_t)(buff[6] << 8) | buff[5];
@@ -286,10 +287,14 @@ static void ctrller_parse_frame(uint8_t *buff, uint16_t len)
 	switch (custom_controller_info.CmdID)
 	{
 	case 0x0302:  // 自定义控制器数据
-		memcpy(&custom_controller_info.CustomController, (buff + DATA_Offset), LEN_custom_controller);
+		if (data_length >= (uint16_t)sizeof(custom_controller_info.CustomController)) {
+			memcpy(&custom_controller_info.CustomController, (buff + DATA_Offset), sizeof(custom_controller_info.CustomController));
+		}
 		break;
 	case 0x0304:  // 键鼠数据
-		memcpy(&custom_controller_info.keyboard, (buff + DATA_Offset), LEN_keyboard);
+		if (data_length >= LEN_keyboard) {
+			memcpy(&custom_controller_info.keyboard, (buff + DATA_Offset), LEN_keyboard);
+		}
 		kb_info = custom_controller_info.keyboard;
 		break;
 	default:

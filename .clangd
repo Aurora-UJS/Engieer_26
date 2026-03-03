@@ -1,0 +1,16 @@
+CompileFlags:
+  CompilationDatabase: build
+  Add:
+    - --target=arm-none-eabi
+    - -isystem
+    - /usr/lib/gcc/arm-none-eabi/10.3.1/include
+    - -isystem
+    - /usr/lib/gcc/arm-none-eabi/10.3.1/include-fixed
+    - -isystem
+    - /usr/include/newlib
+
+Diagnostics:
+  UnusedIncludes: None
+  MissingIncludes: None
+  ClangTidy:
+    Remove: '*'

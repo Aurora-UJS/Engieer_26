@@ -64,7 +64,6 @@ Core\Src\main.c
 source\task
 
 # vscode settings
-.clangd
 .settings
 .vscode/
 

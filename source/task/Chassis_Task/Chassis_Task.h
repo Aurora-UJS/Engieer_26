@@ -69,4 +69,7 @@ void Chassis_Task(void *argument);
 void Chassis_ForcePowerOff(uint8_t enable);
 uint8_t Chassis_IsForcePowerOff(void);
 
+void Chassis_ForceUpstairs(uint8_t enable);
+uint8_t Chassis_IsForceUpstairs(void);
+
 #endif // !CHASSIS_TASK_H

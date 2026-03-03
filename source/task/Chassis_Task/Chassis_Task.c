@@ -41,6 +41,7 @@ float32_t target_speed_test[4];
 float32_t current_speed_test[4];
 
 static volatile uint8_t s_chassis_force_poweroff = 0;
+static volatile uint8_t s_chassis_force_upstairs = 0;
 
 void Chassis_ForcePowerOff(uint8_t enable)
 {
@@ -50,6 +51,16 @@ void Chassis_ForcePowerOff(uint8_t enable)
 uint8_t Chassis_IsForcePowerOff(void)
 {
   return s_chassis_force_poweroff;
+}
+
+void Chassis_ForceUpstairs(uint8_t enable)
+{
+  s_chassis_force_upstairs = (enable != 0U) ? 1U : 0U;
+}
+
+uint8_t Chassis_IsForceUpstairs(void)
+{
+  return s_chassis_force_upstairs;
 }
 
 /**
@@ -62,6 +73,10 @@ static uint8_t Chassis_Mode_Get(rc_info_t *backdata)
 {
   if (Chassis_IsForcePowerOff() != 0U) {
     return Chassis_PowerOff;
+  }
+
+  if (Chassis_IsForceUpstairs() != 0U) {
+    return Chassis_Upstairs;
   }
 
   uint8_t Chassis_Mode;
