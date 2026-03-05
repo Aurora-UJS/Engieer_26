@@ -103,7 +103,7 @@ typedef enum
     LEN_robot_hurt = 1,                          // 0x0206
     LEN_shoot_data = 7,                          // 0x0207
     LEN_receive_data = 6 + Communicate_Data_LEN, // 0x0301
-    LEN_custom_controller = 26,                  // 0x0302
+    LEN_custom_controller = 30,                  // 0x0302
     LEN_keyboard = 12,                           // 0x0304
 } JudgeDataLength_e;
 

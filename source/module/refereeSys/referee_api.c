@@ -275,7 +275,6 @@ static void ctrller_parse_frame(uint8_t *buff, uint16_t len)
 {
 	// 调试用：复制帧数据
 	memcpy(Ctrller_Receive_Buffer, buff, len < 256 ? len : 256);
-	// memcpy(CtrllerData, Ctrller_Receive_Buffer + 7, 26);
 	// 写入帧头数据
 	memcpy(&custom_controller_info.FrameHeader, buff, LEN_HEADER);
 	
@@ -286,8 +285,9 @@ static void ctrller_parse_frame(uint8_t *buff, uint16_t len)
 	switch (custom_controller_info.CmdID)
 	{
 	case 0x0302:  // 自定义控制器数据
-		memcpy(&custom_controller_info.CustomController, (buff + DATA_Offset), LEN_custom_controller);
-		memcpy(CtrllerData, &custom_controller_info.CustomController, LEN_custom_controller);
+		// memcpy(&custom_controller_info.CustomController, (buff + DATA_Offset), LEN_custom_controller);
+		// memcpy(CtrllerData, &custom_controller_info.CustomController, LEN_custom_controller);
+		memcpy(CtrllerData, Ctrller_Receive_Buffer + 7, 26);
 		break;
 	case 0x0304:  // 键鼠数据
 		memcpy(&custom_controller_info.keyboard, (buff + DATA_Offset), LEN_keyboard);
