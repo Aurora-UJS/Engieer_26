@@ -34,7 +34,7 @@ static const float joint_pos_limit_min_map[JOINT_NUM] = {
     -2.0f, -2.5, 3.0f, JOINT_POS_MIN, -2.5f, -1.5f};
 
 static const float joint_custom_polarity_map[JOINT_NUM] = {
-    POSITIVE, POSITIVE, NEGATIVE, NEGATIVE, NEGATIVE, NEGATIVE};
+    NEGATIVE, POSITIVE, NEGATIVE, NEGATIVE, NEGATIVE, NEGATIVE};
 
 static const float joint_mannal_polarity_map[JOINT_NUM] = {
     POSITIVE, POSITIVE, POSITIVE, POSITIVE, POSITIVE, POSITIVE};

@@ -1,14 +1,21 @@
 #include "arm_state_machine.h"
 #include "arm_handle.h"
+#include "joint_control_drv.h"
 
 gripper_control_mode_t Gripper_Current_Control_Mode = GRIPPER_IDLE_MODE;
-arm_control_mode_t Arm_Current_Control_Mode = Arm_IDLE_Mode;
+arm_control_mode_t Arm_Current_Control_Mode = Arm_Rising_Mode;
 
 float Rising_Joint_Radian[6] = {0,1.4,1.3,0,0.4,0};
 
 const float Rising_Velcoity[6] = {
   0,0.4,0.5,0,0.4,0
 };
+
+static float Zero_Joint_Radian[6] = { 0 ,0, 0 ,0, 0, 0};
+static float Zero_Velocity[6] ={
+  0,0.4,0.3,0,0.1,0
+};
+
 /**
  * @brief 夹爪状态机
  *
@@ -64,5 +71,9 @@ void Joint_Control_Mode_Manager(Joint_t *Joint) {
     break;
   case Arm_Traj_Mode:
     Arm_Traj_Handle();
+    break;
+  case Arm_Zero_Mode:
+    Point_Publisher(Target_Point, Zero_Joint_Radian, Zero_Velocity);
+    break;
   }
 }

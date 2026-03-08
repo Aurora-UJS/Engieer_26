@@ -12,7 +12,8 @@ typedef enum {
   Arm_Set_Radian,
   Arm_Transition_Mode,
   Arm_Traj_Mode,
-  Arm_Rising_Mode
+  Arm_Rising_Mode,
+  Arm_Zero_Mode
 } arm_control_mode_t;
 
 typedef enum{
