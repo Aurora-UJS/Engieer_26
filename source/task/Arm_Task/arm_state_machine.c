@@ -3,7 +3,7 @@
 #include "joint_control_drv.h"
 
 gripper_control_mode_t Gripper_Current_Control_Mode = GRIPPER_IDLE_MODE;
-arm_control_mode_t Arm_Current_Control_Mode = Arm_IDLE_Mode;
+arm_control_mode_t Arm_Current_Control_Mode = Arm_Traj_Mode;
 
 float Rising_Joint_Radian[6] = {0,1.4,1.3,0,0.4,0};
 

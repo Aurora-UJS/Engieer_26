@@ -26,6 +26,31 @@ void Joint_Get_Radian(Joint_t Joint[],float rad[]){
     rad[joint_index]=Motor_Get_Radian(Joint[joint_index].joint_motor);
   }
 }
+void Debug_set_Point(void){
+  Target_Point[0].target_joint_radian = 2.28;
+  // Target_Point[0].target_joint_radian = 0;
+  // Target_Point[1].target_joint_radian = 0;
+  // Target_Point[2].target_joint_radian = 0;
+  // Target_Point[2].target_joint_radian = 0;
+  // Target_Point[1].target_joint_radian = 0.27;
+  // Target_Point[2].target_joint_radian = 0.1;
+  Target_Point[1].target_joint_radian =0.34;
+  // Target_Point[2].target_joint_radian = 0.15;
+  Target_Point[2].target_joint_radian = 0.6;
+
+  Target_Point[3].target_joint_radian = 0;
+  Target_Point[4].target_joint_radian = 0.2;
+  // Target_Point[4].target_joint_radian = 0;
+  // Target_Point[4].target_joint_radian = 0.6;
+  Target_Point[5].target_joint_radian = 0;
+
+  Target_Point[0].velocity = 0.5f;
+  Target_Point[1].velocity = 0.5f;
+  Target_Point[2].velocity = 0.5f;
+  Target_Point[3].velocity = 0.5f;
+  Target_Point[4].velocity = 0.5f;
+  Target_Point[5].velocity = 0.5f;
+}
 Joint_t Joint[JOINT_NUM];
 void jointFollowAngle(void *argument) {
   endEffector_t EndEffector;
@@ -33,7 +58,7 @@ void jointFollowAngle(void *argument) {
   UNUSED(argument);
 
   joint_init(Joint);
-
+  // Debug_set_Point();
   target_point_init(Target_Point);
 
   endEffector_init(&EndEffector);

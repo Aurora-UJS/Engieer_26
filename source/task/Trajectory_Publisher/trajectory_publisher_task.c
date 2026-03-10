@@ -8,6 +8,14 @@ static int demo_index = 0;
 
 Command_Place_And_Get_t cmd_place_get = Command_getLeft;
 
+#define GB_DURATION_PREPARE   1000
+#define GB_DURATION_1         1000
+#define GB_DURATION_2         1000
+#define GB_DURATION_3         1000
+#define GB_DURATION_4         1000
+#define GB_DURATION_5         1000
+#define GB_DURATION_6         1000
+
 void Command_Place_And_Get_Manager(Command_Place_And_Get_t cmd) {
   switch (cmd) {
   case Command_Error:
@@ -92,13 +100,6 @@ void demo(void) {
     Arm_Current_Control_Mode = Arm_Frozen_Mode;
   }
 }
-#define BACK_DURATION_STAGE_INIT      300
-#define BACK_DURATION_STAGE_PREPARE   300
-#define BACK_DURATION_STAGE_1         200
-#define BACK_DURATION_STAGE_2         250
-#define BACK_DURATION_STAGE_3         180
-#define BACK_DURATION_STAGE_4         100
-#define BACK_DURATION_STAGE_5         150
 
 #define DURATION_STAGE_INIT 500
 #define DURATION_STAGE_PREPARE 300
@@ -124,16 +125,6 @@ typedef enum {
   STAGE_DONE
 } Get_Stage_t;
 
-typedef enum {
-  BACK_STAGE_INIT,
-  BACK_STAGE_PREPARE,
-  BACK_STAGE_1,
-  BACK_STAGE_2,
-  BACK_STAGE_3,
-  BACK_STAGE_4,
-  BACK_STAGE_5,
-  BACK_STAGE_DONE
-} Back_Get_Stage_t;
 
 typedef enum {
   PUT_STAGE_PREPARE,
@@ -152,31 +143,6 @@ const int stage_duration[] = {
     DURATION_STAGE_4
 };
 
-const int back_stage_duration[] = {
-    BACK_DURATION_STAGE_INIT,
-    BACK_DURATION_STAGE_PREPARE,
-    BACK_DURATION_STAGE_1,
-    BACK_DURATION_STAGE_2,
-    BACK_DURATION_STAGE_3,
-    BACK_DURATION_STAGE_4,
-    BACK_DURATION_STAGE_5
-};
-
-Back_Get_Stage_t back_get_stage(int t)
-{
-  int acc = 0;
-
-  for (int i = 0; i < 7; i++)
-  {
-    acc += back_stage_duration[i];
-
-    if (t < acc)
-      return (Back_Get_Stage_t)i;
-  }
-
-  return BACK_STAGE_DONE;
-}
-
 Get_Stage_t get_stage(int t) {
 
   int acc = 0;
@@ -191,24 +157,90 @@ for (int i = 0; i < 6; i++)
   return STAGE_DONE;
 }
 
+typedef enum {
+  GB_STAGE_PREPARE,
+  GB_STAGE_1,
+  GB_STAGE_2,
+  GB_STAGE_3,
+  GB_STAGE_4,
+  GB_STAGE_5,
+  GB_STAGE_6,
+  GB_STAGE_DONE
+} Get_Back_Stage_t;
 
-void Get_B(){
+
+const int get_back_duration[] = {
+  GB_DURATION_PREPARE,
+  GB_DURATION_1,
+  GB_DURATION_2,
+  GB_DURATION_3,
+  GB_DURATION_4,
+  GB_DURATION_5,
+  GB_DURATION_6
+};
+Get_Back_Stage_t get_back_stage(int t)
+{
+  int acc = 0;
+
+  for (int i = 0; i < 7; i++)
+  {
+    acc += get_back_duration[i];
+
+    if (t < acc)
+      return (Get_Back_Stage_t)i;
+  }
+
+  return GB_STAGE_DONE;
+}
+
+void Get_B()
+{
   int t = traj_point_index;
-  Back_Get_Stage_t stage = back_get_stage(t);
-  switch (stage) {
-    case BACK_STAGE_INIT:
+  Get_Back_Stage_t stage = get_back_stage(t);
+
+  switch(stage)
+  {
+
+  case GB_STAGE_PREPARE:
     target_point_init(Target_Point);
+    Target_Point[4].target_joint_radian = 0.6f;
     break;
-    case BACK_STAGE_PREPARE:
-    Target_Point[0].target_joint_radian = 1.6f;
-    Target_Point[0].velocity  = 1.0f;
-    Target_Point[2].target_joint_radian = -0.16f;
-    Target_Point[2].velocity = 1.0f;
+
+  case GB_STAGE_1:
+    Target_Point[0].target_joint_radian = 2.25f;
     break;
-    default:
-    Arm_Current_Control_Mode = Arm_Frozen_Mode;    
+
+  case GB_STAGE_2:
+    Target_Point[4].target_joint_radian = 0.0f;
+    break;
+
+  case GB_STAGE_3:
+    Target_Point[1].target_joint_radian = 0.27f;
+    Target_Point[2].target_joint_radian = 0.1f;
+    break;
+
+  case GB_STAGE_4:
+    Target_Point[1].target_joint_radian = 0.34f;
+    Target_Point[2].target_joint_radian = 0.15f;
+    Target_Point[4].target_joint_radian = 0.2f;
+    break;
+
+  case GB_STAGE_5:
+
+    Target_Point[2].target_joint_radian = 0.6f;
+    break;
+
+  case GB_STAGE_6:
+    Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+    Target_Point[0].target_joint_radian = 0.0f;
+    break;
+
+  case GB_STAGE_DONE:
+    Arm_Current_Control_Mode = Arm_Frozen_Mode;
     break;
   }
+
+  traj_point_index++;
 }
 void Get(Command_Place_And_Get_t cmd_get) {
   int direct = (cmd_get == Command_getRight) ? (1) : (-1);
