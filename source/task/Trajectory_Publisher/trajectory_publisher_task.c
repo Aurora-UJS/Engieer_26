@@ -1,5 +1,7 @@
 #include "trajectory_publisher_task.h"
 #include "arm_state_machine.h"
+#include "jointFollowAngle.h"
+#include "joint_control_drv.h"
 #include "trajectory_publisher_drv.h"
 
 static osTimerId_t traj_timer_id;
@@ -8,13 +10,13 @@ static int demo_index = 0;
 
 Command_Place_And_Get_t cmd_place_get = Command_getLeft;
 
-#define GB_DURATION_PREPARE   1000
-#define GB_DURATION_1         1000
-#define GB_DURATION_2         1000
-#define GB_DURATION_3         1000
-#define GB_DURATION_4         1000
-#define GB_DURATION_5         1000
-#define GB_DURATION_6         1000
+#define GB_DURATION_PREPARE   200
+#define GB_DURATION_1         500
+#define GB_DURATION_2         500
+#define GB_DURATION_3         100
+#define GB_DURATION_4         500
+#define GB_DURATION_5         500
+#define GB_DURATION_6         300
 
 void Command_Place_And_Get_Manager(Command_Place_And_Get_t cmd) {
   switch (cmd) {
@@ -204,13 +206,16 @@ void Get_B()
   case GB_STAGE_PREPARE:
     target_point_init(Target_Point);
     Target_Point[4].target_joint_radian = 0.6f;
+    Target_Point[4].velocity = 1.0f;
     break;
 
   case GB_STAGE_1:
-    Target_Point[0].target_joint_radian = 2.25f;
+    Target_Point[0].target_joint_radian = -2.27f;
+    Target_Point[0].velocity = 1.5f;
     break;
 
   case GB_STAGE_2:
+    Target_Point[1].target_joint_radian = -0.1;
     Target_Point[4].target_joint_radian = 0.0f;
     break;
 
@@ -227,16 +232,17 @@ void Get_B()
 
   case GB_STAGE_5:
 
-    Target_Point[2].target_joint_radian = 0.6f;
+    Target_Point[2].target_joint_radian = 0.55f;
     break;
 
   case GB_STAGE_6:
     Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+    Target_Point[0].velocity = 1.5f;
     Target_Point[0].target_joint_radian = 0.0f;
     break;
 
   case GB_STAGE_DONE:
-    Arm_Current_Control_Mode = Arm_Frozen_Mode;
+    target_point_init(Target_Point);
     break;
   }
 
