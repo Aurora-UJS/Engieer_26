@@ -12,6 +12,7 @@
 #define TRAJECTORY_LEN (3000)
 #define TRAJ_START_FLAG (1U << 0)
 
+#define INIT_STAGE_TICKS (200)
 #define ARM_PREPARE_TIME_TICKS (500)
 #define ARM_PICK_TIME_TICKS (TRAJECTORY_NUM)
 #define ARM_RETURN_TIME_TICKS (1000)
@@ -20,7 +21,7 @@
 
 #define ENDEFFECTOR_CLOSE_TIME_TICKS (1550)
 #define ENDEFFECTOR_TOTOAL_TIME_TICKS                                          \
-  (ARM_PREPARE_TIME_TICKS + ENDEFFECTOR_CLOSE_TIME_TICKS)
+  (INIT_STAGE_TICKS + ARM_PREPARE_TIME_TICKS + ENDEFFECTOR_CLOSE_TIME_TICKS)
 
   
 typedef enum Command_Place_And_Get {
@@ -55,6 +56,8 @@ void Get(Command_Place_And_Get_t cmd_get);
 void newPlaceRigth(void);
 
 void newPlaceLeft(void);
+
+void Get_B();
 
 extern Command_Place_And_Get_t cmd_place_get;
 extern const float Trajectory[TRAJECTORY_NUM][JOINT_NUM];

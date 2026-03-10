@@ -95,19 +95,6 @@ void getRight(void) {
   traj_point_index++;
 }
 
-void Debug_set_pos(void) {
-  Target_Point[0].target_joint_radian = -0.79;
-  Target_Point[1].target_joint_radian = 0.46139;
-  // Target_Point[2].target_joint_radian = 0.2790;
-  Target_Point[2].target_joint_radian = 0.42;
-  Target_Point[3].target_joint_radian = 0.0;
-  Target_Point[4].target_joint_radian = 0.004;
-  Target_Point[5].target_joint_radian = 0.000;
-  Target_Point[0].velocity = 0.2;
-  for (int joint_index = 1; joint_index < JOINT_NUM; joint_index++) {
-    Target_Point[joint_index].velocity = JOINT_DEFAULT_VELOCITY;
-  }
-}
 
 /**
  * @brief 左放置函数
