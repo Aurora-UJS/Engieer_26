@@ -10,6 +10,15 @@ static int demo_index = 0;
 
 Command_Place_And_Get_t cmd_place_get = Command_getLeft;
 
+#define PB_STAGE_A_DURATION 200
+#define PB_STAGE_B_DURATION 400
+#define PB_STAGE_C_DURATION 500
+#define PB_STAGE_D_DURATION 500
+#define PB_STAGE_E_DURATION 500
+#define PB_STAGE_F_DURATION 500
+#define PB_STAGE_G_DURATION 500
+#define PB_STAGE_H_DURATION 500
+
 #define GB_DURATION_PREPARE   200
 #define GB_DURATION_1         500
 #define GB_DURATION_2         500
@@ -17,6 +26,18 @@ Command_Place_And_Get_t cmd_place_get = Command_getLeft;
 #define GB_DURATION_4         500
 #define GB_DURATION_5         500
 #define GB_DURATION_6         300
+#define GB_TOTAL_TIME (GB_DURATION_PREPARE + GB_DURATION_1 + GB_DURATION_2 + GB_DURATION_3 + GB_DURATION_4 + GB_DURATION_5 + GB_DURATION_6)
+
+const int place_back_duration[] = {
+    PB_STAGE_A_DURATION,
+    PB_STAGE_B_DURATION,
+    PB_STAGE_C_DURATION,
+    PB_STAGE_D_DURATION,
+    PB_STAGE_E_DURATION,
+    PB_STAGE_F_DURATION,
+    PB_STAGE_G_DURATION,
+    PB_STAGE_H_DURATION
+};
 
 void Command_Place_And_Get_Manager(Command_Place_And_Get_t cmd) {
   switch (cmd) {
@@ -40,17 +61,9 @@ void Command_Place_And_Get_Manager(Command_Place_And_Get_t cmd) {
     Get(Command_getRight);
   }
 }
-void Debug_set_pos(void) {
-  Target_Point[0].target_joint_radian = 1.3f;
-  Target_Point[2].target_joint_radian = 0.1f;
-}
-void Debug(void *argument){
-  UNUSED(argument);
-  Debug_set_pos();
-}
 void Get_Back_Timer_Callback(void *argument){
   UNUSED(argument);
-  Get_B();
+  Get(Command_getLeft);
 }
 
 void Trajectory_Timer_Callback(void *argument) {
@@ -61,6 +74,95 @@ void Trajectory_Timer_Callback(void *argument) {
     traj_point_index = 0;
     Arm_Current_Control_Mode = Arm_IDLE_Mode;
   }
+}
+
+typedef enum {
+    PB_STAGE_A,
+    PB_STAGE_B,
+    PB_STAGE_C,
+    PB_STAGE_D,
+    PB_STAGE_E,
+    PB_STAGE_F,
+    PB_STAGE_G,
+    PB_STAGE_H,
+    PB_STAGE_DONE
+} Place_Back_Stage_t;
+
+
+Place_Back_Stage_t place_back_stage(int t)
+{
+    int acc = 0;
+
+    for(int i = 0; i < 8; i++)
+    {
+        acc += place_back_duration[i];
+
+        if(t < acc)
+            return (Place_Back_Stage_t)i;
+    }
+
+    return PB_STAGE_DONE;
+}
+
+void place_back(void)
+{
+    int t = traj_point_index;
+
+    Place_Back_Stage_t stage = place_back_stage(t);
+
+    switch(stage)
+    {
+
+    case PB_STAGE_A:
+        Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+        Target_Point[0].target_joint_radian = 0.0f;
+        Target_Point[1].target_joint_radian = 0.0f;
+        Target_Point[2].target_joint_radian = 0.58f;
+        Target_Point[4].target_joint_radian = 0.0f;
+        Target_Point[5].target_joint_radian = 0.0f;
+        break;
+
+    case PB_STAGE_B:
+        Target_Point[0].velocity = 1.5f;
+        Target_Point[0].target_joint_radian = -2.25f;
+        break;
+
+    case PB_STAGE_C:
+        Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
+        Target_Point[1].target_joint_radian = 0.24f;
+        Target_Point[2].target_joint_radian = 0.25f;
+        Target_Point[4].target_joint_radian = 0.0f;
+        break;
+
+    case PB_STAGE_D:
+        Target_Point[1].target_joint_radian = 0.0f;
+        Target_Point[2].target_joint_radian = -0.1f;
+        break;
+
+    case PB_STAGE_E:
+        Target_Point[4].target_joint_radian = 0.6f;
+        break;
+
+    case PB_STAGE_F:
+        Target_Point[0].target_joint_radian = 0.0f;
+        break;
+
+    case PB_STAGE_G:
+        Target_Point[4].target_joint_radian = 0.0f;
+        break;
+
+    case PB_STAGE_H:
+        target_point_init(Target_Point);
+        break;
+
+    case PB_STAGE_DONE:
+        osTimerStop(traj_timer_id);
+        traj_point_index = 0;
+        Arm_Current_Control_Mode = Arm_IDLE_Mode;
+        return;
+    }
+
+    traj_point_index++;
 }
 void demo(void) {
   if (demo_index == 0) {
@@ -105,7 +207,7 @@ void demo(void) {
 
 #define DURATION_STAGE_INIT 500
 #define DURATION_STAGE_PREPARE 300
-#define DURATION_STAGE_1 100
+#define DURATION_STAGE_1 300
 #define DURATION_STAGE_2 250
 #define DURATION_STAGE_3 180
 #define DURATION_STAGE_4 100
@@ -194,6 +296,8 @@ Get_Back_Stage_t get_back_stage(int t)
 
   return GB_STAGE_DONE;
 }
+
+
 
 void Get_B()
 {
