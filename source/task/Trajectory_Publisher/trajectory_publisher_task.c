@@ -8,6 +8,7 @@ static osTimerId_t traj_timer_id;
 int traj_point_index = 0;
 static int demo_index = 0;
 
+// 　cmd_place_get 初始化
 Command_Place_And_Get_t cmd_place_get = Command_getLeft;
 
 #define PB_STAGE_A_DURATION 200
@@ -19,25 +20,21 @@ Command_Place_And_Get_t cmd_place_get = Command_getLeft;
 #define PB_STAGE_G_DURATION 500
 #define PB_STAGE_H_DURATION 500
 
-#define GB_DURATION_PREPARE   200
-#define GB_DURATION_1         500
-#define GB_DURATION_2         500
-#define GB_DURATION_3         100
-#define GB_DURATION_4         500
-#define GB_DURATION_5         500
-#define GB_DURATION_6         300
-#define GB_TOTAL_TIME (GB_DURATION_PREPARE + GB_DURATION_1 + GB_DURATION_2 + GB_DURATION_3 + GB_DURATION_4 + GB_DURATION_5 + GB_DURATION_6)
+#define GB_DURATION_PREPARE 200
+#define GB_DURATION_1 500
+#define GB_DURATION_2 500
+#define GB_DURATION_3 100
+#define GB_DURATION_4 500
+#define GB_DURATION_5 500
+#define GB_DURATION_6 300
+#define GB_TOTAL_TIME                                                          \
+  (GB_DURATION_PREPARE + GB_DURATION_1 + GB_DURATION_2 + GB_DURATION_3 +       \
+   GB_DURATION_4 + GB_DURATION_5 + GB_DURATION_6)
 
-const int place_back_duration[] = {
-    PB_STAGE_A_DURATION,
-    PB_STAGE_B_DURATION,
-    PB_STAGE_C_DURATION,
-    PB_STAGE_D_DURATION,
-    PB_STAGE_E_DURATION,
-    PB_STAGE_F_DURATION,
-    PB_STAGE_G_DURATION,
-    PB_STAGE_H_DURATION
-};
+const int place_back_duration[] = {PB_STAGE_A_DURATION, PB_STAGE_B_DURATION,
+                                   PB_STAGE_C_DURATION, PB_STAGE_D_DURATION,
+                                   PB_STAGE_E_DURATION, PB_STAGE_F_DURATION,
+                                   PB_STAGE_G_DURATION, PB_STAGE_H_DURATION};
 
 void Command_Place_And_Get_Manager(Command_Place_And_Get_t cmd) {
   switch (cmd) {
@@ -55,15 +52,15 @@ void Command_Place_And_Get_Manager(Command_Place_And_Get_t cmd) {
     break;
   case Command_getRight:
     Get(Command_getRight);
-    // getRight();
     break;
   default:
     Get(Command_getRight);
   }
 }
-void Get_Back_Timer_Callback(void *argument){
+void Get_Back_Timer_Callback(void *argument) {
   UNUSED(argument);
-  Get(Command_getLeft);
+  // place_back(Command_placeBackLeft);
+  Get_Back(Command_getBackLeft);
 }
 
 void Trajectory_Timer_Callback(void *argument) {
@@ -77,92 +74,92 @@ void Trajectory_Timer_Callback(void *argument) {
 }
 
 typedef enum {
-    PB_STAGE_A,
-    PB_STAGE_B,
-    PB_STAGE_C,
-    PB_STAGE_D,
-    PB_STAGE_E,
-    PB_STAGE_F,
-    PB_STAGE_G,
-    PB_STAGE_H,
-    PB_STAGE_DONE
+  PB_STAGE_A,
+  PB_STAGE_B,
+  PB_STAGE_C,
+  PB_STAGE_D,
+  PB_STAGE_E,
+  PB_STAGE_F,
+  PB_STAGE_G,
+  PB_STAGE_H,
+  PB_STAGE_DONE
 } Place_Back_Stage_t;
 
+Place_Back_Stage_t place_back_stage(int t) {
+  int acc = 0;
 
-Place_Back_Stage_t place_back_stage(int t)
-{
-    int acc = 0;
+  for (int i = 0; i < 8; i++) {
+    acc += place_back_duration[i];
 
-    for(int i = 0; i < 8; i++)
-    {
-        acc += place_back_duration[i];
+    if (t < acc)
+      return (Place_Back_Stage_t)i;
+  }
 
-        if(t < acc)
-            return (Place_Back_Stage_t)i;
-    }
-
-    return PB_STAGE_DONE;
+  return PB_STAGE_DONE;
 }
 
-void place_back(void)
-{
-    int t = traj_point_index;
+void place_back(Command_Place_And_Get_t cmd_place_back) {
+  int t = traj_point_index;
 
-    Place_Back_Stage_t stage = place_back_stage(t);
+  int direct = (cmd_place_back == Command_placeBackRight) ? (1) : (-1);
+  Place_Back_Stage_t stage = place_back_stage(t);
 
-    switch(stage)
-    {
+  switch (stage) {
 
-    case PB_STAGE_A:
-        Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
-        Target_Point[0].target_joint_radian = 0.0f;
-        Target_Point[1].target_joint_radian = 0.0f;
-        Target_Point[2].target_joint_radian = 0.58f;
-        Target_Point[4].target_joint_radian = 0.0f;
-        Target_Point[5].target_joint_radian = 0.0f;
-        break;
+  case PB_STAGE_A:
+    Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+    Target_Point[0].target_joint_radian = 0.0f;
+    Target_Point[1].target_joint_radian = 0.0f;
+    Target_Point[2].target_joint_radian = 0.58f;
+    Target_Point[4].target_joint_radian = 0.0f;
+    Target_Point[5].target_joint_radian = 0.0f;
+    break;
 
-    case PB_STAGE_B:
-        Target_Point[0].velocity = 1.5f;
-        Target_Point[0].target_joint_radian = -2.25f;
-        break;
+  case PB_STAGE_B:
+    Target_Point[0].velocity = 1.5f;
+    Target_Point[0].target_joint_radian = direct * (2.25f);
+    break;
 
-    case PB_STAGE_C:
-        Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
-        Target_Point[1].target_joint_radian = 0.24f;
-        Target_Point[2].target_joint_radian = 0.25f;
-        Target_Point[4].target_joint_radian = 0.0f;
-        break;
-
-    case PB_STAGE_D:
-        Target_Point[1].target_joint_radian = 0.0f;
-        Target_Point[2].target_joint_radian = -0.1f;
-        break;
-
-    case PB_STAGE_E:
-        Target_Point[4].target_joint_radian = 0.6f;
-        break;
-
-    case PB_STAGE_F:
-        Target_Point[0].target_joint_radian = 0.0f;
-        break;
-
-    case PB_STAGE_G:
-        Target_Point[4].target_joint_radian = 0.0f;
-        break;
-
-    case PB_STAGE_H:
-        target_point_init(Target_Point);
-        break;
-
-    case PB_STAGE_DONE:
-        osTimerStop(traj_timer_id);
-        traj_point_index = 0;
-        Arm_Current_Control_Mode = Arm_IDLE_Mode;
-        return;
+  case PB_STAGE_C:
+    // stage_c中延时traj_point_index 50
+    Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
+    Target_Point[1].target_joint_radian = 0.24f;
+    Target_Point[2].target_joint_radian = 0.25f;
+    Target_Point[4].target_joint_radian = 0.0f;
+    if (traj_point_index >= PB_STAGE_A_DURATION + PB_STAGE_B_DURATION + 50) {
+      Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
     }
+    break;
 
-    traj_point_index++;
+  case PB_STAGE_D:
+    Target_Point[1].target_joint_radian = 0.0f;
+    Target_Point[2].target_joint_radian = -0.12f;
+    break;
+
+  case PB_STAGE_E:
+    Target_Point[4].target_joint_radian = 0.6f;
+    break;
+
+  case PB_STAGE_F:
+    Target_Point[0].target_joint_radian = 0.0f;
+    break;
+
+  case PB_STAGE_G:
+    Target_Point[4].target_joint_radian = 0.0f;
+    break;
+
+  case PB_STAGE_H:
+    target_point_init(Target_Point);
+    break;
+
+  case PB_STAGE_DONE:
+    osTimerStop(traj_timer_id);
+    traj_point_index = 0;
+    Arm_Current_Control_Mode = Arm_IDLE_Mode;
+    return;
+  }
+
+  traj_point_index++;
 }
 void demo(void) {
   if (demo_index == 0) {
@@ -212,12 +209,11 @@ void demo(void) {
 #define DURATION_STAGE_3 180
 #define DURATION_STAGE_4 100
 
-#define PL_LEFT_STAGE0_DURATION 300  // 阶段0持续时间
+#define PL_LEFT_STAGE0_DURATION 300 // 阶段0持续时间
 #define PL_LEFT_STAGE1_DURATION 500 // 阶段1持续时间
-#define PL_LEFT_STAGE2_DURATION 800  // 阶段2持续时间
-#define PL_LEFT_STAGE3_DURATION 500  // 阶段3持续时间
-#define PL_LEFT_STAGE4_DURATION 200  // 阶段4持续时间，可根据需要0
-
+#define PL_LEFT_STAGE2_DURATION 800 // 阶段2持续时间
+#define PL_LEFT_STAGE3_DURATION 500 // 阶段3持续时间
+#define PL_LEFT_STAGE4_DURATION 200 // 阶段4持续时间，可根据需要0
 
 typedef enum {
   STAGE_INIT,
@@ -229,7 +225,6 @@ typedef enum {
   STAGE_DONE
 } Get_Stage_t;
 
-
 typedef enum {
   PUT_STAGE_PREPARE,
   PUT_STAGE_YAW,
@@ -238,25 +233,19 @@ typedef enum {
   PUT_STAGE_DOWN
 } Put_Stage_t;
 
-const int stage_duration[] = {
-    DURATION_STAGE_INIT,
-    DURATION_STAGE_PREPARE,
-    DURATION_STAGE_1,
-    DURATION_STAGE_2,
-    DURATION_STAGE_3,
-    DURATION_STAGE_4
-};
+const int stage_duration[] = {DURATION_STAGE_INIT, DURATION_STAGE_PREPARE,
+                              DURATION_STAGE_1,    DURATION_STAGE_2,
+                              DURATION_STAGE_3,    DURATION_STAGE_4};
 
 Get_Stage_t get_stage(int t) {
 
   int acc = 0;
 
-for (int i = 0; i < 6; i++)
-{
+  for (int i = 0; i < 6; i++) {
     acc += stage_duration[i];
     if (t < acc)
-        return (Get_Stage_t)i;
-}
+      return (Get_Stage_t)i;
+  }
 
   return STAGE_DONE;
 }
@@ -272,22 +261,13 @@ typedef enum {
   GB_STAGE_DONE
 } Get_Back_Stage_t;
 
-
 const int get_back_duration[] = {
-  GB_DURATION_PREPARE,
-  GB_DURATION_1,
-  GB_DURATION_2,
-  GB_DURATION_3,
-  GB_DURATION_4,
-  GB_DURATION_5,
-  GB_DURATION_6
-};
-Get_Back_Stage_t get_back_stage(int t)
-{
+    GB_DURATION_PREPARE, GB_DURATION_1, GB_DURATION_2, GB_DURATION_3,
+    GB_DURATION_4,       GB_DURATION_5, GB_DURATION_6};
+Get_Back_Stage_t get_back_stage(int t) {
   int acc = 0;
 
-  for (int i = 0; i < 7; i++)
-  {
+  for (int i = 0; i < 7; i++) {
     acc += get_back_duration[i];
 
     if (t < acc)
@@ -297,15 +277,13 @@ Get_Back_Stage_t get_back_stage(int t)
   return GB_STAGE_DONE;
 }
 
+void Get_Back(Command_Place_And_Get_t cmd_get) {
 
-
-void Get_B()
-{
+  int direct = (cmd_get == Command_getBackRight) ? (1) : (-1);
   int t = traj_point_index;
   Get_Back_Stage_t stage = get_back_stage(t);
 
-  switch(stage)
-  {
+  switch (stage) {
 
   case GB_STAGE_PREPARE:
     target_point_init(Target_Point);
@@ -314,12 +292,12 @@ void Get_B()
     break;
 
   case GB_STAGE_1:
-    Target_Point[0].target_joint_radian = -2.27f;
+    Target_Point[0].target_joint_radian = direct * (2.27f);
     Target_Point[0].velocity = 1.5f;
     break;
 
   case GB_STAGE_2:
-    Target_Point[1].target_joint_radian = -0.1;
+    Target_Point[2].target_joint_radian = -0.12f;
     Target_Point[4].target_joint_radian = 0.0f;
     break;
 
@@ -354,7 +332,7 @@ void Get_B()
 }
 void Get(Command_Place_And_Get_t cmd_get) {
   int direct = (cmd_get == Command_getRight) ? (1) : (-1);
-  int t = traj_point_index ;
+  int t = traj_point_index;
   Get_Stage_t stage = get_stage(t);
 
   switch (stage) {
@@ -403,13 +381,10 @@ void Get(Command_Place_And_Get_t cmd_get) {
   }
 
   /* 夹爪逻辑 */
-if (t >= (DURATION_STAGE_INIT +
-          DURATION_STAGE_PREPARE +
-          DURATION_STAGE_1 +
-          DURATION_STAGE_2 + 50))
-{
+  if (t >= (DURATION_STAGE_INIT + DURATION_STAGE_PREPARE + DURATION_STAGE_1 +
+            DURATION_STAGE_2 + 50)) {
     Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
-}
+  }
 
   traj_point_index++;
 }
@@ -557,7 +532,8 @@ void Trajectory_Timer_Init(void) {
   osTimerAttr_t timer_attr = {0};
   timer_attr.name = "traj_timer";
   traj_timer_id =
-      // osTimerNew(Trajectory_Timer_Callback, osTimerPeriodic, NULL, &timer_attr);
+      // osTimerNew(Trajectory_Timer_Callback, osTimerPeriodic, NULL,
+      // &timer_attr);
       osTimerNew(Get_Back_Timer_Callback, osTimerPeriodic, NULL, &timer_attr);
 }
 

@@ -43,15 +43,18 @@ void Trajectory_Publisher_right(const float Trajectory[][JOINT_NUM],
 /** @brief 右取矿轨迹发布 */
 void Trajectory_Publisher(const float Trajectory[][JOINT_NUM], int point_index);
 
+void placeLeft(void);
+void placeRight(void);
+
 void Get(Command_Place_And_Get_t cmd_get);
 
 void newPlaceRigth(void);
 
 void newPlaceLeft(void);
 
-void Get_B(void);
+void Get_Back(Command_Place_And_Get_t cmd_get);
 
-void place_back(void);
+void place_back(Command_Place_And_Get_t cmd_place_back);
 
 extern Command_Place_And_Get_t cmd_place_get;
 extern const float Trajectory[TRAJECTORY_NUM][JOINT_NUM];
