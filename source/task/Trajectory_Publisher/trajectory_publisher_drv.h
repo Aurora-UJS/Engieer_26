@@ -43,7 +43,10 @@ void Trajectory_Publisher_right(const float Trajectory[][JOINT_NUM],
 /** @brief 右取矿轨迹发布 */
 void Trajectory_Publisher(const float Trajectory[][JOINT_NUM], int point_index);
 
+__attribute__((deprecated)) 
 void placeLeft(void);
+
+__attribute__((deprecated)) 
 void placeRight(void);
 
 void Get(Command_Place_And_Get_t cmd_get);

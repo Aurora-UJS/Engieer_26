@@ -3,13 +3,16 @@
 #include "jointFollowAngle.h"
 #include "joint_control_drv.h"
 #include "trajectory_publisher_drv.h"
+#include <assert.h>
 
-static osTimerId_t traj_timer_id;
+osTimerId_t traj_timer_id;
 int traj_point_index = 0;
 static int demo_index = 0;
 
 // 　cmd_place_get 初始化
-Command_Place_And_Get_t cmd_place_get = Command_getLeft;
+Command_Place_And_Get_t cmd_place_get = Command_placeBackRight;
+
+#define TRAJ_TIMEOUT 6000
 
 #define PB_STAGE_A_DURATION 200
 #define PB_STAGE_B_DURATION 400
@@ -36,25 +39,50 @@ const int place_back_duration[] = {PB_STAGE_A_DURATION, PB_STAGE_B_DURATION,
                                    PB_STAGE_E_DURATION, PB_STAGE_F_DURATION,
                                    PB_STAGE_G_DURATION, PB_STAGE_H_DURATION};
 
-void Command_Place_And_Get_Manager(Command_Place_And_Get_t cmd) {
-  switch (cmd) {
+static inline void trajectory_finish(void)
+{
+  osTimerStop(traj_timer_id);
+  traj_point_index = 0;
+  Arm_Current_Control_Mode = Arm_IDLE_Mode;
+}
+
+void Command_Place_And_Get_Manager(Command_Place_And_Get_t cmd)
+{
+  switch (cmd)
+  {
   case Command_Error:
     Arm_Current_Control_Mode = Arm_Frozen_Mode;
     break;
+
+  /* 正向放矿 */
   case Command_placeLeft:
     newPlaceLeft();
     break;
+
   case Command_placeRight:
     newPlaceRigth();
+    break; 
+  /* 后方取矿 */
+  case Command_getBackLeft:
+    Get_Back(Command_getBackLeft);
     break;
-  case Command_getLeft:
-    Get(Command_getLeft);
+
+  case Command_getBackRight:
+    Get_Back(Command_getBackRight);
     break;
-  case Command_getRight:
-    Get(Command_getRight);
+
+  /* 后方放矿 */
+  case Command_placeBackLeft:
+    place_back(Command_placeBackLeft);
     break;
+
+  case Command_placeBackRight:
+    place_back(Command_placeBackRight);
+    break;
+
   default:
-    Get(Command_getRight);
+    Arm_Current_Control_Mode = Arm_Frozen_Mode;
+    break;
   }
 }
 void Get_Back_Timer_Callback(void *argument) {
@@ -66,10 +94,9 @@ void Get_Back_Timer_Callback(void *argument) {
 void Trajectory_Timer_Callback(void *argument) {
   UNUSED(argument);
   Command_Place_And_Get_Manager(cmd_place_get);
-  if (traj_point_index >= 4000) {
-    osTimerStop(traj_timer_id); // 停定时器
-    traj_point_index = 0;
-    Arm_Current_Control_Mode = Arm_IDLE_Mode;
+  if (traj_point_index >= TRAJ_TIMEOUT)
+  {
+    trajectory_finish();
   }
 }
 
@@ -99,6 +126,10 @@ Place_Back_Stage_t place_back_stage(int t) {
 }
 
 void place_back(Command_Place_And_Get_t cmd_place_back) {
+
+
+  assert(cmd_place_back == Command_placeBackLeft ||
+         cmd_place_back == Command_placeBackRight);
   int t = traj_point_index;
 
   int direct = (cmd_place_back == Command_placeBackRight) ? (1) : (-1);
@@ -153,9 +184,7 @@ void place_back(Command_Place_And_Get_t cmd_place_back) {
     break;
 
   case PB_STAGE_DONE:
-    osTimerStop(traj_timer_id);
-    traj_point_index = 0;
-    Arm_Current_Control_Mode = Arm_IDLE_Mode;
+    trajectory_finish();
     return;
   }
 
@@ -286,6 +315,7 @@ void Get_Back(Command_Place_And_Get_t cmd_get) {
   switch (stage) {
 
   case GB_STAGE_PREPARE:
+    Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
     target_point_init(Target_Point);
     Target_Point[4].target_joint_radian = 0.6f;
     Target_Point[4].velocity = 1.0f;
@@ -297,15 +327,12 @@ void Get_Back(Command_Place_And_Get_t cmd_get) {
     break;
 
   case GB_STAGE_2:
-    Target_Point[2].target_joint_radian = -0.12f;
-    Target_Point[4].target_joint_radian = 0.0f;
+    Target_Point[2].target_joint_radian = -0.05;
+    Target_Point[4].target_joint_radian = 0.2f;
     break;
 
   case GB_STAGE_3:
-    Target_Point[1].target_joint_radian = 0.27f;
-    Target_Point[2].target_joint_radian = 0.1f;
     break;
-
   case GB_STAGE_4:
     Target_Point[1].target_joint_radian = 0.34f;
     Target_Point[2].target_joint_radian = 0.15f;
@@ -314,7 +341,7 @@ void Get_Back(Command_Place_And_Get_t cmd_get) {
 
   case GB_STAGE_5:
 
-    Target_Point[2].target_joint_radian = 0.55f;
+    Target_Point[2].target_joint_radian = 0.75f;
     break;
 
   case GB_STAGE_6:
@@ -325,6 +352,8 @@ void Get_Back(Command_Place_And_Get_t cmd_get) {
 
   case GB_STAGE_DONE:
     target_point_init(Target_Point);
+    trajectory_finish();
+    return;
     break;
   }
 
@@ -337,6 +366,7 @@ void Get(Command_Place_And_Get_t cmd_get) {
 
   switch (stage) {
   case STAGE_INIT:
+    Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
     target_point_init(Target_Point);
     break;
   case STAGE_PREPARE:
@@ -377,6 +407,8 @@ void Get(Command_Place_And_Get_t cmd_get) {
 
   case STAGE_DONE:
     target_point_init(Target_Point);
+    trajectory_finish();
+    return;
     break;
   }
 
@@ -416,7 +448,7 @@ void newPlaceRigth(void) {
     break;
 
   case 1:
-    Target_Point[0].target_joint_radian = 0.73f;
+    Target_Point[0].target_joint_radian = 0.79f;
     Target_Point[0].velocity = 1.5f;
 
     acc = PL_LEFT_STAGE0_DURATION + PL_LEFT_STAGE1_DURATION;
@@ -449,9 +481,22 @@ void newPlaceRigth(void) {
     break;
 
   case 4:
+
+    Target_Point[2].target_joint_radian = 0.5f;
+    Target_Point[2].velocity = 1.0f;
     Target_Point[0].target_joint_radian = 0.0f;
     Target_Point[0].velocity = 1.5f;
 
+  if (t >= PL_LEFT_STAGE0_DURATION +
+           PL_LEFT_STAGE1_DURATION +
+           PL_LEFT_STAGE2_DURATION +
+           PL_LEFT_STAGE3_DURATION +
+           PL_LEFT_STAGE4_DURATION)
+  {
+      target_point_init(Target_Point);
+      trajectory_finish();
+      return;
+  }
     break;
   }
 
@@ -519,6 +564,19 @@ void newPlaceLeft(void) {
     Target_Point[0].target_joint_radian = 0.0f;
     Target_Point[0].velocity = 1.5f;
 
+    Target_Point[2].target_joint_radian = 0.5f;
+    Target_Point[2].velocity = 1.0f;
+
+  if (t >= PL_LEFT_STAGE0_DURATION +
+           PL_LEFT_STAGE1_DURATION +
+           PL_LEFT_STAGE2_DURATION +
+           PL_LEFT_STAGE3_DURATION +
+           PL_LEFT_STAGE4_DURATION)
+    {
+      target_point_init(Target_Point);
+      trajectory_finish();
+      return;
+    }
     break;
   }
 
@@ -532,15 +590,12 @@ void Trajectory_Timer_Init(void) {
   osTimerAttr_t timer_attr = {0};
   timer_attr.name = "traj_timer";
   traj_timer_id =
-      // osTimerNew(Trajectory_Timer_Callback, osTimerPeriodic, NULL,
-      // &timer_attr);
-      osTimerNew(Get_Back_Timer_Callback, osTimerPeriodic, NULL, &timer_attr);
+      osTimerNew(Trajectory_Timer_Callback, osTimerPeriodic, NULL, &timer_attr);
 }
 
 void Trajectory_Publisher_Task(void *argument) {
   UNUSED(argument);
   osThreadFlagsWait(TRAJ_START_FLAG, osFlagsWaitAll, osWaitForever);
-  osTimerStart(traj_timer_id, 5);
   for (;;) {
     osDelay(100);
   }
