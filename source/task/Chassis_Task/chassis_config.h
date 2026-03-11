@@ -3,7 +3,7 @@
 
 #define Max_Velocity 3
 
-#define Max_Rising_Motor_Velocity 3.0f
+#define Max_Rising_Motor_Velocity 2.5f
 #define Max_Rising_DM_angle 0.83f
 #define Rising_DM_ZeroPoint 0.08f
 #define Rising_DM_Velocity 1.5f

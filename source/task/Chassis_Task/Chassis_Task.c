@@ -18,15 +18,17 @@
 /* 抬升阶段持续时间（单位：ms）：只执行抬升动作（3508 固定最大、DM 逻辑不变），底盘不动 */
 #define CHASSIS_RISING_TEST_LIFT_DURATION_MS 1600U
 /* 抬升阶段底盘固定速度比例：最大速度的 (NUM/DEN)，默认 2/3 */
-#define CHASSIS_RISING_TEST_LIFT_CHASSIS_SPEED_RATIO_NUM 2
-#define CHASSIS_RISING_TEST_LIFT_CHASSIS_SPEED_RATIO_DEN 3
+#define CHASSIS_RISING_TEST_LIFT_CHASSIS_SPEED_RATIO_NUM 100
+#define CHASSIS_RISING_TEST_LIFT_CHASSIS_SPEED_RATIO_DEN 100
 /* 抬升阶段抬升3508速度：通过固定 remoter.ch2 实现，默认 Remoter_CHMAX（速度最大） */
 #define CHASSIS_RISING_TEST_LIFT_RISING_RC_CH2 Remoter_CHMAX
+/* 抬升结束后切到Normal模式的停顿时间（单位：ms）：底盘停住0.2s后再进入固定速度驱动 */
+#define CHASSIS_RISING_TEST_TRANSITION_DURATION_MS 0U
 /* 抬升完成后的“底盘驱动阶段”持续时间（单位：ms）：底盘固定速度驱动 */
-#define CHASSIS_RISING_TEST_DRIVE_DURATION_MS 800U
+#define CHASSIS_RISING_TEST_DRIVE_DURATION_MS 600U
 /* 底盘驱动阶段固定速度比例：最大速度的 (NUM/DEN)，默认 1/3 */
-#define CHASSIS_RISING_TEST_DRIVE_SPEED_RATIO_NUM 3
-#define CHASSIS_RISING_TEST_DRIVE_SPEED_RATIO_DEN 4
+#define CHASSIS_RISING_TEST_DRIVE_SPEED_RATIO_NUM 70
+#define CHASSIS_RISING_TEST_DRIVE_SPEED_RATIO_DEN 100
 
 // ch1 右摇杆 左右 左-右+
 // ch2 右摇杆 前后 前+后-
@@ -109,6 +111,7 @@ void Chassis_Task(void *argument)
   typedef enum {
     RISING_TEST_STATE_IDLE = 0,
     RISING_TEST_STATE_LIFTING,
+    RISING_TEST_STATE_TRANSITION,
     RISING_TEST_STATE_DRIVING,
     RISING_TEST_STATE_PASSTHROUGH,
   } Rising_Test_State_t;
@@ -117,6 +120,8 @@ void Chassis_Task(void *argument)
   uint32_t rising_test_start_tick = 0U;
   const uint32_t rising_test_lift_duration_ticks =
       (uint32_t)((CHASSIS_RISING_TEST_LIFT_DURATION_MS * osKernelGetTickFreq()) / 1000U);
+  const uint32_t rising_test_transition_duration_ticks =
+      (uint32_t)((CHASSIS_RISING_TEST_TRANSITION_DURATION_MS * osKernelGetTickFreq()) / 1000U);
   const uint32_t rising_test_drive_duration_ticks =
       (uint32_t)((CHASSIS_RISING_TEST_DRIVE_DURATION_MS * osKernelGetTickFreq()) / 1000U);
 
@@ -140,7 +145,8 @@ void Chassis_Task(void *argument)
      * 触发条件：拨码从非抬升切到抬升（上升沿）且 sw1 == 1
      * 行为：
      * 1) 抬升阶段：抬升 3508 固定最大、DM 逻辑保持不变，底盘不动，持续一段时间
-     * 2) 抬升结束后：底盘模式强制切回 Normal；先固定速度驱动一段时间，再恢复遥控器全权控制
+     * 2) 抬升结束后：底盘模式强制切回 Normal，并停住0.2s
+     * 3) 停顿结束后：底盘固定速度驱动一段时间，再恢复Normal保持
      * 注意：如果 sw1 != 1，则不会触发测试历程，按照测试历程关闭的逻辑执行
      */
     const uint8_t raw_chassis_mode = chassis_mode;
@@ -159,6 +165,11 @@ void Chassis_Task(void *argument)
         const uint32_t now = osKernelGetTickCount();
         if (rising_test_state == RISING_TEST_STATE_LIFTING) {
           if ((uint32_t)(now - rising_test_start_tick) >= rising_test_lift_duration_ticks) {
+            rising_test_state = RISING_TEST_STATE_TRANSITION;
+            rising_test_start_tick = now;
+          }
+        } else if (rising_test_state == RISING_TEST_STATE_TRANSITION) {
+          if ((uint32_t)(now - rising_test_start_tick) >= rising_test_transition_duration_ticks) {
             rising_test_state = RISING_TEST_STATE_DRIVING;
             rising_test_start_tick = now;
           }
@@ -171,10 +182,12 @@ void Chassis_Task(void *argument)
     }
     last_raw_chassis_mode = raw_chassis_mode;
 
-    /* 抬升结束后（进入 DRIVING 或 PASSTHROUGH），即使拨码仍处于抬升，也强制切回 Normal */
+    /* 抬升结束后（进入 TRANSITION / DRIVING / PASSTHROUGH），即使拨码仍处于抬升，也强制切回 Normal */
     uint8_t effective_chassis_mode = raw_chassis_mode;
     if ((raw_chassis_mode == Chassis_Upstairs) &&
-        ((rising_test_state == RISING_TEST_STATE_DRIVING) || (rising_test_state == RISING_TEST_STATE_PASSTHROUGH))) {
+        ((rising_test_state == RISING_TEST_STATE_TRANSITION) ||
+         (rising_test_state == RISING_TEST_STATE_DRIVING) ||
+         (rising_test_state == RISING_TEST_STATE_PASSTHROUGH))) {
       effective_chassis_mode = Chassis_Normal;
     }
 
@@ -230,19 +243,34 @@ void Chassis_Task(void *argument)
       {
         case Chassis_Normal:
           /* Normal模式：底盘四轮全向移动，抬升机构停转 */
-          if ((chassis_mode == Chassis_Upstairs) && (rising_test_state == RISING_TEST_STATE_DRIVING)) {
+          if ((chassis_mode == Chassis_Upstairs) && (rising_test_state == RISING_TEST_STATE_TRANSITION)) {
+            /* 两阶段之间停0.2s：底盘已切到Normal并停住，抬升保持Normal角度 */
+            rc_info_t chassis_rc = remoter;
+            chassis_rc.ch1 = 0;
+            chassis_rc.ch2 = 0;
+            chassis_rc.ch3 = 0;
+            Chassis_Normal_Mode(&chassis_rc);
+            Rising_Normal_Hold_Mode();
+          } else if ((chassis_mode == Chassis_Upstairs) && (rising_test_state == RISING_TEST_STATE_DRIVING)) {
             /* 测试历程-驱动阶段：底盘固定速度前进 */
             rc_info_t chassis_rc = remoter;
             chassis_rc.ch1 = 0;
             chassis_rc.ch2 = (int16_t)((Remoter_CHMAX * CHASSIS_RISING_TEST_DRIVE_SPEED_RATIO_NUM) /
                                        CHASSIS_RISING_TEST_DRIVE_SPEED_RATIO_DEN);
             Chassis_Normal_Mode(&chassis_rc);
+
+            /* 第一阶段结束后切回Normal保持：3508平滑收零，DM锁定Normal角度 */
+            Rising_Normal_Hold_Mode();
+          } else if ((chassis_mode == Chassis_Upstairs) && (rising_test_state == RISING_TEST_STATE_PASSTHROUGH)) {
+            /* 测试历程结束后保持Normal：抬升维持Normal角度，直到下次重新进入Rising */
+            Chassis_Normal_Mode(&remoter);
+            Rising_Normal_Hold_Mode();
           } else {
             /* 正常情况：直接使用遥控器数据控制底盘 */
             Chassis_Normal_Mode(&remoter);
+            /* 抬升机构保持停转状态 */
+            Rising_Normal_Mode(&remoter);
           }
-          /* 抬升机构保持停转状态 */
-          Rising_Normal_Mode(&remoter);
           break;
 
         case Chassis_Upstairs:
