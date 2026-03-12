@@ -1,5 +1,6 @@
 #include "trajectory_publisher_task.h"
 #include "arm_state_machine.h"
+#include "ee_control_drv.h"
 #include "jointFollowAngle.h"
 #include "joint_control_drv.h"
 #include "trajectory_publisher_drv.h"
@@ -10,7 +11,7 @@ int traj_point_index = 0;
 static int demo_index = 0;
 
 // 　cmd_place_get 初始化
-Command_Place_And_Get_t cmd_place_get = Command_placeLeft;
+Command_Place_And_Get_t cmd_place_get = Command_placeBackLeft;
 
 #define TRAJ_TIMEOUT 10000
 
@@ -29,7 +30,7 @@ Command_Place_And_Get_t cmd_place_get = Command_placeLeft;
 
 #define GB_DURATION_ADD 500
 #define GB_DURATION_3 500   // 原4
-#define GB_DURATION_4 500   // 原5
+#define GB_DURATION_4 300   // 原5
 #define GB_DURATION_5 300   // 原6
 #define GB_DURATION_6 300   // 新阶段
 #define GB_TOTAL_TIME                                                          \
@@ -139,7 +140,7 @@ void place_back(Command_Place_And_Get_t cmd_place_back) {
          cmd_place_back == Command_placeBackRight);
   int t = traj_point_index;
 
-  int direct = (cmd_place_back == Command_placeBackRight) ? (1) : (-1);
+  int direct = (cmd_place_back == Command_placeBackRight) ? (-1) : (1);
   Place_Back_Stage_t stage = place_back_stage(t);
 
   switch (stage) {
@@ -149,7 +150,7 @@ void place_back(Command_Place_And_Get_t cmd_place_back) {
     Target_Point[0].target_joint_radian = 0.0f;
     Target_Point[1].target_joint_radian = 0.0f;
     Target_Point[2].target_joint_radian = 0.58f;
-    Target_Point[4].target_joint_radian = 0.0f;
+    Target_Point[4].target_joint_radian = 0.2f;
     Target_Point[5].target_joint_radian = 0.0f;
     break;
 
@@ -171,7 +172,7 @@ void place_back(Command_Place_And_Get_t cmd_place_back) {
 
   case PB_STAGE_D:
     Target_Point[1].target_joint_radian = 0.0f;
-    Target_Point[2].target_joint_radian = -0.12f;
+    Target_Point[2].target_joint_radian = 0;
     break;
 
   case PB_STAGE_E:
@@ -247,7 +248,7 @@ void demo(void) {
 #define DURATION_STAGE_5 300
 
 #define PL_LEFT_STAGE0_DURATION 300 // 阶段0持续时间
-#define PL_LEFT_STAGE1_DURATION 500 // 阶段1持续时间
+#define PL_LEFT_STAGE1_DURATION 300 // 阶段1持续时间
 #define PL_LEFT_STAGE2_DURATION 800 // 阶段2持续时间
 #define PL_LEFT_STAGE3_DURATION 500 // 阶段3持续时间
 #define PL_LEFT_STAGE4_DURATION 200 // 阶段4持续时间，可根据需要0
@@ -419,7 +420,7 @@ void newGet(Command_Place_And_Get_t cmd_get)
 
 void Get_Back(Command_Place_And_Get_t cmd_get) {
 
-  int direct = (cmd_get == Command_getBackRight) ? (1) : (-1);
+  int direct = (cmd_get == Command_getBackRight) ? (-1) : (1);
   int t = traj_point_index;
   Get_Back_Stage_t stage = get_back_stage(t);
 
@@ -439,7 +440,7 @@ void Get_Back(Command_Place_And_Get_t cmd_get) {
     Target_Point[2].velocity = 1.0f;
     break;
   case GB_STAGE_ADD:
-    Target_Point[2].target_joint_radian = -0.05f;
+    Target_Point[2].target_joint_radian = 0;
     Target_Point[4].target_joint_radian = 0.1f;
     break;
   case GB_STAGE_2:
@@ -449,12 +450,15 @@ void Get_Back(Command_Place_And_Get_t cmd_get) {
 
   case GB_STAGE_3:
     Target_Point[1].target_joint_radian = 0.34f;
-    Target_Point[2].target_joint_radian = 0.15f;
+    Target_Point[2].velocity = 1.0f;
+    Target_Point[2].target_joint_radian = 0.25;
     Target_Point[4].target_joint_radian = 0.2f;
+    Gripper_Current_Control_Mode = GRIPPER_SPECI_MODE;
     break;
   case GB_STAGE_4:
-    Target_Point[2].velocity = 1.5f;
-    Target_Point[2].target_joint_radian = 0.55f;
+    Target_Point[4].target_joint_radian = 0.4f;
+    Target_Point[2].velocity = 2.0f;
+    Target_Point[2].target_joint_radian = 0.65f;
     break;
 
   case GB_STAGE_5:
@@ -691,6 +695,7 @@ void newPlaceLeft(void) {
     break;
 
   case 4:
+    
     Target_Point[0].target_joint_radian = 0.0f;
     Target_Point[0].velocity = 1.5f;
 
