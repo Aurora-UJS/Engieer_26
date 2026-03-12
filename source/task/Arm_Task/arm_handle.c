@@ -19,7 +19,12 @@ void Parse_ControllerData_To_CtrllerRadian(const uint8_t *CtrllerData,
     // 每个关节弧度占 4 个字符
     sscanf((const char *)&CtrllerData[i * 4], "%04d", &tmp);
     joint_radian[i] = tmp / 1000.0f;
-    joint_radian[i] -= PI; // 偏移 PI
+    if (i==2) {
+      joint_radian[i] -= PI + 0.2f; // 偏移 PI
+    }
+    else {
+      joint_radian[i] -= PI; // 偏移 PI
+    }
   }
   switch (CtrllerData[25] - '0') {
   case 0:
