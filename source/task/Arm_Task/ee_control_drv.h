@@ -12,6 +12,7 @@ typedef struct endEffector_t{
 #define GRIPPER_OPEN_RADIAN (0.2f)
 #define GRIPPER_CLOSE_RADION (1.2f)
 #define GRIPPER_VEL (1.5f)
+#define GRIPPER_SPECI_RADIAN (0.4f)
 
 /** @brief 末端执行器初始化*/
 void endEffector_init(endEffector_t *endeffector);
@@ -30,4 +31,6 @@ void Gripper_Open(endEffector_t *endeffector);
 
 /** @brief 夹爪关闭 */
 void Gripper_Close(endEffector_t *endEffector);
+
+void Gripper_Speci(endEffector_t *endEffector);
 #endif

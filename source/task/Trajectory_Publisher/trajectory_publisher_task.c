@@ -10,9 +10,9 @@ int traj_point_index = 0;
 static int demo_index = 0;
 
 // 　cmd_place_get 初始化
-Command_Place_And_Get_t cmd_place_get = Command_placeBackRight;
+Command_Place_And_Get_t cmd_place_get = Command_placeLeft;
 
-#define TRAJ_TIMEOUT 6000
+#define TRAJ_TIMEOUT 10000
 
 #define PB_STAGE_A_DURATION 200
 #define PB_STAGE_B_DURATION 400
@@ -26,10 +26,12 @@ Command_Place_And_Get_t cmd_place_get = Command_placeBackRight;
 #define GB_DURATION_PREPARE 200
 #define GB_DURATION_1 500
 #define GB_DURATION_2 500
-#define GB_DURATION_3 100
-#define GB_DURATION_4 500
-#define GB_DURATION_5 500
-#define GB_DURATION_6 300
+
+#define GB_DURATION_ADD 500
+#define GB_DURATION_3 500   // 原4
+#define GB_DURATION_4 500   // 原5
+#define GB_DURATION_5 300   // 原6
+#define GB_DURATION_6 300   // 新阶段
 #define GB_TOTAL_TIME                                                          \
   (GB_DURATION_PREPARE + GB_DURATION_1 + GB_DURATION_2 + GB_DURATION_3 +       \
    GB_DURATION_4 + GB_DURATION_5 + GB_DURATION_6)
@@ -70,8 +72,13 @@ void Command_Place_And_Get_Manager(Command_Place_And_Get_t cmd)
   case Command_getBackRight:
     Get_Back(Command_getBackRight);
     break;
-
-  /* 后方放矿 */
+  case Command_getRight:
+    newGet(Command_getRight);
+    break;
+  case Command_getLeft:
+    newGet(Command_getLeft);
+    break;    
+    
   case Command_placeBackLeft:
     place_back(Command_placeBackLeft);
     break;
@@ -237,12 +244,14 @@ void demo(void) {
 #define DURATION_STAGE_2 250
 #define DURATION_STAGE_3 180
 #define DURATION_STAGE_4 100
+#define DURATION_STAGE_5 300
 
 #define PL_LEFT_STAGE0_DURATION 300 // 阶段0持续时间
 #define PL_LEFT_STAGE1_DURATION 500 // 阶段1持续时间
 #define PL_LEFT_STAGE2_DURATION 800 // 阶段2持续时间
 #define PL_LEFT_STAGE3_DURATION 500 // 阶段3持续时间
 #define PL_LEFT_STAGE4_DURATION 200 // 阶段4持续时间，可根据需要0
+#define PL_LEFT_STAGE5_DURATION 200 // 阶段4持续时间，可根据需要0
 
 typedef enum {
   STAGE_INIT,
@@ -251,6 +260,7 @@ typedef enum {
   STAGE_2,
   STAGE_3,
   STAGE_4,
+  STAGE_5,
   STAGE_DONE
 } Get_Stage_t;
 
@@ -264,13 +274,13 @@ typedef enum {
 
 const int stage_duration[] = {DURATION_STAGE_INIT, DURATION_STAGE_PREPARE,
                               DURATION_STAGE_1,    DURATION_STAGE_2,
-                              DURATION_STAGE_3,    DURATION_STAGE_4};
+                              DURATION_STAGE_3,    DURATION_STAGE_4,DURATION_STAGE_5 };
 
 Get_Stage_t get_stage(int t) {
 
   int acc = 0;
 
-  for (int i = 0; i < 6; i++) {
+  for (int i = 0; i < 7; i++) {
     acc += stage_duration[i];
     if (t < acc)
       return (Get_Stage_t)i;
@@ -282,6 +292,7 @@ Get_Stage_t get_stage(int t) {
 typedef enum {
   GB_STAGE_PREPARE,
   GB_STAGE_1,
+  GB_STAGE_ADD,
   GB_STAGE_2,
   GB_STAGE_3,
   GB_STAGE_4,
@@ -291,12 +302,13 @@ typedef enum {
 } Get_Back_Stage_t;
 
 const int get_back_duration[] = {
-    GB_DURATION_PREPARE, GB_DURATION_1, GB_DURATION_2, GB_DURATION_3,
+    GB_DURATION_PREPARE, GB_DURATION_1,  GB_DURATION_ADD,
+  GB_DURATION_2, GB_DURATION_3,
     GB_DURATION_4,       GB_DURATION_5, GB_DURATION_6};
 Get_Back_Stage_t get_back_stage(int t) {
   int acc = 0;
 
-  for (int i = 0; i < 7; i++) {
+  for (int i = 0; i < 8; i++) {
     acc += get_back_duration[i];
 
     if (t < acc)
@@ -304,6 +316,105 @@ Get_Back_Stage_t get_back_stage(int t) {
   }
 
   return GB_STAGE_DONE;
+}
+#define NG_STAGE0_DURATION 300
+#define NG_STAGE1_DURATION 500
+#define NG_STAGE2_DURATION 300
+#define NG_STAGE3_DURATION 500
+#define NG_STAGE4_DURATION 500
+#define NG_STAGE5_DURATION 500
+#define NG_STAGE6_DURATION 200   // reset阶段
+const int newget_duration[] = {
+    NG_STAGE0_DURATION,
+    NG_STAGE1_DURATION,
+    NG_STAGE2_DURATION,
+    NG_STAGE3_DURATION,
+    NG_STAGE4_DURATION,
+    NG_STAGE5_DURATION,
+    NG_STAGE6_DURATION
+};
+typedef enum {
+    NG_STAGE_INIT,
+    NG_STAGE_YAW,
+    NG_STAGE_DOWN,
+    NG_STAGE_ARM,
+    NG_STAGE_LIFT,
+    NG_STAGE_BACK,
+    NG_STAGE_RESET,
+    NG_STAGE_DONE
+} NewGetStage_t;
+NewGetStage_t newget_stage(int t)
+{
+    int acc = 0;
+
+    for(int i = 0; i < 7; i++)
+    {
+        acc += newget_duration[i];
+
+        if(t < acc)
+            return (NewGetStage_t)i;
+    }
+
+    return NG_STAGE_DONE;
+}
+
+void newGet(Command_Place_And_Get_t cmd_get)
+{
+    int direct = (cmd_get == Command_getRight) ? 1 : -1;
+    int t = traj_point_index;
+
+    NewGetStage_t stage = newget_stage(t);
+
+    switch(stage)
+    {
+
+    case NG_STAGE_INIT:
+        target_point_init(Target_Point);
+        Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
+        break;
+
+    case NG_STAGE_YAW:
+        Target_Point[0].target_joint_radian = 0.76f * direct;
+        Target_Point[0].velocity = 1.5f;
+        break;
+
+    case NG_STAGE_DOWN:
+        Target_Point[2].target_joint_radian = 0.2f;
+        Target_Point[4].target_joint_radian = -0.55;
+        Target_Point[4].velocity = 1.5f;
+        break;
+
+    case NG_STAGE_ARM:
+        Target_Point[1].target_joint_radian = 0.58f;
+        Target_Point[1].velocity = 1.0f;
+        Target_Point[2].target_joint_radian = 0.2f;
+        Target_Point[4].target_joint_radian = 0.4;
+
+        break;
+
+    case NG_STAGE_LIFT:
+        Target_Point[4].target_joint_radian = 0.6f;
+        Target_Point[2].target_joint_radian = 0.7f;
+        Target_Point[2].velocity = 1.5f;
+        Gripper_Current_Control_Mode = GRIPPER_SPECI_MODE;
+        break;
+
+    case NG_STAGE_BACK:
+        Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+        Target_Point[0].target_joint_radian = 0.0f;
+        Target_Point[0].velocity = 1.5f;
+        break;
+
+    case NG_STAGE_RESET:
+        target_point_init(Target_Point);
+        break;
+
+    case NG_STAGE_DONE:
+        trajectory_finish();
+        return;
+    }
+
+    traj_point_index++;
 }
 
 void Get_Back(Command_Place_And_Get_t cmd_get) {
@@ -317,41 +428,46 @@ void Get_Back(Command_Place_And_Get_t cmd_get) {
   case GB_STAGE_PREPARE:
     Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
     target_point_init(Target_Point);
-    Target_Point[4].target_joint_radian = 0.6f;
-    Target_Point[4].velocity = 1.0f;
+/*     Target_Point[4].target_joint_radian = 0.6f;
+    Target_Point[4].velocity = 1.0f; */
     break;
 
   case GB_STAGE_1:
-    Target_Point[0].target_joint_radian = direct * (2.27f);
+    Target_Point[0].target_joint_radian = direct * (-2.7f);
     Target_Point[0].velocity = 1.5f;
+    Target_Point[2].target_joint_radian = 0.5f;
+    Target_Point[2].velocity = 1.0f;
     break;
-
+  case GB_STAGE_ADD:
+    Target_Point[2].target_joint_radian = -0.05f;
+    Target_Point[4].target_joint_radian = 0.1f;
+    break;
   case GB_STAGE_2:
-    Target_Point[2].target_joint_radian = -0.05;
-    Target_Point[4].target_joint_radian = 0.2f;
+    Target_Point[0].velocity = 0.5f;
+    Target_Point[0].target_joint_radian = direct * (-2.27f);
     break;
 
   case GB_STAGE_3:
-    break;
-  case GB_STAGE_4:
     Target_Point[1].target_joint_radian = 0.34f;
     Target_Point[2].target_joint_radian = 0.15f;
     Target_Point[4].target_joint_radian = 0.2f;
     break;
-
-  case GB_STAGE_5:
-
-    Target_Point[2].target_joint_radian = 0.75f;
+  case GB_STAGE_4:
+    Target_Point[2].velocity = 1.5f;
+    Target_Point[2].target_joint_radian = 0.55f;
     break;
 
-  case GB_STAGE_6:
+  case GB_STAGE_5:
     Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
     Target_Point[0].velocity = 1.5f;
     Target_Point[0].target_joint_radian = 0.0f;
     break;
+    
+  case GB_STAGE_6:
+    target_point_init(Target_Point);
+    break;
 
   case GB_STAGE_DONE:
-    target_point_init(Target_Point);
     trajectory_finish();
     return;
     break;
@@ -404,9 +520,10 @@ void Get(Command_Place_And_Get_t cmd_get) {
     Target_Point[0].target_joint_radian = 0.0f;
     Target_Point[0].velocity = 1.5f;
     break;
-
-  case STAGE_DONE:
+  case STAGE_5:
     target_point_init(Target_Point);
+    break;
+  case STAGE_DONE:
     trajectory_finish();
     return;
     break;
@@ -486,17 +603,30 @@ void newPlaceRigth(void) {
     Target_Point[2].velocity = 1.0f;
     Target_Point[0].target_joint_radian = 0.0f;
     Target_Point[0].velocity = 1.5f;
-
-  if (t >= PL_LEFT_STAGE0_DURATION +
+    acc = PL_LEFT_STAGE0_DURATION +
            PL_LEFT_STAGE1_DURATION +
            PL_LEFT_STAGE2_DURATION +
            PL_LEFT_STAGE3_DURATION +
-           PL_LEFT_STAGE4_DURATION)
-  {
-      target_point_init(Target_Point);
-      trajectory_finish();
-      return;
-  }
+           PL_LEFT_STAGE4_DURATION;
+    if (t>=acc) {
+      stage++; 
+    }
+  break;
+case 5:
+    target_point_init(Target_Point);
+
+    acc = PL_LEFT_STAGE0_DURATION +
+          PL_LEFT_STAGE1_DURATION +
+          PL_LEFT_STAGE2_DURATION +
+          PL_LEFT_STAGE3_DURATION +
+          PL_LEFT_STAGE4_DURATION +
+          PL_LEFT_STAGE5_DURATION;
+
+    if (t >= acc) {
+        trajectory_finish(); // 完成动作
+        stage = 0;           // 可选：重置阶段
+        return;
+    }
     break;
   }
 
@@ -516,7 +646,7 @@ void newPlaceLeft(void) {
   case 0:
     Target_Point[4].velocity = 2.5f;
     Target_Point[1].target_joint_radian = 0.49139f;
-    Target_Point[2].target_joint_radian = 0.40f;
+    Target_Point[2].target_joint_radian = 0.45f;
     Target_Point[3].target_joint_radian = 0.0f;
     Target_Point[4].target_joint_radian = 0.28f;
     Target_Point[5].target_joint_radian = 0.0f;
@@ -596,6 +726,7 @@ void Trajectory_Timer_Init(void) {
 void Trajectory_Publisher_Task(void *argument) {
   UNUSED(argument);
   osThreadFlagsWait(TRAJ_START_FLAG, osFlagsWaitAll, osWaitForever);
+  osTimerStart(traj_timer_id, 5); // <-- 确保定时器启动
   for (;;) {
     osDelay(100);
   }

@@ -12,7 +12,12 @@ float Target_Joint_Radian[6] = {0};
 
 void target_point_init(target_point_t *Target_Point) {
   for (int joint_index = 0; joint_index < JOINT_NUM; joint_index++) {
+    if (joint_index == 2) {
+      Target_Point[joint_index].target_joint_radian = 0.2f;
+    }
+    else {
     Target_Point[joint_index].target_joint_radian = 0;
+    }
     Target_Point[joint_index].velocity = JOINT_DEFAULT_VELOCITY;
   }
 }

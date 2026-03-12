@@ -7,15 +7,14 @@
 extern osTimerId_t traj_timer_id;
 extern rc_info_t remoter;
 static Command_Place_And_Get_t place_and_get_command_table[] ={
-
+  Command_getRight,
+  Command_getLeft,
+  Command_getBackLeft,
   Command_getBackRight,
   Command_placeBackRight,
   Command_placeBackLeft,
   Command_placeRight,
   Command_placeLeft,
-  Command_getBackLeft,
-  Command_getRight,
-  Command_getLeft
 };
 #define COMMAND_TABLE_SIZE 8
 static int keyboard_command_index = -1;

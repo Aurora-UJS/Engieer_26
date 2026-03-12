@@ -59,6 +59,8 @@ void Get_Back(Command_Place_And_Get_t cmd_get);
 
 void place_back(Command_Place_And_Get_t cmd_place_back);
 
+void newGet(Command_Place_And_Get_t cmd_get);
+
 extern Command_Place_And_Get_t cmd_place_get;
 extern const float Trajectory[TRAJECTORY_NUM][JOINT_NUM];
 extern const float Traj_Vel[TRAJECTORY_NUM][JOINT_NUM];

@@ -1,9 +1,10 @@
 #include "arm_state_machine.h"
 #include "arm_handle.h"
+#include "ee_control_drv.h"
 #include "joint_control_drv.h"
 
 gripper_control_mode_t Gripper_Current_Control_Mode = GRIPPER_IDLE_MODE;
-arm_control_mode_t Arm_Current_Control_Mode = Arm_IDLE_Mode;
+arm_control_mode_t Arm_Current_Control_Mode = Arm_Traj_Mode;
 
 float Rising_Joint_Radian[6] = {0,1.4,1.3,0,0.4,0};
 
@@ -31,6 +32,9 @@ void Gripper_Control_Mode_Manager(endEffector_t *EndEffector) {
     break;
   case GRIPPER_CLOSE_MODE:
     Gripper_Close(EndEffector);
+    break;
+  case GRIPPER_SPECI_MODE:
+    Gripper_Speci(EndEffector);
     break;
   }
 }

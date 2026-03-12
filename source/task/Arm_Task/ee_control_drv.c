@@ -1,4 +1,6 @@
 #include "ee_control_drv.h"
+#include "cmsis_os2.h"
+#include "motor_DM.h"
 
 /**
  * @brief 末端执行器信息更新
@@ -31,6 +33,10 @@ void Gripper_Open(endEffector_t *endeffector) {
   osDelay(1);
   PosSpeed_CtrlMotorDM(endeffector->endEffector_motor, GRIPPER_OPEN_RADIAN,
                        GRIPPER_VEL);
+}
+void Gripper_Speci(endEffector_t *endEffector) {
+  osDelay(1);
+  PosSpeed_CtrlMotorDM(endEffector->endEffector_motor, GRIPPER_SPECI_RADIAN, GRIPPER_VEL);
 }
 void Gripper_Close(endEffector_t *endEffector) {
   osDelay(1);

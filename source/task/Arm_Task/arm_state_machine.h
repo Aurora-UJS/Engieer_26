@@ -19,7 +19,8 @@ typedef enum {
 typedef enum{
     GRIPPER_IDLE_MODE = 0,
     GRIPPER_OPEN_MODE,
-    GRIPPER_CLOSE_MODE
+    GRIPPER_CLOSE_MODE,
+    GRIPPER_SPECI_MODE
 }gripper_control_mode_t ;
 
 extern float Ctrller_Joint_Radian[6];
