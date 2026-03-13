@@ -262,7 +262,7 @@ uint8_t CtrllerData[CtrllerData_Length] = {
     '3','1','4','1',
     '3','1','4','1',
     '3','1','4','1',
-	'0','0'
+	'0','0',  '0'
 };
 keyboard_t kb_info;
 
@@ -287,7 +287,7 @@ static void ctrller_parse_frame(uint8_t *buff, uint16_t len)
 	case 0x0302:  // 自定义控制器数据
 		// memcpy(&custom_controller_info.CustomController, (buff + DATA_Offset), LEN_custom_controller);
 		// memcpy(CtrllerData, &custom_controller_info.CustomController, LEN_custom_controller);
-		memcpy(CtrllerData, Ctrller_Receive_Buffer + 7, 26);
+		memcpy(CtrllerData, Ctrller_Receive_Buffer + 7, 27);
 		break;
 	case 0x0304:  // 键鼠数据
 		memcpy(&custom_controller_info.keyboard, (buff + DATA_Offset), LEN_keyboard);

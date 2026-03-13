@@ -6,33 +6,41 @@
 
 extern osTimerId_t traj_timer_id;
 extern rc_info_t remoter;
-static Command_Place_And_Get_t place_and_get_command_table[] ={
-  Command_getRight,
-  Command_getLeft,
-  Command_getBackLeft,
+static Command_Place_And_Get_t get_command_table[] ={
   Command_getBackRight,
-  Command_placeBackRight,
-  Command_placeBackLeft,
-  Command_placeRight,
-  Command_placeLeft,
+  Command_getRight,
+  Command_getLeft
 };
-#define COMMAND_TABLE_SIZE 8
-static int keyboard_command_index = -1;
+static Command_Place_And_Get_t place_command_table[] = {
+  Command_placeLeft,
+  Command_placeRight,
+  Command_placeBackRight
+};
+#define COMMAND_TABLE_SIZE 3
+static int place_key_command_index = 0;
+static int get_key_command_index = 0;
 
 void Arm_Keyboard_Manager(uint8_t key) {
 
   if (key == (uint8_t)'Q') {
-    Arm_Current_Control_Mode = Arm_Custom_Controller_Follow_Mode;
+    Arm_Current_Control_Mode = Arm_Traj_Mode;
+      get_key_command_index = (get_key_command_index + 1) % COMMAND_TABLE_SIZE;
+      cmd_place_get = get_command_table[get_key_command_index];
+      traj_point_index = 0;
+      osTimerStop(traj_timer_id);
+      osTimerStart(traj_timer_id, 5);
   }
   if (key == (uint8_t)'E' ) {
     Arm_Current_Control_Mode = Arm_Traj_Mode;
-    keyboard_command_index++;
-        if (keyboard_command_index >= COMMAND_TABLE_SIZE || keyboard_command_index <0)
-            keyboard_command_index = 0;
-        cmd_place_get = place_and_get_command_table[keyboard_command_index];
+    place_key_command_index = (place_key_command_index + 1) % COMMAND_TABLE_SIZE;
+    cmd_place_get = place_command_table[place_key_command_index];
     traj_point_index = 0;
+    osTimerStop(traj_timer_id);
     osTimerStart(traj_timer_id, 5); // <-- 确保定时器启动
     }
+  if (key == (uint8_t)'F') {
+    Arm_Current_Control_Mode = Arm_Custom_Controller_Follow_Mode;
+  }
   if (key == (uint8_t)'R') {
     Arm_Current_Control_Mode = Arm_IDLE_Mode;
   }

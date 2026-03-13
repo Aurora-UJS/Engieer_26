@@ -4,6 +4,8 @@
 #include "DBusSys.h"
 #include "arm_state_machine.h"
 
+#define DEBUG_READ_DATA_ONLY 1
+
 extern float Ctrller_Joint_Radian[6];
 // extern DM_motor_t *Joint_Motor[JOINT_NUM];
 float Mannal_Joint_Radian[6] = {0};
@@ -70,7 +72,9 @@ void jointFollowAngle(void *argument) {
 
   osDelay(100);
 
+  #if DEBUG_READ_DATA_ONLY 
   Joint_Motor_Enable(Joint); // 使能所有关节电机
+  #endif
 
   EndEffector_Motor_Enable(&EndEffector);
 

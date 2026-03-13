@@ -1,4 +1,5 @@
 #include "ee_control_drv.h"
+#include "arm_state_machine.h"
 #include "cmsis_os2.h"
 #include "motor_DM.h"
 
@@ -42,6 +43,17 @@ void Gripper_Close(endEffector_t *endEffector) {
   osDelay(1);
   PosSpeed_CtrlMotorDM(endEffector->endEffector_motor, GRIPPER_CLOSE_RADION,
                        GRIPPER_VEL);
+}
+void endEffector_Toggle(void)
+{
+    if(Gripper_Current_Control_Mode == GRIPPER_OPEN_MODE)
+    {
+        Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+    }
+    else
+    {
+        Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
+    }
 }
 /**
  * @brief 末端执行器初始化

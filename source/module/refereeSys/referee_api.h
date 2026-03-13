@@ -8,7 +8,7 @@
 #include "uart_api.h"
 #include "usart.h"
 
-#define CtrllerData_Length 26
+#define CtrllerData_Length 27
 #define RE_RX_BUFFER_SIZE 255u // 裁判系统接收缓冲区大小
 
 #define SCREEN_WIDTH 1080
