@@ -1,11 +1,16 @@
 #include "arm_handle.h"
+#include "arm_state_machine.h"
 #include "joint_control_drv.h"
 #include <string.h>
 
 static const float Zero_Velocity[6] = {0, 0, 0, 0, 0, 0};
-static const float Default_Velocity[6] = {
-    JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY,
-    JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY, JOINT_DEFAULT_VELOCITY,
+static const float Custom_Default_Velocity[6] = {
+  0.5f,
+  0.5f,
+  CUSTOM_DEFAULT_VELOCITY,
+  CUSTOM_DEFAULT_VELOCITY,
+  CUSTOM_DEFAULT_VELOCITY,
+  CUSTOM_DEFAULT_VELOCITY,
 };
 /**
  * @brief 关节角度解算
@@ -23,12 +28,23 @@ void Parse_ControllerData_To_CtrllerRadian(const uint8_t *CtrllerData,
   for (int i = 0; i < 6; i++) {
     int tmp = 0;
     float temp_joint_radian= 0;
-    // 每个关节弧度占 4 个字符
-    tmp =
-    (CtrllerData[i*4]   - '0') * 1000 +
-    (CtrllerData[i*4+1] - '0') * 100  +
-    (CtrllerData[i*4+2] - '0') * 10   +
-    (CtrllerData[i*4+3] - '0');
+    if (i == 5)
+    {
+        tmp =
+        (CtrllerData[20] - '0') * 10000 +
+        (CtrllerData[21] - '0') * 1000 +
+        (CtrllerData[22] - '0') * 100 +
+        (CtrllerData[23] - '0') * 10 +
+        (CtrllerData[24] - '0');
+    }
+    else
+    {
+        tmp =
+        (CtrllerData[i*4]   - '0') * 1000 +
+        (CtrllerData[i*4+1] - '0') * 100  +
+        (CtrllerData[i*4+2] - '0') * 10   +
+        (CtrllerData[i*4+3] - '0');
+    }
     // joint_radian[i] = tmp / 1000.0f;
     temp_joint_radian = tmp * 0.001f;
     
@@ -36,14 +52,15 @@ void Parse_ControllerData_To_CtrllerRadian(const uint8_t *CtrllerData,
       temp_joint_radian -= PI + 0.2f;
       // joint_radian[i] -= PI + 0.2f; // 偏移 PI
     }
+    else if (i == 5)
+    {
+      temp_joint_radian -= 2 * PI;
+      j6_debug = temp_joint_radian;
+      temp_joint_radian *= j6_direct; // j6暂时通过数据解包来反向处理
+    }
     else {
       temp_joint_radian -= PI;
       // joint_radian[i] -= PI; // 偏移 PI
-    }
-    if (i == 5)
-    {
-      j6_debug = temp_joint_radian;
-      temp_joint_radian *= j6_direct; // j6暂时通过数据解包来反向处理
     }
     joint_radian[i] = temp_joint_radian;
   }
@@ -83,7 +100,13 @@ void Arm_Custom_Controller_Follow_Handle(void) {
   memcpy(Target_Joint_Radian, Ctrller_Joint_Radian,
          sizeof(Ctrller_Joint_Radian));
 
-  Point_Publisher(Target_Point, Target_Joint_Radian, Default_Velocity);
+  Point_Publisher(Target_Point, Target_Joint_Radian, Custom_Default_Velocity);
+  // for (int joint_index =0; joint_index<JOINT_NUM-1; joint_index++) {
+  //   Target_Point[joint_index].target_joint_radian = Target_Joint_Radian[joint_index];
+  //   Target_Point[joint_index].velocity = Custom_Default_Velocity[joint_index];
+  // }
+  // Target_Point[5].target_joint_radian = Target_Joint_Radian[5];
+  // Target_Point[5].velocity = 1.0f;
 }
 void Arm_Frozen_Handle(void) {
   Point_Publisher(Target_Point, Target_Joint_Radian, Zero_Velocity);

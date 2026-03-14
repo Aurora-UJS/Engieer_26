@@ -12,6 +12,7 @@
 
 #define JOINT_NUM (6)
 #define JOINT_DEFAULT_VELOCITY (0.5f)
+#define CUSTOM_DEFAULT_VELOCITY (1.0f)
 #define JOINT_POS_MAX (3.2f)
 #define JOINT_POS_MIN (-3.2f)
 #define NEGATIVE (-1.0f)
