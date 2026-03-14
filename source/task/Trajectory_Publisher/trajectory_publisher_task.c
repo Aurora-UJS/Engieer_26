@@ -6,24 +6,24 @@
 #include "joint_control_drv.h"
 #include "trajectory_publisher_drv.h"
 #include <assert.h>
+#include "arm_debug.h"
 
-#define TRAJ_DEBUG 0 // 设置为1开始自动动作
 osTimerId_t traj_timer_id;
 int traj_point_index = 0;
 static int demo_index = 0;
 
 // 　cmd_place_get 初始化
-Command_Place_And_Get_t cmd_place_get = Command_getBackRight;
+Command_Place_And_Get_t cmd_place_get = Command_getRight;
 
 #define TRAJ_TIMEOUT 10000
 #define PB_STAGE_A_DURATION 200
 #define PB_STAGE_B_DURATION 400
 #define PB_STAGE_C_DURATION 500
 #define PB_STAGE_D_DURATION 500
-#define PB_STAGE_E_DURATION 500
-#define PB_STAGE_F_DURATION 500
-#define PB_STAGE_G_DURATION 500
-#define PB_STAGE_H_DURATION 500
+#define PB_STAGE_E_DURATION 100
+#define PB_STAGE_F_DURATION 300
+#define PB_STAGE_G_DURATION 200
+#define PB_STAGE_H_DURATION 50
 
 #define GB_DURATION_PREPARE 200
 #define GB_DURATION_1 500
@@ -152,7 +152,9 @@ void place_back(Command_Place_And_Get_t cmd_place_back) {
     Target_Point[0].target_joint_radian = 0.0f;
     Target_Point[1].target_joint_radian = 0.0f;
     Target_Point[2].target_joint_radian = 0.58f;
+    Target_Point[3].target_joint_radian = 0;
     Target_Point[4].target_joint_radian = 0.2f;
+    Target_Point[5].velocity = 1.0f;
     Target_Point[5].target_joint_radian = 0.0f;
     break;
 
@@ -243,7 +245,7 @@ void demo(void) {
 #define DURATION_STAGE_INIT 500
 #define DURATION_STAGE_PREPARE 300
 #define DURATION_STAGE_1 300
-#define DURATION_STAGE_2 250
+#define DURATION_STAGE_2 100
 #define DURATION_STAGE_3 180
 #define DURATION_STAGE_4 100
 #define DURATION_STAGE_5 300

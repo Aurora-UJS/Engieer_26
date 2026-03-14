@@ -2,10 +2,10 @@
 #include "arm_handle.h"
 #include "ee_control_drv.h"
 #include "joint_control_drv.h"
-
+#include "arm_debug.h"
 gripper_control_mode_t Gripper_Current_Control_Mode = GRIPPER_IDLE_MODE;
 
-#if Traj_Debug
+#if TRAJ_DEBUG
 arm_control_mode_t Arm_Current_Control_Mode = Arm_Traj_Mode;
 #else 
 arm_control_mode_t Arm_Current_Control_Mode = Arm_IDLE_Mode;

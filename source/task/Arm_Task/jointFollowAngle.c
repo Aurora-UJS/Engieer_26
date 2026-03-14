@@ -3,8 +3,8 @@
 #include "jointFollowAngle.h"
 #include "DBusSys.h"
 #include "arm_state_machine.h"
+#include "arm_debug.h"
 
-#define DEBUG_READ_DATA_ONLY 1
 
 extern float Ctrller_Joint_Radian[6];
 // extern DM_motor_t *Joint_Motor[JOINT_NUM];
@@ -65,7 +65,7 @@ void jointFollowAngle(void *argument) {
   UNUSED(argument);
 
   joint_init(Joint);
-  // Debug_set_Point();
+
   target_point_init(Target_Point);
 
   endEffector_init(&EndEffector);

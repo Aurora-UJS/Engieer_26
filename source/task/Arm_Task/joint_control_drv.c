@@ -87,22 +87,22 @@ void joint_init(Joint_t *Joint) {
 void Joint_Move(Joint_t Joint[],target_point_t Target_Point[]){
   
     Joint_Motor_PosSpeed_Ctrl(&Joint[1],Target_Point[1]);
-    osDelay(2);
+    osDelay(1);
 
     Joint_Motor_PosSpeed_Ctrl(&Joint[4],Target_Point[4]);
-    osDelay(2);
+    osDelay(1);
 
     Joint_Motor_PosSpeed_Ctrl(&Joint[2],Target_Point[2]);
-    osDelay(2);
+    osDelay(1);
 
     Joint_Motor_PosSpeed_Ctrl(&Joint[0],Target_Point[0]);
-    osDelay(2);
+    osDelay(1);
 
     Joint_Motor_PosSpeed_Ctrl(&Joint[3],Target_Point[3]);
-    osDelay(2);
+    osDelay(1);
 
     Joint_Motor_PosSpeed_Ctrl(&Joint[5],Target_Point[5]);
-    osDelay(2);
+    osDelay(1);
 }
 
 __attribute__((deprecated))
