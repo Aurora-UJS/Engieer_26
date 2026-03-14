@@ -87,7 +87,8 @@ void jointFollowAngle(void *argument) {
     if (remoter.sw1 != 1) {
       Arm_Current_Control_Mode = Arm_Zero_Mode;
     } */
-    Joint_Move(Joint, Target_Point);
+
+    // Joint_Move(Joint, Target_Point);
 
     Joint_Get_Radian(Joint,Current_Radian);
 
