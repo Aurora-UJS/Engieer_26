@@ -13,7 +13,7 @@ int traj_point_index = 0;
 static int demo_index = 0;
 
 // 　cmd_place_get 初始化
-Command_Place_And_Get_t cmd_place_get = Command_getRight;
+Command_Place_And_Get_t cmd_place_get = Command_placeBackRight;
 
 #define TRAJ_TIMEOUT 10000
 #define PB_STAGE_A_DURATION 200
@@ -26,15 +26,15 @@ Command_Place_And_Get_t cmd_place_get = Command_getRight;
 #define PB_STAGE_H_DURATION 50
 
 #define GB_DURATION_PREPARE 200
-#define GB_DURATION_1 500
-#define GB_DURATION_2 500
+#define GB_DURATION_1 200
+#define GB_DURATION_2 400
 
-#define GB_DURATION_ADD 500
-#define GB_DURATION_3 500   // 原4
+#define GB_DURATION_ADD 300
+#define GB_DURATION_3 300   // 原4
 #define GB_DURATION_4 200   // 原5
 #define GB_DURATION_ADD1 100
-#define GB_DURATION_5 300   // 原6
-#define GB_DURATION_6 300   // 新阶段
+#define GB_DURATION_5 200   // 原6
+#define GB_DURATION_6 200   // 新阶段
 #define GB_TOTAL_TIME                                                          \
   (GB_DURATION_PREPARE + GB_DURATION_1 + GB_DURATION_2 + GB_DURATION_3 +       \
    GB_DURATION_4 + GB_DURATION_5 + GB_DURATION_6)
@@ -167,7 +167,7 @@ void place_back(Command_Place_And_Get_t cmd_place_back) {
     // stage_c中延时traj_point_index 50
     Target_Point[1].target_joint_radian = 0.24f;
     Target_Point[2].target_joint_radian = 0.25f;
-    Target_Point[4].target_joint_radian = 0.4f;
+    Target_Point[4].target_joint_radian = 0.5f;
     if (traj_point_index >= PB_STAGE_A_DURATION + PB_STAGE_B_DURATION + 100) {
       Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
     }
@@ -183,6 +183,7 @@ void place_back(Command_Place_And_Get_t cmd_place_back) {
     break;
 
   case PB_STAGE_F:
+    Target_Point[2].target_joint_radian = 0.1f;
     Target_Point[0].target_joint_radian = 0.0f;
     break;
 
@@ -245,7 +246,7 @@ void demo(void) {
 #define DURATION_STAGE_INIT 500
 #define DURATION_STAGE_PREPARE 300
 #define DURATION_STAGE_1 300
-#define DURATION_STAGE_2 100
+#define DURATION_STAGE_2 250
 #define DURATION_STAGE_3 180
 #define DURATION_STAGE_4 100
 #define DURATION_STAGE_5 300
@@ -323,13 +324,14 @@ Get_Back_Stage_t get_back_stage(int t) {
   return GB_STAGE_DONE;
 }
 #define NG_STAGE0_DURATION 200
-#define NG_STAGE1_DURATION 300
-#define NG_STAGE2_DURATION 300
-#define NG_STAGE3_DURATION 500
-#define NG_STAGE4_DURATION 200
-#define NG_STAGE5_DURATION 200
-#define NG_STAGE6_DURATION 200   // reset阶段
-#define NG_ADD_DURATION 500
+#define NG_STAGE1_DURATION 200
+#define NG_STAGE2_DURATION 200
+#define NG_STAGE3_DURATION 300
+#define NG_STAGE4_DURATION 100
+#define NG_STAGE5_DURATION 100
+#define NG_STAGE6_DURATION 100   // reset阶段
+#define NG_ADD_DURATION 200
+
 const int newget_duration[] = {
     NG_STAGE0_DURATION,
     NG_STAGE1_DURATION,
@@ -387,7 +389,7 @@ void newGet(Command_Place_And_Get_t cmd_get)
         break;
 
     case NG_STAGE_DOWN:
-        Target_Point[2].target_joint_radian = 0.2f;
+        Target_Point[2].target_joint_radian = 0.3f;
         Target_Point[4].target_joint_radian = -0.55;
         Target_Point[4].velocity = 1.5f;
         break;
@@ -450,7 +452,7 @@ void Get_Back(Command_Place_And_Get_t cmd_get) {
 
   case GB_STAGE_1:
     Target_Point[0].target_joint_radian = direct * (-2.7f);
-    Target_Point[0].velocity = 1.5f;
+    Target_Point[0].velocity = 2.0f;
     Target_Point[2].target_joint_radian = 0.5f;
     Target_Point[2].velocity = 1.0f;
     break;
@@ -482,7 +484,7 @@ void Get_Back(Command_Place_And_Get_t cmd_get) {
     break;
   case GB_STAGE_5:
     Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
-    Target_Point[0].velocity = 1.5f;
+    Target_Point[0].velocity = 2.0f;
     Target_Point[0].target_joint_radian = 0.0f;
     break;
     
@@ -562,7 +564,7 @@ void Get(Command_Place_And_Get_t cmd_get) {
 }
 
 void newPlaceRigth(void) {
-  if (traj_point_index <= 1000) {
+  if (traj_point_index <= 800) {
     Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
   } else {
     Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
@@ -598,10 +600,10 @@ void newPlaceRigth(void) {
     break;
 
   case 2:
-    Target_Point[1].target_joint_radian = 0.55f;
-    Target_Point[2].target_joint_radian = 0.10f;
+    // Target_Point[1].target_joint_radian = 0.55f;
+    Target_Point[2].target_joint_radian = 0.26f;
     Target_Point[2].velocity = 0.5f;
-
+    //
     acc = PL_LEFT_STAGE0_DURATION + PL_LEFT_STAGE1_DURATION +
           PL_LEFT_STAGE2_DURATION;
     if (t >= acc)
@@ -623,41 +625,29 @@ void newPlaceRigth(void) {
 
   case 4:
 
-    target_point_init(Target_Point);
-/*     Target_Point[2].target_joint_radian = 0.5f;
-    Target_Point[2].velocity = 1.0f; */
     Target_Point[0].target_joint_radian = 0.0f;
     Target_Point[0].velocity = 1.5f;
+
+    Target_Point[2].target_joint_radian = 0.5f;
+    Target_Point[2].velocity = 1.0f;
     acc = PL_LEFT_STAGE0_DURATION +
            PL_LEFT_STAGE1_DURATION +
            PL_LEFT_STAGE2_DURATION +
            PL_LEFT_STAGE3_DURATION +
            PL_LEFT_STAGE4_DURATION;
     if (t>=acc) {
-      stage++; 
+      stage = 0;
+      target_point_init(Target_Point);
+      trajectory_finish();
+      return;
     }
   break;
-case 5:
-
-    acc = PL_LEFT_STAGE0_DURATION +
-          PL_LEFT_STAGE1_DURATION +
-          PL_LEFT_STAGE2_DURATION +
-          PL_LEFT_STAGE3_DURATION +
-          PL_LEFT_STAGE4_DURATION +
-          PL_LEFT_STAGE5_DURATION;
-
-    if (t >= acc) {
-        trajectory_finish(); // 完成动作
-        stage = 0;           // 可选：重置阶段
-        return;
-    }
-    break;
   }
 
   traj_point_index++;
 }
 void newPlaceLeft(void) {
-  if (traj_point_index <= 1000) {
+  if (traj_point_index <= 800) {
     Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
   } else {
     Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
