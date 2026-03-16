@@ -323,7 +323,7 @@ const osSemaphoreAttr_t controlBinaryIMU_attributes = {
      .cb_size = sizeof(Joint5_Move_TaskControlBlock),
      .stack_mem = &Joint5_Move_TaskBuffer[0],
      .stack_size = sizeof(Joint5_Move_TaskBuffer),
-     .priority = (osPriority_t) osPriorityNormal,
+     .priority = (osPriority_t) osPriorityAboveNormal,
  };
  /* Definitions for Joint6_Move_Task */
  osThreadId_t Joint6_Move_TaskHandle;
@@ -335,7 +335,7 @@ const osSemaphoreAttr_t controlBinaryIMU_attributes = {
      .cb_size = sizeof(Joint6_Move_TaskControlBlock),
      .stack_mem = &Joint6_Move_TaskBuffer[0],
      .stack_size = sizeof(Joint6_Move_TaskBuffer),
-     .priority = (osPriority_t) osPriorityNormal,
+     .priority = (osPriority_t) osPriorityAboveNormal,
  };
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -413,13 +413,20 @@ void MX_FREERTOS_Init(void) {
   // uartTestHandle = osThreadNew(uart_test, NULL, &uartTest_attributes);
   // motorTestHandle = osThreadNew(motor_test, NULL,&motorTest_attributes);
   jointFollowAngleHandle = osThreadNew(jointFollowAngle,NULL, &jointFollowAngle_attributes);
+
+  Joint1_Move_TaskHandle = osThreadNew(Joint1_Move_Task, NULL, &Joint1_Move_Task_attributes);
+  Joint2_Move_TaskHandle = osThreadNew(Joint2_Move_Task, NULL, &Joint2_Move_Task_attributes);
+  Joint3_Move_TaskHandle = osThreadNew(Joint3_Move_Task, NULL, &Joint3_Move_Task_attributes);
+  Joint4_Move_TaskHandle = osThreadNew(Joint4_Move_Task, NULL, &Joint4_Move_Task_attributes);
+  Joint5_Move_TaskHandle = osThreadNew(Joint5_Move_Task, NULL, &Joint5_Move_Task_attributes);
+  Joint6_Move_TaskHandle = osThreadNew(Joint6_Move_Task, NULL, &Joint6_Move_Task_attributes);
   //uart_Transmit_AngleHandle = osThreadNew(uart_Transmit_Angle, NULL, &uart_Transmit_Angle_attributes);
   Chassis_TaskHandle = osThreadNew(Chassis_Task, NULL, &Chassis_Task_attributes);
-  SerialPortHandle = osThreadNew(SerialPlot, NULL, &SerialPort_attributes);
+  // SerialPortHandle = osThreadNew(SerialPlot, NULL, &SerialPort_attributes);
   Referee_TaskHandle = osThreadNew(Referee_Task, NULL, &Referee_Task_attributes);
   IMU_TaskHandle = osThreadNew(IMU_Task, NULL, &IMU_Task_attributes);
   Trajectory_PublisherHandle = osThreadNew(Trajectory_Publisher_Task, NULL, &Trajectory_Publisher_attributes);
-  SerialPlotHandle = osThreadNew(SerialPlot, NULL, &SerialPlot_attributes);
+  // SerialPlotHandle = osThreadNew(SerialPlot, NULL, &SerialPlot_attributes);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   Watchdog_TaskHandle = osThreadNew(Watchdog_Task, NULL, &Watchdog_Task_attributes);
