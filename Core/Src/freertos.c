@@ -414,12 +414,12 @@ void MX_FREERTOS_Init(void) {
   // motorTestHandle = osThreadNew(motor_test, NULL,&motorTest_attributes);
   jointFollowAngleHandle = osThreadNew(jointFollowAngle,NULL, &jointFollowAngle_attributes);
 
-  Joint1_Move_TaskHandle = osThreadNew(Joint1_Move_Task, NULL, &Joint1_Move_Task_attributes);
-  Joint2_Move_TaskHandle = osThreadNew(Joint2_Move_Task, NULL, &Joint2_Move_Task_attributes);
-  Joint3_Move_TaskHandle = osThreadNew(Joint3_Move_Task, NULL, &Joint3_Move_Task_attributes);
-  Joint4_Move_TaskHandle = osThreadNew(Joint4_Move_Task, NULL, &Joint4_Move_Task_attributes);
-  Joint5_Move_TaskHandle = osThreadNew(Joint5_Move_Task, NULL, &Joint5_Move_Task_attributes);
-  Joint6_Move_TaskHandle = osThreadNew(Joint6_Move_Task, NULL, &Joint6_Move_Task_attributes);
+  // Joint1_Move_TaskHandle = osThreadNew(Joint1_Move_Task, NULL, &Joint1_Move_Task_attributes);
+  // Joint2_Move_TaskHandle = osThreadNew(Joint2_Move_Task, NULL, &Joint2_Move_Task_attributes);
+  // Joint3_Move_TaskHandle = osThreadNew(Joint3_Move_Task, NULL, &Joint3_Move_Task_attributes);
+  // Joint4_Move_TaskHandle = osThreadNew(Joint4_Move_Task, NULL, &Joint4_Move_Task_attributes);
+  // Joint5_Move_TaskHandle = osThreadNew(Joint5_Move_Task, NULL, &Joint5_Move_Task_attributes);
+  // Joint6_Move_TaskHandle = osThreadNew(Joint6_Move_Task, NULL, &Joint6_Move_Task_attributes);
   //uart_Transmit_AngleHandle = osThreadNew(uart_Transmit_Angle, NULL, &uart_Transmit_Angle_attributes);
   Chassis_TaskHandle = osThreadNew(Chassis_Task, NULL, &Chassis_Task_attributes);
   // SerialPortHandle = osThreadNew(SerialPlot, NULL, &SerialPort_attributes);

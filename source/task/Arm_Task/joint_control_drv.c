@@ -1,6 +1,7 @@
 // joint_control_drv.c: 关节控制驱动
 
 #include "joint_control_drv.h"
+#include "cmsis_os2.h"
 
 float Ctrller_Joint_Radian[6] = {0};
 DM_motor_t *Joint_Motor[JOINT_NUM];
@@ -87,20 +88,18 @@ void joint_init(Joint_t *Joint) {
 void Joint_Move(Joint_t Joint[],target_point_t Target_Point[]){
   
     Joint_Motor_PosSpeed_Ctrl(&Joint[1],Target_Point[1]);
-    osDelay(1);
 
     Joint_Motor_PosSpeed_Ctrl(&Joint[4],Target_Point[4]);
-    osDelay(1);
 
-    Joint_Motor_PosSpeed_Ctrl(&Joint[2],Target_Point[2]);
     osDelay(1);
+    Joint_Motor_PosSpeed_Ctrl(&Joint[2],Target_Point[2]);
 
     Joint_Motor_PosSpeed_Ctrl(&Joint[0],Target_Point[0]);
-    osDelay(1);
 
+    osDelay(1);
     Joint_Motor_PosSpeed_Ctrl(&Joint[3],Target_Point[3]);
-    osDelay(1);
 
+    osDelay(1);
     Joint_Motor_PosSpeed_Ctrl(&Joint[5],Target_Point[5]);
     osDelay(1);
 }
