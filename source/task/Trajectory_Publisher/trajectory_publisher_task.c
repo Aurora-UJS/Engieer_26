@@ -13,7 +13,7 @@ int traj_point_index = 0;
 static int demo_index = 0;
 
 // 　cmd_place_get 初始化
-Command_Place_And_Get_t cmd_place_get = Command_placeBackRight;
+Command_Place_And_Get_t cmd_place_get = Command_placeLeft;
 
 #define TRAJ_TIMEOUT 10000
 #define PB_STAGE_A_DURATION 200
@@ -61,11 +61,11 @@ void Command_Place_And_Get_Manager(Command_Place_And_Get_t cmd)
 
   /* 正向放矿 */
   case Command_placeLeft:
-    newPlaceLeft();
+    place(Command_placeLeft);
     break;
 
   case Command_placeRight:
-    newPlaceRigth();
+    place(Command_placeRight);
     break; 
   /* 后方取矿 */
   case Command_getBackLeft:
@@ -251,10 +251,10 @@ void demo(void) {
 #define DURATION_STAGE_4 100
 #define DURATION_STAGE_5 300
 
-#define PL_LEFT_STAGE0_DURATION 300 // 阶段0持续时间
+#define PL_LEFT_STAGE0_DURATION 200 // 阶段0持续时间
 #define PL_LEFT_STAGE1_DURATION 300 // 阶段1持续时间
-#define PL_LEFT_STAGE2_DURATION 500 // 阶段2持续时间
-#define PL_LEFT_STAGE3_DURATION 500 // 阶段3持续时间
+#define PL_LEFT_STAGE2_DURATION 300 // 阶段2持续时间
+#define PL_LEFT_STAGE3_DURATION 300 // 阶段3持续时间
 #define PL_LEFT_STAGE4_DURATION 200 // 阶段4持续时间，可根据需要0
 #define PL_LEFT_STAGE5_DURATION 200 // 阶段4持续时间，可根据需要0
 
@@ -390,7 +390,7 @@ void newGet(Command_Place_And_Get_t cmd_get)
 
     case NG_STAGE_DOWN:
         Target_Point[2].target_joint_radian = 0.3f;
-        Target_Point[4].target_joint_radian = -0.55;
+        Target_Point[4].target_joint_radian = -0.95;
         Target_Point[4].velocity = 1.5f;
         break;
 
@@ -417,6 +417,7 @@ void newGet(Command_Place_And_Get_t cmd_get)
         break;
 
     case NG_STAGE_BACK:
+        Target_Point[0].velocity = 2.0f;
         Target_Point[0].target_joint_radian = 0;
         // Target_Point[4].target_joint_radian = 1.0f;
 /*         Target_Point[0].target_joint_radian = 0.0f;
@@ -575,8 +576,10 @@ void newPlaceRigth(void) {
 
   switch (stage) {
   case 0:
+    Target_Point[1].velocity = 0.8f;
     Target_Point[4].velocity = 2.5f;
-    Target_Point[1].target_joint_radian = 0.49139f;
+    Target_Point[2].velocity = 1.0f;
+    Target_Point[1].target_joint_radian = 0.68;
     Target_Point[2].target_joint_radian = 0.50;
     Target_Point[3].target_joint_radian = 0.0f;
     Target_Point[4].target_joint_radian = 0.28f;
@@ -590,7 +593,8 @@ void newPlaceRigth(void) {
     break;
 
   case 1:
-    Target_Point[4].target_joint_radian = 0.35f;
+    Target_Point[4].velocity = 2.5f;
+    Target_Point[4].target_joint_radian = 0.55f;
     Target_Point[0].target_joint_radian = 0.79f;
     Target_Point[0].velocity = 1.5f;
 
@@ -601,7 +605,9 @@ void newPlaceRigth(void) {
 
   case 2:
     // Target_Point[1].target_joint_radian = 0.55f;
-    Target_Point[2].target_joint_radian = 0.26f;
+    Target_Point[4].velocity = 2.5f;
+    Target_Point[4].target_joint_radian = 0.2f;
+    Target_Point[2].target_joint_radian = 0;
     Target_Point[2].velocity = 0.5f;
     //
     acc = PL_LEFT_STAGE0_DURATION + PL_LEFT_STAGE1_DURATION +
@@ -611,11 +617,12 @@ void newPlaceRigth(void) {
     break;
 
   case 3:
-    Target_Point[1].target_joint_radian = 0.0f;
-    Target_Point[1].velocity = 0.2f;
+    
+    Target_Point[2].target_joint_radian = -0.1f;
+    Target_Point[2].velocity = 0.5f;
+    Target_Point[1].target_joint_radian = 0.0;
+    Target_Point[1].velocity = 0.5f;
 
-    Target_Point[2].target_joint_radian = -0.05f;
-    Target_Point[2].velocity = 0.6f;
 
     acc = PL_LEFT_STAGE0_DURATION + PL_LEFT_STAGE1_DURATION +
           PL_LEFT_STAGE2_DURATION + PL_LEFT_STAGE3_DURATION;
@@ -729,9 +736,103 @@ void newPlaceLeft(void) {
 
   traj_point_index++;
 }
-void Trajectory_demo_Timer_Callback(void *argument) {
-  UNUSED(argument);
-  demo();
+
+void place(Command_Place_And_Get_t cmd_place)
+{
+  assert(cmd_place == Command_placeLeft || cmd_place == Command_placeRight);
+
+  if (traj_point_index <= 800) {
+    Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+  } else {
+    Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
+  }
+
+  static int stage = 0;
+  int t = traj_point_index;
+  int acc = 0;
+  int direct = (cmd_place == Command_placeRight) ? 1 : -1;
+
+  switch (stage) {
+  case 0:
+    Target_Point[1].velocity = 0.8f;
+    Target_Point[4].velocity = 2.5f;
+    Target_Point[2].velocity = 1.0f;
+    Target_Point[1].target_joint_radian =
+        (cmd_place == Command_placeRight) ? 0.68f : 0.49139f;
+    Target_Point[2].target_joint_radian = 0.50f;
+    Target_Point[3].target_joint_radian = 0.0f;
+    Target_Point[4].target_joint_radian = 0.28f;
+    Target_Point[5].target_joint_radian = 0.0f;
+
+    Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+
+    acc = PL_LEFT_STAGE0_DURATION;
+    if (t >= acc) {
+      stage++;
+    }
+    break;
+
+  case 1:
+    Target_Point[4].velocity = 2.5f;
+    Target_Point[4].target_joint_radian =
+        (cmd_place == Command_placeRight) ? 0.55f : 0.35f;
+    Target_Point[0].target_joint_radian = 0.79f * direct;
+    Target_Point[0].velocity = 1.5f;
+
+    acc = PL_LEFT_STAGE0_DURATION + PL_LEFT_STAGE1_DURATION;
+    if (t >= acc) {
+      stage++;
+    }
+    break;
+
+  case 2:
+    Target_Point[4].velocity = 2.5f;
+    Target_Point[4].target_joint_radian =
+        (cmd_place == Command_placeRight) ? 0.2f : 0.35f;
+    Target_Point[2].target_joint_radian =
+        (cmd_place == Command_placeRight) ? 0.0f : 0.26f;
+    Target_Point[2].velocity = 0.5f;
+
+    acc = PL_LEFT_STAGE0_DURATION + PL_LEFT_STAGE1_DURATION +
+          PL_LEFT_STAGE2_DURATION;
+    if (t >= acc) {
+      stage++;
+    }
+    break;
+
+  case 3:
+    Target_Point[2].target_joint_radian =
+        (cmd_place == Command_placeRight) ? -0.1f : -0.05f;
+    Target_Point[2].velocity = (cmd_place == Command_placeRight) ? 0.5f : 0.6f;
+    Target_Point[1].target_joint_radian = 0.0f;
+    Target_Point[1].velocity = (cmd_place == Command_placeRight) ? 0.5f : 0.2f;
+
+    acc = PL_LEFT_STAGE0_DURATION + PL_LEFT_STAGE1_DURATION +
+          PL_LEFT_STAGE2_DURATION + PL_LEFT_STAGE3_DURATION;
+    if (t >= acc) {
+      stage++;
+    }
+    break;
+
+  case 4:
+    Target_Point[0].target_joint_radian = 0.0f;
+    Target_Point[0].velocity = 1.5f;
+    Target_Point[2].target_joint_radian = 0.5f;
+    Target_Point[2].velocity = 1.0f;
+
+    acc = PL_LEFT_STAGE0_DURATION + PL_LEFT_STAGE1_DURATION +
+          PL_LEFT_STAGE2_DURATION + PL_LEFT_STAGE3_DURATION +
+          PL_LEFT_STAGE4_DURATION;
+    if (t >= acc) {
+      stage = 0;
+      target_point_init(Target_Point);
+      trajectory_finish();
+      return;
+    }
+    break;
+  }
+
+  traj_point_index++;
 }
 void Trajectory_Timer_Init(void) {
   osTimerAttr_t timer_attr = {0};

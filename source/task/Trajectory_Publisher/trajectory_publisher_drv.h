@@ -51,6 +51,8 @@ void placeRight(void);
 
 void Get(Command_Place_And_Get_t cmd_get);
 
+void place(Command_Place_And_Get_t cmd_place);
+
 void newPlaceRigth(void);
 
 void newPlaceLeft(void);
