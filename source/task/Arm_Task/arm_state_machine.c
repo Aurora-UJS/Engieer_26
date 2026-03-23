@@ -8,7 +8,7 @@ gripper_control_mode_t Gripper_Current_Control_Mode = GRIPPER_IDLE_MODE;
 #if TRAJ_DEBUG
 arm_control_mode_t Arm_Current_Control_Mode = Arm_Traj_Mode;
 #else 
-arm_control_mode_t Arm_Current_Control_Mode = Arm_IDLE_Mode;
+arm_control_mode_t Arm_Current_Control_Mode = Arm_Custom_Controller_Follow_Mode;
 #endif
 
 

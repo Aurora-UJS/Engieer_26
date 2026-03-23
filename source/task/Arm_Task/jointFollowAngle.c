@@ -72,7 +72,7 @@ void jointFollowAngle(void *argument) {
 
   osDelay(100);
 
-  #if DEBUG_READ_DATA_ONLY 
+  #if !DEBUG_READ_DATA_ONLY 
   Joint_Motor_Enable(Joint); // 使能所有关节电机
 
   EndEffector_Motor_Enable(&EndEffector);
