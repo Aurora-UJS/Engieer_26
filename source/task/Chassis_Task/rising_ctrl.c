@@ -91,6 +91,42 @@ void Rising_Normal_Mode(const rc_info_t *remoter)
     Rising_Stop();
 }
 
+void Rising_Normal_Hold_Mode(void)
+{
+    if (s_rising_dji == NULL || s_rising_dm_l == NULL || s_rising_dm_r == NULL) {
+        return;
+    }
+
+    s_rising_target_velocity[Rising_Motor_3508_Left] = 0.0f;
+    s_rising_target_velocity[Rising_Motor_3508_Right] = 0.0f;
+
+    g_chassis_debug.rising_target_speed_3508[Rising_Motor_3508_Left] = 0.0f;
+    g_chassis_debug.rising_target_speed_3508[Rising_Motor_3508_Right] = 0.0f;
+
+    Rising_3508_PID_Calculate(s_rising_pid,
+                             s_rising_target_velocity,
+                             s_rising_dji,
+                             s_rising_ctrl_output);
+
+    g_chassis_debug.rising_output_3508[Rising_Motor_3508_Left] = (float32_t)s_rising_ctrl_output[Rising_Motor_3508_Left];
+    g_chassis_debug.rising_output_3508[Rising_Motor_3508_Right] = (float32_t)s_rising_ctrl_output[Rising_Motor_3508_Right];
+    Rising_Motor_SendControl_DJI(s_rising_dji, s_rising_ctrl_output);
+
+    g_chassis_debug.rising_actual_speed_3508[Rising_Motor_3508_Left] = s_rising_dji->motor_msg[Rising_Motor_3508_Left].motor_speed * (Motor_Wheel_Trans);
+    g_chassis_debug.rising_actual_speed_3508[Rising_Motor_3508_Right] = s_rising_dji->motor_msg[Rising_Motor_3508_Right].motor_speed * (Motor_Wheel_Trans);
+
+    s_dm_target_angle_l = Rising_DM_ZeroPoint;
+    s_dm_target_angle_r = -Rising_DM_ZeroPoint;
+    g_chassis_debug.rising_dm_pid_output[0] = 0.0f;
+    g_chassis_debug.rising_dm_pid_output[1] = 0.0f;
+    g_chassis_debug.rising_target_angle_dm_l = s_dm_target_angle_l;
+    g_chassis_debug.rising_target_angle_dm_r = s_dm_target_angle_r;
+    Rising_Motor_SendControl_DM(s_rising_dm_l, s_rising_dm_r, s_dm_target_angle_l, s_dm_target_angle_r);
+
+    g_chassis_debug.rising_actual_angle_dm_l = s_rising_dm_l->motor_msg.motor_angle;
+    g_chassis_debug.rising_actual_angle_dm_r = s_rising_dm_r->motor_msg.motor_angle;
+}
+
 void Rising_Reset_DmImuPid(void)
 {
     for (int i = 0; i < 2; i++) {
@@ -294,4 +330,3 @@ static void Rising_DmImuAngleClosedLoop(IMU_data_t imu, float32_t output_angle[2
     output_angle[0] = angle_cmd;
     output_angle[1] = -angle_cmd;
 }
-

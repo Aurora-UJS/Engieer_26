@@ -36,6 +36,14 @@ void Rising_Stop(void);
 void Rising_Normal_Mode(const rc_info_t *remoter);
 
 /**
+ * @brief Normal保持模式：3508平滑收零，DM固定在Normal角度
+ *
+ * 用于测试历程中从Rising切回Normal时，避免先Stop导致3508速度瞬时清零，
+ * 同时让DM电机保持在Normal模式的目标角度，直到下一次重新进入Rising模式。
+ */
+void Rising_Normal_Hold_Mode(void);
+
+/**
  * @brief 上楼模式下的抬升控制逻辑
  *
  * @param remoter 遥控器数据指针
