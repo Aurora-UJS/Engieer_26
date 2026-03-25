@@ -127,6 +127,7 @@ void Chassis_Upstairs_Mode(const rc_info_t *remoter)
  * - S键：后退（motion.y = -Max_Velocity）
  * - A键：左移（motion.x = -Max_Velocity）
  * - D键：右移（motion.x = +Max_Velocity）
+ * - Shift + WASD：平移速度降为 30%
  * - 鼠标X轴：旋转（motion.wz，带死区100和限幅±660）
  *
  * @param kb 键盘/鼠标数据指针（可来自裁判系统或遥控器DBUS）
@@ -148,6 +149,9 @@ void Chassis_Keyboard_Mode(const keyboard_t *kb, uint8_t disable_yaw)
     dbg_kb_keycode = kb->key_code.key_code;
 
     basic_vector_t motion;
+    const float32_t translation_speed =
+        ((kb->key_code.bit.SHIFT != 0U) ? Chassis_Keyboard_Shift_Speed_Ratio : 1.0f) *
+        (float32_t)Max_Velocity;
     motion.x = 0.0f;
     motion.y = 0.0f;
     motion.wz = 0.0f;
@@ -157,15 +161,15 @@ void Chassis_Keyboard_Mode(const keyboard_t *kb, uint8_t disable_yaw)
      * W/S控制前后（y轴），A/D控制左右（x轴）
      */
     if (kb->key_code.bit.W != 0U) {
-        motion.x = (float32_t)Max_Velocity;  // 前进
+        motion.x = translation_speed;  // 前进
     } else if (kb->key_code.bit.S != 0U) {
-        motion.x = -(float32_t)Max_Velocity;  // 后退
+        motion.x = -translation_speed;  // 后退
     }
 
     if (kb->key_code.bit.A != 0U) {
-        motion.y = -(float32_t)Max_Velocity;  // 左移
+        motion.y = -translation_speed;  // 左移
     } else if (kb->key_code.bit.D != 0U) {
-        motion.y = (float32_t)Max_Velocity;  // 右移
+        motion.y = translation_speed;  // 右移
     }
 
     dbg_kb_motion_x = motion.x;

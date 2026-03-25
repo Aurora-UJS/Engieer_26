@@ -2,6 +2,7 @@
 #define CHASSIS_CONFIG_H
 
 #define Max_Velocity 3
+#define Chassis_Keyboard_Shift_Speed_Ratio 0.3f
 
 #define Max_Rising_Motor_Velocity 2.5f
 #define Max_Rising_DM_angle 0.83f
