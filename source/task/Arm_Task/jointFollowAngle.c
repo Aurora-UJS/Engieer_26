@@ -4,6 +4,8 @@
 #include "DBusSys.h"
 #include "arm_state_machine.h"
 #include "arm_debug.h"
+#include "cmsis_os2.h"
+#include "joint_control_drv.h"
 
 
 extern float Ctrller_Joint_Radian[6];
@@ -58,9 +60,19 @@ void Debug_set_Point(void){
   Target_Point[4].velocity = 0.5f;
   Target_Point[5].velocity = 0.5f;
 }
+
+endEffector_t EndEffector;
 Joint_t Joint[JOINT_NUM];
+void Arm_Reset(Joint_t* Joint)
+{
+  if (Joint[0].joint_motor->error_code == Motor_DM_DISABLE) {
+    Joint_Motor_Enable(Joint); 
+    osDelay(1);
+    EndEffector_Motor_Enable(&EndEffector);
+  }
+}
+
 void jointFollowAngle(void *argument) {
-  endEffector_t EndEffector;
 
   UNUSED(argument);
 
@@ -88,6 +100,9 @@ void jointFollowAngle(void *argument) {
       Arm_Current_Control_Mode = Arm_Zero_Mode;
     } */
 
+     Arm_Reset(Joint);
+    // Joint_Motor_Enable(Joint);
+    
     Joint_Move(Joint, Target_Point);
 
     Joint_Get_Radian(Joint,Current_Radian);

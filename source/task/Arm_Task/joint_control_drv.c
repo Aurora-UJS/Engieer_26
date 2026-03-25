@@ -2,6 +2,8 @@
 
 #include "joint_control_drv.h"
 #include "cmsis_os2.h"
+#include "ee_control_drv.h"
+#include "motor_DM.h"
 
 float Ctrller_Joint_Radian[6] = {0};
 DM_motor_t *Joint_Motor[JOINT_NUM];
