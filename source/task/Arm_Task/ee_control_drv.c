@@ -62,8 +62,8 @@ void endEffector_Toggle(void)
  */
 void endEffector_motor_init(endEffector_t *endeffector) {
   endeffector->endEffector_motor = pvPortMalloc(sizeof(DM_motor_t));
-  endeffector->endEffector_motor->can_cfg.id = 0x07;
-  endeffector->endEffector_motor->motor_msg.can_msg.id = 0x07;
+  endeffector->endEffector_motor->can_cfg.id = 0x07+POS_MODE;
+  endeffector->endEffector_motor->motor_msg.can_msg.id = 0x17;
   endeffector->endEffector_motor->can_cfg.port = CAN2_PORT;
 
   Motor_DM_Init(endeffector->endEffector_motor);

@@ -13,7 +13,7 @@ int traj_point_index = 0;
 static int demo_index = 0;
 
 // 　cmd_place_get 初始化
-Command_Place_And_Get_t cmd_place_get = Command_getRight;
+Command_Place_And_Get_t cmd_place_get = Command_placeRight;
 
 #define TRAJ_TIMEOUT 10000
 #define PB_STAGE_A_DURATION 200
@@ -757,10 +757,10 @@ void place(Command_Place_And_Get_t cmd_place)
     Target_Point[1].velocity = 0.8f;
     Target_Point[4].velocity = 2.5f;
     Target_Point[2].velocity = 1.0f;
-    Target_Point[1].target_joint_radian = 0.68f;
-    Target_Point[2].target_joint_radian = 0.50f;
+    Target_Point[1].target_joint_radian = 0.56f;
+    Target_Point[2].target_joint_radian = 0.60f;
     Target_Point[3].target_joint_radian = 0.0f;
-    Target_Point[4].target_joint_radian = 0.28f;
+    Target_Point[4].target_joint_radian = 0.32;
     Target_Point[5].target_joint_radian = 0.0f;
 
     Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
@@ -773,7 +773,7 @@ void place(Command_Place_And_Get_t cmd_place)
 
   case 1:
     Target_Point[4].velocity = 2.5f;
-    Target_Point[4].target_joint_radian = 0.55f;
+    Target_Point[4].target_joint_radian = 0.40f;
     Target_Point[0].target_joint_radian = 0.79f * direct;
     Target_Point[0].velocity = 1.5f;
 
@@ -786,7 +786,7 @@ void place(Command_Place_And_Get_t cmd_place)
   case 2:
     Target_Point[4].velocity = 2.5f;
     Target_Point[4].target_joint_radian = 0.2f;
-    Target_Point[2].target_joint_radian = 0.0f;
+    Target_Point[2].target_joint_radian = -0.25f;
     Target_Point[2].velocity = 0.5f;
 
     acc = PL_LEFT_STAGE0_DURATION + PL_LEFT_STAGE1_DURATION +
@@ -797,7 +797,7 @@ void place(Command_Place_And_Get_t cmd_place)
     break;
 
   case 3:
-    Target_Point[2].target_joint_radian = -0.1f;
+    Target_Point[2].target_joint_radian = -0.25f;
     Target_Point[2].velocity = 0.5f;
     Target_Point[1].target_joint_radian = 0.0f;
     Target_Point[1].velocity = 0.5f;

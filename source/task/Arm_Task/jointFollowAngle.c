@@ -5,6 +5,7 @@
 #include "arm_state_machine.h"
 #include "arm_debug.h"
 #include "cmsis_os2.h"
+#include "ee_control_drv.h"
 #include "joint_control_drv.h"
 
 
@@ -63,12 +64,19 @@ void Debug_set_Point(void){
 
 endEffector_t EndEffector;
 Joint_t Joint[JOINT_NUM];
+
+static inline bool Motor_Disable_Detect(Joint_t *Joint)
+{
+  return (Joint[0].joint_motor->error_code == Motor_DM_DISABLE);
+}
 void Arm_Reset(Joint_t* Joint)
 {
-  if (Joint[0].joint_motor->error_code == Motor_DM_DISABLE) {
+  for (int joint_index = 0; joint_index<JOINT_NUM; joint_index++) {
+  if (Motor_Disable_Detect(&Joint[joint_index])) {
     Joint_Motor_Enable(Joint); 
     osDelay(1);
     EndEffector_Motor_Enable(&EndEffector);
+  }
   }
 }
 
