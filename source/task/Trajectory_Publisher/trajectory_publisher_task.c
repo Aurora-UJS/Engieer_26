@@ -736,19 +736,38 @@ void newPlaceLeft(void) {
 
   traj_point_index++;
 }
-
+#define PLACE_ADJUST_UP_TICK 200
+#define PLACE_ADJUST_DOWN_TICK 100
+#define PLACE_ADJUST_TICK (PLACE_ADJUST_DOWN_TICK+PLACE_ADJUST_UP_TICK ) 
+void place_adjust(void){
+  int adjust_t = traj_point_index;
+  if (adjust_t < PLACE_ADJUST_UP_TICK) {
+    Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
+    Target_Point[4].velocity = 1.5f;
+    Target_Point[4].target_joint_radian = 0.40f;
+  } else if (adjust_t < PLACE_ADJUST_TICK) {
+    target_point_init(Target_Point);
+    Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
+  }
+}
 void place(Command_Place_And_Get_t cmd_place)
 {
   assert(cmd_place == Command_placeLeft || cmd_place == Command_placeRight);
 
-  if (traj_point_index <= 800) {
+  if (traj_point_index < PLACE_ADJUST_TICK) {
+    place_adjust();
+    traj_point_index++;
+    return;
+  }
+
+  if ((traj_point_index - PLACE_ADJUST_TICK) <= 500) {
     Gripper_Current_Control_Mode = GRIPPER_CLOSE_MODE;
   } else {
     Gripper_Current_Control_Mode = GRIPPER_OPEN_MODE;
   }
 
   static int stage = 0;
-  int t = traj_point_index;
+  int t = traj_point_index - PLACE_ADJUST_TICK;
   int acc = 0;
   int direct = (cmd_place == Command_placeRight) ? 1 : -1;
 
@@ -786,7 +805,8 @@ void place(Command_Place_And_Get_t cmd_place)
   case 2:
     Target_Point[4].velocity = 2.5f;
     Target_Point[4].target_joint_radian = 0.2f;
-    Target_Point[2].target_joint_radian = -0.25f;
+    Target_Point[1].target_joint_radian = 0.60f;
+    Target_Point[2].target_joint_radian = -0.20f;
     Target_Point[2].velocity = 0.5f;
 
     acc = PL_LEFT_STAGE0_DURATION + PL_LEFT_STAGE1_DURATION +
