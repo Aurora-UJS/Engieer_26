@@ -54,7 +54,7 @@ void Referee_OnKeyboardKeyPressed(uint8_t key)
         Engineer_Mode.Chassis_Ctrl_Mode = (Engineer_Mode.Chassis_Ctrl_Mode == CHASSIS_CTRL_MODE_Normal) ? CHASSIS_CTRL_MODE_Rising : CHASSIS_CTRL_MODE_Normal;
     }
 
-    Arm_Keyboard_Manager(key);
+    Arm_Keyboard_Manager(key, Referee_GetActiveKeyboard());
 
 }
 

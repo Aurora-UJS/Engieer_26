@@ -1,47 +1,91 @@
 #include "DBusSys.h"
 #include "arm_state_machine.h"
 #include "trajectory_publisher_drv.h"
+#include "arm_referee.h"
 #include <stdint.h>
 #include "cmsis_os2.h"
 
 extern osTimerId_t traj_timer_id;
 extern rc_info_t remoter;
-static Command_Place_And_Get_t get_command_table[] ={
-  Command_getRight,
-  Command_getLeft
-};
-static Command_Place_And_Get_t place_command_table[] = {
-  Command_placeLeft,
-  Command_placeRight,
-};
-#define COMMAND_TABLE_SIZE 2
-static int place_key_command_index = 0;
-static int get_key_command_index = 0;
-
-void Arm_Keyboard_Manager(uint8_t key) {
+// static Command_Place_And_Get_t get_command_table[] ={
+//   Command_getRight,
+//   Command_getLeft
+// };
+// static Command_Place_And_Get_t place_command_table[] = {
+//   Command_placeLeft,
+//   Command_placeRight,
+// };
+// #define COMMAND_TABLE_SIZE 2
+// static int place_key_command_index = 0;
+// static int get_key_command_index = 0;
+void Arm_Keyboard_Manager(uint8_t key, const keyboard_t *kb) {
 
   if (key == (uint8_t)'Q') {
-    Arm_Current_Control_Mode = Arm_Traj_Mode;
-      get_key_command_index = (get_key_command_index + 1) % COMMAND_TABLE_SIZE;
-      cmd_place_get = get_command_table[get_key_command_index];
-      traj_point_index = 0;
-      osTimerStop(traj_timer_id);
-      osTimerStart(traj_timer_id, 5);
-  }
-  if (key == (uint8_t)'E' ) {
-    Arm_Current_Control_Mode = Arm_Traj_Mode;
-    place_key_command_index = (place_key_command_index + 1) % COMMAND_TABLE_SIZE;
-    cmd_place_get = place_command_table[place_key_command_index];
-    traj_point_index = 0;
-    osTimerStop(traj_timer_id);
-    osTimerStart(traj_timer_id, 5); 
+    if (kb != NULL && kb->key_code.bit.SHIFT != 0U) {
+      Target_Point[0].target_joint_radian -= 0.1f;
+    } else {
+      Target_Point[0].target_joint_radian += 0.1f;
     }
+  }
+  if (key == (uint8_t)'E') {
+    if (kb != NULL && kb->key_code.bit.SHIFT != 0U) {
+      Target_Point[1].target_joint_radian -= 0.1f;
+    } else {
+      Target_Point[1].target_joint_radian += 0.1f;
+    }
+  }
+  if (key == (uint8_t)'R') {
+    if (kb != NULL && kb->key_code.bit.SHIFT != 0U) {
+      Target_Point[2].target_joint_radian -= 0.1f;
+    } else {
+      Target_Point[2].target_joint_radian += 0.1f;
+    }
+  }
+  if (key == (uint8_t)'Z') {
+  
+    if (kb != NULL && kb->key_code.bit.SHIFT != 0U) {
+      Target_Point[3].target_joint_radian -= 0.1f;
+    } else {
+      Target_Point[3].target_joint_radian += 0.1f;
+    }
+  }
+  if (key == (uint8_t)'X') {
+    if (kb != NULL && kb->key_code.bit.SHIFT != 0U) {
+      Target_Point[4].target_joint_radian -= 0.1f;
+    } else {
+      Target_Point[4].target_joint_radian += 0.1f;
+    }
+  }
+
+  if (key == (uint8_t)'C') {
+    if (kb != NULL && kb->key_code.bit.SHIFT != 0U) {
+      Target_Point[5].target_joint_radian -= 0.1f;
+    } else {
+      Target_Point[5].target_joint_radian += 0.1f;
+    }
+  }
+  // if (key == (uint8_t)'Q') {
+  //   Arm_Current_Control_Mode = Arm_Traj_Mode;
+  //     get_key_command_index = (get_key_command_index + 1) % COMMAND_TABLE_SIZE;
+  //     cmd_place_get = get_command_table[get_key_command_index];
+  //     traj_point_index = 0;
+  //     osTimerStop(traj_timer_id);
+  //     osTimerStart(traj_timer_id, 5);
+  // }
+  // if (key == (uint8_t)'E' ) {
+  //   Arm_Current_Control_Mode = Arm_Traj_Mode;
+  //   place_key_command_index = (place_key_command_index + 1) % COMMAND_TABLE_SIZE;
+  //   cmd_place_get = place_command_table[place_key_command_index];
+  //   traj_point_index = 0;
+  //   osTimerStop(traj_timer_id);
+  //   osTimerStart(traj_timer_id, 5); 
+  //   }
   if (key == (uint8_t)'F') {
     Arm_Current_Control_Mode = Arm_Custom_Controller_Follow_Mode;
   }
-  if (key == (uint8_t)'R') {
-    Arm_Current_Control_Mode = Arm_IDLE_Mode;
-  }
+  // if (key == (uint8_t)'R') {
+  //   Arm_Current_Control_Mode = Arm_IDLE_Mode;
+  // }
 
    
 /*   if (key == (uint8_t)'E') {
