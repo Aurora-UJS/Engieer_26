@@ -1,9 +1,12 @@
- #include "chassis_drive.h"
+#include "chassis_drive.h"
+#include "PowerControl.h"
 #include "PIDtool.h"
- #include "chassis_debug.h"
- #include "omni_mecanum_kinematics.h"
- #include "tool.h"
- #include <string.h>
+#include "chassis_debug.h"
+#include "omni_mecanum_kinematics.h"
+#include "referee_api.h"
+#include "tool.h"
+#include <math.h>
+#include <string.h>
 
 static DJI_motor_t s_chassis_motor_obj;
 static DJI_motor_t *s_chassis_motor = &s_chassis_motor_obj;
@@ -13,6 +16,223 @@ static LowPassFilter s_chassis_lpf[4];
 
 static float32_t s_chassis_target_velocity[4];
 static int16_t s_chassis_ctrl_output[4];
+static uint16_t s_chassis_power_buffer_energy = 0U;
+static float s_chassis_power_virtual_cap_percent = 0.0f;
+static float s_chassis_power_effective_limit = Chassis_PowerLimit_UserMax_Default;
+static float s_chassis_power_scale_filtered = 1.0f;
+
+static void Chassis_PowerAssignHook(float alloc_power);
+static void Chassis_PowerControl_Init(void);
+static void Chassis_PowerControl_UpdateInputs(void);
+static void Chassis_ApplyPowerLimit(void);
+static void Chassis_UpdateActualSpeedDebug(void);
+static void Chassis_PublishDriveOutput(void);
+
+static float Chassis_GetMotorPowerDemand(float ctrl_output,
+                                         float motor_speed,
+                                         const MotorPowerParams_t *params)
+{
+    float global_scale = g_chassis_debug.chassis_power_model_global_scale;
+
+    if (global_scale <= 0.0f) {
+        global_scale = Chassis_PowerModel_GlobalScale_Default;
+        g_chassis_debug.chassis_power_model_global_scale = global_scale;
+    }
+
+    return MotorPower_CalculateSingle(fabsf(ctrl_output), fabsf(motor_speed), params) * global_scale;
+}
+
+static void Chassis_PowerAssignHook(float alloc_power)
+{
+    MotorPowerParams_t power_params;
+    float total_estimated_power = 0.0f;
+    float limited_total_estimated_power = 0.0f;
+    float power_scale = 1.0f;
+    float attack = g_chassis_debug.chassis_power_scale_attack;
+    float release = g_chassis_debug.chassis_power_scale_release;
+
+    if (s_chassis_motor == NULL) {
+        return;
+    }
+
+    power_params.torque_coeff = g_chassis_debug.chassis_power_model_torque_coeff;
+    power_params.k1 = g_chassis_debug.chassis_power_model_k1;
+    power_params.k2 = g_chassis_debug.chassis_power_model_k2;
+    power_params.k3 = g_chassis_debug.chassis_power_model_k3;
+
+    if (power_params.torque_coeff <= 0.0f) {
+        power_params.torque_coeff = Chassis_PowerModel_TorqueCoeff_Default;
+        g_chassis_debug.chassis_power_model_torque_coeff = power_params.torque_coeff;
+    }
+    if (power_params.k1 < 0.0f) {
+        power_params.k1 = Chassis_PowerModel_K1_Default;
+        g_chassis_debug.chassis_power_model_k1 = power_params.k1;
+    }
+    if (power_params.k2 < 0.0f) {
+        power_params.k2 = Chassis_PowerModel_K2_Default;
+        g_chassis_debug.chassis_power_model_k2 = power_params.k2;
+    }
+    if (power_params.k3 < 0.0f) {
+        power_params.k3 = Chassis_PowerModel_K3_Default;
+        g_chassis_debug.chassis_power_model_k3 = power_params.k3;
+    }
+
+    if (alloc_power < 0.0f) {
+        alloc_power = 0.0f;
+    }
+    g_chassis_debug.chassis_power_alloc_limit = alloc_power;
+
+    if (attack < 0.0f) {
+        attack = 0.0f;
+        g_chassis_debug.chassis_power_scale_attack = attack;
+    } else if (attack > 1.0f) {
+        attack = 1.0f;
+        g_chassis_debug.chassis_power_scale_attack = attack;
+    }
+
+    if (release < 0.0f) {
+        release = 0.0f;
+        g_chassis_debug.chassis_power_scale_release = release;
+    } else if (release > 1.0f) {
+        release = 1.0f;
+        g_chassis_debug.chassis_power_scale_release = release;
+    }
+
+    for (int i = 0; i < 4; i++) {
+        const float motor_speed = s_chassis_motor->motor_msg[i].motor_speed;
+        const float estimated_power =
+            Chassis_GetMotorPowerDemand((float)s_chassis_ctrl_output[i], motor_speed, &power_params);
+
+        g_chassis_debug.chassis_power_motor_estimate_3508[i] = estimated_power;
+        total_estimated_power += estimated_power;
+    }
+
+    if ((total_estimated_power > alloc_power) && (total_estimated_power > 1.0e-6f)) {
+        power_scale = alloc_power / total_estimated_power;
+        if (power_scale < 0.0f) {
+            power_scale = 0.0f;
+        }
+    }
+
+    if (power_scale < s_chassis_power_scale_filtered) {
+        s_chassis_power_scale_filtered += attack * (power_scale - s_chassis_power_scale_filtered);
+    } else {
+        s_chassis_power_scale_filtered += release * (power_scale - s_chassis_power_scale_filtered);
+    }
+
+    if (s_chassis_power_scale_filtered > 1.0f) {
+        s_chassis_power_scale_filtered = 1.0f;
+    } else if (s_chassis_power_scale_filtered < 0.0f) {
+        s_chassis_power_scale_filtered = 0.0f;
+    }
+
+    for (int i = 0; i < 4; i++) {
+        float limited_output = (float)s_chassis_ctrl_output[i] * s_chassis_power_scale_filtered;
+        LimitMax(limited_output, Chassis_3508_PID_Maxout);
+        s_chassis_ctrl_output[i] = (int16_t)lroundf(limited_output);
+    }
+
+    for (int i = 0; i < 4; i++) {
+        const float limited_power = Chassis_GetMotorPowerDemand(
+            (float)s_chassis_ctrl_output[i], s_chassis_motor->motor_msg[i].motor_speed, &power_params);
+        g_chassis_debug.chassis_power_motor_limited_estimate_3508[i] = limited_power;
+        limited_total_estimated_power += limited_power;
+    }
+
+    g_chassis_debug.chassis_power_total_estimate = total_estimated_power;
+    g_chassis_debug.chassis_power_total_limited_estimate = limited_total_estimated_power;
+    g_chassis_debug.chassis_power_scale = s_chassis_power_scale_filtered;
+}
+
+static void Chassis_PowerControl_Init(void)
+{
+    pid_type_def chassis_power_pid;
+
+    PID_Init(&chassis_power_pid, 0.0f, 0.0f, 0.0f, 200.0f, 200.0f);
+    PowerControl_Init(&s_chassis_power_buffer_energy,
+                      &s_chassis_power_virtual_cap_percent,
+                      &s_chassis_power_effective_limit,
+                      &chassis_power_pid,
+                      Chassis_PowerAssignHook);
+    Set_PowerControlMode(POWER_LOSS);
+}
+
+static void Chassis_PowerControl_UpdateInputs(void)
+{
+    referee_info_t *referee = get_referee_msg();
+    float referee_limit = 0.0f;
+    float user_limit = g_chassis_debug.chassis_power_limit_user_max;
+
+    if (user_limit <= 0.0f) {
+        user_limit = Chassis_PowerLimit_UserMax_Default;
+        g_chassis_debug.chassis_power_limit_user_max = user_limit;
+    }
+
+    if (referee != NULL) {
+        s_chassis_power_buffer_energy = referee->PowerHeatData.buffer_energy;
+        referee_limit = (float)referee->GameRobotState.chassis_power_limit;
+        g_chassis_debug.chassis_power_referee_actual = referee->PowerHeatData.chassis_power;
+    } else {
+        s_chassis_power_buffer_energy = 0U;
+        g_chassis_debug.chassis_power_referee_actual = 0.0f;
+    }
+
+    if (referee_limit > 0.0f) {
+        s_chassis_power_effective_limit = (user_limit < referee_limit) ? user_limit : referee_limit;
+    } else {
+        s_chassis_power_effective_limit = user_limit;
+    }
+
+    if (s_chassis_power_effective_limit < 1.0f) {
+        s_chassis_power_effective_limit = 1.0f;
+    }
+
+    g_chassis_debug.chassis_power_referee_limit = referee_limit;
+    g_chassis_debug.chassis_power_buffer_energy = (float32_t)s_chassis_power_buffer_energy;
+    g_chassis_debug.chassis_power_limit_effective_max = s_chassis_power_effective_limit;
+}
+
+static void Chassis_ApplyPowerLimit(void)
+{
+    Chassis_PowerControl_UpdateInputs();
+
+    if (g_chassis_debug.chassis_power_limit_enable != 0U) {
+        PowerControl_Update();
+        return;
+    }
+
+    Chassis_PowerAssignHook(1.0e9f);
+    g_chassis_debug.chassis_power_alloc_limit = g_chassis_debug.chassis_power_limit_effective_max;
+    g_chassis_debug.chassis_power_scale = 1.0f;
+}
+
+static void Chassis_UpdateActualSpeedDebug(void)
+{
+    if (s_chassis_motor == NULL) {
+        return;
+    }
+
+    for (int i = 0; i < 4; i++) {
+        g_chassis_debug.chassis_actual_speed_3508[i] =
+            s_chassis_motor->motor_msg[i].motor_speed * (Motor_Wheel_Trans);
+    }
+}
+
+static void Chassis_PublishDriveOutput(void)
+{
+    for (int i = 0; i < 4; i++) {
+        g_chassis_debug.chassis_output_raw_3508[i] = (float32_t)s_chassis_ctrl_output[i];
+    }
+
+    Chassis_ApplyPowerLimit();
+
+    for (int i = 0; i < 4; i++) {
+        g_chassis_debug.chassis_output_3508[i] = (float32_t)s_chassis_ctrl_output[i];
+    }
+
+    Chassis_Motor_SendControl_DJI(s_chassis_motor, s_chassis_ctrl_output);
+    Chassis_UpdateActualSpeedDebug();
+}
 
 /**
  * @brief 初始化底盘轮系控制模块
@@ -22,6 +242,7 @@ void Chassis_Drive_Init(void)
     Chassis_Wheel_LPF_Init(s_chassis_lpf, 0.8f);
     Chassis_Wheel_Init_DJI(&s_chassis_motor);
     Chassis_3508_PID_Init(s_chassis_pid);
+    Chassis_PowerControl_Init();
     Chassis_Stop();
 }
 
@@ -33,15 +254,19 @@ void Chassis_Stop(void)
     for (int i = 0; i < 4; i++) {
         s_chassis_ctrl_output[i] = 0;
         g_chassis_debug.chassis_target_speed_3508[i] = 0.0f;
+        g_chassis_debug.chassis_output_raw_3508[i] = 0.0f;
         g_chassis_debug.chassis_output_3508[i] = 0.0f;
+        g_chassis_debug.chassis_power_motor_estimate_3508[i] = 0.0f;
+        g_chassis_debug.chassis_power_motor_limited_estimate_3508[i] = 0.0f;
     }
+    g_chassis_debug.chassis_power_total_estimate = 0.0f;
+    g_chassis_debug.chassis_power_total_limited_estimate = 0.0f;
+    g_chassis_debug.chassis_power_scale = 1.0f;
+    s_chassis_power_scale_filtered = 1.0f;
 
     if (s_chassis_motor != NULL) {
         Chassis_Motor_SendControl_DJI(s_chassis_motor, s_chassis_ctrl_output);
-
-        for (int i = 0; i < 4; i++) {
-            g_chassis_debug.chassis_actual_speed_3508[i] = s_chassis_motor->motor_msg[i].motor_speed * (Motor_Wheel_Trans);
-        }
+        Chassis_UpdateActualSpeedDebug();
     }
 }
 
@@ -67,15 +292,7 @@ void Chassis_Normal_Mode(const rc_info_t *remoter)
                               s_chassis_motor,
                               s_chassis_ctrl_output,
                               s_chassis_lpf);
-
-    for (int i = 0; i < 4; i++) {
-        g_chassis_debug.chassis_output_3508[i] = (float32_t)s_chassis_ctrl_output[i];
-    }
-    Chassis_Motor_SendControl_DJI(s_chassis_motor, s_chassis_ctrl_output);
-
-    for (int i = 0; i < 4; i++) {
-        g_chassis_debug.chassis_actual_speed_3508[i] = s_chassis_motor->motor_msg[i].motor_speed * (Motor_Wheel_Trans);
-    }
+    Chassis_PublishDriveOutput();
 }
 
 /**
@@ -103,15 +320,7 @@ void Chassis_Upstairs_Mode(const rc_info_t *remoter)
                               s_chassis_motor,
                               s_chassis_ctrl_output,
                               s_chassis_lpf);
-
-    for (int i = 0; i < 4; i++) {
-        g_chassis_debug.chassis_output_3508[i] = (float32_t)s_chassis_ctrl_output[i];
-    }
-    Chassis_Motor_SendControl_DJI(s_chassis_motor, s_chassis_ctrl_output);
-
-    for (int i = 0; i < 4; i++) {
-        g_chassis_debug.chassis_actual_speed_3508[i] = s_chassis_motor->motor_msg[i].motor_speed * (Motor_Wheel_Trans);
-    }
+    Chassis_PublishDriveOutput();
 }
 
 /**
@@ -213,15 +422,7 @@ void Chassis_Keyboard_Mode(const keyboard_t *kb, uint8_t disable_yaw)
                               s_chassis_motor,
                               s_chassis_ctrl_output,
                               s_chassis_lpf);
-
-    for (int i = 0; i < 4; i++) {
-        g_chassis_debug.chassis_output_3508[i] = (float32_t)s_chassis_ctrl_output[i];
-    }
-    Chassis_Motor_SendControl_DJI(s_chassis_motor, s_chassis_ctrl_output);
-
-    for (int i = 0; i < 4; i++) {
-        g_chassis_debug.chassis_actual_speed_3508[i] = s_chassis_motor->motor_msg[i].motor_speed * (Motor_Wheel_Trans);
-    }
+    Chassis_PublishDriveOutput();
 }
 
 void Chassis_Wheel_LPF_Init(LowPassFilter lpf[4], float alpha)

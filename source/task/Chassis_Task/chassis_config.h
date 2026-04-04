@@ -44,6 +44,16 @@
 #define Chassis_3508_PID_Maxout 16384
 #define Chassis_3508_PID_Maxiout 8192
 
+#define Chassis_PowerLimit_Enable_Default 1U
+#define Chassis_PowerLimit_UserMax_Default 110.0f
+#define Chassis_PowerModel_TorqueCoeff_Default 1.99688994e-6f
+#define Chassis_PowerModel_K1_Default 1.23e-07f
+#define Chassis_PowerModel_K2_Default 1.453e-07f
+#define Chassis_PowerModel_K3_Default 4.081f
+#define Chassis_PowerModel_GlobalScale_Default 1.6f
+#define Chassis_PowerScale_Attack_Default 1.0f
+#define Chassis_PowerScale_Release_Default 0.1f
+
 #define Rising_3508_PID_kp 9000
 #define Rising_3508_PID_ki 0.0001f
 #define Rising_3508_PID_kd 0.0f
