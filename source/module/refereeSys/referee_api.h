@@ -51,6 +51,21 @@ typedef struct
 	keyboard_t keyboard;					   // 0x0304
 } custom_controller_info_t;
 
+typedef struct
+{
+	uint8_t uart_init_ok;
+	uint32_t rx_event_count;
+	uint32_t rx_total_bytes;
+	uint16_t rx_last_size;
+	uint8_t rx_last_head[8];
+	uint32_t frame_parse_count;
+	uint32_t crc8_fail_count;
+	uint32_t crc16_fail_count;
+	uint16_t last_cmd_id;
+	uint16_t last_frame_length;
+	uint8_t last_robot_id;
+} referee_link_debug_t;
+
 void JudgeReadData(uint8_t *buff);
 void CtrllerReadData(uint8_t *buff);
 referee_info_t *get_referee_msg(void);
@@ -58,5 +73,14 @@ custom_controller_info_t *get_custom_controller_msg(void);
 void referee_data_pack_handle(uint8_t sof, uint16_t cmd_id, uint8_t *p_data, uint16_t len);
 void referee_init(UART_HandleTypeDef *huart);
 void ctrller_init(UART_HandleTypeDef *huart);
+HAL_StatusTypeDef referee_send_raw_data(const uint8_t *p_data, uint16_t len, uint32_t timeout);
+uint8_t referee_is_inited(void);
+
+/* 常规链路调试结构体：
+ * 1. 先看 UART1 是否真的有数据进来；
+ * 2. 再看 CRC 和帧解析有没有通过；
+ * 3. 最后确认 0x0201 是否被解析到，从而拿到 robot_id。
+ */
+extern volatile referee_link_debug_t g_referee_link_debug;
 
 #endif 

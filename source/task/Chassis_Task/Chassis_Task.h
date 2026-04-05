@@ -5,68 +5,40 @@
 #include "chassis_config.h"
 
 #include <stdint.h>
-#include "DBusSys.h"
-#include "motor_DJI.h"
-#include "motor_DM.h"
-#include "PIDtool.h"
 
-#define Max_Velocity 2
-#define Max_Rising_Motor_Velocity 4
+typedef enum
+{
+    CHASSIS_MODE_STATE_PowerOff = 0,
+    CHASSIS_MODE_STATE_Normal = 1,
+    CHASSIS_MODE_STATE_Rising = 2,
+} Chassis_Mode_State_t;
 
-#define Track_R 0.05
-#define Steel_R 0.15
-#define Reduction_Ratio 3519/187
-#define Motor_Wheel_Trans 6.677 * 0.0001
-#define Turning_Forward_Feedback -1
+typedef enum
+{
+    CHASSIS_CONTROL_SOURCE_STATE_DBUS = 0,
+    CHASSIS_CONTROL_SOURCE_STATE_Keyboard = 1,
+} Chassis_Control_Source_State_t;
 
-#define Chassis_PowerOff 0
-#define Chassis_Normal 1
-#define Chassis_Upstairs 2
+typedef enum
+{
+    CHASSIS_RISING_BEHAVIOR_STATE_SingleLift = 0,
+    CHASSIS_RISING_BEHAVIOR_STATE_DoubleLift = 1,
+} Chassis_Rising_Behavior_State_t;
 
-#define Chassis_Motor_3508_ZQ  0   
-#define Chassis_Motor_3508_ZH  1           
-#define Chassis_Motor_3508_YH  2
-#define Chassis_Motor_3508_YQ  3 
-
-#define Rising_Motor_3508_Left  0
-#define Rising_Motor_3508_Right  1 
-
-#define Chassis_Motor_3508_ZQ_id  0x201   
-#define Chassis_Motor_3508_ZH_id  0x202           
-#define Chassis_Motor_3508_YH_id  0x203
-#define Chassis_Motor_3508_YQ_id  0x204 
-
-#define Rising_Motor_3508_Left_id  0x205
-#define Rising_Motor_3508_Right_id   0x206     
-
-#define Chassis_Motor_ALL_id 0x200
-#define Rising_Motor_ALL_id 0x1FF
-
-#define Chassis_3508_PID_kp 7000
-#define Chassis_3508_PID_ki 0.0000f
-#define Chassis_3508_PID_kd 0
-#define Chassis_3508_PID_Maxout 16384
-#define Chassis_3508_PID_Maxiout 8192
-
-#define Rising_3508_PID_kp 7000
-#define Rising_3508_PID_ki 0
-#define Rising_3508_PID_kd 0
-#define Rising_3508_PID_Maxout 16384
-#define Rising_3508_PID_Maxiout 8192
-
-#define DM_MITMode_ID 0x000
-#define DM_PosVelMode_ID 0x100
-#define DM_VelMode_ID 0x200
-#define DM_EMITMode_ID 0x300
-
-#define DM_l0010l_Master_ID_Left 0x11
-#define DM_l0010l_Master_ID_Right 0x12
-#define DM_l0010l_CAN_ID_Left 0x01
-#define DM_l0010l_CAN_ID_Right 0x02
+extern volatile Chassis_Mode_State_t g_chassis_mode_state;
+extern volatile Chassis_Control_Source_State_t g_chassis_control_source_state;
+extern volatile Chassis_Rising_Behavior_State_t g_chassis_rising_behavior_state;
 
 void Chassis_Task(void *argument);
 
 void Chassis_ForcePowerOff(uint8_t enable);
 uint8_t Chassis_IsForcePowerOff(void);
+void Chassis_SetControlSourceState(Chassis_Control_Source_State_t source_state);
+void Chassis_SetModeState(Chassis_Mode_State_t mode_state);
+void Chassis_SetRisingBehaviorState(Chassis_Rising_Behavior_State_t behavior_state);
+void Chassis_HandleRisingKeyPressed(void);
+Chassis_Mode_State_t Chassis_GetModeState(void);
+Chassis_Control_Source_State_t Chassis_GetControlSourceStatePublic(void);
+Chassis_Rising_Behavior_State_t Chassis_GetRisingBehaviorState(void);
 
 #endif // !CHASSIS_TASK_H

@@ -1,473 +1,572 @@
 #include "Chassis_Task.h"
+
+#include "Referee_Task.h"
+#include "arm_state_machine.h"
 #include "chassis_drive.h"
 #include "rising_ctrl.h"
-#include "DBusSys.h"
-#include "Referee_Task.h"
-#include "arm_math_types.h"
-#include "cmsis_os2.h"
 #include "tool.h"
+
 #include <stdint.h>
 
-/* 抬升测试历程开关：
- * 0：关闭（保持原有底盘/抬升控制逻辑）
- * 1：模式1（拨码切到抬升后：先固定底盘速度一段时间，随后恢复遥控器全权控制；抬升 3508 可固定最大；DM 逻辑保持不变）
- * 2：模式2（保留模式1全部流程，并在固定底盘驱动阶段结束后：切 Chassis_Ctrl_Mode=Rising 持续一段时间，再切回 Normal 持续一段时间）
- */
-#define CHASSIS_RISING_TEST_TRAJECTORY_ENABLE 2
-
-/* 抬升测试历程参数（仅在 CHASSIS_RISING_TEST_TRAJECTORY_ENABLE=1 时生效） */
-/* 抬升阶段持续时间（单位：ms）：只执行抬升动作（3508 固定最大、DM 逻辑不变），底盘不动 */
-#define CHASSIS_RISING_TEST_LIFT_DURATION_MS 1600U
-/* 抬升阶段底盘固定速度比例：最大速度的 (NUM/DEN)，默认 2/3 */
-#define CHASSIS_RISING_TEST_LIFT_CHASSIS_SPEED_RATIO_NUM 100
-#define CHASSIS_RISING_TEST_LIFT_CHASSIS_SPEED_RATIO_DEN 100
-/* 抬升阶段抬升3508速度：通过固定 remoter.ch2 实现，默认 Remoter_CHMAX（速度最大） */
-#define CHASSIS_RISING_TEST_LIFT_RISING_RC_CH2 Remoter_CHMAX
-/* 抬升结束后切到Normal模式的停顿时间（单位：ms）：底盘停住0.2s后再进入固定速度驱动 */
-#define CHASSIS_RISING_TEST_TRANSITION_DURATION_MS 0U
-/* 抬升完成后的“底盘驱动阶段”持续时间（单位：ms）：底盘固定速度驱动 */
-#define CHASSIS_RISING_TEST_DRIVE_DURATION_MS 600U
-/* 底盘驱动阶段固定速度比例：最大速度的 (NUM/DEN)，默认 1/3 */
-#define CHASSIS_RISING_TEST_DRIVE_SPEED_RATIO_NUM 70
-#define CHASSIS_RISING_TEST_DRIVE_SPEED_RATIO_DEN 100
-
-/* 抬升测试历程模式2参数（仅在 CHASSIS_RISING_TEST_TRAJECTORY_ENABLE=2 时生效）
- * 与模式1完全解耦，便于单独调参，不会影响模式1现有数据。
- */
-#define CHASSIS_RISING_TEST2_LIFT_DURATION_MS 1600U
-#define CHASSIS_RISING_TEST2_LIFT_CHASSIS_SPEED_RATIO_NUM 100
-#define CHASSIS_RISING_TEST2_LIFT_CHASSIS_SPEED_RATIO_DEN 100
-#define CHASSIS_RISING_TEST2_LIFT_RISING_RC_CH2 Remoter_CHMAX
-#define CHASSIS_RISING_TEST2_TRANSITION_DURATION_MS 0U
-#define CHASSIS_RISING_TEST2_DRIVE_DURATION_MS 600U
-#define CHASSIS_RISING_TEST2_DRIVE_SPEED_RATIO_NUM 70
-#define CHASSIS_RISING_TEST2_DRIVE_SPEED_RATIO_DEN 100
-#define CHASSIS_RISING_TEST2_CTRL_RISING_DURATION_MS 1800U
-#define CHASSIS_RISING_TEST2_CTRL_NORMAL_DURATION_MS 600U
-
-#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE == 1)
-#define CHASSIS_RISING_TEST_ACTIVE_LIFT_DURATION_MS CHASSIS_RISING_TEST_LIFT_DURATION_MS
-#define CHASSIS_RISING_TEST_ACTIVE_LIFT_CHASSIS_SPEED_RATIO_NUM CHASSIS_RISING_TEST_LIFT_CHASSIS_SPEED_RATIO_NUM
-#define CHASSIS_RISING_TEST_ACTIVE_LIFT_CHASSIS_SPEED_RATIO_DEN CHASSIS_RISING_TEST_LIFT_CHASSIS_SPEED_RATIO_DEN
-#define CHASSIS_RISING_TEST_ACTIVE_LIFT_RISING_RC_CH2 CHASSIS_RISING_TEST_LIFT_RISING_RC_CH2
-#define CHASSIS_RISING_TEST_ACTIVE_TRANSITION_DURATION_MS CHASSIS_RISING_TEST_TRANSITION_DURATION_MS
-#define CHASSIS_RISING_TEST_ACTIVE_DRIVE_DURATION_MS CHASSIS_RISING_TEST_DRIVE_DURATION_MS
-#define CHASSIS_RISING_TEST_ACTIVE_DRIVE_SPEED_RATIO_NUM CHASSIS_RISING_TEST_DRIVE_SPEED_RATIO_NUM
-#define CHASSIS_RISING_TEST_ACTIVE_DRIVE_SPEED_RATIO_DEN CHASSIS_RISING_TEST_DRIVE_SPEED_RATIO_DEN
-#elif (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE == 2)
-#define CHASSIS_RISING_TEST_ACTIVE_LIFT_DURATION_MS CHASSIS_RISING_TEST2_LIFT_DURATION_MS
-#define CHASSIS_RISING_TEST_ACTIVE_LIFT_CHASSIS_SPEED_RATIO_NUM CHASSIS_RISING_TEST2_LIFT_CHASSIS_SPEED_RATIO_NUM
-#define CHASSIS_RISING_TEST_ACTIVE_LIFT_CHASSIS_SPEED_RATIO_DEN CHASSIS_RISING_TEST2_LIFT_CHASSIS_SPEED_RATIO_DEN
-#define CHASSIS_RISING_TEST_ACTIVE_LIFT_RISING_RC_CH2 CHASSIS_RISING_TEST2_LIFT_RISING_RC_CH2
-#define CHASSIS_RISING_TEST_ACTIVE_TRANSITION_DURATION_MS CHASSIS_RISING_TEST2_TRANSITION_DURATION_MS
-#define CHASSIS_RISING_TEST_ACTIVE_DRIVE_DURATION_MS CHASSIS_RISING_TEST2_DRIVE_DURATION_MS
-#define CHASSIS_RISING_TEST_ACTIVE_DRIVE_SPEED_RATIO_NUM CHASSIS_RISING_TEST2_DRIVE_SPEED_RATIO_NUM
-#define CHASSIS_RISING_TEST_ACTIVE_DRIVE_SPEED_RATIO_DEN CHASSIS_RISING_TEST2_DRIVE_SPEED_RATIO_DEN
-#endif
-
-// ch1 右摇杆 左右 左-右+
-// ch2 右摇杆 前后 前+后-
-// ch3 左摇杆 左右 左-右+
-// ch4 左摇杆 前后 前+后-
-// sw1 左拨码开关 前1 中3 后2
-// sw2 右拨码开关 前1 中3 后2
-
 extern rc_info_t remoter;
-extern keyboard_t kb_info;
-float32_t target_speed_test[4];
-float32_t current_speed_test[4];
 
-static volatile uint8_t s_chassis_force_poweroff = 0;
+volatile Chassis_Mode_State_t g_chassis_mode_state = CHASSIS_MODE_STATE_Normal;
+volatile Chassis_Control_Source_State_t g_chassis_control_source_state = CHASSIS_CONTROL_SOURCE_STATE_DBUS;
+volatile Chassis_Rising_Behavior_State_t g_chassis_rising_behavior_state =
+    (Chassis_Rising_Behavior_State_t)CHASSIS_RISING_BEHAVIOR_DEFAULT;
+
+static volatile uint8_t s_chassis_force_poweroff = 0U;
+static volatile uint8_t s_chassis_rising_start_request = 0U;
+static uint8_t s_chassis_dbus_rising_switch_prev_front = 0U;
+
+typedef enum
+{
+    CHASSIS_RISING_RUNTIME_STATE_IDLE = 0,
+    CHASSIS_RISING_RUNTIME_STATE_LIFTING,
+    CHASSIS_RISING_RUNTIME_STATE_TRANSITION,
+    CHASSIS_RISING_RUNTIME_STATE_DRIVING,
+    CHASSIS_RISING_RUNTIME_STATE_DOUBLE_RISING_HOLD,
+    CHASSIS_RISING_RUNTIME_STATE_DOUBLE_NORMAL_HOLD,
+    CHASSIS_RISING_RUNTIME_STATE_FINISHED,
+} Chassis_Rising_Runtime_State_t;
+
+typedef struct
+{
+    Chassis_Rising_Runtime_State_t state;
+    uint32_t state_start_tick;
+} Chassis_Rising_Runtime_Ctx_t;
+
+static uint8_t Chassis_IsPowerOffRequested(void);
+static Chassis_Control_Source_State_t Chassis_GetControlSourceState(void);
+static Chassis_Mode_State_t Chassis_GetRequestedModeState(void);
+static void Chassis_SyncModeStateFromSource(void);
+static void Chassis_SanitizeRisingBehaviorState(void);
+static uint8_t Chassis_IsArmInRisingMode(void);
+static Chassis_Rising_Behavior_State_t Chassis_GetActiveRisingBehaviorState(void);
+static uint8_t Chassis_TakeDbusRisingFrontEdge(void);
+static uint32_t Chassis_MsToTicks(uint32_t duration_ms);
+static void Chassis_ResetRisingRuntime(Chassis_Rising_Runtime_Ctx_t *ctx);
+static void Chassis_UpdateRisingRuntime(Chassis_Rising_Runtime_Ctx_t *ctx);
+static void Chassis_ExecuteNormalBySource(const keyboard_t *active_kb);
+static void Chassis_ExecuteRisingRegularBySource(const keyboard_t *active_kb);
+static void Chassis_ExecuteRisingStateMachine(const keyboard_t *active_kb,
+                                              const Chassis_Rising_Runtime_Ctx_t *ctx);
+static void Chassis_RunSequenceLift(int16_t chassis_ch2, int16_t rising_ch2);
+static void Chassis_RunNormalHoldStop(void);
+static void Chassis_RunNormalHoldDrive(int16_t chassis_ch2);
+static void Chassis_RunNormalHoldBySource(const keyboard_t *active_kb);
+
+/* 对外保留一个显式控制源入口。
+ * 实际底盘任务每周期都会从 Engineer_Mode.Ctrl_Logic_Mode 同步，
+ * 所以这里同时回写 Engineer_Mode，保证外部设置不会下一拍失效。
+ */
+void Chassis_SetControlSourceState(Chassis_Control_Source_State_t source_state)
+{
+    if ((uint8_t)source_state > (uint8_t)CHASSIS_CONTROL_SOURCE_STATE_Keyboard) {
+        return;
+    }
+
+    g_chassis_control_source_state = source_state;
+    Engineer_Mode.Ctrl_Logic_Mode =
+        (source_state == CHASSIS_CONTROL_SOURCE_STATE_Keyboard) ? CTRL_LOGIC_MODE_Keyboard : CTRL_LOGIC_MODE_DBUS;
+}
+
+/* 对外提供底盘总状态设置接口。
+ * 注意：真正持久生效的控制入口取决于当前控制源：
+ * 1. DBUS源下，PowerOff/Normal/Rising 会映射为遥控器逻辑可识别的状态；
+ * 2. Keyboard源下，底盘模式由 Engineer_Mode.Chassis_Ctrl_Mode 持续驱动。
+ */
+void Chassis_SetModeState(Chassis_Mode_State_t mode_state)
+{
+    switch (mode_state) {
+        case CHASSIS_MODE_STATE_PowerOff:
+            Chassis_ForcePowerOff(1U);
+            Engineer_Mode.Chassis_Ctrl_Mode = CHASSIS_CTRL_MODE_Normal;
+            break;
+
+        case CHASSIS_MODE_STATE_Normal:
+            Chassis_ForcePowerOff(0U);
+            Engineer_Mode.Chassis_Ctrl_Mode = CHASSIS_CTRL_MODE_Normal;
+            break;
+
+        case CHASSIS_MODE_STATE_Rising:
+            Chassis_ForcePowerOff(0U);
+            Engineer_Mode.Chassis_Ctrl_Mode = CHASSIS_CTRL_MODE_Rising;
+            break;
+
+        default:
+            return;
+    }
+
+    g_chassis_mode_state = mode_state;
+}
+
+/* 一级/二级抬升行为与总状态解耦，单独暴露接口，便于外部测试。 */
+void Chassis_SetRisingBehaviorState(Chassis_Rising_Behavior_State_t behavior_state)
+{
+    if ((uint8_t)behavior_state > (uint8_t)CHASSIS_RISING_BEHAVIOR_STATE_DoubleLift) {
+        return;
+    }
+
+    g_chassis_rising_behavior_state = behavior_state;
+}
+
+/* R 键功能统一放在底盘层处理：
+ * 1. 不在 Rising 总模式时，R 只切换一级/二级子状态机；
+ * 2. 在 Rising 总模式时，只有机械臂当前已进入 Arm_Rising_Mode，R 才允许启动当前选中的子状态机；
+ * 3. 常规 Rising 与一级/二级流程解耦，未启动子状态机时始终走常规 Rising。
+ */
+void Chassis_HandleRisingKeyPressed(void)
+{
+    if (Chassis_GetRequestedModeState() == CHASSIS_MODE_STATE_Rising) {
+        if (Chassis_IsArmInRisingMode() == 0U) {
+            s_chassis_rising_start_request = 0U;
+            return;
+        }
+
+        s_chassis_rising_start_request = 1U;
+        return;
+    }
+
+    if (g_chassis_rising_behavior_state == CHASSIS_RISING_BEHAVIOR_STATE_SingleLift) {
+        g_chassis_rising_behavior_state = CHASSIS_RISING_BEHAVIOR_STATE_DoubleLift;
+    } else {
+        g_chassis_rising_behavior_state = CHASSIS_RISING_BEHAVIOR_STATE_SingleLift;
+    }
+}
+
+Chassis_Mode_State_t Chassis_GetModeState(void)
+{
+    return g_chassis_mode_state;
+}
+
+Chassis_Control_Source_State_t Chassis_GetControlSourceStatePublic(void)
+{
+    return g_chassis_control_source_state;
+}
+
+Chassis_Rising_Behavior_State_t Chassis_GetRisingBehaviorState(void)
+{
+    return g_chassis_rising_behavior_state;
+}
 
 void Chassis_ForcePowerOff(uint8_t enable)
 {
-  s_chassis_force_poweroff = (enable != 0U) ? 1U : 0U;
+    s_chassis_force_poweroff = (enable != 0U) ? 1U : 0U;
 }
 
 uint8_t Chassis_IsForcePowerOff(void)
 {
-  return s_chassis_force_poweroff;
+    return s_chassis_force_poweroff;
 }
 
-/**
- * @brief 根据遥控器拨码开关获取底盘模式
- *
- * @param backdata 遥控器数据指针
- * @return 当前底盘模式
- */
-static uint8_t Chassis_Mode_Get(rc_info_t *backdata)
+static uint8_t Chassis_IsPowerOffRequested(void)
 {
-  if (Chassis_IsForcePowerOff() != 0U) {
-    return Chassis_PowerOff;
-  }
+    /* 掉电是总状态机的最高优先级条件。
+     * DBUS源下读拨码或外部强制掉电；
+     * Keyboard源下仅保留外部强制掉电，避免遥控器继续插手键盘控制。
+     */
+    if (Chassis_IsForcePowerOff() != 0U) {
+        return 1U;
+    }
 
-  uint8_t Chassis_Mode;
-  switch (backdata->sw2)
-  {
-    case 1:
-      Chassis_Mode = Chassis_Upstairs;
-      break;
-    case 2:
-      Chassis_Mode = Chassis_PowerOff;
-      break;
-    case 3:
-      Chassis_Mode = Chassis_Normal;
-      break;
-    default:
-      Chassis_Mode = Chassis_PowerOff;
-  }
-  return Chassis_Mode;
+    if (g_chassis_control_source_state == CHASSIS_CONTROL_SOURCE_STATE_DBUS) {
+        return (remoter.sw2 == 2) ? 1U : 0U;
+    }
+
+    return 0U;
 }
 
-/**
- * @brief 底盘任务入口函数
- *
- * 功能说明：
- * 1. DBUS模式：通过遥控器摇杆控制底盘运动（ch1/ch2/ch3）
- * 2. Keyboard模式：通过键盘WASD控制底盘平移，鼠标X轴控制旋转
- * 3. 支持Normal和Upstairs两种底盘模式
- * 4. 支持抬升测试历程（需sw1==1触发）
- *
- * @param argument FreeRTOS任务参数（未使用）
- */
-void Chassis_Task(void *argument) 
+static Chassis_Control_Source_State_t Chassis_GetControlSourceState(void)
 {
-  /* USER CODE Chassis_Task */
-  (void)argument;
-  osDelay(200);
+    return (Engineer_Mode.Ctrl_Logic_Mode == CTRL_LOGIC_MODE_Keyboard)
+               ? CHASSIS_CONTROL_SOURCE_STATE_Keyboard
+               : CHASSIS_CONTROL_SOURCE_STATE_DBUS;
+}
 
-  Chassis_Drive_Init();
-  Rising_Ctrl_Init();
+static Chassis_Mode_State_t Chassis_GetRequestedModeState(void)
+{
+    if (Chassis_IsPowerOffRequested() != 0U) {
+        return CHASSIS_MODE_STATE_PowerOff;
+    }
 
-  /* 说明：这里的“raw_chassis_mode”来自拨码开关；
-   * 当开启测试历程时，会在切到抬升后自动按“抬升阶段 -> 底盘驱动阶段 -> 遥控器全权控制”执行。
-   */
-#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE != 0)
-  typedef enum {
-    RISING_TEST_STATE_IDLE = 0,
-    RISING_TEST_STATE_LIFTING,
-    RISING_TEST_STATE_TRANSITION,
-    RISING_TEST_STATE_DRIVING,
-    RISING_TEST_STATE_CTRL_RISING,
-    RISING_TEST_STATE_CTRL_NORMAL,
-    RISING_TEST_STATE_PASSTHROUGH,
-  } Rising_Test_State_t;
+    if (g_chassis_control_source_state == CHASSIS_CONTROL_SOURCE_STATE_Keyboard) {
+        return (Engineer_Mode.Chassis_Ctrl_Mode == CHASSIS_CTRL_MODE_Rising)
+                   ? CHASSIS_MODE_STATE_Rising
+                   : CHASSIS_MODE_STATE_Normal;
+    }
 
-  Rising_Test_State_t rising_test_state = RISING_TEST_STATE_IDLE;
-  uint32_t rising_test_start_tick = 0U;
-  const uint32_t rising_test_lift_duration_ticks =
-      (uint32_t)((CHASSIS_RISING_TEST_ACTIVE_LIFT_DURATION_MS * osKernelGetTickFreq()) / 1000U);
-  const uint32_t rising_test_transition_duration_ticks =
-      (uint32_t)((CHASSIS_RISING_TEST_ACTIVE_TRANSITION_DURATION_MS * osKernelGetTickFreq()) / 1000U);
-  const uint32_t rising_test_drive_duration_ticks =
-      (uint32_t)((CHASSIS_RISING_TEST_ACTIVE_DRIVE_DURATION_MS * osKernelGetTickFreq()) / 1000U);
-#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE == 2)
-  const uint32_t rising_test_ctrl_rising_duration_ticks =
-      (uint32_t)((CHASSIS_RISING_TEST2_CTRL_RISING_DURATION_MS * osKernelGetTickFreq()) / 1000U);
-  const uint32_t rising_test_ctrl_normal_duration_ticks =
-      (uint32_t)((CHASSIS_RISING_TEST2_CTRL_NORMAL_DURATION_MS * osKernelGetTickFreq()) / 1000U);
-  uint8_t rising_test_ctrl_mode_override_active = 0U;
-  uint8_t rising_test_saved_chassis_ctrl_mode = Engineer_Mode.Chassis_Ctrl_Mode;
-#endif
+    return (remoter.sw2 == 1) ? CHASSIS_MODE_STATE_Rising : CHASSIS_MODE_STATE_Normal;
+}
 
-  uint8_t last_raw_chassis_mode = Chassis_Mode_Get(&remoter);
-  uint8_t last_effective_chassis_mode = last_raw_chassis_mode;
-#else
-  uint8_t last_chassis_mode = Chassis_Mode_Get(&remoter);
-#endif
-  uint8_t last_ctrl_logic_mode = Engineer_Mode.Ctrl_Logic_Mode;
-  uint8_t last_keyboard_chassis_ctrl_mode = Engineer_Mode.Chassis_Ctrl_Mode;
-  uint8_t arm_ctrl_mode_saved = Engineer_Mode.Arm_Ctrl_Mode;
-  uint8_t arm_ctrl_mode_saved_valid = 0U;
+static void Chassis_SyncModeStateFromSource(void)
+{
+    const Chassis_Mode_State_t requested_mode = Chassis_GetRequestedModeState();
 
-  /* Infinite loop */
-  for (;;) 
-  {
-    const uint8_t chassis_mode = Chassis_Mode_Get(&remoter);
-
-#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE != 0)
-    /* 抬升测试历程：
-     * 触发条件：拨码从非抬升切到抬升（上升沿）且 sw1 == 1
-     * 行为：
-     * 1) 抬升阶段：抬升 3508 固定最大、DM 逻辑保持不变，底盘不动，持续一段时间
-     * 2) 抬升结束后：底盘模式强制切回 Normal，并停住0.2s
-     * 3) 停顿结束后：底盘固定速度驱动一段时间，再恢复Normal保持
-     * 注意：如果 sw1 != 1，则不会触发测试历程，按照测试历程关闭的逻辑执行
+    /* g_chassis_mode_state 作为“总状态机结果”对外发布，
+     * 但总状态本身是由控制源和当前模式输入共同推导出来的。
      */
-    const uint8_t raw_chassis_mode = chassis_mode;
+    g_chassis_mode_state = requested_mode;
 
-#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE == 2)
-    if ((last_ctrl_logic_mode == CTRL_LOGIC_MODE_DBUS) &&
-        (Engineer_Mode.Ctrl_Logic_Mode != CTRL_LOGIC_MODE_DBUS) &&
-        (rising_test_ctrl_mode_override_active != 0U)) {
-      Engineer_Mode.Chassis_Ctrl_Mode = rising_test_saved_chassis_ctrl_mode;
-      last_keyboard_chassis_ctrl_mode = Engineer_Mode.Chassis_Ctrl_Mode;
-      rising_test_ctrl_mode_override_active = 0U;
-      rising_test_state = RISING_TEST_STATE_IDLE;
+    if (g_chassis_control_source_state == CHASSIS_CONTROL_SOURCE_STATE_DBUS) {
+        Engineer_Mode.Chassis_Ctrl_Mode =
+            (requested_mode == CHASSIS_MODE_STATE_Rising) ? CHASSIS_CTRL_MODE_Rising : CHASSIS_CTRL_MODE_Normal;
     }
-#endif
+}
 
-    if (Engineer_Mode.Ctrl_Logic_Mode == CTRL_LOGIC_MODE_DBUS) {
-      /* 只有当 sw1 == 1 时才允许触发测试历程 */
-      if ((remoter.sw1 == 1) && (raw_chassis_mode == Chassis_Upstairs) && (last_raw_chassis_mode != Chassis_Upstairs)) {
-        rising_test_state = RISING_TEST_STATE_LIFTING;
-        rising_test_start_tick = osKernelGetTickCount();
-#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE == 2)
-        if (rising_test_ctrl_mode_override_active != 0U) {
-          Engineer_Mode.Chassis_Ctrl_Mode = rising_test_saved_chassis_ctrl_mode;
-          last_keyboard_chassis_ctrl_mode = Engineer_Mode.Chassis_Ctrl_Mode;
-          rising_test_ctrl_mode_override_active = 0U;
-        }
-#endif
-      }
-
-      /* 如果 sw1 != 1 或者拨码不在抬升位置，则退出测试历程 */
-      if ((remoter.sw1 != 1) || (raw_chassis_mode != Chassis_Upstairs)) {
-        rising_test_state = RISING_TEST_STATE_IDLE;
-#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE == 2)
-        if (rising_test_ctrl_mode_override_active != 0U) {
-          Engineer_Mode.Chassis_Ctrl_Mode = rising_test_saved_chassis_ctrl_mode;
-          last_keyboard_chassis_ctrl_mode = Engineer_Mode.Chassis_Ctrl_Mode;
-          rising_test_ctrl_mode_override_active = 0U;
-        }
-#endif
-      } else {
-        const uint32_t now = osKernelGetTickCount();
-        if (rising_test_state == RISING_TEST_STATE_LIFTING) {
-          if ((uint32_t)(now - rising_test_start_tick) >= rising_test_lift_duration_ticks) {
-            rising_test_state = RISING_TEST_STATE_TRANSITION;
-            rising_test_start_tick = now;
-          }
-        } else if (rising_test_state == RISING_TEST_STATE_TRANSITION) {
-          if ((uint32_t)(now - rising_test_start_tick) >= rising_test_transition_duration_ticks) {
-            rising_test_state = RISING_TEST_STATE_DRIVING;
-            rising_test_start_tick = now;
-          }
-        } else if (rising_test_state == RISING_TEST_STATE_DRIVING) {
-          if ((uint32_t)(now - rising_test_start_tick) >= rising_test_drive_duration_ticks) {
-#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE == 2)
-            rising_test_state = RISING_TEST_STATE_CTRL_RISING;
-            rising_test_start_tick = now;
-#else
-            rising_test_state = RISING_TEST_STATE_PASSTHROUGH;
-#endif
-          }
-#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE == 2)
-        } else if (rising_test_state == RISING_TEST_STATE_CTRL_RISING) {
-          if ((uint32_t)(now - rising_test_start_tick) >= rising_test_ctrl_rising_duration_ticks) {
-            rising_test_state = RISING_TEST_STATE_CTRL_NORMAL;
-            rising_test_start_tick = now;
-          }
-        } else if (rising_test_state == RISING_TEST_STATE_CTRL_NORMAL) {
-          if ((uint32_t)(now - rising_test_start_tick) >= rising_test_ctrl_normal_duration_ticks) {
-            rising_test_state = RISING_TEST_STATE_PASSTHROUGH;
-          }
-#endif
-        }
-      }
-
-#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE == 2)
-      if ((rising_test_state == RISING_TEST_STATE_CTRL_RISING) ||
-          (rising_test_state == RISING_TEST_STATE_CTRL_NORMAL)) {
-        if (rising_test_ctrl_mode_override_active == 0U) {
-          rising_test_saved_chassis_ctrl_mode = Engineer_Mode.Chassis_Ctrl_Mode;
-          rising_test_ctrl_mode_override_active = 1U;
-        }
-
-        if (rising_test_state == RISING_TEST_STATE_CTRL_RISING) {
-          Engineer_Mode.Chassis_Ctrl_Mode = CHASSIS_CTRL_MODE_Rising;
-        } else {
-          Engineer_Mode.Chassis_Ctrl_Mode = CHASSIS_CTRL_MODE_Normal;
-        }
-
-        last_keyboard_chassis_ctrl_mode = Engineer_Mode.Chassis_Ctrl_Mode;
-      } else if (rising_test_ctrl_mode_override_active != 0U) {
-        Engineer_Mode.Chassis_Ctrl_Mode = rising_test_saved_chassis_ctrl_mode;
-        last_keyboard_chassis_ctrl_mode = Engineer_Mode.Chassis_Ctrl_Mode;
-        rising_test_ctrl_mode_override_active = 0U;
-      }
-#endif
+static void Chassis_SanitizeRisingBehaviorState(void)
+{
+    if ((uint8_t)g_chassis_rising_behavior_state > (uint8_t)CHASSIS_RISING_BEHAVIOR_STATE_DoubleLift) {
+        g_chassis_rising_behavior_state = CHASSIS_RISING_BEHAVIOR_STATE_SingleLift;
     }
-    last_raw_chassis_mode = raw_chassis_mode;
+}
 
-    /* 抬升结束后（进入 TRANSITION / DRIVING / PASSTHROUGH），即使拨码仍处于抬升，也强制切回 Normal */
-    uint8_t effective_chassis_mode = raw_chassis_mode;
-    if ((raw_chassis_mode == Chassis_Upstairs) &&
-        ((rising_test_state == RISING_TEST_STATE_TRANSITION) ||
-         (rising_test_state == RISING_TEST_STATE_DRIVING) ||
-         (rising_test_state == RISING_TEST_STATE_CTRL_RISING) ||
-         (rising_test_state == RISING_TEST_STATE_CTRL_NORMAL) ||
-         (rising_test_state == RISING_TEST_STATE_PASSTHROUGH))) {
-      effective_chassis_mode = Chassis_Normal;
-    }
+static uint8_t Chassis_IsArmInRisingMode(void)
+{
+    return (Arm_Current_Control_Mode == Arm_Rising_Mode) ? 1U : 0U;
+}
 
-    if (effective_chassis_mode != last_effective_chassis_mode) {
-      /* 底盘模式切换瞬间：清零抬升 DM（IMU 闭环）PID，防止切换冲击 */
-      Rising_Reset_DmImuPid();
-      last_effective_chassis_mode = effective_chassis_mode;
-    }
-#else
-    if (chassis_mode != last_chassis_mode) {
-      /* 底盘模式切换瞬间：清零抬升 DM（IMU 闭环）PID，防止切换冲击 */
-      Rising_Reset_DmImuPid();
-      last_chassis_mode = chassis_mode;
-    }
-#endif
-
-    /* 断电模式：底盘与抬升全部停转
-     * 注意：无论DBUS还是Keyboard模式，PowerOff都会立即停止所有电机
+static Chassis_Rising_Behavior_State_t Chassis_GetActiveRisingBehaviorState(void)
+{
+    /* DBUS 模式下:
+     * 右拨杆前沿触发后只执行一级 rising；
+     * Keyboard 模式仍保持独立测试逻辑，不在这里改动。
      */
-    if (chassis_mode == Chassis_PowerOff) {
-      Chassis_Stop();
-      Rising_Stop();
-      osDelay(2);
-      continue;
+    if (g_chassis_control_source_state == CHASSIS_CONTROL_SOURCE_STATE_DBUS) {
+        return CHASSIS_RISING_BEHAVIOR_STATE_SingleLift;
     }
 
-    /* 控制逻辑模式切换处理：
-     * 从Keyboard模式切回DBUS模式时，如果之前强制切换了机械臂模式，需要恢复
-     * 这是为了保证模式切换不会影响机械臂的控制状态
-     */
-    if ((last_ctrl_logic_mode == CTRL_LOGIC_MODE_Keyboard) &&
-        (Engineer_Mode.Ctrl_Logic_Mode == CTRL_LOGIC_MODE_DBUS) &&
-        (arm_ctrl_mode_saved_valid != 0U)) {
-      Engineer_Mode.Arm_Ctrl_Mode = arm_ctrl_mode_saved;
-      arm_ctrl_mode_saved_valid = 0U;
+    return g_chassis_rising_behavior_state;
+}
+
+static uint8_t Chassis_TakeDbusRisingFrontEdge(void)
+{
+    uint8_t current_front = 0U;
+    uint8_t edge_detected = 0U;
+
+    if (g_chassis_control_source_state == CHASSIS_CONTROL_SOURCE_STATE_DBUS) {
+        current_front = (remoter.sw2 == 1) ? 1U : 0U;
     }
-    last_ctrl_logic_mode = Engineer_Mode.Ctrl_Logic_Mode;
 
-    /* ========== 一级状态机：控制源选择 ==========
-     * CTRL_LOGIC_MODE_DBUS: 使用遥控器摇杆控制（remoter.ch1/ch2/ch3）
-     * CTRL_LOGIC_MODE_Keyboard: 使用键盘鼠标控制（WASD + 鼠标）
-     */
-    if (Engineer_Mode.Ctrl_Logic_Mode == CTRL_LOGIC_MODE_DBUS) {
-      /* ===== DBUS模式：遥控器摇杆控制 ===== */
-      /* 底盘运动由remoter的ch1(左右)/ch2(前后)/ch3(旋转)控制 */
-      switch (
-#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE != 0)
-              effective_chassis_mode
-#else
-              chassis_mode
-#endif
-      ) 
-      {
-        case Chassis_Normal:
-          /* Normal模式：底盘四轮全向移动，抬升机构停转 */
-          if ((chassis_mode == Chassis_Upstairs) && (rising_test_state == RISING_TEST_STATE_TRANSITION)) {
-            /* 两阶段之间停0.2s：底盘已切到Normal并停住，抬升保持Normal角度 */
-            rc_info_t chassis_rc = remoter;
-            chassis_rc.ch1 = 0;
-            chassis_rc.ch2 = 0;
-            chassis_rc.ch3 = 0;
-            Chassis_Normal_Mode(&chassis_rc);
-            Rising_Normal_Hold_Mode();
-          } else if ((chassis_mode == Chassis_Upstairs) && (rising_test_state == RISING_TEST_STATE_DRIVING)) {
-            /* 测试历程-驱动阶段：底盘固定速度前进 */
-            rc_info_t chassis_rc = remoter;
-            chassis_rc.ch1 = 0;
-            chassis_rc.ch2 = (int16_t)((Remoter_CHMAX * CHASSIS_RISING_TEST_ACTIVE_DRIVE_SPEED_RATIO_NUM) /
-                                       CHASSIS_RISING_TEST_ACTIVE_DRIVE_SPEED_RATIO_DEN);
-            Chassis_Normal_Mode(&chassis_rc);
+    if ((current_front != 0U) && (s_chassis_dbus_rising_switch_prev_front == 0U)) {
+        edge_detected = 1U;
+    }
 
-            /* 第一阶段结束后切回Normal保持：3508平滑收零，DM锁定Normal角度 */
-            Rising_Normal_Hold_Mode();
-          } else if ((chassis_mode == Chassis_Upstairs) &&
-                     ((rising_test_state == RISING_TEST_STATE_CTRL_RISING) ||
-                      (rising_test_state == RISING_TEST_STATE_CTRL_NORMAL))) {
-            /* 模式2附加阶段：仅切换控制模式标志位，底盘/抬升执行保持与模式1结束后一致 */
-            Chassis_Normal_Mode(&remoter);
-            Rising_Normal_Hold_Mode();
-          } else if ((chassis_mode == Chassis_Upstairs) && (rising_test_state == RISING_TEST_STATE_PASSTHROUGH)) {
-            /* 测试历程结束后保持Normal：抬升维持Normal角度，直到下次重新进入Rising */
-            Chassis_Normal_Mode(&remoter);
-            Rising_Normal_Hold_Mode();
-          } else {
-            /* 正常情况：直接使用遥控器数据控制底盘 */
-            Chassis_Normal_Mode(&remoter);
-            /* 抬升机构保持停转状态 */
-            Rising_Normal_Mode(&remoter);
-          }
-          break;
+    s_chassis_dbus_rising_switch_prev_front = current_front;
+    return edge_detected;
+}
 
-        case Chassis_Upstairs:
-          /* Upstairs模式：底盘前后移动，抬升机构联动，DM电机IMU闭环 */
-#if (CHASSIS_RISING_TEST_TRAJECTORY_ENABLE != 0)
-          if (rising_test_state == RISING_TEST_STATE_LIFTING) {
-            /* 测试历程-抬升阶段：底盘固定速度，抬升3508最大速度 */
-            rc_info_t chassis_rc = remoter;
-            chassis_rc.ch1 = 0;
-            chassis_rc.ch2 = (int16_t)((Remoter_CHMAX * CHASSIS_RISING_TEST_ACTIVE_LIFT_CHASSIS_SPEED_RATIO_NUM) /
-                                       CHASSIS_RISING_TEST_ACTIVE_LIFT_CHASSIS_SPEED_RATIO_DEN);
-            Chassis_Upstairs_Mode(&chassis_rc);
+static uint32_t Chassis_MsToTicks(uint32_t duration_ms)
+{
+    return (uint32_t)((duration_ms * osKernelGetTickFreq()) / 1000U);
+}
 
-            /* 抬升 3508 固定最大值；DM 抬升电机逻辑保持 Rising_Upstairs_Mode 内部不变 */
-            rc_info_t rising_rc = remoter;
-            rising_rc.ch2 = (int16_t)(CHASSIS_RISING_TEST_ACTIVE_LIFT_RISING_RC_CH2);
-            Rising_Upstairs_Mode(&rising_rc);
-          } else {
-            /* 非测试历程或测试历程结束：正常Upstairs控制 */
-            Chassis_Upstairs_Mode(&remoter);
-            Rising_Upstairs_Mode(&remoter);
-          }
-#else
-          Chassis_Upstairs_Mode(&remoter);
-          Rising_Upstairs_Mode(&remoter);
-#endif
-          break;
+static void Chassis_ResetRisingRuntime(Chassis_Rising_Runtime_Ctx_t *ctx)
+{
+    if (ctx == NULL) {
+        return;
+    }
 
-        default:
-          break;
-      }
+    ctx->state = CHASSIS_RISING_RUNTIME_STATE_IDLE;
+    ctx->state_start_tick = 0U;
+    s_chassis_rising_start_request = 0U;
+}
+
+static void Chassis_UpdateRisingRuntime(Chassis_Rising_Runtime_Ctx_t *ctx)
+{
+    const uint32_t now = osKernelGetTickCount();
+    const Chassis_Rising_Behavior_State_t active_behavior = Chassis_GetActiveRisingBehaviorState();
+    const uint8_t dbus_rising_front_edge = Chassis_TakeDbusRisingFrontEdge();
+
+    if (ctx == NULL) {
+        return;
+    }
+
+    if (g_chassis_mode_state != CHASSIS_MODE_STATE_Rising) {
+        Chassis_ResetRisingRuntime(ctx);
+        return;
+    }
+
+    if (g_chassis_control_source_state == CHASSIS_CONTROL_SOURCE_STATE_DBUS) {
+        /* DBUS 模式下：
+         * 1. 机械臂当前模式是一级 rising 的允许条件；
+         * 2. 右拨杆拨到前的边沿才是一级 rising 的真正触发条件；
+         * 3. 不满足条件时保持原版普通 rising。
+         */
+        if ((dbus_rising_front_edge != 0U) &&
+            (Chassis_IsArmInRisingMode() != 0U) &&
+            ((ctx->state == CHASSIS_RISING_RUNTIME_STATE_IDLE) ||
+             (ctx->state == CHASSIS_RISING_RUNTIME_STATE_FINISHED))) {
+            ctx->state = CHASSIS_RISING_RUNTIME_STATE_LIFTING;
+            ctx->state_start_tick = now;
+        }
     } else {
-      /* ===== Keyboard模式：键盘鼠标控制 =====
-       * 底盘运动由WASD键控制平移，鼠标X轴控制旋转
-       * 二级状态机：根据Engineer_Mode.Chassis_Ctrl_Mode决定Normal/Rising
-       */
-      /* 键盘模式下的底盘控制模式切换处理 */
-      if (Engineer_Mode.Chassis_Ctrl_Mode != last_keyboard_chassis_ctrl_mode) {
-        if (Engineer_Mode.Chassis_Ctrl_Mode == CHASSIS_CTRL_MODE_Rising) {
-          /* 进入Rising模式：保存当前机械臂模式，并强制切换到Rising状态 */
-          arm_ctrl_mode_saved = Engineer_Mode.Arm_Ctrl_Mode;
-          arm_ctrl_mode_saved_valid = 1U;
-          Engineer_Mode.Arm_Ctrl_Mode = ARM_CTRL_MODE_Rising;
-        } else if ((last_keyboard_chassis_ctrl_mode == CHASSIS_CTRL_MODE_Rising) && (arm_ctrl_mode_saved_valid != 0U)) {
-          /* 退出Rising模式：恢复之前保存的机械臂模式 */
-          Engineer_Mode.Arm_Ctrl_Mode = arm_ctrl_mode_saved;
-          arm_ctrl_mode_saved_valid = 0U;
+        /* Keyboard 模式保持现有测试逻辑:
+         * 只有机械臂当前处在 rising 模式时，R 启动请求才允许推进子状态机。
+         */
+        if (Chassis_IsArmInRisingMode() == 0U) {
+            Chassis_ResetRisingRuntime(ctx);
+            return;
         }
-        last_keyboard_chassis_ctrl_mode = Engineer_Mode.Chassis_Ctrl_Mode;
-      }
 
-      /* 获取当前激活的键盘数据源
-       * 通过修改 Referee_Task.h 中的 USE_REMOTER_KEYBOARD 宏切换：
-       * - USE_REMOTER_KEYBOARD = 0: 使用裁判系统的键盘数据(kb_info)
-       * - USE_REMOTER_KEYBOARD = 1: 使用遥控器DBUS协议的键盘数据(remoter.keyboard)
-       */
-#if (USE_REMOTER_KEYBOARD != 0)
-      const keyboard_t *active_kb = &remoter.keyboard;
-#else
-      const keyboard_t *active_kb = &kb_info;
-#endif
-
-      if (Engineer_Mode.Chassis_Ctrl_Mode == CHASSIS_CTRL_MODE_Normal) {
-        /* Normal模式：
-         * - 底盘：WASD控制平移，鼠标X轴控制旋转（允许yaw）
-         * - 抬升：保持停转状态
-         */
-        Chassis_Keyboard_Mode(active_kb, 0U);  // disable_yaw = 0，允许旋转
-        Rising_Normal_Mode(&remoter);
-      } else {
-        /* Rising模式：
-         * - 底盘：WASD控制平移，禁止旋转（disable_yaw = 1）
-         * - 抬升：启动抬升机构，ch2=200提供固定速度
-         */
-        Chassis_Keyboard_Mode(active_kb, 1U);  // disable_yaw = 1，禁止旋转
-        rc_info_t rising_rc = remoter;
-        rising_rc.ch2 = 200;  // 抬升固定速度
-        Rising_Upstairs_Mode(&rising_rc);
-      }
+        if ((s_chassis_rising_start_request != 0U) &&
+            ((ctx->state == CHASSIS_RISING_RUNTIME_STATE_IDLE) ||
+             (ctx->state == CHASSIS_RISING_RUNTIME_STATE_FINISHED))) {
+            ctx->state = CHASSIS_RISING_RUNTIME_STATE_LIFTING;
+            ctx->state_start_tick = now;
+            s_chassis_rising_start_request = 0U;
+        }
     }
-    osDelay(2);
-  }
-  /* USER CODE END Chassis_Task */
+
+    switch (ctx->state) {
+        case CHASSIS_RISING_RUNTIME_STATE_LIFTING:
+            if ((uint32_t)(now - ctx->state_start_tick) >=
+                Chassis_MsToTicks((active_behavior == CHASSIS_RISING_BEHAVIOR_STATE_SingleLift)
+                                      ? CHASSIS_RISING_SINGLE_LIFT_DURATION_MS
+                                      : CHASSIS_RISING_DOUBLE_LIFT_DURATION_MS)) {
+                ctx->state = CHASSIS_RISING_RUNTIME_STATE_TRANSITION;
+                ctx->state_start_tick = now;
+            }
+            break;
+
+        case CHASSIS_RISING_RUNTIME_STATE_TRANSITION:
+            if ((uint32_t)(now - ctx->state_start_tick) >=
+                Chassis_MsToTicks((active_behavior == CHASSIS_RISING_BEHAVIOR_STATE_SingleLift)
+                                      ? CHASSIS_RISING_SINGLE_TRANSITION_DURATION_MS
+                                      : CHASSIS_RISING_DOUBLE_TRANSITION_DURATION_MS)) {
+                ctx->state = CHASSIS_RISING_RUNTIME_STATE_DRIVING;
+                ctx->state_start_tick = now;
+            }
+            break;
+
+        case CHASSIS_RISING_RUNTIME_STATE_DRIVING:
+            if ((uint32_t)(now - ctx->state_start_tick) >=
+                Chassis_MsToTicks((active_behavior == CHASSIS_RISING_BEHAVIOR_STATE_SingleLift)
+                                      ? CHASSIS_RISING_SINGLE_DRIVE_DURATION_MS
+                                      : CHASSIS_RISING_DOUBLE_DRIVE_DURATION_MS)) {
+                if (active_behavior == CHASSIS_RISING_BEHAVIOR_STATE_DoubleLift) {
+                    ctx->state = CHASSIS_RISING_RUNTIME_STATE_DOUBLE_RISING_HOLD;
+                    ctx->state_start_tick = now;
+                } else {
+                    ctx->state = CHASSIS_RISING_RUNTIME_STATE_FINISHED;
+                }
+            }
+            break;
+
+        case CHASSIS_RISING_RUNTIME_STATE_DOUBLE_RISING_HOLD:
+            if ((uint32_t)(now - ctx->state_start_tick) >=
+                Chassis_MsToTicks(CHASSIS_RISING_DOUBLE_RISING_HOLD_DURATION_MS)) {
+                ctx->state = CHASSIS_RISING_RUNTIME_STATE_DOUBLE_NORMAL_HOLD;
+                ctx->state_start_tick = now;
+            }
+            break;
+
+        case CHASSIS_RISING_RUNTIME_STATE_DOUBLE_NORMAL_HOLD:
+            if ((uint32_t)(now - ctx->state_start_tick) >=
+                Chassis_MsToTicks(CHASSIS_RISING_DOUBLE_NORMAL_HOLD_DURATION_MS)) {
+                ctx->state = CHASSIS_RISING_RUNTIME_STATE_FINISHED;
+            }
+            break;
+
+        case CHASSIS_RISING_RUNTIME_STATE_FINISHED:
+        case CHASSIS_RISING_RUNTIME_STATE_IDLE:
+        default:
+            break;
+    }
+}
+
+static void Chassis_ExecuteNormalBySource(const keyboard_t *active_kb)
+{
+    if (g_chassis_control_source_state == CHASSIS_CONTROL_SOURCE_STATE_Keyboard) {
+        /* 键盘源下完全屏蔽遥控器底盘控制，底盘与抬升Normal都不再读取 remoter。 */
+        Chassis_Keyboard_Mode(active_kb, 0U);
+        Rising_Normal_Mode(NULL);
+        return;
+    }
+
+    Chassis_Normal_Mode(&remoter);
+    Rising_Normal_Mode(&remoter);
+}
+
+static void Chassis_ExecuteRisingRegularBySource(const keyboard_t *active_kb)
+{
+    if (g_chassis_control_source_state == CHASSIS_CONTROL_SOURCE_STATE_Keyboard) {
+        rc_info_t rising_rc = {0};
+
+        /* 键盘 rising 下仍然不给遥控器控制权，只构造抬升所需的最小输入。 */
+        Chassis_Keyboard_Mode(active_kb, 1U);
+        rising_rc.ch2 = CHASSIS_RISING_KEYBOARD_RC_CH2;
+        Rising_Upstairs_Mode(&rising_rc);
+        return;
+    }
+
+    Chassis_Upstairs_Mode(&remoter);
+    Rising_Upstairs_Mode(&remoter);
+}
+
+static void Chassis_RunSequenceLift(int16_t chassis_ch2, int16_t rising_ch2)
+{
+    rc_info_t chassis_rc = {0};
+    rc_info_t rising_rc = {0};
+
+    chassis_rc.ch2 = chassis_ch2;
+    rising_rc.ch2 = rising_ch2;
+
+    Chassis_Upstairs_Mode(&chassis_rc);
+    Rising_Upstairs_Mode(&rising_rc);
+}
+
+static void Chassis_RunNormalHoldStop(void)
+{
+    rc_info_t chassis_rc = {0};
+
+    Chassis_Normal_Mode(&chassis_rc);
+    Rising_Normal_Hold_Mode();
+}
+
+static void Chassis_RunNormalHoldDrive(int16_t chassis_ch2)
+{
+    rc_info_t chassis_rc = {0};
+
+    chassis_rc.ch2 = chassis_ch2;
+    Chassis_Normal_Mode(&chassis_rc);
+    Rising_Normal_Hold_Mode();
+}
+
+static void Chassis_RunNormalHoldBySource(const keyboard_t *active_kb)
+{
+    if (g_chassis_control_source_state == CHASSIS_CONTROL_SOURCE_STATE_Keyboard) {
+        Chassis_Keyboard_Mode(active_kb, 0U);
+        Rising_Normal_Hold_Mode();
+        return;
+    }
+
+    Chassis_Normal_Mode(&remoter);
+    Rising_Normal_Hold_Mode();
+}
+
+static void Chassis_ExecuteRisingStateMachine(const keyboard_t *active_kb,
+                                              const Chassis_Rising_Runtime_Ctx_t *ctx)
+{
+    const Chassis_Rising_Behavior_State_t active_behavior = Chassis_GetActiveRisingBehaviorState();
+
+    if ((ctx == NULL) ||
+        (ctx->state == CHASSIS_RISING_RUNTIME_STATE_IDLE) ||
+        (ctx->state == CHASSIS_RISING_RUNTIME_STATE_FINISHED)) {
+        Chassis_ExecuteRisingRegularBySource(active_kb);
+        return;
+    }
+
+    switch (ctx->state) {
+        case CHASSIS_RISING_RUNTIME_STATE_LIFTING:
+            if (active_behavior == CHASSIS_RISING_BEHAVIOR_STATE_SingleLift) {
+                Chassis_RunSequenceLift(
+                    (int16_t)((Remoter_CHMAX * CHASSIS_RISING_SINGLE_LIFT_CHASSIS_SPEED_RATIO_NUM) /
+                              CHASSIS_RISING_SINGLE_LIFT_CHASSIS_SPEED_RATIO_DEN),
+                    (int16_t)CHASSIS_RISING_SINGLE_LIFT_RISING_RC_CH2);
+            } else {
+                Chassis_RunSequenceLift(
+                    (int16_t)((Remoter_CHMAX * CHASSIS_RISING_DOUBLE_LIFT_CHASSIS_SPEED_RATIO_NUM) /
+                              CHASSIS_RISING_DOUBLE_LIFT_CHASSIS_SPEED_RATIO_DEN),
+                    (int16_t)CHASSIS_RISING_DOUBLE_LIFT_RISING_RC_CH2);
+            }
+            break;
+
+        case CHASSIS_RISING_RUNTIME_STATE_TRANSITION:
+            Chassis_RunNormalHoldStop();
+            break;
+
+        case CHASSIS_RISING_RUNTIME_STATE_DRIVING:
+            if (active_behavior == CHASSIS_RISING_BEHAVIOR_STATE_SingleLift) {
+                Chassis_RunNormalHoldDrive(
+                    (int16_t)((Remoter_CHMAX * CHASSIS_RISING_SINGLE_DRIVE_SPEED_RATIO_NUM) /
+                              CHASSIS_RISING_SINGLE_DRIVE_SPEED_RATIO_DEN));
+            } else {
+                Chassis_RunNormalHoldDrive(
+                    (int16_t)((Remoter_CHMAX * CHASSIS_RISING_DOUBLE_DRIVE_SPEED_RATIO_NUM) /
+                              CHASSIS_RISING_DOUBLE_DRIVE_SPEED_RATIO_DEN));
+            }
+            break;
+
+        case CHASSIS_RISING_RUNTIME_STATE_DOUBLE_RISING_HOLD:
+        case CHASSIS_RISING_RUNTIME_STATE_DOUBLE_NORMAL_HOLD:
+        case CHASSIS_RISING_RUNTIME_STATE_FINISHED:
+            Chassis_RunNormalHoldBySource(active_kb);
+            break;
+
+        case CHASSIS_RISING_RUNTIME_STATE_IDLE:
+        default:
+            Chassis_ExecuteRisingRegularBySource(active_kb);
+            break;
+    }
+}
+
+void Chassis_Task(void *argument)
+{
+    Chassis_Rising_Runtime_Ctx_t rising_runtime;
+    Chassis_Mode_State_t last_mode_state;
+    Chassis_Rising_Runtime_State_t last_rising_runtime_state;
+
+    (void)argument;
+    osDelay(200);
+
+    Chassis_Drive_Init();
+    Rising_Ctrl_Init();
+
+    Chassis_ResetRisingRuntime(&rising_runtime);
+    last_mode_state = g_chassis_mode_state;
+    last_rising_runtime_state = rising_runtime.state;
+
+    for (;;) {
+        const keyboard_t *active_kb = Referee_GetActiveKeyboard();
+
+        /* 第一层：控制源状态机。
+         * DBUS 和 Keyboard 只通过这里统一切换，后续执行逻辑都基于这个状态。
+         */
+        g_chassis_control_source_state = Chassis_GetControlSourceState();
+        Chassis_SanitizeRisingBehaviorState();
+        Chassis_SyncModeStateFromSource();
+
+        /* 第二层：底盘总状态机。
+         * 输出统一发布到 g_chassis_mode_state，供外部读取。
+         */
+        Chassis_UpdateRisingRuntime(&rising_runtime);
+
+        if ((g_chassis_mode_state != last_mode_state) ||
+            (rising_runtime.state != last_rising_runtime_state)) {
+            Rising_Reset_DmImuPid();
+            last_mode_state = g_chassis_mode_state;
+            last_rising_runtime_state = rising_runtime.state;
+        }
+
+        switch (g_chassis_mode_state) {
+            case CHASSIS_MODE_STATE_PowerOff:
+                Chassis_ResetRisingRuntime(&rising_runtime);
+                last_rising_runtime_state = rising_runtime.state;
+                Chassis_Stop();
+                Rising_Stop();
+                break;
+
+            case CHASSIS_MODE_STATE_Normal:
+                Chassis_ResetRisingRuntime(&rising_runtime);
+                last_rising_runtime_state = rising_runtime.state;
+                Chassis_ExecuteNormalBySource(active_kb);
+                break;
+
+            case CHASSIS_MODE_STATE_Rising:
+                /* 第三层：rising 子状态机。
+                 * 未启动时走原版 rising；
+                 * 按 R 后才进入当前选中的一级/二级流程。
+                 */
+                Chassis_ExecuteRisingStateMachine(active_kb, &rising_runtime);
+                break;
+
+            default:
+                Chassis_Stop();
+                Rising_Stop();
+                break;
+        }
+
+        osDelay(2);
+    }
 }

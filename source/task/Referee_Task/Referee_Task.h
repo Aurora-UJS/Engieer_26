@@ -18,10 +18,10 @@
 /**
  * @brief 键盘数据源选择宏定义
  * @note 修改此宏来切换键盘数据源：
- *       0 = 使用裁判系统的键盘数据 (kb_info) - 通过图传链路/裁判系统传输
- *       1 = 使用遥控器DBUS的键盘数据 (remoter.keyboard) - 当前使用
+ *       0 = 使用裁判系统的键盘数据 (kb_info) - 当前使用
+ *       1 = 使用遥控器DBUS的键盘数据 (remoter.keyboard)
  */
-#define USE_REMOTER_KEYBOARD 1
+#define USE_REMOTER_KEYBOARD 0
 
 /**
  * @brief 键盘数据源枚举
