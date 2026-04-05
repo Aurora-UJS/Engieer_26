@@ -337,6 +337,19 @@ const osSemaphoreAttr_t controlBinaryIMU_attributes = {
      .stack_size = sizeof(Joint6_Move_TaskBuffer),
      .priority = (osPriority_t) osPriorityAboveNormal,
  };
+
+ /* Definitions for View_Gimbal_Task */
+ osThreadId_t View_Gimbal_TaskHandle;
+ uint32_t View_Gimbal_TaskBuffer[128];
+ osStaticThreadDef_t View_Gimbal_TaskControlBlock;
+ const osThreadAttr_t View_Gimbal_Task_attributes = {
+     .name = "View_Gimbal_Task",
+     .cb_mem = &View_Gimbal_TaskControlBlock,
+     .cb_size = sizeof(View_Gimbal_TaskControlBlock),
+     .stack_mem = &View_Gimbal_TaskBuffer[0],
+     .stack_size = sizeof(View_Gimbal_TaskBuffer),
+     .priority = (osPriority_t) osPriorityNormal,
+ };
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
 void uart_test(void *argument);
@@ -358,6 +371,7 @@ void Joint6_Move_Task(void *argument);
 /* USER CODE END FunctionPrototypes */
 
 /* USER CODE END FunctionPrototypes */
+void View_Gimbal_Task(void *argument);
 void Trajectory_Timer_Init(void);
 void StartDefaultTask(void *argument);
 void IMU_TempCtrlTask(void *argument);
@@ -426,6 +440,7 @@ void MX_FREERTOS_Init(void) {
   Referee_TaskHandle = osThreadNew(Referee_Task, NULL, &Referee_Task_attributes);
   IMU_TaskHandle = osThreadNew(IMU_Task, NULL, &IMU_Task_attributes);
   Trajectory_PublisherHandle = osThreadNew(Trajectory_Publisher_Task, NULL, &Trajectory_Publisher_attributes);
+  View_Gimbal_TaskHandle = osThreadNew(View_Gimbal_Task, NULL, &View_Gimbal_Task_attributes);
   // SerialPlotHandle = osThreadNew(SerialPlot, NULL, &SerialPlot_attributes);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
