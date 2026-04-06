@@ -1,13 +1,21 @@
 #include "cmsis_os2.h"
-#include "tim.h"
+
+#include "servo_drv.h"
+
 
 void View_Gimbal_Task(void *argument){
   UNUSED(argument);
-  HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-  int ecd = 1500;
+  servo_t view_gimbal_yaw,view_gimbal_pitch;
+  
+  servo_init(&view_gimbal_yaw, &htim1, TIM_CHANNEL_1);
+  servo_init(&view_gimbal_pitch, &htim1, TIM_CHANNEL_3);
+
+  servo_setPos(&view_gimbal_pitch, 180);
+  servo_setPos(&view_gimbal_yaw, 180);
   while(1)
   {
-    __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, ecd);
+    servo_drive(&view_gimbal_pitch);
+    servo_drive(&view_gimbal_yaw);
     osDelay(10);
   }
 }
