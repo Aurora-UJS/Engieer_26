@@ -7,10 +7,12 @@
 #define Chassis_Keyboard_MouseYaw_Sensitivity 0.5f
 #define Chassis_Keyboard_MouseYaw_Polarity -1.0f
 
-#define Max_Rising_Motor_Velocity 2.5f
-#define Max_Rising_DM_angle 0.83f
-#define Rising_DM_ZeroPoint 0.08f
-#define Rising_DM_Velocity 1.5f
+#define Max_Rising_Motor_Velocity 1.8f
+#define Max_Rising_DM_angle 0.9f
+#define Rising_DM_ZeroPoint 0.05f
+#define Rising_DM_Velocity 1.8f
+#define Rising_DM_ImuTarget_SwitchDeltaThreshold 0.2f
+#define Rising_DM_ImuTarget_Fallback 0.18f
 
 #define Track_R 0.05
 #define Steel_R 0.15
@@ -21,13 +23,13 @@
 #define CHASSIS_RISING_BEHAVIOR_DEFAULT 0U
 #define CHASSIS_RISING_KEYBOARD_RC_CH2 200
 
-#define CHASSIS_RISING_SINGLE_LIFT_DURATION_MS 1600U
-#define CHASSIS_RISING_SINGLE_LIFT_CHASSIS_SPEED_RATIO_NUM 100
+#define CHASSIS_RISING_SINGLE_LIFT_DURATION_MS 2000U
+#define CHASSIS_RISING_SINGLE_LIFT_CHASSIS_SPEED_RATIO_NUM 70
 #define CHASSIS_RISING_SINGLE_LIFT_CHASSIS_SPEED_RATIO_DEN 100
 #define CHASSIS_RISING_SINGLE_LIFT_RISING_RC_CH2 Remoter_CHMAX
 #define CHASSIS_RISING_SINGLE_TRANSITION_DURATION_MS 0U
-#define CHASSIS_RISING_SINGLE_DRIVE_DURATION_MS 600U
-#define CHASSIS_RISING_SINGLE_DRIVE_SPEED_RATIO_NUM 70
+#define CHASSIS_RISING_SINGLE_DRIVE_DURATION_MS 800U
+#define CHASSIS_RISING_SINGLE_DRIVE_SPEED_RATIO_NUM 100
 #define CHASSIS_RISING_SINGLE_DRIVE_SPEED_RATIO_DEN 100
 
 #define CHASSIS_RISING_DOUBLE_LIFT_DURATION_MS 1600U
@@ -75,6 +77,11 @@
 #define Chassis_PowerModel_GlobalScale_Default 1.6f
 #define Chassis_PowerScale_Attack_Default 1.0f
 #define Chassis_PowerScale_Release_Default 0.1f
+
+#define Chassis_PowerCalc_Group_Chassis 0U
+#define Chassis_PowerCalc_Group_Rising 1U
+#define Chassis_PowerCalc_Group_Count 2U
+#define Chassis_PowerCalc_Enable_Default 1U
 
 #define Rising_3508_PID_kp 9000
 #define Rising_3508_PID_ki 0.0001f

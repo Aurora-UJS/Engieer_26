@@ -24,6 +24,14 @@ void Chassis_Drive_Init(void);
 void Chassis_Stop(void);
 
 /**
+ * @brief 设置前轮输出旁路
+ *
+ * enable = 1 时，左前/右前轮发送值强制为 0，
+ * 且这两个轮子不参与底盘功率估算与缩放。
+ */
+void Chassis_SetFrontWheelsOutputBypass(uint8_t enable);
+
+/**
  * @brief 底盘普通模式控制
  *
  * @param remoter 遥控器数据指针

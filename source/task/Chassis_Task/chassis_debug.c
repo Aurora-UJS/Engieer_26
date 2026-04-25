@@ -14,4 +14,8 @@ volatile Chassis_Debug_t g_chassis_debug = {
     .chassis_power_model_global_scale = Chassis_PowerModel_GlobalScale_Default,
     .chassis_power_scale_attack = Chassis_PowerScale_Attack_Default,
     .chassis_power_scale_release = Chassis_PowerScale_Release_Default,
+    .chassis_power_calc_enable = {
+        [Chassis_PowerCalc_Group_Chassis] = 1,
+        [Chassis_PowerCalc_Group_Rising] = 1,
+    },
 };

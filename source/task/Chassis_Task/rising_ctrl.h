@@ -110,6 +110,10 @@ void Rising_Motor_SendControl_DM(DM_motor_t *DMMotor_L, DM_motor_t *DMMotor_R, f
 
 void Rising_Reset_DmImuPid(void);
 
+DJI_motor_t *Rising_Get3508Motor(void);
+int16_t *Rising_Get3508CtrlOutput(void);
+void Rising_Publish3508Output(void);
+
 DM_motor_t *Rising_Get_DmMotor_L(void);
 DM_motor_t *Rising_Get_DmMotor_R(void);
 
